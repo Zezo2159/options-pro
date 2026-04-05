@@ -84,6 +84,8 @@
         <button class="tab" data-panel="scanner" style="color:#f59e0b">🌅 Morning Scanner</button>
         <button class="tab" data-panel="analytics" style="color:#22c55e">📊 Analytics</button>
         <button class="tab" data-panel="automation" style="color:#e879f9">⚡ Automation</button>
+        <button class="tab" data-panel="livedata" style="color:#06b6d4">📡 Live Data</button>
+        <button class="tab" data-panel="backtest" style="color:#f97316">🔬 Backtest</button>
     </div>
 
     <!-- ══ 1. WHEEL OPTIMIZER ══ -->
@@ -2421,5 +2423,794 @@ document.querySelectorAll('.tab').forEach(btn => {
   });
 });
 </script>
+
+<!-- ══ 8. LIVE DATA PANEL ══ -->
+<div id="panel-livedata" class="panel">
+<style>
+  #panel-livedata{--cyan:#06b6d4;--cyan-dim:rgba(6,182,212,0.08);--cyan-border:rgba(6,182,212,0.25);}
+  .ld-header{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,rgba(6,182,212,0.08),rgba(56,189,248,0.05));border:1px solid var(--cyan-border);border-radius:16px;padding:20px 28px;margin-bottom:20px;}
+  .ld-ticker-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:20px;}
+  .ld-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;cursor:pointer;transition:border-color .2s;position:relative;}
+  .ld-card:hover{border-color:var(--cyan);}
+  .ld-card.selected{border-color:var(--cyan);background:var(--cyan-dim);}
+  .ld-card.loading{opacity:.6;}
+  .ld-card.error{border-color:rgba(239,68,68,.3);}
+  .ld-ticker{font-size:18px;font-weight:900;font-family:var(--font-mono);margin-bottom:4px;}
+  .ld-price{font-size:22px;font-weight:900;font-family:var(--font-mono);margin-bottom:2px;}
+  .ld-change{font-size:12px;font-weight:700;}
+  .ld-ivr-bar{background:rgba(0,0,0,.4);height:4px;border-radius:2px;margin:8px 0 4px;overflow:hidden;}
+  .ld-ivr-fill{height:100%;border-radius:2px;transition:width .5s;}
+  .ld-meta{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:8px;}
+  .ld-meta-item .lbl{font-size:9px;color:var(--text-dim);text-transform:uppercase;}
+  .ld-meta-item .val{font-size:12px;font-weight:700;font-family:var(--font-mono);}
+  .ld-detail{background:var(--card);border:1px solid var(--cyan-border);border-radius:14px;padding:24px;margin-bottom:16px;display:none;}
+  .ld-detail.visible{display:block;}
+  .ld-chain-table{width:100%;border-collapse:collapse;font-size:12px;}
+  .ld-chain-table th{background:rgba(0,0,0,.4);padding:8px 12px;text-align:right;font-size:10px;text-transform:uppercase;color:var(--text-dim);letter-spacing:.05em;}
+  .ld-chain-table th:first-child{text-align:left;}
+  .ld-chain-table td{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.04);text-align:right;font-family:var(--font-mono);}
+  .ld-chain-table td:first-child{text-align:left;}
+  .ld-chain-table tr:hover td{background:rgba(255,255,255,.03);}
+  .ld-chain-table tr.atm td{background:rgba(6,182,212,.06);border-left:2px solid var(--cyan);}
+  .ld-refresh-btn{background:var(--cyan-dim);border:1px solid var(--cyan-border);color:var(--cyan);padding:8px 16px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700;}
+  .ld-refresh-btn:hover{background:rgba(6,182,212,.15);}
+  .ld-last-update{font-size:11px;color:var(--text-dim);margin-left:12px;}
+  .ld-expiry-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+  .ld-expiry-tab{padding:6px 14px;background:var(--card);border:1px solid var(--border);color:var(--text-dim);border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;}
+  .ld-expiry-tab.active{background:var(--cyan-dim);border-color:var(--cyan);color:var(--cyan);}
+</style>
+
+<div class="ld-header">
+  <div style="font-size:42px">📡</div>
+  <div>
+    <div style="font-size:20px;font-weight:900;color:var(--cyan)">Live Data <span style="font-size:14px;color:var(--text-dim);font-weight:400">Phase D · Yahoo Finance</span></div>
+    <div style="font-size:13px;color:var(--text-dim);margin-top:4px">Real-time prices · IV & IV Rank · Estimated options chain for premium selling</div>
+  </div>
+  <div style="margin-left:auto;display:flex;align-items:center;gap:12px">
+    <button class="ld-refresh-btn" onclick="refreshAllLiveData()">🔄 Refresh All</button>
+    <span class="ld-last-update" id="ld-last-update">Not loaded</span>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:16px">
+  <div style="display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap">
+    <div style="flex:1;min-width:200px">
+      <div style="font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-bottom:6px">Tickers to load</div>
+      <input id="ld-watchlist-input" style="width:100%;background:#05080f;border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:10px;font-family:var(--font-mono);font-size:13px;outline:none" value="SPY, QQQ, IWM, GLD, TLT, XLE, SMH">
+    </div>
+    <button class="primary" onclick="loadLiveData()" id="ld-load-btn">📡 Load Live Data</button>
+  </div>
+  <div style="font-size:11px;color:var(--text-dim);margin-top:8px">⚠ Data via Yahoo Finance — 15min delayed. IV is estimated from historical volatility. Click any card for detailed chain.</div>
+</div>
+
+<div class="ld-ticker-grid" id="ld-ticker-grid"></div>
+<div class="ld-detail" id="ld-detail"></div>
+
+<script>
+// ══ LIVE DATA ENGINE (Yahoo Finance via proxy) ══
+let ldCache = {};
+let ldSelectedTicker = null;
+let ldCurrentExpiry = null;
+
+async function fetchYahoo(ticker) {
+  const isMacApp = window.location.protocol === 'http:' && window.location.hostname === 'localhost';
+  // Route through proxy on Mac, use CORS proxy on iPhone/browser
+  const url = isMacApp
+    ? `/api/yahoo?ticker=${ticker}`
+    : `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=1y`;
+
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.timeout = 15000;
+    xhr.onload = () => {
+      try { resolve(JSON.parse(xhr.responseText)); }
+      catch(e) { reject(new Error('Parse error')); }
+    };
+    xhr.onerror = () => reject(new Error('Network error'));
+    xhr.ontimeout = () => reject(new Error('Timeout'));
+    xhr.send();
+  });
+}
+
+function calcIVFromHV(closes) {
+  // Calculate Historical Volatility as IV proxy
+  if (closes.length < 20) return 20;
+  const returns = [];
+  for (let i = 1; i < closes.length; i++) returns.push(Math.log(closes[i]/closes[i-1]));
+  const mean = returns.reduce((a,b)=>a+b,0)/returns.length;
+  const variance = returns.reduce((s,r)=>s+(r-mean)**2,0)/(returns.length-1);
+  return Math.sqrt(variance * 252) * 100;
+}
+
+function calcIVR(closes, currentIV) {
+  // 52-week IV range
+  const hvValues = [];
+  for (let i = 20; i < closes.length; i++) {
+    const slice = closes.slice(i-20, i);
+    const rets = [];
+    for (let j = 1; j < slice.length; j++) rets.push(Math.log(slice[j]/slice[j-1]));
+    const mean = rets.reduce((a,b)=>a+b,0)/rets.length;
+    const v = rets.reduce((s,r)=>s+(r-mean)**2,0)/(rets.length-1);
+    hvValues.push(Math.sqrt(v*252)*100);
+  }
+  if (!hvValues.length) return 50;
+  const min = Math.min(...hvValues), max = Math.max(...hvValues);
+  return max > min ? Math.round((currentIV - min)/(max - min)*100) : 50;
+}
+
+function estimateOptionsChain(price, iv, dte) {
+  // Generate estimated options chain around current price
+  const t = dte/365;
+  const r = 0.05;
+  const strikes = [];
+  const step = price < 50 ? 1 : price < 200 ? 5 : price < 500 ? 10 : 25;
+  const range = Math.round(price * 0.15 / step);
+  for (let i = -range; i <= range; i++) {
+    const k = Math.round(price / step + i) * step;
+    if (k <= 0) continue;
+    const putPrice = bsPut(price, k, iv/100, t, r);
+    const callPrice = bsCall(price, k, iv/100, t, r);
+    const d1 = bsD1(price, k, iv/100, t, r);
+    const putDelta = -(1 - ncdf(d1));
+    const callDelta = ncdf(d1);
+    const theta = bsTheta(price, k, iv/100, t, true, r);
+    const otmPct = ((k - price) / price * 100);
+    strikes.push({
+      strike: k, putPrice: +putPrice.toFixed(2), callPrice: +callPrice.toFixed(2),
+      putDelta: +putDelta.toFixed(3), callDelta: +callDelta.toFixed(3),
+      theta: +(theta * 100).toFixed(2), otmPct: +otmPct.toFixed(1),
+      isATM: Math.abs(otmPct) < (step/price*100*0.6),
+      putPremium: +(putPrice*100).toFixed(0), callPremium: +(callPrice*100).toFixed(0),
+      popOTM: +(ncdf(-d1+iv/100*Math.sqrt(t))*100).toFixed(1)
+    });
+  }
+  return strikes;
+}
+
+async function loadLiveData() {
+  const tickers = $id('ld-watchlist-input').value.split(',').map(t=>t.trim().toUpperCase()).filter(Boolean);
+  const btn = $id('ld-load-btn');
+  btn.disabled = true; btn.textContent = '⏳ Loading…';
+  $id('ld-ticker-grid').innerHTML = tickers.map(t=>`
+    <div class="ld-card loading" id="ldc-${t}">
+      <div class="ld-ticker">${t}</div>
+      <div style="color:var(--text-dim);font-size:12px;margin-top:8px">Loading…</div>
+    </div>`).join('');
+
+  for (const ticker of tickers) {
+    try {
+      const data = await fetchYahoo(ticker);
+      const result = data.chart?.result?.[0];
+      if (!result) throw new Error('No data');
+      const meta = result.meta;
+      const closes = result.indicators?.quote?.[0]?.close?.filter(Boolean) || [];
+      const price = meta.regularMarketPrice || closes[closes.length-1];
+      const prevClose = meta.chartPreviousClose || closes[closes.length-2] || price;
+      const change = price - prevClose;
+      const changePct = (change/prevClose*100);
+      const iv = calcIVFromHV(closes);
+      const ivr = calcIVR(closes, iv);
+      const high52 = meta.fiftyTwoWeekHigh || Math.max(...closes);
+      const low52 = meta.fiftyTwoWeekLow || Math.min(...closes);
+      ldCache[ticker] = { ticker, price, change, changePct, iv, ivr, high52, low52, closes };
+      renderLdCard(ticker);
+    } catch(e) {
+      const card = $id('ldc-'+ticker);
+      if (card) { card.className='ld-card error'; card.innerHTML=`<div class="ld-ticker">${ticker}</div><div style="color:var(--loss);font-size:11px;margin-top:6px">Failed to load</div>`; }
+    }
+  }
+  btn.disabled = false; btn.textContent = '📡 Load Live Data';
+  $id('ld-last-update').textContent = 'Updated ' + new Date().toLocaleTimeString();
+}
+
+function renderLdCard(ticker) {
+  const d = ldCache[ticker];
+  if (!d) return;
+  const card = $id('ldc-'+ticker);
+  if (!card) return;
+  const ivrColor = d.ivr >= 50 ? 'var(--profit)' : d.ivr >= 30 ? 'var(--warning)' : 'var(--loss)';
+  const changeColor = d.change >= 0 ? 'var(--profit)' : 'var(--loss)';
+  card.className = 'ld-card' + (ldSelectedTicker===ticker?' selected':'');
+  card.onclick = () => showLdDetail(ticker);
+  card.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+      <div class="ld-ticker" style="color:var(--cyan)">${ticker}</div>
+      <span class="zone ${d.ivr>=50?'zone-safe':d.ivr>=30?'zone-warn':'zone-danger'}" style="font-size:9px">IVR ${d.ivr}</span>
+    </div>
+    <div class="ld-price">$${d.price.toFixed(2)}</div>
+    <div class="ld-change" style="color:${changeColor}">${d.change>=0?'+':''}${d.change.toFixed(2)} (${d.changePct>=0?'+':''}${d.changePct.toFixed(2)}%)</div>
+    <div class="ld-ivr-bar"><div class="ld-ivr-fill" style="width:${d.ivr}%;background:${ivrColor}"></div></div>
+    <div class="ld-meta">
+      <div class="ld-meta-item"><div class="lbl">Est. IV</div><div class="val" style="color:var(--warning)">${d.iv.toFixed(1)}%</div></div>
+      <div class="ld-meta-item"><div class="lbl">IVR</div><div class="val" style="color:${ivrColor}">${d.ivr}%</div></div>
+      <div class="ld-meta-item"><div class="lbl">52W Hi</div><div class="val">$${d.high52.toFixed(0)}</div></div>
+      <div class="ld-meta-item"><div class="lbl">52W Lo</div><div class="val">$${d.low52.toFixed(0)}</div></div>
+    </div>
+    <div style="margin-top:8px;font-size:10px;color:var(--cyan);font-weight:700">Click for options chain →</div>`;
+}
+
+function showLdDetail(ticker) {
+  ldSelectedTicker = ticker;
+  document.querySelectorAll('.ld-card').forEach(c => c.classList.toggle('selected', c.id==='ldc-'+ticker));
+  const d = ldCache[ticker];
+  if (!d) return;
+  const detail = $id('ld-detail');
+  detail.classList.add('visible');
+  detail.scrollIntoView({behavior:'smooth', block:'nearest'});
+
+  // Generate chains for common DTEs
+  const dtes = [7, 14, 21, 30, 45, 60];
+  const today = new Date();
+
+  // Default to 30 DTE
+  ldCurrentExpiry = ldCurrentExpiry || 30;
+  renderChain(ticker, ldCurrentExpiry);
+
+  detail.querySelector('#ld-expiry-tabs-container').querySelectorAll('.ld-expiry-tab').forEach(t => {
+    t.classList.toggle('active', parseInt(t.dataset.dte) === ldCurrentExpiry);
+  });
+}
+
+function renderChain(ticker, dte) {
+  const d = ldCache[ticker];
+  if (!d) return;
+  ldCurrentExpiry = dte;
+  const chain = estimateOptionsChain(d.price, d.iv, dte);
+  const expDate = new Date(); expDate.setDate(expDate.getDate()+dte);
+  const expStr = expDate.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  const detail = $id('ld-detail');
+  const ivrColor = d.ivr>=50?'var(--profit)':d.ivr>=30?'var(--warning)':'var(--loss)';
+
+  detail.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px">
+      <div>
+        <div style="font-size:22px;font-weight:900;font-family:var(--font-mono);color:var(--cyan)">${ticker} <span style="font-size:16px;color:var(--text)">$${d.price.toFixed(2)}</span></div>
+        <div style="font-size:12px;color:var(--text-dim);margin-top:2px">Est. IV: <strong style="color:var(--warning)">${d.iv.toFixed(1)}%</strong> · IVR: <strong style="color:${ivrColor}">${d.ivr}%</strong> · 52W: $${d.low52.toFixed(0)}–$${d.high52.toFixed(0)}</div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span style="font-size:11px;color:var(--text-dim)">Expiry (~${dte} DTE):</span>
+        <div class="ld-expiry-tabs" id="ld-expiry-tabs-container" style="margin:0">
+          ${[7,14,21,30,45,60].map(d2=>`<button class="ld-expiry-tab ${d2===dte?'active':''}" data-dte="${d2}" onclick="renderChain('${ticker}',${d2})">${d2}d</button>`).join('')}
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+      <div>
+        <div style="font-size:11px;color:var(--profit);font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">PUT CHAIN (for CSP / Wheel)</div>
+        <div style="overflow-x:auto">
+          <table class="ld-chain-table">
+            <thead><tr><th>Strike</th><th>Premium</th><th>Delta</th><th>Theta/day</th><th>POP%</th><th>OTM%</th><th>Signal</th></tr></thead>
+            <tbody>
+              ${chain.filter(s=>s.strike<=d.price*1.02).slice(-14).map(s=>`
+              <tr class="${s.isATM?'atm':''}">
+                <td style="font-weight:${s.isATM?'900':'600'};color:${s.isATM?'var(--cyan)':'var(--text)'}">${s.isATM?'→ ':''}$${s.strike}</td>
+                <td style="color:var(--profit)">$${s.putPremium}</td>
+                <td style="color:${Math.abs(s.putDelta)<0.25?'var(--profit)':Math.abs(s.putDelta)<0.35?'var(--warning)':'var(--loss)'}">${s.putDelta.toFixed(3)}</td>
+                <td style="color:var(--profit)">$${Math.abs(s.theta).toFixed(2)}</td>
+                <td style="color:${s.popOTM>70?'var(--profit)':s.popOTM>55?'var(--warning)':'var(--loss)'}">${s.popOTM}%</td>
+                <td style="color:var(--text-dim)">${s.otmPct.toFixed(1)}%</td>
+                <td>${Math.abs(s.putDelta)>=0.15&&Math.abs(s.putDelta)<=0.25?'<span class="zone zone-safe">✓ IDEAL</span>':Math.abs(s.putDelta)<=0.30?'<span class="zone zone-ok">OK</span>':s.isATM?'<span class="zone zone-warn">ATM</span>':'<span class="zone zone-danger">Avoid</span>'}</td>
+              </tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:var(--loss);font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">CALL CHAIN (for Covered Call)</div>
+        <div style="overflow-x:auto">
+          <table class="ld-chain-table">
+            <thead><tr><th>Strike</th><th>Premium</th><th>Delta</th><th>Theta/day</th><th>POP%</th><th>OTM%</th><th>Signal</th></tr></thead>
+            <tbody>
+              ${chain.filter(s=>s.strike>=d.price*0.98).slice(0,14).map(s=>`
+              <tr class="${s.isATM?'atm':''}">
+                <td style="font-weight:${s.isATM?'900':'600'};color:${s.isATM?'var(--cyan)':'var(--text)'}">${s.isATM?'→ ':''}$${s.strike}</td>
+                <td style="color:var(--profit)">$${s.callPremium}</td>
+                <td style="color:${s.callDelta<0.25?'var(--profit)':s.callDelta<0.35?'var(--warning)':'var(--loss)'}">${s.callDelta.toFixed(3)}</td>
+                <td style="color:var(--profit)">$${Math.abs(s.theta).toFixed(2)}</td>
+                <td style="color:${(100-s.popOTM)>70?'var(--loss)':(100-s.popOTM)>55?'var(--warning)':'var(--profit)'}">${(100-s.popOTM).toFixed(1)}%</td>
+                <td style="color:var(--text-dim)">${s.otmPct.toFixed(1)}%</td>
+                <td>${s.callDelta>=0.15&&s.callDelta<=0.25?'<span class="zone zone-safe">✓ IDEAL</span>':s.callDelta<=0.30?'<span class="zone zone-ok">OK</span>':s.isATM?'<span class="zone zone-warn">ATM</span>':'<span class="zone zone-danger">Avoid</span>'}</td>
+              </tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:rgba(6,182,212,.06);border:1px solid var(--cyan-border);border-radius:10px;padding:14px;font-size:12px;color:var(--text-dim)">
+      <strong style="color:var(--cyan)">⚡ Best CSP for ${ticker} (~${dte} DTE):</strong>
+      ${(()=>{
+        const ideal = chain.filter(s=>Math.abs(s.putDelta)>=0.15&&Math.abs(s.putDelta)<=0.25&&s.strike<d.price);
+        if (!ideal.length) return 'No ideal strikes in this range.';
+        const best = ideal.reduce((a,b)=>a.putPremium>b.putPremium?a:b);
+        const roc = (best.putPremium/(best.strike*100)*100).toFixed(2);
+        const ann = (roc*365/dte).toFixed(1);
+        return `Sell the <strong style="color:var(--text)">$${best.strike} PUT</strong> · Premium <strong style="color:var(--profit)">$${best.putPremium}</strong> · Delta ${best.putDelta.toFixed(3)} · POP ${best.popOTM}% · ROC <strong style="color:var(--profit)">${roc}%</strong> (${ann}% ann.)`;
+      })()}
+    </div>`;
+}
+
+async function refreshAllLiveData() {
+  const tickers = Object.keys(ldCache);
+  if (!tickers.length) { loadLiveData(); return; }
+  for (const t of tickers) {
+    try {
+      const data = await fetchYahoo(t);
+      const result = data.chart?.result?.[0];
+      if (!result) continue;
+      const meta = result.meta;
+      const closes = result.indicators?.quote?.[0]?.close?.filter(Boolean)||[];
+      const price = meta.regularMarketPrice||closes[closes.length-1];
+      const prevClose = meta.chartPreviousClose||closes[closes.length-2]||price;
+      ldCache[t] = {...ldCache[t], price, change:price-prevClose, changePct:(price-prevClose)/prevClose*100,
+        iv:calcIVFromHV(closes), ivr:calcIVR(closes,calcIVFromHV(closes)), closes};
+      renderLdCard(t);
+    } catch(e){}
+  }
+  $id('ld-last-update').textContent='Updated '+new Date().toLocaleTimeString();
+  if (ldSelectedTicker) renderChain(ldSelectedTicker, ldCurrentExpiry||30);
+}
+
+// Hook tab
+document.querySelectorAll('.tab').forEach(btn=>{
+  const prev=btn.onclick;
+  btn.onclick=function(e){
+    if(prev)prev.call(this,e);
+    if(this.dataset.panel==='livedata'){
+      // Sync watchlist from scanner
+      const wl=$id('scan-watchlist')?.value||'';
+      if(wl&&!Object.keys(ldCache).length) $id('ld-watchlist-input').value=wl;
+    }
+  };
+});
+</script>
+</div><!-- /panel-livedata -->
+
+<!-- ══ 9. BACKTEST PANEL ══ -->
+<div id="panel-backtest" class="panel">
+<style>
+  #panel-backtest{--orange:#f97316;--orange-dim:rgba(249,115,22,0.08);--orange-border:rgba(249,115,22,0.25);}
+  .bt-header{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,rgba(249,115,22,0.08),rgba(245,158,11,0.05));border:1px solid var(--orange-border);border-radius:16px;padding:20px 28px;margin-bottom:20px;}
+  .bt-config{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:16px;}
+  .bt-field label{display:block;font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-bottom:6px;}
+  .bt-field input,.bt-field select{width:100%;background:#05080f;border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:10px;font-family:var(--font-mono);font-size:13px;outline:none;}
+  .bt-field input:focus,.bt-field select:focus{border-color:var(--orange);}
+  .bt-run-btn{background:linear-gradient(135deg,#c2410c,#f97316);color:#fff;border:none;padding:11px 28px;border-radius:10px;font-weight:800;font-size:14px;cursor:pointer;white-space:nowrap;}
+  .bt-run-btn:hover{opacity:.88;}
+  .bt-run-btn:disabled{opacity:.4;cursor:not-allowed;}
+  .bt-thinking{display:none;align-items:center;gap:14px;padding:16px 20px;background:var(--orange-dim);border:1px solid var(--orange-border);border-radius:12px;margin-bottom:16px;}
+  .bt-thinking.visible{display:flex;}
+  .bt-thinking-dots span{background:var(--orange)!important;}
+  .bt-results{display:none;} .bt-results.visible{display:block;}
+  .bt-stat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px;}
+  .bt-stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;}
+  .bt-stat .lbl{font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+  .bt-stat .val{font-size:22px;font-weight:900;font-family:var(--font-mono);}
+  .bt-stat .sub{font-size:10px;color:var(--text-dim);margin-top:3px;}
+  .bt-chart-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px;}
+  .bt-chart-title{font-size:11px;color:var(--orange);font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;}
+  .bt-trade-row{display:grid;grid-template-columns:90px 70px 80px 70px 70px 80px 80px 80px 1fr;gap:8px;padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.04);font-size:11px;align-items:center;}
+  .bt-trade-header{background:rgba(0,0,0,.4);font-size:9px;text-transform:uppercase;color:var(--text-dim);letter-spacing:.05em;border-radius:6px 6px 0 0;}
+  .bt-progress{background:rgba(0,0,0,.4);height:8px;border-radius:4px;overflow:hidden;margin:8px 0;}
+  .bt-progress-fill{height:100%;background:var(--orange);border-radius:4px;transition:width .3s;}
+</style>
+
+<div class="bt-header">
+  <div style="font-size:42px">🔬</div>
+  <div>
+    <div style="font-size:20px;font-weight:900;color:var(--orange)">Strategy Backtester <span style="font-size:14px;color:var(--text-dim);font-weight:400">Phase E</span></div>
+    <div style="font-size:13px;color:var(--text-dim);margin-top:4px">Test Wheel · Bull Put Spread · Iron Condor on historical data — max available history</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">⚙️ Backtest Configuration</div>
+  <div class="bt-config">
+    <div class="bt-field"><label>Ticker</label><input id="bt-ticker" value="SPY" oninput="this.value=this.value.toUpperCase()"></div>
+    <div class="bt-field"><label>Strategy</label>
+      <select id="bt-strategy">
+        <option value="wheel">Wheel (CSP → CC)</option>
+        <option value="bps">Bull Put Spread</option>
+        <option value="ic">Iron Condor</option>
+      </select>
+    </div>
+    <div class="bt-field"><label>Account Size ($)</label><input type="number" id="bt-account" value="30000"></div>
+    <div class="bt-field"><label>Target DTE</label><input type="number" id="bt-dte" value="30" min="7" max="60"></div>
+    <div class="bt-field"><label>Delta Target</label><input type="number" id="bt-delta" value="0.20" step="0.01" min="0.10" max="0.40"></div>
+    <div class="bt-field"><label>Close At % Profit</label><input type="number" id="bt-close-pct" value="50" min="25" max="100"></div>
+    <div class="bt-field"><label>Max Loss (× credit)</label><input type="number" id="bt-stop" value="2" min="1" max="5"></div>
+    <div class="bt-field" id="bt-spread-width-row"><label>Spread Width ($)</label><input type="number" id="bt-spread-width" value="10"></div>
+  </div>
+  <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+    <button class="bt-run-btn" id="bt-run-btn" onclick="runBacktest()">🔬 Run Backtest</button>
+    <div style="font-size:12px;color:var(--text-dim)">Uses Yahoo Finance historical data · Simulates trades entry/exit</div>
+  </div>
+</div>
+
+<div class="bt-thinking" id="bt-thinking">
+  <div class="ai-thinking-dots"><span></span><span></span><span></span></div>
+  <div>
+    <div style="color:var(--orange);font-size:13px;font-style:italic" id="bt-think-text">Fetching historical data…</div>
+    <div class="bt-progress"><div class="bt-progress-fill" id="bt-progress-fill" style="width:0%"></div></div>
+  </div>
+</div>
+
+<div class="bt-results" id="bt-results"></div>
+
+<script>
+// ══ BACKTEST ENGINE ══
+let btChartInst = null, btDrawdownInst = null, btMonthlyInst = null;
+
+document.getElementById('bt-strategy').addEventListener('change', function() {
+  document.getElementById('bt-spread-width-row').style.display = this.value === 'wheel' ? 'none' : 'block';
+});
+
+const BT_MSGS = ['Fetching historical price data…','Calculating historical volatility…','Simulating trade entries…','Running exit logic…','Computing statistics…'];
+
+async function runBacktest() {
+  const ticker = $id('bt-ticker').value.trim().toUpperCase();
+  const strategy = $id('bt-strategy').value;
+  const account = parseFloat($id('bt-account').value)||30000;
+  const dte = parseInt($id('bt-dte').value)||30;
+  const deltaTarget = parseFloat($id('bt-delta').value)||0.20;
+  const closePct = parseFloat($id('bt-close-pct').value)||50;
+  const stopMult = parseFloat($id('bt-stop').value)||2;
+  const spreadWidth = parseFloat($id('bt-spread-width').value)||10;
+
+  const btn = $id('bt-run-btn'); btn.disabled=true; btn.textContent='⏳ Running…';
+  $id('bt-results').classList.remove('visible');
+  const thinking = $id('bt-thinking'); thinking.classList.add('visible');
+  let msgIdx=0;
+  $id('bt-think-text').textContent=BT_MSGS[0];
+  const msgInt = setInterval(()=>{ msgIdx=(msgIdx+1)%BT_MSGS.length; $id('bt-think-text').textContent=BT_MSGS[msgIdx]; },1800);
+  setProgress(10);
+
+  try {
+    // Fetch max history (10 years)
+    const isMacApp = window.location.protocol==='http:'&&window.location.hostname==='localhost';
+    const url = isMacApp ? `/api/yahoo?ticker=${ticker}&range=10y` : `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=10y`;
+    const data = await new Promise((res,rej)=>{
+      const xhr=new XMLHttpRequest(); xhr.open('GET',url,true); xhr.timeout=20000;
+      xhr.onload=()=>{try{res(JSON.parse(xhr.responseText));}catch(e){rej(e);}};
+      xhr.onerror=()=>rej(new Error('Network error')); xhr.ontimeout=()=>rej(new Error('Timeout')); xhr.send();
+    });
+    setProgress(30);
+
+    const result = data.chart?.result?.[0];
+    if (!result) throw new Error('No historical data for '+ticker);
+    const timestamps = result.timestamp || [];
+    const closes = result.indicators?.quote?.[0]?.close || [];
+    const highs = result.indicators?.quote?.[0]?.high || [];
+    const lows = result.indicators?.quote?.[0]?.low || [];
+
+    // Build clean price array
+    const prices = [];
+    for (let i=0;i<timestamps.length;i++) {
+      if (closes[i]) prices.push({ date: new Date(timestamps[i]*1000), close: closes[i], high: highs[i]||closes[i], low: lows[i]||closes[i] });
+    }
+    if (prices.length < 100) throw new Error('Not enough historical data');
+    setProgress(50);
+
+    // Run simulation
+    const trades = simulateTrades(prices, strategy, account, dte, deltaTarget, closePct, stopMult, spreadWidth);
+    setProgress(80);
+
+    const stats = calcStats(trades, account);
+    setProgress(100);
+    clearInterval(msgInt);
+    thinking.classList.remove('visible');
+    renderBacktestResults(trades, stats, ticker, strategy, prices);
+    btn.disabled=false; btn.textContent='🔬 Run Backtest';
+  } catch(e) {
+    clearInterval(msgInt); thinking.classList.remove('visible');
+    $id('bt-results').innerHTML=`<div class="ai-error"><strong style="color:var(--loss)">Backtest Error</strong><br><span style="font-size:12px;color:var(--text-dim)">${e.message}</span></div>`;
+    $id('bt-results').classList.add('visible');
+    btn.disabled=false; btn.textContent='🔬 Run Backtest';
+  }
+}
+
+function setProgress(pct) { const el=$id('bt-progress-fill'); if(el) el.style.width=pct+'%'; }
+
+function calcHV(prices, idx, window=20) {
+  if (idx < window) return 0.20;
+  const slice = prices.slice(idx-window, idx);
+  const rets = [];
+  for (let i=1;i<slice.length;i++) rets.push(Math.log(slice[i].close/slice[i-1].close));
+  const mean = rets.reduce((a,b)=>a+b,0)/rets.length;
+  const v = rets.reduce((s,r)=>s+(r-mean)**2,0)/(rets.length-1);
+  return Math.sqrt(v*252);
+}
+
+function simulateTrades(prices, strategy, account, dte, deltaTarget, closePct, stopMult, spreadWidth) {
+  const trades = [];
+  let i = 30; // start after warmup
+  let inTrade = false;
+  let currentTrade = null;
+  let tradeEndIdx = 0;
+
+  while (i < prices.length - 5) {
+    if (!inTrade) {
+      // Entry: enter every ~dte days
+      if (i < tradeEndIdx) { i++; continue; }
+      const price = prices[i].close;
+      const iv = calcHV(prices, i) * 1.1; // slight premium over HV
+      const t = dte/365;
+      const r = 0.05;
+
+      let credit, maxLoss, strike, strike2;
+
+      if (strategy === 'wheel') {
+        // Find strike at target delta
+        strike = findStrikeForDelta(price, iv, t, r, deltaTarget, 'put');
+        const prem = bsPut(price, strike, iv, t, r);
+        credit = prem * 100;
+        maxLoss = strike * 100 - credit;
+        const qty = Math.max(1, Math.floor(account * 0.20 / (strike * 100)));
+        currentTrade = { entry: prices[i].date, entryPrice: price, strike, credit: credit*qty, maxLoss: maxLoss*qty, qty, iv: iv*100, strategy, dte };
+      } else if (strategy === 'bps') {
+        strike = findStrikeForDelta(price, iv, t, r, deltaTarget, 'put');
+        strike2 = strike - spreadWidth;
+        const shortPrem = bsPut(price, strike, iv, t, r);
+        const longPrem = bsPut(price, strike2, iv, t, r);
+        credit = (shortPrem - longPrem) * 100;
+        maxLoss = (spreadWidth - credit/100) * 100;
+        const qty = Math.max(1, Math.floor(account * 0.05 / maxLoss));
+        currentTrade = { entry: prices[i].date, entryPrice: price, strike, strike2, credit: credit*qty, maxLoss: maxLoss*qty, qty, iv: iv*100, strategy, dte };
+      } else { // ic
+        const putStrike = findStrikeForDelta(price, iv, t, r, deltaTarget, 'put');
+        const callStrike = findStrikeForDelta(price, iv, t, r, deltaTarget, 'call');
+        const putStrike2 = putStrike - spreadWidth;
+        const callStrike2 = callStrike + spreadWidth;
+        const putCredit = (bsPut(price,putStrike,iv,t,r)-bsPut(price,putStrike2,iv,t,r))*100;
+        const callCredit = (bsCall(price,callStrike,iv,t,r)-bsCall(price,callStrike2,iv,t,r))*100;
+        credit = putCredit + callCredit;
+        maxLoss = (spreadWidth - credit/100)*100;
+        const qty = Math.max(1, Math.floor(account*0.05/maxLoss));
+        currentTrade = { entry: prices[i].date, entryPrice: price, strike: putStrike, strike2: callStrike, credit: credit*qty, maxLoss: maxLoss*qty, qty, iv: iv*100, strategy, dte };
+      }
+
+      if (credit > 0) { inTrade = true; tradeEndIdx = Math.min(i+dte, prices.length-1); }
+      i++; continue;
+    }
+
+    // Check exit conditions
+    const price = prices[i].close;
+    const daysIn = Math.round((prices[i].date - currentTrade.entry)/(1000*60*60*24));
+    const daysLeft = Math.max(0, currentTrade.dte - daysIn);
+    const t = daysLeft/365;
+    const iv = calcHV(prices, i)*1.1;
+
+    let currentPnl = 0;
+    if (strategy==='wheel') {
+      const currentVal = bsPut(price, currentTrade.strike, iv, t, 0.05)*100*currentTrade.qty;
+      currentPnl = currentTrade.credit - currentVal;
+    } else if (strategy==='bps') {
+      const sv = bsPut(price,currentTrade.strike,iv,t,0.05)*100;
+      const lv = bsPut(price,currentTrade.strike2,iv,t,0.05)*100;
+      currentPnl = (currentTrade.credit/currentTrade.qty - (sv-lv))*currentTrade.qty;
+    } else {
+      const psv=bsPut(price,currentTrade.strike,iv,t,0.05)*100, plv=bsPut(price,currentTrade.strike-spreadWidth,iv,t,0.05)*100;
+      const csv=bsCall(price,currentTrade.strike2,iv,t,0.05)*100, clv=bsCall(price,currentTrade.strike2+spreadWidth,iv,t,0.05)*100;
+      currentPnl = currentTrade.credit/currentTrade.qty*currentTrade.qty - ((psv-plv)+(csv-clv))*currentTrade.qty;
+    }
+
+    const profitTarget = currentTrade.credit * (closePct/100);
+    const stopLoss = -currentTrade.credit * stopMult;
+    const expired = i >= tradeEndIdx;
+
+    if (currentPnl >= profitTarget || currentPnl <= stopLoss || expired) {
+      let finalPnl;
+      if (expired) {
+        // At expiry — intrinsic value
+        if (strategy==='wheel') finalPnl = Math.min(currentTrade.credit, currentTrade.credit - Math.max(0, currentTrade.strike-price)*100*currentTrade.qty);
+        else finalPnl = Math.max(-currentTrade.maxLoss, Math.min(currentTrade.credit, currentPnl));
+      } else { finalPnl = currentPnl; }
+
+      trades.push({
+        ...currentTrade,
+        exit: prices[i].date, exitPrice: price,
+        pnl: +finalPnl.toFixed(2),
+        daysHeld: daysIn,
+        result: finalPnl >= profitTarget ? '50% profit' : finalPnl <= stopLoss ? 'Stop loss' : finalPnl > 0 ? 'Expired profit' : 'Expired loss'
+      });
+      inTrade = false; currentTrade = null;
+      tradeEndIdx = i + Math.max(1, Math.floor(dte*0.3)); // wait before next trade
+    }
+    i++;
+  }
+  return trades;
+}
+
+function findStrikeForDelta(price, iv, t, r, targetDelta, type) {
+  const step = price < 50?1:price<200?2.5:price<500?5:10;
+  let best = null, bestDiff = 999;
+  for (let k = price*0.6; k <= price*1.4; k += step) {
+    const d1 = bsD1(price,k,iv,t,r);
+    const delta = type==='put' ? Math.abs(ncdf(d1)-1) : ncdf(d1);
+    const diff = Math.abs(delta - targetDelta);
+    if (diff < bestDiff) { bestDiff=diff; best=k; }
+    if (delta < targetDelta*0.5 && type==='put') break;
+  }
+  return Math.round((best||price*0.9)/step)*step;
+}
+
+function calcStats(trades, startingCapital) {
+  if (!trades.length) return {};
+  const wins = trades.filter(t=>t.pnl>0);
+  const losses = trades.filter(t=>t.pnl<=0);
+  const totalPnl = trades.reduce((s,t)=>s+t.pnl,0);
+  const grossWin = wins.reduce((s,t)=>s+t.pnl,0);
+  const grossLoss = Math.abs(losses.reduce((s,t)=>s+t.pnl,0));
+
+  // Equity curve & max drawdown
+  let equity = startingCapital, peak = startingCapital, maxDD = 0, maxDDPct = 0;
+  const equityCurve = [startingCapital];
+  trades.forEach(t => {
+    equity += t.pnl;
+    equityCurve.push(+equity.toFixed(2));
+    if (equity > peak) peak = equity;
+    const dd = peak - equity;
+    const ddPct = dd/peak*100;
+    if (dd > maxDD) { maxDD=dd; maxDDPct=ddPct; }
+  });
+
+  const avgWin = wins.length ? grossWin/wins.length : 0;
+  const avgLoss = losses.length ? grossLoss/losses.length : 0;
+  const winRate = wins.length/trades.length;
+  const profitFactor = grossLoss > 0 ? grossWin/grossLoss : grossWin > 0 ? 999 : 0;
+  const avgDays = trades.reduce((s,t)=>s+t.daysHeld,0)/trades.length;
+
+  // Annualize
+  const span = (trades[trades.length-1].exit - trades[0].entry)/(1000*60*60*24*365);
+  const cagr = span > 0 ? (Math.pow((startingCapital+totalPnl)/startingCapital, 1/span)-1)*100 : 0;
+  const sharpe = calcSharpe(trades, startingCapital);
+
+  return { totalPnl, winRate, avgWin, avgLoss, profitFactor, maxDD, maxDDPct, equityCurve,
+    totalTrades: trades.length, wins: wins.length, losses: losses.length,
+    avgDays, cagr, sharpe, startingCapital, finalCapital: startingCapital+totalPnl };
+}
+
+function calcSharpe(trades, capital) {
+  if (trades.length < 2) return 0;
+  const returns = trades.map(t=>t.pnl/capital);
+  const mean = returns.reduce((a,b)=>a+b,0)/returns.length;
+  const std = Math.sqrt(returns.reduce((s,r)=>s+(r-mean)**2,0)/(returns.length-1));
+  return std > 0 ? (mean/std * Math.sqrt(252/30)).toFixed(2) : 0;
+}
+
+function renderBacktestResults(trades, stats, ticker, strategy, prices) {
+  const stratName = {'wheel':'Wheel','bps':'Bull Put Spread','ic':'Iron Condor'}[strategy];
+  const yearSpan = trades.length ? Math.round((trades[trades.length-1].exit-trades[0].entry)/(1000*60*60*24*365)*10)/10 : 0;
+
+  const el = $id('bt-results');
+  el.innerHTML = `
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px">
+    <div>
+      <div style="font-size:18px;font-weight:900">${ticker} — ${stratName} Backtest</div>
+      <div style="font-size:12px;color:var(--text-dim)">${trades.length} trades · ${yearSpan} years of data · ${trades[0]?.entry.toLocaleDateString()||''}–${trades[trades.length-1]?.exit.toLocaleDateString()||''}</div>
+    </div>
+    <button onclick="exportBacktest()" style="background:var(--orange-dim);border:1px solid var(--orange-border);color:var(--orange);padding:8px 16px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700">⬇ Export CSV</button>
+  </div>
+
+  <div class="bt-stat-grid">
+    <div class="bt-stat"><div class="lbl">Total P&L</div><div class="val" style="color:${stats.totalPnl>=0?'var(--profit)':'var(--loss)'}">${stats.totalPnl>=0?'+':'-'}$${Math.abs(stats.totalPnl).toFixed(0)}</div><div class="sub">All trades</div></div>
+    <div class="bt-stat"><div class="lbl">Win Rate</div><div class="val" style="color:var(--accent)">${(stats.winRate*100).toFixed(1)}%</div><div class="sub">${stats.wins}W / ${stats.losses}L</div></div>
+    <div class="bt-stat"><div class="lbl">CAGR</div><div class="val" style="color:${stats.cagr>=0?'var(--profit)':'var(--loss)'}">${stats.cagr.toFixed(1)}%</div><div class="sub">Annualized</div></div>
+    <div class="bt-stat"><div class="lbl">Max Drawdown</div><div class="val" style="color:var(--loss)">-${stats.maxDDPct.toFixed(1)}%</div><div class="sub">-$${stats.maxDD.toFixed(0)}</div></div>
+    <div class="bt-stat"><div class="lbl">Sharpe Ratio</div><div class="val" style="color:${stats.sharpe>=1?'var(--profit)':stats.sharpe>=0.5?'var(--warning)':'var(--loss)'}">${stats.sharpe}</div><div class="sub">Risk-adj return</div></div>
+    <div class="bt-stat"><div class="lbl">Profit Factor</div><div class="val" style="color:${stats.profitFactor>=1.5?'var(--profit)':stats.profitFactor>=1?'var(--warning)':'var(--loss)'}">${stats.profitFactor>100?'∞':stats.profitFactor.toFixed(2)}</div><div class="sub">Gross W/L</div></div>
+    <div class="bt-stat"><div class="lbl">Avg Win</div><div class="val" style="color:var(--profit)">$${stats.avgWin.toFixed(0)}</div><div class="sub">Per winner</div></div>
+    <div class="bt-stat"><div class="lbl">Avg Loss</div><div class="val" style="color:var(--loss)">-$${stats.avgLoss.toFixed(0)}</div><div class="sub">Per loser</div></div>
+    <div class="bt-stat"><div class="lbl">Avg Days</div><div class="val" style="color:var(--warning)">${stats.avgDays.toFixed(0)}</div><div class="sub">Per trade</div></div>
+    <div class="bt-stat"><div class="lbl">Final Capital</div><div class="val" style="color:var(--accent);font-size:16px">$${stats.finalCapital.toFixed(0)}</div><div class="sub">From $${stats.startingCapital.toLocaleString()}</div></div>
+  </div>
+
+  <div class="bt-chart-card">
+    <div class="bt-chart-title">📈 Equity Curve</div>
+    <div style="height:280px"><canvas id="btEquityChart"></canvas></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+    <div class="bt-chart-card">
+      <div class="bt-chart-title">📊 Monthly Returns</div>
+      <div style="height:220px"><canvas id="btMonthlyChart"></canvas></div>
+    </div>
+    <div class="bt-chart-card">
+      <div class="bt-chart-title">📉 Drawdown Chart</div>
+      <div style="height:220px"><canvas id="btDrawdownChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="bt-chart-card" style="padding:0;overflow:hidden">
+    <div style="padding:16px 20px;border-bottom:1px solid var(--border)">
+      <div class="bt-chart-title" style="margin:0">📋 Trade Log (last 50)</div>
+    </div>
+    <div style="max-height:400px;overflow-y:auto">
+      <div class="bt-trade-row bt-trade-header">
+        <span>Entry</span><span>Exit</span><span>Strike</span><span>Credit</span><span>P&L</span><span>Days</span><span>IV%</span><span>Result</span><span>Cumulative</span>
+      </div>
+      ${(()=>{
+        let cum=stats.startingCapital;
+        return [...trades].slice(-50).reverse().map(t=>{
+          cum+=0; // cumulative tracked separately
+          return `<div class="bt-trade-row">
+            <span style="color:var(--text-dim)">${t.entry.toLocaleDateString()}</span>
+            <span style="color:var(--text-dim)">${t.exit.toLocaleDateString()}</span>
+            <span style="font-family:var(--font-mono)">$${t.strike}</span>
+            <span style="color:var(--profit);font-family:var(--font-mono)">$${t.credit.toFixed(0)}</span>
+            <span style="color:${t.pnl>=0?'var(--profit)':'var(--loss)'};font-weight:700;font-family:var(--font-mono)">${t.pnl>=0?'+':'-'}$${Math.abs(t.pnl).toFixed(0)}</span>
+            <span style="color:var(--text-dim)">${t.daysHeld}d</span>
+            <span style="color:var(--warning)">${t.iv.toFixed(1)}%</span>
+            <span class="zone ${t.pnl>0?'zone-safe':t.result.includes('Stop')?'zone-danger':'zone-warn'}" style="font-size:9px">${t.result}</span>
+            <span style="font-family:var(--font-mono);color:var(--text-dim)"></span>
+          </div>`;
+        }).join('');
+      })()}
+    </div>
+  </div>`;
+
+  el.classList.add('visible');
+
+  // Render charts
+  setTimeout(() => {
+    // Equity curve
+    const eqLabels = trades.map(t=>t.exit.toLocaleDateString());
+    const eqData = [];
+    let eq = stats.startingCapital;
+    trades.forEach(t=>{ eq+=t.pnl; eqData.push(+eq.toFixed(2)); });
+
+    if (btChartInst) btChartInst.destroy();
+    btChartInst = new Chart(document.getElementById('btEquityChart'), {
+      type:'line', data:{labels:eqLabels,datasets:[{label:'Portfolio Value',data:eqData,borderColor:'#f97316',
+        backgroundColor:ctx=>{const g=ctx.chart.ctx.createLinearGradient(0,0,0,280);g.addColorStop(0,'rgba(249,115,22,0.2)');g.addColorStop(1,'rgba(249,115,22,0)');return g;},
+        fill:true,tension:0.2,pointRadius:0}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{x:{grid:{color:'#1a2333'},ticks:{color:'#64748b',maxTicksLimit:12}},y:{grid:{color:'#1a2333'},ticks:{color:'#64748b',callback:v=>'$'+v.toLocaleString()}}}}
+    });
+
+    // Monthly returns
+    const monthly = {};
+    trades.forEach(t=>{ const m=t.exit.toISOString().substring(0,7); monthly[m]=(monthly[m]||0)+t.pnl; });
+    const mKeys = Object.keys(monthly).sort();
+    const mVals = mKeys.map(k=>+monthly[k].toFixed(2));
+    if (btMonthlyInst) btMonthlyInst.destroy();
+    btMonthlyInst = new Chart(document.getElementById('btMonthlyChart'), {
+      type:'bar', data:{labels:mKeys,datasets:[{data:mVals,backgroundColor:mVals.map(v=>v>=0?'rgba(249,115,22,0.7)':'rgba(239,68,68,0.7)'),borderRadius:3}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{x:{grid:{color:'#1a2333'},ticks:{color:'#64748b',maxTicksLimit:12}},y:{grid:{color:'#1a2333'},ticks:{color:'#64748b',callback:v=>'$'+v}}}}
+    });
+
+    // Drawdown
+    let peak2=stats.startingCapital, eq2=stats.startingCapital;
+    const ddData = trades.map(t=>{ eq2+=t.pnl; if(eq2>peak2)peak2=eq2; return +(-(peak2-eq2)/peak2*100).toFixed(2); });
+    if (btDrawdownInst) btDrawdownInst.destroy();
+    btDrawdownInst = new Chart(document.getElementById('btDrawdownChart'), {
+      type:'line', data:{labels:eqLabels,datasets:[{data:ddData,borderColor:'#ef4444',backgroundColor:'rgba(239,68,68,0.1)',fill:true,tension:0.2,pointRadius:0}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{x:{grid:{color:'#1a2333'},ticks:{color:'#64748b',maxTicksLimit:12}},y:{grid:{color:'#1a2333'},ticks:{color:'#64748b',callback:v=>v+'%'}}}}
+    });
+  }, 100);
+
+  // Store for export
+  window._btTrades = trades;
+  window._btTicker = ticker;
+  window._btStrategy = stratName;
+}
+
+function exportBacktest() {
+  if (!window._btTrades) return;
+  const header = 'entry,exit,ticker,strategy,strike,credit,pnl,days,iv,result\n';
+  const rows = window._btTrades.map(t=>
+    `${t.entry.toLocaleDateString()},${t.exit.toLocaleDateString()},${window._btTicker},${window._btStrategy},$${t.strike},$${t.credit.toFixed(2)},$${t.pnl.toFixed(2)},${t.daysHeld},${t.iv.toFixed(1)},${t.result}`
+  ).join('\n');
+  const blob = new Blob([header+rows], {type:'text/csv'});
+  const a = document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download=`backtest_${window._btTicker}_${window._btStrategy.replace(/ /g,'_')}.csv`;
+  a.click();
+}
+</script>
+</div><!-- /panel-backtest -->
 </body>
 </html>
