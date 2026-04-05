@@ -1104,8 +1104,46 @@ async function runMorningScanner() {
       return `${d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})} (${dte} DTE)`;
     });
   }
-  const expiryDates = nextExpiryDates();
-  const expiryInfo = `Upcoming standard expiry dates: ${expiryDates.join(', ')}. Always use these EXACT dates in strike_guidance. For 30-45 DTE trades use the expiry closest to 30-45 days out.`;
+  // Calculate tier for each ticker based on price
+  const TIER1 = ['SPY','QQQ','SMH','GDX']; // expensive — spreads only
+  const TIER2 = ['IWM','GLD','XLE','TLT','XLF']; // mid-price — naked CSP OK
+  const TIER3 = ['XSP','QQQM','IWM']; // cheap/mini — naked CSP, more contracts
+
+  const maxRiskPerTrade = portfolio * 0.05;
+  const tierRules = `
+POSITION SIZING RULES (enforce strictly, portfolio = $${portfolio.toLocaleString()}):
+Max risk per trade = 5% = $${maxRiskPerTrade.toLocaleString()}
+
+TIER 1 — Expensive ETFs (SPY, QQQ, SMH, GDX — price > $300):
+- NEVER recommend naked CSP (collateral too large)
+- ALWAYS use Bull Put Spread or Iron Condor
+- Spread width: $10 wide
+- Max contracts: floor($${maxRiskPerTrade.toLocaleString()} / (spread_width * 100))
+- Example: SPY $540/$530 spread → $1000 collateral → max 12 contracts = $12,000
+
+TIER 2 — Mid-price ETFs (IWM, GLD, XLE, TLT — price $100-$300):
+- Naked CSP acceptable
+- Max contracts: floor($${maxRiskPerTrade.toLocaleString()} / (strike * 100))
+- Example: IWM $230 put → $23,000 collateral → max 5 contracts = $11,500
+- Can also use Bull Put Spread for more contracts
+
+TIER 3 — Cheap/Mini ETFs (XSP, QQQM — price < $100):
+- Naked CSP preferred, more contracts
+- Max contracts: floor($${maxRiskPerTrade.toLocaleString()} / (strike * 100))
+- Example: XSP $54 put → $5,400 collateral → max 23 contracts = $12,420
+
+STRATEGY SELECTION BY MARKET CONDITIONS:
+- Uptrend + VIX 15-22: Wheel CSP (Tier 2/3) or Bull Put Spread (Tier 1)
+- Sideways + VIX 18-28: Iron Condor on any tier
+- Downtrend + VIX 15-22: Bear Call Spread
+- VIX > 28: Bull Put Spread only (defined risk)
+- VIX < 13: No trades — premiums too cheap
+
+For each opportunity, calculate and include:
+- tier (1, 2, or 3)
+- recommended_contracts (based on 5% rule above)
+- collateral_required (contracts × strike × 100 for CSP, contracts × width × 100 for spreads)
+- total_premium (est_premium_per_contract × recommended_contracts)`;
 
   const prompt = `You are an expert options trading analyst providing a morning briefing for a premium seller.
 
@@ -1114,8 +1152,13 @@ Watchlist: ${tickers.join(', ')}
 Portfolio: $${portfolio.toLocaleString()}
 Risk: ${risk}
 ${expiryInfo}
+${tierRules}
 
-IMPORTANT: Calculate DTE accurately from today's date. Use the exact expiry dates provided above.
+IMPORTANT: 
+1. Calculate DTE accurately from today's date using exact expiry dates above
+2. Apply tier rules strictly — never recommend naked CSP on Tier 1 tickers
+3. Always include contract count and total premium in recommendations
+4. Vary strategies based on market conditions — don't just recommend CSP for everything
 
 Provide a complete morning scan. Respond ONLY with valid JSON:
 
@@ -1138,42 +1181,54 @@ Provide a complete morning scan. Respond ONLY with valid JSON:
     {
       "rank": 1,
       "ticker": "QQQ",
+      "tier": 1,
       "score": 82,
       "iv_rank": 58,
-      "strategy": "Wheel (CSP)",
-      "strike_guidance": "Sell $XXX put, [use exact expiry date from list above]",
-      "est_premium": "$XXX",
+      "strategy": "Bull Put Spread",
+      "strike_guidance": "Sell $XXX/$XXX put spread, [exact expiry date]",
+      "est_premium": "$XXX per contract",
+      "recommended_contracts": 12,
+      "collateral_required": "$12000",
+      "total_premium": "$XXXX",
       "probability_profit": "XX%",
       "why": "2-3 sentences explaining why this is the top pick today specifically",
-      "tags": ["High IV Rank", "Strong Trend", "Excellent Liquidity"],
+      "tags": ["Tier 1 — Spread Only", "High IV Rank", "Strong Trend"],
       "earnings_safe": true,
       "earnings_date": null
     },
     {
       "rank": 2,
-      "ticker": "SPY",
+      "ticker": "IWM",
+      "tier": 2,
       "score": 76,
       "iv_rank": 52,
-      "strategy": "Bull Put Spread",
-      "strike_guidance": "Sell XXX/XXX put spread, [use exact expiry date from list above]",
-      "est_premium": "$XXX",
+      "strategy": "Wheel (CSP)",
+      "strike_guidance": "Sell $XXX put, [exact expiry date]",
+      "est_premium": "$XXX per contract",
+      "recommended_contracts": 5,
+      "collateral_required": "$11500",
+      "total_premium": "$XXX",
       "probability_profit": "XX%",
       "why": "2-3 sentences for this opportunity",
-      "tags": ["Moderate IV", "Defined Risk"],
+      "tags": ["Tier 2 — CSP OK", "Moderate IV"],
       "earnings_safe": true,
       "earnings_date": null
     },
     {
       "rank": 3,
-      "ticker": "GLD",
+      "ticker": "XSP",
+      "tier": 3,
       "score": 71,
       "iv_rank": 61,
       "strategy": "Wheel (CSP)",
-      "strike_guidance": "Sell $XXX put, [use exact expiry date from list above]",
-      "est_premium": "$XXX",
+      "strike_guidance": "Sell $XXX put, [exact expiry date]",
+      "est_premium": "$XXX per contract",
+      "recommended_contracts": 20,
+      "collateral_required": "$10800",
+      "total_premium": "$XXXX",
       "probability_profit": "XX%",
       "why": "2-3 sentences for this opportunity",
-      "tags": ["Rich IV", "Safe Haven"],
+      "tags": ["Tier 3 — Mini Index", "Defined Risk"],
       "earnings_safe": true,
       "earnings_date": null
     }
@@ -1188,11 +1243,11 @@ Provide a complete morning scan. Respond ONLY with valid JSON:
   ],
   "avoid_today": ["VXX", "ARKK"],
   "avoid_reason": "High volatility products unsuitable for premium selling in current regime",
-  "daily_summary": "2-3 sentence overall summary of what to do today"
+  "daily_summary": "2-3 sentence overall summary of what to do today including total premium available and capital deployment"
 }`;
 
   try {
-    const data = await callClaude(prompt, 2000);
+    const data = await callClaude(prompt, 2500);
     clearInterval(msgInt);
     const raw = data.content.map(b => b.type === 'text' ? b.text : '').join('');
     const clean = raw.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
@@ -1216,9 +1271,15 @@ function renderScanResults(r, portfolio) {
 
   const scoreColor = s => s >= 75 ? '#22c55e' : s >= 55 ? '#f59e0b' : '#ef4444';
 
-  const oppCards = (r.top_opportunities || []).map(opp => `
+  const oppCards = (r.top_opportunities || []).map(opp => {
+    const tierColor = opp.tier===1?'var(--loss)':opp.tier===2?'var(--warning)':'var(--profit)';
+    const tierLabel = opp.tier===1?'TIER 1 — SPREAD ONLY':opp.tier===2?'TIER 2 — CSP OK':'TIER 3 — MINI/CHEAP';
+    return `
     <div class="opp-card ${opp.rank === 1 ? 'rank1' : ''}">
-      <div class="opp-rank">#${opp.rank} opportunity</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <div class="opp-rank">#${opp.rank} opportunity</div>
+        <span style="font-size:9px;font-weight:800;padding:2px 8px;border-radius:4px;background:rgba(0,0,0,.3);color:${tierColor};border:1px solid ${tierColor}">${tierLabel}</span>
+      </div>
       <div class="opp-ticker" style="color:${scoreColor(opp.score)}">${opp.ticker}</div>
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
         <span style="font-size:12px;color:var(--text-dim)">Score</span>
@@ -1229,13 +1290,27 @@ function renderScanResults(r, portfolio) {
         ${opp.earnings_safe ? '<span class="zone zone-safe">✓ No Earnings</span>' : `<span class="zone zone-danger">⚠ Earnings ${opp.earnings_date}</span>`}
       </div>
       <div style="font-size:13px;font-weight:800;margin-bottom:4px">${opp.strategy}</div>
-      <div style="font-size:12px;color:var(--accent);font-family:var(--font-mono);font-weight:700;margin-bottom:6px">${opp.strike_guidance}</div>
-      <div style="display:flex;gap:12px;margin-bottom:8px">
-        <span class="zone zone-safe">${opp.est_premium} premium</span>
-        <span class="zone zone-ok">${opp.probability_profit} POP</span>
+      <div style="font-size:12px;color:var(--accent);font-family:var(--font-mono);font-weight:700;margin-bottom:8px">${opp.strike_guidance}</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;background:rgba(0,0,0,.2);border-radius:8px;padding:10px">
+        <div>
+          <div style="font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em">Contracts</div>
+          <div style="font-size:16px;font-weight:900;font-family:var(--font-mono);color:var(--accent)">${opp.recommended_contracts||'—'}</div>
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em">Total Premium</div>
+          <div style="font-size:16px;font-weight:900;font-family:var(--font-mono);color:var(--profit)">${opp.total_premium||opp.est_premium||'—'}</div>
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em">Collateral</div>
+          <div style="font-size:13px;font-weight:700;font-family:var(--font-mono);color:var(--warning)">${opp.collateral_required||'—'}</div>
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em">POP</div>
+          <div style="font-size:13px;font-weight:700;font-family:var(--font-mono);color:var(--profit)">${opp.probability_profit||'—'}</div>
+        </div>
       </div>
       <div style="font-size:12px;color:var(--text-dim);line-height:1.6">${opp.why}</div>
-    </div>`).join('');
+    </div>`}).join('');
 
   const earningsRows = (r.earnings_watch || []).map(e => `
     <tr>
