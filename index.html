@@ -1084,12 +1084,38 @@ async function runMorningScanner() {
   const today = new Date().toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
   const tickers = watchlist.split(',').map(t => t.trim().toUpperCase()).filter(Boolean);
 
+  // Calculate real upcoming standard options expiry dates (3rd Friday of each month)
+  function nextExpiryDates() {
+    const dates = [];
+    const now = new Date();
+    for (let m = 0; m < 4; m++) {
+      const month = new Date(now.getFullYear(), now.getMonth() + m, 1);
+      // Find 3rd Friday
+      let fridays = 0;
+      for (let d = 1; d <= 31; d++) {
+        const day = new Date(month.getFullYear(), month.getMonth(), d);
+        if (day.getMonth() !== month.getMonth()) break;
+        if (day.getDay() === 5) { fridays++; if (fridays === 3) { dates.push(day); break; } }
+      }
+    }
+    // Filter to only future dates and calculate DTE
+    return dates.filter(d => d > now).map(d => {
+      const dte = Math.round((d - now) / (1000 * 60 * 60 * 24));
+      return `${d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})} (${dte} DTE)`;
+    });
+  }
+  const expiryDates = nextExpiryDates();
+  const expiryInfo = `Upcoming standard expiry dates: ${expiryDates.join(', ')}. Always use these EXACT dates in strike_guidance. For 30-45 DTE trades use the expiry closest to 30-45 days out.`;
+
   const prompt = `You are an expert options trading analyst providing a morning briefing for a premium seller.
 
 Today: ${today}
 Watchlist: ${tickers.join(', ')}
 Portfolio: $${portfolio.toLocaleString()}
 Risk: ${risk}
+${expiryInfo}
+
+IMPORTANT: Calculate DTE accurately from today's date. Use the exact expiry dates provided above.
 
 Provide a complete morning scan. Respond ONLY with valid JSON:
 
@@ -1115,9 +1141,9 @@ Provide a complete morning scan. Respond ONLY with valid JSON:
       "score": 82,
       "iv_rank": 58,
       "strategy": "Wheel (CSP)",
-      "strike_guidance": "Sell $470 put, May 9 expiry",
-      "est_premium": "$285",
-      "probability_profit": "79%",
+      "strike_guidance": "Sell $XXX put, [use exact expiry date from list above]",
+      "est_premium": "$XXX",
+      "probability_profit": "XX%",
       "why": "2-3 sentences explaining why this is the top pick today specifically",
       "tags": ["High IV Rank", "Strong Trend", "Excellent Liquidity"],
       "earnings_safe": true,
@@ -1129,9 +1155,9 @@ Provide a complete morning scan. Respond ONLY with valid JSON:
       "score": 76,
       "iv_rank": 52,
       "strategy": "Bull Put Spread",
-      "strike_guidance": "Sell 540/535 put spread, May expiry",
-      "est_premium": "$180",
-      "probability_profit": "75%",
+      "strike_guidance": "Sell XXX/XXX put spread, [use exact expiry date from list above]",
+      "est_premium": "$XXX",
+      "probability_profit": "XX%",
       "why": "2-3 sentences for this opportunity",
       "tags": ["Moderate IV", "Defined Risk"],
       "earnings_safe": true,
@@ -1143,9 +1169,9 @@ Provide a complete morning scan. Respond ONLY with valid JSON:
       "score": 71,
       "iv_rank": 61,
       "strategy": "Wheel (CSP)",
-      "strike_guidance": "Sell $215 put, May expiry",
-      "est_premium": "$210",
-      "probability_profit": "74%",
+      "strike_guidance": "Sell $XXX put, [use exact expiry date from list above]",
+      "est_premium": "$XXX",
+      "probability_profit": "XX%",
       "why": "2-3 sentences for this opportunity",
       "tags": ["Rich IV", "Safe Haven"],
       "earnings_safe": true,
