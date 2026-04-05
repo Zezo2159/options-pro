@@ -683,17 +683,24 @@ function renderTracker(){let tot=0,wins=0;$id('t-list').innerHTML=trades.map((tr
 function delTrade(i){trades.splice(i,1);try{localStorage.setItem('options_master',JSON.stringify(trades));}catch(e){}renderTracker();}
 
 
-// ══ UNIVERSAL API CALLER (works in Safari, WKWebView, iPhone) ══
+// ══ UNIVERSAL API CALLER (works in Safari, WKWebView, iPhone, Mac proxy) ══
+// Detects if running inside the Mac app (localhost proxy) or directly (iPhone/browser)
 function callClaude(prompt, maxTokens) {
   return new Promise((resolve, reject) => {
-    const key = getApiKey();
-    if (!key.startsWith('sk-ant-')) { reject(new Error('No API key. Please reload and enter your key.')); return; }
+    // If running via Mac local proxy, use it — no API key needed in JS
+    const isMacApp = window.location.protocol === 'http:' && window.location.hostname === 'localhost';
+    const url = isMacApp ? '/api/claude' : 'https://api.anthropic.com/v1/messages';
+    const body = { model: 'claude-haiku-4-5', max_tokens: maxTokens, messages: [{ role: 'user', content: prompt }] };
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://api.anthropic.com/v1/messages', true);
+    xhr.open('POST', url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.setRequestHeader('x-api-key', key);
-    xhr.setRequestHeader('anthropic-version', '2023-06-01');
-    xhr.setRequestHeader('anthropic-dangerous-direct-browser-access', 'true');
+    if (!isMacApp) {
+      const key = getApiKey();
+      if (!key.startsWith('sk-ant-')) { reject(new Error('No API key. Please reload and enter your key.')); return; }
+      xhr.setRequestHeader('x-api-key', key);
+      xhr.setRequestHeader('anthropic-version', '2023-06-01');
+      xhr.setRequestHeader('anthropic-dangerous-direct-browser-access', 'true');
+    }
     xhr.timeout = 60000;
     xhr.onload = function() {
       try {
@@ -704,7 +711,7 @@ function callClaude(prompt, maxTokens) {
     };
     xhr.onerror = function() { reject(new Error('Network error — check your internet connection')); };
     xhr.ontimeout = function() { reject(new Error('Request timed out — try again')); };
-    xhr.send(JSON.stringify({ model: 'claude-haiku-4-5', max_tokens: maxTokens, messages: [{ role: 'user', content: prompt }] }));
+    xhr.send(JSON.stringify(body));
   });
 }
 
@@ -1053,7 +1060,8 @@ async function runMorningScanner() {
   const risk = $id('scan-risk').value;
   const apiKey = getApiKey() || '';
 
-  if (!apiKey.startsWith('sk-ant-')) {
+  const isMacApp = window.location.protocol === 'http:' && window.location.hostname === 'localhost';
+  if (!isMacApp && !apiKey.startsWith('sk-ant-')) {
     const k = prompt('Enter your Anthropic API key (sk-ant-...):');
     if (k && k.startsWith('sk-ant-')) localStorage.setItem('anthropic_api_key', k.trim());
     else return;
