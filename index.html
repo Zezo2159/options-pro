@@ -1090,7 +1090,6 @@ async function runMorningScanner() {
     const now = new Date();
     for (let m = 0; m < 4; m++) {
       const month = new Date(now.getFullYear(), now.getMonth() + m, 1);
-      // Find 3rd Friday
       let fridays = 0;
       for (let d = 1; d <= 31; d++) {
         const day = new Date(month.getFullYear(), month.getMonth(), d);
@@ -1098,12 +1097,12 @@ async function runMorningScanner() {
         if (day.getDay() === 5) { fridays++; if (fridays === 3) { dates.push(day); break; } }
       }
     }
-    // Filter to only future dates and calculate DTE
     return dates.filter(d => d > now).map(d => {
       const dte = Math.round((d - now) / (1000 * 60 * 60 * 24));
       return `${d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})} (${dte} DTE)`;
     });
   }
+  const expiryDates = nextExpiryDates(); // ← THIS WAS MISSING
   // Calculate tier for each ticker based on price
   const TIER1 = ['SPY','QQQ','SMH','GDX']; // expensive — spreads only
   const TIER2 = ['IWM','GLD','XLE','TLT','XLF']; // mid-price — naked CSP OK
