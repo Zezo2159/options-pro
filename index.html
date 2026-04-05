@@ -1126,7 +1126,10 @@ Return ONLY minified JSON, no markdown:
 {"market_regime":{"verdict":"SELL PREMIUM","verdict_class":"sell","description":"str","vix_assessment":"str","trend_assessment":"str","recommendation":"str","indicators":{"vix_level":"17","vix_trend":"Stable","spy_trend":"Uptrend","fear_greed":"Neutral"}},"top_opportunities":[{"rank":1,"ticker":"X","tier":1,"score":80,"iv_rank":55,"strategy":"Bull Put Spread","strike_guidance":"Sell $X/$X spread, ${expiryDates[0]}","est_premium":"$X per contract","recommended_contracts":10,"collateral_required":"$X","total_premium":"$X","probability_profit":"X%","why":"str","tags":["Tier 1 — Spread Only"],"earnings_safe":true,"earnings_date":null},{"rank":2,"ticker":"X","tier":2,"score":75,"iv_rank":50,"strategy":"Wheel (CSP)","strike_guidance":"Sell $X put, ${expiryDates[0]}","est_premium":"$X per contract","recommended_contracts":5,"collateral_required":"$X","total_premium":"$X","probability_profit":"X%","why":"str","tags":["Tier 2 — CSP OK"],"earnings_safe":true,"earnings_date":null},{"rank":3,"ticker":"X","tier":3,"score":70,"iv_rank":45,"strategy":"Wheel (CSP)","strike_guidance":"Sell $X put, ${expiryDates[0]}","est_premium":"$X per contract","recommended_contracts":20,"collateral_required":"$X","total_premium":"$X","probability_profit":"X%","why":"str","tags":["Tier 3 — Mini"],"earnings_safe":true,"earnings_date":null}],"earnings_watch":[{"ticker":"X","earnings_date":"None","risk_level":"safe","note":"str"}],"avoid_today":[],"avoid_reason":"str","daily_summary":"str"}`;
 
   try {
-    const data = await callClaude(prompt, 1200);
+    const data = await Promise.race([
+      callClaude(prompt, 1200),
+      new Promise((_,reject) => setTimeout(() => reject(new Error('Scan timed out after 30s — try again')), 30000))
+    ]);
     clearInterval(msgInt);
     const raw = data.content.map(b => b.type === 'text' ? b.text : '').join('');
     const clean = raw.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
