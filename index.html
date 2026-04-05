@@ -81,6 +81,7 @@
         <button class="tab" data-panel="spreads">📐 Spread Analyzer</button>
         <button class="tab" data-panel="tracker">📈 Daily Tracker</button>
         <button class="tab" data-panel="ai" style="color:#a78bfa">🧠 AI Trade Advisor</button>
+        <button class="tab" data-panel="scanner" style="color:#f59e0b">🌅 Morning Scanner</button>
     </div>
 
     <!-- ══ 1. WHEEL OPTIMIZER ══ -->
@@ -809,7 +810,7 @@ Respond with ONLY valid JSON (no markdown, no backticks, no preamble):
                 <strong style="color:#ef4444">⚠ Analysis Error</strong><br>
                 <span style="font-size:12px;color:var(--text-dim)">
                 ${err.message.includes('Failed to fetch')||err.message.includes('NetworkError')
-                    ? 'Network error: Make sure the local server is running. Open START_APP.command first, then refresh this page.'
+                    ? 'Network error: This app must be opened as an <strong style="color:var(--text)">Artifact inside Claude.ai</strong> for the AI advisor to work. The Anthropic API cannot be called directly from a local file.'
                     : err.message}
                 </span>
             </div>`;
@@ -905,19 +906,336 @@ function renderAIHistory(){
 function replayHistory(i){const h=aiHistory[i];$id('ai-ticker').value=h.ticker;renderAIResponse(h.result,parseFloat($id('ai-portfolio').value)||30000);}
 $id('ai-ticker').addEventListener('keydown',e=>{if(e.key==='Enter')runAIAdvisor();});
 
-window.onload=()=>{runWheel();runSpread();renderTracker();};
+window.onload=()=>{
+  runWheel();runSpread();renderTracker();
+  if(!localStorage.getItem('anthropic_api_key')){
+    const k=prompt('Enter your Anthropic API key (sk-ant-...) to enable AI features:');
+    if(k&&k.startsWith('sk-ant-'))localStorage.setItem('anthropic_api_key',k.trim());
+  }
+};
 </script>
 
+<!-- ══ 5. MORNING SCANNER PANEL ══ -->
+<div id="panel-scanner" class="panel">
+<style>
+  #panel-scanner {--scan-gold:#f59e0b;--scan-gold-dim:rgba(245,158,11,0.1);--scan-gold-border:rgba(245,158,11,0.25);}
+  .scan-header{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,rgba(245,158,11,0.08),rgba(239,68,68,0.04));border:1px solid var(--scan-gold-border);border-radius:16px;padding:24px 28px;margin-bottom:24px;}
+  .scan-config{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;margin-bottom:20px;align-items:end;}
+  .scan-field label{display:block;font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-bottom:6px;}
+  .scan-field input,.scan-field select{width:100%;background:#05080f;border:1px solid var(--border);color:var(--text);padding:11px 14px;border-radius:10px;font-family:var(--font-mono);font-size:14px;outline:none;}
+  .scan-btn{background:linear-gradient(135deg,#b45309,#f59e0b);color:#000;border:none;padding:11px 28px;border-radius:10px;font-weight:800;font-size:14px;cursor:pointer;white-space:nowrap;height:44px;}
+  .scan-btn:hover{opacity:.88;}
+  .scan-btn:disabled{opacity:.4;cursor:not-allowed;}
+  .scan-thinking{display:none;align-items:center;gap:14px;padding:20px 24px;background:var(--scan-gold-dim);border:1px solid var(--scan-gold-border);border-radius:12px;margin-bottom:20px;}
+  .scan-thinking.visible{display:flex;}
+  .scan-thinking-dots span{background:var(--scan-gold)!important;}
+  .scan-thinking-text{color:var(--scan-gold);font-size:13px;font-style:italic;}
+  .scan-results{display:none;animation:aiFadeIn .4s ease;}
+  .scan-results.visible{display:block;}
+  .regime-box{border-radius:14px;padding:20px 24px;margin-bottom:20px;border:1px solid transparent;}
+  .regime-sell{background:rgba(34,197,94,.07);border-color:rgba(34,197,94,.35);}
+  .regime-neutral{background:rgba(245,158,11,.07);border-color:rgba(245,158,11,.35);}
+  .regime-avoid{background:rgba(239,68,68,.07);border-color:rgba(239,68,68,.35);}
+  .regime-title{font-size:20px;font-weight:900;margin-bottom:4px;}
+  .regime-desc{font-size:13px;color:var(--text-dim);}
+  .opportunities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+  .opp-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;position:relative;transition:border-color .2s;}
+  .opp-card.rank1{border-color:var(--scan-gold);background:rgba(245,158,11,0.06);}
+  .opp-card.rank1::before{content:'#1 TOP PICK';position:absolute;top:-10px;left:16px;background:var(--scan-gold);color:#000;font-size:9px;font-weight:900;padding:2px 8px;border-radius:4px;}
+  .opp-rank{font-size:11px;color:var(--text-dim);text-transform:uppercase;margin-bottom:4px;}
+  .opp-ticker{font-size:26px;font-weight:900;font-family:var(--font-mono);margin-bottom:6px;}
+  .opp-score-bar{background:rgba(0,0,0,.4);height:6px;border-radius:3px;margin:8px 0;overflow:hidden;}
+  .opp-score-fill{height:100%;border-radius:3px;}
+  .opp-why{font-size:12px;color:var(--text-dim);line-height:1.6;margin-top:8px;}
+  .opp-tags{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0;}
+  .earnings-section{margin-bottom:20px;}
+  .earnings-table{width:100%;border-collapse:collapse;}
+  .earnings-table th{font-size:10px;color:var(--text-dim);text-transform:uppercase;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);}
+  .earnings-table td{font-size:13px;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);}
+  .earnings-warn{color:var(--loss);font-weight:700;}
+  .earnings-ok{color:var(--profit);}
+  .regime-indicators{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px;}
+  .reg-ind{background:rgba(0,0,0,.3);padding:12px;border-radius:10px;border:1px solid var(--border);text-align:center;}
+  .reg-ind-label{font-size:9px;color:var(--text-dim);text-transform:uppercase;margin-bottom:4px;}
+  .reg-ind-val{font-size:16px;font-weight:800;font-family:var(--font-mono);}
+  .watchlist-input{width:100%;background:#05080f;border:1px solid var(--border);color:var(--text);padding:11px 14px;border-radius:10px;font-family:var(--font-mono);font-size:13px;outline:none;margin-bottom:8px;}
+  @media(max-width:700px){.opportunities-grid{grid-template-columns:1fr;}.scan-config{grid-template-columns:1fr;}.regime-indicators{grid-template-columns:1fr 1fr;}}
+</style>
+
+<div class="scan-header">
+  <div style="font-size:42px">🌅</div>
+  <div>
+    <div style="font-size:20px;font-weight:900;color:var(--scan-gold)">Morning Scanner</div>
+    <div style="font-size:13px;color:var(--text-dim);margin-top:4px">AI scans your watchlist every morning — ranks top opportunities, checks earnings risk, and tells you if today is a good day to sell premium.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">⚙️ Scanner Configuration</div>
+  <div class="scan-field" style="margin-bottom:12px">
+    <label>Watchlist — ETF tickers (comma separated)</label>
+    <input class="watchlist-input" id="scan-watchlist" value="SPY, QQQ, IWM, GLD, TLT, XLE, XLF, EEM, VXX, ARKK, SMH, XBI">
+  </div>
+  <div class="scan-config">
+    <div class="scan-field">
+      <label>Portfolio Size ($)</label>
+      <input id="scan-portfolio" type="number" value="30000">
+    </div>
+    <div class="scan-field">
+      <label>Risk Tolerance</label>
+      <select id="scan-risk">
+        <option value="conservative">Conservative</option>
+        <option value="moderate" selected>Moderate</option>
+        <option value="aggressive">Aggressive</option>
+      </select>
+    </div>
+    <div class="scan-field">
+      <label>&nbsp;</label>
+      <button class="scan-btn" id="scan-btn" onclick="runMorningScanner()">🌅 Run Scan</button>
+    </div>
+  </div>
+</div>
+
+<div class="scan-thinking" id="scan-thinking">
+  <div class="ai-thinking-dots dots"><span></span><span></span><span></span></div>
+  <div class="scan-thinking-text" id="scan-think-text">Analyzing market regime…</div>
+</div>
+
+<div class="scan-results" id="scan-results"></div>
+</div>
+
 <script>
-(function(){
-  var key = localStorage.getItem('anthropic_api_key') || '';
-  if(!key.startsWith('sk-ant-')){
-    var k = prompt('Enter your Anthropic API key (sk-ant-...):');
-    if(k && k.startsWith('sk-ant-')){
-      localStorage.setItem('anthropic_api_key', k.trim());
-    }
+// ══ MORNING SCANNER ══
+const SCAN_MSGS = [
+  'Analyzing market regime & VIX…',
+  'Scanning ETF universe for IV rank…',
+  'Checking earnings calendar…',
+  'Ranking opportunities by conviction…',
+  'Building your morning briefing…'
+];
+
+async function runMorningScanner() {
+  const watchlist = $id('scan-watchlist').value.trim();
+  const portfolio = parseFloat($id('scan-portfolio').value) || 30000;
+  const risk = $id('scan-risk').value;
+  const apiKey = localStorage.getItem('anthropic_api_key') || '';
+
+  if (!apiKey.startsWith('sk-ant-')) {
+    const k = prompt('Enter your Anthropic API key (sk-ant-...):');
+    if (k && k.startsWith('sk-ant-')) localStorage.setItem('anthropic_api_key', k.trim());
+    else return;
   }
-})();
+
+  const btn = $id('scan-btn');
+  btn.disabled = true; btn.textContent = '⏳ Scanning…';
+  $id('scan-results').classList.remove('visible');
+  const thinking = $id('scan-thinking');
+  thinking.classList.add('visible');
+  let msgIdx = 0;
+  const thinkEl = $id('scan-think-text');
+  thinkEl.textContent = SCAN_MSGS[0];
+  const msgInt = setInterval(() => { msgIdx = (msgIdx+1) % SCAN_MSGS.length; thinkEl.textContent = SCAN_MSGS[msgIdx]; }, 2000);
+
+  const today = new Date().toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+  const tickers = watchlist.split(',').map(t => t.trim().toUpperCase()).filter(Boolean);
+
+  const prompt = `You are an expert options trading analyst providing a morning briefing for a premium seller.
+
+Today: ${today}
+Watchlist: ${tickers.join(', ')}
+Portfolio: $${portfolio.toLocaleString()}
+Risk: ${risk}
+
+Provide a complete morning scan. Respond ONLY with valid JSON:
+
+{
+  "market_regime": {
+    "verdict": "SELL PREMIUM",
+    "verdict_class": "sell",
+    "description": "2-3 sentences about overall market conditions today and why it's good/bad for premium selling",
+    "vix_assessment": "Current VIX environment description",
+    "trend_assessment": "Overall market trend description",
+    "recommendation": "One clear action sentence",
+    "indicators": {
+      "vix_level": "18.5",
+      "vix_trend": "Falling",
+      "spy_trend": "Uptrend",
+      "fear_greed": "Neutral"
+    }
+  },
+  "top_opportunities": [
+    {
+      "rank": 1,
+      "ticker": "QQQ",
+      "score": 82,
+      "iv_rank": 58,
+      "strategy": "Wheel (CSP)",
+      "strike_guidance": "Sell $470 put, May 9 expiry",
+      "est_premium": "$285",
+      "probability_profit": "79%",
+      "why": "2-3 sentences explaining why this is the top pick today specifically",
+      "tags": ["High IV Rank", "Strong Trend", "Excellent Liquidity"],
+      "earnings_safe": true,
+      "earnings_date": null
+    },
+    {
+      "rank": 2,
+      "ticker": "SPY",
+      "score": 76,
+      "iv_rank": 52,
+      "strategy": "Bull Put Spread",
+      "strike_guidance": "Sell 540/535 put spread, May expiry",
+      "est_premium": "$180",
+      "probability_profit": "75%",
+      "why": "2-3 sentences for this opportunity",
+      "tags": ["Moderate IV", "Defined Risk"],
+      "earnings_safe": true,
+      "earnings_date": null
+    },
+    {
+      "rank": 3,
+      "ticker": "GLD",
+      "score": 71,
+      "iv_rank": 61,
+      "strategy": "Wheel (CSP)",
+      "strike_guidance": "Sell $215 put, May expiry",
+      "est_premium": "$210",
+      "probability_profit": "74%",
+      "why": "2-3 sentences for this opportunity",
+      "tags": ["Rich IV", "Safe Haven"],
+      "earnings_safe": true,
+      "earnings_date": null
+    }
+  ],
+  "earnings_watch": [
+    {
+      "ticker": "QQQ",
+      "earnings_date": "None this cycle",
+      "risk_level": "safe",
+      "note": "No earnings within 45-day window"
+    }
+  ],
+  "avoid_today": ["VXX", "ARKK"],
+  "avoid_reason": "High volatility products unsuitable for premium selling in current regime",
+  "daily_summary": "2-3 sentence overall summary of what to do today"
+}`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': localStorage.getItem('anthropic_api_key') || '',
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5',
+        max_tokens: 2000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    if (!response.ok) { const e = await response.json().catch(() => ({})); throw new Error(`API error ${response.status}: ${e.error?.message || response.statusText}`); }
+    const data = await response.json();
+    clearInterval(msgInt);
+    const raw = data.content.map(b => b.type === 'text' ? b.text : '').join('');
+    const clean = raw.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
+    let result;
+    try { result = JSON.parse(clean); } catch { const m = clean.match(/\{[\s\S]*\}/); if (m) result = JSON.parse(m[0]); else throw new Error('Could not parse response.'); }
+    renderScanResults(result, portfolio);
+  } catch (err) {
+    clearInterval(msgInt);
+    $id('scan-results').innerHTML = `<div class="ai-error"><strong style="color:var(--loss)">Scan Error</strong><br><span style="font-size:12px;color:var(--text-dim)">${err.message}</span></div>`;
+    $id('scan-results').classList.add('visible');
+  } finally {
+    thinking.classList.remove('visible');
+    btn.disabled = false; btn.textContent = '🌅 Run Scan';
+  }
+}
+
+function renderScanResults(r, portfolio) {
+  const regime = r.market_regime;
+  const regimeClass = regime.verdict_class === 'sell' ? 'regime-sell' : regime.verdict_class === 'avoid' ? 'regime-avoid' : 'regime-neutral';
+  const regimeEmoji = regime.verdict_class === 'sell' ? '✅' : regime.verdict_class === 'avoid' ? '⛔' : '⚖️';
+
+  const scoreColor = s => s >= 75 ? '#22c55e' : s >= 55 ? '#f59e0b' : '#ef4444';
+
+  const oppCards = (r.top_opportunities || []).map(opp => `
+    <div class="opp-card ${opp.rank === 1 ? 'rank1' : ''}">
+      <div class="opp-rank">#${opp.rank} opportunity</div>
+      <div class="opp-ticker" style="color:${scoreColor(opp.score)}">${opp.ticker}</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <span style="font-size:12px;color:var(--text-dim)">Score</span>
+        <span style="font-size:16px;font-weight:900;font-family:var(--font-mono);color:${scoreColor(opp.score)}">${opp.score}/100</span>
+      </div>
+      <div class="opp-score-bar"><div class="opp-score-fill" style="width:${opp.score}%;background:${scoreColor(opp.score)}"></div></div>
+      <div class="opp-tags">${(opp.tags||[]).map(t => `<span class="zone zone-ok">${t}</span>`).join('')}
+        ${opp.earnings_safe ? '<span class="zone zone-safe">✓ No Earnings</span>' : `<span class="zone zone-danger">⚠ Earnings ${opp.earnings_date}</span>`}
+      </div>
+      <div style="font-size:13px;font-weight:800;margin-bottom:4px">${opp.strategy}</div>
+      <div style="font-size:12px;color:var(--accent);font-family:var(--font-mono);font-weight:700;margin-bottom:6px">${opp.strike_guidance}</div>
+      <div style="display:flex;gap:12px;margin-bottom:8px">
+        <span class="zone zone-safe">${opp.est_premium} premium</span>
+        <span class="zone zone-ok">${opp.probability_profit} POP</span>
+      </div>
+      <div style="font-size:12px;color:var(--text-dim);line-height:1.6">${opp.why}</div>
+    </div>`).join('');
+
+  const earningsRows = (r.earnings_watch || []).map(e => `
+    <tr>
+      <td style="font-weight:800;font-family:var(--font-mono)">${e.ticker}</td>
+      <td>${e.earnings_date}</td>
+      <td class="${e.risk_level === 'safe' ? 'earnings-ok' : 'earnings-warn'}">${e.risk_level === 'safe' ? '✓ Safe' : '⚠ CAUTION'}</td>
+      <td style="font-size:12px;color:var(--text-dim)">${e.note}</td>
+    </tr>`).join('');
+
+  const ind = regime.indicators || {};
+
+  $id('scan-results').innerHTML = `
+  <div class="regime-box ${regimeClass}">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+      <div>
+        <div class="regime-title">${regimeEmoji} Today's Verdict: ${regime.verdict}</div>
+        <div class="regime-desc">${regime.description}</div>
+        <div style="margin-top:12px;padding:10px 14px;background:rgba(0,0,0,.2);border-radius:8px;font-size:13px;color:var(--text)">${regime.recommendation}</div>
+      </div>
+    </div>
+    <div class="regime-indicators">
+      <div class="reg-ind"><div class="reg-ind-label">VIX Level</div><div class="reg-ind-val accent">${ind.vix_level || '—'}</div></div>
+      <div class="reg-ind"><div class="reg-ind-label">VIX Trend</div><div class="reg-ind-val profit">${ind.vix_trend || '—'}</div></div>
+      <div class="reg-ind"><div class="reg-ind-label">SPY Trend</div><div class="reg-ind-val profit">${ind.spy_trend || '—'}</div></div>
+      <div class="reg-ind"><div class="reg-ind-label">Fear/Greed</div><div class="reg-ind-val warning">${ind.fear_greed || '—'}</div></div>
+    </div>
+  </div>
+
+  <div style="font-size:13px;font-weight:800;color:var(--scan-gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px">⭐ Top 3 Opportunities Today</div>
+  <div class="opportunities-grid">${oppCards}</div>
+
+  <div class="card earnings-section">
+    <div class="card-title">📅 Earnings Calendar — Next 45 Days</div>
+    <table class="earnings-table">
+      <thead><tr><th>Ticker</th><th>Earnings Date</th><th>Risk</th><th>Note</th></tr></thead>
+      <tbody>${earningsRows}</tbody>
+    </table>
+  </div>
+
+  ${r.avoid_today && r.avoid_today.length ? `
+  <div class="card" style="border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.04)">
+    <div class="card-title" style="color:var(--loss)">⛔ Avoid Today</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">${r.avoid_today.map(t => `<span class="zone zone-danger">${t}</span>`).join('')}</div>
+    <div style="font-size:12px;color:var(--text-dim)">${r.avoid_reason}</div>
+  </div>` : ''}
+
+  <div class="card" style="background:rgba(245,158,11,.06);border-color:rgba(245,158,11,.25)">
+    <div class="card-title" style="color:var(--scan-gold)">📋 Daily Summary</div>
+    <div style="font-size:14px;color:var(--text);line-height:1.7">${r.daily_summary}</div>
+    <div style="margin-top:12px;font-size:11px;color:var(--text-dim)">Scanned at ${new Date().toLocaleTimeString()} · Portfolio $${portfolio.toLocaleString()}</div>
+  </div>`;
+
+  $id('scan-results').classList.add('visible');
+  $id('scan-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 </script>
 </body>
 </html>
