@@ -3038,16 +3038,21 @@ function simulateTrades(prices, strategy, account, dte, deltaTarget, closePct, s
 }
 
 function findStrikeForDelta(price, iv, t, r, targetDelta, type) {
-  const step = price < 50?1:price<200?2.5:price<500?5:10;
+  const step = price < 50 ? 0.5 : price < 100 ? 1 : price < 200 ? 2.5 : price < 500 ? 5 : 10;
   let best = null, bestDiff = 999;
-  for (let k = price*0.6; k <= price*1.4; k += step) {
-    const d1 = bsD1(price,k,iv,t,r);
-    const delta = type==='put' ? Math.abs(ncdf(d1)-1) : ncdf(d1);
+  // For puts: search from ATM downward; for calls: ATM upward
+  const start = type === 'put' ? price * 0.98 : price * 1.02;
+  const end   = type === 'put' ? price * 0.60 : price * 1.40;
+  const dir   = type === 'put' ? -1 : 1;
+  for (let k = start; type === 'put' ? k >= end : k <= end; k += dir * step) {
+    const d1 = bsD1(price, k, iv, t, r);
+    const delta = type === 'put' ? Math.abs(ncdf(d1) - 1) : ncdf(d1);
     const diff = Math.abs(delta - targetDelta);
-    if (diff < bestDiff) { bestDiff=diff; best=k; }
-    if (delta < targetDelta*0.5 && type==='put') break;
+    if (diff < bestDiff) { bestDiff = diff; best = k; }
+    // Stop once we've gone past target by a wide margin
+    if (delta < targetDelta * 0.3) break;
   }
-  return Math.round((best||price*0.9)/step)*step;
+  return Math.round((best || price * 0.90) / step) * step;
 }
 
 function calcStats(trades, startingCapital) {
