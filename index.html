@@ -907,5 +907,17 @@ $id('ai-ticker').addEventListener('keydown',e=>{if(e.key==='Enter')runAIAdvisor(
 
 window.onload=()=>{runWheel();runSpread();renderTracker();};
 </script>
+
+<script>
+(function(){
+  var key = localStorage.getItem('anthropic_api_key') || '';
+  if(!key.startsWith('sk-ant-')){
+    var k = prompt('Enter your Anthropic API key (sk-ant-...):');
+    if(k && k.startsWith('sk-ant-')){
+      localStorage.setItem('anthropic_api_key', k.trim());
+    }
+  }
+})();
+</script>
 </body>
 </html>
