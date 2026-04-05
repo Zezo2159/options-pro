@@ -208,7 +208,7 @@
                         <div class="field"><label>Underlying Price ($)</label><input type="number" id="s-s" value="560" oninput="runSpread()"></div>
                         <div class="field"><label>IV (%)</label><input type="number" id="s-iv" value="18" oninput="runSpread()"></div>
                         <div class="field"><label>DTE</label><input type="number" id="s-dte" value="35" oninput="runSpread()"></div>
-                        <div class="field"><label>Account Size ($)</label><input type="number" id="s-acc" value="30000" oninput="runSpread()"></div>
+                        <div class="field"><label>Account Size ($)</label><input type="number" id="s-acc" value="250000" oninput="runSpread()"></div>
                     </div>
                     <div id="s-row-put" class="input-row">
                         <div class="field"><label>Short Put Strike ($)</label><input type="number" id="s-sp" value="540" oninput="runSpread()"></div>
@@ -387,7 +387,7 @@
             </div>
             <div class="ai-field">
                 <label>Portfolio Size</label>
-                <input id="ai-portfolio" type="number" value="30000" placeholder="30000">
+                <input id="ai-portfolio" type="number" value="250000" placeholder="250000">
             </div>
             <div class="ai-field">
                 <label>Risk Level</label>
@@ -1018,12 +1018,12 @@ window.onload=()=>{
   <div class="card-title">⚙️ Scanner Configuration</div>
   <div class="scan-field" style="margin-bottom:12px">
     <label>Watchlist — ETF tickers (comma separated)</label>
-    <input class="watchlist-input" id="scan-watchlist" value="SPY, QQQ, IWM, GLD, TLT, XLE, XLF, EEM, VXX, ARKK, SMH, XBI">
+    <input class="watchlist-input" id="scan-watchlist" value="SPY, QQQ, IWM, GLD, GDX, XLE, SMH, TLT, XSP, QQQM">
   </div>
   <div class="scan-config">
     <div class="scan-field">
       <label>Portfolio Size ($)</label>
-      <input id="scan-portfolio" type="number" value="30000">
+      <input id="scan-portfolio" type="number" value="250000">
     </div>
     <div class="scan-field">
       <label>Risk Tolerance</label>
@@ -1060,7 +1060,7 @@ const SCAN_MSGS = [
 
 async function runMorningScanner() {
   const watchlist = $id('scan-watchlist').value.trim();
-  const portfolio = parseFloat($id('scan-portfolio').value) || 30000;
+  const portfolio = parseFloat($id('scan-portfolio').value) || 250000;
   const risk = $id('scan-risk').value;
   const apiKey = getApiKey() || '';
 
@@ -2183,7 +2183,7 @@ function updateScheduleStatus() {
 async function runAutoScan() {
   try {
     const watchlist = $id('scan-watchlist')?.value || savedWatchlist.join(', ');
-    const portfolio = $id('scan-portfolio')?.value || 30000;
+    const portfolio = $id('scan-portfolio')?.value || 250000;
     const risk = $id('scan-risk')?.value || 'moderate';
     // Trigger the scanner
     if ($id('scan-btn')) {
@@ -2850,7 +2850,7 @@ document.querySelectorAll('.tab').forEach(btn=>{
         <option value="ic">Iron Condor</option>
       </select>
     </div>
-    <div class="bt-field"><label>Account Size ($)</label><input type="number" id="bt-account" value="30000"></div>
+    <div class="bt-field"><label>Account Size ($)</label><input type="number" id="bt-account" value="250000"></div>
     <div class="bt-field"><label>Target DTE</label><input type="number" id="bt-dte" value="30" min="7" max="60"></div>
     <div class="bt-field"><label>Delta Target</label><input type="number" id="bt-delta" value="0.20" step="0.01" min="0.10" max="0.40"></div>
     <div class="bt-field"><label>Close At % Profit</label><input type="number" id="bt-close-pct" value="50" min="25" max="100"></div>
