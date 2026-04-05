@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Options Pro Ultra | Master Suite</title>
+    <style>
+        :root {
+            --bg: #080c14; --card: #121926; --border: #242f42; --text: #f1f5f9;
+            --text-dim: #94a3b8; --accent: #38bdf8; --profit: #22c55e; --loss: #ef4444;
+            --warning: #f59e0b; --purple: #a78bfa; --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { box-sizing: border-box; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; font-size: 13px; }
+        .container { max-width: 1380px; margin: 0 auto; }
+        .tabs { display: flex; gap: 20px; border-bottom: 1px solid var(--border); margin-bottom: 25px; }
+        .tab { color: var(--text-dim); cursor: pointer; font-weight: 600; padding: 12px 0; border: none; background: none; border-bottom: 2px solid transparent; transition: 0.3s; font-size: 15px; }
+        .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+        .panel { display: none; } .panel.active { display: block; }
+        .grid { display: grid; grid-template-columns: 1fr 380px; gap: 20px; }
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+        .card-title { font-size: 11px; color: var(--accent); font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+        .input-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 12px; margin-bottom: 14px; }
+        .field label { display: block; font-size: 10px; color: var(--text-dim); text-transform: uppercase; margin-bottom: 6px; font-weight: bold; letter-spacing: 0.05em; }
+        input, select { width: 100%; background: #05080f; border: 1px solid var(--border); color: var(--text); padding: 10px; border-radius: 8px; outline: none; font-family: var(--font-mono); font-size: 13px; }
+        input:focus { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(56,189,248,0.15); }
+        .field-hint { font-size: 9px; color: var(--text-dim); margin-top: 4px; opacity: 0.7; }
+        .verdict-box { border-radius: 12px; padding: 18px 22px; margin-bottom: 18px; display: flex; align-items: center; justify-content: space-between; border: 1px solid transparent; }
+        .v-safe  { background: rgba(34,197,94,0.08);  border-color: rgba(34,197,94,0.5); }
+        .v-warn  { background: rgba(245,158,11,0.08);  border-color: rgba(245,158,11,0.5); }
+        .v-danger{ background: rgba(239,68,68,0.08);   border-color: rgba(239,68,68,0.5); }
+        .metrics { display: grid; gap: 10px; margin-bottom: 14px; }
+        .metrics-4 { grid-template-columns: repeat(4,1fr); }
+        .metrics-5 { grid-template-columns: repeat(5,1fr); }
+        .metrics-6 { grid-template-columns: repeat(6,1fr); }
+        .metric { background: rgba(0,0,0,0.3); padding: 12px; border-radius: 10px; border: 1px solid var(--border); }
+        .m-label { font-size: 9px; color: var(--text-dim); text-transform: uppercase; margin-bottom: 4px; letter-spacing: 0.05em; }
+        .m-value { font-size: 15px; font-weight: bold; font-family: var(--font-mono); }
+        .m-sub   { font-size: 9px; color: var(--text-dim); margin-top: 2px; }
+        .intel-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+        .intel-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 14px; }
+        .intel-card { background: rgba(255,255,255,0.02); padding: 14px; border-radius: 10px; border: 1px solid var(--border); }
+        .intel-title { font-size: 10px; color: var(--accent); font-weight: 800; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .intel-value { font-size: 14px; font-weight: bold; font-family: var(--font-mono); margin-bottom: 4px; }
+        .intel-desc { font-size: 10px; color: var(--text-dim); line-height: 1.5; }
+        .bar-bg { background: rgba(0,0,0,0.5); height: 6px; border-radius: 3px; margin: 7px 0 5px; overflow: hidden; }
+        .bar-fill { height: 100%; border-radius: 3px; transition: width 0.5s; }
+        .zone { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; }
+        .zone-safe   { background: rgba(34,197,94,0.15);  color: var(--profit); }
+        .zone-ok     { background: rgba(56,189,248,0.15); color: var(--accent); }
+        .zone-warn   { background: rgba(245,158,11,0.15); color: var(--warning); }
+        .zone-danger { background: rgba(239,68,68,0.15);  color: var(--loss); }
+        .decision-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 12px; }
+        .decision-row:last-child { border-bottom: none; }
+        .chart-wrap { height: 260px; margin-top: 14px; }
+        .profit { color: var(--profit); } .loss { color: var(--loss); } .warning { color: var(--warning); } .accent { color: var(--accent); } .purple { color: var(--purple); }
+        .goal-bg { background: #000; height: 12px; border-radius: 6px; border: 1px solid var(--border); overflow: hidden; margin: 10px 0 4px; }
+        .goal-fill { background: var(--profit); height: 100%; box-shadow: 0 0 10px var(--profit); transition: 0.5s; }
+        .trade-item { display: grid; grid-template-columns: 90px 1fr 100px 80px 40px; align-items: center; padding: 10px; border-bottom: 1px solid var(--border); font-size: 12px; }
+        .score-ring { width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 900; font-family: var(--font-mono); border: 3px solid; flex-shrink: 0; }
+        .divider { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
+        .section-label { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin: 18px 0 10px; }
+        button.primary { background: var(--accent); color: #000; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 13px; }
+        button.primary:hover { opacity: 0.85; }
+        .callout { background: rgba(56,189,248,0.06); border-left: 3px solid var(--accent); padding: 8px 12px; border-radius: 0 6px 6px 0; font-size: 11px; color: var(--text-dim); margin-top: 8px; line-height: 1.6; }
+        .callout strong { color: var(--text); }
+        @media(max-width:900px){ .grid { grid-template-columns: 1fr; } .metrics-5,.metrics-6 { grid-template-columns: repeat(3,1fr); } .intel-grid-3 { grid-template-columns: 1fr 1fr; } }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
+        <div>
+            <div style="font-size:20px;font-weight:900;letter-spacing:-0.02em">Options Pro Ultra <span style="color:var(--accent)">⚡</span></div>
+            <div style="font-size:11px;color:var(--text-dim)">Advanced Options Risk Intelligence Suite</div>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <button class="tab active" data-panel="wheel">🎡 Wheel Optimizer</button>
+        <button class="tab" data-panel="spreads">📐 Spread Analyzer</button>
+        <button class="tab" data-panel="tracker">📈 Daily Tracker</button>
+        <button class="tab" data-panel="ai" style="color:#a78bfa">🧠 AI Trade Advisor</button>
+    </div>
+
+    <!-- ══ 1. WHEEL OPTIMIZER ══ -->
+    <div id="panel-wheel" class="panel active">
+        <div class="verdict-box v-safe" id="w-verdict">
+            <div style="flex:1">
+                <div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">OVERALL VERDICT</div>
+                <div style="font-size:20px;font-weight:900" id="wv-title">Analysis Ready</div>
+                <div style="font-size:12px;color:var(--text-dim);margin-top:4px" id="wv-desc">Adjust parameters to generate verdict.</div>
+                <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap" id="wv-tags"></div>
+            </div>
+            <div class="score-ring" id="wv-ring" style="border-color:var(--profit);color:var(--profit)">100</div>
+        </div>
+        <div class="grid">
+            <div class="main">
+                <div class="card">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+                        <div class="card-title" style="margin:0">⚙️ Strategy Configuration</div>
+                        <select id="w-phase" onchange="runWheel()" style="width:210px">
+                            <option value="put">Phase 1: Cash-Secured Put</option>
+                            <option value="call">Phase 2: Covered Call</option>
+                        </select>
+                    </div>
+                    <div class="section-label">Core Parameters</div>
+                    <div class="input-row">
+                        <div class="field"><label>Ticker</label><input type="text" id="w-ticker" value="QQQM" oninput="runWheel()"></div>
+                        <div class="field"><label>Stock Price ($)</label><input type="number" id="w-s" value="240.75" oninput="runWheel()"></div>
+                        <div class="field"><label id="w-label-k">Put Strike ($)</label><input type="number" id="w-k" value="225" oninput="runWheel()"></div>
+                        <div class="field"><label>Days to Expiry</label><input type="number" id="w-dte" value="41" oninput="runWheel()"><div class="field-hint">Target: 21–45 DTE</div></div>
+                        <div class="field"><label>Account Size ($)</label><input type="number" id="w-acc" value="70000" oninput="runWheel()"></div>
+                        <div class="field" id="w-basis-row" style="display:none"><label>Cost Basis ($)</label><input type="number" id="w-basis" value="240" oninput="runWheel()"></div>
+                    </div>
+                    <div class="section-label">Volatility & Market Context</div>
+                    <div class="input-row">
+                        <div class="field"><label>IV — Implied Vol (%)</label><input type="number" id="w-iv" value="23.4" oninput="runWheel()"><div class="field-hint">Option's annualized vol</div></div>
+                        <div class="field"><label>IV Rank (IVR %)</label><input type="number" id="w-ivr" value="55" min="0" max="100" oninput="runWheel()"><div class="field-hint">0–100 vs 52-week range</div></div>
+                        <div class="field"><label>VIX Level</label><input type="number" id="w-vix" value="18.5" oninput="runWheel()"><div class="field-hint">Market fear gauge</div></div>
+                        <div class="field"><label>RSI (14-day)</label><input type="number" id="w-rsi" value="55" min="0" max="100" oninput="runWheel()"><div class="field-hint">Momentum indicator</div></div>
+                    </div>
+                    <div class="section-label">Calculated Metrics</div>
+                    <div class="metrics metrics-5">
+                        <div class="metric"><div class="m-label">Premium</div><div class="m-value profit" id="wm-prem">$0</div><div class="m-sub">Per contract ×100</div></div>
+                        <div class="metric"><div class="m-label">Prob. OTM</div><div class="m-value" id="wm-pop">0%</div><div class="m-sub">Expire worthless</div></div>
+                        <div class="metric"><div class="m-label">Delta (Δ)</div><div class="m-value" id="wm-delta">0</div><div class="m-sub">Assignment proxy</div></div>
+                        <div class="metric"><div class="m-label">Theta (Θ)</div><div class="m-value profit" id="wm-theta">$0</div><div class="m-sub">Daily time decay</div></div>
+                        <div class="metric"><div class="m-label">Expected Move</div><div class="m-value warning" id="wm-em">±$0</div><div class="m-sub">1 std deviation</div></div>
+                    </div>
+                    <div class="chart-wrap"><canvas id="wheelChart"></canvas></div>
+                </div>
+                <div class="card">
+                    <div class="card-title">🧠 Risk Intelligence & Decision Engine</div>
+                    <div class="intel-grid-3">
+                        <div class="intel-card"><div class="intel-title">⏳ Time Decay (Theta)</div><div class="intel-value profit" id="ri-theta-val">$0/day</div><div class="bar-bg"><div class="bar-fill" id="ri-theta-bar" style="background:var(--profit)"></div></div><div style="margin-bottom:6px" id="ri-theta-zone"></div><div class="intel-desc" id="ri-theta-desc"></div><div class="callout" id="ri-theta-callout"></div></div>
+                        <div class="intel-card"><div class="intel-title">📐 Delta (Δ) Analysis</div><div class="intel-value" id="ri-delta-val">0.00</div><div class="bar-bg"><div class="bar-fill" id="ri-delta-bar"></div></div><div style="margin-bottom:6px" id="ri-delta-zone"></div><div class="intel-desc" id="ri-delta-desc"></div><div class="callout" id="ri-delta-callout"></div></div>
+                        <div class="intel-card"><div class="intel-title">🛡️ Downside Buffer</div><div class="intel-value" id="ri-mos-val">0%</div><div class="bar-bg"><div class="bar-fill" id="ri-mos-bar" style="background:var(--profit)"></div></div><div style="margin-bottom:6px" id="ri-mos-zone"></div><div class="intel-desc" id="ri-mos-desc"></div><div class="callout" id="ri-mos-callout"></div></div>
+                        <div class="intel-card"><div class="intel-title">🌡️ IV Environment</div><div style="display:flex;align-items:baseline;gap:10px"><div class="intel-value" id="ri-iv-val">0%</div><div style="font-size:11px;color:var(--text-dim)">IVR: <span id="ri-ivr-val">0%</span></div></div><div class="bar-bg"><div class="bar-fill" id="ri-iv-bar"></div></div><div style="margin-bottom:6px" id="ri-iv-zone"></div><div class="intel-desc" id="ri-iv-desc"></div><div class="callout" id="ri-iv-callout"></div></div>
+                        <div class="intel-card"><div class="intel-title">📊 RSI Signal</div><div class="intel-value" id="ri-rsi-val">0</div><div class="bar-bg"><div class="bar-fill" id="ri-rsi-bar"></div></div><div style="margin-bottom:6px" id="ri-rsi-zone"></div><div class="intel-desc" id="ri-rsi-desc"></div><div class="callout" id="ri-rsi-callout"></div></div>
+                        <div class="intel-card"><div class="intel-title">😱 VIX Fear Gauge</div><div class="intel-value" id="ri-vix-val">0</div><div class="bar-bg"><div class="bar-fill" id="ri-vix-bar"></div></div><div style="margin-bottom:6px" id="ri-vix-zone"></div><div class="intel-desc" id="ri-vix-desc"></div><div class="callout" id="ri-vix-callout"></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar">
+                <div class="card">
+                    <div class="card-title">📋 Position Summary</div>
+                    <div class="metrics metrics-4" style="grid-template-columns:1fr 1fr">
+                        <div class="metric"><div class="m-label">ROC</div><div class="m-value accent" id="wm-roc">0%</div><div class="m-sub">Per trade</div></div>
+                        <div class="metric"><div class="m-label">Ann. Yield</div><div class="m-value profit" id="wm-ann">0%</div><div class="m-sub">Annualized</div></div>
+                        <div class="metric"><div class="m-label">Break-Even</div><div class="m-value" id="wm-be">$0</div><div class="m-sub">Effective price</div></div>
+                        <div class="metric"><div class="m-label">Contracts</div><div class="m-value warning" id="wm-qty">0</div><div class="m-sub">Based on account</div></div>
+                    </div>
+                    <hr class="divider">
+                    <div class="m-label">Collateral Required</div>
+                    <div class="m-value" id="wm-col" style="font-size:20px">$0</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">🎯 Decision Profile</div>
+                    <div class="decision-row"><span>Assignment Risk</span><span class="zone" id="wr-assign">—</span></div>
+                    <div class="decision-row"><span>Gamma Risk</span><span class="zone" id="wr-gamma">—</span></div>
+                    <div class="decision-row"><span>IV Conditions</span><span class="zone" id="wr-iv-cond">—</span></div>
+                    <div class="decision-row"><span>RSI Signal</span><span class="zone" id="wr-rsi-cond">—</span></div>
+                    <div class="decision-row"><span>VIX Environment</span><span class="zone" id="wr-vix-cond">—</span></div>
+                    <div class="decision-row"><span>Theta Quality</span><span class="zone" id="wr-theta-cond">—</span></div>
+                    <hr class="divider">
+                    <div class="decision-row"><span>Optimal Contracts</span><span id="wr-qty" style="font-weight:bold;font-family:var(--font-mono)">0</span></div>
+                    <div class="decision-row"><span>Capital Required</span><span id="wr-collateral" style="font-weight:bold;font-family:var(--font-mono)">$0</span></div>
+                    <hr class="divider">
+                    <div style="padding:12px;background:rgba(0,0,0,0.3);border-radius:8px;font-size:11px;color:var(--text-dim);line-height:1.6" id="wr-summary"></div>
+                </div>
+                <div class="card">
+                    <div class="card-title">📊 Score Breakdown</div>
+                    <div id="w-score-breakdown"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ 2. SPREAD ANALYZER ══ -->
+    <div id="panel-spreads" class="panel">
+        <div class="verdict-box v-safe" id="s-verdict">
+            <div style="flex:1">
+                <div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">SPREAD VERDICT</div>
+                <div style="font-size:20px;font-weight:900" id="sv-title">Analysis Ready</div>
+                <div style="font-size:12px;color:var(--text-dim);margin-top:4px" id="sv-desc">Adjust parameters to generate verdict.</div>
+                <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap" id="sv-tags"></div>
+            </div>
+            <div class="score-ring" id="sv-ring" style="border-color:var(--profit);color:var(--profit)">100</div>
+        </div>
+        <div class="grid">
+            <div class="main">
+                <div class="card">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+                        <div class="card-title" style="margin:0">📐 Spread Configuration</div>
+                        <select id="s-type" onchange="toggleSpread()" style="width:200px">
+                            <option value="bp">Bull Put Spread</option>
+                            <option value="bc">Bear Call Spread</option>
+                            <option value="ic">Iron Condor</option>
+                        </select>
+                    </div>
+                    <div class="input-row">
+                        <div class="field"><label>Underlying Price ($)</label><input type="number" id="s-s" value="560" oninput="runSpread()"></div>
+                        <div class="field"><label>IV (%)</label><input type="number" id="s-iv" value="18" oninput="runSpread()"></div>
+                        <div class="field"><label>DTE</label><input type="number" id="s-dte" value="35" oninput="runSpread()"></div>
+                        <div class="field"><label>Account Size ($)</label><input type="number" id="s-acc" value="30000" oninput="runSpread()"></div>
+                    </div>
+                    <div id="s-row-put" class="input-row">
+                        <div class="field"><label>Short Put Strike ($)</label><input type="number" id="s-sp" value="540" oninput="runSpread()"></div>
+                        <div class="field"><label>Long Put Strike ($)</label><input type="number" id="s-lp" value="530" oninput="runSpread()"></div>
+                    </div>
+                    <div id="s-row-call" class="input-row" style="display:none">
+                        <div class="field"><label>Short Call Strike ($)</label><input type="number" id="s-sc" value="580" oninput="runSpread()"></div>
+                        <div class="field"><label>Long Call Strike ($)</label><input type="number" id="s-lc" value="590" oninput="runSpread()"></div>
+                    </div>
+                    <div class="metrics metrics-5">
+                        <div class="metric"><div class="m-label">Net Credit</div><div class="m-value profit" id="sm-credit">$0</div><div class="m-sub">Premium received</div></div>
+                        <div class="metric"><div class="m-label">Max Profit</div><div class="m-value profit" id="sm-p">$0</div><div class="m-sub">Credit × 100</div></div>
+                        <div class="metric"><div class="m-label">Max Loss</div><div class="m-value loss" id="sm-l">$0</div><div class="m-sub">Width − Credit</div></div>
+                        <div class="metric"><div class="m-label">Risk/Reward</div><div class="m-value warning" id="sm-rr">—</div><div class="m-sub">Max loss / max profit</div></div>
+                        <div class="metric"><div class="m-label">Prob. of Profit</div><div class="m-value" id="sm-pop">—</div><div class="m-sub">At expiry (BS model)</div></div>
+                    </div>
+                    <div class="chart-wrap"><canvas id="spreadChart"></canvas></div>
+                </div>
+                <div class="card">
+                    <div class="card-title">🧠 Spread Risk Intelligence</div>
+                    <div class="intel-grid-3">
+                        <div class="intel-card"><div class="intel-title">🎯 Probability of Profit</div><div class="intel-value" id="sri-pop-val">—</div><div class="bar-bg"><div class="bar-fill" id="sri-pop-bar" style="background:var(--profit)"></div></div><div style="margin-bottom:6px" id="sri-pop-zone"></div><div class="intel-desc" id="sri-pop-desc"></div><div class="callout" id="sri-pop-callout"></div></div>
+                        <div class="intel-card"><div class="intel-title">💰 Expected Value (EV)</div><div class="intel-value" id="sri-ev-val">$0</div><div class="bar-bg"><div class="bar-fill" id="sri-ev-bar" style="background:var(--accent)"></div></div><div style="margin-bottom:6px" id="sri-ev-zone"></div><div class="intel-desc" id="sri-ev-desc"></div><div class="callout" id="sri-ev-callout"></div></div>
+                        <div class="intel-card"><div class="intel-title">⚡ Breakeven Analysis</div><div class="intel-value" id="sri-be-val">—</div><div class="bar-bg"><div class="bar-fill" id="sri-be-bar" style="background:var(--warning)"></div></div><div style="margin-bottom:6px" id="sri-be-zone"></div><div class="intel-desc" id="sri-be-desc"></div><div class="callout" id="sri-be-callout"></div></div>
+                        <div class="intel-card"><div class="intel-title">⏳ Theta Decay</div><div class="intel-value profit" id="sri-theta-val">$0/day</div><div class="bar-bg"><div class="bar-fill" id="sri-theta-bar" style="background:var(--profit)"></div></div><div style="margin-bottom:6px" id="sri-theta-zone"></div><div class="intel-desc" id="sri-theta-desc"></div><div class="callout" id="sri-theta-callout"></div></div>
+                        <div class="intel-card"><div class="intel-title">🛡️ Risk / Reward Profile</div><div class="intel-value" id="sri-rr-val">—</div><div class="bar-bg"><div class="bar-fill" id="sri-rr-bar" style="background:var(--warning)"></div></div><div style="margin-bottom:6px" id="sri-rr-zone"></div><div class="intel-desc" id="sri-rr-desc"></div><div class="callout" id="sri-rr-callout"></div></div>
+                        <div class="intel-card"><div class="intel-title">🎲 Kelly Sizing</div><div class="intel-value warning" id="sri-kelly-val">—</div><div class="bar-bg"><div class="bar-fill" id="sri-kelly-bar" style="background:var(--warning)"></div></div><div style="margin-bottom:6px" id="sri-kelly-zone"></div><div class="intel-desc" id="sri-kelly-desc"></div><div class="callout" id="sri-kelly-callout"></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar">
+                <div class="card">
+                    <div class="card-title">📦 Allocation Assessment</div>
+                    <div class="m-label">5% Rule Contracts</div>
+                    <div class="m-value warning" id="sm-qty5" style="font-size:24px">0</div>
+                    <div style="font-size:10px;color:var(--text-dim);margin-top:2px">5% max risk per spread</div>
+                    <hr class="divider">
+                    <div class="m-label">Kelly Optimal Contracts</div>
+                    <div class="m-value accent" id="sm-qty-kelly" style="font-size:24px">0</div>
+                    <hr class="divider">
+                    <div class="m-label">Capital at Risk</div>
+                    <div class="m-value loss" id="sm-capital-risk" style="font-size:18px">$0</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">🎯 Decision Profile</div>
+                    <div class="decision-row"><span>Spread Type</span><span id="sp-type-label" class="zone zone-ok">—</span></div>
+                    <div class="decision-row"><span>Profit Probability</span><span id="sp-pop-label" class="zone">—</span></div>
+                    <div class="decision-row"><span>Expected Value</span><span id="sp-ev-label" class="zone">—</span></div>
+                    <div class="decision-row"><span>Risk / Reward</span><span id="sp-rr-label" class="zone">—</span></div>
+                    <div class="decision-row"><span>Theta Quality</span><span id="sp-theta-label" class="zone">—</span></div>
+                    <div class="decision-row"><span>Breakeven Margin</span><span id="sp-be-label" class="zone">—</span></div>
+                    <hr class="divider">
+                    <div style="padding:12px;background:rgba(0,0,0,0.3);border-radius:8px;font-size:11px;color:var(--text-dim);line-height:1.6" id="sp-summary">Enter parameters to generate spread summary.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">⚡ Breakeven Levels</div>
+                    <div id="sp-be-details"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ 3. DAILY TRACKER ══ -->
+    <div id="panel-tracker" class="panel">
+        <div class="grid">
+            <div class="main">
+                <div class="card">
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                        <h3 style="margin:0">Daily Progress Tracker</h3>
+                        <button class="primary" onclick="addTrade()">+ Record Trade</button>
+                    </div>
+                    <div class="goal-bg" style="margin-top:16px"><div class="goal-fill" id="t-goal-fill" style="width:0%"></div></div>
+                    <div style="text-align:right;font-size:10px;color:var(--text-dim)">Daily Goal: $100.00</div>
+                    <div id="t-list" style="margin-top:20px"></div>
+                </div>
+            </div>
+            <div class="sidebar">
+                <div class="card">
+                    <div class="m-label">Net Realized P/L</div>
+                    <div class="m-value" id="t-total" style="font-size:28px">$0.00</div>
+                    <div class="m-label" style="margin-top:15px">Win Rate</div>
+                    <div class="m-value" id="t-wr" style="font-size:24px">0%</div>
+                    <hr class="divider">
+                    <div class="m-label">Total Trades</div>
+                    <div class="m-value accent" id="t-count" style="font-size:20px">0</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ 4. AI TRADE ADVISOR ══ -->
+    <div id="panel-ai" class="panel" style="max-width:900px;margin:0 auto">
+        <style>
+            #panel-ai { --ai-purple:#a78bfa; --ai-purple-dim:rgba(167,139,250,0.12); --ai-purple-border:rgba(167,139,250,0.25); }
+            .ai-header { display:flex; align-items:center; gap:16px; background:linear-gradient(135deg,rgba(167,139,250,0.08) 0%,rgba(56,189,248,0.05) 100%); border:1px solid var(--ai-purple-border); border-radius:16px; padding:24px 28px; margin-bottom:24px; }
+            .ai-header-icon { font-size:42px; }
+            .ai-header-text h2 { color:var(--ai-purple); font-size:20px; margin:0 0 4px; }
+            .ai-header-text p { color:var(--text-dim); font-size:13px; margin:0; line-height:1.5; }
+            .ai-input-row { display:grid; grid-template-columns:1fr 180px 180px auto; gap:12px; margin-bottom:20px; align-items:end; }
+            .ai-field label { display:block; font-size:10px; color:var(--text-dim); text-transform:uppercase; letter-spacing:.06em; font-weight:700; margin-bottom:6px; }
+            .ai-field input, .ai-field select { width:100%; background:#05080f; border:1px solid var(--border); color:var(--text); padding:11px 14px; border-radius:10px; font-family:var(--font-mono); font-size:14px; outline:none; }
+            .ai-field input:focus, .ai-field select:focus { border-color:var(--ai-purple); }
+            .ai-ticker-input { font-size:18px !important; font-weight:800 !important; text-transform:uppercase; }
+            .ai-analyze-btn { background:linear-gradient(135deg,#7c3aed,#a78bfa); color:#fff; border:none; padding:11px 28px; border-radius:10px; font-weight:800; font-size:14px; cursor:pointer; white-space:nowrap; height:44px; transition:opacity .2s; }
+            .ai-analyze-btn:hover { opacity:.88; }
+            .ai-analyze-btn:disabled { opacity:.4; cursor:not-allowed; }
+            .ai-thinking { display:none; align-items:center; gap:14px; padding:20px 24px; background:var(--ai-purple-dim); border:1px solid var(--ai-purple-border); border-radius:12px; margin-bottom:20px; }
+            .ai-thinking.visible { display:flex; }
+            .ai-thinking-dots { display:flex; gap:5px; }
+            .ai-thinking-dots span { width:8px; height:8px; border-radius:50%; background:var(--ai-purple); animation:aiPulse 1.4s infinite; }
+            .ai-thinking-dots span:nth-child(2) { animation-delay:.2s; }
+            .ai-thinking-dots span:nth-child(3) { animation-delay:.4s; }
+            @keyframes aiPulse { 0%,80%,100%{opacity:.2;transform:scale(.8)} 40%{opacity:1;transform:scale(1)} }
+            .ai-thinking-text { color:var(--ai-purple); font-size:13px; font-style:italic; }
+            .ai-response { display:none; animation:aiFadeIn .4s ease; }
+            .ai-response.visible { display:block; }
+            @keyframes aiFadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+            .ai-verdict { border-radius:14px; padding:20px 24px; margin-bottom:20px; display:flex; align-items:center; justify-content:space-between; border:1px solid transparent; }
+            .ai-verdict.bullish  { background:rgba(34,197,94,.07);   border-color:rgba(34,197,94,.35); }
+            .ai-verdict.neutral  { background:rgba(245,158,11,.07);  border-color:rgba(245,158,11,.35); }
+            .ai-verdict.bearish  { background:rgba(239,68,68,.07);   border-color:rgba(239,68,68,.35); }
+            .ai-verdict.skip     { background:rgba(100,116,139,.07); border-color:rgba(100,116,139,.35); }
+            .ai-verdict-left h3  { font-size:18px; margin:0 0 4px; }
+            .ai-verdict-left p   { font-size:12px; color:var(--text-dim); margin:0; }
+            .ai-verdict-badge    { font-size:28px; font-weight:900; font-family:var(--font-mono); padding:8px 18px; border-radius:10px; background:rgba(0,0,0,.3); }
+            .ai-metrics { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-bottom:20px; }
+            .ai-metric { background:rgba(0,0,0,.3); border:1px solid var(--border); border-radius:10px; padding:14px; text-align:center; }
+            .ai-metric .lbl { font-size:9px; color:var(--text-dim); text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px; }
+            .ai-metric .val { font-size:17px; font-weight:800; font-family:var(--font-mono); }
+            .ai-metric .sub { font-size:9px; color:var(--text-dim); margin-top:3px; }
+            .ai-strategies { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px; }
+            .ai-strat-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; position:relative; transition:border-color .2s; }
+            .ai-strat-card.recommended { border-color:var(--ai-purple); background:var(--ai-purple-dim); }
+            .ai-strat-card.recommended::before { content:'⭐ RECOMMENDED'; position:absolute; top:-10px; left:16px; background:var(--ai-purple); color:#000; font-size:9px; font-weight:900; padding:2px 8px; border-radius:4px; }
+            .ai-strat-card h4 { font-size:14px; margin:0 0 6px; }
+            .ai-strat-card .strat-meta { display:flex; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+            .strat-tag { font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; text-transform:uppercase; }
+            .tag-yield { background:rgba(34,197,94,.15); color:#22c55e; }
+            .tag-risk  { background:rgba(239,68,68,.15);  color:#ef4444; }
+            .tag-prob  { background:rgba(56,189,248,.15); color:#38bdf8; }
+            .tag-dte   { background:rgba(245,158,11,.15); color:#f59e0b; }
+            .ai-strat-card p { font-size:12px; color:var(--text-dim); margin:0; line-height:1.6; }
+            .ai-setup-box { background:rgba(167,139,250,.06); border:1px solid var(--ai-purple-border); border-radius:12px; padding:20px 24px; margin-bottom:20px; }
+            .ai-setup-box h4 { color:var(--ai-purple); font-size:12px; text-transform:uppercase; letter-spacing:.08em; margin:0 0 14px; }
+            .ai-setup-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+            .ai-setup-item .lbl { font-size:10px; color:var(--text-dim); text-transform:uppercase; letter-spacing:.05em; margin-bottom:4px; }
+            .ai-setup-item .val { font-size:15px; font-weight:700; font-family:var(--font-mono); }
+            .ai-rr-bar { display:flex; height:8px; border-radius:4px; overflow:hidden; margin:8px 0 4px; }
+            .ai-rr-profit { background:#22c55e; } .ai-rr-loss { background:#ef4444; }
+            .ai-analysis { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px 24px; }
+            .ai-analysis h4 { color:var(--accent); font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin:0 0 12px; }
+            .ai-analysis-text { font-size:13px; color:var(--text-dim); line-height:1.8; white-space:pre-wrap; }
+            .ai-error { background:rgba(239,68,68,.08); border:1px solid rgba(239,68,68,.3); border-radius:12px; padding:20px 24px; }
+            .ai-history { margin-top:28px; }
+            .ai-history h4 { font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:.08em; margin-bottom:12px; }
+            .ai-hist-item { display:flex; align-items:center; gap:12px; padding:10px 14px; background:var(--card); border:1px solid var(--border); border-radius:8px; margin-bottom:8px; cursor:pointer; }
+            .ai-hist-item:hover { border-color:var(--ai-purple); }
+            .ai-hist-ticker { font-weight:800; font-family:var(--font-mono); font-size:14px; min-width:60px; }
+            .ai-hist-strat  { font-size:11px; color:var(--text-dim); flex:1; }
+            .verdict-bull{color:#22c55e} .verdict-neut{color:#f59e0b} .verdict-bear{color:#ef4444} .verdict-skip{color:#64748b}
+        </style>
+
+        <div class="ai-header">
+            <div class="ai-header-icon">🧠</div>
+            <div class="ai-header-text">
+                <h2>AI Trade Advisor</h2>
+                <p>Enter any ETF ticker — Claude analyzes IV rank, trend, liquidity & market conditions,<br>
+                then recommends the optimal options strategy with exact strikes, expiry & position sizing.</p>
+            </div>
+        </div>
+
+        <div class="ai-input-row">
+            <div class="ai-field">
+                <label>ETF Ticker</label>
+                <input id="ai-ticker" class="ai-ticker-input" type="text" placeholder="SPY, QQQ, IWM …" maxlength="6" oninput="this.value=this.value.toUpperCase()">
+            </div>
+            <div class="ai-field">
+                <label>Portfolio Size</label>
+                <input id="ai-portfolio" type="number" value="30000" placeholder="30000">
+            </div>
+            <div class="ai-field">
+                <label>Risk Level</label>
+                <select id="ai-risk">
+                    <option value="conservative">🛡 Conservative</option>
+                    <option value="moderate" selected>⚖️ Moderate</option>
+                    <option value="aggressive">🔥 Aggressive</option>
+                </select>
+            </div>
+            <div class="ai-field">
+                <label>&nbsp;</label>
+                <button class="ai-analyze-btn" id="ai-btn" onclick="runAIAdvisor()">✦ Analyze</button>
+            </div>
+        </div>
+
+        <div class="ai-thinking" id="ai-thinking">
+            <div class="ai-thinking-dots"><span></span><span></span><span></span></div>
+            <div class="ai-thinking-text" id="ai-thinking-text">Connecting to Claude AI…</div>
+        </div>
+
+        <div class="ai-response" id="ai-response"></div>
+
+        <div class="ai-history" id="ai-history" style="display:none">
+            <h4>📋 Recent Analyses</h4>
+            <div id="ai-hist-list"></div>
+        </div>
+    </div>
+</div><!-- /container -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+'use strict';
+
+// ══ CORE MATH ══
+function ncdf(x) {
+    const a=[0.254829592,-0.284496736,1.421413741,-1.453152027,1.061405429],p=0.3275911;
+    const s=x<0?-1:1; x=Math.abs(x)/Math.sqrt(2);
+    const t=1/(1+p*x);
+    const y=1-(((((a[4]*t+a[3])*t+a[2])*t+a[1])*t+a[0])*t)*Math.exp(-x*x);
+    return 0.5*(1+s*y);
+}
+function bsCall(s,k,iv,t,r=0.05){if(t<=0)return Math.max(s-k,0);const d1=(Math.log(s/k)+(r+iv*iv/2)*t)/(iv*Math.sqrt(t));const d2=d1-iv*Math.sqrt(t);return s*ncdf(d1)-k*Math.exp(-r*t)*ncdf(d2);}
+function bsPut(s,k,iv,t,r=0.05){if(t<=0)return Math.max(k-s,0);const d1=(Math.log(s/k)+(r+iv*iv/2)*t)/(iv*Math.sqrt(t));const d2=d1-iv*Math.sqrt(t);return k*Math.exp(-r*t)*ncdf(-d2)-s*ncdf(-d1);}
+function bsD1(s,k,iv,t,r=0.05){return(Math.log(s/k)+(r+iv*iv/2)*t)/(iv*Math.sqrt(t));}
+function bsD2(s,k,iv,t,r=0.05){return bsD1(s,k,iv,t,r)-iv*Math.sqrt(t);}
+function bsTheta(s,k,iv,t,isPut=true,r=0.05){if(t<=0.001)return 0;const d1=bsD1(s,k,iv,t,r),d2=d1-iv*Math.sqrt(t);const phi=Math.exp(-d1*d1/2)/Math.sqrt(2*Math.PI);const base=-(s*phi*iv)/(2*Math.sqrt(t));return isPut?(base+r*k*Math.exp(-r*t)*ncdf(-d2))/365:(base-r*k*Math.exp(-r*t)*ncdf(d2))/365;}
+
+function $id(id){return document.getElementById(id);}
+function fmt(v,d=2){return v.toFixed(d);}
+function fmtDollar(v){return(v<0?'-$':'$')+Math.abs(v).toFixed(2);}
+function setZone(el,text,cls){el.innerHTML=`<span class="zone ${cls}">${text}</span>`;}
+function setBar(id,pct,color){const el=$id(id);el.style.width=Math.min(100,Math.max(0,pct))+'%';if(color)el.style.background=color;}
+
+// ══ TABS ══
+document.querySelectorAll('.tab').forEach(btn=>{
+    btn.onclick=()=>{
+        document.querySelectorAll('.tab,.panel').forEach(el=>el.classList.remove('active'));
+        btn.classList.add('active');
+        $id('panel-'+btn.dataset.panel).classList.add('active');
+        if(btn.dataset.panel==='wheel')runWheel();
+        if(btn.dataset.panel==='spreads')runSpread();
+        if(btn.dataset.panel==='tracker')renderTracker();
+    };
+});
+
+// ══ WHEEL ENGINE ══
+let wChart=null;
+function runWheel(){
+    const s=+$id('w-s').value,k=+$id('w-k').value,iv=+$id('w-iv').value/100;
+    const dte=+$id('w-dte').value,acc=+$id('w-acc').value;
+    const ivr=+$id('w-ivr').value,vix=+$id('w-vix').value,rsi=+$id('w-rsi').value;
+    const phase=$id('w-phase').value,t=dte/365,r=0.05;
+    $id('w-label-k').innerText=phase==='put'?'Put Strike ($)':'Call Strike ($)';
+    $id('w-basis-row').style.display=phase==='call'?'block':'none';
+    const d1=bsD1(s,k,iv,t,r),d2=bsD2(s,k,iv,t,r);
+    const delta=phase==='put'?Math.abs(ncdf(d1)-1):ncdf(d1);
+    const prem=phase==='put'?bsPut(s,k,iv,t,r)*100:bsCall(s,k,iv,t,r)*100;
+    const theta_daily=Math.abs(bsTheta(s,k,iv,t,phase==='put',r))*100;
+    const em=s*iv*Math.sqrt(t);
+    const popOTM=phase==='put'?(1-delta)*100:(1-ncdf(d1))*100;
+    const roc=prem/(k*100)*100,ann=roc*365/dte;
+    const mos=Math.abs(s-k)/s*100;
+    const breakEven=phase==='put'?k-prem/100:k+prem/100;
+    const qty=Math.floor(acc/(k*100));
+    $id('wm-prem').innerText=fmtDollar(prem);
+    $id('wm-pop').innerText=fmt(popOTM,1)+'%';
+    $id('wm-delta').innerText=delta.toFixed(3);
+    $id('wm-theta').innerText=fmtDollar(theta_daily)+'/day';
+    $id('wm-em').innerText='±$'+fmt(em,2);
+    $id('wm-roc').innerText=fmt(roc,2)+'%';
+    $id('wm-ann').innerText=fmt(ann,1)+'%';
+    $id('wm-be').innerText='$'+fmt(breakEven,2);
+    $id('wm-qty').innerText=qty;
+    $id('wm-col').innerText='$'+(qty*k*100).toLocaleString();
+
+    // Theta zone
+    $id('ri-theta-val').innerText=fmtDollar(theta_daily)+'/day';
+    setBar('ri-theta-bar',Math.min(100,theta_daily/2*100),'var(--profit)');
+    let tZ,tD,tC;
+    if(dte<7){tZ=['zone-danger','GAMMA DANGER'];tD='Extreme gamma risk.';tC='<strong>⚠ Close or roll immediately.</strong>';}
+    else if(dte<14){tZ=['zone-warn','FAST DECAY / HIGH RISK'];tD='Theta fastest but gamma risk elevated.';tC=`<strong>Consider closing at 50% profit.</strong>`;}
+    else if(dte<=35){tZ=['zone-safe','SWEET SPOT'];tD='Prime theta zone. Ideal balance.';tC=`<strong>Optimal DTE window.</strong> Close at 50% profit.`;}
+    else if(dte<=50){tZ=['zone-ok','EARLY STAGE'];tD='Good premium but slower theta.';tC=`<strong>Early decay phase.</strong> Sell with 30–45 DTE for faster theta.`;}
+    else{tZ=['zone-warn','SLOW DECAY'];tD='Too far out.';tC=`<strong>Avoid >60 DTE.</strong>`;}
+    setZone($id('ri-theta-zone'),tZ[1],tZ[0]);$id('ri-theta-desc').innerText=tD;$id('ri-theta-callout').innerHTML=tC;
+
+    // Delta zone
+    $id('ri-delta-val').innerText=delta.toFixed(3);
+    setBar('ri-delta-bar',delta*200,delta<0.20?'var(--profit)':delta<0.30?'var(--accent)':delta<0.40?'var(--warning)':'var(--loss)');
+    let dZ,dD,dC;
+    if(delta<0.15){dZ=['zone-safe','VERY CONSERVATIVE'];dD='Very low ITM probability.';dC=`<strong>Low assignment risk.</strong> Premium may be thin.`;}
+    else if(delta<0.25){dZ=['zone-safe','CONSERVATIVE'];dD='Target delta for income sellers.';dC=`<strong>Ideal range (0.15–0.25).</strong>`;}
+    else if(delta<0.35){dZ=['zone-ok','BALANCED'];dD='Higher premium but elevated risk.';dC=`<strong>Elevated delta.</strong> ~${(delta*100).toFixed(0)}% ITM probability.`;}
+    else if(delta<0.50){dZ=['zone-warn','AGGRESSIVE'];dD='High assignment probability.';dC=`<strong>⚠ Speculative.</strong> Consider lower strike.`;}
+    else{dZ=['zone-danger','DEEP ITM'];dD='Assignment is highly likely.';dC=`<strong>⛔ Avoid.</strong> Deep ITM.`;}
+    setZone($id('ri-delta-zone'),dZ[1],dZ[0]);$id('ri-delta-desc').innerText=dD;$id('ri-delta-callout').innerHTML=dC;
+
+    // Buffer zone
+    $id('ri-mos-val').innerText=fmt(mos,1)+'% buffer';
+    setBar('ri-mos-bar',mos*5,mos>10?'var(--profit)':mos>5?'var(--warning)':'var(--loss)');
+    let mZ;
+    if(mos>=12)mZ=['zone-safe','WELL PROTECTED'];else if(mos>=7)mZ=['zone-ok','ADEQUATE'];else if(mos>=4)mZ=['zone-warn','THIN BUFFER'];else mZ=['zone-danger','MINIMAL BUFFER'];
+    setZone($id('ri-mos-zone'),mZ[1],mZ[0]);
+    $id('ri-mos-desc').innerText=`Stock must move ${fmt(mos,1)}% against you before max loss. Break-even is $${fmt(breakEven,2)}.`;
+    $id('ri-mos-callout').innerHTML=`<strong>Safety buffer:</strong> $${fmt(Math.abs(s-k),2)} gap plus $${fmt(prem/100,2)} premium cushion.`;
+
+    // IV zone
+    const ivPct=iv*100;
+    $id('ri-iv-val').innerText=fmt(ivPct,1)+'%';$id('ri-ivr-val').innerText=fmt(ivr,0)+'%';
+    setBar('ri-iv-bar',ivr,ivr<30?'var(--loss)':ivr<50?'var(--warning)':'var(--profit)');
+    let iZ,iD,iC;
+    if(ivr>=75){iZ=['zone-safe','EXCELLENT — SELL'];iD='IV top 25% of range. Premiums are rich.';iC='<strong>Best conditions for premium selling.</strong>';}
+    else if(ivr>=50){iZ=['zone-ok','GOOD — ELEVATED IV'];iD='Above 52-week median.';iC=`<strong>Favorable IV environment.</strong> IVR ${fmt(ivr,0)}%.`;}
+    else if(ivr>=30){iZ=['zone-warn','NEUTRAL — AVERAGE IV'];iD='Near 52-week midpoint.';iC='<strong>Neutral environment.</strong> Consider waiting for a spike.';}
+    else{iZ=['zone-danger','POOR — LOW IV'];iD='Bottom 30% of range. Premiums are thin.';iC='<strong>⚠ Low IV warning.</strong> Wait for a VIX spike.';}
+    setZone($id('ri-iv-zone'),iZ[1],iZ[0]);$id('ri-iv-desc').innerText=iD;$id('ri-iv-callout').innerHTML=iC;
+
+    // RSI zone
+    $id('ri-rsi-val').innerText=fmt(rsi,0);
+    setBar('ri-rsi-bar',rsi,rsi<30?'var(--loss)':rsi>70?'var(--warning)':'var(--profit)');
+    let rZ,rD,rC;
+    if(rsi<25){rZ=['zone-danger','EXTREME OVERSOLD'];rD='Capitulation territory. Dangerous to sell puts.';rC=phase==='put'?'<strong>⛔ Caution.</strong> Wait for RSI >35.':'<strong>Favorable for calls.</strong>';}
+    else if(rsi<35){rZ=['zone-warn','OVERSOLD'];rD='Possible bounce but continuation likely.';rC=phase==='put'?'<strong>⚠ Use wider buffer for puts.</strong>':'<strong>Moderately favorable for calls.</strong>';}
+    else if(rsi<50){rZ=['zone-ok','SLIGHTLY BEARISH'];rD='Mild bearish momentum.';rC=phase==='put'?'<strong>Moderate risk for puts.</strong>':'<strong>Decent for bear call spreads.</strong>';}
+    else if(rsi<65){rZ=['zone-safe','NEUTRAL-BULLISH'];rD='Healthy uptrend. Ideal for put sellers.';rC=phase==='put'?'<strong>✓ Good for put selling.</strong>':'<strong>Moderate risk for calls.</strong>';}
+    else if(rsi<75){rZ=['zone-warn','OVERBOUGHT'];rD='Strong rally. Good for call sellers.';rC=phase==='put'?'<strong>⚠ Elevated put risk. Widen strike.</strong>':'<strong>✓ Good for call selling.</strong>';}
+    else{rZ=['zone-danger','EXTREME OVERBOUGHT'];rD='Potential pullback ahead.';rC=phase==='put'?'<strong>⛔ High risk for puts.</strong>':'<strong>✓ Favorable for calls.</strong>';}
+    setZone($id('ri-rsi-zone'),rZ[1],rZ[0]);$id('ri-rsi-desc').innerText=rD;$id('ri-rsi-callout').innerHTML=rC;
+
+    // VIX zone
+    $id('ri-vix-val').innerText=fmt(vix,1);
+    setBar('ri-vix-bar',Math.min(100,vix*2.5),vix<15?'var(--loss)':vix<20?'var(--accent)':vix<28?'var(--profit)':vix<35?'var(--warning)':'var(--loss)');
+    let vZ,vD,vC;
+    if(vix<13){vZ=['zone-danger','EXTREMELY LOW — THIN PREM'];vD='Markets at extreme complacency.';vC='<strong>⚠ Not ideal for selling.</strong>';}
+    else if(vix<17){vZ=['zone-warn','LOW — BELOW AVERAGE'];vD='Below-average fear. Premiums thin.';vC=`<strong>Reduce position size.</strong>`;}
+    else if(vix<22){vZ=['zone-ok','NORMAL — BALANCED'];vD='Normal conditions. Premiums fair.';vC=`<strong>Standard conditions.</strong>`;}
+    else if(vix<28){vZ=['zone-safe','ELEVATED — RICH PREMIUMS'];vD='Elevated fear = rich premiums.';vC='<strong>✓ Excellent for selling.</strong>';}
+    else if(vix<35){vZ=['zone-warn','HIGH — USE CAUTION'];vD='Market stress. Premiums rich but volatile.';vC='<strong>⚠ Reduce size 50%.</strong>';}
+    else{vZ=['zone-danger','EXTREME — CRISIS MODE'];vD='Market panic.';vC='<strong>⛔ Avoid or minimize.</strong>';}
+    setZone($id('ri-vix-zone'),vZ[1],vZ[0]);$id('ri-vix-desc').innerText=vD;$id('ri-vix-callout').innerHTML=vC;
+
+    // Verdict engine
+    let score=100,penalties=[],positives=[],tags=[];
+    if(delta>0.40){score-=25;penalties.push('Delta > 0.40 (high assignment)');}else if(delta>0.30){score-=10;}else if(delta<0.20){positives.push('Conservative delta');}
+    if(dte<7){score-=30;penalties.push('DTE < 7 (gamma danger)');}else if(dte<14){score-=15;}else if(dte<=45){positives.push('Optimal DTE window');}else{score-=8;}
+    if(ivr<30){score-=20;penalties.push('Low IVR — thin premiums');}else if(ivr>=50){positives.push('Elevated IV — rich premium');}
+    if(vix<13){score-=20;penalties.push('Extreme low VIX');}else if(vix<17){score-=8;}else if(vix>=22&&vix<28){score+=5;positives.push('Rich VIX premiums');}else if(vix>=35){score-=15;penalties.push('Extreme VIX / crisis');}
+    if(phase==='put'){if(rsi<30){score-=20;penalties.push('RSI < 30 (oversold)');}else if(rsi<40){score-=10;}else if(rsi>=45&&rsi<=65){positives.push('RSI bullish for puts');}else if(rsi>75){score-=10;}}
+    else{if(rsi>75){score-=15;}else if(rsi>65){score-=5;}else if(rsi<=50){positives.push('RSI favorable for calls');}}
+    if(mos<3){score-=20;penalties.push('Very thin buffer < 3%');}else if(mos>=8){positives.push('Strong buffer > 8%');}
+    score=Math.min(100,Math.max(0,score));
+    if(score>=80)tags.push(['zone-safe','✓ HIGH CONVICTION']);else if(score>=60)tags.push(['zone-ok','MODERATE RISK']);else if(score>=40)tags.push(['zone-warn','⚠ USE CAUTION']);else tags.push(['zone-danger','⛔ HIGH RISK']);
+    if(ivr>=50)tags.push(['zone-safe','IV RICH']);if(delta<0.22)tags.push(['zone-safe','CONSERVATIVE Δ']);if(dte>=21&&dte<=45)tags.push(['zone-ok','OPTIMAL DTE']);
+    const scoreColor=score>=75?'var(--profit)':score>=50?'var(--warning)':'var(--loss)';
+    const cls=score>=75?'v-safe':score>=50?'v-warn':'v-danger';
+    const title=score>=75?'✓ Favorable Setup':score>=50?'⚠ Proceed with Caution':'⛔ High-Risk Setup';
+    const desc=penalties.length?'Concerns: '+penalties.slice(0,2).join(' · '):positives.join(' · ')||'All parameters healthy.';
+    $id('w-verdict').className='verdict-box '+cls;$id('wv-title').innerText=title;$id('wv-desc').innerText=desc;
+    $id('wv-ring').innerText=score;$id('wv-ring').style.borderColor=scoreColor;$id('wv-ring').style.color=scoreColor;
+    $id('wv-tags').innerHTML=tags.map(([c,t])=>`<span class="zone ${c}">${t}</span>`).join('');
+
+    const assignCls=delta>0.35?'zone-danger':delta>0.25?'zone-warn':'zone-safe';
+    const gammaCls=dte<14?'zone-danger':dte<21?'zone-warn':'zone-safe';
+    const ivCondCls=ivr>=50?'zone-safe':ivr>=30?'zone-warn':'zone-danger';
+    const rsiCondCls=phase==='put'?(rsi>=40&&rsi<=70?'zone-safe':rsi<30||rsi>75?'zone-danger':'zone-warn'):(rsi<=55?'zone-safe':rsi>75?'zone-danger':'zone-warn');
+    const rsiCondLbl=rsi<30?'Oversold':rsi<40?'Bearish':rsi<65?'Neutral-Bull':rsi<75?'Overbought':'Extreme OB';
+    const vixCondCls=vix<13||vix>=35?'zone-danger':vix>=22&&vix<28?'zone-safe':vix<17?'zone-warn':'zone-ok';
+    const vixCondLbl=vix<13?'Extreme Low':vix<17?'Low':vix<22?'Normal':vix<28?'Elevated':vix<35?'High':'Crisis';
+    const thetaCls=dte<7?'zone-danger':dte>=21&&dte<=35?'zone-safe':'zone-ok';
+    $id('wr-assign').className='zone '+assignCls;$id('wr-assign').innerText=delta>0.35?'Elevated':delta>0.25?'Moderate':'Low';
+    $id('wr-gamma').className='zone '+gammaCls;$id('wr-gamma').innerText=dte<14?'High Risk':dte<21?'Watch':'Safe';
+    $id('wr-iv-cond').className='zone '+ivCondCls;$id('wr-iv-cond').innerText=ivr>=50?'Rich':ivr>=30?'Average':'Thin';
+    $id('wr-rsi-cond').className='zone '+rsiCondCls;$id('wr-rsi-cond').innerText=rsiCondLbl;
+    $id('wr-vix-cond').className='zone '+vixCondCls;$id('wr-vix-cond').innerText=vixCondLbl;
+    $id('wr-theta-cond').className='zone '+thetaCls;$id('wr-theta-cond').innerText=dte<7?'Gamma Risk':dte>=21&&dte<=35?'Prime':'Moderate';
+    $id('wr-qty').innerText=qty;$id('wr-collateral').innerText='$'+(qty*k*100).toLocaleString();
+    $id('wr-summary').innerHTML=`Selling the <strong>${phase==='put'?'$'+k+' PUT':'$'+k+' CALL'}</strong> with ${dte} DTE collects <strong>${fmtDollar(prem)}</strong>. Break-even at <strong>$${fmt(breakEven,2)}</strong> (${fmt(mos,1)}% buffer). Theta: <strong>${fmtDollar(theta_daily)}/day</strong>. IVR ${fmt(ivr,0)}% = ${ivr>=50?'rich':'below-average'} premiums.`;
+    $id('w-score-breakdown').innerHTML=[...penalties.map(p=>`<div class="decision-row"><span style="color:var(--loss)">✕ ${p}</span></div>`),...positives.map(p=>`<div class="decision-row"><span style="color:var(--profit)">✓ ${p}</span></div>`),`<div class="decision-row" style="margin-top:8px;font-weight:bold"><span>Final Score</span><span style="color:${scoreColor};font-size:16px;font-family:var(--font-mono)">${score}/100</span></div>`].join('');
+
+    const basis=+$id('w-basis').value||k,labels=[],data=[];
+    for(let price=k*0.83;price<=k*1.17;price+=k*0.02){labels.push(price.toFixed(0));data.push(phase==='put'?(price>=k?prem:(price-k)*100+prem):(price<=k?(price-basis)*100+prem:(k-basis)*100+prem));}
+    if(wChart)wChart.destroy();
+    wChart=new Chart($id('wheelChart'),{type:'line',data:{labels,datasets:[{label:'P/L at Expiry',data,borderColor:'#38bdf8',fill:true,backgroundColor:'rgba(56,189,248,0.08)',tension:0.3,pointRadius:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' P/L: $'+ctx.raw.toFixed(2)}}},scales:{x:{grid:{color:'#1a2333'},ticks:{color:'#64748b'}},y:{grid:{color:'#1a2333'},ticks:{color:'#64748b',callback:v=>'$'+v}}}}});
+}
+
+// ══ SPREAD ENGINE ══
+let sChart=null;
+function toggleSpread(){const t=$id('s-type').value;$id('s-row-put').style.display=t==='bc'?'none':'grid';$id('s-row-call').style.display=t==='bp'?'none':'grid';runSpread();}
+function runSpread(){
+    const type=$id('s-type').value,s=+$id('s-s').value,iv=+$id('s-iv').value/100,dte=+$id('s-dte').value,acc=+$id('s-acc').value,t=dte/365,r=0.05;
+    const sp=+$id('s-sp').value,lp=+$id('s-lp').value,sc=+$id('s-sc').value,lc=+$id('s-lc').value;
+    let netCredit,maxProfit,maxLoss,be1,be2,labels=[],plData=[],typeLabel='';
+    if(type==='bp'){typeLabel='Bull Put Spread';const spp=bsPut(s,sp,iv,t,r),lpp=bsPut(s,lp,iv,t,r);netCredit=(spp-lpp)*100;const w=(sp-lp)*100;maxProfit=netCredit;maxLoss=w-netCredit;be1=sp-netCredit/100;for(let x=lp-8;x<=sp+10;x+=0.5){labels.push(x.toFixed(1));plData.push(x>=sp?maxProfit:x<=lp?-maxLoss:(x-sp)*100+maxProfit);}}
+    else if(type==='bc'){typeLabel='Bear Call Spread';const scp=bsCall(s,sc,iv,t,r),lcp=bsCall(s,lc,iv,t,r);netCredit=(scp-lcp)*100;const w=(lc-sc)*100;maxProfit=netCredit;maxLoss=w-netCredit;be1=sc+netCredit/100;for(let x=sc-10;x<=lc+8;x+=0.5){labels.push(x.toFixed(1));plData.push(x<=sc?maxProfit:x>=lc?-maxLoss:(sc-x)*100+maxProfit);}}
+    else{typeLabel='Iron Condor';const spp=bsPut(s,sp,iv,t,r),lpp=bsPut(s,lp,iv,t,r),scp=bsCall(s,sc,iv,t,r),lcp=bsCall(s,lc,iv,t,r);netCredit=((spp-lpp)+(scp-lcp))*100;const pw=(sp-lp)*100,cw=(lc-sc)*100;maxLoss=Math.max(pw,cw)-netCredit;maxProfit=netCredit;be1=sp-netCredit/100;be2=sc+netCredit/100;for(let x=lp-5;x<=lc+5;x+=0.5){labels.push(x.toFixed(1));plData.push(x<=lp?-maxLoss:x<sp?(x-lp)*100-maxLoss:x<=sc?maxProfit:x<lc?(lc-x)*100-maxLoss:-maxLoss);}}
+    let pop;
+    if(type==='bp'){pop=ncdf(bsD2(s,be1,iv,t,r));}else if(type==='bc'){pop=1-ncdf(bsD2(s,be1,iv,t,r));}else{pop=ncdf(bsD2(s,be2,iv,t,r))-ncdf(bsD2(s,be1,iv,t,r));}
+    pop=Math.max(0.01,Math.min(0.99,pop));
+    const ev=pop*maxProfit-(1-pop)*maxLoss,theta_daily=Math.abs(netCredit)/dte*0.72,rr=maxLoss>0?maxLoss/maxProfit:0;
+    const b=maxProfit/Math.max(maxLoss,0.01),kelly=Math.max(0,(b*pop-(1-pop))/b),kellyContracts=Math.floor((acc*kelly*0.5)/maxLoss);
+    const qty5=Math.max(0,Math.floor((acc*0.05)/maxLoss));
+    const beMarginPct=type==='bp'?(s-be1)/s*100:type==='bc'?(be1-s)/s*100:Math.min(Math.abs(s-be1),Math.abs(be2-s))/s*100;
+    $id('sm-credit').innerText=fmtDollar(netCredit);$id('sm-p').innerText=fmtDollar(Math.max(0,maxProfit));$id('sm-l').innerText=fmtDollar(Math.max(0,maxLoss));$id('sm-rr').innerText=rr.toFixed(1)+'x';$id('sm-pop').innerText=fmt(pop*100,1)+'%';$id('sm-ev')?($id('sm-ev').innerText=(ev>=0?'+':'')+fmtDollar(ev)):null;
+    $id('sm-qty5').innerText=qty5;$id('sm-qty-kelly').innerText=kellyContracts;$id('sm-capital-risk').innerText=fmtDollar(qty5*maxLoss);
+    let sScore=100,sPenalties=[],sPositives=[],sTags=[];
+    if(pop<0.50){sScore-=30;sPenalties.push('POP < 50%');}else if(pop<0.60){sScore-=15;}else if(pop>=0.70){sPositives.push('Strong POP ≥70%');}
+    if(ev<=0){sScore-=25;sPenalties.push('Negative Expected Value');}else if(ev>maxProfit*0.2){sPositives.push('Positive EV');}
+    if(rr>5){sScore-=20;sPenalties.push('Poor RR ratio > 5:1');}else if(rr<3){sPositives.push('Good RR < 3:1');}
+    if(beMarginPct<2){sScore-=15;sPenalties.push('Thin breakeven buffer');}else if(beMarginPct>6){sPositives.push('Wide breakeven buffer');}
+    if(dte<7){sScore-=20;sPenalties.push('DTE < 7 days');}else if(dte>50){sScore-=10;}else if(dte>=21&&dte<=40){sPositives.push('Optimal DTE');}
+    sScore=Math.min(100,Math.max(0,sScore));
+    const sCls=sScore>=70?'v-safe':sScore>=45?'v-warn':'v-danger';
+    const sColor=sScore>=70?'var(--profit)':sScore>=45?'var(--warning)':'var(--loss)';
+    if(sScore>=70)sTags.push(['zone-safe','✓ HIGH CONVICTION']);else if(sScore>=45)sTags.push(['zone-warn','⚠ MODERATE RISK']);else sTags.push(['zone-danger','⛔ HIGH RISK']);
+    if(pop>=0.68)sTags.push(['zone-safe','HIGH POP']);if(ev>0)sTags.push(['zone-ok','POSITIVE EV']);
+    $id('s-verdict').className='verdict-box '+sCls;$id('sv-title').innerText=sScore>=70?'✓ Favorable Spread Setup':sScore>=45?'⚠ Proceed with Caution':'⛔ Unfavorable Setup';$id('sv-desc').innerText=sPenalties.length?'Issues: '+sPenalties.slice(0,2).join(' · '):sPositives.join(' · ')||'Parameters healthy.';
+    $id('sv-ring').innerText=sScore;$id('sv-ring').style.borderColor=sColor;$id('sv-ring').style.color=sColor;$id('sv-tags').innerHTML=sTags.map(([c,t2])=>`<span class="zone ${c}">${t2}</span>`).join('');
+    const popZoneCls=pop>=0.70?'zone-safe':pop>=0.60?'zone-ok':pop>=0.45?'zone-warn':'zone-danger';
+    setZone($id('sri-pop-zone'),pop>=0.70?'STRONG':pop>=0.60?'GOOD':pop>=0.45?'MARGINAL':'POOR',popZoneCls);
+    $id('sri-pop-val').innerText=fmt(pop*100,1)+'%';setBar('sri-pop-bar',pop*100,pop>=0.70?'var(--profit)':pop>=0.55?'var(--accent)':pop>=0.45?'var(--warning)':'var(--loss)');
+    $id('sri-pop-desc').innerText=`${fmt(pop*100,1)}% probability the spread expires fully profitable.`;$id('sri-pop-callout').innerHTML=pop>=0.65?`<strong>✓ Favorable POP.</strong> ~${(pop*100).toFixed(0)} out of 100 trades expire at max profit.`:`<strong>⚠ Below target POP.</strong> Target 65–75% for income spreads.`;
+    $id('sri-ev-val').innerText=(ev>=0?'+':'')+fmtDollar(ev);$id('sri-ev-val').className='intel-value '+(ev>=0?'profit':'loss');setBar('sri-ev-bar',Math.min(100,Math.max(0,50+ev/maxProfit*50)),ev>=0?'var(--profit)':'var(--loss)');
+    const evZoneCls=ev>maxProfit*0.15?'zone-safe':ev>0?'zone-ok':ev>-maxProfit*0.2?'zone-warn':'zone-danger';setZone($id('sri-ev-zone'),ev>maxProfit*0.15?'STRONG EDGE':ev>0?'POSITIVE EDGE':ev>-maxProfit*0.2?'BORDERLINE':'NEGATIVE EV',evZoneCls);
+    $id('sri-ev-desc').innerText=`EV = (${fmt(pop*100,1)}% × $${fmt(maxProfit,0)}) − (${fmt((1-pop)*100,1)}% × $${fmt(maxLoss,0)}) = ${ev>=0?'+':''}${fmtDollar(ev)}.`;$id('sri-ev-callout').innerHTML=ev>0?`<strong>✓ Math edge exists.</strong> ${fmtDollar(ev)} per trade in expected value.`:`<strong>⛔ No math edge.</strong> Negative EV trades lose money on average.`;
+    const beText=type==='ic'?`BE1: $${fmt(be1,2)} / BE2: $${fmt(be2,2)}`:`$${fmt(be1,2)}`;$id('sri-be-val').innerText=beText;setBar('sri-be-bar',Math.min(100,beMarginPct*8),beMarginPct>6?'var(--profit)':beMarginPct>3?'var(--warning)':'var(--loss)');
+    const beZoneCls=beMarginPct>7?'zone-safe':beMarginPct>4?'zone-ok':beMarginPct>2?'zone-warn':'zone-danger';setZone($id('sri-be-zone'),beMarginPct>7?'WIDE BUFFER':beMarginPct>4?'ADEQUATE':beMarginPct>2?'THIN':'VERY THIN',beZoneCls);
+    $id('sri-be-desc').innerText=type==='ic'?`Stay between $${fmt(be1,2)} and $${fmt(be2,2)} for profit.`:`Stock must stay ${type==='bp'?'above':'below'} $${fmt(be1,2)}. Buffer: ${fmt(beMarginPct,1)}%.`;$id('sri-be-callout').innerHTML=`<strong>Buffer: ${fmt(beMarginPct,1)}%.</strong> Target ≥5%.`;
+    $id('sri-theta-val').innerText=fmtDollar(theta_daily)+'/day';setBar('sri-theta-bar',Math.min(100,theta_daily/maxProfit*100*45),'var(--profit)');
+    const theZoneCls=dte<7?'zone-danger':dte<=35?'zone-safe':'zone-ok';setZone($id('sri-theta-zone'),dte<7?'GAMMA RISK':dte<=35?'ACCELERATING':'SLOW',theZoneCls);
+    $id('sri-theta-desc').innerText=`Earning ${fmtDollar(theta_daily)}/day. 50% profit in ~${Math.ceil(netCredit/2/theta_daily)} days.`;$id('sri-theta-callout').innerHTML=`<strong>Close at 50% profit</strong> = ${fmtDollar(maxProfit*0.5)}.`;
+    $id('sri-rr-val').innerText=rr.toFixed(2)+':1';setBar('sri-rr-bar',Math.min(100,100-rr*15),rr<3?'var(--profit)':rr<5?'var(--warning)':'var(--loss)');
+    const rrZoneCls=rr<2?'zone-safe':rr<3.5?'zone-ok':rr<5?'zone-warn':'zone-danger';setZone($id('sri-rr-zone'),rr<2?'EXCELLENT':rr<3.5?'ACCEPTABLE':rr<5?'POOR':'VERY POOR',rrZoneCls);
+    $id('sri-rr-desc').innerText=`Risk $${fmt(rr,2)} per $1 of potential profit.`;$id('sri-rr-callout').innerHTML=`<strong>RR context:</strong> ${fmt(pop*100,1)}% win rate with ${rr.toFixed(1)}:1 RR = ${ev>0?'positive':'negative'} EV.`;
+    $id('sri-kelly-val').innerText=fmt(kelly*100,1)+'% of capital';setBar('sri-kelly-bar',Math.min(100,kelly*200),'var(--warning)');
+    const kellyZoneCls=kelly>0.15?'zone-warn':kelly>0?'zone-ok':'zone-danger';setZone($id('sri-kelly-zone'),kelly>0.15?'HIGH ALLOCATION':kelly>0?'REASONABLE':'NO EDGE',kellyZoneCls);
+    $id('sri-kelly-desc').innerText=`Full Kelly: ${fmt(kelly*100,1)}%. Half-Kelly: ${fmt(kelly*50,1)}% = ${kellyContracts} contracts.`;$id('sri-kelly-callout').innerHTML=kelly>0?`<strong>Kelly: ${kellyContracts} contracts</strong> (half-Kelly).`:`<strong>⛔ Kelly = 0.</strong> No mathematical edge.`;
+    const popBadgeCls=pop>=0.70?'zone-safe':pop>=0.58?'zone-ok':pop>=0.45?'zone-warn':'zone-danger';
+    $id('sp-type-label').className='zone zone-ok';$id('sp-type-label').innerText=typeLabel;
+    $id('sp-pop-label').className='zone '+popBadgeCls;$id('sp-pop-label').innerText=fmt(pop*100,1)+'%';
+    $id('sp-ev-label').className='zone '+(ev>0?'zone-safe':'zone-danger');$id('sp-ev-label').innerText=(ev>=0?'+':'')+fmtDollar(ev);
+    $id('sp-rr-label').className='zone '+(rr<3?'zone-safe':rr<5?'zone-warn':'zone-danger');$id('sp-rr-label').innerText=rr.toFixed(1)+'x';
+    $id('sp-theta-label').className='zone '+(dte>=21&&dte<=40?'zone-safe':dte<7?'zone-danger':'zone-ok');$id('sp-theta-label').innerText=fmtDollar(theta_daily)+'/d';
+    $id('sp-be-label').className='zone '+(beMarginPct>5?'zone-safe':beMarginPct>2?'zone-warn':'zone-danger');$id('sp-be-label').innerText=fmt(beMarginPct,1)+'%';
+    $id('sp-summary').innerHTML=`<strong>${typeLabel}</strong>: Collect <strong>${fmtDollar(netCredit)}</strong>. Max profit <strong>${fmtDollar(maxProfit)}</strong>, max loss <strong>${fmtDollar(maxLoss)}</strong>. POP <strong>${fmt(pop*100,1)}%</strong>, EV <strong>${ev>=0?'+':''}${fmtDollar(ev)}</strong>. Theta: <strong>${fmtDollar(theta_daily)}/day</strong>. Size: <strong>${qty5} contracts</strong> (5% rule).`;
+    $id('sp-be-details').innerHTML=type==='ic'?`<div class="decision-row"><span>Put Side BE</span><span style="color:var(--warning);font-family:var(--font-mono)">$${fmt(be1,2)}</span></div><div class="decision-row"><span>Call Side BE</span><span style="color:var(--warning);font-family:var(--font-mono)">$${fmt(be2,2)}</span></div><div class="decision-row"><span>Zone Width</span><span style="color:var(--accent)">$${fmt(be2-be1,2)}</span></div>`:`<div class="decision-row"><span>Breakeven</span><span style="color:var(--warning);font-family:var(--font-mono)">$${fmt(be1,2)}</span></div><div class="decision-row"><span>Buffer</span><span style="color:${beMarginPct>5?'var(--profit)':'var(--warning)'}">${fmt(beMarginPct,2)}%</span></div>`;
+    if(sChart)sChart.destroy();
+    sChart=new Chart($id('spreadChart'),{type:'line',data:{labels,datasets:[{label:'P/L at Expiry',data:plData,borderColor:'#38bdf8',fill:true,backgroundColor:'rgba(56,189,248,0.07)',tension:0.2,pointRadius:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' P/L: $'+ctx.raw.toFixed(2)}}},scales:{x:{grid:{color:'#1a2333'},ticks:{color:'#64748b',maxTicksLimit:12}},y:{grid:{color:'#1a2333'},ticks:{color:'#64748b',callback:v=>'$'+v}}}}});
+}
+
+// ══ DAILY TRACKER ══
+let trades=[];
+try{trades=JSON.parse(localStorage.getItem('options_master'))||[];}catch(e){trades=[];}
+function addTrade(){const ticker=prompt('Ticker (e.g. QQQM):');if(!ticker)return;const pl=+prompt('Realized P/L ($):');if(isNaN(pl))return;trades.unshift({t:ticker.toUpperCase(),a:pl,d:new Date().toLocaleDateString()});try{localStorage.setItem('options_master',JSON.stringify(trades));}catch(e){}renderTracker();}
+function renderTracker(){let tot=0,wins=0;$id('t-list').innerHTML=trades.map((tr,i)=>{tot+=tr.a;if(tr.a>0)wins++;return`<div class="trade-item"><b>${tr.t}</b><span>${tr.d}</span><span class="${tr.a>=0?'profit':'loss'}" style="font-family:var(--font-mono);font-weight:bold">${tr.a>=0?'+':''}$${tr.a.toFixed(2)}</span><span style="font-size:10px;color:var(--text-dim)">${tr.a>=0?'WIN':'LOSS'}</span><button onclick="delTrade(${i})" style="background:none;border:none;color:var(--loss);cursor:pointer;font-size:16px">✕</button></div>`;}).join('')||'<div style="color:var(--text-dim);padding:20px;text-align:center">No trades recorded yet.</div>';$id('t-total').innerText=(tot>=0?'+$':'-$')+Math.abs(tot).toFixed(2);$id('t-total').className='m-value '+(tot>=0?'profit':'loss');$id('t-wr').innerText=trades.length?(wins/trades.length*100).toFixed(0)+'%':'0%';$id('t-count').innerText=trades.length;$id('t-goal-fill').style.width=Math.min(100,Math.max(0,tot))+'%';}
+function delTrade(i){trades.splice(i,1);try{localStorage.setItem('options_master',JSON.stringify(trades));}catch(e){}renderTracker();}
+
+// ══ AI TRADE ADVISOR ══
+let aiHistory=[];
+const AI_THINKING_MSGS=["Analyzing implied volatility landscape…","Evaluating market regime & trend…","Scanning options chain for best strikes…","Calculating risk/reward ratios…","Building your personalized trade plan…"];
+
+async function runAIAdvisor(){
+    const ticker=$id('ai-ticker').value.trim().toUpperCase();
+    const portfolio=parseFloat($id('ai-portfolio').value)||30000;
+    const risk=$id('ai-risk').value;
+    if(!ticker){$id('ai-ticker').focus();$id('ai-ticker').style.borderColor='#ef4444';setTimeout(()=>$id('ai-ticker').style.borderColor='',1500);return;}
+
+    const btn=$id('ai-btn');
+    btn.disabled=true;btn.textContent='⏳ Analyzing…';
+    $id('ai-response').classList.remove('visible');
+    const thinking=$id('ai-thinking');
+    thinking.classList.add('visible');
+    let msgIdx=0;
+    const thinkingEl=$id('ai-thinking-text');
+    thinkingEl.textContent=AI_THINKING_MSGS[0];
+    const msgInterval=setInterval(()=>{msgIdx=(msgIdx+1)%AI_THINKING_MSGS.length;thinkingEl.textContent=AI_THINKING_MSGS[msgIdx];},2200);
+
+    const today=new Date();
+    const dateStr=today.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+
+    const prompt=`You are an expert options trading advisor specializing in ETF premium selling strategies (The Wheel, Iron Condors, Bull Put Spreads, Bear Call Spreads).
+
+A trader wants to analyze: **${ticker}** ETF
+- Portfolio size: $${portfolio.toLocaleString()}
+- Risk level: ${risk}
+- Today: ${dateStr}
+
+Respond with ONLY valid JSON (no markdown, no backticks, no preamble):
+
+{
+  "ticker": "${ticker}",
+  "verdict": "SELL PREMIUM",
+  "verdict_reason": "One sentence why",
+  "sentiment": "bullish",
+  "score": 75,
+  "iv_level": "Moderate",
+  "trend": "Uptrend",
+  "liquidity": "Excellent",
+  "earnings_risk": false,
+  "metrics": {
+    "iv_rank": 55,
+    "theta_quality": 70,
+    "trend_score": 65,
+    "liquidity_score": 90,
+    "risk_score": 35
+  },
+  "recommended_strategy": "Wheel",
+  "strategies": [
+    {
+      "name": "Wheel (CSP)",
+      "recommended": true,
+      "est_yield": "1.8% per trade",
+      "est_premium": "$280",
+      "probability_profit": "78%",
+      "max_loss": "$4500",
+      "dte": "30-45 days",
+      "strike_guidance": "Sell the $XXX put (Month DD expiry)",
+      "contracts": 2,
+      "description": "2-sentence description specific to ${ticker} right now."
+    },
+    {
+      "name": "Iron Condor",
+      "recommended": false,
+      "est_yield": "1.2% per trade",
+      "est_premium": "$180",
+      "probability_profit": "72%",
+      "max_loss": "$820",
+      "dte": "30-45 days",
+      "strike_guidance": "Sell put spread / call spread",
+      "contracts": 3,
+      "description": "2-sentence description."
+    },
+    {
+      "name": "Bull Put Spread",
+      "recommended": false,
+      "est_yield": "1.5% per trade",
+      "est_premium": "$150",
+      "probability_profit": "75%",
+      "max_loss": "$850",
+      "dte": "30-45 days",
+      "strike_guidance": "Sell $X/$X put spread",
+      "contracts": 3,
+      "description": "2-sentence description."
+    }
+  ],
+  "trade_setup": {
+    "entry_timing": "Specific entry timing advice",
+    "position_size": "$XXXX (X contracts)",
+    "profit_target": "50% of credit received",
+    "stop_loss": "2x credit received",
+    "days_to_expiry": "35 days",
+    "best_expiry": "Month DD, YYYY"
+  },
+  "analysis": "4-6 sentences of expert analysis covering: current market context for ${ticker}, why IV rank matters, the trend and what it means for premium sellers, key risks, and overall conviction. Be specific."
+}`;
+
+    try{
+        const response=await fetch("http://localhost:5010/api/claude",{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({
+                model:"claude-sonnet-4-5-20251022",
+                max_tokens:1500,
+                messages:[{role:"user",content:prompt}]
+            })
+        });
+
+        if(!response.ok){
+            const errData=await response.json().catch(()=>({}));
+            throw new Error(`API error ${response.status}: ${errData.error?.message||response.statusText}`);
+        }
+
+        const data=await response.json();
+        clearInterval(msgInterval);
+
+        // Safely extract text from content array
+        if(!data.content||!Array.isArray(data.content)){
+            throw new Error(`Unexpected API response format. Type: ${data.type||'unknown'}. ${data.error?.message||''}`);
+        }
+
+        const raw=data.content.map(b=>b.type==='text'?b.text:'').join('');
+        if(!raw){throw new Error('AI returned empty response. Please try again.');}
+
+        // Strip any markdown fences just in case
+        const clean=raw.replace(/```json\s*/gi,'').replace(/```\s*/g,'').trim();
+
+        let result;
+        try{result=JSON.parse(clean);}
+        catch(parseErr){
+            // Try to extract JSON object from the string
+            const match=clean.match(/\{[\s\S]*\}/);
+            if(match){result=JSON.parse(match[0]);}
+            else{throw new Error('Could not parse AI response as JSON. Raw: '+clean.substring(0,200));}
+        }
+
+        aiHistory.unshift({ticker,result,time:new Date().toLocaleTimeString()});
+        if(aiHistory.length>5)aiHistory.pop();
+        renderAIResponse(result,portfolio);
+        renderAIHistory();
+
+    }catch(err){
+        clearInterval(msgInterval);
+        $id('ai-response').innerHTML=`
+            <div class="ai-error">
+                <strong style="color:#ef4444">⚠ Analysis Error</strong><br>
+                <span style="font-size:12px;color:var(--text-dim)">
+                ${err.message.includes('Failed to fetch')||err.message.includes('NetworkError')
+                    ? 'Network error: Make sure the local server is running. Open START_APP.command first, then refresh this page.'
+                    : err.message}
+                </span>
+            </div>`;
+        $id('ai-response').classList.add('visible');
+    }finally{
+        thinking.classList.remove('visible');
+        btn.disabled=false;btn.textContent='✦ Analyze';
+    }
+}
+
+function renderAIResponse(r,portfolio){
+    const sentimentClass={bullish:'bullish',neutral:'neutral',bearish:'bearish',skip:'skip'}[r.sentiment]||'neutral';
+    const verdictEmoji={bullish:'✅',neutral:'⚖️',bearish:'⚠️',skip:'⛔'}[r.sentiment]||'⚖️';
+    const scoreColor=r.score>=70?'#22c55e':r.score>=45?'#f59e0b':'#ef4444';
+    const strategies=Array.isArray(r.strategies)?r.strategies:[];
+    const stratCards=strategies.map(s=>`
+        <div class="ai-strat-card ${s.recommended?'recommended':''}">
+            <h4>${s.name}</h4>
+            <div class="strat-meta">
+                <span class="strat-tag tag-yield">~${s.est_yield}</span>
+                <span class="strat-tag tag-prob">${s.probability_profit} POP</span>
+                <span class="strat-tag tag-risk">Max Loss ${s.max_loss}</span>
+                <span class="strat-tag tag-dte">${s.dte}</span>
+            </div>
+            <div style="font-size:12px;color:var(--accent);font-family:var(--font-mono);margin-bottom:8px;font-weight:700">${s.strike_guidance}</div>
+            <p>${s.description}</p>
+        </div>`).join('');
+
+    const rec=strategies.find(s=>s.recommended)||strategies[0];
+    const premNum=rec?parseFloat((rec.est_premium||'').replace(/[^0-9.]/g,''))||100:100;
+    const lossNum=rec?parseFloat((rec.max_loss||'').replace(/[^0-9.]/g,''))||500:500;
+    const total=premNum+lossNum;
+    const profitW=Math.round(premNum/total*100);
+    const lossW=100-profitW;
+    const metrics=r.metrics||{iv_rank:50,theta_quality:50,trend_score:50,liquidity_score:50,risk_score:50};
+
+    $id('ai-response').innerHTML=`
+    <div class="ai-verdict ${sentimentClass}">
+        <div class="ai-verdict-left">
+            <h3>${verdictEmoji} ${r.ticker} — ${r.verdict}</h3>
+            <p>${r.verdict_reason}</p>
+            <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+                <span class="zone ${r.sentiment==='bullish'?'zone-safe':r.sentiment==='bearish'?'zone-danger':'zone-warn'}">${r.iv_level} IV</span>
+                <span class="zone zone-ok">${r.trend}</span>
+                <span class="zone zone-ok">${r.liquidity} Liquidity</span>
+                ${r.earnings_risk?'<span class="zone zone-danger">⚠ Earnings Risk</span>':'<span class="zone zone-safe">✓ No Earnings</span>'}
+            </div>
+        </div>
+        <div style="text-align:center">
+            <div class="ai-verdict-badge" style="color:${scoreColor};border:2px solid ${scoreColor}20">${r.score}</div>
+            <div style="font-size:10px;color:var(--text-dim);margin-top:6px">TRADE SCORE</div>
+        </div>
+    </div>
+    <div class="ai-metrics">
+        <div class="ai-metric"><div class="lbl">IV Rank</div><div class="val" style="color:${metrics.iv_rank>=50?'#22c55e':'#f59e0b'}">${metrics.iv_rank}</div><div class="sub">/ 100</div></div>
+        <div class="ai-metric"><div class="lbl">Theta Quality</div><div class="val" style="color:#38bdf8">${metrics.theta_quality}</div><div class="sub">/ 100</div></div>
+        <div class="ai-metric"><div class="lbl">Trend Score</div><div class="val" style="color:${metrics.trend_score>=50?'#22c55e':'#ef4444'}">${metrics.trend_score}</div><div class="sub">/ 100</div></div>
+        <div class="ai-metric"><div class="lbl">Liquidity</div><div class="val" style="color:#a78bfa">${metrics.liquidity_score}</div><div class="sub">/ 100</div></div>
+        <div class="ai-metric"><div class="lbl">Risk Level</div><div class="val" style="color:${metrics.risk_score<=40?'#22c55e':metrics.risk_score<=65?'#f59e0b':'#ef4444'}">${metrics.risk_score}</div><div class="sub">/ 100</div></div>
+    </div>
+    <div class="ai-strategies">${stratCards}</div>
+    <div class="ai-setup-box">
+        <h4>📋 Recommended Trade Setup</h4>
+        <div class="ai-setup-grid">
+            <div class="ai-setup-item"><div class="lbl">Best Expiry</div><div class="val accent">${r.trade_setup?.best_expiry||'~35 DTE'}</div></div>
+            <div class="ai-setup-item"><div class="lbl">Position Size</div><div class="val">${r.trade_setup?.position_size||'—'}</div></div>
+            <div class="ai-setup-item"><div class="lbl">Entry Timing</div><div class="val" style="font-size:12px">${r.trade_setup?.entry_timing||'—'}</div></div>
+            <div class="ai-setup-item"><div class="lbl">Profit Target</div><div class="val profit">${r.trade_setup?.profit_target||'50% credit'}</div></div>
+            <div class="ai-setup-item"><div class="lbl">Stop Loss</div><div class="val loss">${r.trade_setup?.stop_loss||'2x credit'}</div></div>
+            <div class="ai-setup-item"><div class="lbl">Risk / Reward</div>
+                <div>
+                    <div class="ai-rr-bar"><div class="ai-rr-profit" style="width:${profitW}%"></div><div class="ai-rr-loss" style="width:${lossW}%"></div></div>
+                    <div style="font-size:9px;color:var(--text-dim)"><span class="profit">▮ Profit ${profitW}%</span> &nbsp; <span class="loss">▮ Risk ${lossW}%</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ai-analysis"><h4>🔍 Expert Analysis</h4><div class="ai-analysis-text">${r.analysis}</div></div>`;
+
+    $id('ai-response').classList.add('visible');
+    $id('ai-response').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function renderAIHistory(){
+    if(aiHistory.length===0)return;
+    const histEl=$id('ai-history');histEl.style.display='block';
+    $id('ai-hist-list').innerHTML=aiHistory.map((h,i)=>{
+        const r=h.result;
+        const cls={bullish:'verdict-bull',neutral:'verdict-neut',bearish:'verdict-bear',skip:'verdict-skip'}[r.sentiment]||'verdict-neut';
+        return`<div class="ai-hist-item" onclick="replayHistory(${i})"><div class="ai-hist-ticker">${h.ticker}</div><div class="ai-hist-strat">${r.recommended_strategy} · Score ${r.score}/100</div><div class="ai-hist-verdict ${cls}">${r.verdict}</div><div style="font-size:10px;color:var(--text-dim);margin-left:8px">${h.time}</div></div>`;
+    }).join('');
+}
+function replayHistory(i){const h=aiHistory[i];$id('ai-ticker').value=h.ticker;renderAIResponse(h.result,parseFloat($id('ai-portfolio').value)||30000);}
+$id('ai-ticker').addEventListener('keydown',e=>{if(e.key==='Enter')runAIAdvisor();});
+
+window.onload=()=>{runWheel();runSpread();renderTracker();};
+</script>
+</body>
+</html>
