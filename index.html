@@ -1117,85 +1117,16 @@ POSITION SIZING (portfolio=$${portfolio.toLocaleString()}, max risk per trade=5%
 - TIER 3 (XSP,QQQM — price<$100): Naked CSP, more contracts. Max contracts=floor(${maxRiskPerTrade}/(strike*100)). Tag: "Tier 3 — Mini"
 - Uptrend+VIX<22: CSP or Bull Put Spread. Sideways+VIX 18-28: Iron Condor. VIX>28: Spreads only. VIX<13: No trades.`;
 
-  const prompt = `You are an expert options trading analyst providing a morning briefing for a premium seller.
-
-Today: ${today}
-Watchlist: ${tickers.join(', ')}
-Portfolio: $${portfolio.toLocaleString()}
-Risk: ${risk}
-${expiryInfo}
-${tierRules}
-
-IMPORTANT: 
-1. Calculate DTE accurately from today's date using exact expiry dates above
-2. Apply tier rules strictly — never recommend naked CSP on Tier 1 tickers
-3. Always include contract count and total premium in recommendations
-4. Vary strategies based on market conditions — don't just recommend CSP for everything
-
-Provide a complete morning scan. Respond ONLY with valid JSON:
-
-{
-  "market_regime": {
-    "verdict": "SELL PREMIUM",
-    "verdict_class": "sell",
-    "description": "2-3 sentences on conditions",
-    "vix_assessment": "VIX description",
-    "trend_assessment": "Trend description",
-    "recommendation": "One action sentence",
-    "indicators": {"vix_level":"18.5","vix_trend":"Stable","spy_trend":"Uptrend","fear_greed":"Neutral"}
-  },
-  "top_opportunities": [
-    {
-      "rank": 1, "ticker": "TICKER", "tier": 1,
-      "score": 82, "iv_rank": 58,
-      "strategy": "Bull Put Spread",
-      "strike_guidance": "Sell $XXX/$XXX spread, May 15, 2026 (39 DTE)",
-      "est_premium": "$XXX per contract",
-      "recommended_contracts": 12,
-      "collateral_required": "$12000",
-      "total_premium": "$XXXX",
-      "probability_profit": "XX%",
-      "why": "2-3 sentences on why this ticker today",
-      "tags": ["Tier 1 — Spread Only", "High IV Rank"],
-      "earnings_safe": true, "earnings_date": null
-    },
-    {
-      "rank": 2, "ticker": "TICKER", "tier": 2,
-      "score": 76, "iv_rank": 52,
-      "strategy": "Wheel (CSP)",
-      "strike_guidance": "Sell $XXX put, May 15, 2026 (39 DTE)",
-      "est_premium": "$XXX per contract",
-      "recommended_contracts": 5,
-      "collateral_required": "$11500",
-      "total_premium": "$XXX",
-      "probability_profit": "XX%",
-      "why": "2-3 sentences",
-      "tags": ["Tier 2 — CSP OK", "Moderate IV"],
-      "earnings_safe": true, "earnings_date": null
-    },
-    {
-      "rank": 3, "ticker": "TICKER", "tier": 3,
-      "score": 71, "iv_rank": 61,
-      "strategy": "Wheel (CSP)",
-      "strike_guidance": "Sell $XXX put, May 15, 2026 (39 DTE)",
-      "est_premium": "$XXX per contract",
-      "recommended_contracts": 20,
-      "collateral_required": "$10800",
-      "total_premium": "$XXXX",
-      "probability_profit": "XX%",
-      "why": "2-3 sentences",
-      "tags": ["Tier 3 — Mini", "Defined Risk"],
-      "earnings_safe": true, "earnings_date": null
-    }
-  ],
-  "earnings_watch": [{"ticker":"QQQ","earnings_date":"None","risk_level":"safe","note":"No earnings in 45d"}],
-  "avoid_today": ["VXX"],
-  "avoid_reason": "Reason to avoid",
-  "daily_summary": "2-3 sentence summary with total premium available"
-}`;
+  const prompt = `Options trading morning scan. Portfolio=$${portfolio.toLocaleString()} Risk=${risk} Today=${today}
+Tickers=${tickers.join(',')} Expiries=${expiryDates.slice(0,2).join(' | ')}
+T1(SPY,QQQ,SMH,GDX)=spreads only T2(IWM,GLD,XLE,TLT)=CSP ok T3(XSP,QQQM)=CSP mini
+MaxRisk=$${maxRiskPerTrade} per trade. Contracts=floor(maxRisk/collateral).
+Uptrend+VIX<22=CSP/BPS. Sideways=IC. VIX>28=spreads only.
+Return ONLY minified JSON, no markdown:
+{"market_regime":{"verdict":"SELL PREMIUM","verdict_class":"sell","description":"str","vix_assessment":"str","trend_assessment":"str","recommendation":"str","indicators":{"vix_level":"17","vix_trend":"Stable","spy_trend":"Uptrend","fear_greed":"Neutral"}},"top_opportunities":[{"rank":1,"ticker":"X","tier":1,"score":80,"iv_rank":55,"strategy":"Bull Put Spread","strike_guidance":"Sell $X/$X spread, ${expiryDates[0]}","est_premium":"$X per contract","recommended_contracts":10,"collateral_required":"$X","total_premium":"$X","probability_profit":"X%","why":"str","tags":["Tier 1 — Spread Only"],"earnings_safe":true,"earnings_date":null},{"rank":2,"ticker":"X","tier":2,"score":75,"iv_rank":50,"strategy":"Wheel (CSP)","strike_guidance":"Sell $X put, ${expiryDates[0]}","est_premium":"$X per contract","recommended_contracts":5,"collateral_required":"$X","total_premium":"$X","probability_profit":"X%","why":"str","tags":["Tier 2 — CSP OK"],"earnings_safe":true,"earnings_date":null},{"rank":3,"ticker":"X","tier":3,"score":70,"iv_rank":45,"strategy":"Wheel (CSP)","strike_guidance":"Sell $X put, ${expiryDates[0]}","est_premium":"$X per contract","recommended_contracts":20,"collateral_required":"$X","total_premium":"$X","probability_profit":"X%","why":"str","tags":["Tier 3 — Mini"],"earnings_safe":true,"earnings_date":null}],"earnings_watch":[{"ticker":"X","earnings_date":"None","risk_level":"safe","note":"str"}],"avoid_today":[],"avoid_reason":"str","daily_summary":"str"}`;
 
   try {
-    const data = await callClaude(prompt, 2500);
+    const data = await callClaude(prompt, 1200);
     clearInterval(msgInt);
     const raw = data.content.map(b => b.type === 'text' ? b.text : '').join('');
     const clean = raw.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
