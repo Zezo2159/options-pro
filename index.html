@@ -83,6 +83,7 @@
         <button class="tab" data-panel="ai" style="color:#a78bfa">🧠 AI Trade Advisor</button>
         <button class="tab" data-panel="scanner" style="color:#f59e0b">🌅 Morning Scanner</button>
         <button class="tab" data-panel="analytics" style="color:#22c55e">📊 Analytics</button>
+        <button class="tab" data-panel="automation" style="color:#e879f9">⚡ Automation</button>
     </div>
 
     <!-- ══ 1. WHEEL OPTIMIZER ══ -->
@@ -1774,6 +1775,651 @@ document.querySelectorAll('.tab').forEach(btn => {
 if (anTrades.length) {
   document.getElementById('an-csv-helper').style.display = 'none';
 }
+</script>
+
+<!-- ══ 7. AUTOMATION PANEL ══ -->
+<div id="panel-automation" class="panel">
+<style>
+  #panel-automation{--pink:#e879f9;--pink-dim:rgba(232,121,249,0.08);--pink-border:rgba(232,121,249,0.25);}
+  .auto-header{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,rgba(232,121,249,0.08),rgba(56,189,248,0.05));border:1px solid var(--pink-border);border-radius:16px;padding:20px 28px;margin-bottom:20px;}
+  .auto-section{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px;}
+  .auto-section-title{font-size:11px;color:var(--pink);font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+  .auto-row{display:grid;gap:12px;align-items:end;margin-bottom:12px;}
+  .auto-row-3{grid-template-columns:1fr 1fr 1fr;}
+  .auto-row-4{grid-template-columns:1fr 1fr 1fr auto;}
+  .auto-row-2{grid-template-columns:1fr 1fr;}
+  .auto-field label{display:block;font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-bottom:6px;}
+  .auto-field input,.auto-field select{width:100%;background:#05080f;border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:10px;font-family:var(--font-mono);font-size:13px;outline:none;}
+  .auto-field input:focus,.auto-field select:focus{border-color:var(--pink);}
+  .auto-btn{background:linear-gradient(135deg,#9333ea,#e879f9);color:#fff;border:none;padding:10px 22px;border-radius:10px;font-weight:800;font-size:13px;cursor:pointer;white-space:nowrap;height:42px;}
+  .auto-btn:hover{opacity:.88;}
+  .auto-btn-sm{padding:7px 14px;font-size:12px;height:36px;}
+  .auto-btn-danger{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:var(--loss);padding:7px 14px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;}
+  .toggle-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);}
+  .toggle-row:last-child{border-bottom:none;}
+  .toggle-label{font-size:13px;}
+  .toggle-desc{font-size:11px;color:var(--text-dim);margin-top:2px;}
+  .toggle{position:relative;width:44px;height:24px;flex-shrink:0;}
+  .toggle input{opacity:0;width:0;height:0;}
+  .toggle-slider{position:absolute;inset:0;background:#1e293b;border-radius:12px;cursor:pointer;transition:.3s;border:1px solid var(--border);}
+  .toggle-slider:before{content:'';position:absolute;width:18px;height:18px;left:3px;top:2px;background:#64748b;border-radius:50%;transition:.3s;}
+  .toggle input:checked+.toggle-slider{background:rgba(232,121,249,.2);border-color:var(--pink);}
+  .toggle input:checked+.toggle-slider:before{transform:translateX(20px);background:var(--pink);}
+  .alert-item{display:grid;grid-template-columns:80px 1fr 120px 100px 80px 40px;align-items:center;gap:12px;padding:10px 14px;background:rgba(0,0,0,.2);border-radius:8px;border:1px solid var(--border);margin-bottom:8px;font-size:13px;}
+  .alert-active{border-color:rgba(232,121,249,.4);background:rgba(232,121,249,.04);}
+  .schedule-status{display:flex;align-items:center;gap:10px;padding:14px;background:rgba(0,0,0,.3);border-radius:10px;margin-top:12px;}
+  .status-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+  .status-dot.active{background:var(--profit);box-shadow:0 0 8px var(--profit);}
+  .status-dot.inactive{background:var(--text-dim);}
+  .log-item{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px;display:flex;gap:12px;}
+  .log-item:last-child{border-bottom:none;}
+  .log-time{color:var(--text-dim);font-family:var(--font-mono);white-space:nowrap;}
+  .log-msg{color:var(--text);}
+  .log-type-scan{color:var(--scan-gold,#f59e0b);}
+  .log-type-alert{color:var(--pink);}
+  .log-type-email{color:var(--accent);}
+  .watchlist-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.2);color:var(--accent);padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;margin:3px;}
+  .watchlist-tag button{background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:14px;padding:0;line-height:1;}
+  .watchlist-tag button:hover{color:var(--loss);}
+</style>
+
+<div class="auto-header">
+  <div style="font-size:42px">⚡</div>
+  <div>
+    <div style="font-size:20px;font-weight:900;color:var(--pink)">Automation <span style="font-size:14px;color:var(--text-dim);font-weight:400">Phase C</span></div>
+    <div style="font-size:13px;color:var(--text-dim);margin-top:4px">Scheduled scans · Price alerts · Watchlist sync · Daily email briefing</div>
+  </div>
+  <div style="margin-left:auto">
+    <div id="auto-master-status" style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-dim)">
+      <div class="status-dot inactive" id="master-dot"></div>
+      <span id="master-label">Automation off</span>
+    </div>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+
+<!-- LEFT COLUMN -->
+<div>
+
+  <!-- Scheduled Scan -->
+  <div class="auto-section">
+    <div class="auto-section-title">⏰ Scheduled Morning Scan</div>
+    <div class="auto-row auto-row-2">
+      <div class="auto-field">
+        <label>Scan Time (local)</label>
+        <input type="time" id="auto-scan-time" value="08:00">
+      </div>
+      <div class="auto-field">
+        <label>Days</label>
+        <select id="auto-scan-days">
+          <option value="weekdays">Weekdays only (Mon–Fri)</option>
+          <option value="daily">Every day</option>
+        </select>
+      </div>
+    </div>
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-label">Auto-run Morning Scanner</div>
+        <div class="toggle-desc">Runs AI scan at scheduled time, saves results</div>
+      </div>
+      <label class="toggle"><input type="checkbox" id="toggle-auto-scan" onchange="saveAutoSettings()"><span class="toggle-slider"></span></label>
+    </div>
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-label">Mac notification on completion</div>
+        <div class="toggle-desc">Show popup when scan finishes</div>
+      </div>
+      <label class="toggle"><input type="checkbox" id="toggle-notif-scan" onchange="saveAutoSettings()" checked><span class="toggle-slider"></span></label>
+    </div>
+    <div class="schedule-status">
+      <div class="status-dot inactive" id="scan-status-dot"></div>
+      <div>
+        <div style="font-size:12px;font-weight:700" id="scan-status-text">Scheduler inactive</div>
+        <div style="font-size:11px;color:var(--text-dim)" id="scan-next-run">Enable to set next run time</div>
+      </div>
+      <button class="auto-btn auto-btn-sm" style="margin-left:auto" onclick="runManualScan()">▶ Run Now</button>
+    </div>
+  </div>
+
+  <!-- Email Briefing -->
+  <div class="auto-section">
+    <div class="auto-section-title">📧 Daily Email Briefing</div>
+    <div class="auto-row auto-row-2" style="margin-bottom:12px">
+      <div class="auto-field">
+        <label>Your Email</label>
+        <input type="email" id="auto-email" placeholder="you@email.com" oninput="saveAutoSettings()">
+      </div>
+      <div class="auto-field">
+        <label>Send Time</label>
+        <input type="time" id="auto-email-time" value="07:30" oninput="saveAutoSettings()">
+      </div>
+    </div>
+    <div class="auto-row auto-row-2" style="margin-bottom:12px">
+      <div class="auto-field">
+        <label>SMTP Server</label>
+        <input type="text" id="auto-smtp-host" placeholder="smtp.gmail.com" oninput="saveAutoSettings()">
+      </div>
+      <div class="auto-field">
+        <label>SMTP Port</label>
+        <input type="number" id="auto-smtp-port" value="587" oninput="saveAutoSettings()">
+      </div>
+    </div>
+    <div class="auto-row auto-row-2" style="margin-bottom:12px">
+      <div class="auto-field">
+        <label>SMTP Username</label>
+        <input type="email" id="auto-smtp-user" placeholder="your@gmail.com" oninput="saveAutoSettings()">
+      </div>
+      <div class="auto-field">
+        <label>SMTP Password / App Key</label>
+        <input type="password" id="auto-smtp-pass" placeholder="App password" oninput="saveAutoSettings()">
+      </div>
+    </div>
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-label">Send daily briefing email</div>
+        <div class="toggle-desc">Top opportunities + market regime summary</div>
+      </div>
+      <label class="toggle"><input type="checkbox" id="toggle-email" onchange="saveAutoSettings()"><span class="toggle-slider"></span></label>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="auto-btn auto-btn-sm" onclick="sendTestEmail()">📧 Send Test Email</button>
+      <div id="email-test-status" style="font-size:12px;color:var(--text-dim);align-self:center"></div>
+    </div>
+    <div class="callout" style="margin-top:12px">
+      <strong>Gmail tip:</strong> Use an App Password (not your regular password).<br>
+      Google Account → Security → 2-Step Verification → App passwords
+    </div>
+  </div>
+
+</div>
+
+<!-- RIGHT COLUMN -->
+<div>
+
+  <!-- Price Alerts -->
+  <div class="auto-section">
+    <div class="auto-section-title">🔔 Price Alerts</div>
+    <div class="auto-row auto-row-4">
+      <div class="auto-field">
+        <label>Ticker</label>
+        <input type="text" id="alert-ticker" placeholder="SPY" style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()">
+      </div>
+      <div class="auto-field">
+        <label>Condition</label>
+        <select id="alert-condition">
+          <option value="above">Price above</option>
+          <option value="below">Price below</option>
+          <option value="iv_above">IV above</option>
+          <option value="iv_below">IV below</option>
+        </select>
+      </div>
+      <div class="auto-field">
+        <label>Target Value</label>
+        <input type="number" id="alert-value" placeholder="500">
+      </div>
+      <div class="auto-field">
+        <label>&nbsp;</label>
+        <button class="auto-btn auto-btn-sm" onclick="addAlert()">+ Add</button>
+      </div>
+    </div>
+    <div id="alerts-list" style="max-height:280px;overflow-y:auto"></div>
+    <div id="alerts-empty" style="text-align:center;padding:30px;color:var(--text-dim);font-size:13px">No alerts set. Add one above.</div>
+  </div>
+
+  <!-- Watchlist Auto-save -->
+  <div class="auto-section">
+    <div class="auto-section-title">📋 Watchlist & Settings</div>
+    <div style="margin-bottom:12px">
+      <div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;font-weight:700">Saved Watchlist</div>
+      <div id="watchlist-tags" style="margin-bottom:10px"></div>
+      <div style="display:flex;gap:8px">
+        <input type="text" id="watchlist-add-input" placeholder="Add ticker…" style="background:#05080f;border:1px solid var(--border);color:var(--text);padding:8px 12px;border-radius:8px;font-size:13px;outline:none;width:140px;text-transform:uppercase" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')addToWatchlist()">
+        <button class="auto-btn auto-btn-sm" onclick="addToWatchlist()">+ Add</button>
+        <button onclick="syncWatchlistToScanner()" style="background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.2);color:var(--accent);padding:7px 14px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:600">↑ Sync to Scanner</button>
+      </div>
+    </div>
+    <hr style="border:none;border-top:1px solid var(--border);margin:14px 0">
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-label">Auto-save scanner settings</div>
+        <div class="toggle-desc">Remember watchlist, portfolio size & risk on close</div>
+      </div>
+      <label class="toggle"><input type="checkbox" id="toggle-autosave" onchange="saveAutoSettings()" checked><span class="toggle-slider"></span></label>
+    </div>
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-label">Restore settings on launch</div>
+        <div class="toggle-desc">Load last used settings when app opens</div>
+      </div>
+      <label class="toggle"><input type="checkbox" id="toggle-restore" onchange="saveAutoSettings()" checked><span class="toggle-slider"></span></label>
+    </div>
+    <button class="auto-btn auto-btn-sm" style="margin-top:12px;width:100%" onclick="saveAllSettings()">💾 Save All Settings Now</button>
+  </div>
+
+</div>
+</div>
+
+<!-- Activity Log -->
+<div class="auto-section">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <div class="auto-section-title" style="margin:0">📜 Activity Log</div>
+    <button onclick="clearLog()" class="auto-btn-danger">Clear</button>
+  </div>
+  <div id="auto-log" style="max-height:200px;overflow-y:auto;background:rgba(0,0,0,.3);border-radius:8px;border:1px solid var(--border)">
+    <div style="text-align:center;padding:30px;color:var(--text-dim);font-size:12px" id="log-empty">No activity yet</div>
+  </div>
+</div>
+
+</div><!-- /panel-automation -->
+
+<script>
+// ══ AUTOMATION ENGINE ══
+let autoSettings = {};
+let priceAlerts = [];
+let savedWatchlist = [];
+let autoLog = [];
+let alertCheckInterval = null;
+let scheduleInterval = null;
+
+// Load saved state
+try { autoSettings = JSON.parse(localStorage.getItem('auto_settings') || '{}'); } catch(e) {}
+try { priceAlerts = JSON.parse(localStorage.getItem('price_alerts') || '[]'); } catch(e) {}
+try { savedWatchlist = JSON.parse(localStorage.getItem('saved_watchlist') || '[]'); } catch(e) {}
+try { autoLog = JSON.parse(localStorage.getItem('auto_log') || '[]'); } catch(e) {}
+
+// ── Init ──
+function initAutomation() {
+  // Restore settings
+  if (autoSettings.scanTime) $id('auto-scan-time').value = autoSettings.scanTime;
+  if (autoSettings.scanDays) $id('auto-scan-days').value = autoSettings.scanDays;
+  if (autoSettings.email) $id('auto-email').value = autoSettings.email;
+  if (autoSettings.emailTime) $id('auto-email-time').value = autoSettings.emailTime;
+  if (autoSettings.smtpHost) $id('auto-smtp-host').value = autoSettings.smtpHost;
+  if (autoSettings.smtpPort) $id('auto-smtp-port').value = autoSettings.smtpPort;
+  if (autoSettings.smtpUser) $id('auto-smtp-user').value = autoSettings.smtpUser;
+  if (autoSettings.smtpPass) $id('auto-smtp-pass').value = autoSettings.smtpPass;
+  $id('toggle-auto-scan').checked = !!autoSettings.autoScan;
+  $id('toggle-notif-scan').checked = autoSettings.notifScan !== false;
+  $id('toggle-email').checked = !!autoSettings.emailEnabled;
+  $id('toggle-autosave').checked = autoSettings.autosave !== false;
+  $id('toggle-restore').checked = autoSettings.restore !== false;
+
+  // Restore watchlist from scanner if empty
+  if (!savedWatchlist.length) {
+    const scannerWl = $id('scan-watchlist')?.value || '';
+    if (scannerWl) savedWatchlist = scannerWl.split(',').map(t=>t.trim()).filter(Boolean);
+  }
+
+  renderWatchlist();
+  renderAlerts();
+  renderLog();
+  updateScheduleStatus();
+  startScheduler();
+  startAlertChecker();
+
+  // Auto-restore scanner settings
+  if (autoSettings.restore !== false && autoSettings.lastWatchlist) {
+    const el = $id('scan-watchlist');
+    if (el && !el.value.trim()) el.value = autoSettings.lastWatchlist;
+  }
+  if (autoSettings.restore !== false && autoSettings.lastPortfolio) {
+    const el = $id('scan-portfolio');
+    if (el) el.value = autoSettings.lastPortfolio;
+  }
+}
+
+// ── Save settings ──
+function saveAutoSettings() {
+  autoSettings = {
+    ...autoSettings,
+    scanTime: $id('auto-scan-time').value,
+    scanDays: $id('auto-scan-days').value,
+    email: $id('auto-email').value,
+    emailTime: $id('auto-email-time').value,
+    smtpHost: $id('auto-smtp-host').value,
+    smtpPort: $id('auto-smtp-port').value,
+    smtpUser: $id('auto-smtp-user').value,
+    smtpPass: $id('auto-smtp-pass').value,
+    autoScan: $id('toggle-auto-scan').checked,
+    notifScan: $id('toggle-notif-scan').checked,
+    emailEnabled: $id('toggle-email').checked,
+    autosave: $id('toggle-autosave').checked,
+    restore: $id('toggle-restore').checked,
+  };
+  try { localStorage.setItem('auto_settings', JSON.stringify(autoSettings)); } catch(e) {}
+  updateScheduleStatus();
+  startScheduler();
+}
+
+function saveAllSettings() {
+  saveAutoSettings();
+  // Save scanner state
+  autoSettings.lastWatchlist = $id('scan-watchlist')?.value || '';
+  autoSettings.lastPortfolio = $id('scan-portfolio')?.value || '';
+  autoSettings.lastRisk = $id('scan-risk')?.value || '';
+  try { localStorage.setItem('auto_settings', JSON.stringify(autoSettings)); } catch(e) {}
+  addLog('settings', '💾 All settings saved');
+  const btn = event.target;
+  btn.textContent = '✅ Saved!';
+  setTimeout(() => btn.textContent = '💾 Save All Settings Now', 1500);
+}
+
+// ── Scheduler ──
+function startScheduler() {
+  if (scheduleInterval) clearInterval(scheduleInterval);
+  scheduleInterval = setInterval(checkSchedule, 30000); // check every 30s
+  checkSchedule();
+}
+
+function checkSchedule() {
+  if (!autoSettings.autoScan) return;
+  const now = new Date();
+  const day = now.getDay(); // 0=Sun, 6=Sat
+  if (autoSettings.scanDays === 'weekdays' && (day === 0 || day === 6)) return;
+  const [h, m] = (autoSettings.scanTime || '08:00').split(':').map(Number);
+  const nowH = now.getHours(), nowM = now.getMinutes();
+  // Trigger within the same minute
+  if (nowH === h && nowM === m) {
+    const lastRun = autoSettings.lastAutoRun;
+    const todayKey = now.toDateString();
+    if (lastRun !== todayKey) {
+      autoSettings.lastAutoRun = todayKey;
+      try { localStorage.setItem('auto_settings', JSON.stringify(autoSettings)); } catch(e) {}
+      addLog('scan', `⏰ Scheduled scan triggered at ${now.toLocaleTimeString()}`);
+      runAutoScan();
+    }
+  }
+}
+
+function updateScheduleStatus() {
+  const active = !!autoSettings.autoScan;
+  $id('scan-status-dot').className = 'status-dot ' + (active ? 'active' : 'inactive');
+  $id('master-dot').className = 'status-dot ' + (active ? 'active' : 'inactive');
+  $id('master-label').textContent = active ? 'Automation active' : 'Automation off';
+  $id('master-label').style.color = active ? 'var(--profit)' : 'var(--text-dim)';
+
+  if (active) {
+    const [h, m] = (autoSettings.scanTime || '08:00').split(':');
+    const days = autoSettings.scanDays === 'weekdays' ? 'Mon–Fri' : 'Daily';
+    $id('scan-status-text').textContent = `Next scan: ${h}:${m} (${days})`;
+    $id('scan-status-text').style.color = 'var(--profit)';
+    $id('scan-next-run').textContent = `Last run: ${autoSettings.lastAutoRun || 'Never'}`;
+  } else {
+    $id('scan-status-text').textContent = 'Scheduler inactive';
+    $id('scan-status-text').style.color = 'var(--text-dim)';
+    $id('scan-next-run').textContent = 'Enable to set next run time';
+  }
+}
+
+async function runAutoScan() {
+  try {
+    const watchlist = $id('scan-watchlist')?.value || savedWatchlist.join(', ');
+    const portfolio = $id('scan-portfolio')?.value || 30000;
+    const risk = $id('scan-risk')?.value || 'moderate';
+    // Trigger the scanner
+    if ($id('scan-btn')) {
+      $id('scan-watchlist').value = watchlist;
+      runMorningScanner();
+    }
+    sendMacNotification('Options Pro Ultra', '🌅 Morning scan complete — check your top opportunities!');
+    addLog('scan', '✅ Auto-scan completed');
+
+    // Auto email if enabled
+    if (autoSettings.emailEnabled && autoSettings.email) {
+      setTimeout(() => sendBriefingEmail('auto'), 8000);
+    }
+  } catch(e) {
+    addLog('scan', '❌ Auto-scan failed: ' + e.message);
+  }
+}
+
+function runManualScan() {
+  addLog('scan', '▶ Manual scan triggered');
+  const scanTab = document.querySelector('[data-panel="scanner"]');
+  if (scanTab) scanTab.click();
+  setTimeout(() => {
+    if ($id('scan-btn')) runMorningScanner();
+  }, 300);
+}
+
+// ── Mac Notification ──
+function sendMacNotification(title, body) {
+  // Uses the local proxy to trigger a Mac notification via Python
+  const isMacApp = window.location.protocol === 'http:' && window.location.hostname === 'localhost';
+  if (!isMacApp) {
+    // Browser fallback
+    if ('Notification' in window && Notification.permission === 'granted') {
+      new Notification(title, { body });
+    } else if ('Notification' in window && Notification.permission !== 'denied') {
+      Notification.requestPermission().then(p => { if(p==='granted') new Notification(title,{body}); });
+    }
+    return;
+  }
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', '/api/notify', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.send(JSON.stringify({ title, body }));
+}
+
+// ── Email ──
+async function sendTestEmail() {
+  const statusEl = $id('email-test-status');
+  statusEl.textContent = '⏳ Sending…';
+  statusEl.style.color = 'var(--text-dim)';
+  saveAutoSettings();
+
+  const isMacApp = window.location.protocol === 'http:' && window.location.hostname === 'localhost';
+  if (!isMacApp) {
+    statusEl.textContent = '⚠ Email only works in Mac app';
+    statusEl.style.color = 'var(--warning)';
+    return;
+  }
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', '/api/email', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.timeout = 15000;
+  xhr.onload = () => {
+    try {
+      const d = JSON.parse(xhr.responseText);
+      if (d.ok) { statusEl.textContent = '✅ Test email sent!'; statusEl.style.color = 'var(--profit)'; addLog('email', '📧 Test email sent to ' + autoSettings.email); }
+      else { statusEl.textContent = '❌ ' + (d.error||'Failed'); statusEl.style.color = 'var(--loss)'; }
+    } catch(e) { statusEl.textContent = '❌ Error'; statusEl.style.color = 'var(--loss)'; }
+  };
+  xhr.onerror = () => { statusEl.textContent = '❌ Network error'; statusEl.style.color = 'var(--loss)'; };
+  xhr.ontimeout = () => { statusEl.textContent = '❌ Timeout'; statusEl.style.color = 'var(--loss)'; };
+  xhr.send(JSON.stringify({
+    type: 'test',
+    to: autoSettings.email,
+    smtp_host: autoSettings.smtpHost,
+    smtp_port: parseInt(autoSettings.smtpPort)||587,
+    smtp_user: autoSettings.smtpUser,
+    smtp_pass: autoSettings.smtpPass,
+  }));
+}
+
+async function sendBriefingEmail(mode='manual') {
+  const isMacApp = window.location.protocol === 'http:' && window.location.hostname === 'localhost';
+  if (!isMacApp || !autoSettings.email) return;
+  // Grab last scan results from DOM
+  const regimeEl = document.querySelector('.regime-title');
+  const regime = regimeEl ? regimeEl.textContent : 'Scan not run yet';
+  const oppEls = document.querySelectorAll('.opp-ticker');
+  const opps = Array.from(oppEls).map(e=>e.textContent).join(', ') || 'None';
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', '/api/email', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.send(JSON.stringify({
+    type: 'briefing',
+    to: autoSettings.email,
+    smtp_host: autoSettings.smtpHost,
+    smtp_port: parseInt(autoSettings.smtpPort)||587,
+    smtp_user: autoSettings.smtpUser,
+    smtp_pass: autoSettings.smtpPass,
+    subject: `Options Pro Ultra — Morning Briefing ${new Date().toLocaleDateString()}`,
+    regime, opps,
+    date: new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'})
+  }));
+  if (mode==='manual') addLog('email', '📧 Briefing email sent to ' + autoSettings.email);
+}
+
+// ── Price Alerts ──
+function addAlert() {
+  const ticker = $id('alert-ticker').value.trim().toUpperCase();
+  const condition = $id('alert-condition').value;
+  const value = parseFloat($id('alert-value').value);
+  if (!ticker || isNaN(value)) { alert('Enter a ticker and target value.'); return; }
+  priceAlerts.push({ id: Date.now(), ticker, condition, value, active: true, triggered: false, created: new Date().toLocaleString() });
+  try { localStorage.setItem('price_alerts', JSON.stringify(priceAlerts)); } catch(e) {}
+  $id('alert-ticker').value = ''; $id('alert-value').value = '';
+  renderAlerts();
+  addLog('alert', `🔔 Alert added: ${ticker} ${condition.replace('_',' ')} ${value}`);
+}
+
+function removeAlert(id) {
+  priceAlerts = priceAlerts.filter(a => a.id !== id);
+  try { localStorage.setItem('price_alerts', JSON.stringify(priceAlerts)); } catch(e) {}
+  renderAlerts();
+}
+
+function toggleAlert(id) {
+  const a = priceAlerts.find(a=>a.id===id);
+  if (a) { a.active = !a.active; a.triggered = false; }
+  try { localStorage.setItem('price_alerts', JSON.stringify(priceAlerts)); } catch(e) {}
+  renderAlerts();
+}
+
+function renderAlerts() {
+  const list = $id('alerts-list');
+  const empty = $id('alerts-empty');
+  if (!priceAlerts.length) { list.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+  const condLabel = c => ({'above':'↑ Above','below':'↓ Below','iv_above':'IV ↑','iv_below':'IV ↓'}[c]||c);
+  list.innerHTML = priceAlerts.map(a=>`
+    <div class="alert-item ${a.active?'alert-active':''}">
+      <span style="font-weight:800;font-family:var(--font-mono);color:var(--accent)">${a.ticker}</span>
+      <span style="font-size:11px;color:var(--text-dim)">${condLabel(a.condition)} <strong style="color:var(--text)">${a.value}</strong></span>
+      <span class="zone ${a.triggered?'zone-safe':a.active?'zone-ok':'zone-warn'}">${a.triggered?'✓ TRIGGERED':a.active?'WATCHING':'PAUSED'}</span>
+      <span style="font-size:10px;color:var(--text-dim)">${a.created.split(',')[0]}</span>
+      <button onclick="toggleAlert(${a.id})" style="background:none;border:1px solid var(--border);color:var(--text-dim);padding:3px 8px;border-radius:4px;cursor:pointer;font-size:10px">${a.active?'Pause':'Resume'}</button>
+      <button onclick="removeAlert(${a.id})" style="background:none;border:none;color:var(--loss);cursor:pointer;font-size:16px">✕</button>
+    </div>`).join('');
+}
+
+function startAlertChecker() {
+  if (alertCheckInterval) clearInterval(alertCheckInterval);
+  // Check alerts every 5 minutes via AI scan results
+  alertCheckInterval = setInterval(checkAlertsFromScanResults, 5 * 60 * 1000);
+}
+
+function checkAlertsFromScanResults() {
+  // Check against last scan opportunity tickers
+  const oppEls = document.querySelectorAll('.opp-card');
+  if (!oppEls.length) return;
+  priceAlerts.filter(a=>a.active && !a.triggered).forEach(a => {
+    // Look for ticker in last scan results
+    const card = Array.from(oppEls).find(el => el.querySelector('.opp-ticker')?.textContent === a.ticker);
+    if (card) {
+      const score = parseInt(card.querySelector('[style*="font-size:16px"]')?.textContent)||0;
+      if (score > 0) {
+        a.triggered = true;
+        const msg = `${a.ticker} appeared in scan with score ${score}/100`;
+        sendMacNotification(`🔔 Alert: ${a.ticker}`, msg);
+        addLog('alert', `🔔 Alert triggered: ${msg}`);
+        try { localStorage.setItem('price_alerts', JSON.stringify(priceAlerts)); } catch(e) {}
+        renderAlerts();
+      }
+    }
+  });
+}
+
+// ── Watchlist ──
+function addToWatchlist() {
+  const input = $id('watchlist-add-input');
+  const ticker = input.value.trim().toUpperCase();
+  if (!ticker) return;
+  if (!savedWatchlist.includes(ticker)) {
+    savedWatchlist.push(ticker);
+    try { localStorage.setItem('saved_watchlist', JSON.stringify(savedWatchlist)); } catch(e) {}
+  }
+  input.value = '';
+  renderWatchlist();
+}
+
+function removeFromWatchlist(ticker) {
+  savedWatchlist = savedWatchlist.filter(t=>t!==ticker);
+  try { localStorage.setItem('saved_watchlist', JSON.stringify(savedWatchlist)); } catch(e) {}
+  renderWatchlist();
+}
+
+function syncWatchlistToScanner() {
+  const el = $id('scan-watchlist');
+  if (el && savedWatchlist.length) {
+    el.value = savedWatchlist.join(', ');
+    addLog('settings', '↑ Watchlist synced to Morning Scanner');
+    const btn = event.target;
+    btn.textContent = '✅ Synced!';
+    setTimeout(() => btn.textContent = '↑ Sync to Scanner', 1500);
+  }
+}
+
+function renderWatchlist() {
+  // Also populate from scanner if saved watchlist is empty
+  if (!savedWatchlist.length) {
+    const scannerVal = $id('scan-watchlist')?.value || '';
+    if (scannerVal) savedWatchlist = scannerVal.split(',').map(t=>t.trim()).filter(Boolean);
+  }
+  $id('watchlist-tags').innerHTML = savedWatchlist.map(t=>`
+    <span class="watchlist-tag">${t}<button onclick="removeFromWatchlist('${t}')">×</button></span>`).join('');
+}
+
+// ── Log ──
+function addLog(type, msg) {
+  const entry = { time: new Date().toLocaleTimeString(), type, msg };
+  autoLog.unshift(entry);
+  if (autoLog.length > 50) autoLog.pop();
+  try { localStorage.setItem('auto_log', JSON.stringify(autoLog)); } catch(e) {}
+  renderLog();
+}
+
+function renderLog() {
+  const el = $id('auto-log');
+  const empty = $id('log-empty');
+  if (!autoLog.length) { el.innerHTML='<div style="text-align:center;padding:30px;color:var(--text-dim);font-size:12px">No activity yet</div>'; return; }
+  el.innerHTML = autoLog.map(e=>`
+    <div class="log-item">
+      <span class="log-time">${e.time}</span>
+      <span class="log-msg log-type-${e.type}">${e.msg}</span>
+    </div>`).join('');
+}
+
+function clearLog() {
+  autoLog = [];
+  try { localStorage.removeItem('auto_log'); } catch(e) {}
+  renderLog();
+}
+
+// ── Hook into tab switch ──
+document.querySelectorAll('.tab').forEach(btn => {
+  const prev = btn.onclick;
+  btn.onclick = function(e) {
+    if (prev) prev.call(this, e);
+    if (this.dataset.panel === 'automation') initAutomation();
+  };
+});
+
+// Auto-save scanner settings on change if enabled
+['scan-watchlist','scan-portfolio','scan-risk'].forEach(id => {
+  const el = $id(id);
+  if (el) el.addEventListener('change', () => {
+    if (autoSettings.autosave !== false) {
+      autoSettings.lastWatchlist = $id('scan-watchlist')?.value||'';
+      autoSettings.lastPortfolio = $id('scan-portfolio')?.value||'';
+      autoSettings.lastRisk = $id('scan-risk')?.value||'';
+      try { localStorage.setItem('auto_settings', JSON.stringify(autoSettings)); } catch(e) {}
+    }
+  });
+});
 </script>
 </body>
 </html>
