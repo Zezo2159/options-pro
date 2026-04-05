@@ -2492,16 +2492,8 @@ let ldCache = {};
 let ldSelectedTicker = null;
 let ldCurrentExpiry = null;
 
-// CORS proxies for non-Mac environments (iPhone/browser)
-// Try multiple in sequence in case one is down
-const CORS_PROXIES = [
-  ticker => `https://corsproxy.io/?${encodeURIComponent(`https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=1y`)}`,
-  ticker => `https://api.allorigins.win/raw?url=${encodeURIComponent(`https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=1y`)}`,
-];
-const CORS_PROXIES_10Y = [
-  ticker => `https://corsproxy.io/?${encodeURIComponent(`https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=10y`)}`,
-  ticker => `https://api.allorigins.win/raw?url=${encodeURIComponent(`https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=10y`)}`,
-];
+// Cloudflare Worker proxy for Yahoo Finance (works on iPhone + browser)
+const CF_WORKER = 'https://fragrant-paper-3b17.islamalbaz90.workers.dev';
 
 function xhrGet(url, timeout=20000) {
   return new Promise((resolve, reject) => {
@@ -2525,15 +2517,8 @@ async function fetchYahoo(ticker, range='1y') {
   if (isMacApp) {
     return xhrGet(`/api/yahoo?ticker=${ticker}&range=${range}`);
   }
-  // iPhone/browser: try CORS proxies in sequence
-  const proxies = range === '10y' ? CORS_PROXIES_10Y : CORS_PROXIES;
-  let lastErr;
-  for (const proxyFn of proxies) {
-    try {
-      return await xhrGet(proxyFn(ticker), 20000);
-    } catch(e) { lastErr = e; }
-  }
-  throw new Error('Yahoo Finance unavailable: ' + lastErr.message);
+  // iPhone/browser: use Cloudflare Worker proxy
+  return xhrGet(`${CF_WORKER}?ticker=${ticker}&range=${range}`, 25000);
 }
 
 function calcIVFromHV(closes) {
