@@ -1109,41 +1109,13 @@ async function runMorningScanner() {
   const TIER2 = ['IWM','GLD','XLE','TLT','XLF']; // mid-price — naked CSP OK
   const TIER3 = ['XSP','QQQM','IWM']; // cheap/mini — naked CSP, more contracts
 
-  const maxRiskPerTrade = portfolio * 0.05;
+  const maxRiskPerTrade = Math.round(portfolio * 0.05);
   const tierRules = `
-POSITION SIZING RULES (enforce strictly, portfolio = $${portfolio.toLocaleString()}):
-Max risk per trade = 5% = $${maxRiskPerTrade.toLocaleString()}
-
-TIER 1 — Expensive ETFs (SPY, QQQ, SMH, GDX — price > $300):
-- NEVER recommend naked CSP (collateral too large)
-- ALWAYS use Bull Put Spread or Iron Condor
-- Spread width: $10 wide
-- Max contracts: floor($${maxRiskPerTrade.toLocaleString()} / (spread_width * 100))
-- Example: SPY $540/$530 spread → $1000 collateral → max 12 contracts = $12,000
-
-TIER 2 — Mid-price ETFs (IWM, GLD, XLE, TLT — price $100-$300):
-- Naked CSP acceptable
-- Max contracts: floor($${maxRiskPerTrade.toLocaleString()} / (strike * 100))
-- Example: IWM $230 put → $23,000 collateral → max 5 contracts = $11,500
-- Can also use Bull Put Spread for more contracts
-
-TIER 3 — Cheap/Mini ETFs (XSP, QQQM — price < $100):
-- Naked CSP preferred, more contracts
-- Max contracts: floor($${maxRiskPerTrade.toLocaleString()} / (strike * 100))
-- Example: XSP $54 put → $5,400 collateral → max 23 contracts = $12,420
-
-STRATEGY SELECTION BY MARKET CONDITIONS:
-- Uptrend + VIX 15-22: Wheel CSP (Tier 2/3) or Bull Put Spread (Tier 1)
-- Sideways + VIX 18-28: Iron Condor on any tier
-- Downtrend + VIX 15-22: Bear Call Spread
-- VIX > 28: Bull Put Spread only (defined risk)
-- VIX < 13: No trades — premiums too cheap
-
-For each opportunity, calculate and include:
-- tier (1, 2, or 3)
-- recommended_contracts (based on 5% rule above)
-- collateral_required (contracts × strike × 100 for CSP, contracts × width × 100 for spreads)
-- total_premium (est_premium_per_contract × recommended_contracts)`;
+POSITION SIZING (portfolio=$${portfolio.toLocaleString()}, max risk per trade=5%=$${maxRiskPerTrade.toLocaleString()}):
+- TIER 1 (SPY,QQQ,SMH,GDX — price>$300): SPREADS ONLY. Max contracts=floor(${maxRiskPerTrade}/(width*100)). Tag: "Tier 1 — Spread Only"
+- TIER 2 (IWM,GLD,XLE,TLT — price $100-300): Naked CSP OK. Max contracts=floor(${maxRiskPerTrade}/(strike*100)). Tag: "Tier 2 — CSP OK"  
+- TIER 3 (XSP,QQQM — price<$100): Naked CSP, more contracts. Max contracts=floor(${maxRiskPerTrade}/(strike*100)). Tag: "Tier 3 — Mini"
+- Uptrend+VIX<22: CSP or Bull Put Spread. Sideways+VIX 18-28: Iron Condor. VIX>28: Spreads only. VIX<13: No trades.`;
 
   const prompt = `You are an expert options trading analyst providing a morning briefing for a premium seller.
 
@@ -1166,84 +1138,60 @@ Provide a complete morning scan. Respond ONLY with valid JSON:
   "market_regime": {
     "verdict": "SELL PREMIUM",
     "verdict_class": "sell",
-    "description": "2-3 sentences about overall market conditions today and why it's good/bad for premium selling",
-    "vix_assessment": "Current VIX environment description",
-    "trend_assessment": "Overall market trend description",
-    "recommendation": "One clear action sentence",
-    "indicators": {
-      "vix_level": "18.5",
-      "vix_trend": "Falling",
-      "spy_trend": "Uptrend",
-      "fear_greed": "Neutral"
-    }
+    "description": "2-3 sentences on conditions",
+    "vix_assessment": "VIX description",
+    "trend_assessment": "Trend description",
+    "recommendation": "One action sentence",
+    "indicators": {"vix_level":"18.5","vix_trend":"Stable","spy_trend":"Uptrend","fear_greed":"Neutral"}
   },
   "top_opportunities": [
     {
-      "rank": 1,
-      "ticker": "QQQ",
-      "tier": 1,
-      "score": 82,
-      "iv_rank": 58,
+      "rank": 1, "ticker": "TICKER", "tier": 1,
+      "score": 82, "iv_rank": 58,
       "strategy": "Bull Put Spread",
-      "strike_guidance": "Sell $XXX/$XXX put spread, [exact expiry date]",
+      "strike_guidance": "Sell $XXX/$XXX spread, May 15, 2026 (39 DTE)",
       "est_premium": "$XXX per contract",
       "recommended_contracts": 12,
       "collateral_required": "$12000",
       "total_premium": "$XXXX",
       "probability_profit": "XX%",
-      "why": "2-3 sentences explaining why this is the top pick today specifically",
-      "tags": ["Tier 1 — Spread Only", "High IV Rank", "Strong Trend"],
-      "earnings_safe": true,
-      "earnings_date": null
+      "why": "2-3 sentences on why this ticker today",
+      "tags": ["Tier 1 — Spread Only", "High IV Rank"],
+      "earnings_safe": true, "earnings_date": null
     },
     {
-      "rank": 2,
-      "ticker": "IWM",
-      "tier": 2,
-      "score": 76,
-      "iv_rank": 52,
+      "rank": 2, "ticker": "TICKER", "tier": 2,
+      "score": 76, "iv_rank": 52,
       "strategy": "Wheel (CSP)",
-      "strike_guidance": "Sell $XXX put, [exact expiry date]",
+      "strike_guidance": "Sell $XXX put, May 15, 2026 (39 DTE)",
       "est_premium": "$XXX per contract",
       "recommended_contracts": 5,
       "collateral_required": "$11500",
       "total_premium": "$XXX",
       "probability_profit": "XX%",
-      "why": "2-3 sentences for this opportunity",
+      "why": "2-3 sentences",
       "tags": ["Tier 2 — CSP OK", "Moderate IV"],
-      "earnings_safe": true,
-      "earnings_date": null
+      "earnings_safe": true, "earnings_date": null
     },
     {
-      "rank": 3,
-      "ticker": "XSP",
-      "tier": 3,
-      "score": 71,
-      "iv_rank": 61,
+      "rank": 3, "ticker": "TICKER", "tier": 3,
+      "score": 71, "iv_rank": 61,
       "strategy": "Wheel (CSP)",
-      "strike_guidance": "Sell $XXX put, [exact expiry date]",
+      "strike_guidance": "Sell $XXX put, May 15, 2026 (39 DTE)",
       "est_premium": "$XXX per contract",
       "recommended_contracts": 20,
       "collateral_required": "$10800",
       "total_premium": "$XXXX",
       "probability_profit": "XX%",
-      "why": "2-3 sentences for this opportunity",
-      "tags": ["Tier 3 — Mini Index", "Defined Risk"],
-      "earnings_safe": true,
-      "earnings_date": null
+      "why": "2-3 sentences",
+      "tags": ["Tier 3 — Mini", "Defined Risk"],
+      "earnings_safe": true, "earnings_date": null
     }
   ],
-  "earnings_watch": [
-    {
-      "ticker": "QQQ",
-      "earnings_date": "None this cycle",
-      "risk_level": "safe",
-      "note": "No earnings within 45-day window"
-    }
-  ],
-  "avoid_today": ["VXX", "ARKK"],
-  "avoid_reason": "High volatility products unsuitable for premium selling in current regime",
-  "daily_summary": "2-3 sentence overall summary of what to do today including total premium available and capital deployment"
+  "earnings_watch": [{"ticker":"QQQ","earnings_date":"None","risk_level":"safe","note":"No earnings in 45d"}],
+  "avoid_today": ["VXX"],
+  "avoid_reason": "Reason to avoid",
+  "daily_summary": "2-3 sentence summary with total premium available"
 }`;
 
   try {
