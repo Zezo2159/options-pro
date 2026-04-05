@@ -82,6 +82,7 @@
         <button class="tab" data-panel="tracker">📈 Daily Tracker</button>
         <button class="tab" data-panel="ai" style="color:#a78bfa">🧠 AI Trade Advisor</button>
         <button class="tab" data-panel="scanner" style="color:#f59e0b">🌅 Morning Scanner</button>
+        <button class="tab" data-panel="analytics" style="color:#22c55e">📊 Analytics</button>
     </div>
 
     <!-- ══ 1. WHEEL OPTIMIZER ══ -->
@@ -1260,6 +1261,518 @@ function renderScanResults(r, portfolio) {
 
   $id('scan-results').classList.add('visible');
   $id('scan-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+
+<!-- ══ 6. ANALYTICS PANEL ══ -->
+<div id="panel-analytics" class="panel">
+<style>
+  #panel-analytics {--green:#22c55e;--green-dim:rgba(34,197,94,0.08);--green-border:rgba(34,197,94,0.25);}
+  .an-header{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,rgba(34,197,94,0.08),rgba(56,189,248,0.05));border:1px solid var(--green-border);border-radius:16px;padding:20px 28px;margin-bottom:20px;}
+  .an-tabs{display:flex;gap:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:20px;width:fit-content;}
+  .an-tab{padding:9px 20px;background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:13px;font-weight:600;border-right:1px solid var(--border);transition:.2s;}
+  .an-tab:last-child{border-right:none;}
+  .an-tab.active{background:var(--green-dim);color:var(--green);}
+  .an-panel{display:none;} .an-panel.active{display:block;}
+
+  /* CSV Import */
+  .csv-drop{border:2px dashed var(--border);border-radius:14px;padding:40px;text-align:center;cursor:pointer;transition:.2s;margin-bottom:16px;}
+  .csv-drop:hover,.csv-drop.dragover{border-color:var(--green);background:var(--green-dim);}
+  .csv-drop-icon{font-size:40px;margin-bottom:12px;}
+  .csv-drop-title{font-size:16px;font-weight:700;margin-bottom:6px;}
+  .csv-drop-sub{font-size:12px;color:var(--text-dim);}
+  .csv-preview{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px;}
+  .csv-preview table{width:100%;border-collapse:collapse;font-size:12px;}
+  .csv-preview th{background:rgba(0,0,0,.4);padding:8px 12px;text-align:left;font-size:10px;text-transform:uppercase;color:var(--text-dim);letter-spacing:.05em;}
+  .csv-preview td{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.04);}
+  .csv-preview tr:last-child td{border-bottom:none;}
+
+  /* Stats cards */
+  .an-stats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:20px;}
+  .an-stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;}
+  .an-stat .lbl{font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+  .an-stat .val{font-size:20px;font-weight:900;font-family:var(--font-mono);}
+  .an-stat .sub{font-size:10px;color:var(--text-dim);margin-top:3px;}
+
+  /* Charts */
+  .an-chart-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px;}
+  .an-chart-title{font-size:11px;color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;}
+  .an-chart-wrap{height:280px;}
+
+  /* Trade table */
+  .trade-table{width:100%;border-collapse:collapse;font-size:12px;}
+  .trade-table th{background:rgba(0,0,0,.4);padding:10px 12px;text-align:left;font-size:10px;text-transform:uppercase;color:var(--text-dim);letter-spacing:.05em;position:sticky;top:0;}
+  .trade-table td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.04);}
+  .trade-table tr:hover td{background:rgba(255,255,255,.02);}
+  .trade-table tr:last-child td{border-bottom:none;}
+
+  /* Greeks */
+  .greeks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px;}
+  .greek-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;}
+  .greek-title{font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;font-weight:700;}
+  .greek-big{font-size:32px;font-weight:900;font-family:var(--font-mono);margin-bottom:4px;}
+  .greek-sub{font-size:11px;color:var(--text-dim);}
+  .greek-positions{margin-top:14px;}
+  .greek-pos-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px;}
+  .greek-pos-row:last-child{border-bottom:none;}
+
+  /* Position tracker */
+  .pos-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:12px;}
+  .pos-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;}
+  .pos-ticker{font-size:22px;font-weight:900;font-family:var(--font-mono);}
+  .pos-strategy{font-size:11px;color:var(--text-dim);margin-top:2px;}
+  .pos-pnl{font-size:20px;font-weight:900;font-family:var(--font-mono);text-align:right;}
+  .pos-metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
+  .pos-m .lbl{font-size:9px;color:var(--text-dim);text-transform:uppercase;margin-bottom:3px;}
+  .pos-m .val{font-size:13px;font-weight:700;font-family:var(--font-mono);}
+
+  @media(max-width:900px){.an-stats{grid-template-columns:repeat(3,1fr);}.greeks-grid{grid-template-columns:1fr;}.pos-metrics{grid-template-columns:repeat(3,1fr);}}
+</style>
+
+<div class="an-header">
+  <div style="font-size:42px">📊</div>
+  <div>
+    <div style="font-size:20px;font-weight:900;color:var(--green)">Analytics Dashboard <span style="font-size:14px;color:var(--text-dim);font-weight:400">Phase B</span></div>
+    <div style="font-size:13px;color:var(--text-dim);margin-top:4px">P&L curve · Greeks exposure · Trade history · Open positions — import via CSV</div>
+  </div>
+  <div style="margin-left:auto;display:flex;gap:10px;align-items:center">
+    <button class="primary" onclick="document.getElementById('csv-file-input').click()">⬆ Import CSV</button>
+    <button onclick="clearAnalyticsData()" style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:var(--loss);padding:10px 16px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600">🗑 Clear</button>
+    <input type="file" id="csv-file-input" accept=".csv" style="display:none" onchange="handleCSVUpload(event)">
+  </div>
+</div>
+
+<!-- CSV Format Helper -->
+<div class="card" id="an-csv-helper" style="margin-bottom:16px">
+  <div class="card-title">📥 CSV Import</div>
+  <div class="csv-drop" id="csv-drop-zone" onclick="document.getElementById('csv-file-input').click()">
+    <div class="csv-drop-icon">📂</div>
+    <div class="csv-drop-title">Drop your CSV here or click to browse</div>
+    <div class="csv-drop-sub" style="margin-top:8px">Required columns: <code style="color:var(--accent)">date, ticker, strategy, strike, expiry, premium, contracts, status, pnl</code></div>
+    <div class="csv-drop-sub" style="margin-top:6px">Optional: <code style="color:var(--text-dim)">delta, theta, iv, dte, notes</code></div>
+  </div>
+  <div style="background:rgba(0,0,0,.3);border-radius:8px;padding:14px;font-size:11px;color:var(--text-dim);line-height:1.8">
+    <strong style="color:var(--text)">Example CSV row:</strong><br>
+    <code style="color:var(--accent)">2024-01-15,QQQM,Wheel CSP,225,2024-02-16,310,2,closed,310,0.22,-2.80,23.4,41,Sold at 50% profit</code><br><br>
+    <strong style="color:var(--text)">Status values:</strong> <code>open</code> = active position &nbsp;|&nbsp; <code>closed</code> = completed trade<br>
+    <strong style="color:var(--text)">P&L:</strong> positive = profit, negative = loss &nbsp;|&nbsp; <strong style="color:var(--text)">Premium:</strong> total received (×contracts×100 already)
+  </div>
+</div>
+
+<!-- Summary Stats -->
+<div class="an-stats" id="an-stats-row">
+  <div class="an-stat"><div class="lbl">Total P&L</div><div class="val" id="an-total-pnl" style="color:var(--green)">$0</div><div class="sub">All time</div></div>
+  <div class="an-stat"><div class="lbl">Win Rate</div><div class="val" id="an-win-rate" style="color:var(--accent)">0%</div><div class="sub">Closed trades</div></div>
+  <div class="an-stat"><div class="lbl">Avg Win</div><div class="val" id="an-avg-win" style="color:var(--profit)">$0</div><div class="sub">Per winner</div></div>
+  <div class="an-stat"><div class="lbl">Avg Loss</div><div class="val" id="an-avg-loss" style="color:var(--loss)">$0</div><div class="sub">Per loser</div></div>
+  <div class="an-stat"><div class="lbl">Trades</div><div class="val" id="an-trade-count" style="color:var(--purple)">0</div><div class="sub">Total</div></div>
+  <div class="an-stat"><div class="lbl">Profit Factor</div><div class="val" id="an-profit-factor" style="color:var(--warning)">—</div><div class="sub">Gross W/L</div></div>
+</div>
+
+<!-- Sub-tabs -->
+<div class="an-tabs">
+  <button class="an-tab active" onclick="switchAnTab('pnl')">📈 P&L Curve</button>
+  <button class="an-tab" onclick="switchAnTab('greeks')">🔢 Greeks</button>
+  <button class="an-tab" onclick="switchAnTab('history')">📋 Trade History</button>
+  <button class="an-tab" onclick="switchAnTab('positions')">🎯 Open Positions</button>
+</div>
+
+<!-- P&L CURVE -->
+<div id="an-panel-pnl" class="an-panel active">
+  <div class="an-chart-card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <div class="an-chart-title" style="margin:0">📈 Equity Curve — Cumulative P&L</div>
+      <div style="display:flex;gap:8px">
+        <button onclick="setPnlView('all')" id="pnl-btn-all" class="primary" style="padding:6px 14px;font-size:11px">All</button>
+        <button onclick="setPnlView('month')" id="pnl-btn-month" style="padding:6px 14px;font-size:11px;background:var(--card);border:1px solid var(--border);color:var(--text-dim);border-radius:6px;cursor:pointer">30d</button>
+        <button onclick="setPnlView('week')" id="pnl-btn-week" style="padding:6px 14px;font-size:11px;background:var(--card);border:1px solid var(--border);color:var(--text-dim);border-radius:6px;cursor:pointer">7d</button>
+      </div>
+    </div>
+    <div class="an-chart-wrap"><canvas id="pnlChart"></canvas></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div class="an-chart-card">
+      <div class="an-chart-title">📊 Monthly P&L Breakdown</div>
+      <div style="height:220px"><canvas id="monthlyChart"></canvas></div>
+    </div>
+    <div class="an-chart-card">
+      <div class="an-chart-title">🥧 Strategy Breakdown</div>
+      <div style="height:220px"><canvas id="strategyChart"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- GREEKS -->
+<div id="an-panel-greeks" class="an-panel">
+  <div id="greeks-empty" style="text-align:center;padding:60px;color:var(--text-dim)">
+    <div style="font-size:40px;margin-bottom:12px">🔢</div>
+    <div style="font-size:16px;font-weight:700;margin-bottom:6px">No open positions</div>
+    <div style="font-size:13px">Import a CSV with open trades to see your Greeks exposure</div>
+  </div>
+  <div id="greeks-content" style="display:none">
+    <div class="greeks-grid" id="greeks-grid"></div>
+    <div class="an-chart-card">
+      <div class="an-chart-title">📉 IV Distribution Across Positions</div>
+      <div style="height:220px"><canvas id="ivChart"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- TRADE HISTORY -->
+<div id="an-panel-history" class="an-panel">
+  <div class="an-chart-card" style="padding:0;overflow:hidden">
+    <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+      <div class="an-chart-title" style="margin:0">📋 Trade History</div>
+      <input type="text" id="history-search" placeholder="Search ticker…" oninput="renderHistory()" style="background:#05080f;border:1px solid var(--border);color:var(--text);padding:7px 12px;border-radius:8px;font-size:12px;outline:none;width:160px">
+    </div>
+    <div style="overflow-x:auto;max-height:500px;overflow-y:auto">
+      <table class="trade-table">
+        <thead>
+          <tr>
+            <th>Date</th><th>Ticker</th><th>Strategy</th><th>Strike</th><th>Expiry</th>
+            <th>Premium</th><th>Contracts</th><th>DTE</th><th>IV%</th><th>Delta</th><th>P&L</th><th>Status</th><th>Notes</th>
+          </tr>
+        </thead>
+        <tbody id="history-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- OPEN POSITIONS -->
+<div id="an-panel-positions" class="an-panel">
+  <div id="positions-empty" style="text-align:center;padding:60px;color:var(--text-dim)">
+    <div style="font-size:40px;margin-bottom:12px">🎯</div>
+    <div style="font-size:16px;font-weight:700;margin-bottom:6px">No open positions</div>
+    <div style="font-size:13px">Import a CSV with status=open to track live positions</div>
+  </div>
+  <div id="positions-list"></div>
+</div>
+
+</div><!-- /panel-analytics -->
+
+<script>
+// ══ ANALYTICS ENGINE ══
+let anTrades = [];
+try { anTrades = JSON.parse(localStorage.getItem('an_trades') || '[]'); } catch(e) { anTrades = []; }
+
+let pnlChartInst = null, monthlyChartInst = null, strategyChartInst = null, ivChartInst = null;
+
+// ── CSV Upload ──
+function handleCSVUpload(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    parseCSV(e.target.result);
+    event.target.value = '';
+  };
+  reader.readAsText(file);
+}
+
+// Drag & drop
+const dropZone = document.getElementById('csv-drop-zone');
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault(); dropZone.classList.remove('dragover');
+  const file = e.dataTransfer.files[0];
+  if (file && file.name.endsWith('.csv')) {
+    const reader = new FileReader();
+    reader.onload = ev => parseCSV(ev.target.result);
+    reader.readAsText(file);
+  }
+});
+
+function parseCSV(text) {
+  const lines = text.trim().split('\n').filter(l => l.trim());
+  if (lines.length < 2) { alert('CSV must have a header row and at least one data row.'); return; }
+
+  const headers = lines[0].split(',').map(h => h.trim().toLowerCase().replace(/[^a-z]/g,''));
+  const map = h => headers.indexOf(h);
+
+  const trades = [];
+  for (let i = 1; i < lines.length; i++) {
+    // Handle quoted fields
+    const cols = lines[i].match(/(".*?"|[^,]+|(?<=,)(?=,)|^(?=,)|(?<=,)$)/g) || lines[i].split(',');
+    const c = idx => (cols[idx] || '').replace(/^"|"$/g,'').trim();
+
+    const trade = {
+      id: Date.now() + i,
+      date:      c(map('date')) || c(0),
+      ticker:    (c(map('ticker')) || c(1)).toUpperCase(),
+      strategy:  c(map('strategy')) || c(2),
+      strike:    parseFloat(c(map('strike')) || c(3)) || 0,
+      expiry:    c(map('expiry')) || c(4),
+      premium:   parseFloat(c(map('premium')) || c(5)) || 0,
+      contracts: parseInt(c(map('contracts')) || c(6)) || 1,
+      status:    (c(map('status')) || c(7) || 'closed').toLowerCase(),
+      pnl:       parseFloat(c(map('pnl')) || c(8)) || 0,
+      delta:     parseFloat(c(map('delta')) || c(9)) || 0,
+      theta:     parseFloat(c(map('theta')) || c(10)) || 0,
+      iv:        parseFloat(c(map('iv')) || c(11)) || 0,
+      dte:       parseInt(c(map('dte')) || c(12)) || 0,
+      notes:     c(map('notes')) || c(13) || '',
+    };
+    if (trade.ticker) trades.push(trade);
+  }
+
+  if (!trades.length) { alert('No valid trades found. Check your CSV format.'); return; }
+
+  anTrades = [...anTrades, ...trades];
+  // Deduplicate by date+ticker+strike
+  const seen = new Set();
+  anTrades = anTrades.filter(t => { const k=`${t.date}-${t.ticker}-${t.strike}-${t.premium}`; if(seen.has(k))return false; seen.add(k); return true; });
+  anTrades.sort((a,b) => new Date(a.date) - new Date(b.date));
+
+  try { localStorage.setItem('an_trades', JSON.stringify(anTrades)); } catch(e) {}
+  renderAnalytics();
+  document.getElementById('an-csv-helper').style.display = 'none';
+  alert(`✅ Imported ${trades.length} trades. Total: ${anTrades.length}`);
+}
+
+function clearAnalyticsData() {
+  if (!confirm('Clear all analytics data?')) return;
+  anTrades = [];
+  try { localStorage.removeItem('an_trades'); } catch(e) {}
+  document.getElementById('an-csv-helper').style.display = 'block';
+  renderAnalytics();
+}
+
+// ── Sub-tab switching ──
+function switchAnTab(name) {
+  document.querySelectorAll('.an-tab').forEach((b,i) => b.classList.toggle('active', ['pnl','greeks','history','positions'][i]===name));
+  document.querySelectorAll('.an-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('an-panel-'+name).classList.add('active');
+  if (name==='pnl') renderPnlCharts();
+  if (name==='greeks') renderGreeks();
+  if (name==='history') renderHistory();
+  if (name==='positions') renderPositions();
+}
+
+// ── Stats ──
+function renderStats() {
+  const closed = anTrades.filter(t => t.status === 'closed');
+  const wins = closed.filter(t => t.pnl > 0);
+  const losses = closed.filter(t => t.pnl <= 0);
+  const totalPnl = closed.reduce((s,t) => s+t.pnl, 0);
+  const avgWin = wins.length ? wins.reduce((s,t)=>s+t.pnl,0)/wins.length : 0;
+  const avgLoss = losses.length ? losses.reduce((s,t)=>s+t.pnl,0)/losses.length : 0;
+  const grossW = wins.reduce((s,t)=>s+t.pnl,0);
+  const grossL = Math.abs(losses.reduce((s,t)=>s+t.pnl,0));
+  const pf = grossL > 0 ? grossW/grossL : grossW > 0 ? '∞' : '—';
+
+  const el = id => document.getElementById(id);
+  el('an-total-pnl').innerText = (totalPnl>=0?'+$':'-$')+Math.abs(totalPnl).toFixed(0);
+  el('an-total-pnl').style.color = totalPnl>=0?'var(--profit)':'var(--loss)';
+  el('an-win-rate').innerText = closed.length ? (wins.length/closed.length*100).toFixed(0)+'%' : '0%';
+  el('an-avg-win').innerText = '$'+avgWin.toFixed(0);
+  el('an-avg-loss').innerText = '-$'+Math.abs(avgLoss).toFixed(0);
+  el('an-trade-count').innerText = anTrades.length;
+  el('an-profit-factor').innerText = typeof pf === 'number' ? pf.toFixed(2) : pf;
+}
+
+// ── P&L Charts ──
+let pnlView = 'all';
+function setPnlView(v) {
+  pnlView = v;
+  ['all','month','week'].forEach(x => {
+    const b = document.getElementById('pnl-btn-'+x);
+    b.style.background = x===v ? 'var(--accent)' : 'var(--card)';
+    b.style.color = x===v ? '#000' : 'var(--text-dim)';
+    b.style.border = x===v ? 'none' : '1px solid var(--border)';
+  });
+  renderPnlCharts();
+}
+
+function renderPnlCharts() {
+  const closed = anTrades.filter(t => t.status==='closed').sort((a,b)=>new Date(a.date)-new Date(b.date));
+  if (!closed.length) return;
+
+  let filtered = closed;
+  if (pnlView === 'month') { const cutoff = new Date(); cutoff.setDate(cutoff.getDate()-30); filtered = closed.filter(t=>new Date(t.date)>=cutoff); }
+  if (pnlView === 'week')  { const cutoff = new Date(); cutoff.setDate(cutoff.getDate()-7);  filtered = closed.filter(t=>new Date(t.date)>=cutoff); }
+
+  // Equity curve
+  let cum = 0;
+  const labels = filtered.map(t=>t.date);
+  const cumData = filtered.map(t=>{ cum+=t.pnl; return +cum.toFixed(2); });
+  const colors = filtered.map(t=>t.pnl>=0?'rgba(34,197,94,0.8)':'rgba(239,68,68,0.8)');
+
+  if (pnlChartInst) pnlChartInst.destroy();
+  pnlChartInst = new Chart(document.getElementById('pnlChart'), {
+    type:'line',
+    data:{labels,datasets:[{
+      label:'Cumulative P&L',data:cumData,borderColor:'#22c55e',
+      backgroundColor:ctx=>{const g=ctx.chart.ctx.createLinearGradient(0,0,0,280);g.addColorStop(0,'rgba(34,197,94,0.2)');g.addColorStop(1,'rgba(34,197,94,0)');return g;},
+      fill:true,tension:0.3,pointRadius:filtered.length>50?0:4,
+      pointBackgroundColor:colors,pointBorderColor:colors
+    }]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' P&L: $'+c.raw.toFixed(2)}}},
+      scales:{x:{grid:{color:'#1a2333'},ticks:{color:'#64748b',maxTicksLimit:12}},y:{grid:{color:'#1a2333'},ticks:{color:'#64748b',callback:v=>'$'+v}}}}
+  });
+
+  // Monthly bars
+  const monthly = {};
+  closed.forEach(t => { const m = t.date.substring(0,7); monthly[m] = (monthly[m]||0)+t.pnl; });
+  const mLabels = Object.keys(monthly).sort();
+  const mData = mLabels.map(k=>+monthly[k].toFixed(2));
+  if (monthlyChartInst) monthlyChartInst.destroy();
+  monthlyChartInst = new Chart(document.getElementById('monthlyChart'), {
+    type:'bar',
+    data:{labels:mLabels,datasets:[{label:'Monthly P&L',data:mData,backgroundColor:mData.map(v=>v>=0?'rgba(34,197,94,0.7)':'rgba(239,68,68,0.7)'),borderRadius:4}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{grid:{color:'#1a2333'},ticks:{color:'#64748b'}},y:{grid:{color:'#1a2333'},ticks:{color:'#64748b',callback:v=>'$'+v}}}}
+  });
+
+  // Strategy pie
+  const strats = {};
+  closed.forEach(t=>{ const s=t.strategy||'Other'; strats[s]=(strats[s]||0)+Math.max(0,t.pnl); });
+  const sLabels = Object.keys(strats);
+  const sData = sLabels.map(k=>+strats[k].toFixed(2));
+  const sColors = ['#22c55e','#38bdf8','#a78bfa','#f59e0b','#ef4444','#06b6d4'];
+  if (strategyChartInst) strategyChartInst.destroy();
+  strategyChartInst = new Chart(document.getElementById('strategyChart'), {
+    type:'doughnut',
+    data:{labels:sLabels,datasets:[{data:sData,backgroundColor:sColors,borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{color:'#94a3b8',font:{size:11}}}}}
+  });
+}
+
+// ── Greeks ──
+function renderGreeks() {
+  const open = anTrades.filter(t => t.status==='open');
+  const gc = document.getElementById('greeks-content');
+  const ge = document.getElementById('greeks-empty');
+  if (!open.length) { gc.style.display='none'; ge.style.display='block'; return; }
+  gc.style.display='block'; ge.style.display='none';
+
+  const totalDelta = open.reduce((s,t)=>s+(t.delta*t.contracts*100),0);
+  const totalTheta = open.reduce((s,t)=>s+(t.theta*t.contracts),0);
+  const avgIV = open.reduce((s,t)=>s+t.iv,0)/open.length;
+
+  const greeksData = [
+    { title:'Δ Portfolio Delta', icon:'📐', val:totalDelta.toFixed(2), sub:'Net directional exposure', color:'var(--accent)',
+      rows: open.map(t=>({ticker:t.ticker, val:(t.delta*t.contracts*100).toFixed(2), color:t.delta<0?'var(--loss)':'var(--profit)'})) },
+    { title:'Θ Portfolio Theta', icon:'⏳', val:'$'+Math.abs(totalTheta).toFixed(2)+'/day', sub:'Daily time decay income', color:'var(--profit)',
+      rows: open.map(t=>({ticker:t.ticker, val:'$'+(Math.abs(t.theta)*t.contracts).toFixed(2)+'/d', color:'var(--profit)'})) },
+    { title:'IV Average', icon:'🌡️', val:avgIV.toFixed(1)+'%', sub:'Avg implied volatility', color:'var(--warning)',
+      rows: open.map(t=>({ticker:t.ticker, val:t.iv.toFixed(1)+'%', color:t.iv>30?'var(--warning)':'var(--accent)'})) },
+  ];
+
+  document.getElementById('greeks-grid').innerHTML = greeksData.map(g=>`
+    <div class="greek-card">
+      <div class="greek-title">${g.icon} ${g.title}</div>
+      <div class="greek-big" style="color:${g.color}">${g.val}</div>
+      <div class="greek-sub">${g.sub}</div>
+      <div class="greek-positions">
+        ${g.rows.map(r=>`<div class="greek-pos-row"><span>${r.ticker}</span><span style="color:${r.color};font-family:var(--font-mono);font-weight:700">${r.val}</span></div>`).join('')}
+      </div>
+    </div>`).join('');
+
+  // IV chart
+  const ivLabels = open.map(t=>t.ticker);
+  const ivData = open.map(t=>t.iv);
+  if (ivChartInst) ivChartInst.destroy();
+  ivChartInst = new Chart(document.getElementById('ivChart'), {
+    type:'bar',
+    data:{labels:ivLabels,datasets:[{label:'IV %',data:ivData,backgroundColor:ivData.map(v=>v>30?'rgba(245,158,11,0.7)':'rgba(56,189,248,0.7)'),borderRadius:4}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{grid:{color:'#1a2333'},ticks:{color:'#64748b'}},y:{grid:{color:'#1a2333'},ticks:{color:'#64748b',callback:v=>v+'%'}}}}
+  });
+}
+
+// ── Trade History ──
+function renderHistory() {
+  const search = (document.getElementById('history-search')?.value||'').toUpperCase();
+  const filtered = anTrades.filter(t=>t.status==='closed'&&(!search||t.ticker.includes(search)||t.strategy.toUpperCase().includes(search)));
+  const tbody = document.getElementById('history-tbody');
+  if (!filtered.length) { tbody.innerHTML=`<tr><td colspan="13" style="text-align:center;padding:40px;color:var(--text-dim)">No closed trades${search?' matching "'+search+'"':''}</td></tr>`; return; }
+  tbody.innerHTML = [...filtered].reverse().map(t=>`
+    <tr>
+      <td style="color:var(--text-dim)">${t.date}</td>
+      <td style="font-weight:800;font-family:var(--font-mono)">${t.ticker}</td>
+      <td style="color:var(--text-dim)">${t.strategy}</td>
+      <td style="font-family:var(--font-mono)">$${t.strike}</td>
+      <td style="color:var(--text-dim)">${t.expiry}</td>
+      <td style="color:var(--profit);font-family:var(--font-mono)">$${t.premium}</td>
+      <td style="text-align:center">${t.contracts}</td>
+      <td style="text-align:center;color:var(--text-dim)">${t.dte||'—'}</td>
+      <td style="color:var(--warning)">${t.iv?t.iv+'%':'—'}</td>
+      <td style="font-family:var(--font-mono)">${t.delta||'—'}</td>
+      <td style="font-weight:800;font-family:var(--font-mono);color:${t.pnl>=0?'var(--profit)':'var(--loss)'}">${t.pnl>=0?'+':'-'}$${Math.abs(t.pnl).toFixed(0)}</td>
+      <td><span class="zone ${t.pnl>=0?'zone-safe':'zone-danger'}">${t.pnl>=0?'WIN':'LOSS'}</span></td>
+      <td style="font-size:11px;color:var(--text-dim);max-width:140px;overflow:hidden;text-overflow:ellipsis">${t.notes||''}</td>
+    </tr>`).join('');
+}
+
+// ── Open Positions ──
+function renderPositions() {
+  const open = anTrades.filter(t=>t.status==='open');
+  const el = document.getElementById('positions-list');
+  const empty = document.getElementById('positions-empty');
+  if (!open.length) { empty.style.display='block'; el.innerHTML=''; return; }
+  empty.style.display='none';
+  const today = new Date();
+  el.innerHTML = open.map(t => {
+    const daysLeft = t.expiry ? Math.round((new Date(t.expiry)-today)/(1000*60*60*24)) : t.dte;
+    const dteColor = daysLeft<7?'var(--loss)':daysLeft<14?'var(--warning)':'var(--profit)';
+    const thetaDaily = Math.abs(t.theta)*t.contracts;
+    const thetaEarned = thetaDaily * (t.dte - Math.max(0,daysLeft||0));
+    return `<div class="pos-card">
+      <div class="pos-header">
+        <div>
+          <div class="pos-ticker" style="color:var(--accent)">${t.ticker}</div>
+          <div class="pos-strategy">${t.strategy} · $${t.strike} · Exp ${t.expiry}</div>
+          <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+            <span class="zone zone-ok">${t.contracts} contract${t.contracts!==1?'s':''}</span>
+            <span class="zone ${daysLeft<7?'zone-danger':daysLeft<14?'zone-warn':'zone-safe'}" style="color:${dteColor}">${daysLeft>=0?daysLeft+'d left':'expired'}</span>
+            ${t.iv?`<span class="zone zone-warn">IV ${t.iv}%</span>`:''}
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div class="pos-pnl" style="color:var(--profit)">+$${t.premium}</div>
+          <div style="font-size:11px;color:var(--text-dim);margin-top:2px">premium collected</div>
+          <div style="font-size:13px;color:var(--profit);margin-top:6px">$${thetaEarned.toFixed(0)} theta earned</div>
+        </div>
+      </div>
+      <div class="pos-metrics">
+        <div class="pos-m"><div class="lbl">Delta</div><div class="val" style="color:var(--accent)">${t.delta||'—'}</div></div>
+        <div class="pos-m"><div class="lbl">Theta/day</div><div class="val" style="color:var(--profit)">$${thetaDaily.toFixed(2)}</div></div>
+        <div class="pos-m"><div class="lbl">IV</div><div class="val" style="color:var(--warning)">${t.iv?t.iv+'%':'—'}</div></div>
+        <div class="pos-m"><div class="lbl">Strike</div><div class="val">$${t.strike}</div></div>
+        <div class="pos-m"><div class="lbl">Contracts</div><div class="val">${t.contracts}</div></div>
+        <div class="pos-m"><div class="lbl">DTE Left</div><div class="val" style="color:${dteColor}">${daysLeft>=0?daysLeft:'exp'}</div></div>
+      </div>
+      ${t.notes?`<div style="margin-top:12px;font-size:11px;color:var(--text-dim);background:rgba(0,0,0,.2);padding:8px 12px;border-radius:6px">${t.notes}</div>`:''}
+    </div>`;
+  }).join('');
+}
+
+// ── Main render ──
+function renderAnalytics() {
+  renderStats();
+  renderPnlCharts();
+  renderGreeks();
+  renderHistory();
+  renderPositions();
+}
+
+// Init on tab switch
+document.querySelectorAll('.tab').forEach(btn => {
+  const orig = btn.onclick;
+  btn.onclick = e => {
+    if (orig) orig.call(btn, e);
+    if (btn.dataset.panel === 'analytics') {
+      renderAnalytics();
+      if (anTrades.length) document.getElementById('an-csv-helper').style.display = 'none';
+    }
+  };
+});
+
+// Load on startup if data exists
+if (anTrades.length) {
+  document.getElementById('an-csv-helper').style.display = 'none';
 }
 </script>
 </body>
