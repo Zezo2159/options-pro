@@ -2942,22 +2942,22 @@ function simulateTrades(prices, strategy, account, dte, deltaTarget, closePct, s
       let credit, maxLoss, strike, strike2;
 
       if (strategy === 'wheel') {
-        // Find strike at target delta
         strike = findStrikeForDelta(price, iv, t, r, deltaTarget, 'put');
         const prem = bsPut(price, strike, iv, t, r);
-        credit = prem * 100;
+        credit = prem * 100; // per contract
         maxLoss = strike * 100 - credit;
-        const qty = Math.max(1, Math.floor(account * 0.20 / (strike * 100)));
-        currentTrade = { entry: prices[i].date, entryPrice: price, strike, credit: credit*qty, maxLoss: maxLoss*qty, qty, iv: iv*100, strategy, dte };
+        // Size: use up to 25% of account, min 1 contract
+        const qty = Math.max(1, Math.floor(account * 0.25 / (strike * 100)));
+        currentTrade = { entry: prices[i].date, entryPrice: price, strike, creditPerContract: credit, credit: +( credit*qty).toFixed(2), maxLoss: +(maxLoss*qty).toFixed(2), qty, iv: iv*100, strategy, dte };
       } else if (strategy === 'bps') {
         strike = findStrikeForDelta(price, iv, t, r, deltaTarget, 'put');
         strike2 = strike - spreadWidth;
         const shortPrem = bsPut(price, strike, iv, t, r);
         const longPrem = bsPut(price, strike2, iv, t, r);
         credit = (shortPrem - longPrem) * 100;
-        maxLoss = (spreadWidth - credit/100) * 100;
-        const qty = Math.max(1, Math.floor(account * 0.05 / maxLoss));
-        currentTrade = { entry: prices[i].date, entryPrice: price, strike, strike2, credit: credit*qty, maxLoss: maxLoss*qty, qty, iv: iv*100, strategy, dte };
+        maxLoss = Math.max(1, (spreadWidth - shortPrem + longPrem) * 100);
+        const qty = Math.max(1, Math.floor(account * 0.10 / maxLoss));
+        currentTrade = { entry: prices[i].date, entryPrice: price, strike, strike2, creditPerContract: credit, credit: +(credit*qty).toFixed(2), maxLoss: +(maxLoss*qty).toFixed(2), qty, iv: iv*100, strategy, dte };
       } else { // ic
         const putStrike = findStrikeForDelta(price, iv, t, r, deltaTarget, 'put');
         const callStrike = findStrikeForDelta(price, iv, t, r, deltaTarget, 'call');
@@ -2966,9 +2966,9 @@ function simulateTrades(prices, strategy, account, dte, deltaTarget, closePct, s
         const putCredit = (bsPut(price,putStrike,iv,t,r)-bsPut(price,putStrike2,iv,t,r))*100;
         const callCredit = (bsCall(price,callStrike,iv,t,r)-bsCall(price,callStrike2,iv,t,r))*100;
         credit = putCredit + callCredit;
-        maxLoss = (spreadWidth - credit/100)*100;
-        const qty = Math.max(1, Math.floor(account*0.05/maxLoss));
-        currentTrade = { entry: prices[i].date, entryPrice: price, strike: putStrike, strike2: callStrike, credit: credit*qty, maxLoss: maxLoss*qty, qty, iv: iv*100, strategy, dte };
+        maxLoss = Math.max(1, (spreadWidth - credit/100)*100);
+        const qty = Math.max(1, Math.floor(account*0.10/maxLoss));
+        currentTrade = { entry: prices[i].date, entryPrice: price, strike: putStrike, strike2: callStrike, creditPerContract: credit, credit: +(credit*qty).toFixed(2), maxLoss: +(maxLoss*qty).toFixed(2), qty, iv: iv*100, strategy, dte };
       }
 
       if (credit > 0) { inTrade = true; tradeEndIdx = Math.min(i+dte, prices.length-1); }
@@ -2983,17 +2983,18 @@ function simulateTrades(prices, strategy, account, dte, deltaTarget, closePct, s
     const iv = calcHV(prices, i)*1.1;
 
     let currentPnl = 0;
+    const cpc = currentTrade.creditPerContract; // per-contract credit
     if (strategy==='wheel') {
-      const currentVal = bsPut(price, currentTrade.strike, iv, t, 0.05)*100*currentTrade.qty;
-      currentPnl = currentTrade.credit - currentVal;
+      const currentValPer = bsPut(price, currentTrade.strike, iv, t, 0.05)*100;
+      currentPnl = (cpc - currentValPer) * currentTrade.qty;
     } else if (strategy==='bps') {
       const sv = bsPut(price,currentTrade.strike,iv,t,0.05)*100;
       const lv = bsPut(price,currentTrade.strike2,iv,t,0.05)*100;
-      currentPnl = (currentTrade.credit/currentTrade.qty - (sv-lv))*currentTrade.qty;
+      currentPnl = (cpc - (sv-lv)) * currentTrade.qty;
     } else {
       const psv=bsPut(price,currentTrade.strike,iv,t,0.05)*100, plv=bsPut(price,currentTrade.strike-spreadWidth,iv,t,0.05)*100;
       const csv=bsCall(price,currentTrade.strike2,iv,t,0.05)*100, clv=bsCall(price,currentTrade.strike2+spreadWidth,iv,t,0.05)*100;
-      currentPnl = currentTrade.credit/currentTrade.qty*currentTrade.qty - ((psv-plv)+(csv-clv))*currentTrade.qty;
+      currentPnl = (cpc - ((psv-plv)+(csv-clv))) * currentTrade.qty;
     }
 
     const profitTarget = currentTrade.credit * (closePct/100);
@@ -3003,9 +3004,12 @@ function simulateTrades(prices, strategy, account, dte, deltaTarget, closePct, s
     if (currentPnl >= profitTarget || currentPnl <= stopLoss || expired) {
       let finalPnl;
       if (expired) {
-        // At expiry — intrinsic value
-        if (strategy==='wheel') finalPnl = Math.min(currentTrade.credit, currentTrade.credit - Math.max(0, currentTrade.strike-price)*100*currentTrade.qty);
-        else finalPnl = Math.max(-currentTrade.maxLoss, Math.min(currentTrade.credit, currentPnl));
+        if (strategy==='wheel') {
+          const intrinsic = Math.max(0, currentTrade.strike - price) * 100 * currentTrade.qty;
+          finalPnl = currentTrade.credit - intrinsic;
+        } else {
+          finalPnl = Math.max(-currentTrade.maxLoss, Math.min(currentTrade.credit, currentPnl));
+        }
       } else { finalPnl = currentPnl; }
 
       trades.push({
@@ -3016,7 +3020,7 @@ function simulateTrades(prices, strategy, account, dte, deltaTarget, closePct, s
         result: finalPnl >= profitTarget ? '50% profit' : finalPnl <= stopLoss ? 'Stop loss' : finalPnl > 0 ? 'Expired profit' : 'Expired loss'
       });
       inTrade = false; currentTrade = null;
-      tradeEndIdx = i + Math.max(1, Math.floor(dte*0.3)); // wait before next trade
+      tradeEndIdx = i + Math.max(1, Math.floor(dte*0.3));
     }
     i++;
   }
