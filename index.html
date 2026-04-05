@@ -1118,24 +1118,71 @@ POSITION SIZING (portfolio=$${portfolio.toLocaleString()}, max risk per trade=5%
 - Uptrend+VIX<22: CSP or Bull Put Spread. Sideways+VIX 18-28: Iron Condor. VIX>28: Spreads only. VIX<13: No trades.`;
 
   const exp1 = expiryDates[0] || 'May 16, 2026';
-  const exp2 = expiryDates[1] || 'Jun 20, 2026';
 
-  const prompt = `You are an expert options trading analyst. Provide a morning scan briefing.
+  const prompt = `You are an expert options trading analyst. Morning scan for premium seller.
+Today: ${today} | Portfolio: $${portfolio.toLocaleString()} | Risk: ${risk} | Max/trade: $${maxRiskPerTrade.toLocaleString()}
+Watchlist: ${tickers.join(', ')} | Best expiry: ${exp1}
+Tier1(SPY,QQQ,SMH)=spreads only | Tier2(IWM,GLD,XLE,TLT)=CSP ok | Tier3(XSP,QQQM)=CSP mini
+Pick top 3 tickers. Apply tier rules. Size contracts to stay under $${maxRiskPerTrade.toLocaleString()} collateral.
 
-Today: ${today}
-Portfolio: $${portfolio.toLocaleString()} | Risk: ${risk} | Max per trade: $${maxRiskPerTrade.toLocaleString()}
-Watchlist: ${tickers.join(', ')}
-Next expiries: ${exp1} | ${exp2}
+Respond with ONLY valid JSON (no markdown, no backticks, no preamble):
 
-Tier rules:
-- T1 (SPY,QQQ,SMH,GDX): spreads ONLY, never naked CSP
-- T2 (IWM,GLD,XLE,TLT,GDX): naked CSP ok, contracts=floor(${maxRiskPerTrade}/strike/100)
-- T3 (XSP,QQQM): naked CSP mini, more contracts
-
-Strategy by conditions: uptrend+VIX<22=CSP or BPS, sideways=IC, VIX>28=spreads only.
-
-Respond ONLY with valid JSON (no markdown):
-{"market_regime":{"verdict":"SELL PREMIUM","verdict_class":"sell","description":"...","vix_assessment":"...","trend_assessment":"...","recommendation":"...","indicators":{"vix_level":"17.2","vix_trend":"Stable","spy_trend":"Uptrend","fear_greed":"Neutral"}},"top_opportunities":[{"rank":1,"ticker":"QQQ","tier":1,"score":82,"iv_rank":58,"strategy":"Bull Put Spread","strike_guidance":"Sell $470/$460 spread, ${exp1}","est_premium":"$145 per contract","recommended_contracts":12,"collateral_required":"$12000","total_premium":"$1740","probability_profit":"76%","why":"QQQ elevated IV rank with strong uptrend makes this ideal for defined risk premium selling.","tags":["Tier 1 — Spread Only","High IV Rank"],"earnings_safe":true,"earnings_date":null},{"rank":2,"ticker":"IWM","tier":2,"score":76,"iv_rank":52,"strategy":"Wheel (CSP)","strike_guidance":"Sell $230 put, ${exp1}","est_premium":"$185 per contract","recommended_contracts":5,"collateral_required":"$11500","total_premium":"$925","probability_profit":"78%","why":"IWM small cap exposure with solid IV and uptrend support.","tags":["Tier 2 — CSP OK","Moderate IV"],"earnings_safe":true,"earnings_date":null},{"rank":3,"ticker":"GLD","tier":2,"score":71,"iv_rank":61,"strategy":"Wheel (CSP)","strike_guidance":"Sell $200 put, ${exp1}","est_premium":"$120 per contract","recommended_contracts":6,"collateral_required":"$12000","total_premium":"$720","probability_profit":"74%","why":"Gold elevated IV from geopolitical demand, uncorrelated safe haven.","tags":["Tier 2 — CSP OK","Safe Haven"],"earnings_safe":true,"earnings_date":null}],"earnings_watch":[{"ticker":"SPY","earnings_date":"None","risk_level":"safe","note":"No earnings in 45 day window"}],"avoid_today":["VXX"],"avoid_reason":"Volatility product unsuitable for premium selling","daily_summary":"Favorable conditions for premium selling with VIX at 17.2 in stable uptrend. Deploy 3 positions for total premium of approximately $3400."}`;
+{
+  "market_regime": {
+    "verdict": "SELL PREMIUM",
+    "verdict_class": "sell",
+    "description": "2 sentences on market conditions",
+    "vix_assessment": "VIX reading",
+    "trend_assessment": "Market trend",
+    "recommendation": "One action sentence",
+    "indicators": {"vix_level": "17.2", "vix_trend": "Stable", "spy_trend": "Uptrend", "fear_greed": "Neutral"}
+  },
+  "top_opportunities": [
+    {
+      "rank": 1, "ticker": "QQQ", "tier": 1, "score": 82, "iv_rank": 58,
+      "strategy": "Bull Put Spread",
+      "strike_guidance": "Sell $XXX/$XXX spread, ${exp1}",
+      "est_premium": "$XXX per contract",
+      "recommended_contracts": 12,
+      "collateral_required": "$12000",
+      "total_premium": "$XXXX",
+      "probability_profit": "76%",
+      "why": "2 sentences on why this ticker today",
+      "tags": ["Tier 1 — Spread Only", "High IV Rank"],
+      "earnings_safe": true, "earnings_date": null
+    },
+    {
+      "rank": 2, "ticker": "IWM", "tier": 2, "score": 76, "iv_rank": 52,
+      "strategy": "Wheel (CSP)",
+      "strike_guidance": "Sell $XXX put, ${exp1}",
+      "est_premium": "$XXX per contract",
+      "recommended_contracts": 5,
+      "collateral_required": "$11500",
+      "total_premium": "$XXX",
+      "probability_profit": "78%",
+      "why": "2 sentences",
+      "tags": ["Tier 2 — CSP OK", "Moderate IV"],
+      "earnings_safe": true, "earnings_date": null
+    },
+    {
+      "rank": 3, "ticker": "GLD", "tier": 2, "score": 71, "iv_rank": 61,
+      "strategy": "Wheel (CSP)",
+      "strike_guidance": "Sell $XXX put, ${exp1}",
+      "est_premium": "$XXX per contract",
+      "recommended_contracts": 6,
+      "collateral_required": "$12000",
+      "total_premium": "$XXX",
+      "probability_profit": "74%",
+      "why": "2 sentences",
+      "tags": ["Tier 2 — CSP OK", "Safe Haven"],
+      "earnings_safe": true, "earnings_date": null
+    }
+  ],
+  "earnings_watch": [{"ticker": "SPY", "earnings_date": "None", "risk_level": "safe", "note": "No earnings in 45d"}],
+  "avoid_today": ["VXX"],
+  "avoid_reason": "Unsuitable for premium selling",
+  "daily_summary": "2 sentence summary with total premium estimate"
+}`;
 
   try {
     const data = await Promise.race([
