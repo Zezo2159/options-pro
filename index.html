@@ -2492,25 +2492,48 @@ let ldCache = {};
 let ldSelectedTicker = null;
 let ldCurrentExpiry = null;
 
-async function fetchYahoo(ticker) {
-  const isMacApp = window.location.protocol === 'http:' && window.location.hostname === 'localhost';
-  // Route through proxy on Mac, use CORS proxy on iPhone/browser
-  const url = isMacApp
-    ? `/api/yahoo?ticker=${ticker}`
-    : `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=1y`;
+// CORS proxies for non-Mac environments (iPhone/browser)
+// Try multiple in sequence in case one is down
+const CORS_PROXIES = [
+  ticker => `https://corsproxy.io/?${encodeURIComponent(`https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=1y`)}`,
+  ticker => `https://api.allorigins.win/raw?url=${encodeURIComponent(`https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=1y`)}`,
+];
+const CORS_PROXIES_10Y = [
+  ticker => `https://corsproxy.io/?${encodeURIComponent(`https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=10y`)}`,
+  ticker => `https://api.allorigins.win/raw?url=${encodeURIComponent(`https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=10y`)}`,
+];
 
+function xhrGet(url, timeout=20000) {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
-    xhr.timeout = 15000;
+    xhr.timeout = timeout;
     xhr.onload = () => {
-      try { resolve(JSON.parse(xhr.responseText)); }
-      catch(e) { reject(new Error('Parse error')); }
+      if (xhr.status >= 200 && xhr.status < 300) {
+        try { resolve(JSON.parse(xhr.responseText)); }
+        catch(e) { reject(new Error('Parse error')); }
+      } else { reject(new Error('HTTP ' + xhr.status)); }
     };
     xhr.onerror = () => reject(new Error('Network error'));
     xhr.ontimeout = () => reject(new Error('Timeout'));
     xhr.send();
   });
+}
+
+async function fetchYahoo(ticker, range='1y') {
+  const isMacApp = window.location.protocol === 'http:' && window.location.hostname === 'localhost';
+  if (isMacApp) {
+    return xhrGet(`/api/yahoo?ticker=${ticker}&range=${range}`);
+  }
+  // iPhone/browser: try CORS proxies in sequence
+  const proxies = range === '10y' ? CORS_PROXIES_10Y : CORS_PROXIES;
+  let lastErr;
+  for (const proxyFn of proxies) {
+    try {
+      return await xhrGet(proxyFn(ticker), 20000);
+    } catch(e) { lastErr = e; }
+  }
+  throw new Error('Yahoo Finance unavailable: ' + lastErr.message);
 }
 
 function calcIVFromHV(closes) {
@@ -2737,7 +2760,7 @@ async function refreshAllLiveData() {
   if (!tickers.length) { loadLiveData(); return; }
   for (const t of tickers) {
     try {
-      const data = await fetchYahoo(t);
+      const data = await fetchYahoo(t, '1y');
       const result = data.chart?.result?.[0];
       if (!result) continue;
       const meta = result.meta;
@@ -2869,13 +2892,7 @@ async function runBacktest() {
 
   try {
     // Fetch max history (10 years)
-    const isMacApp = window.location.protocol==='http:'&&window.location.hostname==='localhost';
-    const url = isMacApp ? `/api/yahoo?ticker=${ticker}&range=10y` : `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=10y`;
-    const data = await new Promise((res,rej)=>{
-      const xhr=new XMLHttpRequest(); xhr.open('GET',url,true); xhr.timeout=20000;
-      xhr.onload=()=>{try{res(JSON.parse(xhr.responseText));}catch(e){rej(e);}};
-      xhr.onerror=()=>rej(new Error('Network error')); xhr.ontimeout=()=>rej(new Error('Timeout')); xhr.send();
-    });
+    const data = await fetchYahoo(ticker, '10y');
     setProgress(30);
 
     const result = data.chart?.result?.[0];
