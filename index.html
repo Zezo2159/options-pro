@@ -2923,6 +2923,14 @@ function calcHV(prices, idx, window=20) {
   return Math.sqrt(v*252);
 }
 
+// IV = HV * volatility risk premium (1.3–1.6x is realistic for ETFs)
+// Also apply a floor of 12% to avoid unrealistically cheap options
+function calcIV(prices, idx) {
+  const hv = calcHV(prices, idx);
+  const vrp = 1.4; // volatility risk premium — options trade ~40% above realized vol
+  return Math.max(0.12, hv * vrp);
+}
+
 function simulateTrades(prices, strategy, account, dte, deltaTarget, closePct, stopMult, spreadWidth) {
   const trades = [];
   let i = 30; // start after warmup
@@ -2935,7 +2943,7 @@ function simulateTrades(prices, strategy, account, dte, deltaTarget, closePct, s
       // Entry: enter every ~dte days
       if (i < tradeEndIdx) { i++; continue; }
       const price = prices[i].close;
-      const iv = calcHV(prices, i) * 1.1; // slight premium over HV
+      const iv = calcIV(prices, i); // HV × volatility risk premium
       const t = dte/365;
       const r = 0.05;
 
@@ -2946,9 +2954,10 @@ function simulateTrades(prices, strategy, account, dte, deltaTarget, closePct, s
         const prem = bsPut(price, strike, iv, t, r);
         credit = prem * 100; // per contract
         maxLoss = strike * 100 - credit;
-        // Size: use up to 25% of account, min 1 contract
-        const qty = Math.max(1, Math.floor(account * 0.25 / (strike * 100)));
-        currentTrade = { entry: prices[i].date, entryPrice: price, strike, creditPerContract: credit, credit: +( credit*qty).toFixed(2), maxLoss: +(maxLoss*qty).toFixed(2), qty, iv: iv*100, strategy, dte };
+        // Collateral = strike × 100 per contract; use up to 50% of account
+        const collateralPerContract = strike * 100;
+        const qty = Math.max(1, Math.min(10, Math.floor(account * 0.50 / collateralPerContract)));
+        currentTrade = { entry: prices[i].date, entryPrice: price, strike, creditPerContract: credit, credit: +(credit*qty).toFixed(2), maxLoss: +(maxLoss*qty).toFixed(2), qty, iv: iv*100, strategy, dte };
       } else if (strategy === 'bps') {
         strike = findStrikeForDelta(price, iv, t, r, deltaTarget, 'put');
         strike2 = strike - spreadWidth;
@@ -2980,7 +2989,7 @@ function simulateTrades(prices, strategy, account, dte, deltaTarget, closePct, s
     const daysIn = Math.round((prices[i].date - currentTrade.entry)/(1000*60*60*24));
     const daysLeft = Math.max(0, currentTrade.dte - daysIn);
     const t = daysLeft/365;
-    const iv = calcHV(prices, i)*1.1;
+    const iv = calcIV(prices, i);
 
     let currentPnl = 0;
     const cpc = currentTrade.creditPerContract; // per-contract credit
