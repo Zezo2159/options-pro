@@ -3000,8 +3000,9 @@ function simulateTrades(prices, strategy, account, dte, deltaTarget, closePct, s
     const profitTarget = currentTrade.credit * (closePct/100);
     const stopLoss = -currentTrade.credit * stopMult;
     const expired = i >= tradeEndIdx;
+    const minHold = Math.floor(currentTrade.dte * 0.3); // must hold at least 30% of DTE
 
-    if (currentPnl >= profitTarget || currentPnl <= stopLoss || expired) {
+    if ((daysIn >= minHold || expired) && (currentPnl >= profitTarget || currentPnl <= stopLoss || expired)) {
       let finalPnl;
       if (expired) {
         if (strategy==='wheel') {
@@ -3136,19 +3137,20 @@ function renderBacktestResults(trades, stats, ticker, strategy, prices) {
         <span>Entry</span><span>Exit</span><span>Strike</span><span>Credit</span><span>P&L</span><span>Days</span><span>IV%</span><span>Result</span><span>Cumulative</span>
       </div>
       ${(()=>{
-        let cum=stats.startingCapital;
+        let cum = stats.startingCapital;
         return [...trades].slice(-50).reverse().map(t=>{
-          cum+=0; // cumulative tracked separately
+          cum += t.pnl;
+          const cumColor = cum >= stats.startingCapital ? 'var(--profit)' : 'var(--loss)';
           return `<div class="bt-trade-row">
             <span style="color:var(--text-dim)">${t.entry.toLocaleDateString()}</span>
             <span style="color:var(--text-dim)">${t.exit.toLocaleDateString()}</span>
             <span style="font-family:var(--font-mono)">$${t.strike}</span>
-            <span style="color:var(--profit);font-family:var(--font-mono)">$${t.credit.toFixed(0)}</span>
-            <span style="color:${t.pnl>=0?'var(--profit)':'var(--loss)'};font-weight:700;font-family:var(--font-mono)">${t.pnl>=0?'+':'-'}$${Math.abs(t.pnl).toFixed(0)}</span>
+            <span style="color:var(--profit);font-family:var(--font-mono)">$${t.credit.toFixed(2)}</span>
+            <span style="color:${t.pnl>=0?'var(--profit)':'var(--loss)'};font-weight:700;font-family:var(--font-mono)">${t.pnl>=0?'+':'-'}$${Math.abs(t.pnl).toFixed(2)}</span>
             <span style="color:var(--text-dim)">${t.daysHeld}d</span>
             <span style="color:var(--warning)">${t.iv.toFixed(1)}%</span>
             <span class="zone ${t.pnl>0?'zone-safe':t.result.includes('Stop')?'zone-danger':'zone-warn'}" style="font-size:9px">${t.result}</span>
-            <span style="font-family:var(--font-mono);color:var(--text-dim)"></span>
+            <span style="font-family:var(--font-mono);color:${cumColor};font-size:10px">$${cum.toFixed(0)}</span>
           </div>`;
         }).join('');
       })()}
