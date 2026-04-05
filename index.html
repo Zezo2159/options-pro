@@ -763,7 +763,7 @@ Respond with ONLY valid JSON (no markdown, no backticks, no preamble):
             method:"POST",
             headers:{"Content-Type":"application/json","x-api-key":localStorage.getItem("anthropic_api_key")||"","anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},
             body:JSON.stringify({
-                model:"claude-sonnet-4-5-20251022",
+                model:"claude-haiku-4-5",
                 max_tokens:1500,
                 messages:[{role:"user",content:prompt}]
             })
