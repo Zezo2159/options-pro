@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Options Pro Ultra | Master Suite</title>
+    <title>Options Pro Ultra v6 | Master Suite</title>
     <style>
         :root {
             --bg: #080c14; --card: #121926; --border: #242f42; --text: #f1f5f9;
@@ -71,8 +71,8 @@
 <div class="container">
     <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
         <div>
-            <div style="font-size:20px;font-weight:900;letter-spacing:-0.02em">Options Pro Ultra <span style="color:var(--accent)">⚡</span></div>
-            <div style="font-size:11px;color:var(--text-dim)">Advanced Options Risk Intelligence Suite</div>
+            <div style="font-size:20px;font-weight:900;letter-spacing:-0.02em">Options Pro Ultra v6 <span style="color:var(--accent)">⚡</span></div>
+            <div style="font-size:11px;color:var(--text-dim)">Advanced Options Risk Intelligence Suite — Gamma · Vega · Roll Calc · Portfolio Risk</div>
         </div>
         <div id="ibkr-status-badge" onclick="document.querySelector('[data-panel=ibkr]').click()" style="margin-left:auto;display:flex;align-items:center;gap:8px;background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.25);border-radius:10px;padding:8px 14px;cursor:pointer;transition:.2s" title="Click to open IBKR panel">
           <span id="ibkr-dot" style="width:8px;height:8px;border-radius:50%;background:#475569;flex-shrink:0;transition:.3s"></span>
@@ -91,6 +91,8 @@
         <button class="tab" data-panel="livedata" style="color:#06b6d4">📡 Live Data</button>
         <button class="tab" data-panel="backtest" style="color:#f97316">🔬 Backtest</button>
         <button class="tab" data-panel="ibkr" style="color:#6366f1">🏦 IBKR</button>
+        <button class="tab" data-panel="roll" style="color:#14b8a6">🔄 Roll Calc</button>
+        <button class="tab" data-panel="risk" style="color:#ec4899">🛡️ Risk</button>
     </div>
 
     <!-- ══ 1. WHEEL OPTIMIZER ══ -->
@@ -138,6 +140,12 @@
                         <div class="metric"><div class="m-label">Theta (Θ)</div><div class="m-value profit" id="wm-theta">$0</div><div class="m-sub">Daily time decay</div></div>
                         <div class="metric"><div class="m-label">Expected Move</div><div class="m-value warning" id="wm-em">±$0</div><div class="m-sub">1 std deviation</div></div>
                     </div>
+                    <div class="metrics metrics-4" style="grid-template-columns:repeat(4,1fr);margin-bottom:14px">
+                        <div class="metric"><div class="m-label">Gamma (Γ)</div><div class="m-value warning" id="wm-gamma">0</div><div class="m-sub">Delta change/$1</div></div>
+                        <div class="metric"><div class="m-label">Vega (ν)</div><div class="m-value purple" id="wm-vega">$0</div><div class="m-sub">Per 1% IV change</div></div>
+                        <div class="metric"><div class="m-label">Gamma Risk</div><div class="m-value" id="wm-gamma-risk">—</div><div class="m-sub">Exposure level</div></div>
+                        <div class="metric"><div class="m-label">Vega Risk</div><div class="m-value" id="wm-vega-risk">—</div><div class="m-sub">IV sensitivity</div></div>
+                    </div>
                     <div class="chart-wrap"><canvas id="wheelChart"></canvas></div>
                 </div>
                 <div class="card">
@@ -149,6 +157,8 @@
                         <div class="intel-card"><div class="intel-title">🌡️ IV Environment</div><div style="display:flex;align-items:baseline;gap:10px"><div class="intel-value" id="ri-iv-val">0%</div><div style="font-size:11px;color:var(--text-dim)">IVR: <span id="ri-ivr-val">0%</span></div></div><div class="bar-bg"><div class="bar-fill" id="ri-iv-bar"></div></div><div style="margin-bottom:6px" id="ri-iv-zone"></div><div class="intel-desc" id="ri-iv-desc"></div><div class="callout" id="ri-iv-callout"></div></div>
                         <div class="intel-card"><div class="intel-title">📊 RSI Signal</div><div class="intel-value" id="ri-rsi-val">0</div><div class="bar-bg"><div class="bar-fill" id="ri-rsi-bar"></div></div><div style="margin-bottom:6px" id="ri-rsi-zone"></div><div class="intel-desc" id="ri-rsi-desc"></div><div class="callout" id="ri-rsi-callout"></div></div>
                         <div class="intel-card"><div class="intel-title">😱 VIX Fear Gauge</div><div class="intel-value" id="ri-vix-val">0</div><div class="bar-bg"><div class="bar-fill" id="ri-vix-bar"></div></div><div style="margin-bottom:6px" id="ri-vix-zone"></div><div class="intel-desc" id="ri-vix-desc"></div><div class="callout" id="ri-vix-callout"></div></div>
+                        <div class="intel-card"><div class="intel-title">⚡ Gamma (Γ) Exposure</div><div class="intel-value warning" id="ri-gamma-val">0</div><div class="bar-bg"><div class="bar-fill" id="ri-gamma-bar"></div></div><div style="margin-bottom:6px" id="ri-gamma-zone"></div><div class="intel-desc" id="ri-gamma-desc"></div><div class="callout" id="ri-gamma-callout"></div></div>
+                        <div class="intel-card"><div class="intel-title">🌊 Vega (ν) Sensitivity</div><div class="intel-value purple" id="ri-vega-val">$0</div><div class="bar-bg"><div class="bar-fill" id="ri-vega-bar"></div></div><div style="margin-bottom:6px" id="ri-vega-zone"></div><div class="intel-desc" id="ri-vega-desc"></div><div class="callout" id="ri-vega-callout"></div></div>
                     </div>
                 </div>
             </div>
@@ -461,6 +471,25 @@ function bsPut(s,k,iv,t,r=0.05){if(t<=0)return Math.max(k-s,0);const d1=(Math.lo
 function bsD1(s,k,iv,t,r=0.05){return(Math.log(s/k)+(r+iv*iv/2)*t)/(iv*Math.sqrt(t));}
 function bsD2(s,k,iv,t,r=0.05){return bsD1(s,k,iv,t,r)-iv*Math.sqrt(t);}
 function bsTheta(s,k,iv,t,isPut=true,r=0.05){if(t<=0.001)return 0;const d1=bsD1(s,k,iv,t,r),d2=d1-iv*Math.sqrt(t);const phi=Math.exp(-d1*d1/2)/Math.sqrt(2*Math.PI);const base=-(s*phi*iv)/(2*Math.sqrt(t));return isPut?(base+r*k*Math.exp(-r*t)*ncdf(-d2))/365:(base-r*k*Math.exp(-r*t)*ncdf(d2))/365;}
+function bsGamma(s,k,iv,t,r=0.05){if(t<=0.001)return 0;const d1=bsD1(s,k,iv,t,r);const phi=Math.exp(-d1*d1/2)/Math.sqrt(2*Math.PI);return phi/(s*iv*Math.sqrt(t));}
+function bsVega(s,k,iv,t,r=0.05){if(t<=0.001)return 0;const d1=bsD1(s,k,iv,t,r);const phi=Math.exp(-d1*d1/2)/Math.sqrt(2*Math.PI);return s*phi*Math.sqrt(t)/100;} // per 1% IV change
+function bsRho(s,k,iv,t,isPut=true,r=0.05){if(t<=0.001)return 0;const d2=bsD2(s,k,iv,t,r);return isPut?-k*t*Math.exp(-r*t)*ncdf(-d2)/100:k*t*Math.exp(-r*t)*ncdf(d2)/100;}
+
+// ══ CORRELATION MATRIX for portfolio risk ══
+const ETF_CORR = {
+  SPY:{SPY:1,QQQ:.92,IWM:.88,SMH:.85,XLE:.62,GLD:-.08,TLT:-.35,GDX:.05,XSP:1,QQQM:.92,XLF:.78},
+  QQQ:{QQQ:1,SPY:.92,IWM:.82,SMH:.95,XLE:.50,GLD:-.12,TLT:-.38,GDX:0,XSP:.92,QQQM:1,XLF:.68},
+  IWM:{IWM:1,SPY:.88,QQQ:.82,SMH:.78,XLE:.68,GLD:-.05,TLT:-.30,GDX:.10,XSP:.88,QQQM:.82,XLF:.82},
+  SMH:{SMH:1,SPY:.85,QQQ:.95,IWM:.78,XLE:.48,GLD:-.15,TLT:-.35,GDX:-.05,XSP:.85,QQQM:.95,XLF:.62},
+  XLE:{XLE:1,SPY:.62,QQQ:.50,IWM:.68,SMH:.48,GLD:.15,TLT:-.20,GDX:.30,XSP:.62,QQQM:.50,XLF:.58},
+  GLD:{GLD:1,SPY:-.08,QQQ:-.12,IWM:-.05,SMH:-.15,XLE:.15,TLT:.40,GDX:.85,XSP:-.08,QQQM:-.12,XLF:-.10},
+  TLT:{TLT:1,SPY:-.35,QQQ:-.38,IWM:-.30,SMH:-.35,XLE:-.20,GLD:.40,GDX:.25,XSP:-.35,QQQM:-.38,XLF:-.25},
+  GDX:{GDX:1,SPY:.05,QQQ:0,IWM:.10,SMH:-.05,XLE:.30,GLD:.85,TLT:.25,XSP:.05,QQQM:0,XLF:.08},
+  XSP:{XSP:1,SPY:1,QQQ:.92,IWM:.88,SMH:.85,XLE:.62,GLD:-.08,TLT:-.35,GDX:.05,QQQM:.92,XLF:.78},
+  QQQM:{QQQM:1,SPY:.92,QQQ:1,IWM:.82,SMH:.95,XLE:.50,GLD:-.12,TLT:-.38,GDX:0,XSP:.92,XLF:.68},
+  XLF:{XLF:1,SPY:.78,QQQ:.68,IWM:.82,SMH:.62,XLE:.58,GLD:-.10,TLT:-.25,GDX:.08,XSP:.78,QQQM:.68},
+};
+function getCorrelation(a,b){return ETF_CORR[a]?.[b]??ETF_CORR[b]?.[a]??0.5;}
 
 function $id(id){return document.getElementById(id);}
 function fmt(v,d=2){return v.toFixed(d);}
@@ -504,6 +533,22 @@ function runWheel(){
     $id('wm-delta').innerText=delta.toFixed(3);
     $id('wm-theta').innerText=fmtDollar(theta_daily)+'/day';
     $id('wm-em').innerText='±$'+fmt(em,2);
+
+    // Gamma & Vega
+    const gamma=bsGamma(s,k,iv,t,r)*100; // per contract (×100 shares)
+    const vega=bsVega(s,k,iv,t,r)*100; // per contract per 1% IV change
+    const gammaExposure=gamma*qty; // portfolio gamma
+    const vegaExposure=vega*qty; // portfolio vega
+    $id('wm-gamma').innerText=gamma.toFixed(3);
+    $id('wm-vega').innerText=fmtDollar(vega);
+    // Gamma risk assessment
+    const gammaRiskVal=dte<7?gamma*3:dte<14?gamma*1.5:gamma;
+    $id('wm-gamma-risk').innerText=gammaRiskVal>0.5?'HIGH':gammaRiskVal>0.2?'MODERATE':'LOW';
+    $id('wm-gamma-risk').style.color=gammaRiskVal>0.5?'var(--loss)':gammaRiskVal>0.2?'var(--warning)':'var(--profit)';
+    // Vega risk: how much P/L changes if IV moves 5%
+    const vega5pct=vega*5;
+    $id('wm-vega-risk').innerText=fmtDollar(vega5pct)+'/5%';
+    $id('wm-vega-risk').style.color=vega5pct>prem*0.3?'var(--loss)':vega5pct>prem*0.15?'var(--warning)':'var(--profit)';
     $id('wm-roc').innerText=fmt(roc,2)+'%';
     $id('wm-ann').innerText=fmt(ann,1)+'%';
     $id('wm-be').innerText='$'+fmt(breakEven,2);
@@ -575,6 +620,28 @@ function runWheel(){
     else if(vix<35){vZ=['zone-warn','HIGH — USE CAUTION'];vD='Market stress. Premiums rich but volatile.';vC='<strong>⚠ Reduce size 50%.</strong>';}
     else{vZ=['zone-danger','EXTREME — CRISIS MODE'];vD='Market panic.';vC='<strong>⛔ Avoid or minimize.</strong>';}
     setZone($id('ri-vix-zone'),vZ[1],vZ[0]);$id('ri-vix-desc').innerText=vD;$id('ri-vix-callout').innerHTML=vC;
+
+    // Gamma zone
+    $id('ri-gamma-val').innerText=gamma.toFixed(3)+' / contract';
+    const gammaBar=Math.min(100,gamma*200);
+    setBar('ri-gamma-bar',gammaBar,dte<7?'var(--loss)':dte<14?'var(--warning)':gamma>0.3?'var(--warning)':'var(--profit)');
+    let gZ,gD,gC;
+    if(dte<7){gZ=['zone-danger','EXTREME GAMMA'];gD=`Gamma ${gamma.toFixed(3)} = delta shifts ~${(gamma*s*0.01).toFixed(2)} per $1 move. Position can swing violently.`;gC='<strong>⛔ Gamma explosion zone.</strong> Close immediately or accept wild swings.';}
+    else if(dte<14){gZ=['zone-warn','ELEVATED GAMMA'];gD=`Gamma rising as expiry nears. Delta will shift ${(gamma*s*0.02).toFixed(2)} per $2 move.`;gC=`<strong>⚠ Monitor closely.</strong> Consider closing at 50% profit.`;}
+    else if(dte<=35){gZ=['zone-safe','MODERATE GAMMA'];gD=`Gamma is manageable. Delta shifts slowly.`;gC=`<strong>✓ Optimal gamma zone.</strong> Delta changes are predictable.`;}
+    else{gZ=['zone-ok','LOW GAMMA'];gD=`Far from expiry. Gamma impact minimal.`;gC=`<strong>Low gamma environment.</strong> Position is stable but theta is slow.`;}
+    setZone($id('ri-gamma-zone'),gZ[1],gZ[0]);$id('ri-gamma-desc').innerText=gD;$id('ri-gamma-callout').innerHTML=gC;
+
+    // Vega zone
+    const vegaPerContract=vega;
+    $id('ri-vega-val').innerText=fmtDollar(vegaPerContract)+' / 1% IV';
+    const vegaPctOfPrem=prem>0?(vegaPerContract/prem*100):0;
+    setBar('ri-vega-bar',Math.min(100,vegaPctOfPrem*2),vegaPctOfPrem>30?'var(--loss)':vegaPctOfPrem>15?'var(--warning)':'var(--profit)');
+    let veZ,veD,veC;
+    if(vegaPctOfPrem>30){veZ=['zone-danger','HIGH IV SENSITIVITY'];veD=`A 1% IV change moves position ${fmtDollar(vegaPerContract)} (${fmt(vegaPctOfPrem,0)}% of premium). Very exposed to IV spikes.`;veC=`<strong>⛔ High vega risk.</strong> If IV spikes 5%, you lose ~${fmtDollar(vegaPerContract*5)}.`;}
+    else if(vegaPctOfPrem>15){veZ=['zone-warn','MODERATE IV SENSITIVITY'];veD=`1% IV change = ${fmtDollar(vegaPerContract)} impact (${fmt(vegaPctOfPrem,0)}% of premium).`;veC=`<strong>⚠ Watch IV.</strong> A 5% IV spike costs ~${fmtDollar(vegaPerContract*5)}.`;}
+    else{veZ=['zone-safe','LOW IV SENSITIVITY'];veD=`Low vega exposure. IV changes have minimal impact.`;veC=`<strong>✓ IV-safe.</strong> Position is mostly driven by theta and delta.`;}
+    setZone($id('ri-vega-zone'),veZ[1],veZ[0]);$id('ri-vega-desc').innerText=veD;$id('ri-vega-callout').innerHTML=veC;
 
     // Verdict engine
     let score=100,penalties=[],positives=[],tags=[];
@@ -2985,6 +3052,10 @@ function simulateTrades(prices, strategy, account, dte, deltaTarget, closePct, s
   let inTrade = false;
   let currentTrade = null;
   let tradeEndIdx = 0;
+  // Wheel state: track if we're in CSP phase or CC phase after assignment
+  let wheelPhase = 'csp'; // 'csp' or 'cc'
+  let wheelShares = 0;
+  let wheelBasis = 0;
 
   while (i < prices.length - 5) {
     if (!inTrade) {
@@ -2998,14 +3069,23 @@ function simulateTrades(prices, strategy, account, dte, deltaTarget, closePct, s
       let credit, maxLoss, strike, strike2;
 
       if (strategy === 'wheel') {
-        strike = findStrikeForDelta(price, iv, t, r, deltaTarget, 'put');
-        const prem = bsPut(price, strike, iv, t, r);
-        credit = prem * 100; // per contract
-        maxLoss = strike * 100 - credit;
-        // Collateral = strike × 100 per contract; use up to 50% of account
-        const collateralPerContract = strike * 100;
-        const qty = Math.max(1, Math.min(10, Math.floor(account * 0.50 / collateralPerContract)));
-        currentTrade = { entry: prices[i].date, entryPrice: price, strike, creditPerContract: credit, credit: +(credit*qty).toFixed(2), maxLoss: +(maxLoss*qty).toFixed(2), qty, iv: iv*100, strategy, dte };
+        if (wheelPhase === 'csp') {
+          strike = findStrikeForDelta(price, iv, t, r, deltaTarget, 'put');
+          const prem = bsPut(price, strike, iv, t, r);
+          credit = prem * 100; // per contract
+          maxLoss = strike * 100 - credit;
+          const collateralPerContract = strike * 100;
+          const qty = Math.max(1, Math.min(10, Math.floor(account * 0.50 / collateralPerContract)));
+          currentTrade = { entry: prices[i].date, entryPrice: price, strike, creditPerContract: credit, credit: +(credit*qty).toFixed(2), maxLoss: +(maxLoss*qty).toFixed(2), qty, iv: iv*100, strategy: 'wheel', dte, phase: 'CSP' };
+        } else {
+          // Covered Call phase — we hold shares, sell calls
+          strike = findStrikeForDelta(price, iv, t, r, deltaTarget, 'call');
+          const prem = bsCall(price, strike, iv, t, r);
+          credit = prem * 100;
+          const qty = Math.floor(wheelShares / 100);
+          if (qty < 1) { wheelPhase = 'csp'; wheelShares = 0; i++; continue; }
+          currentTrade = { entry: prices[i].date, entryPrice: price, strike, creditPerContract: credit, credit: +(credit*qty).toFixed(2), maxLoss: 0, qty, iv: iv*100, strategy: 'wheel', dte, phase: 'CC', basis: wheelBasis };
+        }
       } else if (strategy === 'bps') {
         strike = findStrikeForDelta(price, iv, t, r, deltaTarget, 'put');
         strike2 = strike - spreadWidth;
@@ -3063,8 +3143,49 @@ function simulateTrades(prices, strategy, account, dte, deltaTarget, closePct, s
       let finalPnl;
       if (expired) {
         if (strategy==='wheel') {
-          const intrinsic = Math.max(0, currentTrade.strike - price) * 100 * currentTrade.qty;
-          finalPnl = currentTrade.credit - intrinsic;
+          if (currentTrade.phase === 'CSP') {
+            const intrinsic = Math.max(0, currentTrade.strike - price) * 100 * currentTrade.qty;
+            if (price < currentTrade.strike) {
+              // ASSIGNED — transition to Covered Call phase
+              finalPnl = currentTrade.credit; // keep premium
+              wheelPhase = 'cc';
+              wheelShares = currentTrade.qty * 100;
+              wheelBasis = currentTrade.strike - currentTrade.creditPerContract/100; // effective cost basis
+              trades.push({
+                ...currentTrade,
+                exit: prices[i].date, exitPrice: price,
+                pnl: +(finalPnl).toFixed(2),
+                daysHeld: daysIn,
+                result: `Assigned @ $${currentTrade.strike} → CC phase (basis $${wheelBasis.toFixed(2)})`
+              });
+              inTrade = false; currentTrade = null;
+              tradeEndIdx = i + 1; // start CC immediately
+              i++; continue;
+            } else {
+              finalPnl = currentTrade.credit; // expired OTM, keep full premium
+            }
+          } else {
+            // Covered Call phase
+            if (price > currentTrade.strike) {
+              // Called away — shares sold at strike, capture gain + premium
+              const shareGain = (currentTrade.strike - wheelBasis) * wheelShares;
+              finalPnl = currentTrade.credit + shareGain;
+              wheelPhase = 'csp'; wheelShares = 0; wheelBasis = 0;
+              trades.push({
+                ...currentTrade,
+                exit: prices[i].date, exitPrice: price,
+                pnl: +(finalPnl).toFixed(2),
+                daysHeld: daysIn,
+                result: `Called away @ $${currentTrade.strike} (gain $${shareGain.toFixed(0)} + prem)`
+              });
+              inTrade = false; currentTrade = null;
+              tradeEndIdx = i + Math.max(1, Math.floor(dte*0.3));
+              i++; continue;
+            } else {
+              // CC expired OTM — keep premium, still hold shares
+              finalPnl = currentTrade.credit;
+            }
+          }
         } else {
           finalPnl = Math.max(-currentTrade.maxLoss, Math.min(currentTrade.credit, currentPnl));
         }
@@ -3152,6 +3273,12 @@ function renderBacktestResults(trades, stats, ticker, strategy, prices) {
   const yearSpan = trades.length ? Math.round((trades[trades.length-1].exit-trades[0].entry)/(1000*60*60*24*365)*10)/10 : 0;
 
   const el = $id('bt-results');
+  // Buy & hold comparison
+  const bhStartPrice = trades[0]?.entryPrice || prices[0].close;
+  const bhEndPrice = trades[trades.length-1]?.exitPrice || prices[prices.length-1].close;
+  const bhReturn = ((bhEndPrice - bhStartPrice) / bhStartPrice * 100);
+  const bhCAGR = yearSpan > 0 ? (Math.pow(bhEndPrice/bhStartPrice, 1/yearSpan)-1)*100 : 0;
+  const stratAlpha = stats.cagr - bhCAGR;
   el.innerHTML = `
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px">
     <div>
@@ -3159,6 +3286,21 @@ function renderBacktestResults(trades, stats, ticker, strategy, prices) {
       <div style="font-size:12px;color:var(--text-dim)">${trades.length} trades · ${yearSpan} years of data · ${trades[0]?.entry.toLocaleDateString()||''}–${trades[trades.length-1]?.exit.toLocaleDateString()||''}</div>
     </div>
     <button onclick="exportBacktest()" style="background:var(--orange-dim);border:1px solid var(--orange-border);color:var(--orange);padding:8px 16px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700">⬇ Export CSV</button>
+  </div>
+
+  <!-- Alpha comparison banner -->
+  <div style="background:${stratAlpha>=0?'rgba(34,197,94,0.06)':'rgba(239,68,68,0.06)'};border:1px solid ${stratAlpha>=0?'rgba(34,197,94,0.25)':'rgba(239,68,68,0.25)'};border-radius:12px;padding:16px 20px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+    <div>
+      <div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Strategy vs Buy & Hold</div>
+      <div style="font-size:16px;font-weight:900;color:${stratAlpha>=0?'var(--profit)':'var(--loss)'}">
+        ${stratAlpha>=0?'✓ Outperforming':'⚠ Underperforming'} by ${Math.abs(stratAlpha).toFixed(1)}% CAGR
+      </div>
+    </div>
+    <div style="display:flex;gap:24px">
+      <div style="text-align:center"><div style="font-size:10px;color:var(--text-dim);text-transform:uppercase">Options CAGR</div><div style="font-size:18px;font-weight:900;color:var(--orange)">${stats.cagr.toFixed(1)}%</div></div>
+      <div style="text-align:center"><div style="font-size:10px;color:var(--text-dim);text-transform:uppercase">Buy & Hold CAGR</div><div style="font-size:18px;font-weight:900;color:var(--text-dim)">${bhCAGR.toFixed(1)}%</div></div>
+      <div style="text-align:center"><div style="font-size:10px;color:var(--text-dim);text-transform:uppercase">Alpha</div><div style="font-size:18px;font-weight:900;color:${stratAlpha>=0?'var(--profit)':'var(--loss)'}">${stratAlpha>=0?'+':''}${stratAlpha.toFixed(1)}%</div></div>
+    </div>
   </div>
 
   <div class="bt-stat-grid">
@@ -3223,18 +3365,27 @@ function renderBacktestResults(trades, stats, ticker, strategy, prices) {
 
   // Render charts
   setTimeout(() => {
-    // Equity curve
+    // Equity curve + buy-and-hold benchmark
     const eqLabels = trades.map(t=>t.exit.toLocaleDateString());
     const eqData = [];
     let eq = stats.startingCapital;
     trades.forEach(t=>{ eq+=t.pnl; eqData.push(+eq.toFixed(2)); });
 
+    // Buy & hold benchmark: invest same capital in the ticker at trade[0] entry price
+    const bhStartPrice = trades[0].entryPrice;
+    const bhShares = Math.floor(stats.startingCapital / bhStartPrice);
+    const bhData = trades.map(t => +(bhShares * t.exitPrice + (stats.startingCapital - bhShares * bhStartPrice)).toFixed(2));
+
     if (btChartInst) btChartInst.destroy();
     btChartInst = new Chart(document.getElementById('btEquityChart'), {
-      type:'line', data:{labels:eqLabels,datasets:[{label:'Portfolio Value',data:eqData,borderColor:'#f97316',
-        backgroundColor:ctx=>{const g=ctx.chart.ctx.createLinearGradient(0,0,0,280);g.addColorStop(0,'rgba(249,115,22,0.2)');g.addColorStop(1,'rgba(249,115,22,0)');return g;},
-        fill:true,tension:0.2,pointRadius:0}]},
-      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      type:'line', data:{labels:eqLabels,datasets:[
+        {label:'Options Strategy',data:eqData,borderColor:'#f97316',
+          backgroundColor:ctx=>{const g=ctx.chart.ctx.createLinearGradient(0,0,0,280);g.addColorStop(0,'rgba(249,115,22,0.2)');g.addColorStop(1,'rgba(249,115,22,0)');return g;},
+          fill:true,tension:0.2,pointRadius:0,borderWidth:2},
+        {label:'Buy & Hold '+ticker,data:bhData,borderColor:'rgba(148,163,184,0.5)',
+          borderDash:[6,4],fill:false,tension:0.2,pointRadius:0,borderWidth:1.5}
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{color:'#94a3b8',font:{size:11}}},tooltip:{mode:'index',intersect:false}},
         scales:{x:{grid:{color:'#1a2333'},ticks:{color:'#64748b',maxTicksLimit:12}},y:{grid:{color:'#1a2333'},ticks:{color:'#64748b',callback:v=>'$'+v.toLocaleString()}}}}
     });
 
@@ -4328,6 +4479,407 @@ document.querySelectorAll('.tab').forEach(btn => {
 // ── Init ──
 renderIbLog();
 setIbStrat('bps'); // Default to Bull Put Spread per tier rules
+</script>
+
+<!-- ══ 11. ROLL CALCULATOR ══ -->
+<div id="panel-roll" class="panel">
+<style>
+  #panel-roll{--teal:#14b8a6;--teal-dim:rgba(20,184,166,0.08);--teal-border:rgba(20,184,166,0.25);}
+  .roll-header{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,rgba(20,184,166,0.08),rgba(56,189,248,0.05));border:1px solid var(--teal-border);border-radius:16px;padding:20px 28px;margin-bottom:20px;}
+  .roll-grid{display:grid;grid-template-columns:1fr 60px 1fr;gap:16px;margin-bottom:20px;align-items:start;}
+  .roll-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;}
+  .roll-card-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;}
+  .roll-arrow{display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--teal);padding-top:80px;}
+  .roll-field label{display:block;font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-bottom:6px;}
+  .roll-field input{width:100%;background:#05080f;border:1px solid var(--border);color:var(--text);padding:10px;border-radius:8px;outline:none;font-family:var(--font-mono);font-size:13px;}
+  .roll-field input:focus{border-color:var(--teal);}
+  .roll-result{background:var(--card);border:1px solid var(--teal-border);border-radius:14px;padding:20px;margin-bottom:16px;}
+  .roll-compare{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;}
+  .roll-metric{background:rgba(0,0,0,.3);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center;}
+  .roll-metric .lbl{font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+  .roll-metric .val{font-size:18px;font-weight:900;font-family:var(--font-mono);}
+  .roll-metric .sub{font-size:10px;color:var(--text-dim);margin-top:3px;}
+  .roll-verdict{border-radius:12px;padding:16px 20px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;border:1px solid transparent;}
+  @media(max-width:900px){.roll-grid{grid-template-columns:1fr;}.roll-arrow{padding-top:0;transform:rotate(90deg);}.roll-compare{grid-template-columns:1fr 1fr;}}
+</style>
+
+<div class="roll-header">
+  <div style="font-size:42px">🔄</div>
+  <div>
+    <div style="font-size:20px;font-weight:900;color:var(--teal)">Roll Calculator</div>
+    <div style="font-size:13px;color:var(--text-dim);margin-top:4px">Compare your current position vs. rolling to a new expiry/strike — see net credit, new Greeks, and whether the roll is worth it.</div>
+  </div>
+</div>
+
+<div class="roll-grid">
+  <!-- Current Position -->
+  <div class="roll-card">
+    <div class="roll-card-title" style="color:var(--loss)">📍 Current Position (Close)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+      <div class="roll-field"><label>Ticker</label><input id="roll-ticker" value="QQQM" oninput="calcRoll()"></div>
+      <div class="roll-field"><label>Stock Price ($)</label><input type="number" id="roll-s" value="240" oninput="calcRoll()"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+      <div class="roll-field"><label>Current Strike ($)</label><input type="number" id="roll-k1" value="225" oninput="calcRoll()"></div>
+      <div class="roll-field"><label>Current DTE</label><input type="number" id="roll-dte1" value="7" oninput="calcRoll()"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+      <div class="roll-field"><label>IV (%)</label><input type="number" id="roll-iv1" value="22" oninput="calcRoll()"></div>
+      <div class="roll-field"><label>Original Credit ($)</label><input type="number" id="roll-orig-credit" value="3.20" step="0.01" oninput="calcRoll()"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="roll-field"><label>Type</label><select id="roll-type" onchange="calcRoll()"><option value="put">Put</option><option value="call">Call</option></select></div>
+      <div class="roll-field"><label>Contracts</label><input type="number" id="roll-qty" value="2" min="1" oninput="calcRoll()"></div>
+    </div>
+    <div style="margin-top:14px;padding:12px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:8px">
+      <div style="font-size:10px;color:var(--text-dim);text-transform:uppercase;margin-bottom:4px">Cost to Close</div>
+      <div style="font-size:20px;font-weight:900;font-family:var(--font-mono);color:var(--loss)" id="roll-close-cost">$0</div>
+    </div>
+  </div>
+
+  <div class="roll-arrow">→</div>
+
+  <!-- New Position -->
+  <div class="roll-card">
+    <div class="roll-card-title" style="color:var(--profit)">🎯 New Position (Open)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+      <div class="roll-field"><label>New Strike ($)</label><input type="number" id="roll-k2" value="220" oninput="calcRoll()"></div>
+      <div class="roll-field"><label>New DTE</label><input type="number" id="roll-dte2" value="35" oninput="calcRoll()"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="roll-field"><label>New IV (%)</label><input type="number" id="roll-iv2" value="24" oninput="calcRoll()"></div>
+    </div>
+    <div style="margin-top:14px;padding:12px;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);border-radius:8px">
+      <div style="font-size:10px;color:var(--text-dim);text-transform:uppercase;margin-bottom:4px">New Credit Received</div>
+      <div style="font-size:20px;font-weight:900;font-family:var(--font-mono);color:var(--profit)" id="roll-new-credit">$0</div>
+    </div>
+  </div>
+</div>
+
+<!-- Roll comparison results -->
+<div class="roll-verdict" id="roll-verdict" style="background:rgba(20,184,166,0.06);border-color:var(--teal-border)">
+  <div style="flex:1">
+    <div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">ROLL VERDICT</div>
+    <div style="font-size:18px;font-weight:900" id="roll-verdict-title">Enter parameters to compare</div>
+    <div style="font-size:12px;color:var(--text-dim);margin-top:4px" id="roll-verdict-desc"></div>
+  </div>
+  <div class="score-ring" id="roll-verdict-ring" style="border-color:var(--teal);color:var(--teal);width:60px;height:60px;font-size:18px">—</div>
+</div>
+
+<div class="roll-compare" id="roll-compare"></div>
+
+<div class="roll-result" id="roll-analysis" style="display:none">
+  <div style="font-size:11px;color:var(--teal);font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">📊 Detailed Roll Analysis</div>
+  <div id="roll-analysis-text" style="font-size:13px;color:var(--text-dim);line-height:1.8"></div>
+</div>
+</div><!-- /panel-roll -->
+
+<!-- ══ 12. PORTFOLIO RISK PANEL ══ -->
+<div id="panel-risk" class="panel">
+<style>
+  #panel-risk{--pink2:#ec4899;--pink2-dim:rgba(236,72,153,0.08);--pink2-border:rgba(236,72,153,0.25);}
+  .risk-header{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,rgba(236,72,153,0.08),rgba(167,139,250,0.05));border:1px solid var(--pink2-border);border-radius:16px;padding:20px 28px;margin-bottom:20px;}
+  .risk-positions{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:16px;}
+  .risk-pos-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center;cursor:pointer;transition:.2s;}
+  .risk-pos-card.active{border-color:var(--pink2);background:var(--pink2-dim);}
+  .risk-pos-ticker{font-size:16px;font-weight:900;font-family:var(--font-mono);}
+  .risk-pos-detail{font-size:10px;color:var(--text-dim);margin-top:4px;}
+  .risk-section{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px;}
+  .risk-section-title{font-size:11px;color:var(--pink2);font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;}
+  .corr-cell{width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;font-family:var(--font-mono);border-radius:4px;}
+  .stress-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px;}
+  .stress-row:last-child{border-bottom:none;}
+</style>
+
+<div class="risk-header">
+  <div style="font-size:42px">🛡️</div>
+  <div>
+    <div style="font-size:20px;font-weight:900;color:var(--pink2)">Portfolio Risk Dashboard</div>
+    <div style="font-size:13px;color:var(--text-dim);margin-top:4px">Correlation matrix · Concentration warnings · What-if stress tests · Aggregate Greeks</div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:16px">
+  <div class="card-title">📋 Active Positions (enter your open positions)</div>
+  <div style="display:grid;grid-template-columns:140px 100px 80px 80px 80px 80px auto;gap:8px;align-items:end;margin-bottom:12px">
+    <div class="roll-field"><label>Ticker</label><input id="rsk-ticker" style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()"></div>
+    <div class="roll-field"><label>Strike</label><input type="number" id="rsk-strike"></div>
+    <div class="roll-field"><label>DTE</label><input type="number" id="rsk-dte" value="35"></div>
+    <div class="roll-field"><label>IV%</label><input type="number" id="rsk-iv" value="22"></div>
+    <div class="roll-field"><label>Contracts</label><input type="number" id="rsk-qty" value="2"></div>
+    <div class="roll-field"><label>Type</label><select id="rsk-type"><option value="put">Put</option><option value="call">Call</option></select></div>
+    <div class="roll-field"><label>&nbsp;</label><button class="primary" onclick="addRiskPosition()" style="height:40px">+ Add</button></div>
+  </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+    <button onclick="loadFromAnalytics()" style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:var(--profit);padding:7px 14px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:600">↓ Load from Analytics</button>
+    <button onclick="clearRiskPositions()" style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:var(--loss);padding:7px 14px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:600">🗑 Clear All</button>
+  </div>
+  <div class="risk-positions" id="risk-positions-grid"></div>
+</div>
+
+<!-- Aggregate Greeks -->
+<div class="risk-section" id="risk-agg-greeks" style="display:none">
+  <div class="risk-section-title">📐 Aggregate Portfolio Greeks</div>
+  <div id="risk-greeks-grid" class="metrics metrics-6"></div>
+</div>
+
+<!-- Correlation Matrix -->
+<div class="risk-section" id="risk-corr-section" style="display:none">
+  <div class="risk-section-title">🔗 Correlation Matrix</div>
+  <div id="risk-corr-warnings" style="margin-bottom:14px"></div>
+  <div id="risk-corr-matrix" style="overflow-x:auto"></div>
+</div>
+
+<!-- Stress Test -->
+<div class="risk-section" id="risk-stress-section" style="display:none">
+  <div class="risk-section-title">💥 What-If Stress Test</div>
+  <div id="risk-stress-results"></div>
+</div>
+</div><!-- /panel-risk -->
+
+<script>
+// ══ ROLL CALCULATOR ENGINE ══
+function calcRoll(){
+  const s=+$id('roll-s').value, k1=+$id('roll-k1').value, k2=+$id('roll-k2').value;
+  const dte1=+$id('roll-dte1').value, dte2=+$id('roll-dte2').value;
+  const iv1=+$id('roll-iv1').value/100, iv2=+$id('roll-iv2').value/100;
+  const origCredit=+$id('roll-orig-credit').value;
+  const qty=+$id('roll-qty').value||1;
+  const type=$id('roll-type').value;
+  const r=0.05, t1=Math.max(0.001,dte1/365), t2=dte2/365;
+
+  // Current position value (cost to buy back)
+  const closeCost=type==='put'?bsPut(s,k1,iv1,t1,r):bsCall(s,k1,iv1,t1,r);
+  // New position value (credit received)
+  const newCredit=type==='put'?bsPut(s,k2,iv2,t2,r):bsCall(s,k2,iv2,t2,r);
+  const netCredit=(newCredit-closeCost)*100; // per contract
+  const totalNet=netCredit*qty;
+
+  $id('roll-close-cost').innerText='-'+fmtDollar(closeCost*100*qty);
+  $id('roll-new-credit').innerText='+'+fmtDollar(newCredit*100*qty);
+
+  // Greeks comparison
+  const delta1=type==='put'?Math.abs(ncdf(bsD1(s,k1,iv1,t1,r))-1):ncdf(bsD1(s,k1,iv1,t1,r));
+  const delta2=type==='put'?Math.abs(ncdf(bsD1(s,k2,iv2,t2,r))-1):ncdf(bsD1(s,k2,iv2,t2,r));
+  const theta1=Math.abs(bsTheta(s,k1,iv1,t1,type==='put',r))*100;
+  const theta2=Math.abs(bsTheta(s,k2,iv2,t2,type==='put',r))*100;
+  const gamma1=bsGamma(s,k1,iv1,t1,r)*100;
+  const gamma2=bsGamma(s,k2,iv2,t2,r)*100;
+  const vega1=bsVega(s,k1,iv1,t1,r)*100;
+  const vega2=bsVega(s,k2,iv2,t2,r)*100;
+  const mos1=Math.abs(s-k1)/s*100;
+  const mos2=Math.abs(s-k2)/s*100;
+
+  // Roll total credit (original + net roll credit)
+  const totalCreditCollected=origCredit*100+netCredit; // per contract
+
+  // Verdict
+  const isNetCredit=netCredit>0;
+  const isBetterBuffer=mos2>=mos1;
+  const isBetterTheta=theta2>=theta1*0.7; // at least 70% of original theta
+  const isLowerGamma=gamma2<gamma1;
+  let score=50;
+  if(isNetCredit)score+=20; else score-=15;
+  if(isBetterBuffer)score+=15; else score-=10;
+  if(isBetterTheta)score+=10;
+  if(isLowerGamma)score+=5;
+  if(dte2>=21&&dte2<=45)score+=10;
+  if(delta2<0.25)score+=5;
+  score=Math.min(100,Math.max(0,score));
+
+  const cls=score>=70?'v-safe':score>=45?'v-warn':'v-danger';
+  const title=score>=70?'✓ Roll Recommended':score>=45?'⚠ Marginal Roll':'⛔ Roll Not Recommended';
+  const desc=isNetCredit?`Net credit of ${fmtDollar(totalNet)} collected. `:'Net debit — you are paying to roll. ';
+  const verdictEl=$id('roll-verdict');
+  verdictEl.className='roll-verdict '+cls;
+  $id('roll-verdict-title').innerText=title;
+  $id('roll-verdict-desc').innerText=desc+(isBetterBuffer?'Buffer improved. ':'Buffer reduced. ')+(isBetterTheta?'Theta acceptable.':'Theta significantly lower.');
+  const ring=$id('roll-verdict-ring');
+  const ringColor=score>=70?'var(--profit)':score>=45?'var(--warning)':'var(--loss)';
+  ring.innerText=score;ring.style.borderColor=ringColor;ring.style.color=ringColor;
+
+  // Comparison metrics
+  $id('roll-compare').innerHTML=`
+    <div class="roll-metric"><div class="lbl">Net Roll Credit</div><div class="val" style="color:${netCredit>=0?'var(--profit)':'var(--loss)'}">${netCredit>=0?'+':''}${fmtDollar(totalNet)}</div><div class="sub">Per ${qty} contract(s)</div></div>
+    <div class="roll-metric"><div class="lbl">Total Credit</div><div class="val" style="color:var(--profit)">${fmtDollar(totalCreditCollected*qty)}</div><div class="sub">Original + roll</div></div>
+    <div class="roll-metric"><div class="lbl">New Buffer</div><div class="val" style="color:${mos2>mos1?'var(--profit)':'var(--loss)'}">${fmt(mos2,1)}%</div><div class="sub">was ${fmt(mos1,1)}%</div></div>
+    <div class="roll-metric"><div class="lbl">New DTE</div><div class="val" style="color:var(--accent)">${dte2}d</div><div class="sub">was ${dte1}d</div></div>
+    <div class="roll-metric"><div class="lbl">Delta</div><div class="val">${delta2.toFixed(3)}</div><div class="sub">was ${delta1.toFixed(3)}</div></div>
+    <div class="roll-metric"><div class="lbl">Theta/day</div><div class="val" style="color:var(--profit)">${fmtDollar(theta2)}</div><div class="sub">was ${fmtDollar(theta1)}</div></div>
+    <div class="roll-metric"><div class="lbl">Gamma</div><div class="val" style="color:${gamma2<gamma1?'var(--profit)':'var(--warning)'}">${gamma2.toFixed(3)}</div><div class="sub">was ${gamma1.toFixed(3)}</div></div>
+    <div class="roll-metric"><div class="lbl">Vega</div><div class="val" style="color:var(--purple)">${fmtDollar(vega2)}</div><div class="sub">was ${fmtDollar(vega1)}</div></div>`;
+
+  // Detailed analysis
+  const analysisEl=$id('roll-analysis');analysisEl.style.display='block';
+  $id('roll-analysis-text').innerHTML=`
+    <strong>Current position:</strong> ${type==='put'?'Short':'Short'} $${k1} ${type} with ${dte1} DTE — current value ${fmtDollar(closeCost*100)} (cost to close).<br>
+    <strong>New position:</strong> ${type==='put'?'Short':'Short'} $${k2} ${type} with ${dte2} DTE — credit ${fmtDollar(newCredit*100)}.<br>
+    <strong>Net result:</strong> ${isNetCredit?'Credit':'Debit'} of ${fmtDollar(Math.abs(netCredit))} per contract (${fmtDollar(Math.abs(totalNet))} total for ${qty}).<br>
+    <strong>Gamma reduction:</strong> ${gamma1.toFixed(3)} → ${gamma2.toFixed(3)} (${isLowerGamma?'✓ improved — less gamma risk':'⚠ higher gamma'}).<br>
+    <strong>Vega change:</strong> ${fmtDollar(vega1)} → ${fmtDollar(vega2)} per 1% IV (${vega2>vega1?'⚠ more IV exposure — longer DTE increases vega':'✓ reduced IV sensitivity'}).<br>
+    <strong>Break-even:</strong> New break-even at $${fmt(type==='put'?k2-totalCreditCollected/100:k2+totalCreditCollected/100,2)} (total credit: $${fmt(totalCreditCollected/100,2)}/share).`;
+}
+
+// ══ PORTFOLIO RISK ENGINE ══
+let riskPositions = [];
+
+function addRiskPosition(){
+  const ticker=$id('rsk-ticker').value.trim().toUpperCase();
+  const strike=parseFloat($id('rsk-strike').value)||0;
+  const dte=parseInt($id('rsk-dte').value)||30;
+  const iv=parseFloat($id('rsk-iv').value)||20;
+  const qty=parseInt($id('rsk-qty').value)||1;
+  const type=$id('rsk-type').value;
+  if(!ticker||!strike){alert('Enter ticker and strike.');return;}
+  riskPositions.push({ticker,strike,dte,iv,qty,type});
+  $id('rsk-ticker').value='';$id('rsk-strike').value='';
+  renderRiskDashboard();
+}
+
+function loadFromAnalytics(){
+  const open=anTrades.filter(t=>t.status==='open');
+  if(!open.length){alert('No open positions in Analytics. Import a CSV first.');return;}
+  open.forEach(t=>{
+    if(!riskPositions.find(p=>p.ticker===t.ticker&&p.strike===t.strike)){
+      riskPositions.push({ticker:t.ticker,strike:t.strike,dte:t.dte||30,iv:t.iv||20,qty:t.contracts||1,type:'put'});
+    }
+  });
+  renderRiskDashboard();
+}
+
+function clearRiskPositions(){riskPositions=[];renderRiskDashboard();}
+
+function removeRiskPos(i){riskPositions.splice(i,1);renderRiskDashboard();}
+
+function renderRiskDashboard(){
+  // Position cards
+  const grid=$id('risk-positions-grid');
+  grid.innerHTML=riskPositions.map((p,i)=>`
+    <div class="risk-pos-card">
+      <div class="risk-pos-ticker" style="color:var(--accent)">${p.ticker}</div>
+      <div class="risk-pos-detail">$${p.strike} ${p.type.toUpperCase()}</div>
+      <div class="risk-pos-detail">${p.dte}d · ${p.qty}×</div>
+      <button onclick="removeRiskPos(${i})" style="background:none;border:none;color:var(--loss);cursor:pointer;font-size:14px;margin-top:4px">✕</button>
+    </div>`).join('')||'<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text-dim)">No positions added. Enter above or load from Analytics.</div>';
+
+  if(!riskPositions.length){
+    $id('risk-agg-greeks').style.display='none';
+    $id('risk-corr-section').style.display='none';
+    $id('risk-stress-section').style.display='none';
+    return;
+  }
+
+  // Calculate aggregate Greeks
+  let totalDelta=0,totalGamma=0,totalTheta=0,totalVega=0;
+  const r=0.05;
+  riskPositions.forEach(p=>{
+    const s=p.strike*1.05; // estimate underlying ~5% above strike
+    const t=p.dte/365,iv=p.iv/100;
+    const d1=bsD1(s,p.strike,iv,t,r);
+    const delta=p.type==='put'?-(1-ncdf(d1)):ncdf(d1);
+    const gamma=bsGamma(s,p.strike,iv,t,r);
+    const theta=bsTheta(s,p.strike,iv,t,p.type==='put',r);
+    const vega=bsVega(s,p.strike,iv,t,r);
+    totalDelta+=delta*p.qty*100;
+    totalGamma+=gamma*p.qty*100;
+    totalTheta+=theta*p.qty*100;
+    totalVega+=vega*p.qty*100;
+  });
+
+  $id('risk-agg-greeks').style.display='block';
+  $id('risk-greeks-grid').innerHTML=`
+    <div class="metric"><div class="m-label">Δ Net Delta</div><div class="m-value" style="color:var(--accent)">${totalDelta.toFixed(1)}</div><div class="m-sub">Directional exposure</div></div>
+    <div class="metric"><div class="m-label">Γ Net Gamma</div><div class="m-value" style="color:var(--warning)">${totalGamma.toFixed(2)}</div><div class="m-sub">Delta acceleration</div></div>
+    <div class="metric"><div class="m-label">Θ Net Theta</div><div class="m-value" style="color:var(--profit)">${fmtDollar(Math.abs(totalTheta))}/d</div><div class="m-sub">Daily time decay</div></div>
+    <div class="metric"><div class="m-label">ν Net Vega</div><div class="m-value" style="color:var(--purple)">${fmtDollar(Math.abs(totalVega))}</div><div class="m-sub">Per 1% IV change</div></div>
+    <div class="metric"><div class="m-label">Positions</div><div class="m-value" style="color:${riskPositions.length>=5?'var(--loss)':'var(--accent)'}">${riskPositions.length}</div><div class="m-sub">Max 5 rule</div></div>
+    <div class="metric"><div class="m-label">Concentration</div><div class="m-value" id="risk-concentration">—</div><div class="m-sub">Diversification</div></div>`;
+
+  // Correlation matrix
+  $id('risk-corr-section').style.display='block';
+  const tickers=[...new Set(riskPositions.map(p=>p.ticker))];
+  let warnings=[];
+  let highCorrCount=0;
+  for(let i=0;i<tickers.length;i++){
+    for(let j=i+1;j<tickers.length;j++){
+      const corr=getCorrelation(tickers[i],tickers[j]);
+      if(corr>0.75){warnings.push({a:tickers[i],b:tickers[j],corr});highCorrCount++;}
+    }
+  }
+
+  // Concentration metric
+  const concEl=$id('risk-concentration');
+  if(highCorrCount===0){concEl.innerText='Good';concEl.style.color='var(--profit)';}
+  else if(highCorrCount<=2){concEl.innerText='Moderate';concEl.style.color='var(--warning)';}
+  else{concEl.innerText='High Risk';concEl.style.color='var(--loss)';}
+
+  // Warnings
+  $id('risk-corr-warnings').innerHTML=warnings.length?warnings.map(w=>`
+    <div style="background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.25);border-radius:8px;padding:10px 14px;margin-bottom:8px;font-size:12px">
+      <strong style="color:var(--loss)">⚠ High Correlation:</strong> <strong>${w.a}</strong> & <strong>${w.b}</strong> are <strong style="color:var(--loss)">${(w.corr*100).toFixed(0)}% correlated</strong>. A drop in one likely hits both. Consider diversifying into uncorrelated assets (GLD, TLT).
+    </div>`).join(''):'<div style="background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.25);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--profit)"><strong>✓ No high-correlation warnings.</strong> Your positions are reasonably diversified.</div>';
+
+  // Matrix table
+  let matrixHtml='<table style="border-collapse:collapse;font-size:11px"><tr><th style="padding:6px"></th>';
+  tickers.forEach(t=>{matrixHtml+=`<th style="padding:6px;color:var(--accent);font-family:var(--font-mono)">${t}</th>`;});
+  matrixHtml+='</tr>';
+  tickers.forEach((t1,i)=>{
+    matrixHtml+=`<tr><td style="padding:6px;font-weight:800;color:var(--accent);font-family:var(--font-mono)">${t1}</td>`;
+    tickers.forEach((t2,j)=>{
+      const corr=i===j?1:getCorrelation(t1,t2);
+      const bg=corr>0.75?'rgba(239,68,68,0.3)':corr>0.5?'rgba(245,158,11,0.2)':corr>0?'rgba(56,189,248,0.1)':corr>-0.3?'rgba(255,255,255,0.05)':'rgba(34,197,94,0.2)';
+      const color=corr>0.75?'var(--loss)':corr>0.5?'var(--warning)':corr<-0.2?'var(--profit)':'var(--text)';
+      matrixHtml+=`<td><div class="corr-cell" style="background:${bg};color:${color}">${corr.toFixed(2)}</div></td>`;
+    });
+    matrixHtml+='</tr>';
+  });
+  matrixHtml+='</table>';
+  $id('risk-corr-matrix').innerHTML=matrixHtml;
+
+  // Stress tests
+  $id('risk-stress-section').style.display='block';
+  const scenarios=[
+    {name:'Market drops 5%',move:-0.05,ivChange:0.10},
+    {name:'Market drops 10%',move:-0.10,ivChange:0.20},
+    {name:'Market drops 20% (crash)',move:-0.20,ivChange:0.40},
+    {name:'IV spikes 10% (no price move)',move:0,ivChange:0.10},
+    {name:'IV spikes 20% (VIX shock)',move:0,ivChange:0.20},
+    {name:'Market rallies 5%',move:0.05,ivChange:-0.03},
+    {name:'Slow grind -3% + IV crush',move:-0.03,ivChange:-0.05},
+  ];
+
+  let stressHtml='';
+  scenarios.forEach(sc=>{
+    let totalImpact=0;
+    riskPositions.forEach(p=>{
+      const s=p.strike*1.05;
+      const t=p.dte/365,iv=p.iv/100;
+      const newS=s*(1+sc.move);
+      const newIV=Math.max(0.05,iv+sc.ivChange);
+      const oldVal=p.type==='put'?bsPut(s,p.strike,iv,t,r):bsCall(s,p.strike,iv,t,r);
+      const newVal=p.type==='put'?bsPut(newS,p.strike,newIV,t,r):bsCall(newS,p.strike,newIV,t,r);
+      // We're short, so we profit when value decreases
+      const impact=(oldVal-newVal)*p.qty*100;
+      totalImpact+=impact;
+    });
+    const color=totalImpact>=0?'var(--profit)':'var(--loss)';
+    stressHtml+=`<div class="stress-row">
+      <span style="color:var(--text-dim)">${sc.name}</span>
+      <span style="font-weight:800;font-family:var(--font-mono);color:${color}">${totalImpact>=0?'+':''}${fmtDollar(totalImpact)}</span>
+    </div>`;
+  });
+  $id('risk-stress-results').innerHTML=stressHtml;
+}
+
+// Tab hook for roll and risk panels
+document.querySelectorAll('.tab').forEach(btn=>{
+  const prev=btn.onclick;
+  btn.onclick=function(e){
+    if(prev)prev.call(this,e);
+    if(this.dataset.panel==='roll')calcRoll();
+    if(this.dataset.panel==='risk')renderRiskDashboard();
+  };
+});
 </script>
 </body>
 </html>
