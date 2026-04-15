@@ -1,1 +1,4 @@
 api_key.txt
+app/api_key.txt
+*.pyc
+__pycache__
