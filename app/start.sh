@@ -132,8 +132,14 @@ log "═════════════════════════
 
 # Wait for network (important on boot)
 for i in $(seq 1 30); do
-    if ping -c 1 -W 2 google.com > /dev/null 2>&1; then
+    # Use curl — more reliable than ping which is often blocked
+    if curl -s --max-time 3 --head https://www.google.com > /dev/null 2>&1; then
         log "✅ Network ready"
+        break
+    fi
+    # Also accept if we can resolve any hostname
+    if host google.com > /dev/null 2>&1; then
+        log "✅ Network ready (DNS works)"
         break
     fi
     log "⏳ Waiting for network... ($i/30)"
