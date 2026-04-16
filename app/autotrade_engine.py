@@ -20,7 +20,7 @@ from email.mime.multipart import MIMEMultipart
 
 from ibapi.client import EClient
 from ibapi.wrapper import EWrapper
-from ibapi.contract import Contract
+from ibapi.contract import Contract, ComboLeg
 from ibapi.order import Order
 from ibapi.common import TickerId
 
@@ -58,6 +58,11 @@ TIER1 = ["SPY", "QQQ", "SMH", "GDX"]       # Spreads ONLY
 TIER2 = ["IWM", "GLD", "XLE", "TLT"]       # Naked CSP OK
 TIER3 = ["XSP", "QQQM"]                     # CSP mini
 WATCHLIST = TIER1 + TIER2 + TIER3
+
+# Spread widths per ticker (wider = more credit but more capital)
+SPREAD_WIDTHS = {
+    "SPY": 10, "QQQ": 10, "SMH": 5, "GDX": 2,
+}
 
 # Delta / DTE targets
 DELTA_MIN = 0.15
@@ -576,6 +581,31 @@ class AutoTradeEngine:
         log(f"  {ticker}: could not resolve conId")
         return None
 
+    def get_option_con_id(self, ticker, strike, expiry, right="P", timeout=10):
+        """Resolve an option contract's conId — needed for combo legs."""
+        req_id = self.next_req_id()
+        contract = Contract()
+        contract.symbol = ticker
+        contract.secType = "OPT"
+        contract.exchange = "SMART"
+        contract.currency = "USD"
+        contract.strike = strike
+        contract.lastTradeDateOrContractMonth = str(expiry)
+        contract.right = right
+        contract.multiplier = "100"
+
+        event = threading.Event()
+        self.app._detail_events[req_id] = event
+        self.app.contract_details[req_id] = None
+
+        self.app.reqContractDetails(req_id, contract)
+        event.wait(timeout=timeout)
+
+        details = self.app.contract_details.get(req_id)
+        if details:
+            return details.contract.conId
+        return None
+
     def get_option_chain(self, ticker, timeout=10):
         """Get available expirations and strikes for a ticker."""
         # First resolve the conId
@@ -751,6 +781,68 @@ class AutoTradeEngine:
         return None, None
 
     # ── Place Order ──
+    def place_bull_put_spread(self, ticker, short_strike, long_strike, expiry, qty, net_credit):
+        """Place a bull put spread as a combo order.
+        Sells a higher-strike put and buys a lower-strike put.
+        Net credit = short premium - long premium."""
+        if self.app.next_order_id is None:
+            log("  ❌ No valid order ID — cannot place spread")
+            return None
+
+        # Get conIds for both legs
+        short_conid = self.get_option_con_id(ticker, short_strike, expiry, "P")
+        long_conid = self.get_option_con_id(ticker, long_strike, expiry, "P")
+
+        if not short_conid or not long_conid:
+            log(f"  ❌ Could not resolve conIds for spread ({short_conid}, {long_conid})")
+            return None
+
+        order_id = self.app.next_order_id
+        self.app.next_order_id += 1
+
+        # Build combo contract (BAG)
+        contract = Contract()
+        contract.symbol = ticker
+        contract.secType = "BAG"
+        contract.exchange = "SMART"
+        contract.currency = "USD"
+
+        # Short leg (sell higher strike)
+        short_leg = ComboLeg()
+        short_leg.conId = short_conid
+        short_leg.ratio = 1
+        short_leg.action = "SELL"
+        short_leg.exchange = "SMART"
+
+        # Long leg (buy lower strike)
+        long_leg = ComboLeg()
+        long_leg.conId = long_conid
+        long_leg.ratio = 1
+        long_leg.action = "BUY"
+        long_leg.exchange = "SMART"
+
+        contract.comboLegs = [short_leg, long_leg]
+
+        # Order: SELL combo for net credit
+        order = Order()
+        order.action = "SELL"  # Sell the spread = receive credit
+        order.totalQuantity = qty
+        order.orderType = "LMT"
+        order.lmtPrice = round(net_credit, 2)
+        order.tif = "DAY"
+        order.eTradeOnly = False
+        order.firmQuoteOnly = False
+        order.account = ACCOUNT_ID
+
+        log(f"  📤 SPREAD: SELL {qty}x {ticker} ${short_strike}/{long_strike}P @ ${net_credit:.2f} credit (ID: {order_id})")
+
+        try:
+            self.app.placeOrder(order_id, contract, order)
+            return order_id
+        except Exception as e:
+            log(f"  ❌ Spread placement failed: {e}")
+            return None
+
     def place_sell_put(self, ticker, strike, expiry, qty, limit_price, strategy="CSP"):
         """Place a sell put order (or spread for Tier 1)."""
         if self.app.next_order_id is None:
@@ -858,14 +950,41 @@ class AutoTradeEngine:
             strategy = get_strategy(ticker)
             qty = self.calc_position_size(ticker, strike, premium, stock_price)
 
+            # For Tier 1: find the long leg (protective put) for the spread
+            long_strike = None
+            long_premium = 0
+            net_credit = premium
+            if strategy == "BPS":
+                width = SPREAD_WIDTHS.get(ticker, 5)
+                target_long = strike - width
+                # Find closest available strike below short strike
+                candidate_longs = [s for s in chain["strikes"] if s <= target_long and s >= strike - width * 2]
+                if candidate_longs:
+                    long_strike = max(candidate_longs)  # Closest to target
+                    long_opt = self.get_option_data(ticker, long_strike, expiry, "P")
+                    long_premium = long_opt.get("price", 0)
+                    if long_premium > 0:
+                        net_credit = premium - long_premium
+                        # Recompute qty based on spread risk: max_loss = width - net_credit
+                        spread_max_loss = (width - net_credit) * 100
+                        if spread_max_loss > 0:
+                            max_spreads = int(MAX_RISK / spread_max_loss)
+                            qty = max(1, min(max_spreads, 20))
+                    else:
+                        # Can't get long leg price — fall back to naked
+                        long_strike = None
+
             log(f"  {ticker}: ${strike}P @ ${premium:.2f} | Δ={delta:.3f} IV={iv*100:.1f}% "
-                f"Buffer={buffer:.1f}% DTE={dte} | Score={score}")
+                f"Buffer={buffer:.1f}% DTE={dte} | Score={score}"
+                + (f" | Spread ${strike}/{long_strike} credit=${net_credit:.2f}" if long_strike else ""))
 
             opportunities.append({
                 "ticker": ticker,
                 "strike": strike,
+                "long_strike": long_strike,
                 "expiry": expiry,
                 "premium": premium,
+                "net_credit": net_credit,
                 "delta": delta,
                 "iv": iv,
                 "buffer": buffer,
@@ -898,8 +1017,10 @@ class AutoTradeEngine:
         for opp in opportunities:
             ticker = opp["ticker"]
             strike = opp["strike"]
+            long_strike = opp.get("long_strike")
             expiry = opp["expiry"]
             premium = opp["premium"]
+            net_credit = opp.get("net_credit", premium)
             qty = opp["qty"]
             strategy = opp["strategy"]
             delta = opp["delta"]
@@ -908,9 +1029,21 @@ class AutoTradeEngine:
             buffer = opp["buffer"]
             score = opp["score"]
 
-            log(f"\n  🎯 EXECUTING: SELL {qty}x {ticker} ${strike}P @ ${premium:.2f}")
+            # Route to spread or naked put
+            is_spread = (strategy == "BPS" and long_strike is not None)
 
-            order_id = self.place_sell_put(ticker, strike, expiry, qty, premium, strategy)
+            if is_spread:
+                log(f"\n  🎯 EXECUTING SPREAD: {qty}x {ticker} ${strike}/{long_strike}P @ ${net_credit:.2f} credit")
+                order_id = self.place_bull_put_spread(ticker, strike, long_strike, expiry, qty, net_credit)
+                order_desc = f"${strike}/{long_strike}P"
+                journal_credit = net_credit
+                journal_strategy = "BPS"
+            else:
+                log(f"\n  🎯 EXECUTING: SELL {qty}x {ticker} ${strike}P @ ${premium:.2f}")
+                order_id = self.place_sell_put(ticker, strike, expiry, qty, premium, strategy)
+                order_desc = f"${strike}P"
+                journal_credit = premium
+                journal_strategy = strategy
 
             if order_id is not None:
                 # Track as pending to avoid monitoring conflict
@@ -918,22 +1051,24 @@ class AutoTradeEngine:
                 self._pending_orders[pending_key] = datetime.now()
 
                 # Write to journal
+                notes = f"Score {score} | Buffer {buffer:.1f}% | OrderID {order_id}"
+                if is_spread:
+                    notes = f"Spread ${strike}/{long_strike} | {notes}"
                 write_journal(
-                    "OPEN", ticker, strategy, strike, expiry, qty, premium,
-                    delta, iv * 100, dte, "Submitted", 0,
-                    f"Score {score} | Buffer {buffer:.1f}% | OrderID {order_id}"
+                    "OPEN", ticker, journal_strategy, strike, expiry, qty, journal_credit,
+                    delta, iv * 100, dte, "Submitted", 0, notes
                 )
 
                 # Send email notification
                 send_email(
-                    f"🎯 Trade Placed: {ticker} ${strike}P",
+                    f"🎯 Trade Placed: {ticker} {order_desc}",
                     f"<h2>Trade Placed</h2>"
-                    f"<p><b>{ticker}</b> ${strike}P × {qty} @ ${premium:.2f}</p>"
-                    f"<p>Strategy: {strategy} | Score: {score} | DTE: {dte}</p>"
+                    f"<p><b>{ticker}</b> {order_desc} × {qty} @ ${journal_credit:.2f}</p>"
+                    f"<p>Strategy: {journal_strategy} | Score: {score} | DTE: {dte}</p>"
                     f"<p>Delta: {delta:.3f} | IV: {iv*100:.1f}% | Buffer: {buffer:.1f}%</p>"
                 )
 
-            time.sleep(2)  # Pause between orders
+            time.sleep(2)
 
     # ═══════════════════════════════════════════════
     # POSITION MONITOR — IBKR-First
