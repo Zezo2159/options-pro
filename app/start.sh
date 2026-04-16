@@ -26,9 +26,20 @@ trap cleanup SIGTERM SIGINT
 
 # ── Start proxy ──
 start_proxy() {
-    # Kill any existing proxy on port 5010
-    lsof -ti:5010 | xargs kill -9 2>/dev/null
-    sleep 1
+    # Check if something is already listening on 5010
+    EXISTING_PID=$(lsof -ti:5010 2>/dev/null | head -1)
+    if [ -n "$EXISTING_PID" ]; then
+        # Verify it's actually our proxy.py
+        if ps -p "$EXISTING_PID" -o command= 2>/dev/null | grep -q "proxy.py"; then
+            PROXY_PID="$EXISTING_PID"
+            log "✅ Proxy already running (PID: $PROXY_PID) — adopting"
+            return 0
+        else
+            log "⚠ Port 5010 used by non-proxy process — killing"
+            kill -9 "$EXISTING_PID" 2>/dev/null
+            sleep 1
+        fi
+    fi
 
     log "🌐 Starting proxy..."
     "$PYTHON" "$BASE/proxy.py" >> "$LOG" 2>&1 &
@@ -46,6 +57,14 @@ start_proxy() {
 
 # ── Start engine ──
 start_engine() {
+    # Check if engine is already running
+    EXISTING_PID=$(pgrep -f "autotrade_engine.py" | head -1)
+    if [ -n "$EXISTING_PID" ]; then
+        ENGINE_PID="$EXISTING_PID"
+        log "✅ Engine already running (PID: $ENGINE_PID) — adopting"
+        return 0
+    fi
+
     log "🚀 Starting engine..."
     "$PYTHON" -u "$BASE/autotrade_engine.py" 2 >> "$LOG" 2>&1 &
     ENGINE_PID=$!
@@ -64,24 +83,35 @@ start_engine() {
 check_health() {
     local healthy=true
 
-    # Check proxy
-    if [ -n "$PROXY_PID" ] && ! kill -0 "$PROXY_PID" 2>/dev/null; then
-        log "⚠ Proxy died — restarting..."
-        start_proxy
-        healthy=false
+    # Check proxy — rediscover PID if needed
+    if ! kill -0 "$PROXY_PID" 2>/dev/null; then
+        # Try to find existing proxy
+        FOUND_PID=$(lsof -ti:5010 2>/dev/null | head -1)
+        if [ -n "$FOUND_PID" ] && ps -p "$FOUND_PID" -o command= 2>/dev/null | grep -q "proxy.py"; then
+            PROXY_PID="$FOUND_PID"
+            log "ℹ Proxy rediscovered (PID: $PROXY_PID)"
+        else
+            log "⚠ Proxy died — restarting..."
+            start_proxy
+            healthy=false
+        fi
     fi
 
-    # Check engine
-    if [ -n "$ENGINE_PID" ] && ! kill -0 "$ENGINE_PID" 2>/dev/null; then
-        log "⚠ Engine died — restarting..."
-        start_engine
-        healthy=false
+    # Check engine — rediscover PID if needed
+    if ! kill -0 "$ENGINE_PID" 2>/dev/null; then
+        FOUND_PID=$(pgrep -f "autotrade_engine.py" | head -1)
+        if [ -n "$FOUND_PID" ]; then
+            ENGINE_PID="$FOUND_PID"
+            log "ℹ Engine rediscovered (PID: $ENGINE_PID)"
+        else
+            log "⚠ Engine died — restarting..."
+            start_engine
+            healthy=false
+        fi
     fi
 
-    # Check TWS connection (via proxy endpoint)
-    if curl -s --max-time 5 "http://localhost:5010/api/journal" > /dev/null 2>&1; then
-        : # Proxy responding
-    else
+    # Check proxy is responding
+    if ! curl -s --max-time 5 "http://localhost:5010/api/journal" > /dev/null 2>&1; then
         log "⚠ Proxy not responding on port 5010"
         healthy=false
     fi
