@@ -236,6 +236,8 @@ class TWSApp(EWrapper, EClient):
         self._chain_events = {}
         self._detail_events = {}
         self._connected = False
+        self._connection_lost_at = None
+        self._last_farm_error = None
         self._account_values = {}
 
     # ── Connection ──
@@ -247,9 +249,50 @@ class TWSApp(EWrapper, EClient):
     def error(self, reqId, errorCode, errorString, advancedOrderRejectJson=""):
         # Filter informational messages
         if errorCode in (2104, 2106, 2158, 2107):
-            return  # Market data connection messages
+            return  # Market data connection messages (benign)
         if errorCode == 10091:
             return  # Partial data access warning
+
+        # ── CRITICAL DISCONNECTS — flag for reconnect ──
+        if errorCode == 1100:
+            # "Connectivity between IBKR and TWS has been lost"
+            if self._connected:
+                log(f"  🔴 TWS error 1100: IBKR connectivity LOST — marking disconnected")
+                self._connected = False
+                self._connection_lost_at = datetime.now()
+            return
+        if errorCode == 1101:
+            # "Connectivity restored — data lost"
+            log(f"  🟡 TWS error 1101: Connection restored (data lost) — reconnecting")
+            self._connected = False
+            return
+        if errorCode == 1102:
+            # "Connectivity restored — data maintained"
+            log(f"  🟢 TWS error 1102: Connection fully restored")
+            self._connected = True
+            self._connection_lost_at = None
+            return
+        if errorCode == 1300:
+            # "Socket port has been reset and this connection is being dropped"
+            log(f"  🔴 TWS error 1300: Socket reset — reconnect needed")
+            self._connected = False
+            return
+        if errorCode == 2110:
+            # "Connectivity between TWS and server is broken"
+            log(f"  🔴 TWS error 2110: TWS-server connection broken")
+            self._connected = False
+            return
+
+        # Farm broken messages are informational — log once not spam
+        if errorCode in (2103, 2105, 2157):
+            # Only log if not seen recently
+            now = datetime.now()
+            last = getattr(self, '_last_farm_error', None)
+            if not last or (now - last).total_seconds() > 60:
+                log(f"  ⚠ TWS error {errorCode}: data farm issue")
+                self._last_farm_error = now
+            return
+
         if errorCode == 2119:
             log(f"  ⚠ TWS market data delayed")
             return
@@ -260,7 +303,8 @@ class TWSApp(EWrapper, EClient):
 
     def connectionClosed(self):
         self._connected = False
-        log("❌ TWS connection lost")
+        self._connection_lost_at = datetime.now()
+        log("❌ TWS connection lost (connectionClosed callback)")
 
     # ── Account & Positions ──
     def position(self, account, contract, pos, avgCost):
@@ -1120,22 +1164,93 @@ class AutoTradeEngine:
         # Enter monitoring loop
         log(f"\n✅ Entering monitor mode (checking every {MONITOR_INTERVAL // 60} min)")
 
+        consecutive_stale = 0  # cycles with no position prices
+        last_alert_sent = None
+        last_successful_monitor = datetime.now()
+
         while self._running:
             try:
-                # Check connection
+                # ── Connection health check ──
                 if not self.app._connected:
-                    log("⚠ Connection lost — attempting reconnect...")
+                    lost_age = 0
+                    if self.app._connection_lost_at:
+                        lost_age = (datetime.now() - self.app._connection_lost_at).total_seconds()
+                    log(f"⚠ Connection lost ({int(lost_age)}s ago) — attempting reconnect...")
+
+                    # Send alert if disconnected > 15 min and haven't alerted recently
+                    if lost_age > 900:
+                        if not last_alert_sent or (datetime.now() - last_alert_sent).total_seconds() > 1800:
+                            send_email(
+                                "🚨 Options Pro: TWS Disconnected > 15 min",
+                                f"<h2>Engine has been disconnected from TWS for {int(lost_age/60)} minutes.</h2>"
+                                f"<p>Check TWS is open and logged in. Engine will keep trying to reconnect.</p>"
+                            )
+                            last_alert_sent = datetime.now()
+
                     if not self.reconnect():
                         log("❌ Reconnect failed — waiting 60s before retry")
                         time.sleep(60)
                         continue
+                    else:
+                        # Reconnect succeeded — reset counters
+                        consecutive_stale = 0
+                        if last_alert_sent:
+                            send_email(
+                                "✅ Options Pro: Reconnected",
+                                f"<h2>Engine reconnected to TWS successfully</h2>"
+                            )
+                            last_alert_sent = None
 
-                # Refresh IBKR positions before monitoring
+                # ── Watchdog: force reconnect if no successful monitor in 1 hour ──
+                stale_age = (datetime.now() - last_successful_monitor).total_seconds()
+                if stale_age > 3600:
+                    log(f"⚠ WATCHDOG: No successful monitor in {int(stale_age/60)} min — forcing reconnect")
+                    try:
+                        self.app.disconnect()
+                    except:
+                        pass
+                    time.sleep(5)
+                    self.app = TWSApp()
+                    self.connect()
+                    last_successful_monitor = datetime.now()
+                    continue
+
+                # ── Refresh IBKR positions ──
                 self.app.positions = {}
                 self.app.reqPositions()
                 time.sleep(3)
 
+                # ── Run monitor ──
+                price_count_before = sum(1 for _ in self.app.market_data.values())
                 self.monitor_positions()
+
+                # ── Check for stale data ──
+                # If we have positions but got no prices, count as stale
+                if self.app.positions:
+                    got_prices = False
+                    for key in list(self.app.market_data.keys())[-20:]:  # recent requests
+                        md = self.app.market_data.get(key, {})
+                        if md.get("last") or md.get("optPrice") or (md.get("bid") and md.get("ask")):
+                            got_prices = True
+                            break
+
+                    if not got_prices:
+                        consecutive_stale += 1
+                        log(f"⚠ Stale data detected (cycle {consecutive_stale}/3)")
+                        if consecutive_stale >= 3:
+                            log("🔴 3 consecutive stale cycles — forcing reconnect")
+                            consecutive_stale = 0
+                            try:
+                                self.app.disconnect()
+                            except:
+                                pass
+                            time.sleep(5)
+                            self.app = TWSApp()
+                            self.connect()
+                            continue
+                    else:
+                        consecutive_stale = 0
+                        last_successful_monitor = datetime.now()
 
                 # Sleep until next check
                 log(f"\n  ⏳ Next check in {MONITOR_INTERVAL // 60} min...")
@@ -1146,6 +1261,8 @@ class AutoTradeEngine:
                 break
             except Exception as e:
                 log(f"  ❌ Monitor error: {e}")
+                import traceback
+                log(traceback.format_exc())
                 time.sleep(60)
 
         try:
