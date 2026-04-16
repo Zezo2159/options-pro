@@ -76,6 +76,20 @@ PROFIT_TARGET_PCT = 0.50   # Close at 50% profit
 STOP_LOSS_MULT = 2.0       # Stop at 2× credit received
 DTE_EXIT = 21              # Close at 21 DTE if not profitable
 
+# ═══════════════════════════════════════════════
+# MARKET REGIME — VIX-based adjustments
+# ═══════════════════════════════════════════════
+# Delta and sizing are dynamically adjusted based on VIX level.
+# Low VIX = more conservative (wider strikes, smaller size)
+# High VIX = more aggressive (richer premiums, closer strikes)
+REGIMES = {
+    "calm":      {"vix_max": 15, "delta_min": 0.10, "delta_max": 0.18, "risk_mult": 0.70, "label": "Calm"},
+    "normal":    {"vix_max": 20, "delta_min": 0.15, "delta_max": 0.25, "risk_mult": 1.00, "label": "Normal"},
+    "elevated":  {"vix_max": 30, "delta_min": 0.15, "delta_max": 0.22, "risk_mult": 0.85, "label": "Elevated"},
+    "high":      {"vix_max": 40, "delta_min": 0.12, "delta_max": 0.18, "risk_mult": 0.60, "label": "High"},
+    "extreme":   {"vix_max": 999, "delta_min": 0.08, "delta_max": 0.15, "risk_mult": 0.30, "label": "Extreme"},
+}
+
 # Correlation matrix (approximate)
 CORRELATIONS = {
     ("SPY", "QQQ"): 0.92, ("SPY", "SMH"): 0.82, ("SPY", "IWM"): 0.88,
@@ -606,6 +620,39 @@ class AutoTradeEngine:
             return details.contract.conId
         return None
 
+    def get_vix(self, timeout=10):
+        """Fetch current VIX level from TWS."""
+        req_id = self.next_req_id()
+        contract = Contract()
+        contract.symbol = "VIX"
+        contract.secType = "IND"
+        contract.exchange = "CBOE"
+        contract.currency = "USD"
+
+        event = threading.Event()
+        self.app._price_events[req_id] = event
+        self.app.market_data[req_id] = {}
+
+        self.app.reqMktData(req_id, contract, "", False, False, [])
+        event.wait(timeout=timeout)
+        self.app.cancelMktData(req_id)
+
+        md = self.app.market_data.get(req_id, {})
+        vix = md.get("last") or md.get("close")
+        if not vix and md.get("bid") and md.get("ask"):
+            vix = (md["bid"] + md["ask"]) / 2
+        return vix
+
+    def detect_regime(self, vix):
+        """Return regime dict based on VIX level."""
+        if vix is None or vix <= 0:
+            return REGIMES["normal"]  # Default if VIX unavailable
+        for name in ["calm", "normal", "elevated", "high", "extreme"]:
+            r = REGIMES[name]
+            if vix <= r["vix_max"]:
+                return {**r, "name": name, "vix": vix}
+        return REGIMES["extreme"]
+
     def get_option_chain(self, ticker, timeout=10):
         """Get available expirations and strikes for a ticker."""
         # First resolve the conId
@@ -681,16 +728,19 @@ class AutoTradeEngine:
 
     # ── Position Sizing ──
     def calc_position_size(self, ticker, strike, premium, stock_price):
-        """Calculate number of contracts based on tier and risk rules.
-        Since engine places single-leg puts (not actual spreads yet),
-        always size based on CSP risk = (strike - premium) × 100."""
+        """Calculate number of contracts based on tier, risk rules, and regime."""
+        # Regime-adjusted max risk
+        regime = getattr(self, '_current_regime', None) or REGIMES["normal"]
+        risk_mult = regime.get("risk_mult", 1.0)
+        adjusted_max_risk = MAX_RISK * risk_mult
+
         # CSP risk: max loss = (strike - premium) × 100 per contract
         max_loss_per_contract = (strike - premium) * 100
 
         if max_loss_per_contract <= 0:
             return 1
 
-        max_contracts = int(MAX_RISK / max_loss_per_contract)
+        max_contracts = int(adjusted_max_risk / max_loss_per_contract)
 
         # Additional caps based on stock price tier
         if stock_price > 500:
@@ -727,26 +777,30 @@ class AutoTradeEngine:
     # ── Find Best Strike ──
     def find_target_strike(self, ticker, stock_price, strikes, expiry):
         """Find the put strike with delta closest to target range.
+        Uses regime-adjusted delta bounds when available.
         Falls back to buffer-based selection if delta data unavailable."""
+        # Get regime-adjusted delta bounds (fall back to config defaults)
+        regime = getattr(self, '_current_regime', None) or REGIMES["normal"]
+        d_min = regime.get("delta_min", DELTA_MIN)
+        d_max = regime.get("delta_max", DELTA_MAX)
+        d_target = (d_min + d_max) / 2
+
         # Filter strikes below current price (OTM puts)
         otm_strikes = [s for s in strikes if s < stock_price * 0.98 and s > stock_price * 0.80]
         if not otm_strikes:
             return None, None
 
-        # Sort descending (closest to ATM first)
         otm_strikes.sort(reverse=True)
 
         best_strike = None
         best_data = None
         best_delta_fit = float("inf")
 
-        # Buffer-based fallback: track best by distance to ~7% buffer
-        buffer_target = stock_price * 0.93  # ~7% OTM
+        buffer_target = stock_price * 0.93
         best_buffer_strike = None
         best_buffer_data = None
         best_buffer_dist = float("inf")
 
-        # Check top candidates
         for strike in otm_strikes[:10]:
             opt = self.get_option_data(ticker, strike, expiry, "P")
             delta = abs(opt.get("delta", 0))
@@ -755,22 +809,20 @@ class AutoTradeEngine:
             if price <= 0:
                 continue
 
-            # Try delta-based selection first
-            if DELTA_MIN <= delta <= DELTA_MAX:
-                fit = abs(delta - 0.20)
+            # Use regime-adjusted delta range
+            if d_min <= delta <= d_max:
+                fit = abs(delta - d_target)
                 if fit < best_delta_fit:
                     best_delta_fit = fit
                     best_strike = strike
                     best_data = opt
 
-            # Track buffer-based fallback (any strike with a price)
             dist = abs(strike - buffer_target)
             if dist < best_buffer_dist:
                 best_buffer_dist = dist
                 best_buffer_strike = strike
                 best_buffer_data = opt
 
-        # Use delta-based if found, otherwise buffer-based fallback
         if best_strike:
             return best_strike, best_data
 
@@ -890,6 +942,13 @@ class AutoTradeEngine:
         log("🌅 MORNING SCAN STARTED")
         log("=" * 60)
 
+        # Detect market regime from VIX
+        vix = self.get_vix()
+        regime = self.detect_regime(vix)
+        self._current_regime = regime  # Store for use by find_target_strike and sizing
+        log(f"  📊 VIX: {vix:.2f} — Regime: {regime['label']} "
+            f"(Δ {regime['delta_min']}-{regime['delta_max']}, risk × {regime['risk_mult']})")
+
         open_positions = read_open_positions()
         open_tickers = [p["ticker"] for p in open_positions.values()]
         num_open = len(open_positions)
@@ -965,10 +1024,12 @@ class AutoTradeEngine:
                     long_premium = long_opt.get("price", 0)
                     if long_premium > 0:
                         net_credit = premium - long_premium
-                        # Recompute qty based on spread risk: max_loss = width - net_credit
+                        # Recompute qty based on spread risk with regime adjustment
+                        regime = getattr(self, '_current_regime', None) or REGIMES["normal"]
+                        adjusted_risk = MAX_RISK * regime.get("risk_mult", 1.0)
                         spread_max_loss = (width - net_credit) * 100
                         if spread_max_loss > 0:
-                            max_spreads = int(MAX_RISK / spread_max_loss)
+                            max_spreads = int(adjusted_risk / spread_max_loss)
                             qty = max(1, min(max_spreads, 20))
                     else:
                         # Can't get long leg price — fall back to naked
