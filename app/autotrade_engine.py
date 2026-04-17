@@ -39,6 +39,7 @@ BASE = Path("/Applications/OptionsPro.app/Contents/Resources")
 JOURNAL = Path.home() / "Desktop" / "autotrade_journal.csv"
 LOG_FILE = Path.home() / "Desktop" / "autotrade_log.txt"
 API_KEY_FILE = BASE / "api_key.txt"
+KILL_SWITCH_FILE = Path.home() / "Desktop" / "optionspro_kill_switch"
 
 # Email config
 EMAIL_FROM = "islamalbaz90@gmail.com"
@@ -213,6 +214,11 @@ def get_strategy(ticker):
     if tier == 1:
         return "BPS"  # Bull Put Spread
     return "CSP"       # Cash Secured Put
+
+
+def kill_switch_active():
+    """True means monitor existing positions but do not open new trades."""
+    return KILL_SWITCH_FILE.exists()
 
 
 # ═══════════════════════════════════════════════
@@ -1025,6 +1031,10 @@ class AutoTradeEngine:
         log("🌅 MORNING SCAN STARTED")
         log("=" * 60)
 
+        if kill_switch_active():
+            log(f"  🛑 Kill switch active ({KILL_SWITCH_FILE}) — no new opening trades")
+            return []
+
         # Detect market regime from VIX
         vix = self.get_vix()
         regime = self.detect_regime(vix)
@@ -1689,6 +1699,8 @@ class AutoTradeEngine:
                 "engine_running":   True,
                 "connected":        bool(self.app._connected),
                 "market_status":    self.market_status(),
+                "kill_switch":      kill_switch_active(),
+                "kill_switch_file": str(KILL_SWITCH_FILE),
                 "vix":              round(vix, 2) if vix else None,
                 "regime":           regime.get("label", "Unknown"),
                 "positions":        positions,
