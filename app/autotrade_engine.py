@@ -17,6 +17,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from zoneinfo import ZoneInfo
 
 from ibapi.client import EClient
 from ibapi.wrapper import EWrapper
@@ -150,6 +151,10 @@ SCORE_CORR_BONUS = 15
 
 # Monitoring interval (seconds)
 MONITOR_INTERVAL = 1800  # 30 minutes
+AUTO_CLOSE_UNMATCHED_LONGS = False  # Safety first: alert on unexpected longs, do not market-sell by default.
+
+FILLED_STATUSES = {"FILLED", "CLOSED", "MANUALCLOSE"}
+OPEN_LIKE_STATUSES = {"SUBMITTED", "PRESUBMITTED", "PENDINGSUBMIT", "PENDING", "WORKING"}
 
 
 # ═══════════════════════════════════════════════
@@ -226,9 +231,9 @@ def write_journal(action, ticker, strategy, strike, expiry, qty, credit, delta, 
     ensure_journal()
     ts = datetime.now().strftime("%Y-%m-%d %H:%M")
     iv_str = f"{iv:.2f}%" if isinstance(iv, float) else str(iv)
-    row = f"{ts},{action},{ticker},{strategy},{strike},{expiry},{qty},{credit},{delta},{iv_str},{dte},{status},{pnl},{notes}"
-    with open(JOURNAL, "a") as f:
-        f.write(row + "\n")
+    row = [ts, action, ticker, strategy, strike, expiry, qty, credit, delta, iv_str, dte, status, pnl, notes]
+    with open(JOURNAL, "a", newline="") as f:
+        csv.writer(f).writerow(row)
     log(f"  📝 Journal: {action} {ticker} ${strike} x{qty}")
 
 
@@ -264,7 +269,11 @@ def read_open_positions():
                     "notes": row.get("notes", "").strip(),
                 }
             elif action.startswith("CLOSE"):
-                if key in positions:
+                status = row.get("status", "").strip().upper()
+                # A submitted close order is only a working order, not a closed
+                # trade. Remove the OPEN only after a fill/manual reconciliation,
+                # or when explicitly cancelling a never-filled OPEN ghost.
+                if key in positions and (status in FILLED_STATUSES or action in {"CLOSE_CANCEL", "CLOSE_MANUAL"}):
                     del positions[key]
     return positions
 
@@ -491,6 +500,7 @@ class AutoTradeEngine:
         self._req_id = 1000
         self._running = True
         self._pending_orders = {}  # key: "TICKER-STRIKE" -> timestamp of order placement
+        self._pending_closes = {}  # key: "TICKER-STRIKE" -> timestamp of close order placement
 
     def next_req_id(self):
         self._req_id += 1
@@ -1022,9 +1032,11 @@ class AutoTradeEngine:
         log(f"  📊 VIX: {vix:.2f} — Regime: {regime['label']} "
             f"(Δ {regime['delta_min']}-{regime['delta_max']}, risk × {regime['risk_mult']})")
 
-        open_positions = read_open_positions()
-        open_tickers = [p["ticker"] for p in open_positions.values()]
-        num_open = len(open_positions)
+        # Use IBKR positions as the gating source of truth. The journal is useful
+        # metadata, but submitted/cancelled orders can make it drift.
+        ibkr_shorts = [p for p in (self.app.positions or {}).values() if p.get("position", 0) < 0]
+        open_tickers = [p["symbol"] for p in ibkr_shorts]
+        num_open = len(ibkr_shorts)
 
         log(f"  Open positions: {num_open}/{MAX_POSITIONS}")
         if num_open >= MAX_POSITIONS:
@@ -1232,14 +1244,53 @@ class AutoTradeEngine:
         shorts = {k: v for k, v in ibkr_pos.items() if v["position"] < 0}
         longs = {k: v for k, v in ibkr_pos.items() if v["position"] > 0}
 
-        # Auto-close accidental long positions
+        def is_protective_bps_long(long_pos):
+            """Return True when a long put is the hedge leg of a journaled BPS."""
+            if long_pos.get("right") != "P":
+                return False
+            ticker = long_pos["symbol"]
+            expiry = str(long_pos.get("expiry", ""))
+            long_strike = float(long_pos["strike"])
+            long_qty = int(abs(long_pos["position"]))
+            width = SPREAD_WIDTHS.get(ticker, 5)
+            for short_pos in shorts.values():
+                if short_pos.get("symbol") != ticker:
+                    continue
+                if str(short_pos.get("expiry", "")) != expiry:
+                    continue
+                if short_pos.get("right") != "P":
+                    continue
+                if int(abs(short_pos.get("position", 0))) != long_qty:
+                    continue
+                short_strike = float(short_pos["strike"])
+                lookup_key = (ticker, round(short_strike, 2))
+                j = journal_by_pos.get(lookup_key)
+                if not j or j.get("strategy") != "BPS":
+                    continue
+                expected_long = short_strike - width
+                if abs(long_strike - expected_long) < 0.01:
+                    return True
+            return False
+
+        # Handle unmatched long positions. Protective BPS long puts are expected
+        # and must not be sold independently, or the spread becomes naked.
         for key, pos in longs.items():
+            if is_protective_bps_long(pos):
+                log(f"  🛡 Protective BPS long kept: {pos['symbol']} ${pos['strike']}P x{int(abs(pos['position']))}")
+                continue
             ticker = pos["symbol"]
             strike = pos["strike"]
             qty = int(abs(pos["position"]))
             expiry = pos.get("expiry", "")
-            log(f"  ⚠ LONG CLEANUP: {ticker} ${strike}P x{qty} — selling at market")
-            self._close_long_position(ticker, strike, expiry, qty)
+            log(f"  ⚠ UNMATCHED LONG: {ticker} ${strike}{pos.get('right','')} x{qty} — manual review required")
+            send_email(
+                f"⚠ Options Pro: Unmatched long {ticker} ${strike}{pos.get('right','')}",
+                f"<h2>Unmatched Long Option Detected</h2>"
+                f"<p>{ticker} ${strike}{pos.get('right','')} x{qty}, expiry {expiry}</p>"
+                f"<p>The engine did not sell it automatically. Review TWS manually.</p>"
+            )
+            if AUTO_CLOSE_UNMATCHED_LONGS:
+                self._close_long_position(ticker, strike, expiry, qty)
 
         log(f"\n{'='*60}")
         log(f"📡 MONITORING {len(shorts)} SHORT POSITION(S)")
@@ -1264,13 +1315,26 @@ class AutoTradeEngine:
                     continue
                 else:
                     del self._pending_orders[pending_key]
+            if pending_key in self._pending_closes:
+                age = (datetime.now() - self._pending_closes[pending_key]).total_seconds()
+                if age < MONITOR_INTERVAL:
+                    log(f"  {ticker} ${strike}P: close order pending ({int(age)}s ago) — skipping")
+                    continue
+                else:
+                    del self._pending_closes[pending_key]
 
-            # Entry credit: IBKR avgCost first, then journal fallback (keyed by strike too)
-            entry_credit = avg_cost
             lookup_key = (ticker, round(float(strike), 2))
-            if entry_credit <= 0:
-                j = journal_by_pos.get(lookup_key)
-                if j:
+            j = journal_by_pos.get(lookup_key)
+            strategy = j.get("strategy", "CSP") if j else "CSP"
+
+            # Entry credit: for BPS, the journal stores the NET spread credit.
+            # IBKR avgCost on a short option leg is only that leg's price and
+            # will overstate credit/profit targets if used for spreads.
+            if strategy == "BPS" and j:
+                entry_credit = j["credit"]
+            else:
+                entry_credit = avg_cost
+                if entry_credit <= 0 and j:
                     entry_credit = j["credit"]
             if entry_credit <= 0:
                 log(f"  {ticker} ${strike}P x{qty}: no entry price — skipping")
@@ -1284,10 +1348,6 @@ class AutoTradeEngine:
                     dte = (exp_date - datetime.now()).days
                 except:
                     pass
-
-            # Strategy: read from journal to know if this is BPS or CSP
-            j = journal_by_pos.get(lookup_key)
-            strategy = j.get("strategy", "CSP") if j else "CSP"
 
             # Current price of short leg (optPrice key from patched get_option_data)
             opt_data = self.get_option_data(ticker, strike, str(expiry), "P")
@@ -1520,6 +1580,7 @@ class AutoTradeEngine:
                             price, pnl, reason, order_id, strategy):
         """Shared journal write + email for close_position variants."""
         try:
+            self._pending_closes[f"{ticker}-{float(strike)}"] = datetime.now()
             write_journal(
                 action, ticker, "CLOSE", strike, expiry, qty, price,
                 0, 0, 0, "Submitted", round(pnl, 2),
@@ -1581,11 +1642,13 @@ class AutoTradeEngine:
 
                 lookup_key = (ticker, round(float(strike), 2))
                 j = journal_by_pos.get(lookup_key)
-                entry_credit = avg_cost
-                if entry_credit <= 0 and j:
-                    entry_credit = j.get("credit", 0)
-
                 strategy = j.get("strategy", "CSP") if j else "CSP"
+                if strategy == "BPS" and j:
+                    entry_credit = j.get("credit", 0)
+                else:
+                    entry_credit = avg_cost
+                    if entry_credit <= 0 and j:
+                        entry_credit = j.get("credit", 0)
 
                 # Use price cached during last monitor_positions run (per-position).
                 # For BPS this is the NET close debit (short - long), not just short leg.
@@ -1657,9 +1720,7 @@ class AutoTradeEngine:
             "open"         — 9:25 AM to 4:05 PM ET (includes 5-min buffer each side)
                              Full scan, trade, and monitor cycle.
         """
-        from datetime import timezone, timedelta
-        ET = timezone(timedelta(hours=-4))  # EDT (UTC-4); change to -5 for EST in winter
-        now_et = datetime.now(ET)
+        now_et = datetime.now(ZoneInfo("America/New_York"))
         hhmm = now_et.hour * 60 + now_et.minute  # minutes since midnight ET
 
         TWS_RESTART_START = 23 * 60 + 45   # 11:45 PM
