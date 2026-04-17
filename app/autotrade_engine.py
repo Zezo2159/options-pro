@@ -41,10 +41,32 @@ API_KEY_FILE = BASE / "api_key.txt"
 
 # Email config
 EMAIL_FROM = "islamalbaz90@gmail.com"
-EMAIL_PASS = "fwnpftcqwlskrpjn"
 EMAIL_TO = "islamalbaz90@gmail.com"
 SMTP_HOST = "smtp.gmail.com"
 SMTP_PORT = 587
+
+def _load_email_pass():
+    """Load Gmail app password from ~/options-pro/credentials.env or environment.
+    Never commit this file to git. Format:
+        GMAIL_APP_PASS=xxxxxxxxxxxxxxxx
+    """
+    # 1) Environment variable takes priority
+    p = os.environ.get("GMAIL_APP_PASS", "").strip()
+    if p:
+        return p
+    # 2) ~/options-pro/credentials.env
+    try:
+        env_file = Path.home() / "options-pro" / "credentials.env"
+        if env_file.exists():
+            for line in env_file.read_text().splitlines():
+                line = line.strip()
+                if line.startswith("GMAIL_APP_PASS="):
+                    return line.split("=", 1)[1].strip().strip('"').strip("'")
+    except Exception:
+        pass
+    return ""
+
+EMAIL_PASS = _load_email_pass()
 
 # ═══════════════════════════════════════════════
 # TRADING RULES
@@ -60,6 +82,12 @@ TIER3 = ["XSP", "QQQM"]                     # CSP mini
 WATCHLIST = TIER1 + TIER2 + TIER3
 
 # Spread widths per ticker (wider = more credit but more capital)
+_TRADING_CLASS = {
+    "SPY": "SPY", "QQQ": "QQQ", "IWM": "IWM", "SMH": "SMH",
+    "GLD": "GLD", "GDX": "GDX", "XLE": "XLE", "TLT": "TLT",
+    "XSP": "XSP", "QQQM": "QQQM", "DIA": "DIA", "EEM": "EEM",
+}
+
 SPREAD_WIDTHS = {
     "SPY": 10, "QQQ": 10, "SMH": 5, "GDX": 2,
 }
@@ -139,13 +167,16 @@ def log(msg):
 
 
 def send_email(subject, body_html):
+    if not EMAIL_PASS:
+        log(f"  ⚠ Email skipped (no GMAIL_APP_PASS in env or ~/options-pro/credentials.env): {subject}")
+        return
     try:
         msg = MIMEMultipart("alternative")
         msg["Subject"] = subject
         msg["From"] = EMAIL_FROM
         msg["To"] = EMAIL_TO
         msg.attach(MIMEText(body_html, "html"))
-        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as s:
+        with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=15) as s:
             s.ehlo()
             s.starttls()
             s.login(EMAIL_FROM, EMAIL_PASS)
@@ -401,7 +432,13 @@ class TWSApp(EWrapper, EClient):
             self.market_data[reqId]["theta"] = theta
         if vega is not None:
             self.market_data[reqId]["vega"] = vega
-        if reqId in self._price_events:
+        # Fire event when we have usable data (delta + price).
+        # Don't gate on tickType==13 — after-hours/delayed data only sends
+        # tickType 10/11 (bid/ask). We fire as soon as we have real values.
+        md = self.market_data.get(reqId, {})
+        has_delta = md.get("delta") is not None and md.get("delta") not in (-1, -2)
+        has_price = (md.get("optPrice", 0) or 0) > 0
+        if (has_delta or has_price) and reqId in self._price_events:
             self._price_events[reqId].set()
 
     # ── Contract Details (for resolving conId) ──
@@ -502,13 +539,18 @@ class AutoTradeEngine:
 
     # ── Market Data Helpers ──
     def get_stock_price(self, ticker, timeout=10):
-        """Get current stock price."""
+        """Get current stock (or index) price."""
         req_id = self.next_req_id()
         contract = Contract()
         contract.symbol = ticker
-        contract.secType = "STK"
-        contract.exchange = "SMART"
         contract.currency = "USD"
+        if ticker in self.INDEX_TICKERS:
+            # XSP is an index — IND on CBOE, not STK on SMART
+            contract.secType = "IND"
+            contract.exchange = self.PRIMARY_EXCHANGES.get(ticker, "CBOE")
+        else:
+            contract.secType = "STK"
+            contract.exchange = "SMART"
 
         event = threading.Event()
         self.app._price_events[req_id] = event
@@ -530,7 +572,8 @@ class AutoTradeEngine:
         contract = Contract()
         contract.symbol = ticker
         contract.secType = "OPT"
-        contract.exchange = "SMART"
+        # XSP options are CBOE-listed, not SMART-routed
+        contract.exchange = "CBOE" if ticker in self.INDEX_TICKERS else "SMART"
         contract.currency = "USD"
         contract.strike = strike
         contract.lastTradeDateOrContractMonth = expiry
@@ -541,11 +584,21 @@ class AutoTradeEngine:
         self.app._price_events[req_id] = event
         self.app.market_data[req_id] = {}
 
-        self.app.reqMktData(req_id, contract, "", False, False, [])
+        # tradingClass required — without it IBKR returns error 200 for ETF options
+        contract.tradingClass = _TRADING_CLASS.get(ticker, ticker)
+        
+        self.app.reqMktData(req_id, contract, "106", False, False, [])
         event.wait(timeout=timeout)
         self.app.cancelMktData(req_id)
 
         md = self.app.market_data.get(req_id, {})
+
+        # Price fallback: use bid/ask mid if optPrice not populated by model tick
+        if not md.get("optPrice"):
+            bid = md.get("bid", 0) or 0
+            ask = md.get("ask", 0) or 0
+            if bid > 0 and ask > 0:
+                md["optPrice"] = (bid + ask) / 2
         price = md.get("optPrice") or md.get("last")
         if not price and "bid" in md and "ask" in md:
             price = (md["bid"] + md["ask"]) / 2
@@ -567,18 +620,32 @@ class AutoTradeEngine:
         "XSP": "CBOE", "QQQM": "NASDAQ",
     }
 
-    def get_con_id(self, ticker, timeout=10):
-        """Resolve a ticker's conId via reqContractDetails."""
+    # Tickers that are INDICES (not stocks/ETFs).
+    # XSP is Mini-SPX — cash-settled index, not an ETF.
+    INDEX_TICKERS = {"XSP"}
+
+    def _underlying_sec_type(self, ticker):
+        return "IND" if ticker in self.INDEX_TICKERS else "STK"
+
+    def get_con_id(self, ticker, sec_type=None, timeout=10):
+        """Resolve a ticker's conId via reqContractDetails.
+        Pass sec_type='IND' for index tickers like XSP (defaults auto-detected)."""
+        if sec_type is None:
+            sec_type = self._underlying_sec_type(ticker)
         req_id = self.next_req_id()
         contract = Contract()
         contract.symbol = ticker
-        contract.secType = "STK"
-        contract.exchange = "SMART"
+        contract.secType = sec_type
         contract.currency = "USD"
-        # Set primaryExchange to avoid ambiguity errors
-        pex = self.PRIMARY_EXCHANGES.get(ticker)
-        if pex:
-            contract.primaryExchange = pex
+        if sec_type == "IND":
+            # Indices trade on their native exchange (CBOE for XSP)
+            contract.exchange = self.PRIMARY_EXCHANGES.get(ticker, "CBOE")
+        else:
+            contract.exchange = "SMART"
+            # Set primaryExchange to avoid ambiguity errors
+            pex = self.PRIMARY_EXCHANGES.get(ticker)
+            if pex:
+                contract.primaryExchange = pex
 
         event = threading.Event()
         self.app._detail_events[req_id] = event
@@ -590,9 +657,9 @@ class AutoTradeEngine:
         details = self.app.contract_details.get(req_id)
         if details:
             con_id = details.contract.conId
-            log(f"  {ticker}: conId={con_id}")
+            log(f"  {ticker}: conId={con_id} ({sec_type})")
             return con_id
-        log(f"  {ticker}: could not resolve conId")
+        log(f"  {ticker}: could not resolve conId (sec_type={sec_type})")
         return None
 
     def get_option_con_id(self, ticker, strike, expiry, right="P", timeout=10):
@@ -601,7 +668,7 @@ class AutoTradeEngine:
         contract = Contract()
         contract.symbol = ticker
         contract.secType = "OPT"
-        contract.exchange = "SMART"
+        contract.exchange = "CBOE" if ticker in self.INDEX_TICKERS else "SMART"
         contract.currency = "USD"
         contract.strike = strike
         contract.lastTradeDateOrContractMonth = str(expiry)
@@ -655,8 +722,10 @@ class AutoTradeEngine:
 
     def get_option_chain(self, ticker, timeout=10):
         """Get available expirations and strikes for a ticker."""
-        # First resolve the conId
-        con_id = self.get_con_id(ticker, timeout=timeout)
+        sec_type = self._underlying_sec_type(ticker)  # "IND" for XSP, "STK" otherwise
+
+        # Resolve the conId with correct underlying secType
+        con_id = self.get_con_id(ticker, sec_type=sec_type, timeout=timeout)
         if not con_id:
             log(f"  {ticker}: could not resolve conId")
             return {"expirations": [], "strikes": []}
@@ -667,7 +736,10 @@ class AutoTradeEngine:
         self.app._chain_events[req_id] = event
         self.app.option_chains[req_id] = {"expirations": set(), "strikes": set()}
 
-        self.app.reqSecDefOptParams(req_id, ticker, "", "STK", con_id)
+        # futFopExchange ("") is ONLY for futures options. For STK/IND underlyings
+        # it must be empty — passing "SMART" here causes error 200.
+        # Underlying secType must match what the conId resolves to.
+        self.app.reqSecDefOptParams(req_id, ticker, "", sec_type, con_id)
         event.wait(timeout=timeout)
 
         chain = self.app.option_chains.get(req_id, {})
@@ -804,7 +876,8 @@ class AutoTradeEngine:
         for strike in otm_strikes[:10]:
             opt = self.get_option_data(ticker, strike, expiry, "P")
             delta = abs(opt.get("delta", 0))
-            price = opt.get("price", 0)
+            # get_option_data returns "optPrice" — check both keys for safety
+            price = opt.get("optPrice", 0) or opt.get("price", 0)
 
             if price <= 0:
                 continue
@@ -815,13 +888,13 @@ class AutoTradeEngine:
                 if fit < best_delta_fit:
                     best_delta_fit = fit
                     best_strike = strike
-                    best_data = opt
+                    best_data = {**opt, "price": price}  # normalize key
 
             dist = abs(strike - buffer_target)
             if dist < best_buffer_dist:
                 best_buffer_dist = dist
                 best_buffer_strike = strike
-                best_buffer_data = opt
+                best_buffer_data = {**opt, "price": price}
 
         if best_strike:
             return best_strike, best_data
@@ -1030,7 +1103,12 @@ class AutoTradeEngine:
                         spread_max_loss = (width - net_credit) * 100
                         if spread_max_loss > 0:
                             max_spreads = int(adjusted_risk / spread_max_loss)
-                            qty = max(1, min(max_spreads, 20))
+                            # Apply same per-price caps as CSP (stock >$500 = 2 contracts)
+                            if stock_price > 500: price_cap = 2
+                            elif stock_price > 100: price_cap = 3
+                            elif stock_price > 50: price_cap = 4
+                            else: price_cap = 5
+                            qty = max(1, min(max_spreads, price_cap))
                     else:
                         # Can't get long leg price — fall back to naked
                         long_strike = None
@@ -1141,11 +1219,14 @@ class AutoTradeEngine:
             log("  No IBKR positions to monitor")
             return
 
-        # Build journal lookup for entry prices
+        # Build journal lookup for entry prices.
+        # Key by (ticker, rounded strike) so multiple positions in the same
+        # ticker at different strikes don't collide — and so that a later
+        # CLOSE row for one strike doesn't overwrite the OPEN for another.
         journal_pos = read_open_positions()
-        journal_by_ticker = {}
+        journal_by_pos = {}
         for k, v in journal_pos.items():
-            journal_by_ticker[v["ticker"]] = v
+            journal_by_pos[(v["ticker"], round(float(v["strike"]), 2))] = v
 
         # Separate short (ours) from accidental longs
         shorts = {k: v for k, v in ibkr_pos.items() if v["position"] < 0}
@@ -1184,11 +1265,12 @@ class AutoTradeEngine:
                 else:
                     del self._pending_orders[pending_key]
 
-            # Entry credit: IBKR avgCost first, then journal fallback
+            # Entry credit: IBKR avgCost first, then journal fallback (keyed by strike too)
             entry_credit = avg_cost
+            lookup_key = (ticker, round(float(strike), 2))
             if entry_credit <= 0:
-                j = journal_by_ticker.get(ticker)
-                if j and abs(j["strike"] - strike) < 1.0:
+                j = journal_by_pos.get(lookup_key)
+                if j:
                     entry_credit = j["credit"]
             if entry_credit <= 0:
                 log(f"  {ticker} ${strike}P x{qty}: no entry price — skipping")
@@ -1203,24 +1285,49 @@ class AutoTradeEngine:
                 except:
                     pass
 
-            # Current price
+            # Strategy: read from journal to know if this is BPS or CSP
+            j = journal_by_pos.get(lookup_key)
+            strategy = j.get("strategy", "CSP") if j else "CSP"
+
+            # Current price of short leg (optPrice key from patched get_option_data)
             opt_data = self.get_option_data(ticker, strike, str(expiry), "P")
-            current_price = opt_data.get("price", 0)
-            if current_price <= 0:
+            current_price = opt_data.get("optPrice", 0) or opt_data.get("price", 0)
+
+            # For BPS: also fetch long leg price to compute net spread value
+            net_close_debit = current_price  # default: just short leg cost
+            if strategy == "BPS":
+                width = SPREAD_WIDTHS.get(ticker, 5)
+                long_strike = strike - width
+                long_data = self.get_option_data(ticker, long_strike, str(expiry), "P")
+                long_price = long_data.get("optPrice", 0) or long_data.get("price", 0)
+                if long_price > 0:
+                    # Net debit to close spread = buy short - sell long
+                    net_close_debit = current_price - long_price
+                    log(f"  {ticker} spread: short=${current_price:.2f} long=${long_price:.2f} "
+                        f"net debit=${net_close_debit:.2f}")
+
+            # Cache NET debit (not just short leg) for live snapshot.
+            # For BPS this means P/L in the dashboard reflects the true spread
+            # value, not just the short leg — previously BPS P/L was overstated
+            # as a loss because long-leg value was ignored.
+            if not hasattr(self, '_live_prices'): self._live_prices = {}
+            self._live_prices[f"{ticker}-{strike}"] = net_close_debit
+
+            if net_close_debit <= 0:
                 log(f"  {ticker} ${strike}P x{qty}: no current price — skipping")
                 continue
 
-            # P/L
+            # P/L based on net spread credit received vs net debit to close
             entry_total = entry_credit * qty * 100
-            current_total = current_price * qty * 100
+            current_total = net_close_debit * qty * 100
             pnl = entry_total - current_total
 
             # Thresholds
             profit_target = entry_total * PROFIT_TARGET_PCT
             stop_loss = -(entry_total * STOP_LOSS_MULT)
 
-            log(f"\n  {ticker:5s} ${strike}P x{qty}: entry=${entry_total:.0f} now=${current_price:.2f} "
-                f"P/L=${pnl:.0f} DTE={dte}")
+            log(f"\n  {ticker:5s} ${strike}P x{qty} [{strategy}]: entry=${entry_total:.0f} "
+                f"now=${net_close_debit:.2f} P/L=${pnl:.0f} DTE={dte}")
 
             # Exit check
             action = None
@@ -1236,7 +1343,8 @@ class AutoTradeEngine:
 
             if action:
                 log(f"   >> {action}: {reason}")
-                self.close_position(ticker, strike, expiry, qty, current_price, action, reason, pnl)
+                self.close_position(ticker, strike, expiry, qty, net_close_debit,
+                                    action, reason, pnl, strategy=strategy)
             else:
                 log(f"   >> HOLD (target=${profit_target:.0f} stop=${stop_loss:.0f})")
 
@@ -1277,12 +1385,34 @@ class AutoTradeEngine:
         except Exception as e:
             log(f"  ❌ Long cleanup failed: {e}")
 
-    def close_position(self, ticker, strike, expiry, qty, current_price, action, reason, pnl):
-        """Close a position by buying back the option."""
+    def close_position(self, ticker, strike, expiry, qty, current_price,
+                        action, reason, pnl, strategy="CSP"):
+        """Close a position.
+        
+        For CSP: single buy-to-close on the short put.
+        For BPS: BAG combo order that closes both legs simultaneously —
+                 BUY the short put + SELL the long put.
+                 This prevents orphaned long puts which waste margin.
+        """
         if self.app.next_order_id is None:
             log("  ❌ No valid order ID — cannot close")
             return
 
+        try:
+            if strategy == "BPS":
+                self._close_spread_position(ticker, strike, expiry, qty,
+                                            current_price, action, reason, pnl)
+            else:
+                self._close_single_position(ticker, strike, expiry, qty,
+                                            current_price, action, reason, pnl)
+        except Exception as e:
+            log(f"  ❌ Close failed: {e}")
+            import traceback
+            log(traceback.format_exc())
+
+    def _close_single_position(self, ticker, strike, expiry, qty, current_price,
+                                action, reason, pnl):
+        """Close a single-leg CSP position (buy to close)."""
         order_id = self.app.next_order_id
         self.app.next_order_id += 1
 
@@ -1291,10 +1421,11 @@ class AutoTradeEngine:
         contract.secType = "OPT"
         contract.exchange = "SMART"
         contract.currency = "USD"
-        contract.strike = strike
+        contract.strike = float(strike)
         contract.lastTradeDateOrContractMonth = str(expiry)
         contract.right = "P"
         contract.multiplier = "100"
+        contract.tradingClass = _TRADING_CLASS.get(ticker, ticker)
 
         order = Order()
         order.action = "BUY"
@@ -1306,32 +1437,242 @@ class AutoTradeEngine:
         order.firmQuoteOnly = False
         order.account = ACCOUNT_ID
 
-        log(f"  📤 Closing: BUY {qty}x {ticker} ${strike}P @ ${current_price:.2f} (ID: {order_id})")
+        log(f"  📤 Close CSP: BUY {qty}x {ticker} ${strike}P @ ${current_price:.2f} (ID: {order_id})")
+        self.app.placeOrder(order_id, contract, order)
+        self._journal_and_email(action, ticker, strike, expiry, qty,
+                                current_price, pnl, reason, order_id, "CSP")
+
+    def _close_spread_position(self, ticker, strike, expiry, qty, net_debit,
+                                action, reason, pnl):
+        """Close a BPS position as a BAG combo order.
+        
+        Simultaneously:
+          BUY  short_strike put  (close our short leg)
+          SELL long_strike put   (close our long leg)
+        
+        Net debit = short premium - long premium.
+        Using a combo order avoids leg risk and gets better fills.
+        """
+        width = SPREAD_WIDTHS.get(ticker, 5)
+        long_strike = float(strike) - width
+        short_strike = float(strike)
+
+        log(f"  📤 Close BPS: {ticker} ${short_strike}P/${long_strike}P x{qty} "
+            f"net debit=${net_debit:.2f}")
+
+        # Resolve conIds for both legs
+        short_conid = self.get_option_con_id(ticker, short_strike, expiry, "P")
+        long_conid  = self.get_option_con_id(ticker, long_strike,  expiry, "P")
+
+        if not short_conid or not long_conid:
+            log(f"  ❌ Cannot resolve spread conIds ({short_conid}, {long_conid}) "
+                f"— falling back to single-leg close")
+            self._close_single_position(ticker, strike, expiry, qty,
+                                        net_debit, action, reason, pnl)
+            return
+
+        order_id = self.app.next_order_id
+        self.app.next_order_id += 1
+
+        # BAG combo contract
+        from ibapi.contract import ComboLeg
+        contract = Contract()
+        contract.symbol = ticker
+        contract.secType = "BAG"
+        contract.exchange = "SMART"
+        contract.currency = "USD"
+
+        # To CLOSE a spread we originally opened as:
+        #   SELL short_strike (short leg) + BUY long_strike (long leg)
+        # We now reverse:
+        #   BUY  short_strike (ratio 1, action BUY)
+        #   SELL long_strike  (ratio 1, action SELL)
+        short_leg = ComboLeg()
+        short_leg.conId = short_conid
+        short_leg.ratio = 1
+        short_leg.action = "BUY"    # buy back our short
+        short_leg.exchange = "SMART"
+
+        long_leg = ComboLeg()
+        long_leg.conId = long_conid
+        long_leg.ratio = 1
+        long_leg.action = "SELL"    # sell back our long
+        long_leg.exchange = "SMART"
+
+        contract.comboLegs = [short_leg, long_leg]
+
+        order = Order()
+        order.action = "BUY"        # direction of the combo
+        order.totalQuantity = qty
+        order.orderType = "LMT"
+        order.lmtPrice = round(net_debit, 2)
+        order.tif = "DAY"
+        order.eTradeOnly = False
+        order.firmQuoteOnly = False
+        order.account = ACCOUNT_ID
+
+        self.app.placeOrder(order_id, contract, order)
+        log(f"  ✅ BPS close order placed (ID: {order_id})")
+        self._journal_and_email(action, ticker, strike, expiry, qty,
+                                net_debit, pnl, reason, order_id, "BPS")
+
+    def _journal_and_email(self, action, ticker, strike, expiry, qty,
+                            price, pnl, reason, order_id, strategy):
+        """Shared journal write + email for close_position variants."""
+        try:
+            write_journal(
+                action, ticker, "CLOSE", strike, expiry, qty, price,
+                0, 0, 0, "Submitted", round(pnl, 2),
+                f"{reason} | {strategy} | OrderID {order_id}"
+            )
+            log(f"  📓 Journal written: {action} {ticker} ${strike}P P/L=${pnl:.0f}")
+        except Exception as e:
+            log(f"  ❌ Journal write failed: {e}")
 
         try:
-            self.app.placeOrder(order_id, contract, order)
-
-            # Write to journal
-            write_journal(
-                action, ticker, "CLOSE", strike, expiry, qty, current_price,
-                0, 0, 0, "Submitted", round(pnl, 2), f"{reason} | OrderID {order_id}"
-            )
-
-            # Send email
             emoji = "✅" if pnl >= 0 else "❌"
-            send_email(
-                f"{emoji} Position Closed: {ticker} ${strike}P (${pnl:.0f})",
+            sign = "+" if pnl >= 0 else ""
+            subject = f"{emoji} Closed: {ticker} ${strike}P {sign}${pnl:.0f} [{strategy}]"
+            body = (
                 f"<h2>{action.replace('_', ' ')}</h2>"
-                f"<p><b>{ticker}</b> ${strike}P × {qty} closed @ ${current_price:.2f}</p>"
-                f"<p>P/L: <b>${pnl:.2f}</b></p>"
+                f"<p><b>{ticker}</b> ${strike}P × {qty} [{strategy}]</p>"
+                f"<p>Close price: <b>${price:.2f}</b></p>"
+                f"<p>P/L: <b>${pnl:.2f}</b> ({sign}{pnl/max(qty*price*100,1)*100:.1f}%)</p>"
                 f"<p>Reason: {reason}</p>"
+                f"<p>Order ID: {order_id}</p>"
+                f"<p><small>Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</small></p>"
             )
+            send_email(subject, body)
+            log(f"  📧 Email sent: {subject}")
         except Exception as e:
-            log(f"  ❌ Close failed: {e}")
+            log(f"  ❌ Email failed for {ticker} close: {e}")
 
     # ═══════════════════════════════════════════════
     # MAIN LOOP
     # ═══════════════════════════════════════════════
+    def write_live_snapshot(self):
+        """Write current position state to ~/Desktop/live_positions.json.
+        Proxy serves this as /api/live — dashboard polls it every 30s."""
+        try:
+            positions = []
+            ibkr_pos = self.app.positions or {}
+            journal_pos = read_open_positions()
+            # Key by (ticker, strike) so per-strike positions never collide
+            journal_by_pos = {(v["ticker"], round(float(v["strike"]), 2)): v
+                              for v in journal_pos.values()}
+
+            # Count legs so dashboard can show WHY shorts < total
+            shorts_count = sum(1 for v in ibkr_pos.values() if v.get("position", 0) < 0)
+            longs_count  = sum(1 for v in ibkr_pos.values() if v.get("position", 0) > 0)
+            total_ibkr   = shorts_count + longs_count
+            if total_ibkr != shorts_count:
+                log(f"  📊 IBKR {total_ibkr} legs = {shorts_count} short + {longs_count} long "
+                    f"(longs are BPS protective puts, excluded from snapshot)")
+
+            total_pnl = 0.0
+            for key, ibkr in ibkr_pos.items():
+                if ibkr.get("position", 0) >= 0:
+                    continue  # skip longs
+                ticker  = ibkr["symbol"]
+                strike  = ibkr["strike"]
+                qty     = int(abs(ibkr["position"]))
+                expiry  = ibkr.get("expiry", "")
+                avg_cost = ibkr.get("avgCost", 0)
+
+                lookup_key = (ticker, round(float(strike), 2))
+                j = journal_by_pos.get(lookup_key)
+                entry_credit = avg_cost
+                if entry_credit <= 0 and j:
+                    entry_credit = j.get("credit", 0)
+
+                strategy = j.get("strategy", "CSP") if j else "CSP"
+
+                # Use price cached during last monitor_positions run (per-position).
+                # For BPS this is the NET close debit (short - long), not just short leg.
+                cache_key = f"{ticker}-{strike}"
+                current_price = getattr(self, '_live_prices', {}).get(cache_key, 0.0)
+
+                dte = 0
+                if expiry and len(str(expiry)) >= 8:
+                    try:
+                        exp_date = datetime.strptime(str(expiry)[:8], "%Y%m%d")
+                        dte = max(0, (exp_date - datetime.now()).days)
+                    except: pass
+
+                entry_total   = entry_credit * qty * 100
+                current_total = current_price * qty * 100
+                pnl           = round(entry_total - current_total, 2)
+                pnl_pct       = round((pnl / entry_total * 100) if entry_total else 0, 1)
+                total_pnl    += pnl
+
+                positions.append({
+                    "ticker":        ticker,
+                    "strike":        strike,
+                    "expiry":        str(expiry),
+                    "qty":           qty,
+                    "strategy":      strategy,
+                    "entry_credit":  round(entry_credit, 2),
+                    "current_price": round(current_price, 2),
+                    "pnl":           pnl,
+                    "pnl_pct":       pnl_pct,
+                    "dte":           dte,
+                })
+
+            regime = getattr(self, "_current_regime", None) or {}
+            vix    = regime.get("vix", 0)
+
+            snapshot = {
+                "updated":          datetime.now().isoformat(timespec="seconds"),
+                "engine_running":   True,
+                "connected":        bool(self.app._connected),
+                "market_status":    self.market_status(),
+                "vix":              round(vix, 2) if vix else None,
+                "regime":           regime.get("label", "Unknown"),
+                "positions":        positions,
+                "positions_count":  len(positions),
+                "max_positions":    MAX_POSITIONS,
+                "total_pnl":        round(total_pnl, 2),
+                "account_size":     ACCOUNT_SIZE,
+                "ibkr_legs_total":  total_ibkr,
+                "ibkr_legs_short":  shorts_count,
+                "ibkr_legs_long":   longs_count,
+            }
+
+            out_path = os.path.expanduser("~/Desktop/live_positions.json")
+            with open(out_path, "w") as f:
+                json.dump(snapshot, f, indent=2)
+
+        except Exception as e:
+            log(f"  ⚠ write_live_snapshot failed: {e}")
+
+    def market_status(self):
+        """Return current market session based on US Eastern time.
+
+        Returns:
+            "tws_restart"  — 11:45 PM to 6:30 AM ET (TWS daily restart window)
+                             Engine sleeps entirely, no TWS interaction.
+            "closed"       — 6:30 AM to 9:25 AM ET and 4:05 PM to 11:45 PM ET
+                             Monitor existing positions only, no new scans/trades.
+                             Stale data alerts suppressed (no market data expected).
+            "open"         — 9:25 AM to 4:05 PM ET (includes 5-min buffer each side)
+                             Full scan, trade, and monitor cycle.
+        """
+        from datetime import timezone, timedelta
+        ET = timezone(timedelta(hours=-4))  # EDT (UTC-4); change to -5 for EST in winter
+        now_et = datetime.now(ET)
+        hhmm = now_et.hour * 60 + now_et.minute  # minutes since midnight ET
+
+        TWS_RESTART_START = 23 * 60 + 45   # 11:45 PM
+        TWS_RESTART_END   =  6 * 60 + 30   #  6:30 AM
+        MARKET_OPEN       =  9 * 60 + 25   #  9:25 AM (5-min early buffer)
+        MARKET_CLOSE      = 16 * 60 +  5   #  4:05 PM (5-min late buffer)
+
+        if hhmm >= TWS_RESTART_START or hhmm < TWS_RESTART_END:
+            return "tws_restart"
+        if hhmm < MARKET_OPEN or hhmm >= MARKET_CLOSE:
+            return "closed"
+        return "open"
+
     def run(self):
         """Main engine loop."""
         log("\n" + "🚀" * 20)
@@ -1343,19 +1684,49 @@ class AutoTradeEngine:
         log(f"Scan passes: {self.scan_passes}")
         log("🚀" * 20 + "\n")
 
+        # Backup engine to GitHub on every restart (captures latest patches)
+        try:
+            import subprocess as _sp
+            repo = os.path.expanduser("~/options-pro")
+            if os.path.exists(repo):
+                eng_src = "/Applications/OptionsPro.app/Contents/Resources/autotrade_engine.py"
+                eng_dst = os.path.join(repo, "app", "autotrade_engine.py")
+                import shutil as _sh
+                _sh.copy2(eng_src, eng_dst)
+                ts = datetime.now().strftime("%Y-%m-%d %H:%M")
+                _sp.run(["git", "-C", repo, "add", "-A"], capture_output=True)
+                result = _sp.run(
+                    ["git", "-C", repo, "commit", "-m", f"auto-backup on restart {ts}"],
+                    capture_output=True, text=True
+                )
+                if "nothing to commit" not in result.stdout:
+                    _sp.run(["git", "-C", repo, "push"], capture_output=True)
+                    log("  ✅ GitHub backup on restart complete")
+        except Exception as _e:
+            log(f"  ⚠ Startup backup failed (non-critical): {_e}")
+
         ensure_journal()
 
         if not self.connect():
             log("❌ Cannot start — TWS connection failed")
             return
 
-        # Initial scan & trade
-        for pass_num in range(self.scan_passes):
-            log(f"\n━━━ Scan Pass {pass_num + 1}/{self.scan_passes} ━━━")
-            opportunities = self.scan()
-            if opportunities:
-                self.execute_trades(opportunities)
-            time.sleep(5)
+        # Initial scan & trade — only during market hours
+        ms = self.market_status()
+        if ms == "open":
+            for pass_num in range(self.scan_passes):
+                log(f"\n━━━ Scan Pass {pass_num + 1}/{self.scan_passes} ━━━")
+                opportunities = self.scan()
+                if opportunities:
+                    self.execute_trades(opportunities)
+                time.sleep(5)
+        elif ms == "tws_restart":
+            log("😴 Startup during TWS restart window — skipping initial scan, entering monitor mode")
+        else:
+            log("🌙 Market closed — skipping initial scan, entering monitor mode")
+
+        # Write initial snapshot immediately so dashboard shows data
+        self.write_live_snapshot()
 
         # Enter monitoring loop
         log(f"\n✅ Entering monitor mode (checking every {MONITOR_INTERVAL // 60} min)")
@@ -1366,6 +1737,16 @@ class AutoTradeEngine:
 
         while self._running:
             try:
+                # ── Market hours gate ──
+                ms = self.market_status()
+
+                if ms == "tws_restart":
+                    # TWS is doing its nightly restart (11:45 PM – 6:30 AM ET).
+                    # Don't touch TWS at all — sleep and check again in 5 min.
+                    log("😴 TWS restart window — sleeping (next check in 5 min)")
+                    time.sleep(300)
+                    continue
+
                 # ── Connection health check ──
                 if not self.app._connected:
                     lost_age = 0
@@ -1373,15 +1754,20 @@ class AutoTradeEngine:
                         lost_age = (datetime.now() - self.app._connection_lost_at).total_seconds()
                     log(f"⚠ Connection lost ({int(lost_age)}s ago) — attempting reconnect...")
 
-                    # Send alert if disconnected > 15 min and haven't alerted recently
-                    if lost_age > 900:
-                        if not last_alert_sent or (datetime.now() - last_alert_sent).total_seconds() > 1800:
-                            send_email(
-                                "🚨 Options Pro: TWS Disconnected > 15 min",
-                                f"<h2>Engine has been disconnected from TWS for {int(lost_age/60)} minutes.</h2>"
-                                f"<p>Check TWS is open and logged in. Engine will keep trying to reconnect.</p>"
-                            )
-                            last_alert_sent = datetime.now()
+                    # Send alert if disconnected > 15 min and haven't alerted recently.
+                    # Rate limit: one disconnect alert per 2 hours (was 30 min — too spammy).
+                    if lost_age > 900 and (
+                        not last_alert_sent
+                        or (datetime.now() - last_alert_sent).total_seconds() > 7200
+                    ):
+                        send_email(
+                            "🚨 Options Pro: TWS Disconnected > 15 min",
+                            f"<h2>Engine has been disconnected from TWS for {int(lost_age/60)} minutes.</h2>"
+                            f"<p>Check TWS is open and logged in. Engine will keep trying to reconnect.</p>"
+                            f"<p><small>This alert will not repeat for 2 hours.</small></p>"
+                        )
+                        last_alert_sent = datetime.now()
+                        log(f"  📧 Disconnect alert sent (next alert in 2h)")
 
                     if not self.reconnect():
                         log("❌ Reconnect failed — waiting 60s before retry")
@@ -1420,11 +1806,15 @@ class AutoTradeEngine:
                 price_count_before = sum(1 for _ in self.app.market_data.values())
                 self.monitor_positions()
 
-                # ── Check for stale data ──
-                # If we have positions but got no prices, count as stale
-                if self.app.positions:
+                # ── Write live snapshot for dashboard ──
+                self.write_live_snapshot()
+
+                # ── Check for stale data (market hours only) ──
+                # Outside market hours, no prices are expected — skip stale detection
+                # to avoid spurious reconnect storms overnight.
+                if self.app.positions and ms == "open":
                     got_prices = False
-                    for key in list(self.app.market_data.keys())[-20:]:  # recent requests
+                    for key in list(self.app.market_data.keys())[-20:]:
                         md = self.app.market_data.get(key, {})
                         if md.get("last") or md.get("optPrice") or (md.get("bid") and md.get("ask")):
                             got_prices = True
@@ -1447,10 +1837,20 @@ class AutoTradeEngine:
                     else:
                         consecutive_stale = 0
                         last_successful_monitor = datetime.now()
+                elif ms != "open":
+                    # Outside market hours: reset stale counter and keep last_successful_monitor
+                    # fresh so the 1-hour watchdog doesn't fire unnecessarily.
+                    consecutive_stale = 0
+                    last_successful_monitor = datetime.now()
 
-                # Sleep until next check
-                log(f"\n  ⏳ Next check in {MONITOR_INTERVAL // 60} min...")
-                time.sleep(MONITOR_INTERVAL)
+                # Sleep until next check — longer interval outside market hours
+                if ms == "open":
+                    sleep_secs = MONITOR_INTERVAL
+                    log(f"\n  ⏳ Next check in {sleep_secs // 60} min...")
+                else:
+                    sleep_secs = 900  # 15 min when closed (saves CPU, avoids log spam)
+                    log(f"\n  🌙 Market closed — next check in 15 min...")
+                time.sleep(sleep_secs)
 
             except KeyboardInterrupt:
                 log("\n🛑 Engine stopped by user")
