@@ -1376,16 +1376,15 @@ class AutoTradeEngine:
                     log(f"  {ticker} spread: short=${current_price:.2f} long=${long_price:.2f} "
                         f"net debit=${net_close_debit:.2f}")
 
-            # Cache NET debit (not just short leg) for live snapshot.
-            # For BPS this means P/L in the dashboard reflects the true spread
-            # value, not just the short leg — previously BPS P/L was overstated
-            # as a loss because long-leg value was ignored.
-            if not hasattr(self, '_live_prices'): self._live_prices = {}
-            self._live_prices[f"{ticker}-{strike}"] = net_close_debit
-
             if net_close_debit <= 0:
                 log(f"  {ticker} ${strike}P x{qty}: no current price — skipping")
                 continue
+
+            # Cache NET debit (not just short leg) for live snapshot, but only
+            # after confirming it is a real positive market value. A missing
+            # quote of 0 must not become a fake 100% profit in the dashboard.
+            if not hasattr(self, '_live_prices'): self._live_prices = {}
+            self._live_prices[f"{ticker}-{strike}"] = net_close_debit
 
             # P/L based on net spread credit received vs net debit to close
             entry_total = entry_credit * qty * 100
@@ -1664,6 +1663,7 @@ class AutoTradeEngine:
                 # For BPS this is the NET close debit (short - long), not just short leg.
                 cache_key = f"{ticker}-{strike}"
                 current_price = getattr(self, '_live_prices', {}).get(cache_key, 0.0)
+                has_live_price = current_price > 0
 
                 dte = 0
                 if expiry and len(str(expiry)) >= 8:
@@ -1674,9 +1674,10 @@ class AutoTradeEngine:
 
                 entry_total   = entry_credit * qty * 100
                 current_total = current_price * qty * 100
-                pnl           = round(entry_total - current_total, 2)
-                pnl_pct       = round((pnl / entry_total * 100) if entry_total else 0, 1)
-                total_pnl    += pnl
+                pnl           = round(entry_total - current_total, 2) if has_live_price else 0.0
+                pnl_pct       = round((pnl / entry_total * 100) if entry_total and has_live_price else 0, 1)
+                if has_live_price:
+                    total_pnl += pnl
 
                 positions.append({
                     "ticker":        ticker,
@@ -1686,6 +1687,7 @@ class AutoTradeEngine:
                     "strategy":      strategy,
                     "entry_credit":  round(entry_credit, 2),
                     "current_price": round(current_price, 2),
+                    "price_valid":   has_live_price,
                     "pnl":           pnl,
                     "pnl_pct":       pnl_pct,
                     "dte":           dte,
