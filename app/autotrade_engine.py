@@ -40,6 +40,8 @@ JOURNAL = Path.home() / "Desktop" / "autotrade_journal.csv"
 LOG_FILE = Path.home() / "Desktop" / "autotrade_log.txt"
 API_KEY_FILE = BASE / "api_key.txt"
 KILL_SWITCH_FILE = Path.home() / "Desktop" / "optionspro_kill_switch"
+SIGNAL_ONLY_FILE = Path.home() / "Desktop" / "optionspro_signal_only"
+SIGNALS_FILE = Path.home() / "Desktop" / "trade_signals.json"
 
 # Email config
 EMAIL_FROM = "islamalbaz90@gmail.com"
@@ -105,6 +107,13 @@ DTE_TARGET = 35
 PROFIT_TARGET_PCT = 0.50   # Close at 50% profit
 STOP_LOSS_MULT = 2.0       # Stop at 2× credit received
 DTE_EXIT = 21              # Close at 21 DTE if not profitable
+
+# Signal/risk guardrails
+# CSP sizing uses assignment exposure, not theoretical loss to zero after credit.
+MAX_CSP_ASSIGNMENT_RISK = MAX_RISK
+MAX_OPTION_BID_ASK_PCT = 0.35
+MAX_OPTION_BID_ASK_ABS = 0.75
+MIN_SPREAD_CREDIT_PCT = 0.15  # Credit should be at least 15% of spread width.
 
 # ═══════════════════════════════════════════════
 # MARKET REGIME — VIX-based adjustments
@@ -221,6 +230,11 @@ def kill_switch_active():
     return KILL_SWITCH_FILE.exists()
 
 
+def signal_only_active():
+    """True means generate signals but do not submit opening orders."""
+    return SIGNAL_ONLY_FILE.exists()
+
+
 # ═══════════════════════════════════════════════
 # JOURNAL MANAGEMENT
 # ═══════════════════════════════════════════════
@@ -241,6 +255,47 @@ def write_journal(action, ticker, strategy, strike, expiry, qty, credit, delta, 
     with open(JOURNAL, "a", newline="") as f:
         csv.writer(f).writerow(row)
     log(f"  📝 Journal: {action} {ticker} ${strike} x{qty}")
+
+
+def write_trade_signals(opportunities, mode="paper_auto"):
+    """Write vetted scan results for manual review/copying to a real account."""
+    signals = []
+    for opp in opportunities:
+        risk = 0
+        if opp.get("strategy") == "BPS" and opp.get("long_strike"):
+            width = float(opp["strike"]) - float(opp["long_strike"])
+            risk = max(0, (width - float(opp.get("net_credit", 0))) * 100 * int(opp.get("qty", 0)))
+        else:
+            risk = float(opp.get("strike", 0)) * 100 * int(opp.get("qty", 0))
+        signals.append({
+            "ticker": opp.get("ticker"),
+            "strategy": opp.get("strategy"),
+            "strike": opp.get("strike"),
+            "long_strike": opp.get("long_strike"),
+            "expiry": opp.get("expiry"),
+            "qty": opp.get("qty"),
+            "credit": round(float(opp.get("net_credit", opp.get("premium", 0))), 2),
+            "delta": round(float(opp.get("delta", 0)), 3),
+            "iv": round(float(opp.get("iv", 0)) * 100, 1),
+            "dte": opp.get("dte"),
+            "score": opp.get("score"),
+            "estimated_risk": round(risk, 2),
+            "buffer_pct": round(float(opp.get("buffer", 0)), 1),
+            "warnings": [
+                "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
+                "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
+            ],
+        })
+    payload = {
+        "generated": datetime.now().isoformat(timespec="seconds"),
+        "mode": mode,
+        "account": ACCOUNT_ID,
+        "max_positions": MAX_POSITIONS,
+        "signals": signals,
+    }
+    with open(SIGNALS_FILE, "w") as f:
+        json.dump(payload, f, indent=2)
+    log(f"  📡 Signals written: {len(signals)} candidate(s) -> {SIGNALS_FILE}")
 
 
 def read_open_positions():
@@ -608,19 +663,26 @@ class AutoTradeEngine:
         self.app.cancelMktData(req_id)
 
         md = self.app.market_data.get(req_id, {})
+        bid = md.get("bid", 0) or 0
+        ask = md.get("ask", 0) or 0
 
         # Price fallback: use bid/ask mid if optPrice not populated by model tick
         if not md.get("optPrice"):
-            bid = md.get("bid", 0) or 0
-            ask = md.get("ask", 0) or 0
             if bid > 0 and ask > 0:
                 md["optPrice"] = (bid + ask) / 2
         price = md.get("optPrice") or md.get("last")
         if not price and "bid" in md and "ask" in md:
             price = (md["bid"] + md["ask"]) / 2
+        spread = (ask - bid) if bid > 0 and ask > 0 else 0
+        spread_pct = (spread / price) if price and spread > 0 else 0
 
         return {
             "price": price or 0,
+            "bid": bid,
+            "ask": ask,
+            "spread": spread,
+            "spread_pct": spread_pct,
+            "quote_valid": bool((price or 0) > 0 and (not spread or spread > 0)),
             "iv": md.get("iv", 0),
             "delta": md.get("delta", 0),
             "gamma": md.get("gamma", 0),
@@ -814,6 +876,24 @@ class AutoTradeEngine:
 
         return max(0, min(100, round(score)))
 
+    def quote_is_acceptable(self, ticker, opt_data, context=""):
+        """Reject missing or excessively wide option quotes before signaling/trading."""
+        price = opt_data.get("price", 0) or opt_data.get("optPrice", 0) or 0
+        bid = opt_data.get("bid", 0) or 0
+        ask = opt_data.get("ask", 0) or 0
+        spread = opt_data.get("spread", 0) or ((ask - bid) if bid > 0 and ask > 0 else 0)
+        spread_pct = opt_data.get("spread_pct", 0) or ((spread / price) if price > 0 and spread > 0 else 0)
+        label = f"{ticker} {context}".strip()
+        if price <= 0:
+            return False, f"{label}: missing option price"
+        if bid > 0 and ask > 0:
+            if spread > MAX_OPTION_BID_ASK_ABS and spread_pct > MAX_OPTION_BID_ASK_PCT:
+                return False, (
+                    f"{label}: quote too wide bid=${bid:.2f} ask=${ask:.2f} "
+                    f"spread={spread_pct*100:.0f}%"
+                )
+        return True, ""
+
     # ── Position Sizing ──
     def calc_position_size(self, ticker, strike, premium, stock_price):
         """Calculate number of contracts based on tier, risk rules, and regime."""
@@ -822,13 +902,16 @@ class AutoTradeEngine:
         risk_mult = regime.get("risk_mult", 1.0)
         adjusted_max_risk = MAX_RISK * risk_mult
 
-        # CSP risk: max loss = (strike - premium) × 100 per contract
-        max_loss_per_contract = (strike - premium) * 100
+        # CSP risk for sizing is assignment exposure, not loss-to-zero after
+        # credit. If one contract exceeds the budget, return 0 and skip.
+        max_loss_per_contract = strike * 100
 
         if max_loss_per_contract <= 0:
-            return 1
+            return 0
 
         max_contracts = int(adjusted_max_risk / max_loss_per_contract)
+        if max_contracts <= 0:
+            return 0
 
         # Additional caps based on stock price tier
         if stock_price > 500:
@@ -840,7 +923,7 @@ class AutoTradeEngine:
         else:
             cap = 5   # Mini (QQQM-sized): max 5
 
-        return max(1, min(max_contracts, cap))
+        return min(max_contracts, cap)
 
     # ── Find Best Expiry ──
     def find_target_expiry(self, expirations):
@@ -896,6 +979,10 @@ class AutoTradeEngine:
             price = opt.get("optPrice", 0) or opt.get("price", 0)
 
             if price <= 0:
+                continue
+            ok, reason = self.quote_is_acceptable(ticker, {**opt, "price": price}, f"${strike}P")
+            if not ok:
+                log(f"  {reason}")
                 continue
 
             # Use regime-adjusted delta range
@@ -1103,6 +1190,13 @@ class AutoTradeEngine:
 
             strategy = get_strategy(ticker)
             qty = self.calc_position_size(ticker, strike, premium, stock_price)
+            if strategy == "CSP" and qty <= 0:
+                exposure = strike * 100
+                regime_mult = getattr(self, '_current_regime', REGIMES["normal"]).get("risk_mult", 1.0)
+                risk_budget = MAX_CSP_ASSIGNMENT_RISK * regime_mult
+                log(f"  {ticker}: skipped CSP — assignment exposure ${exposure:,.0f} "
+                    f"exceeds risk budget ${risk_budget:,.0f}")
+                continue
 
             # For Tier 1: find the long leg (protective put) for the spread
             long_strike = None
@@ -1125,15 +1219,31 @@ class AutoTradeEngine:
                         spread_max_loss = (width - net_credit) * 100
                         if spread_max_loss > 0:
                             max_spreads = int(adjusted_risk / spread_max_loss)
+                            if net_credit < width * MIN_SPREAD_CREDIT_PCT:
+                                log(f"  {ticker}: skipped spread — credit ${net_credit:.2f} "
+                                    f"is below {MIN_SPREAD_CREDIT_PCT*100:.0f}% of ${width} width")
+                                long_strike = None
+                                qty = 0
+                                continue
                             # Apply same per-price caps as CSP (stock >$500 = 2 contracts)
-                            if stock_price > 500: price_cap = 2
-                            elif stock_price > 100: price_cap = 3
-                            elif stock_price > 50: price_cap = 4
-                            else: price_cap = 5
-                            qty = max(1, min(max_spreads, price_cap))
+                            if stock_price > 500:
+                                price_cap = 2
+                            elif stock_price > 100:
+                                price_cap = 3
+                            elif stock_price > 50:
+                                price_cap = 4
+                            else:
+                                price_cap = 5
+                            qty = min(max_spreads, price_cap)
+                            if qty <= 0:
+                                log(f"  {ticker}: skipped spread — max risk budget allows 0 contracts")
+                                long_strike = None
+                                continue
                     else:
                         # Can't get long leg price — fall back to naked
                         long_strike = None
+            if qty <= 0:
+                continue
 
             log(f"  {ticker}: ${strike}P @ ${premium:.2f} | Δ={delta:.3f} IV={iv*100:.1f}% "
                 f"Buffer={buffer:.1f}% DTE={dte} | Score={score}"
@@ -1156,15 +1266,17 @@ class AutoTradeEngine:
                 "stock_price": stock_price,
             })
 
-        # Sort by score descending
+        # Sort by score descending after scanning the full watchlist.
         opportunities.sort(key=lambda x: x["score"], reverse=True)
+        selected = opportunities[:slots]
+        write_trade_signals(selected, mode="signal_only" if signal_only_active() else "paper_auto")
 
         log(f"\n  📊 Found {len(opportunities)} opportunities, {slots} slot(s) available")
-        for opp in opportunities[:slots]:
+        for opp in selected:
             log(f"    #{opp['score']}: {opp['ticker']} ${opp['strike']}P @ ${opp['premium']:.2f} "
                 f"({opp['strategy']}) DTE={opp['dte']}")
 
-        return opportunities[:slots]
+        return selected
 
     # ═══════════════════════════════════════════════
     # TRADE EXECUTION
@@ -1182,13 +1294,20 @@ class AutoTradeEngine:
             expiry = opp["expiry"]
             premium = opp["premium"]
             net_credit = opp.get("net_credit", premium)
-            qty = opp["qty"]
+            qty = int(opp.get("qty", 0) or 0)
             strategy = opp["strategy"]
             delta = opp["delta"]
             iv = opp["iv"]
             dte = opp["dte"]
             buffer = opp["buffer"]
             score = opp["score"]
+
+            if qty <= 0:
+                log(f"  {ticker}: skipped execution — quantity is 0 after risk checks")
+                continue
+            if signal_only_active():
+                log(f"  📡 SIGNAL ONLY: {ticker} ${strike}P x{qty} — no paper order submitted")
+                continue
 
             # Route to spread or naked put
             is_spread = (strategy == "BPS" and long_strike is not None)
@@ -1703,6 +1822,9 @@ class AutoTradeEngine:
                 "market_status":    self.market_status(),
                 "kill_switch":      kill_switch_active(),
                 "kill_switch_file": str(KILL_SWITCH_FILE),
+                "signal_only":      signal_only_active(),
+                "signal_only_file": str(SIGNAL_ONLY_FILE),
+                "signals_file":     str(SIGNALS_FILE),
                 "vix":              round(vix, 2) if vix else None,
                 "regime":           regime.get("label", "Unknown"),
                 "positions":        positions,
