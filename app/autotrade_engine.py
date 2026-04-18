@@ -159,8 +159,9 @@ SCORE_DTE_WEIGHT = 15
 SCORE_CORR_PENALTY = -25
 SCORE_CORR_BONUS = 15
 
-# Monitoring interval (seconds)
-MONITOR_INTERVAL = 1800  # 30 minutes
+# Monitoring interval (seconds). This also drives the journal-vs-IBKR
+# reconciliation cadence outside the nightly TWS restart window.
+MONITOR_INTERVAL = 900  # 15 minutes
 AUTO_CLOSE_UNMATCHED_LONGS = False  # Safety first: alert on unexpected longs, do not market-sell by default.
 RECONCILE_ALERT_INTERVAL = 7200  # seconds between journal-vs-IBKR drift email alerts
 
