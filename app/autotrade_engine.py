@@ -162,6 +162,7 @@ SCORE_CORR_BONUS = 15
 # Monitoring interval (seconds)
 MONITOR_INTERVAL = 1800  # 30 minutes
 AUTO_CLOSE_UNMATCHED_LONGS = False  # Safety first: alert on unexpected longs, do not market-sell by default.
+RECONCILE_ALERT_INTERVAL = 7200  # seconds between journal-vs-IBKR drift email alerts
 
 FILLED_STATUSES = {"FILLED", "CLOSED", "MANUALCLOSE"}
 OPEN_LIKE_STATUSES = {"SUBMITTED", "PRESUBMITTED", "PENDINGSUBMIT", "PENDING", "WORKING"}
@@ -562,6 +563,7 @@ class AutoTradeEngine:
         self._running = True
         self._pending_orders = {}  # key: "TICKER-STRIKE" -> timestamp of order placement
         self._pending_closes = {}  # key: "TICKER-STRIKE" -> timestamp of close order placement
+        self._last_reconcile_alert = None
 
     def next_req_id(self):
         self._req_id += 1
@@ -1739,6 +1741,70 @@ class AutoTradeEngine:
     # ═══════════════════════════════════════════════
     # MAIN LOOP
     # ═══════════════════════════════════════════════
+    def reconcile_positions(self, ibkr_pos=None, journal_pos=None, alert=True):
+        """Compare IBKR short option positions with journal OPEN rows."""
+        ibkr_pos = ibkr_pos if ibkr_pos is not None else (self.app.positions or {})
+        journal_pos = journal_pos if journal_pos is not None else read_open_positions()
+
+        def key_for(ticker, strike):
+            try:
+                strike_f = round(float(strike), 2)
+            except:
+                strike_f = 0.0
+            return f"{str(ticker).upper()}-{strike_f}"
+
+        ibkr_shorts = {}
+        for pos in ibkr_pos.values():
+            if pos.get("position", 0) >= 0:
+                continue
+            key = key_for(pos.get("symbol", ""), pos.get("strike", 0))
+            ibkr_shorts[key] = {
+                "ticker": pos.get("symbol", ""),
+                "strike": round(float(pos.get("strike", 0) or 0), 2),
+                "qty": int(abs(pos.get("position", 0) or 0)),
+            }
+
+        journal_open = {}
+        for pos in journal_pos.values():
+            key = key_for(pos.get("ticker", ""), pos.get("strike", 0))
+            journal_open[key] = {
+                "ticker": pos.get("ticker", ""),
+                "strike": round(float(pos.get("strike", 0) or 0), 2),
+                "qty": int(abs(pos.get("qty", 0) or 0)),
+                "strategy": pos.get("strategy", "CSP"),
+                "status": pos.get("status", ""),
+            }
+
+        missing_in_ibkr = [v for k, v in journal_open.items() if k not in ibkr_shorts]
+        missing_in_journal = [v for k, v in ibkr_shorts.items() if k not in journal_open]
+        qty_mismatch = []
+        for key, broker in ibkr_shorts.items():
+            journal = journal_open.get(key)
+            if journal and broker["qty"] != journal["qty"]:
+                qty_mismatch.append({"key": key, "ibkr_qty": broker["qty"], "journal_qty": journal["qty"]})
+
+        result = {
+            "checked_at": datetime.now().isoformat(timespec="seconds"),
+            "ok": not missing_in_ibkr and not missing_in_journal and not qty_mismatch,
+            "missing_in_ibkr": missing_in_ibkr,
+            "missing_in_journal": missing_in_journal,
+            "qty_mismatch": qty_mismatch,
+        }
+
+        if alert and not result["ok"]:
+            now = datetime.now()
+            last = getattr(self, "_last_reconcile_alert", None)
+            if not last or (now - last).total_seconds() > RECONCILE_ALERT_INTERVAL:
+                self._last_reconcile_alert = now
+                log("  ⚠ Reconciliation drift detected between IBKR and journal")
+                send_email(
+                    "⚠ Options Pro: Position Reconciliation Drift",
+                    "<h2>IBKR and journal positions do not match</h2>"
+                    f"<pre>{json.dumps(result, indent=2)}</pre>"
+                )
+
+        return result
+
     def write_live_snapshot(self):
         """Write current position state to ~/Desktop/live_positions.json.
         Proxy serves this as /api/live — dashboard polls it every 30s."""
@@ -1814,6 +1880,7 @@ class AutoTradeEngine:
 
             regime = getattr(self, "_current_regime", None) or {}
             vix    = regime.get("vix", 0)
+            reconciliation = self.reconcile_positions(ibkr_pos, journal_pos)
 
             snapshot = {
                 "updated":          datetime.now().isoformat(timespec="seconds"),
@@ -1835,6 +1902,7 @@ class AutoTradeEngine:
                 "ibkr_legs_total":  total_ibkr,
                 "ibkr_legs_short":  shorts_count,
                 "ibkr_legs_long":   longs_count,
+                "reconciliation":   reconciliation,
             }
 
             out_path = os.path.expanduser("~/Desktop/live_positions.json")
