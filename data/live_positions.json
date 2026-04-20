@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-20T14:58:24",
+  "updated": "2026-04-20T15:01:04+02:00",
   "engine_running": true,
   "connected": true,
   "market_status": "closed",
@@ -18,10 +18,10 @@
       "qty": 1,
       "strategy": "CSP",
       "entry_credit": 3.54,
-      "current_price": 1.8,
-      "price_valid": true,
-      "pnl": 173.82,
-      "pnl_pct": 49.1,
+      "current_price": 0.0,
+      "price_valid": false,
+      "pnl": 0.0,
+      "pnl_pct": 0,
       "dte": 24
     },
     {
@@ -31,10 +31,10 @@
       "qty": 1,
       "strategy": "CSP",
       "entry_credit": 4.97,
-      "current_price": 3.63,
-      "price_valid": true,
-      "pnl": 134.21,
-      "pnl_pct": 27.0,
+      "current_price": 0.0,
+      "price_valid": false,
+      "pnl": 0.0,
+      "pnl_pct": 0,
       "dte": 31
     },
     {
@@ -66,13 +66,13 @@
   ],
   "positions_count": 4,
   "max_positions": 5,
-  "total_pnl": 308.03,
+  "total_pnl": 0.0,
   "account_size": 250000,
   "ibkr_legs_total": 4,
   "ibkr_legs_short": 4,
   "ibkr_legs_long": 0,
   "reconciliation": {
-    "checked_at": "2026-04-20T14:58:24",
+    "checked_at": "2026-04-20T15:01:04+02:00",
     "ok": true,
     "missing_in_ibkr": [],
     "missing_in_journal": [],
