@@ -60,6 +60,7 @@ LIVE_POSITIONS_FILE = _data_file("live_positions.json")
 REAL_RULES_FILE = _data_file("real_account_rules.json")
 MIRROR_KILL_FILE = _data_file("optionspro_real_mirror_kill")
 SIGNAL_AUDIT_FILE = _data_file("signal_audit.json")
+SIGNAL_AUDIT_EVENTS_FILE = _data_file("signal_audit_events.jsonl")
 PAPER_CLOSE_REQUESTS_FILE = _data_file("paper_close_requests.jsonl")
 PAPER_CLOSE_RESULTS_FILE = _data_file("paper_close_results.jsonl")
 PAPER_CLOSE_STATE_FILE = _data_file("paper_close_processed.json")
@@ -69,6 +70,9 @@ EMAIL_FROM = "islamalbaz90@gmail.com"
 EMAIL_TO = "islamalbaz90@gmail.com"
 SMTP_HOST = "smtp.gmail.com"
 SMTP_PORT = 587
+
+def now_iso():
+    return datetime.now().astimezone().isoformat(timespec="seconds")
 
 def _load_email_pass():
     """Load Gmail app password from ~/options-pro/credentials.env or environment.
@@ -207,7 +211,7 @@ def log(msg):
 def log_reconciliation(result):
     try:
         line = (
-            f"{datetime.now().isoformat(timespec='seconds')},"
+            f"{now_iso()},"
             f"status={result.get('status', 'checked')},"
             f"ok={result.get('ok')},"
             f"missing_in_ibkr={len(result.get('missing_in_ibkr', []))},"
@@ -339,11 +343,45 @@ def _real_copyability(signal):
 def _update_signal_audit(payload):
     try:
         audit = {"signals": {}, "events": []}
+        loaded_ok = False
         if SIGNAL_AUDIT_FILE.exists():
-            loaded = json.loads(SIGNAL_AUDIT_FILE.read_text())
-            if isinstance(loaded, dict):
-                audit.update(loaded)
-        now = payload.get("generated") or datetime.now().isoformat(timespec="seconds")
+            try:
+                loaded = json.loads(SIGNAL_AUDIT_FILE.read_text())
+                if isinstance(loaded, dict):
+                    audit.update(loaded)
+                    loaded_ok = True
+            except Exception:
+                loaded_ok = False
+        if not loaded_ok and SIGNAL_AUDIT_EVENTS_FILE.exists():
+            for line in SIGNAL_AUDIT_EVENTS_FILE.read_text().splitlines():
+                try:
+                    event = json.loads(line)
+                except Exception:
+                    continue
+                sid = event.get("id")
+                if not sid:
+                    continue
+                audit["events"].append(event)
+                rec = audit["signals"].setdefault(sid, {
+                    "id": sid,
+                    "ticker": event.get("ticker"),
+                    "strategy": event.get("strategy"),
+                    "strike": event.get("strike"),
+                    "long_strike": event.get("long_strike"),
+                    "expiry": event.get("expiry"),
+                    "first_seen": event.get("generated"),
+                    "seen_count": 0,
+                    "copyable_seen_count": 0,
+                })
+                rec["last_seen"] = event.get("generated")
+                rec["seen_count"] = int(rec.get("seen_count") or 0) + 1
+                rec["last_score"] = event.get("score")
+                rec["last_copyable"] = bool(event.get("copyable"))
+                rec["last_real_qty"] = event.get("real_qty")
+                if event.get("copyable"):
+                    rec["copyable_seen_count"] = int(rec.get("copyable_seen_count") or 0) + 1
+        now = payload.get("generated") or now_iso()
+        new_events = []
         for sig in payload.get("signals", []):
             sid = sig.get("id") or _signal_id(sig)
             sig["id"] = sid
@@ -365,20 +403,27 @@ def _update_signal_audit(payload):
             rec["last_real_qty"] = sig.get("real_qty")
             if sig.get("copyable"):
                 rec["copyable_seen_count"] = int(rec.get("copyable_seen_count") or 0) + 1
-            audit["events"].append({
+            event = {
                 "generated": now,
                 "id": sid,
                 "ticker": sig.get("ticker"),
                 "strategy": sig.get("strategy"),
                 "strike": sig.get("strike"),
+                "long_strike": sig.get("long_strike"),
                 "expiry": sig.get("expiry"),
                 "score": sig.get("score"),
                 "copyable": bool(sig.get("copyable")),
                 "real_qty": sig.get("real_qty"),
-            })
+            }
+            audit["events"].append(event)
+            new_events.append(event)
         audit["events"] = audit.get("events", [])[-1000:]
         audit["updated"] = now
         SIGNAL_AUDIT_FILE.write_text(json.dumps(audit, indent=2))
+        if new_events:
+            with open(SIGNAL_AUDIT_EVENTS_FILE, "a") as f:
+                for event in new_events:
+                    f.write(json.dumps(event, separators=(",", ":")) + "\n")
     except Exception as e:
         log(f"  ⚠ Signal audit update failed: {e}")
 
@@ -442,7 +487,7 @@ def write_trade_signals(opportunities, mode="paper_auto"):
         opp["copyable"] = signal["copyable"]
         signals.append(signal)
     payload = {
-        "generated": datetime.now().isoformat(timespec="seconds"),
+        "generated": now_iso(),
         "mode": mode,
         "account": ACCOUNT_ID,
         "max_positions": MAX_POSITIONS,
@@ -747,7 +792,7 @@ class AutoTradeEngine:
         try:
             result = {
                 "id": request.get("id"),
-                "processed_at": datetime.now().isoformat(timespec="seconds"),
+                "processed_at": now_iso(),
                 "status": status,
                 "message": message,
                 "order_id": order_id,
@@ -1866,33 +1911,41 @@ class AutoTradeEngine:
                 continue
 
             try:
-                order_id = self._panic_close_market(ticker, strike, expiry, qty, strategy)
+                order_id, limit_price = self._panic_close_marketable_limit(ticker, strike, expiry, qty, strategy)
                 self._pending_closes[pending_key] = datetime.now()
                 write_journal(
                     "CLOSE_PANIC", ticker, "CLOSE", strike, expiry, qty, 0,
                     0, 0, 0, "Submitted", 0,
-                    f"Dashboard paper panic close | Market order | RequestID {request_id} | OrderID {order_id}"
+                    f"Dashboard paper panic close | Marketable limit {limit_price} | RequestID {request_id} | OrderID {order_id}"
                 )
                 send_email(
                     f"🚨 Paper Panic Close Submitted: {ticker} ${strike}P",
                     f"<h2>Paper Panic Close Submitted</h2>"
                     f"<p>{ticker} ${strike}P x{qty}, expiry {expiry}, strategy {strategy}</p>"
-                    f"<p>Market close order submitted to IBKR paper account {ACCOUNT_ID}.</p>"
+                    f"<p>Marketable limit close submitted to IBKR paper account {ACCOUNT_ID}.</p>"
+                    f"<p>Limit price: ${limit_price}</p>"
                     f"<p>Order ID: {order_id}</p>"
                 )
-                self._write_close_result(req, "submitted", "Market close submitted", order_id)
+                self._write_close_result(req, "submitted", f"Marketable limit close submitted @ ${limit_price}", order_id)
             except Exception as e:
                 log(f"  ❌ Paper panic close failed: {e}")
                 self._write_close_result(req, "error", str(e))
 
-    def _panic_close_market(self, ticker, strike, expiry, qty, strategy):
+    def _panic_close_marketable_limit(self, ticker, strike, expiry, qty, strategy):
         if self.app.next_order_id is None:
             raise RuntimeError("No valid TWS order id")
         if strategy == "BPS":
-            return self._panic_close_spread_market(ticker, strike, expiry, qty)
-        return self._panic_close_single_market(ticker, strike, expiry, qty)
+            return self._panic_close_spread_limit(ticker, strike, expiry, qty)
+        return self._panic_close_single_limit(ticker, strike, expiry, qty)
 
-    def _panic_close_single_market(self, ticker, strike, expiry, qty):
+    def _panic_close_single_limit(self, ticker, strike, expiry, qty):
+        quote = self.get_option_data(ticker, float(strike), str(expiry), "P", timeout=6)
+        ask = float(quote.get("ask") or 0)
+        ref = ask or float(quote.get("price") or quote.get("last") or quote.get("bid") or 0)
+        if ref <= 0:
+            raise RuntimeError("No usable option quote for paper panic close limit")
+        limit_price = math.ceil(ref * 1.10 * 100) / 100
+
         order_id = self.app.next_order_id
         self.app.next_order_id += 1
         contract = Contract()
@@ -1909,19 +1962,28 @@ class AutoTradeEngine:
         order = Order()
         order.action = "BUY"
         order.totalQuantity = qty
-        order.orderType = "MKT"
+        order.orderType = "LMT"
+        order.lmtPrice = round(limit_price, 2)
         order.tif = "DAY"
         order.eTradeOnly = False
         order.firmQuoteOnly = False
         order.account = ACCOUNT_ID
-        log(f"  🚨 PAPER PANIC CLOSE: BUY {qty}x {ticker} ${strike}P MKT (ID: {order_id})")
+        log(f"  🚨 PAPER PANIC CLOSE: BUY {qty}x {ticker} ${strike}P LMT ${limit_price:.2f} (ID: {order_id})")
         self.app.placeOrder(order_id, contract, order)
-        return order_id
+        return order_id, round(limit_price, 2)
 
-    def _panic_close_spread_market(self, ticker, strike, expiry, qty):
+    def _panic_close_spread_limit(self, ticker, strike, expiry, qty):
         width = SPREAD_WIDTHS.get(ticker, 5)
         short_strike = float(strike)
         long_strike = short_strike - width
+        short_quote = self.get_option_data(ticker, short_strike, str(expiry), "P", timeout=6)
+        long_quote = self.get_option_data(ticker, long_strike, str(expiry), "P", timeout=6)
+        short_ask = float(short_quote.get("ask") or short_quote.get("price") or 0)
+        long_bid = float(long_quote.get("bid") or 0)
+        if short_ask <= 0:
+            raise RuntimeError("No usable short-leg quote for paper panic close limit")
+        net_ref = max(0.01, short_ask - max(0, long_bid))
+        limit_price = math.ceil(net_ref * 1.10 * 100) / 100
         short_conid = self.get_option_con_id(ticker, short_strike, expiry, "P")
         long_conid = self.get_option_con_id(ticker, long_strike, expiry, "P")
         if not short_conid or not long_conid:
@@ -1951,14 +2013,15 @@ class AutoTradeEngine:
         order = Order()
         order.action = "BUY"
         order.totalQuantity = qty
-        order.orderType = "MKT"
+        order.orderType = "LMT"
+        order.lmtPrice = round(limit_price, 2)
         order.tif = "DAY"
         order.eTradeOnly = False
         order.firmQuoteOnly = False
         order.account = ACCOUNT_ID
-        log(f"  🚨 PAPER PANIC CLOSE BPS: {ticker} ${short_strike}/{long_strike}P x{qty} MKT (ID: {order_id})")
+        log(f"  🚨 PAPER PANIC CLOSE BPS: {ticker} ${short_strike}/{long_strike}P x{qty} LMT ${limit_price:.2f} (ID: {order_id})")
         self.app.placeOrder(order_id, contract, order)
-        return order_id
+        return order_id, round(limit_price, 2)
 
     def _close_single_position(self, ticker, strike, expiry, qty, current_price,
                                 action, reason, pnl):
@@ -2144,7 +2207,7 @@ class AutoTradeEngine:
                 qty_mismatch.append({"key": key, "ibkr_qty": broker["qty"], "journal_qty": journal["qty"]})
 
         result = {
-            "checked_at": datetime.now().isoformat(timespec="seconds"),
+            "checked_at": now_iso(),
             "ok": not missing_in_ibkr and not missing_in_journal and not qty_mismatch,
             "missing_in_ibkr": missing_in_ibkr,
             "missing_in_journal": missing_in_journal,
@@ -2245,7 +2308,7 @@ class AutoTradeEngine:
             if ms == "tws_restart" or not connected:
                 reason = "tws_restart" if ms == "tws_restart" else "tws_disconnected"
                 reconciliation = {
-                    "checked_at": datetime.now().isoformat(timespec="seconds"),
+                    "checked_at": now_iso(),
                     "ok": None,
                     "status": "skipped",
                     "reason": reason,
@@ -2258,7 +2321,7 @@ class AutoTradeEngine:
             log_reconciliation(reconciliation)
 
             snapshot = {
-                "updated":          datetime.now().isoformat(timespec="seconds"),
+                "updated":          now_iso(),
                 "engine_running":   True,
                 "connected":        connected,
                 "market_status":    ms,

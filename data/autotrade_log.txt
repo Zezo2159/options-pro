@@ -22877,3 +22877,58 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 [2026-04-20 14:42:10] Scan passes: 2
 [2026-04-20 14:42:10] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
+[2026-04-20 14:42:11]   ✅ GitHub backup on restart complete
+[2026-04-20 14:42:11] 🔌 Connecting to TWS...
+[2026-04-20 14:42:11] ✅ TWS connected — next order ID: 16
+[2026-04-20 14:42:13]   📊 4 option position(s) loaded from IBKR
+[2026-04-20 14:42:13]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-20 14:42:13]      IBKR: QQQ-600.0 = QQQ $600.0 P x-1.0 avg=$4.97
+[2026-04-20 14:42:13]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-20 14:42:13]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-20 14:42:16] 🌙 Market closed — skipping initial scan, entering monitor mode
+[2026-04-20 14:42:16] 
+✅ Entering monitor mode (checking every 15 min)
+[2026-04-20 14:42:16]   📊 4 option position(s) loaded from IBKR
+[2026-04-20 14:42:16]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-20 14:42:16]      IBKR: QQQ-600.0 = QQQ $600.0 P x-1.0 avg=$4.97
+[2026-04-20 14:42:16]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-20 14:42:16]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-20 14:42:19] 
+============================================================
+[2026-04-20 14:42:19] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-20 14:42:19] ============================================================
+[2026-04-20 14:42:20] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.80 P/L=$174 DTE=24
+[2026-04-20 14:42:20]    >> HOLD (target=$177 stop=$-708)
+[2026-04-20 14:42:30]   QQQ $600.0P x1: no current price — skipping
+[2026-04-20 14:42:40]   SMH $385.0P x2: no current price — skipping
+[2026-04-20 14:42:50]   IWM $256.0P x1: no current price — skipping
+[2026-04-20 14:42:50] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-20 14:57:50]   📊 4 option position(s) loaded from IBKR
+[2026-04-20 14:57:50]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-20 14:57:50]      IBKR: QQQ-600.0 = QQQ $600.0 P x-1.0 avg=$4.97
+[2026-04-20 14:57:50]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-20 14:57:50]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-20 14:57:53] 
+============================================================
+[2026-04-20 14:57:53] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-20 14:57:53] ============================================================
+[2026-04-20 14:58:03]   GLD $405.0P x1: no current price — skipping
+[2026-04-20 14:58:04] 
+  QQQ   $600.0P x1 [CSP]: entry=$497 now=$3.63 P/L=$134 DTE=31
+[2026-04-20 14:58:04]    >> HOLD (target=$248 stop=$-994)
+[2026-04-20 14:58:14]   SMH $385.0P x2: no current price — skipping
+[2026-04-20 14:58:24]   IWM $256.0P x1: no current price — skipping
+[2026-04-20 14:58:24] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-20 15:00:08] 
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+[2026-04-20 15:00:08] Options Pro Ultra v6 — Autotrade Engine
+[2026-04-20 15:00:08] Account: DU4735568 | Size: $250,000
+[2026-04-20 15:00:08] Max positions: 5 | Max risk: $12,500
+[2026-04-20 15:00:08] Delta: 0.15-0.25 | DTE: 21-45
+[2026-04-20 15:00:08] Close: 50% profit | Stop: 2.0× credit
+[2026-04-20 15:00:08] Scan passes: 2
+[2026-04-20 15:00:08] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+
