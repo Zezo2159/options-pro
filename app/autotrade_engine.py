@@ -38,6 +38,7 @@ ACCOUNT_SIZE = 250_000
 BASE = Path("/Applications/OptionsPro.app/Contents/Resources")
 JOURNAL = Path.home() / "Desktop" / "autotrade_journal.csv"
 LOG_FILE = Path.home() / "Desktop" / "autotrade_log.txt"
+RECONCILE_LOG = Path.home() / "Desktop" / "reconcile_log.txt"
 API_KEY_FILE = BASE / "api_key.txt"
 KILL_SWITCH_FILE = Path.home() / "Desktop" / "optionspro_kill_switch"
 SIGNAL_ONLY_FILE = Path.home() / "Desktop" / "optionspro_signal_only"
@@ -178,6 +179,23 @@ def log(msg):
     print(line)
     try:
         with open(LOG_FILE, "a") as f:
+            f.write(line + "\n")
+    except:
+        pass
+
+
+def log_reconciliation(result):
+    try:
+        line = (
+            f"{datetime.now().isoformat(timespec='seconds')},"
+            f"status={result.get('status', 'checked')},"
+            f"ok={result.get('ok')},"
+            f"missing_in_ibkr={len(result.get('missing_in_ibkr', []))},"
+            f"missing_in_journal={len(result.get('missing_in_journal', []))},"
+            f"qty_mismatch={len(result.get('qty_mismatch', []))},"
+            f"reason={result.get('reason', '')}"
+        )
+        with open(RECONCILE_LOG, "a") as f:
             f.write(line + "\n")
     except:
         pass
@@ -1881,13 +1899,28 @@ class AutoTradeEngine:
 
             regime = getattr(self, "_current_regime", None) or {}
             vix    = regime.get("vix", 0)
-            reconciliation = self.reconcile_positions(ibkr_pos, journal_pos)
+            ms     = self.market_status()
+            connected = bool(self.app._connected)
+            if ms == "tws_restart" or not connected:
+                reason = "tws_restart" if ms == "tws_restart" else "tws_disconnected"
+                reconciliation = {
+                    "checked_at": datetime.now().isoformat(timespec="seconds"),
+                    "ok": None,
+                    "status": "skipped",
+                    "reason": reason,
+                    "missing_in_ibkr": [],
+                    "missing_in_journal": [],
+                    "qty_mismatch": [],
+                }
+            else:
+                reconciliation = self.reconcile_positions(ibkr_pos, journal_pos)
+            log_reconciliation(reconciliation)
 
             snapshot = {
                 "updated":          datetime.now().isoformat(timespec="seconds"),
                 "engine_running":   True,
-                "connected":        bool(self.app._connected),
-                "market_status":    self.market_status(),
+                "connected":        connected,
+                "market_status":    ms,
                 "kill_switch":      kill_switch_active(),
                 "kill_switch_file": str(KILL_SWITCH_FILE),
                 "signal_only":      signal_only_active(),
