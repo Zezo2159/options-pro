@@ -1,32 +1,33 @@
 {
-  "generated": "2026-04-20T15:38:04+02:00",
+  "generated": "2026-04-20T15:41:24+02:00",
   "mode": "signal_only",
   "account": "DU4735568",
   "max_positions": 5,
   "signals": [
     {
-      "ticker": "GDX",
-      "strategy": "BPS",
-      "strike": 94.0,
-      "long_strike": 92.0,
+      "ticker": "XLE",
+      "strategy": "CSP",
+      "strike": 51.0,
+      "long_strike": null,
       "expiry": "20260529",
-      "qty": 4,
-      "credit": 0.7,
-      "delta": 0.0,
-      "iv": 0.0,
+      "qty": 2,
+      "credit": 0.47,
+      "delta": 0.166,
+      "iv": 40.2,
       "dte": 38,
-      "score": 48,
-      "estimated_risk": 520.0,
-      "buffer_pct": 5.4,
+      "score": 74,
+      "estimated_risk": 10200.0,
+      "buffer_pct": 8.0,
       "warnings": [
         "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
         "Do not copy if portfolio risk, correlation, or news/event risk is elevated."
       ],
-      "id": "GDX-BPS-94.0-92.0-20260529",
+      "id": "XLE-CSP-51.0--20260529",
       "copyable": false,
-      "real_qty": 19,
+      "real_qty": 0,
       "reasons": [
-        "mirror_kill"
+        "mirror_kill",
+        "real_qty_zero"
       ],
       "max_real_risk": 2500.0
     }

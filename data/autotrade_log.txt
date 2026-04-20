@@ -23218,3 +23218,547 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 [2026-04-20 15:39:21] Scan passes: 2
 [2026-04-20 15:39:21] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
+[2026-04-20 15:39:23]   ✅ GitHub backup on restart complete
+[2026-04-20 15:39:23] 🔌 Connecting to TWS...
+[2026-04-20 15:39:23] ✅ TWS connected — next order ID: 16
+[2026-04-20 15:39:25]   📊 4 option position(s) loaded from IBKR
+[2026-04-20 15:39:25]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-20 15:39:25]      IBKR: QQQ-600.0 = QQQ $600.0 P x-1.0 avg=$4.97
+[2026-04-20 15:39:25]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-20 15:39:25]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-20 15:39:28] 
+━━━ Scan Pass 1/2 ━━━
+[2026-04-20 15:39:28] 
+============================================================
+[2026-04-20 15:39:28] 🌅 MORNING SCAN STARTED
+[2026-04-20 15:39:28] ============================================================
+[2026-04-20 15:39:28]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:39:29]   📊 VIX: 18.85 — Regime: Normal (Δ 0.15-0.25, risk × 1.0)
+[2026-04-20 15:39:29]   Open positions: 4/5
+[2026-04-20 15:39:29] 
+  Scanning SPY...
+[2026-04-20 15:39:29]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:39:30]   SPY: $708.94
+[2026-04-20 15:39:30]   SPY: conId=756733 (STK)
+[2026-04-20 15:39:30]   SPY $694.0P: missing delta/greeks — skipped
+[2026-04-20 15:39:31]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:39:34]   TWS error 300: Can't find EId with tickerId:1007
+[2026-04-20 15:39:35]   SPY $692.0P: missing delta/greeks — skipped
+[2026-04-20 15:39:35]   SPY $691.0P: missing delta/greeks — skipped
+[2026-04-20 15:39:35]   SPY $689.0P: missing delta/greeks — skipped
+[2026-04-20 15:39:36]   SPY $688.0P: missing delta/greeks — skipped
+[2026-04-20 15:39:36]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:39:40]   TWS error 300: Can't find EId with tickerId:1013
+[2026-04-20 15:39:40]   SPY $687.0P: missing delta/greeks — skipped
+[2026-04-20 15:39:40]   SPY: no suitable strike found
+[2026-04-20 15:39:40]   QQQ: skipped (already have position)
+[2026-04-20 15:39:40]   SMH: skipped (already have position)
+[2026-04-20 15:39:40] 
+  Scanning GDX...
+[2026-04-20 15:39:41]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:39:41]   GDX: $99.09
+[2026-04-20 15:39:41]   GDX: conId=229726316 (STK)
+[2026-04-20 15:39:41]   GDX $97.0P: missing delta/greeks — skipped
+[2026-04-20 15:39:42]   GDX $96.5P: missing delta/greeks — skipped
+[2026-04-20 15:39:42]   GDX $96.0P: missing delta/greeks — skipped
+[2026-04-20 15:39:43]   GDX $94.5P: missing delta/greeks — skipped
+[2026-04-20 15:39:43]   GDX $93.5P: missing delta/greeks — skipped
+[2026-04-20 15:39:44]   GDX: no suitable strike found
+[2026-04-20 15:39:44]   IWM: skipped (already have position)
+[2026-04-20 15:39:44]   GLD: skipped (already have position)
+[2026-04-20 15:39:44] 
+  Scanning XLE...
+[2026-04-20 15:39:45]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:39:45]   XLE: $55.33
+[2026-04-20 15:39:45]   XLE: conId=4215217 (STK)
+[2026-04-20 15:39:46]   XLE $54.0P: missing delta/greeks — skipped
+[2026-04-20 15:39:47]   XLE $52.0P: missing delta/greeks — skipped
+[2026-04-20 15:39:47]   XLE $51.5P: missing delta/greeks — skipped
+[2026-04-20 15:39:47]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:39:51]   TWS error 300: Can't find EId with tickerId:1038
+[2026-04-20 15:39:51]   XLE $50.0P: missing delta/greeks — skipped
+[2026-04-20 15:39:51]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:39:55]   TWS error 300: Can't find EId with tickerId:1040
+[2026-04-20 15:39:55]   XLE: $51.0P @ $0.49 | Δ=0.172 IV=39.9% Buffer=7.8% DTE=38 | Score=77
+[2026-04-20 15:39:55] 
+  Scanning TLT...
+[2026-04-20 15:39:56]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:39:56]   TLT: $87.03
+[2026-04-20 15:39:56]   TLT: conId=15547841 (STK)
+[2026-04-20 15:39:57]   TLT $85.0P: missing delta/greeks — skipped
+[2026-04-20 15:39:57]   TLT $84.5P: missing delta/greeks — skipped
+[2026-04-20 15:39:57]   TLT $84.0P: missing delta/greeks — skipped
+[2026-04-20 15:39:57]   TLT $83.5P: missing delta/greeks — skipped
+[2026-04-20 15:39:58]   TLT $83.0P: missing delta/greeks — skipped
+[2026-04-20 15:39:58]   TLT $82.5P: missing delta/greeks — skipped
+[2026-04-20 15:39:58]   TLT $82.0P: missing delta/greeks — skipped
+[2026-04-20 15:39:59]   TLT: no suitable strike found
+[2026-04-20 15:39:59] 
+  Scanning XSP...
+[2026-04-20 15:40:00]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:40:09]   XSP: $712.61
+[2026-04-20 15:40:09]   XSP: conId=137851301 (IND)
+[2026-04-20 15:40:10]   XSP $698.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:10]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:40:14]   TWS error 300: Can't find EId with tickerId:1058
+[2026-04-20 15:40:14]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-20 15:40:14]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-20 15:40:14]   XSP $697.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:14]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-20 15:40:14]   XSP $696.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:15]   XSP $695.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:15]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-20 15:40:15]   XSP $694.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:15]   XSP $693.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:15]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:40:19]   TWS error 300: Can't find EId with tickerId:1064
+[2026-04-20 15:40:19]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-20 15:40:19]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-20 15:40:20]   XSP $692.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:20]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-20 15:40:20]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-20 15:40:20]   XSP $691.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:20]   XSP: no suitable strike found
+[2026-04-20 15:40:20] 
+  Scanning QQQM...
+[2026-04-20 15:40:21]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:40:21]   QQQM: $266.81
+[2026-04-20 15:40:21]   QQQM: conId=449738108 (STK)
+[2026-04-20 15:40:22]   QQQM $260.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:22]   QQQM $255.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:22]   QQQM $250.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:22]   QQQM $245.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:23]   QQQM $240.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:23]   QQQM $235.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:23]   QQQM $230.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:23]   QQQM $225.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:24]   QQQM $220.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:24]   QQQM $215.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:24]   QQQM: no suitable strike found
+[2026-04-20 15:40:24]   📡 Signals written: 1 candidate(s) -> /Users/islam/options-pro/data/trade_signals.json
+[2026-04-20 15:40:24] 
+  📊 Found 1 opportunities, 1 slot(s) available
+[2026-04-20 15:40:24]     #77: XLE $51.0P @ $0.49 (CSP) DTE=38
+[2026-04-20 15:40:24]   📡 SIGNAL ONLY: XLE $51.0P x2 — no paper order submitted
+[2026-04-20 15:40:29] 
+━━━ Scan Pass 2/2 ━━━
+[2026-04-20 15:40:29] 
+============================================================
+[2026-04-20 15:40:29] 🌅 MORNING SCAN STARTED
+[2026-04-20 15:40:29] ============================================================
+[2026-04-20 15:40:29]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:40:30]   📊 VIX: 18.86 — Regime: Normal (Δ 0.15-0.25, risk × 1.0)
+[2026-04-20 15:40:30]   Open positions: 4/5
+[2026-04-20 15:40:30] 
+  Scanning SPY...
+[2026-04-20 15:40:30]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:40:31]   SPY: $708.62
+[2026-04-20 15:40:31]   SPY: conId=756733 (STK)
+[2026-04-20 15:40:31]   SPY $694.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:32]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:40:36]   TWS error 300: Can't find EId with tickerId:1086
+[2026-04-20 15:40:36]   SPY $692.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:37]   SPY $689.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:37]   SPY $688.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:37]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:40:41]   TWS error 300: Can't find EId with tickerId:1092
+[2026-04-20 15:40:41]   SPY $687.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:41]   SPY: no suitable strike found
+[2026-04-20 15:40:41]   QQQ: skipped (already have position)
+[2026-04-20 15:40:41]   SMH: skipped (already have position)
+[2026-04-20 15:40:41] 
+  Scanning GDX...
+[2026-04-20 15:40:42]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:40:42]   GDX: $99.28
+[2026-04-20 15:40:42]   GDX: conId=229726316 (STK)
+[2026-04-20 15:40:42]   GDX $97.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:43]   GDX $96.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:44]   GDX $94.5P: missing delta/greeks — skipped
+[2026-04-20 15:40:44]   GDX $93.5P: missing delta/greeks — skipped
+[2026-04-20 15:40:45]   GDX $92.5P: quote too wide bid=$2.05 ask=$4.40 spread=78%
+[2026-04-20 15:40:45]   GDX: no suitable strike found
+[2026-04-20 15:40:45]   IWM: skipped (already have position)
+[2026-04-20 15:40:45]   GLD: skipped (already have position)
+[2026-04-20 15:40:45] 
+  Scanning XLE...
+[2026-04-20 15:40:45]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:40:46]   XLE: $55.44
+[2026-04-20 15:40:46]   XLE: conId=4215217 (STK)
+[2026-04-20 15:40:46]   XLE $54.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:47]   XLE $52.5P: missing delta/greeks — skipped
+[2026-04-20 15:40:47]   XLE $52.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:48]   XLE $51.5P: missing delta/greeks — skipped
+[2026-04-20 15:40:48]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:40:52]   TWS error 300: Can't find EId with tickerId:1117
+[2026-04-20 15:40:52]   XLE $50.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:52]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:40:56]   XLE: $51.0P @ $0.47 | Δ=0.166 IV=40.2% Buffer=8.0% DTE=38 | Score=74
+[2026-04-20 15:40:56]   TWS error 300: Can't find EId with tickerId:1119
+[2026-04-20 15:40:56] 
+  Scanning TLT...
+[2026-04-20 15:40:56]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:40:57]   TLT: $87.00
+[2026-04-20 15:40:57]   TLT: conId=15547841 (STK)
+[2026-04-20 15:40:57]   TLT $85.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:58]   TLT $84.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:58]   TLT $83.5P: missing delta/greeks — skipped
+[2026-04-20 15:40:58]   TLT $83.0P: missing delta/greeks — skipped
+[2026-04-20 15:40:58]   TLT $82.5P: missing delta/greeks — skipped
+[2026-04-20 15:41:00]   TLT $80.5P: missing delta/greeks — skipped
+[2026-04-20 15:41:00]   TLT: $84.5P @ $0.42 | Δ=0.218 IV=11.6% Buffer=2.9% DTE=38 | Score=41
+[2026-04-20 15:41:00] 
+  Scanning XSP...
+[2026-04-20 15:41:00]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:41:10]   XSP: $712.61
+[2026-04-20 15:41:10]   XSP: conId=137851301 (IND)
+[2026-04-20 15:41:10]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-20 15:41:10]   XSP $698.0P: missing delta/greeks — skipped
+[2026-04-20 15:41:10]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:41:14]   TWS error 300: Can't find EId with tickerId:1137
+[2026-04-20 15:41:14]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-20 15:41:14]   XSP $697.0P: missing delta/greeks — skipped
+[2026-04-20 15:41:15]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-20 15:41:15]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-20 15:41:15]   XSP $696.0P: missing delta/greeks — skipped
+[2026-04-20 15:41:15]   XSP $695.0P: missing delta/greeks — skipped
+[2026-04-20 15:41:16]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-20 15:41:16]   XSP $694.0P: missing delta/greeks — skipped
+[2026-04-20 15:41:16]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-20 15:41:16]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-20 15:41:16]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:41:20]   TWS error 300: Can't find EId with tickerId:1143
+[2026-04-20 15:41:20]   XSP $692.0P: missing delta/greeks — skipped
+[2026-04-20 15:41:21]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-20 15:41:21]   XSP: no suitable strike found
+[2026-04-20 15:41:21] 
+  Scanning QQQM...
+[2026-04-20 15:41:21]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:41:21]   QQQM: $266.23
+[2026-04-20 15:41:21]   QQQM: conId=449738108 (STK)
+[2026-04-20 15:41:22]   QQQM $260.0P: missing delta/greeks — skipped
+[2026-04-20 15:41:22]   QQQM $255.0P: missing delta/greeks — skipped
+[2026-04-20 15:41:22]   QQQM $250.0P: missing delta/greeks — skipped
+[2026-04-20 15:41:22]   QQQM $245.0P: missing delta/greeks — skipped
+[2026-04-20 15:41:23]   QQQM $240.0P: missing delta/greeks — skipped
+[2026-04-20 15:41:23]   QQQM $235.0P: missing delta/greeks — skipped
+[2026-04-20 15:41:23]   QQQM $230.0P: missing delta/greeks — skipped
+[2026-04-20 15:41:24]   QQQM $225.0P: missing delta/greeks — skipped
+[2026-04-20 15:41:24]   QQQM $220.0P: missing delta/greeks — skipped
+[2026-04-20 15:41:24]   QQQM $215.0P: missing delta/greeks — skipped
+[2026-04-20 15:41:24]   QQQM: no suitable strike found
+[2026-04-20 15:41:24]   📡 Signals written: 1 candidate(s) -> /Users/islam/options-pro/data/trade_signals.json
+[2026-04-20 15:41:24] 
+  📊 Found 2 opportunities, 1 slot(s) available
+[2026-04-20 15:41:24]     #74: XLE $51.0P @ $0.47 (CSP) DTE=38
+[2026-04-20 15:41:24]   📡 SIGNAL ONLY: XLE $51.0P x2 — no paper order submitted
+[2026-04-20 15:41:29] 
+✅ Entering monitor mode (checking every 15 min)
+[2026-04-20 15:41:29]   📊 4 option position(s) loaded from IBKR
+[2026-04-20 15:41:29]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-20 15:41:29]      IBKR: QQQ-600.0 = QQQ $600.0 P x-1.0 avg=$4.97
+[2026-04-20 15:41:29]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-20 15:41:29]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-20 15:41:32] 
+============================================================
+[2026-04-20 15:41:32] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-20 15:41:32] ============================================================
+[2026-04-20 15:41:32] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.79 P/L=$175 DTE=24
+[2026-04-20 15:41:32]    >> HOLD (target=$177 stop=$-708)
+[2026-04-20 15:41:33] 
+  QQQ   $600.0P x1 [CSP]: entry=$497 now=$4.01 P/L=$96 DTE=31
+[2026-04-20 15:41:33]    >> HOLD (target=$248 stop=$-994)
+[2026-04-20 15:41:33] 
+  SMH   $385.0P x2 [CSP]: entry=$561 now=$2.02 P/L=$156 DTE=24
+[2026-04-20 15:41:33]    >> HOLD (target=$280 stop=$-1121)
+[2026-04-20 15:41:33] 
+  IWM   $256.0P x1 [CSP]: entry=$318 now=$2.06 P/L=$112 DTE=31
+[2026-04-20 15:41:33]    >> HOLD (target=$159 stop=$-636)
+[2026-04-20 15:41:33] 
+  ⏳ Next check in 15 min...
+[2026-04-20 15:56:33]   📊 4 option position(s) loaded from IBKR
+[2026-04-20 15:56:33]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-20 15:56:33]      IBKR: QQQ-600.0 = QQQ $600.0 P x-1.0 avg=$4.97
+[2026-04-20 15:56:33]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-20 15:56:33]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-20 15:56:36] 
+============================================================
+[2026-04-20 15:56:36] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-20 15:56:36] ============================================================
+[2026-04-20 15:56:36] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.82 P/L=$172 DTE=24
+[2026-04-20 15:56:36]    >> HOLD (target=$177 stop=$-708)
+[2026-04-20 15:56:37] 
+  QQQ   $600.0P x1 [CSP]: entry=$497 now=$3.97 P/L=$100 DTE=31
+[2026-04-20 15:56:37]    >> HOLD (target=$248 stop=$-994)
+[2026-04-20 15:56:37] 
+  SMH   $385.0P x2 [CSP]: entry=$561 now=$2.04 P/L=$153 DTE=24
+[2026-04-20 15:56:37]    >> HOLD (target=$280 stop=$-1121)
+[2026-04-20 15:56:37] 
+  IWM   $256.0P x1 [CSP]: entry=$318 now=$2.12 P/L=$106 DTE=31
+[2026-04-20 15:56:37]    >> HOLD (target=$159 stop=$-636)
+[2026-04-20 15:56:37] 
+  ⏳ Next check in 15 min...
+[2026-04-20 16:11:37]   📊 4 option position(s) loaded from IBKR
+[2026-04-20 16:11:37]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-20 16:11:37]      IBKR: QQQ-600.0 = QQQ $600.0 P x-1.0 avg=$4.97
+[2026-04-20 16:11:37]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-20 16:11:37]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-20 16:11:40] 
+============================================================
+[2026-04-20 16:11:40] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-20 16:11:40] ============================================================
+[2026-04-20 16:11:41] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.85 P/L=$169 DTE=24
+[2026-04-20 16:11:41]    >> HOLD (target=$177 stop=$-708)
+[2026-04-20 16:11:41] 
+  QQQ   $600.0P x1 [CSP]: entry=$497 now=$3.82 P/L=$115 DTE=31
+[2026-04-20 16:11:41]    >> HOLD (target=$248 stop=$-994)
+[2026-04-20 16:11:41] 
+  SMH   $385.0P x2 [CSP]: entry=$561 now=$2.00 P/L=$162 DTE=24
+[2026-04-20 16:11:41]    >> HOLD (target=$280 stop=$-1121)
+[2026-04-20 16:11:41] 
+  IWM   $256.0P x1 [CSP]: entry=$318 now=$1.88 P/L=$130 DTE=31
+[2026-04-20 16:11:41]    >> HOLD (target=$159 stop=$-636)
+[2026-04-20 16:11:41] 
+  ⏳ Next check in 15 min...
+[2026-04-20 16:26:42]   📊 4 option position(s) loaded from IBKR
+[2026-04-20 16:26:42]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-20 16:26:42]      IBKR: QQQ-600.0 = QQQ $600.0 P x-1.0 avg=$4.97
+[2026-04-20 16:26:42]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-20 16:26:42]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-20 16:26:45] 
+============================================================
+[2026-04-20 16:26:45] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-20 16:26:45] ============================================================
+[2026-04-20 16:26:45] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.89 P/L=$166 DTE=24
+[2026-04-20 16:26:45]    >> HOLD (target=$177 stop=$-708)
+[2026-04-20 16:26:45] 
+  QQQ   $600.0P x1 [CSP]: entry=$497 now=$4.01 P/L=$96 DTE=31
+[2026-04-20 16:26:45]    >> HOLD (target=$248 stop=$-994)
+[2026-04-20 16:26:45] 
+  SMH   $385.0P x2 [CSP]: entry=$561 now=$1.99 P/L=$163 DTE=24
+[2026-04-20 16:26:45]    >> HOLD (target=$280 stop=$-1121)
+[2026-04-20 16:26:46] 
+  IWM   $256.0P x1 [CSP]: entry=$318 now=$1.92 P/L=$127 DTE=31
+[2026-04-20 16:26:46]    >> HOLD (target=$159 stop=$-636)
+[2026-04-20 16:26:46] 
+  ⏳ Next check in 15 min...
+[2026-04-20 16:41:46]   📊 4 option position(s) loaded from IBKR
+[2026-04-20 16:41:46]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-20 16:41:46]      IBKR: QQQ-600.0 = QQQ $600.0 P x-1.0 avg=$4.97
+[2026-04-20 16:41:46]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-20 16:41:46]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-20 16:41:49] 
+============================================================
+[2026-04-20 16:41:49] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-20 16:41:49] ============================================================
+[2026-04-20 16:41:49] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.79 P/L=$175 DTE=24
+[2026-04-20 16:41:49]    >> HOLD (target=$177 stop=$-708)
+[2026-04-20 16:41:49] 
+  QQQ   $600.0P x1 [CSP]: entry=$497 now=$3.95 P/L=$102 DTE=31
+[2026-04-20 16:41:49]    >> HOLD (target=$248 stop=$-994)
+[2026-04-20 16:41:49] 
+  SMH   $385.0P x2 [CSP]: entry=$561 now=$1.97 P/L=$167 DTE=24
+[2026-04-20 16:41:49]    >> HOLD (target=$280 stop=$-1121)
+[2026-04-20 16:41:50] 
+  IWM   $256.0P x1 [CSP]: entry=$318 now=$1.91 P/L=$127 DTE=31
+[2026-04-20 16:41:50]    >> HOLD (target=$159 stop=$-636)
+[2026-04-20 16:41:50] 
+  ⏳ Next check in 15 min...
+[2026-04-20 16:56:50]   📊 4 option position(s) loaded from IBKR
+[2026-04-20 16:56:50]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-20 16:56:50]      IBKR: QQQ-600.0 = QQQ $600.0 P x-1.0 avg=$4.97
+[2026-04-20 16:56:50]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-20 16:56:50]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-20 16:56:53] 
+============================================================
+[2026-04-20 16:56:53] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-20 16:56:53] ============================================================
+[2026-04-20 16:56:53] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.86 P/L=$168 DTE=24
+[2026-04-20 16:56:53]    >> HOLD (target=$177 stop=$-708)
+[2026-04-20 16:56:53] 
+  QQQ   $600.0P x1 [CSP]: entry=$497 now=$4.16 P/L=$81 DTE=31
+[2026-04-20 16:56:53]    >> HOLD (target=$248 stop=$-994)
+[2026-04-20 16:56:54] 
+  SMH   $385.0P x2 [CSP]: entry=$561 now=$1.97 P/L=$166 DTE=24
+[2026-04-20 16:56:54]    >> HOLD (target=$280 stop=$-1121)
+[2026-04-20 16:56:54] 
+  IWM   $256.0P x1 [CSP]: entry=$318 now=$1.91 P/L=$127 DTE=31
+[2026-04-20 16:56:54]    >> HOLD (target=$159 stop=$-636)
+[2026-04-20 16:56:54] 
+  ⏳ Next check in 15 min...
+[2026-04-20 17:11:54]   📊 4 option position(s) loaded from IBKR
+[2026-04-20 17:11:54]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-20 17:11:54]      IBKR: QQQ-600.0 = QQQ $600.0 P x-1.0 avg=$4.97
+[2026-04-20 17:11:54]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-20 17:11:54]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-20 17:11:57] 
+============================================================
+[2026-04-20 17:11:57] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-20 17:11:57] ============================================================
+[2026-04-20 17:11:57] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$2.00 P/L=$154 DTE=24
+[2026-04-20 17:11:57]    >> HOLD (target=$177 stop=$-708)
+[2026-04-20 17:11:58] 
+  QQQ   $600.0P x1 [CSP]: entry=$497 now=$4.17 P/L=$80 DTE=31
+[2026-04-20 17:11:58]    >> HOLD (target=$248 stop=$-994)
+[2026-04-20 17:11:58] 
+  SMH   $385.0P x2 [CSP]: entry=$561 now=$2.30 P/L=$101 DTE=24
+[2026-04-20 17:11:58]    >> HOLD (target=$280 stop=$-1121)
+[2026-04-20 17:11:58] 
+  IWM   $256.0P x1 [CSP]: entry=$318 now=$1.90 P/L=$129 DTE=31
+[2026-04-20 17:11:58]    >> HOLD (target=$159 stop=$-636)
+[2026-04-20 17:11:58] 
+  ⏳ Next check in 15 min...
+[2026-04-20 17:26:58]   📊 4 option position(s) loaded from IBKR
+[2026-04-20 17:26:58]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-20 17:26:58]      IBKR: QQQ-600.0 = QQQ $600.0 P x-1.0 avg=$4.97
+[2026-04-20 17:26:58]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-20 17:26:58]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-20 17:27:01] 
+============================================================
+[2026-04-20 17:27:01] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-20 17:27:01] ============================================================
+[2026-04-20 17:27:01] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$2.12 P/L=$142 DTE=24
+[2026-04-20 17:27:01]    >> HOLD (target=$177 stop=$-708)
+[2026-04-20 17:27:02] 
+  QQQ   $600.0P x1 [CSP]: entry=$497 now=$4.45 P/L=$52 DTE=31
+[2026-04-20 17:27:02]    >> HOLD (target=$248 stop=$-994)
+[2026-04-20 17:27:02] 
+  SMH   $385.0P x2 [CSP]: entry=$561 now=$2.30 P/L=$101 DTE=24
+[2026-04-20 17:27:02]    >> HOLD (target=$280 stop=$-1121)
+[2026-04-20 17:27:02] 
+  IWM   $256.0P x1 [CSP]: entry=$318 now=$2.07 P/L=$111 DTE=31
+[2026-04-20 17:27:02]    >> HOLD (target=$159 stop=$-636)
+[2026-04-20 17:27:02] 
+  ⏳ Next check in 15 min...
+[2026-04-20 17:42:02]   📊 4 option position(s) loaded from IBKR
+[2026-04-20 17:42:02]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-20 17:42:02]      IBKR: QQQ-600.0 = QQQ $600.0 P x-1.0 avg=$4.97
+[2026-04-20 17:42:02]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-20 17:42:02]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-20 17:42:05] 
+============================================================
+[2026-04-20 17:42:05] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-20 17:42:05] ============================================================
+[2026-04-20 17:42:05] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$2.11 P/L=$143 DTE=24
+[2026-04-20 17:42:05]    >> HOLD (target=$177 stop=$-708)
+[2026-04-20 17:42:06] 
+  QQQ   $600.0P x1 [CSP]: entry=$497 now=$4.45 P/L=$52 DTE=31
+[2026-04-20 17:42:06]    >> HOLD (target=$248 stop=$-994)
+[2026-04-20 17:42:06] 
+  SMH   $385.0P x2 [CSP]: entry=$561 now=$2.24 P/L=$113 DTE=24
+[2026-04-20 17:42:06]    >> HOLD (target=$280 stop=$-1121)
+[2026-04-20 17:42:06] 
+  IWM   $256.0P x1 [CSP]: entry=$318 now=$1.96 P/L=$123 DTE=31
+[2026-04-20 17:42:06]    >> HOLD (target=$159 stop=$-636)
+[2026-04-20 17:42:06] 
+  ⏳ Next check in 15 min...
+[2026-04-20 17:57:06]   📊 4 option position(s) loaded from IBKR
+[2026-04-20 17:57:06]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-20 17:57:06]      IBKR: QQQ-600.0 = QQQ $600.0 P x-1.0 avg=$4.97
+[2026-04-20 17:57:06]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-20 17:57:06]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-20 17:57:09] 
+============================================================
+[2026-04-20 17:57:09] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-20 17:57:09] ============================================================
+[2026-04-20 17:57:09] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$2.12 P/L=$143 DTE=24
+[2026-04-20 17:57:09]    >> HOLD (target=$177 stop=$-708)
+[2026-04-20 17:57:10] 
+  QQQ   $600.0P x1 [CSP]: entry=$497 now=$4.45 P/L=$52 DTE=31
+[2026-04-20 17:57:10]    >> HOLD (target=$248 stop=$-994)
+[2026-04-20 17:57:10] 
+  SMH   $385.0P x2 [CSP]: entry=$561 now=$2.15 P/L=$132 DTE=24
+[2026-04-20 17:57:10]    >> HOLD (target=$280 stop=$-1121)
+[2026-04-20 17:57:10] 
+  IWM   $256.0P x1 [CSP]: entry=$318 now=$1.91 P/L=$127 DTE=31
+[2026-04-20 17:57:10]    >> HOLD (target=$159 stop=$-636)
+[2026-04-20 17:57:10] 
+  ⏳ Next check in 15 min...
+[2026-04-20 18:12:10]   📊 4 option position(s) loaded from IBKR
+[2026-04-20 18:12:10]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-20 18:12:10]      IBKR: QQQ-600.0 = QQQ $600.0 P x-1.0 avg=$4.97
+[2026-04-20 18:12:10]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-20 18:12:10]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-20 18:12:13] 
+============================================================
+[2026-04-20 18:12:13] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-20 18:12:13] ============================================================
+[2026-04-20 18:12:14] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$2.12 P/L=$143 DTE=24
+[2026-04-20 18:12:14]    >> HOLD (target=$177 stop=$-708)
+[2026-04-20 18:12:14] 
+  QQQ   $600.0P x1 [CSP]: entry=$497 now=$4.45 P/L=$52 DTE=31
+[2026-04-20 18:12:14]    >> HOLD (target=$248 stop=$-994)
+[2026-04-20 18:12:14] 
+  SMH   $385.0P x2 [CSP]: entry=$561 now=$2.12 P/L=$136 DTE=24
+[2026-04-20 18:12:14]    >> HOLD (target=$280 stop=$-1121)
+[2026-04-20 18:12:14] 
+  IWM   $256.0P x1 [CSP]: entry=$318 now=$1.94 P/L=$124 DTE=31
+[2026-04-20 18:12:14]    >> HOLD (target=$159 stop=$-636)
+[2026-04-20 18:12:14] 
+  ⏳ Next check in 15 min...
+[2026-04-20 18:27:14]   📊 4 option position(s) loaded from IBKR
+[2026-04-20 18:27:14]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-20 18:27:14]      IBKR: QQQ-600.0 = QQQ $600.0 P x-1.0 avg=$4.97
+[2026-04-20 18:27:14]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-20 18:27:14]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-20 18:27:18] 
+============================================================
+[2026-04-20 18:27:18] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-20 18:27:18] ============================================================
+[2026-04-20 18:27:18] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$2.11 P/L=$143 DTE=24
+[2026-04-20 18:27:18]    >> HOLD (target=$177 stop=$-708)
+[2026-04-20 18:27:18] 
+  QQQ   $600.0P x1 [CSP]: entry=$497 now=$4.42 P/L=$55 DTE=31
+[2026-04-20 18:27:18]    >> HOLD (target=$248 stop=$-994)
+[2026-04-20 18:27:18] 
+  SMH   $385.0P x2 [CSP]: entry=$561 now=$2.19 P/L=$122 DTE=24
+[2026-04-20 18:27:18]    >> HOLD (target=$280 stop=$-1121)
+[2026-04-20 18:27:19] 
+  IWM   $256.0P x1 [CSP]: entry=$318 now=$1.98 P/L=$120 DTE=31
+[2026-04-20 18:27:19]    >> HOLD (target=$159 stop=$-636)
+[2026-04-20 18:27:19] 
+  ⏳ Next check in 15 min...
+[2026-04-20 18:42:19]   📊 4 option position(s) loaded from IBKR
+[2026-04-20 18:42:19]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-20 18:42:19]      IBKR: QQQ-600.0 = QQQ $600.0 P x-1.0 avg=$4.97
+[2026-04-20 18:42:19]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-20 18:42:19]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-20 18:42:22] 
+============================================================
+[2026-04-20 18:42:22] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-20 18:42:22] ============================================================
+[2026-04-20 18:42:22] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$2.08 P/L=$146 DTE=24
+[2026-04-20 18:42:22]    >> HOLD (target=$177 stop=$-708)
+[2026-04-20 18:42:22] 
+  QQQ   $600.0P x1 [CSP]: entry=$497 now=$4.17 P/L=$80 DTE=31
+[2026-04-20 18:42:22]    >> HOLD (target=$248 stop=$-994)
+[2026-04-20 18:42:22] 
+  SMH   $385.0P x2 [CSP]: entry=$561 now=$2.10 P/L=$140 DTE=24
+[2026-04-20 18:42:22]    >> HOLD (target=$280 stop=$-1121)
+[2026-04-20 18:42:23] 
+  IWM   $256.0P x1 [CSP]: entry=$318 now=$2.00 P/L=$119 DTE=31
+[2026-04-20 18:42:23]    >> HOLD (target=$159 stop=$-636)
+[2026-04-20 18:42:23] 
+  ⏳ Next check in 15 min...
+[2026-04-20 18:52:42] 
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+[2026-04-20 18:52:42] Options Pro Ultra v6 — Autotrade Engine
+[2026-04-20 18:52:42] Account: DU4735568 | Size: $250,000
+[2026-04-20 18:52:42] Max positions: 5 | Max risk: $12,500
+[2026-04-20 18:52:42] Delta: 0.15-0.25 | DTE: 21-45
+[2026-04-20 18:52:42] Close: 50% profit | Stop: 2.0× credit
+[2026-04-20 18:52:42] Scan passes: 2
+[2026-04-20 18:52:42] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+

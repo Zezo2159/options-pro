@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-20T15:32:49+02:00",
+  "updated": "2026-04-20T18:42:23+02:00",
   "engine_running": true,
   "connected": true,
   "market_status": "open",
@@ -8,8 +8,8 @@
   "signal_only": true,
   "signal_only_file": "/Users/islam/options-pro/data/optionspro_signal_only",
   "signals_file": "/Users/islam/options-pro/data/trade_signals.json",
-  "vix": null,
-  "regime": "Unknown",
+  "vix": 18.86,
+  "regime": "Normal",
   "positions": [
     {
       "ticker": "GLD",
@@ -18,10 +18,10 @@
       "qty": 1,
       "strategy": "CSP",
       "entry_credit": 3.54,
-      "current_price": 1.79,
+      "current_price": 2.08,
       "price_valid": true,
-      "pnl": 175.22,
-      "pnl_pct": 49.5,
+      "pnl": 146.22,
+      "pnl_pct": 41.3,
       "dte": 24
     },
     {
@@ -31,10 +31,10 @@
       "qty": 1,
       "strategy": "CSP",
       "entry_credit": 4.97,
-      "current_price": 4.0,
+      "current_price": 4.17,
       "price_valid": true,
-      "pnl": 96.95,
-      "pnl_pct": 19.5,
+      "pnl": 80.05,
+      "pnl_pct": 16.1,
       "dte": 31
     },
     {
@@ -44,10 +44,10 @@
       "qty": 2,
       "strategy": "CSP",
       "entry_credit": 2.8,
-      "current_price": 2.02,
+      "current_price": 2.1,
       "price_valid": true,
-      "pnl": 155.59,
-      "pnl_pct": 27.8,
+      "pnl": 139.59,
+      "pnl_pct": 24.9,
       "dte": 24
     },
     {
@@ -57,22 +57,22 @@
       "qty": 1,
       "strategy": "CSP",
       "entry_credit": 3.18,
-      "current_price": 2.06,
+      "current_price": 2.0,
       "price_valid": true,
-      "pnl": 112.13,
-      "pnl_pct": 35.2,
+      "pnl": 118.63,
+      "pnl_pct": 37.3,
       "dte": 31
     }
   ],
   "positions_count": 4,
   "max_positions": 5,
-  "total_pnl": 539.89,
+  "total_pnl": 484.49,
   "account_size": 250000,
   "ibkr_legs_total": 4,
   "ibkr_legs_short": 4,
   "ibkr_legs_long": 0,
   "reconciliation": {
-    "checked_at": "2026-04-20T15:32:49+02:00",
+    "checked_at": "2026-04-20T18:42:23+02:00",
     "ok": true,
     "missing_in_ibkr": [],
     "missing_in_journal": [],
