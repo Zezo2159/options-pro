@@ -2415,6 +2415,7 @@ class AutoTradeEngine:
 
         # Initial scan & trade — only during market hours
         ms = self.market_status()
+        last_scan_date = None
         if ms == "open":
             for pass_num in range(self.scan_passes):
                 log(f"\n━━━ Scan Pass {pass_num + 1}/{self.scan_passes} ━━━")
@@ -2422,6 +2423,7 @@ class AutoTradeEngine:
                 if opportunities:
                     self.execute_trades(opportunities)
                 time.sleep(5)
+            last_scan_date = datetime.now(ZoneInfo("America/New_York")).date()
         elif ms == "tws_restart":
             log("😴 Startup during TWS restart window — skipping initial scan, entering monitor mode")
         else:
@@ -2449,6 +2451,20 @@ class AutoTradeEngine:
                     log("😴 TWS restart window — sleeping (next check in 5 min)")
                     time.sleep(300)
                     continue
+
+                # If the engine started before the bell, run the daily scan on
+                # the first open-market cycle so signal-only mode gets fresh
+                # candidates without needing a manual restart.
+                today_et = datetime.now(ZoneInfo("America/New_York")).date()
+                if ms == "open" and last_scan_date != today_et:
+                    log("\n━━━ Daily Market-Open Scan ━━━")
+                    for pass_num in range(self.scan_passes):
+                        log(f"\n━━━ Scan Pass {pass_num + 1}/{self.scan_passes} ━━━")
+                        opportunities = self.scan()
+                        if opportunities:
+                            self.execute_trades(opportunities)
+                        time.sleep(5)
+                    last_scan_date = today_et
 
                 # ── Connection health check ──
                 if not self.app._connected:
