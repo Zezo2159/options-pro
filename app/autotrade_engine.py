@@ -36,13 +36,30 @@ ACCOUNT_SIZE = 250_000
 
 # File paths
 BASE = Path("/Applications/OptionsPro.app/Contents/Resources")
-JOURNAL = Path.home() / "Desktop" / "autotrade_journal.csv"
-LOG_FILE = Path.home() / "Desktop" / "autotrade_log.txt"
-RECONCILE_LOG = Path.home() / "Desktop" / "reconcile_log.txt"
+DATA_DIR = Path.home() / "options-pro" / "data"
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+def _data_file(name):
+    path = DATA_DIR / name
+    old_path = Path.home() / "Desktop" / name
+    if not path.exists() and old_path.exists():
+        try:
+            path.write_bytes(old_path.read_bytes())
+        except Exception:
+            pass
+    return path
+
+JOURNAL = _data_file("autotrade_journal.csv")
+LOG_FILE = _data_file("autotrade_log.txt")
+RECONCILE_LOG = _data_file("reconcile_log.txt")
 API_KEY_FILE = BASE / "api_key.txt"
-KILL_SWITCH_FILE = Path.home() / "Desktop" / "optionspro_kill_switch"
-SIGNAL_ONLY_FILE = Path.home() / "Desktop" / "optionspro_signal_only"
-SIGNALS_FILE = Path.home() / "Desktop" / "trade_signals.json"
+KILL_SWITCH_FILE = _data_file("optionspro_kill_switch")
+SIGNAL_ONLY_FILE = _data_file("optionspro_signal_only")
+SIGNALS_FILE = _data_file("trade_signals.json")
+LIVE_POSITIONS_FILE = _data_file("live_positions.json")
+REAL_RULES_FILE = _data_file("real_account_rules.json")
+MIRROR_KILL_FILE = _data_file("optionspro_real_mirror_kill")
+SIGNAL_AUDIT_FILE = _data_file("signal_audit.json")
 
 # Email config
 EMAIL_FROM = "islamalbaz90@gmail.com"
@@ -255,6 +272,114 @@ def signal_only_active():
     return SIGNAL_ONLY_FILE.exists()
 
 
+def _signal_id(signal):
+    parts = [
+        signal.get("ticker", ""),
+        signal.get("strategy", ""),
+        str(signal.get("strike", "")),
+        str(signal.get("long_strike") or ""),
+        str(signal.get("expiry", "")),
+    ]
+    return "-".join(str(p).replace(" ", "") for p in parts).upper()
+
+
+def _load_real_rules():
+    defaults = {
+        "enabled": False,
+        "capital": 0,
+        "max_risk_per_trade_pct": 1.0,
+        "max_risk_per_trade_dollars": 0,
+        "allowed_tickers": WATCHLIST,
+        "allowed_strategies": ["BPS", "CSP"],
+    }
+    try:
+        if REAL_RULES_FILE.exists():
+            saved = json.loads(REAL_RULES_FILE.read_text())
+            if isinstance(saved, dict):
+                defaults.update(saved)
+    except Exception:
+        pass
+    return defaults
+
+
+def _real_copyability(signal):
+    rules = _load_real_rules()
+    reasons = []
+    if MIRROR_KILL_FILE.exists():
+        reasons.append("mirror_kill")
+    if not rules.get("enabled") or float(rules.get("capital") or 0) <= 0:
+        reasons.append("rules_not_configured")
+    if signal.get("ticker") not in set(rules.get("allowed_tickers") or []):
+        reasons.append("ticker_not_allowed")
+    if signal.get("strategy") not in set(rules.get("allowed_strategies") or []):
+        reasons.append("strategy_not_allowed")
+
+    paper_qty = max(1, int(signal.get("qty") or 1))
+    total_risk = float(signal.get("estimated_risk") or 0)
+    unit_risk = total_risk / paper_qty if total_risk > 0 else 0
+    capital = float(rules.get("capital") or 0)
+    pct_cap = capital * (float(rules.get("max_risk_per_trade_pct") or 0) / 100)
+    hard_cap = float(rules.get("max_risk_per_trade_dollars") or 0)
+    max_risk = min(hard_cap, pct_cap) if hard_cap > 0 else pct_cap
+    real_qty = int(max_risk // unit_risk) if unit_risk > 0 and max_risk > 0 else 0
+    if real_qty < 1:
+        reasons.append("real_qty_zero")
+
+    return {
+        "copyable": not reasons,
+        "real_qty": max(0, real_qty),
+        "reasons": reasons,
+        "max_real_risk": round(max_risk, 2),
+    }
+
+
+def _update_signal_audit(payload):
+    try:
+        audit = {"signals": {}, "events": []}
+        if SIGNAL_AUDIT_FILE.exists():
+            loaded = json.loads(SIGNAL_AUDIT_FILE.read_text())
+            if isinstance(loaded, dict):
+                audit.update(loaded)
+        now = payload.get("generated") or datetime.now().isoformat(timespec="seconds")
+        for sig in payload.get("signals", []):
+            sid = sig.get("id") or _signal_id(sig)
+            sig["id"] = sid
+            rec = audit["signals"].setdefault(sid, {
+                "id": sid,
+                "ticker": sig.get("ticker"),
+                "strategy": sig.get("strategy"),
+                "strike": sig.get("strike"),
+                "long_strike": sig.get("long_strike"),
+                "expiry": sig.get("expiry"),
+                "first_seen": now,
+                "seen_count": 0,
+                "copyable_seen_count": 0,
+            })
+            rec["last_seen"] = now
+            rec["seen_count"] = int(rec.get("seen_count") or 0) + 1
+            rec["last_score"] = sig.get("score")
+            rec["last_copyable"] = bool(sig.get("copyable"))
+            rec["last_real_qty"] = sig.get("real_qty")
+            if sig.get("copyable"):
+                rec["copyable_seen_count"] = int(rec.get("copyable_seen_count") or 0) + 1
+            audit["events"].append({
+                "generated": now,
+                "id": sid,
+                "ticker": sig.get("ticker"),
+                "strategy": sig.get("strategy"),
+                "strike": sig.get("strike"),
+                "expiry": sig.get("expiry"),
+                "score": sig.get("score"),
+                "copyable": bool(sig.get("copyable")),
+                "real_qty": sig.get("real_qty"),
+            })
+        audit["events"] = audit.get("events", [])[-1000:]
+        audit["updated"] = now
+        SIGNAL_AUDIT_FILE.write_text(json.dumps(audit, indent=2))
+    except Exception as e:
+        log(f"  ⚠ Signal audit update failed: {e}")
+
+
 # ═══════════════════════════════════════════════
 # JOURNAL MANAGEMENT
 # ═══════════════════════════════════════════════
@@ -287,7 +412,7 @@ def write_trade_signals(opportunities, mode="paper_auto"):
             risk = max(0, (width - float(opp.get("net_credit", 0))) * 100 * int(opp.get("qty", 0)))
         else:
             risk = float(opp.get("strike", 0)) * 100 * int(opp.get("qty", 0))
-        signals.append({
+        signal = {
             "ticker": opp.get("ticker"),
             "strategy": opp.get("strategy"),
             "strike": opp.get("strike"),
@@ -305,14 +430,27 @@ def write_trade_signals(opportunities, mode="paper_auto"):
                 "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
                 "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
             ],
-        })
+        }
+        signal["id"] = _signal_id(signal)
+        copy_state = _real_copyability(signal)
+        signal.update(copy_state)
+        opp["signal_id"] = signal["id"]
+        opp["real_qty"] = signal["real_qty"]
+        opp["copyable"] = signal["copyable"]
+        signals.append(signal)
     payload = {
         "generated": datetime.now().isoformat(timespec="seconds"),
         "mode": mode,
         "account": ACCOUNT_ID,
         "max_positions": MAX_POSITIONS,
         "signals": signals,
+        "audit": {
+            "file": str(SIGNAL_AUDIT_FILE),
+            "total": len(signals),
+            "copyable": sum(1 for s in signals if s.get("copyable")),
+        },
     }
+    _update_signal_audit(payload)
     with open(SIGNALS_FILE, "w") as f:
         json.dump(payload, f, indent=2)
     log(f"  📡 Signals written: {len(signals)} candidate(s) -> {SIGNALS_FILE}")
@@ -1353,6 +1491,8 @@ class AutoTradeEngine:
 
                 # Write to journal
                 notes = f"Score {score} | Buffer {buffer:.1f}% | OrderID {order_id}"
+                if opp.get("signal_id"):
+                    notes += f" | SignalID {opp.get('signal_id')}"
                 if is_spread:
                     notes = f"Spread ${strike}/{long_strike} | {notes}"
                 write_journal(
@@ -1825,7 +1965,7 @@ class AutoTradeEngine:
         return result
 
     def write_live_snapshot(self):
-        """Write current position state to ~/Desktop/live_positions.json.
+        """Write current position state to ~/options-pro/data/live_positions.json.
         Proxy serves this as /api/live — dashboard polls it every 30s."""
         try:
             positions = []
@@ -1939,8 +2079,7 @@ class AutoTradeEngine:
                 "reconciliation":   reconciliation,
             }
 
-            out_path = os.path.expanduser("~/Desktop/live_positions.json")
-            with open(out_path, "w") as f:
+            with open(LIVE_POSITIONS_FILE, "w") as f:
                 json.dump(snapshot, f, indent=2)
 
         except Exception as e:

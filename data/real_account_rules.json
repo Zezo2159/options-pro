@@ -1,0 +1,30 @@
+{
+  "allowed_strategies": [
+    "BPS",
+    "CSP"
+  ],
+  "allowed_tickers": [
+    "SPY",
+    "QQQ",
+    "IWM",
+    "GLD",
+    "SMH",
+    "XLE",
+    "TLT",
+    "GDX",
+    "XSP",
+    "QQQM"
+  ],
+  "capital": 250000,
+  "enabled": true,
+  "manual_submit_required": true,
+  "max_open_positions": 3,
+  "max_risk_per_trade_dollars": 0,
+  "max_risk_per_trade_pct": 1.0,
+  "max_total_risk_pct": 10.0,
+  "notes": [
+    "Real-account deployable capital is set to $250,000.",
+    "Copy-to-real is manual only. Verify live bid/ask, margin impact, and account risk in TWS.",
+    "Do not copy stale signals, event-risk setups, or trades that violate your separate real-account rules."
+  ]
+}
