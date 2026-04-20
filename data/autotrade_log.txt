@@ -22839,3 +22839,41 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 [2026-04-20 14:32:11] Scan passes: 2
 [2026-04-20 14:32:11] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
+[2026-04-20 14:32:13]   ✅ GitHub backup on restart complete
+[2026-04-20 14:32:13] 🔌 Connecting to TWS...
+[2026-04-20 14:32:13] ✅ TWS connected — next order ID: 16
+[2026-04-20 14:32:15]   📊 4 option position(s) loaded from IBKR
+[2026-04-20 14:32:15]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-20 14:32:15]      IBKR: QQQ-600.0 = QQQ $600.0 P x-1.0 avg=$4.97
+[2026-04-20 14:32:15]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-20 14:32:15]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-20 14:32:18] 🌙 Market closed — skipping initial scan, entering monitor mode
+[2026-04-20 14:32:18] 
+✅ Entering monitor mode (checking every 15 min)
+[2026-04-20 14:32:18]   📊 4 option position(s) loaded from IBKR
+[2026-04-20 14:32:18]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-20 14:32:18]      IBKR: QQQ-600.0 = QQQ $600.0 P x-1.0 avg=$4.97
+[2026-04-20 14:32:18]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-20 14:32:18]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-20 14:32:21] 
+============================================================
+[2026-04-20 14:32:21] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-20 14:32:21] ============================================================
+[2026-04-20 14:32:31]   GLD $405.0P x1: no current price — skipping
+[2026-04-20 14:32:41]   QQQ $600.0P x1: no current price — skipping
+[2026-04-20 14:32:51]   SMH $385.0P x2: no current price — skipping
+[2026-04-20 14:32:52] 
+  IWM   $256.0P x1 [CSP]: entry=$318 now=$1.91 P/L=$127 DTE=31
+[2026-04-20 14:32:52]    >> HOLD (target=$159 stop=$-636)
+[2026-04-20 14:32:52] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-20 14:42:10] 
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+[2026-04-20 14:42:10] Options Pro Ultra v6 — Autotrade Engine
+[2026-04-20 14:42:10] Account: DU4735568 | Size: $250,000
+[2026-04-20 14:42:10] Max positions: 5 | Max risk: $12,500
+[2026-04-20 14:42:10] Delta: 0.15-0.25 | DTE: 21-45
+[2026-04-20 14:42:10] Close: 50% profit | Stop: 2.0× credit
+[2026-04-20 14:42:10] Scan passes: 2
+[2026-04-20 14:42:10] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+

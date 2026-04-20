@@ -60,6 +60,9 @@ LIVE_POSITIONS_FILE = _data_file("live_positions.json")
 REAL_RULES_FILE = _data_file("real_account_rules.json")
 MIRROR_KILL_FILE = _data_file("optionspro_real_mirror_kill")
 SIGNAL_AUDIT_FILE = _data_file("signal_audit.json")
+PAPER_CLOSE_REQUESTS_FILE = _data_file("paper_close_requests.jsonl")
+PAPER_CLOSE_RESULTS_FILE = _data_file("paper_close_results.jsonl")
+PAPER_CLOSE_STATE_FILE = _data_file("paper_close_processed.json")
 
 # Email config
 EMAIL_FROM = "islamalbaz90@gmail.com"
@@ -721,6 +724,39 @@ class AutoTradeEngine:
         self._pending_orders = {}  # key: "TICKER-STRIKE" -> timestamp of order placement
         self._pending_closes = {}  # key: "TICKER-STRIKE" -> timestamp of close order placement
         self._last_reconcile_alert = None
+        self._processed_close_requests = self._load_processed_close_requests()
+
+    def _load_processed_close_requests(self):
+        try:
+            if PAPER_CLOSE_STATE_FILE.exists():
+                data = json.loads(PAPER_CLOSE_STATE_FILE.read_text())
+                if isinstance(data, list):
+                    return set(data)
+        except:
+            pass
+        return set()
+
+    def _mark_close_request_processed(self, request_id):
+        self._processed_close_requests.add(request_id)
+        try:
+            PAPER_CLOSE_STATE_FILE.write_text(json.dumps(sorted(self._processed_close_requests)[-500:], indent=2))
+        except Exception as e:
+            log(f"  ⚠ Could not persist close request state: {e}")
+
+    def _write_close_result(self, request, status, message, order_id=None):
+        try:
+            result = {
+                "id": request.get("id"),
+                "processed_at": datetime.now().isoformat(timespec="seconds"),
+                "status": status,
+                "message": message,
+                "order_id": order_id,
+                "request": request,
+            }
+            with open(PAPER_CLOSE_RESULTS_FILE, "a") as f:
+                f.write(json.dumps(result) + "\n")
+        except Exception as e:
+            log(f"  ⚠ Could not write close request result: {e}")
 
     def next_req_id(self):
         self._req_id += 1
@@ -1759,6 +1795,171 @@ class AutoTradeEngine:
             import traceback
             log(traceback.format_exc())
 
+    def process_paper_close_requests(self):
+        """Process queued dashboard panic-close requests for the paper account."""
+        if not PAPER_CLOSE_REQUESTS_FILE.exists():
+            return
+        try:
+            lines = PAPER_CLOSE_REQUESTS_FILE.read_text().splitlines()
+        except Exception as e:
+            log(f"  ⚠ Cannot read paper close requests: {e}")
+            return
+        if not lines:
+            return
+
+        for line in lines:
+            if not line.strip():
+                continue
+            try:
+                req = json.loads(line)
+            except Exception:
+                continue
+            request_id = str(req.get("id") or "")
+            if not request_id or request_id in self._processed_close_requests:
+                continue
+            self._mark_close_request_processed(request_id)
+
+            if not self.app._connected:
+                self._write_close_result(req, "rejected", "TWS disconnected")
+                continue
+            if self.market_status() == "tws_restart":
+                self._write_close_result(req, "rejected", "TWS restart window")
+                continue
+
+            ticker = str(req.get("ticker", "")).upper().strip()
+            try:
+                strike = round(float(req.get("strike")), 2)
+                qty = int(req.get("qty") or 0)
+            except Exception:
+                self._write_close_result(req, "rejected", "Invalid strike/quantity")
+                continue
+            expiry = str(req.get("expiry", "")).strip()
+            strategy = str(req.get("strategy", "CSP")).upper().strip()
+            if not ticker or not strike or qty <= 0 or not expiry:
+                self._write_close_result(req, "rejected", "Missing required fields")
+                continue
+
+            self.app.positions = {}
+            self.app.reqPositions()
+            time.sleep(2)
+            match = None
+            for pos in (self.app.positions or {}).values():
+                if pos.get("position", 0) >= 0:
+                    continue
+                if str(pos.get("symbol", "")).upper() != ticker:
+                    continue
+                if round(float(pos.get("strike", 0) or 0), 2) != strike:
+                    continue
+                if str(pos.get("expiry", "")) != expiry:
+                    continue
+                match = pos
+                break
+            if not match:
+                self._write_close_result(req, "rejected", "No matching short paper position in IBKR")
+                continue
+
+            broker_qty = int(abs(match.get("position", 0) or 0))
+            qty = min(qty, broker_qty)
+            pending_key = f"{ticker}-{float(strike)}"
+            if pending_key in self._pending_closes:
+                self._write_close_result(req, "rejected", "Close already pending")
+                continue
+
+            try:
+                order_id = self._panic_close_market(ticker, strike, expiry, qty, strategy)
+                self._pending_closes[pending_key] = datetime.now()
+                write_journal(
+                    "CLOSE_PANIC", ticker, "CLOSE", strike, expiry, qty, 0,
+                    0, 0, 0, "Submitted", 0,
+                    f"Dashboard paper panic close | Market order | RequestID {request_id} | OrderID {order_id}"
+                )
+                send_email(
+                    f"🚨 Paper Panic Close Submitted: {ticker} ${strike}P",
+                    f"<h2>Paper Panic Close Submitted</h2>"
+                    f"<p>{ticker} ${strike}P x{qty}, expiry {expiry}, strategy {strategy}</p>"
+                    f"<p>Market close order submitted to IBKR paper account {ACCOUNT_ID}.</p>"
+                    f"<p>Order ID: {order_id}</p>"
+                )
+                self._write_close_result(req, "submitted", "Market close submitted", order_id)
+            except Exception as e:
+                log(f"  ❌ Paper panic close failed: {e}")
+                self._write_close_result(req, "error", str(e))
+
+    def _panic_close_market(self, ticker, strike, expiry, qty, strategy):
+        if self.app.next_order_id is None:
+            raise RuntimeError("No valid TWS order id")
+        if strategy == "BPS":
+            return self._panic_close_spread_market(ticker, strike, expiry, qty)
+        return self._panic_close_single_market(ticker, strike, expiry, qty)
+
+    def _panic_close_single_market(self, ticker, strike, expiry, qty):
+        order_id = self.app.next_order_id
+        self.app.next_order_id += 1
+        contract = Contract()
+        contract.symbol = ticker
+        contract.secType = "OPT"
+        contract.exchange = "SMART"
+        contract.currency = "USD"
+        contract.strike = float(strike)
+        contract.lastTradeDateOrContractMonth = str(expiry)
+        contract.right = "P"
+        contract.multiplier = "100"
+        contract.tradingClass = _TRADING_CLASS.get(ticker, ticker)
+
+        order = Order()
+        order.action = "BUY"
+        order.totalQuantity = qty
+        order.orderType = "MKT"
+        order.tif = "DAY"
+        order.eTradeOnly = False
+        order.firmQuoteOnly = False
+        order.account = ACCOUNT_ID
+        log(f"  🚨 PAPER PANIC CLOSE: BUY {qty}x {ticker} ${strike}P MKT (ID: {order_id})")
+        self.app.placeOrder(order_id, contract, order)
+        return order_id
+
+    def _panic_close_spread_market(self, ticker, strike, expiry, qty):
+        width = SPREAD_WIDTHS.get(ticker, 5)
+        short_strike = float(strike)
+        long_strike = short_strike - width
+        short_conid = self.get_option_con_id(ticker, short_strike, expiry, "P")
+        long_conid = self.get_option_con_id(ticker, long_strike, expiry, "P")
+        if not short_conid or not long_conid:
+            raise RuntimeError("Could not resolve spread conIds for panic close")
+
+        order_id = self.app.next_order_id
+        self.app.next_order_id += 1
+        contract = Contract()
+        contract.symbol = ticker
+        contract.secType = "BAG"
+        contract.exchange = "SMART"
+        contract.currency = "USD"
+
+        short_leg = ComboLeg()
+        short_leg.conId = short_conid
+        short_leg.ratio = 1
+        short_leg.action = "BUY"
+        short_leg.exchange = "SMART"
+
+        long_leg = ComboLeg()
+        long_leg.conId = long_conid
+        long_leg.ratio = 1
+        long_leg.action = "SELL"
+        long_leg.exchange = "SMART"
+        contract.comboLegs = [short_leg, long_leg]
+
+        order = Order()
+        order.action = "BUY"
+        order.totalQuantity = qty
+        order.orderType = "MKT"
+        order.tif = "DAY"
+        order.eTradeOnly = False
+        order.firmQuoteOnly = False
+        order.account = ACCOUNT_ID
+        log(f"  🚨 PAPER PANIC CLOSE BPS: {ticker} ${short_strike}/{long_strike}P x{qty} MKT (ID: {order_id})")
+        self.app.placeOrder(order_id, contract, order)
+        return order_id
+
     def _close_single_position(self, ticker, strike, expiry, qty, current_price,
                                 action, reason, pnl):
         """Close a single-leg CSP position (buy to close)."""
@@ -2165,6 +2366,7 @@ class AutoTradeEngine:
 
         # Write initial snapshot immediately so dashboard shows data
         self.write_live_snapshot()
+        self.process_paper_close_requests()
 
         # Enter monitoring loop
         log(f"\n✅ Entering monitor mode (checking every {MONITOR_INTERVAL // 60} min)")
@@ -2239,6 +2441,7 @@ class AutoTradeEngine:
                 self.app.positions = {}
                 self.app.reqPositions()
                 time.sleep(3)
+                self.process_paper_close_requests()
 
                 # ── Run monitor ──
                 price_count_before = sum(1 for _ in self.app.market_data.values())
@@ -2288,7 +2491,7 @@ class AutoTradeEngine:
                 else:
                     sleep_secs = 900  # 15 min when closed (saves CPU, avoids log spam)
                     log(f"\n  🌙 Market closed — next check in 15 min...")
-                time.sleep(sleep_secs)
+                self._sleep_with_command_checks(sleep_secs)
 
             except KeyboardInterrupt:
                 log("\n🛑 Engine stopped by user")
@@ -2304,6 +2507,17 @@ class AutoTradeEngine:
         except:
             pass
         log("Engine shutdown complete.")
+
+    def _sleep_with_command_checks(self, sleep_secs):
+        """Sleep in short chunks so dashboard panic-close requests are handled promptly."""
+        end = time.time() + sleep_secs
+        while self._running and time.time() < end:
+            time.sleep(min(5, max(0, end - time.time())))
+            try:
+                if self.app._connected and self.market_status() != "tws_restart":
+                    self.process_paper_close_requests()
+            except Exception as e:
+                log(f"  ⚠ Close-request check failed during sleep: {e}")
 
 
 # ═══════════════════════════════════════════════
