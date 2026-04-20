@@ -23047,3 +23047,174 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 [2026-04-20 15:36:16] Scan passes: 2
 [2026-04-20 15:36:16] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
+[2026-04-20 15:36:18]   ✅ GitHub backup on restart complete
+[2026-04-20 15:36:18] 🔌 Connecting to TWS...
+[2026-04-20 15:36:18] ✅ TWS connected — next order ID: 16
+[2026-04-20 15:36:20]   📊 4 option position(s) loaded from IBKR
+[2026-04-20 15:36:20]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-20 15:36:20]      IBKR: QQQ-600.0 = QQQ $600.0 P x-1.0 avg=$4.97
+[2026-04-20 15:36:20]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-20 15:36:20]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-20 15:36:23] 
+━━━ Scan Pass 1/2 ━━━
+[2026-04-20 15:36:23] 
+============================================================
+[2026-04-20 15:36:23] 🌅 MORNING SCAN STARTED
+[2026-04-20 15:36:23] ============================================================
+[2026-04-20 15:36:23]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:36:23]   📊 VIX: 18.89 — Regime: Normal (Δ 0.15-0.25, risk × 1.0)
+[2026-04-20 15:36:23]   Open positions: 4/5
+[2026-04-20 15:36:23] 
+  Scanning SPY...
+[2026-04-20 15:36:24]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:36:24]   SPY: $707.92
+[2026-04-20 15:36:24]   SPY: conId=756733 (STK)
+[2026-04-20 15:36:26]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:36:35]   TWS error 300: Can't find EId with tickerId:1006
+[2026-04-20 15:36:38]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:36:48]   TWS error 300: Can't find EId with tickerId:1012
+[2026-04-20 15:36:49]   SPY: using buffer-based strike (delta unavailable)
+[2026-04-20 15:36:49]   SPY: $686.0P @ $6.83 | Δ=0.000 IV=0.0% Buffer=3.1% DTE=38 | Score=0 | Spread $686.0/676.0 credit=$1.54
+[2026-04-20 15:36:49]   QQQ: skipped (already have position)
+[2026-04-20 15:36:49]   SMH: skipped (already have position)
+[2026-04-20 15:36:49] 
+  Scanning GDX...
+[2026-04-20 15:36:49]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:36:50]   GDX: $99.32
+[2026-04-20 15:36:50]   GDX: conId=229726316 (STK)
+[2026-04-20 15:36:53]   GDX $94.5P: quote too wide bid=$3.15 ask=$5.05 spread=46%
+[2026-04-20 15:36:54]   GDX $93.5P: quote too wide bid=$2.75 ask=$3.95 spread=36%
+[2026-04-20 15:36:54]   GDX $93.0P: quote too wide bid=$2.48 ask=$3.85 spread=43%
+[2026-04-20 15:36:55]   GDX $92.5P: quote too wide bid=$2.05 ask=$4.40 spread=73%
+[2026-04-20 15:36:55]   GDX: using buffer-based strike (delta unavailable)
+[2026-04-20 15:36:55]   GDX: $94.0P @ $3.55 | Δ=0.000 IV=0.0% Buffer=5.4% DTE=38 | Score=48 | Spread $94.0/92.0 credit=$0.70
+[2026-04-20 15:36:55]   IWM: skipped (already have position)
+[2026-04-20 15:36:55]   GLD: skipped (already have position)
+[2026-04-20 15:36:55] 
+  Scanning XLE...
+[2026-04-20 15:36:55]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:36:56]   XLE: $55.37
+[2026-04-20 15:36:56]   XLE: conId=4215217 (STK)
+[2026-04-20 15:36:56]   XLE $54.0P: quote too wide bid=$0.80 ask=$1.95 spread=84%
+[2026-04-20 15:36:57]   XLE $53.5P: quote too wide bid=$0.60 ask=$1.60 spread=91%
+[2026-04-20 15:36:58]   XLE $52.5P: quote too wide bid=$0.45 ask=$1.29 spread=97%
+[2026-04-20 15:36:58]   XLE $52.0P: quote too wide bid=$0.38 ask=$1.22 spread=105%
+[2026-04-20 15:36:58]   XLE $51.5P: quote too wide bid=$0.05 ask=$1.59 spread=188%
+[2026-04-20 15:36:59]   XLE $51.0P: quote too wide bid=$0.25 ask=$1.08 spread=125%
+[2026-04-20 15:36:59]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:37:09]   TWS error 300: Can't find EId with tickerId:1040
+[2026-04-20 15:37:09]   XLE $50.0P: quote too wide bid=$0.18 ask=$2.43 spread=172%
+[2026-04-20 15:37:09]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:37:19]   XLE: using buffer-based strike (delta unavailable)
+[2026-04-20 15:37:19]   XLE: $53.0P @ $0.81 | Δ=0.000 IV=0.0% Buffer=4.3% DTE=38 | Score=36
+[2026-04-20 15:37:19] 
+  Scanning TLT...
+[2026-04-20 15:37:19]   TWS error 300: Can't find EId with tickerId:1042
+[2026-04-20 15:37:19]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:37:20]   TLT: $86.97
+[2026-04-20 15:37:20]   TLT: conId=15547841 (STK)
+[2026-04-20 15:37:24]   TLT: no suitable strike found
+[2026-04-20 15:37:24] 
+  Scanning XSP...
+[2026-04-20 15:37:25]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:37:34]   XSP: $712.61
+[2026-04-20 15:37:34]   XSP: conId=137851301 (IND)
+[2026-04-20 15:37:36]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:37:45]   TWS error 300: Can't find EId with tickerId:1060
+[2026-04-20 15:37:46]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-20 15:37:46]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-20 15:37:47]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-20 15:37:47]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-20 15:37:48]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-20 15:37:48]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:37:58]   TWS error 300: Can't find EId with tickerId:1066
+[2026-04-20 15:37:58]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-20 15:37:58]   XSP: using buffer-based strike (delta unavailable)
+[2026-04-20 15:37:58]   XSP: skipped CSP — assignment exposure $69,100 exceeds risk budget $12,500
+[2026-04-20 15:37:58] 
+  Scanning QQQM...
+[2026-04-20 15:37:59]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:38:00]   QQQM: $266.67
+[2026-04-20 15:38:00]   QQQM: conId=449738108 (STK)
+[2026-04-20 15:38:04]   QQQM: using buffer-based strike (delta unavailable)
+[2026-04-20 15:38:04]   QQQM: skipped CSP — assignment exposure $25,000 exceeds risk budget $12,500
+[2026-04-20 15:38:04]   📡 Signals written: 1 candidate(s) -> /Users/islam/options-pro/data/trade_signals.json
+[2026-04-20 15:38:04] 
+  📊 Found 3 opportunities, 1 slot(s) available
+[2026-04-20 15:38:04]     #48: GDX $94.0P @ $3.55 (BPS) DTE=38
+[2026-04-20 15:38:04]   📡 SIGNAL ONLY: GDX $94.0P x4 — no paper order submitted
+[2026-04-20 15:38:09] 
+━━━ Scan Pass 2/2 ━━━
+[2026-04-20 15:38:09] 
+============================================================
+[2026-04-20 15:38:09] 🌅 MORNING SCAN STARTED
+[2026-04-20 15:38:09] ============================================================
+[2026-04-20 15:38:10]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:38:10]   📊 VIX: 18.79 — Regime: Normal (Δ 0.15-0.25, risk × 1.0)
+[2026-04-20 15:38:10]   Open positions: 4/5
+[2026-04-20 15:38:10] 
+  Scanning SPY...
+[2026-04-20 15:38:11]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:38:12]   SPY: $709.07
+[2026-04-20 15:38:12]   SPY: conId=756733 (STK)
+[2026-04-20 15:38:13]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:38:23]   TWS error 300: Can't find EId with tickerId:1088
+[2026-04-20 15:38:25]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:38:35]   TWS error 300: Can't find EId with tickerId:1094
+[2026-04-20 15:38:35]   SPY: using buffer-based strike (delta unavailable)
+[2026-04-20 15:38:35]   SPY: $687.0P @ $7.02 | Δ=0.000 IV=0.0% Buffer=3.1% DTE=38 | Score=0 | Spread $687.0/677.0 credit=$1.55
+[2026-04-20 15:38:35]   QQQ: skipped (already have position)
+[2026-04-20 15:38:35]   SMH: skipped (already have position)
+[2026-04-20 15:38:35] 
+  Scanning GDX...
+[2026-04-20 15:38:35]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:38:36]   GDX: $99.16
+[2026-04-20 15:38:36]   GDX: conId=229726316 (STK)
+[2026-04-20 15:38:38]   GDX $94.5P: quote too wide bid=$3.15 ask=$5.05 spread=46%
+[2026-04-20 15:38:39]   GDX $93.5P: quote too wide bid=$2.75 ask=$3.95 spread=36%
+[2026-04-20 15:38:39]   GDX $93.0P: quote too wide bid=$2.48 ask=$3.85 spread=43%
+[2026-04-20 15:38:39]   GDX $92.5P: quote too wide bid=$2.05 ask=$4.40 spread=73%
+[2026-04-20 15:38:39]   GDX: using buffer-based strike (delta unavailable)
+[2026-04-20 15:38:40]   GDX: $94.0P @ $3.51 | Δ=0.327 IV=46.3% Buffer=5.2% DTE=38 | Score=68 | Spread $94.0/92.0 credit=$0.66
+[2026-04-20 15:38:40]   IWM: skipped (already have position)
+[2026-04-20 15:38:40]   GLD: skipped (already have position)
+[2026-04-20 15:38:40] 
+  Scanning XLE...
+[2026-04-20 15:38:40]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:38:41]   XLE: $55.11
+[2026-04-20 15:38:41]   XLE: conId=4215217 (STK)
+[2026-04-20 15:38:41]   XLE $54.0P: quote too wide bid=$0.80 ask=$1.95 spread=84%
+[2026-04-20 15:38:41]   XLE $53.5P: quote too wide bid=$0.60 ask=$1.60 spread=91%
+[2026-04-20 15:38:42]   XLE $52.5P: quote too wide bid=$0.45 ask=$1.29 spread=97%
+[2026-04-20 15:38:42]   XLE $52.0P: quote too wide bid=$0.38 ask=$1.22 spread=105%
+[2026-04-20 15:38:42]   XLE $51.5P: quote too wide bid=$0.05 ask=$1.59 spread=188%
+[2026-04-20 15:38:43]   XLE $51.0P: quote too wide bid=$0.25 ask=$1.08 spread=125%
+[2026-04-20 15:38:43]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:38:53]   TWS error 300: Can't find EId with tickerId:1121
+[2026-04-20 15:38:53]   XLE $50.0P: quote too wide bid=$0.18 ask=$2.43 spread=172%
+[2026-04-20 15:38:53]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:39:03]   XLE: using buffer-based strike (delta unavailable)
+[2026-04-20 15:39:03]   TWS error 300: Can't find EId with tickerId:1123
+[2026-04-20 15:39:03]   XLE: $53.0P @ $0.81 | Δ=0.000 IV=0.0% Buffer=3.8% DTE=38 | Score=36
+[2026-04-20 15:39:03] 
+  Scanning TLT...
+[2026-04-20 15:39:03]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:39:04]   TLT: $87.06
+[2026-04-20 15:39:04]   TLT: conId=15547841 (STK)
+[2026-04-20 15:39:07]   TLT: no suitable strike found
+[2026-04-20 15:39:07] 
+  Scanning XSP...
+[2026-04-20 15:39:08]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-20 15:39:18]   XSP: $712.61
+[2026-04-20 15:39:18]   XSP: conId=137851301 (IND)
+[2026-04-20 15:39:18]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-20 15:39:21] 
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+[2026-04-20 15:39:21] Options Pro Ultra v6 — Autotrade Engine
+[2026-04-20 15:39:21] Account: DU4735568 | Size: $250,000
+[2026-04-20 15:39:21] Max positions: 5 | Max risk: $12,500
+[2026-04-20 15:39:21] Delta: 0.15-0.25 | DTE: 21-45
+[2026-04-20 15:39:21] Close: 50% profit | Stop: 2.0× credit
+[2026-04-20 15:39:21] Scan passes: 2
+[2026-04-20 15:39:21] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+

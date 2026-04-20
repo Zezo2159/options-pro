@@ -1,4 +1,34 @@
 {
-  "signals": {},
-  "events": []
+  "signals": {
+    "GDX-BPS-94.0-92.0-20260529": {
+      "id": "GDX-BPS-94.0-92.0-20260529",
+      "ticker": "GDX",
+      "strategy": "BPS",
+      "strike": 94.0,
+      "long_strike": 92.0,
+      "expiry": "20260529",
+      "first_seen": "2026-04-20T15:38:04+02:00",
+      "seen_count": 1,
+      "copyable_seen_count": 0,
+      "last_seen": "2026-04-20T15:38:04+02:00",
+      "last_score": 48,
+      "last_copyable": false,
+      "last_real_qty": 19
+    }
+  },
+  "events": [
+    {
+      "generated": "2026-04-20T15:38:04+02:00",
+      "id": "GDX-BPS-94.0-92.0-20260529",
+      "ticker": "GDX",
+      "strategy": "BPS",
+      "strike": 94.0,
+      "long_strike": 92.0,
+      "expiry": "20260529",
+      "score": 48,
+      "copyable": false,
+      "real_qty": 19
+    }
+  ],
+  "updated": "2026-04-20T15:38:04+02:00"
 }

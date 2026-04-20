@@ -992,6 +992,7 @@ class AutoTradeEngine:
         contract.lastTradeDateOrContractMonth = str(expiry)
         contract.right = right
         contract.multiplier = "100"
+        contract.tradingClass = _TRADING_CLASS.get(ticker, ticker)
 
         event = threading.Event()
         self.app._detail_events[req_id] = event
@@ -1038,7 +1039,7 @@ class AutoTradeEngine:
                 return {**r, "name": name, "vix": vix}
         return REGIMES["extreme"]
 
-    def get_option_chain(self, ticker, timeout=10):
+    def get_option_chain(self, ticker, timeout=6):
         """Get available expirations and strikes for a ticker."""
         sec_type = self._underlying_sec_type(ticker)  # "IND" for XSP, "STK" otherwise
 
@@ -1189,7 +1190,7 @@ class AutoTradeEngine:
     def find_target_strike(self, ticker, stock_price, strikes, expiry):
         """Find the put strike with delta closest to target range.
         Uses regime-adjusted delta bounds when available.
-        Falls back to buffer-based selection if delta data unavailable."""
+        Requires valid delta data; missing Greeks are not safe signal inputs."""
         # Get regime-adjusted delta bounds (fall back to config defaults)
         regime = getattr(self, '_current_regime', None) or REGIMES["normal"]
         d_min = regime.get("delta_min", DELTA_MIN)
@@ -1207,18 +1208,16 @@ class AutoTradeEngine:
         best_data = None
         best_delta_fit = float("inf")
 
-        buffer_target = stock_price * 0.93
-        best_buffer_strike = None
-        best_buffer_data = None
-        best_buffer_dist = float("inf")
-
         for strike in otm_strikes[:10]:
-            opt = self.get_option_data(ticker, strike, expiry, "P")
+            opt = self.get_option_data(ticker, strike, expiry, "P", timeout=4)
             delta = abs(opt.get("delta", 0))
             # get_option_data returns "optPrice" — check both keys for safety
             price = opt.get("optPrice", 0) or opt.get("price", 0)
 
             if price <= 0:
+                continue
+            if delta <= 0:
+                log(f"  {ticker} ${strike}P: missing delta/greeks — skipped")
                 continue
             ok, reason = self.quote_is_acceptable(ticker, {**opt, "price": price}, f"${strike}P")
             if not ok:
@@ -1233,18 +1232,8 @@ class AutoTradeEngine:
                     best_strike = strike
                     best_data = {**opt, "price": price}  # normalize key
 
-            dist = abs(strike - buffer_target)
-            if dist < best_buffer_dist:
-                best_buffer_dist = dist
-                best_buffer_strike = strike
-                best_buffer_data = {**opt, "price": price}
-
         if best_strike:
             return best_strike, best_data
-
-        if best_buffer_strike and best_buffer_data and best_buffer_data.get("price", 0) > 0.50:
-            log(f"  {ticker}: using buffer-based strike (delta unavailable)")
-            return best_buffer_strike, best_buffer_data
 
         return None, None
 
