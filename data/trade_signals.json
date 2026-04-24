@@ -1,39 +1,12 @@
 {
-  "generated": "2026-04-20T18:54:31+02:00",
+  "generated": "2026-04-24T19:04:38+02:00",
   "mode": "signal_only",
   "account": "DU4735568",
   "max_positions": 5,
-  "signals": [
-    {
-      "ticker": "XLE",
-      "strategy": "CSP",
-      "strike": 52.5,
-      "long_strike": null,
-      "expiry": "20260529",
-      "qty": 2,
-      "credit": 0.72,
-      "delta": 0.243,
-      "iv": 28.4,
-      "dte": 38,
-      "score": 60,
-      "estimated_risk": 10500.0,
-      "buffer_pct": 5.2,
-      "warnings": [
-        "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
-        "Do not copy if portfolio risk, correlation, or news/event risk is elevated."
-      ],
-      "id": "XLE-CSP-52.5--20260529",
-      "copyable": false,
-      "real_qty": 0,
-      "reasons": [
-        "real_qty_zero"
-      ],
-      "max_real_risk": 2500.0
-    }
-  ],
+  "signals": [],
   "audit": {
     "file": "/Users/islam/options-pro/data/signal_audit.json",
-    "total": 1,
+    "total": 0,
     "copyable": 0
   }
 }

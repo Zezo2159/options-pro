@@ -192,6 +192,8 @@ RECONCILE_ALERT_INTERVAL = 7200  # seconds between journal-vs-IBKR drift email a
 
 FILLED_STATUSES = {"FILLED", "CLOSED", "MANUALCLOSE"}
 OPEN_LIKE_STATUSES = {"SUBMITTED", "PRESUBMITTED", "PENDINGSUBMIT", "PENDING", "WORKING"}
+TERMINAL_ORDER_STATUSES = {"FILLED", "CANCELLED", "APICANCELLED", "INACTIVE"}
+PENDING_CLOSE_MAX_AGE = 4 * 3600
 
 
 # ═══════════════════════════════════════════════
@@ -450,6 +452,54 @@ def write_journal(action, ticker, strategy, strike, expiry, qty, credit, delta, 
     log(f"  📝 Journal: {action} {ticker} ${strike} x{qty}")
 
 
+def update_journal_order_status(order_id, status, credit=None, pnl=None, note_suffix=""):
+    """Update the most recent journal row for a given OrderID."""
+    ensure_journal()
+    order_tag = f"OrderID {order_id}"
+    try:
+        with open(JOURNAL, "r", newline="") as f:
+            rows = list(csv.reader(f))
+        if not rows:
+            return False
+
+        target_idx = None
+        notes_idx = JOURNAL_HEADER.split(",").index("notes")
+        status_idx = JOURNAL_HEADER.split(",").index("status")
+        credit_idx = JOURNAL_HEADER.split(",").index("credit")
+        pnl_idx = JOURNAL_HEADER.split(",").index("pnl")
+
+        for idx in range(len(rows) - 1, 0, -1):
+            row = rows[idx]
+            if len(row) <= notes_idx:
+                continue
+            if order_tag in row[notes_idx]:
+                target_idx = idx
+                break
+
+        if target_idx is None:
+            return False
+
+        row = rows[target_idx]
+        while len(row) <= notes_idx:
+            row.append("")
+        row[status_idx] = status
+        if credit is not None:
+            row[credit_idx] = str(credit)
+        if pnl is not None:
+            row[pnl_idx] = str(round(float(pnl), 2))
+        if note_suffix:
+            base = row[notes_idx].strip()
+            row[notes_idx] = f"{base} | {note_suffix}" if base else note_suffix
+        rows[target_idx] = row
+
+        with open(JOURNAL, "w", newline="") as f:
+            csv.writer(f).writerows(rows)
+        return True
+    except Exception as e:
+        log(f"  ⚠ Could not update journal row for OrderID {order_id}: {e}")
+        return False
+
+
 def write_trade_signals(opportunities, mode="paper_auto"):
     """Write vetted scan results for manual review/copying to a real account."""
     signals = []
@@ -565,6 +615,7 @@ class TWSApp(EWrapper, EClient):
         self._connection_lost_at = None
         self._last_farm_error = None
         self._account_values = {}
+        self._order_status_callback = None
 
     # ── Connection ──
     def nextValidId(self, orderId):
@@ -748,6 +799,11 @@ class TWSApp(EWrapper, EClient):
             log(f"  ✅ Order {orderId} FILLED at ${avgFillPrice:.2f}")
         elif status == "Cancelled":
             log(f"  ❌ Order {orderId} CANCELLED")
+        if callable(self._order_status_callback):
+            try:
+                self._order_status_callback(orderId, status, filled, remaining, avgFillPrice)
+            except Exception as e:
+                log(f"  ⚠ orderStatus callback failed for {orderId}: {e}")
 
     def openOrder(self, orderId, contract, order, orderState):
         pass
@@ -763,11 +819,13 @@ class TWSApp(EWrapper, EClient):
 class AutoTradeEngine:
     def __init__(self, scan_passes=1):
         self.app = TWSApp()
+        self.app._order_status_callback = self._handle_order_status
         self.scan_passes = scan_passes
         self._req_id = 1000
         self._running = True
         self._pending_orders = {}  # key: "TICKER-STRIKE" -> timestamp of order placement
         self._pending_closes = {}  # key: "TICKER-STRIKE" -> timestamp of close order placement
+        self._close_orders = {}
         self._last_reconcile_alert = None
         self._processed_close_requests = self._load_processed_close_requests()
 
@@ -810,6 +868,7 @@ class AutoTradeEngine:
     # ── Connect ──
     def connect(self):
         log("🔌 Connecting to TWS...")
+        self.app._order_status_callback = self._handle_order_status
         self.app.connect(TWS_HOST, TWS_PORT, CLIENT_ID)
 
         # Start API thread
@@ -846,7 +905,86 @@ class AutoTradeEngine:
         time.sleep(5)
 
         self.app = TWSApp()
+        self.app._order_status_callback = self._handle_order_status
         return self.connect()
+
+    def _register_close_order(self, order_id, ticker, strike, expiry, qty, action, strategy, submitted_price, pnl, reason):
+        pending_key = f"{ticker}-{float(strike)}"
+        self._pending_closes[pending_key] = {
+            "at": datetime.now(),
+            "order_id": order_id,
+        }
+        self._close_orders[order_id] = {
+            "ticker": ticker,
+            "strike": float(strike),
+            "expiry": str(expiry),
+            "qty": int(qty),
+            "action": action,
+            "strategy": strategy,
+            "submitted_price": float(submitted_price),
+            "pnl": float(pnl),
+            "reason": reason,
+            "pending_key": pending_key,
+        }
+
+    def _remove_position_from_cache(self, ticker, strike, expiry):
+        for key, pos in list((self.app.positions or {}).items()):
+            if pos.get("position", 0) >= 0:
+                continue
+            if str(pos.get("symbol", "")).upper() != str(ticker).upper():
+                continue
+            if round(float(pos.get("strike", 0) or 0), 2) != round(float(strike), 2):
+                continue
+            if str(pos.get("expiry", "")) != str(expiry):
+                continue
+            del self.app.positions[key]
+
+    def _handle_order_status(self, order_id, status, filled, remaining, avgFillPrice):
+        meta = self._close_orders.get(order_id)
+        if not meta:
+            return
+
+        status_upper = str(status or "").upper()
+        pending_key = meta.get("pending_key")
+
+        if status_upper == "FILLED":
+            updated = update_journal_order_status(
+                order_id,
+                "Filled",
+                credit=round(float(avgFillPrice or meta.get("submitted_price") or 0), 4),
+                note_suffix=f"Filled {now_iso()}",
+            )
+            self._remove_position_from_cache(meta["ticker"], meta["strike"], meta["expiry"])
+            if pending_key:
+                self._pending_closes.pop(pending_key, None)
+            self._close_orders.pop(order_id, None)
+            try:
+                sign = "+" if float(meta.get("pnl") or 0) >= 0 else ""
+                send_email(
+                    f"✅ Closed: {meta['ticker']} ${meta['strike']}P {sign}${float(meta.get('pnl') or 0):.0f} [{meta['strategy']}]",
+                    f"<h2>{meta['action'].replace('_', ' ')}</h2>"
+                    f"<p><b>{meta['ticker']}</b> ${meta['strike']}P x {meta['qty']} [{meta['strategy']}]</p>"
+                    f"<p>Filled at <b>${float(avgFillPrice or meta.get('submitted_price') or 0):.2f}</b></p>"
+                    f"<p>Estimated P/L: <b>{sign}${float(meta.get('pnl') or 0):.2f}</b></p>"
+                    f"<p>Reason: {meta['reason']}</p>"
+                    f"<p>Order ID: {order_id}</p>"
+                )
+            except Exception as e:
+                log(f"  ⚠ Fill email failed for Order {order_id}: {e}")
+            if updated:
+                self.write_live_snapshot()
+            return
+
+        if status_upper in {"CANCELLED", "APICANCELLED", "INACTIVE"}:
+            update_journal_order_status(
+                order_id,
+                status_upper.title(),
+                note_suffix=f"{status_upper.title()} {now_iso()}",
+            )
+            if pending_key:
+                self._pending_closes.pop(pending_key, None)
+            self._close_orders.pop(order_id, None)
+            self.write_live_snapshot()
 
     # ── Market Data Helpers ──
     def get_stock_price(self, ticker, timeout=10):
@@ -1676,12 +1814,22 @@ class AutoTradeEngine:
                 else:
                     del self._pending_orders[pending_key]
             if pending_key in self._pending_closes:
-                age = (datetime.now() - self._pending_closes[pending_key]).total_seconds()
-                if age < MONITOR_INTERVAL:
+                pending_meta = self._pending_closes[pending_key]
+                age = (datetime.now() - pending_meta["at"]).total_seconds()
+                order_id = pending_meta.get("order_id")
+                status = str(self.app.order_statuses.get(order_id, {}).get("status", "")).upper()
+                if status in TERMINAL_ORDER_STATUSES:
+                    del self._pending_closes[pending_key]
+                    if order_id is not None:
+                        self._close_orders.pop(order_id, None)
+                elif age < PENDING_CLOSE_MAX_AGE:
                     log(f"  {ticker} ${strike}P: close order pending ({int(age)}s ago) — skipping")
                     continue
                 else:
+                    log(f"  ⚠ {ticker} ${strike}P: pending close is stale after {int(age)}s — allowing retry")
                     del self._pending_closes[pending_key]
+                    if order_id is not None:
+                        self._close_orders.pop(order_id, None)
 
             lookup_key = (ticker, round(float(strike), 2))
             j = journal_by_pos.get(lookup_key)
@@ -1901,7 +2049,7 @@ class AutoTradeEngine:
 
             try:
                 order_id, limit_price = self._panic_close_marketable_limit(ticker, strike, expiry, qty, strategy)
-                self._pending_closes[pending_key] = datetime.now()
+                self._register_close_order(order_id, ticker, strike, expiry, qty, "CLOSE_PANIC", strategy, limit_price, 0, "Dashboard paper panic close")
                 write_journal(
                     "CLOSE_PANIC", ticker, "CLOSE", strike, expiry, qty, 0,
                     0, 0, 0, "Submitted", 0,
@@ -2041,8 +2189,8 @@ class AutoTradeEngine:
 
         log(f"  📤 Close CSP: BUY {qty}x {ticker} ${strike}P @ ${current_price:.2f} (ID: {order_id})")
         self.app.placeOrder(order_id, contract, order)
-        self._journal_and_email(action, ticker, strike, expiry, qty,
-                                current_price, pnl, reason, order_id, "CSP")
+        self._journal_close_submission(action, ticker, strike, expiry, qty,
+                                       current_price, pnl, reason, order_id, "CSP")
 
     def _close_spread_position(self, ticker, strike, expiry, qty, net_debit,
                                 action, reason, pnl):
@@ -2115,40 +2263,39 @@ class AutoTradeEngine:
 
         self.app.placeOrder(order_id, contract, order)
         log(f"  ✅ BPS close order placed (ID: {order_id})")
-        self._journal_and_email(action, ticker, strike, expiry, qty,
-                                net_debit, pnl, reason, order_id, "BPS")
+        self._journal_close_submission(action, ticker, strike, expiry, qty,
+                                       net_debit, pnl, reason, order_id, "BPS")
 
-    def _journal_and_email(self, action, ticker, strike, expiry, qty,
-                            price, pnl, reason, order_id, strategy):
-        """Shared journal write + email for close_position variants."""
+    def _journal_close_submission(self, action, ticker, strike, expiry, qty,
+                                  price, pnl, reason, order_id, strategy):
+        """Record a submitted close order; final close is confirmed on TWS fill."""
         try:
-            self._pending_closes[f"{ticker}-{float(strike)}"] = datetime.now()
+            self._register_close_order(order_id, ticker, strike, expiry, qty,
+                                       action, strategy, price, pnl, reason)
             write_journal(
                 action, ticker, "CLOSE", strike, expiry, qty, price,
                 0, 0, 0, "Submitted", round(pnl, 2),
                 f"{reason} | {strategy} | OrderID {order_id}"
             )
-            log(f"  📓 Journal written: {action} {ticker} ${strike}P P/L=${pnl:.0f}")
+            log(f"  📓 Close submitted: {action} {ticker} ${strike}P P/L=${pnl:.0f}")
         except Exception as e:
             log(f"  ❌ Journal write failed: {e}")
 
         try:
-            emoji = "✅" if pnl >= 0 else "❌"
-            sign = "+" if pnl >= 0 else ""
-            subject = f"{emoji} Closed: {ticker} ${strike}P {sign}${pnl:.0f} [{strategy}]"
+            subject = f"📤 Close Submitted: {ticker} ${strike}P [{strategy}]"
             body = (
-                f"<h2>{action.replace('_', ' ')}</h2>"
+                f"<h2>{action.replace('_', ' ')} Submitted</h2>"
                 f"<p><b>{ticker}</b> ${strike}P × {qty} [{strategy}]</p>"
-                f"<p>Close price: <b>${price:.2f}</b></p>"
-                f"<p>P/L: <b>${pnl:.2f}</b> ({sign}{pnl/max(qty*price*100,1)*100:.1f}%)</p>"
+                f"<p>Submitted limit: <b>${price:.2f}</b></p>"
+                f"<p>Estimated P/L if filled here: <b>${pnl:.2f}</b></p>"
                 f"<p>Reason: {reason}</p>"
                 f"<p>Order ID: {order_id}</p>"
                 f"<p><small>Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</small></p>"
             )
             send_email(subject, body)
-            log(f"  📧 Email sent: {subject}")
+            log(f"  📧 Submission email sent: {subject}")
         except Exception as e:
-            log(f"  ❌ Email failed for {ticker} close: {e}")
+            log(f"  ❌ Submission email failed for {ticker} close: {e}")
 
     # ═══════════════════════════════════════════════
     # MAIN LOOP
