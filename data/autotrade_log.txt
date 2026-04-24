@@ -27048,3 +27048,148 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 [2026-04-24 19:25:57] Scan passes: 2
 [2026-04-24 19:25:57] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
+[2026-04-24 19:26:20]   ✅ GitHub backup on restart complete
+[2026-04-24 19:26:20] 🔌 Connecting to TWS...
+[2026-04-24 19:26:20] ✅ TWS connected — next order ID: 19
+[2026-04-24 19:26:22]   📊 3 option position(s) loaded from IBKR
+[2026-04-24 19:26:22]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-24 19:26:22]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-24 19:26:22]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-24 19:26:26] 
+━━━ Scan Pass 1/2 ━━━
+[2026-04-24 19:26:26] 
+============================================================
+[2026-04-24 19:26:26] 🌅 MORNING SCAN STARTED
+[2026-04-24 19:26:26] ============================================================
+[2026-04-24 19:26:34]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-24 19:26:34]   📊 VIX: 18.66 — Regime: Normal (Δ 0.15-0.25, risk × 1.0)
+[2026-04-24 19:26:34]   Open positions: 3/5
+[2026-04-24 19:26:34] 
+  Scanning SPY...
+[2026-04-24 19:26:35]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-24 19:26:35]   SPY: $713.74
+[2026-04-24 19:26:36]   SPY: conId=756733 (STK)
+[2026-04-24 19:26:36]   SPY $699.0P: missing delta/greeks — skipped
+[2026-04-24 19:26:37]   SPY $698.0P: missing delta/greeks — skipped
+[2026-04-24 19:26:37]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-24 19:26:41]   TWS error 300: Can't find EId with tickerId:1007
+[2026-04-24 19:26:42]   SPY $697.0P: missing delta/greeks — skipped
+[2026-04-24 19:26:42]   SPY $696.0P: missing delta/greeks — skipped
+[2026-04-24 19:26:43]   SPY $695.0P: missing delta/greeks — skipped
+[2026-04-24 19:26:46]   SPY $694.0P: missing delta/greeks — skipped
+[2026-04-24 19:26:58]   SPY: no suitable strike found
+[2026-04-24 19:26:58] 
+  Scanning QQQ...
+[2026-04-24 19:27:00]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-24 19:27:00]   TWS error 300: Can't find EId with tickerId:1013
+[2026-04-24 19:27:00]   TWS error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.QQQ NASDAQ.NMS/TOP/ALL
+[2026-04-24 19:27:08]   QQQ: no price data
+[2026-04-24 19:27:08]   SMH: skipped (already have position)
+[2026-04-24 19:27:08]   TWS error 300: Can't find EId with tickerId:1015
+[2026-04-24 19:27:08] 
+  Scanning GDX...
+[2026-04-24 19:27:09]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-24 19:27:09]   GDX: $94.33
+[2026-04-24 19:27:09]   GDX: conId=229726316 (STK)
+[2026-04-24 19:27:10]   GDX $92.0P: missing delta/greeks — skipped
+[2026-04-24 19:27:10]   GDX $91.5P: missing delta/greeks — skipped
+[2026-04-24 19:27:11]   GDX $91.0P: missing delta/greeks — skipped
+[2026-04-24 19:27:11]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-24 19:27:15]   TWS error 300: Can't find EId with tickerId:1022
+[2026-04-24 19:27:15]   GDX $90.0P: missing delta/greeks — skipped
+[2026-04-24 19:27:16]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-24 19:27:20]   TWS error 300: Can't find EId with tickerId:1024
+[2026-04-24 19:27:32]   ⚠ TWS error 354: Requested market data is not subscribed. Check API status by selecting the Account menu then under Management choose Market Data Subscription Manager and/or availability of delayed data.
+[2026-04-24 19:27:32]   TWS error 300: Can't find EId with tickerId:1027
+[2026-04-24 19:27:34]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-24 19:27:34]   TWS error 300: Can't find EId with tickerId:1026
+[2026-04-24 19:27:35]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-24 19:27:36]   GDX: no suitable strike found
+[2026-04-24 19:27:36]   TWS error 300: Can't find EId with tickerId:1028
+[2026-04-24 19:27:36]   IWM: skipped (already have position)
+[2026-04-24 19:27:36]   GLD: skipped (already have position)
+[2026-04-24 19:27:36] 
+  Scanning XLE...
+[2026-04-24 19:27:36]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-24 19:27:37]   XLE: $56.44
+[2026-04-24 19:27:37]   XLE: conId=4215217 (STK)
+[2026-04-24 19:27:38]   XLE $55.0P: missing delta/greeks — skipped
+[2026-04-24 19:27:38]   XLE $54.5P: missing delta/greeks — skipped
+[2026-04-24 19:27:39]   XLE $54.0P: missing delta/greeks — skipped
+[2026-04-24 19:27:39]   XLE $53.5P: missing delta/greeks — skipped
+[2026-04-24 19:27:40]   XLE $53.0P: missing delta/greeks — skipped
+[2026-04-24 19:27:41]   XLE $52.5P: missing delta/greeks — skipped
+[2026-04-24 19:27:41]   XLE $52.0P: missing delta/greeks — skipped
+[2026-04-24 19:27:42]   XLE $51.5P: missing delta/greeks — skipped
+[2026-04-24 19:27:42]   XLE $51.0P: missing delta/greeks — skipped
+[2026-04-24 19:27:42]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-24 19:27:46]   XLE: no suitable strike found
+[2026-04-24 19:27:46] 
+  Scanning TLT...
+[2026-04-24 19:27:46]   TWS error 300: Can't find EId with tickerId:1041
+[2026-04-24 19:27:47]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-24 19:27:47]   TLT: $86.62
+[2026-04-24 19:27:47]   TLT: conId=15547841 (STK)
+[2026-04-24 19:27:49]   TLT $84.5P: missing delta/greeks — skipped
+[2026-04-24 19:27:50]   TLT $84.0P: missing delta/greeks — skipped
+[2026-04-24 19:27:50]   TLT $83.5P: missing delta/greeks — skipped
+[2026-04-24 19:27:51]   TLT $83.0P: missing delta/greeks — skipped
+[2026-04-24 19:27:51]   TLT $82.5P: missing delta/greeks — skipped
+[2026-04-24 19:27:52]   TLT $82.0P: missing delta/greeks — skipped
+[2026-04-24 19:27:52]   TLT $81.5P: missing delta/greeks — skipped
+[2026-04-24 19:27:53]   TLT $81.0P: missing delta/greeks — skipped
+[2026-04-24 19:27:53]   TLT $80.5P: missing delta/greeks — skipped
+[2026-04-24 19:27:54]   TLT $80.0P: missing delta/greeks — skipped
+[2026-04-24 19:27:54]   TLT: no suitable strike found
+[2026-04-24 19:27:54] 
+  Scanning XSP...
+[2026-04-24 19:27:55]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-24 19:27:55]   XSP: $715.85
+[2026-04-24 19:27:55]   XSP: conId=137851301 (IND)
+[2026-04-24 19:27:57]   XSP $701.0P: missing delta/greeks — skipped
+[2026-04-24 19:28:00]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-24 19:28:08]   ⚠ TWS error 354: Requested market data is not subscribed. Check API status by selecting the Account menu then under Management choose Market Data Subscription Manager and/or availability of delayed data.
+[2026-04-24 19:28:08]   TWS error 300: Can't find EId with tickerId:1060
+[2026-04-24 19:28:09]   ⚠ TWS error 354: Requested market data is not subscribed. Check API status by selecting the Account menu then under Management choose Market Data Subscription Manager and/or availability of delayed data.
+[2026-04-24 19:28:09]   TWS error 300: Can't find EId with tickerId:1061
+[2026-04-24 19:28:12]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-24 19:28:13]   TWS error 300: Can't find EId with tickerId:1062
+[2026-04-24 19:28:14]   XSP $697.0P: missing delta/greeks — skipped
+[2026-04-24 19:28:14]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-24 19:28:15]   XSP $696.0P: missing delta/greeks — skipped
+[2026-04-24 19:28:15]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-24 19:28:15]   XSP $695.0P: missing delta/greeks — skipped
+[2026-04-24 19:28:16]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-24 19:28:16]   XSP $694.0P: missing delta/greeks — skipped
+[2026-04-24 19:28:17]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-24 19:28:17]   XSP $693.0P: missing delta/greeks — skipped
+[2026-04-24 19:28:17]   XSP: no suitable strike found
+[2026-04-24 19:28:17] 
+  Scanning QQQM...
+[2026-04-24 19:28:18]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-24 19:28:18]   QQQM: $273.05
+[2026-04-24 19:28:18]   QQQM: conId=449738108 (STK)
+[2026-04-24 19:28:18]   QQQM: no suitable expiry in 21-45 DTE range
+[2026-04-24 19:28:18]   📡 Signals written: 0 candidate(s) -> /Users/islam/options-pro/data/trade_signals.json
+[2026-04-24 19:28:18] 
+  📊 Found 0 opportunities, 2 slot(s) available
+[2026-04-24 19:28:23] 
+━━━ Scan Pass 2/2 ━━━
+[2026-04-24 19:28:23] 
+============================================================
+[2026-04-24 19:28:23] 🌅 MORNING SCAN STARTED
+[2026-04-24 19:28:23] ============================================================
+[2026-04-24 19:28:32]   TWS error 10197: No market data during competing live session
+[2026-04-24 19:28:32]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-24 19:31:40]   ❌ Order 18 CANCELLED
+[2026-04-24 19:31:40]   TWS error 202: Order Canceled - reason:
+[2026-04-24 19:42:49] 
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+[2026-04-24 19:42:49] Options Pro Ultra v6 — Autotrade Engine
+[2026-04-24 19:42:49] Account: DU4735568 | Size: $250,000
+[2026-04-24 19:42:49] Max positions: 5 | Max risk: $12,500
+[2026-04-24 19:42:49] Delta: 0.15-0.25 | DTE: 21-45
+[2026-04-24 19:42:49] Close: 50% profit | Stop: 2.0× credit
+[2026-04-24 19:42:49] Scan passes: 2
+[2026-04-24 19:42:49] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+

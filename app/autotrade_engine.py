@@ -11,6 +11,7 @@ import csv
 import time
 import json
 import math
+import re
 import smtplib
 import threading
 from datetime import datetime, timedelta
@@ -139,6 +140,7 @@ MAX_CSP_ASSIGNMENT_RISK = MAX_RISK
 MAX_OPTION_BID_ASK_PCT = 0.35
 MAX_OPTION_BID_ASK_ABS = 0.75
 MIN_SPREAD_CREDIT_PCT = 0.15  # Credit should be at least 15% of spread width.
+OPTION_GREEKS_GRACE_SECS = 1.5
 
 # ═══════════════════════════════════════════════
 # MARKET REGIME — VIX-based adjustments
@@ -334,10 +336,19 @@ def _real_copyability(signal):
     if real_qty < 1:
         reasons.append("real_qty_zero")
 
+    reason_labels = {
+        "mirror_kill": "Mirror kill switch is on.",
+        "rules_not_configured": "Real-account rules are not configured.",
+        "ticker_not_allowed": "Ticker is not allowed by real-account rules.",
+        "strategy_not_allowed": "Strategy is not allowed by real-account rules.",
+        "real_qty_zero": "Real-account risk rules allow 0 contracts for this setup.",
+    }
+
     return {
         "copyable": not reasons,
         "real_qty": max(0, real_qty),
         "reasons": reasons,
+        "reason_labels": [reason_labels.get(r, r) for r in reasons],
         "max_real_risk": round(max_risk, 2),
     }
 
@@ -500,7 +511,7 @@ def update_journal_order_status(order_id, status, credit=None, pnl=None, note_su
         return False
 
 
-def write_trade_signals(opportunities, mode="paper_auto"):
+def write_trade_signals(opportunities, mode="paper_auto", scan_summary=None):
     """Write vetted scan results for manual review/copying to a real account."""
     signals = []
     for opp in opportunities:
@@ -548,6 +559,8 @@ def write_trade_signals(opportunities, mode="paper_auto"):
             "copyable": sum(1 for s in signals if s.get("copyable")),
         },
     }
+    if scan_summary is not None:
+        payload["scan_summary"] = scan_summary
     _update_signal_audit(payload)
     with open(SIGNALS_FILE, "w") as f:
         json.dump(payload, f, indent=2)
@@ -829,6 +842,54 @@ class AutoTradeEngine:
         self._last_reconcile_alert = None
         self._processed_close_requests = self._load_processed_close_requests()
 
+    def _restore_pending_close_orders_from_journal(self):
+        ensure_journal()
+        restored = 0
+        try:
+            with open(JOURNAL, "r") as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    action = str(row.get("action", "")).strip().upper()
+                    status = str(row.get("status", "")).strip().upper()
+                    notes = str(row.get("notes", "")).strip()
+                    if not action.startswith("CLOSE") or status not in OPEN_LIKE_STATUSES:
+                        continue
+                    match = re.search(r"OrderID\s+(\d+)", notes)
+                    if not match:
+                        continue
+                    order_id = int(match.group(1))
+                    ticker = str(row.get("ticker", "")).strip().upper()
+                    expiry = str(row.get("expiry", "")).strip()
+                    if not ticker or not expiry:
+                        continue
+                    try:
+                        strike = float(row.get("strike") or 0)
+                        qty = int(float(row.get("qty") or 0))
+                        price = float(row.get("credit") or 0)
+                        pnl = float(row.get("pnl") or 0)
+                    except Exception:
+                        continue
+                    if order_id in self._close_orders:
+                        continue
+                    self._register_close_order(
+                        order_id,
+                        ticker,
+                        strike,
+                        expiry,
+                        qty,
+                        action,
+                        "BPS" if "BPS" in notes else "CSP",
+                        price,
+                        pnl,
+                        notes or "Restored from journal",
+                    )
+                    restored += 1
+        except Exception as e:
+            log(f"  ⚠ Could not restore pending closes from journal: {e}")
+            return
+        if restored:
+            log(f"  ↺ Restored {restored} pending close order(s) from journal")
+
     def _load_processed_close_requests(self):
         try:
             if PAPER_CLOSE_STATE_FILE.exists():
@@ -892,6 +953,7 @@ class AutoTradeEngine:
         # Load existing positions from IBKR
         self.app.reqPositions()
         time.sleep(3)
+        self._restore_pending_close_orders_from_journal()
 
         return True
 
@@ -1038,6 +1100,19 @@ class AutoTradeEngine:
         
         self.app.reqMktData(req_id, contract, "106", False, False, [])
         event.wait(timeout=timeout)
+
+        # Delayed/paper option greeks often arrive slightly after the first
+        # bid/ask tick. Give them a brief grace window before cancelling the
+        # subscription so we don't self-inflict "missing delta" skips.
+        grace_deadline = time.time() + OPTION_GREEKS_GRACE_SECS
+        while time.time() < grace_deadline:
+            md = self.app.market_data.get(req_id, {})
+            delta = md.get("delta")
+            iv = md.get("iv")
+            if delta not in (None, 0, -1, -2) or (iv and iv > 0):
+                break
+            time.sleep(0.1)
+
         self.app.cancelMktData(req_id)
 
         md = self.app.market_data.get(req_id, {})
@@ -1337,8 +1412,18 @@ class AutoTradeEngine:
 
         # Filter strikes below current price (OTM puts)
         otm_strikes = [s for s in strikes if s < stock_price * 0.98 and s > stock_price * 0.80]
+        diagnostics = {
+            "examined": 0,
+            "missing_price": 0,
+            "missing_delta": 0,
+            "quote_rejected": 0,
+            "delta_out_of_range": 0,
+            "selected": None,
+            "reason": "",
+        }
         if not otm_strikes:
-            return None, None
+            diagnostics["reason"] = "No OTM strikes available in scan window."
+            return None, None, diagnostics
 
         otm_strikes.sort(reverse=True)
 
@@ -1346,20 +1431,24 @@ class AutoTradeEngine:
         best_data = None
         best_delta_fit = float("inf")
 
-        for strike in otm_strikes[:10]:
+        for strike in otm_strikes[:20]:
+            diagnostics["examined"] += 1
             opt = self.get_option_data(ticker, strike, expiry, "P", timeout=4)
             delta = abs(opt.get("delta", 0))
             # get_option_data returns "optPrice" — check both keys for safety
             price = opt.get("optPrice", 0) or opt.get("price", 0)
 
             if price <= 0:
+                diagnostics["missing_price"] += 1
                 continue
             if delta <= 0:
                 log(f"  {ticker} ${strike}P: missing delta/greeks — skipped")
+                diagnostics["missing_delta"] += 1
                 continue
             ok, reason = self.quote_is_acceptable(ticker, {**opt, "price": price}, f"${strike}P")
             if not ok:
                 log(f"  {reason}")
+                diagnostics["quote_rejected"] += 1
                 continue
 
             # Use regime-adjusted delta range
@@ -1369,11 +1458,23 @@ class AutoTradeEngine:
                     best_delta_fit = fit
                     best_strike = strike
                     best_data = {**opt, "price": price}  # normalize key
+            else:
+                diagnostics["delta_out_of_range"] += 1
 
         if best_strike:
-            return best_strike, best_data
+            diagnostics["selected"] = best_strike
+            diagnostics["reason"] = f"Selected strike {best_strike} within target delta range."
+            return best_strike, best_data, diagnostics
 
-        return None, None
+        if diagnostics["missing_delta"] and diagnostics["examined"] == diagnostics["missing_delta"] + diagnostics["missing_price"]:
+            diagnostics["reason"] = "All examined strikes lacked usable delta/Greek data."
+        elif diagnostics["quote_rejected"]:
+            diagnostics["reason"] = "Quotes were available but failed width/quality checks."
+        elif diagnostics["delta_out_of_range"]:
+            diagnostics["reason"] = "Quotes were available but no strike landed in the target delta band."
+        else:
+            diagnostics["reason"] = "No suitable strike found."
+        return None, None, diagnostics
 
     # ── Place Order ──
     def place_bull_put_spread(self, ticker, short_strike, long_strike, expiry, qty, net_credit):
@@ -1509,11 +1610,27 @@ class AutoTradeEngine:
 
         slots = MAX_POSITIONS - num_open
         opportunities = []
+        scan_summary = {
+            "generated": now_iso(),
+            "market_status": self.market_status(),
+            "vix": round(vix, 2),
+            "regime": regime.get("label", "Unknown"),
+            "open_positions": num_open,
+            "slots": slots,
+            "selected_count": 0,
+            "watchlist_count": len(WATCHLIST),
+            "by_ticker": [],
+        }
 
         for ticker in WATCHLIST:
             # Skip if already have a position in this ticker
             if ticker in open_tickers:
                 log(f"  {ticker}: skipped (already have position)")
+                scan_summary["by_ticker"].append({
+                    "ticker": ticker,
+                    "status": "skipped",
+                    "reason": "Already open in paper account.",
+                })
                 continue
 
             log(f"\n  Scanning {ticker}...")
@@ -1522,6 +1639,11 @@ class AutoTradeEngine:
             stock_price = self.get_stock_price(ticker)
             if not stock_price or stock_price <= 0:
                 log(f"  {ticker}: no price data")
+                scan_summary["by_ticker"].append({
+                    "ticker": ticker,
+                    "status": "skipped",
+                    "reason": "No underlying price data from IBKR.",
+                })
                 continue
 
             log(f"  {ticker}: ${stock_price:.2f}")
@@ -1530,21 +1652,38 @@ class AutoTradeEngine:
             chain = self.get_option_chain(ticker)
             if not chain["expirations"]:
                 log(f"  {ticker}: no option chain data")
+                scan_summary["by_ticker"].append({
+                    "ticker": ticker,
+                    "status": "skipped",
+                    "reason": "No option chain data returned.",
+                })
                 continue
 
             # Find target expiry
             expiry = self.find_target_expiry(chain["expirations"])
             if not expiry:
                 log(f"  {ticker}: no suitable expiry in {DTE_MIN}-{DTE_MAX} DTE range")
+                scan_summary["by_ticker"].append({
+                    "ticker": ticker,
+                    "status": "skipped",
+                    "reason": f"No expiry in {DTE_MIN}-{DTE_MAX} DTE range.",
+                })
                 continue
 
             exp_date = datetime.strptime(expiry, "%Y%m%d")
             dte = (exp_date - datetime.now()).days
 
             # Find best strike
-            strike, opt_data = self.find_target_strike(ticker, stock_price, chain["strikes"], expiry)
+            strike, opt_data, strike_diag = self.find_target_strike(ticker, stock_price, chain["strikes"], expiry)
             if not strike or not opt_data:
                 log(f"  {ticker}: no suitable strike found")
+                scan_summary["by_ticker"].append({
+                    "ticker": ticker,
+                    "status": "skipped",
+                    "reason": strike_diag.get("reason") or "No suitable strike found.",
+                    "details": strike_diag,
+                    "expiry": expiry,
+                })
                 continue
 
             premium = opt_data["price"]
@@ -1563,6 +1702,15 @@ class AutoTradeEngine:
                 risk_budget = MAX_CSP_ASSIGNMENT_RISK * regime_mult
                 log(f"  {ticker}: skipped CSP — assignment exposure ${exposure:,.0f} "
                     f"exceeds risk budget ${risk_budget:,.0f}")
+                scan_summary["by_ticker"].append({
+                    "ticker": ticker,
+                    "status": "blocked",
+                    "reason": f"Assignment exposure ${exposure:,.0f} exceeds paper risk budget ${risk_budget:,.0f}.",
+                    "expiry": expiry,
+                    "strike": strike,
+                    "delta": round(delta, 3),
+                    "iv": round(iv * 100, 1),
+                })
                 continue
 
             # For Tier 1: find the long leg (protective put) for the spread
@@ -1591,6 +1739,14 @@ class AutoTradeEngine:
                                     f"is below {MIN_SPREAD_CREDIT_PCT*100:.0f}% of ${width} width")
                                 long_strike = None
                                 qty = 0
+                                scan_summary["by_ticker"].append({
+                                    "ticker": ticker,
+                                    "status": "blocked",
+                                    "reason": f"Spread credit ${net_credit:.2f} is below {MIN_SPREAD_CREDIT_PCT*100:.0f}% of ${width} width.",
+                                    "expiry": expiry,
+                                    "strike": strike,
+                                    "long_strike": long_strike,
+                                })
                                 continue
                             # Apply same per-price caps as CSP (stock >$500 = 2 contracts)
                             if stock_price > 500:
@@ -1605,6 +1761,13 @@ class AutoTradeEngine:
                             if qty <= 0:
                                 log(f"  {ticker}: skipped spread — max risk budget allows 0 contracts")
                                 long_strike = None
+                                scan_summary["by_ticker"].append({
+                                    "ticker": ticker,
+                                    "status": "blocked",
+                                    "reason": "Spread risk budget allows 0 contracts.",
+                                    "expiry": expiry,
+                                    "strike": strike,
+                                })
                                 continue
                     else:
                         # Can't get long leg price — fall back to naked
@@ -1632,11 +1795,28 @@ class AutoTradeEngine:
                 "qty": qty,
                 "stock_price": stock_price,
             })
+            scan_summary["by_ticker"].append({
+                "ticker": ticker,
+                "status": "selected",
+                "reason": "Candidate passed scanner filters.",
+                "expiry": expiry,
+                "strike": strike,
+                "long_strike": long_strike,
+                "delta": round(delta, 3),
+                "iv": round(iv * 100, 1),
+                "score": score,
+                "qty": qty,
+            })
 
         # Sort by score descending after scanning the full watchlist.
         opportunities.sort(key=lambda x: x["score"], reverse=True)
         selected = opportunities[:slots]
-        write_trade_signals(selected, mode="signal_only" if signal_only_active() else "paper_auto")
+        scan_summary["selected_count"] = len(selected)
+        write_trade_signals(
+            selected,
+            mode="signal_only" if signal_only_active() else "paper_auto",
+            scan_summary=scan_summary,
+        )
 
         log(f"\n  📊 Found {len(opportunities)} opportunities, {slots} slot(s) available")
         for opp in selected:
