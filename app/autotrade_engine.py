@@ -863,11 +863,15 @@ class AutoTradeEngine:
                     if not ticker or not expiry:
                         continue
                     try:
+                        ts = datetime.strptime(str(row.get("timestamp", "")).strip()[:16], "%Y-%m-%d %H:%M")
                         strike = float(row.get("strike") or 0)
                         qty = int(float(row.get("qty") or 0))
                         price = float(row.get("credit") or 0)
                         pnl = float(row.get("pnl") or 0)
                     except Exception:
+                        continue
+                    age_secs = (datetime.now() - ts).total_seconds()
+                    if age_secs > PENDING_CLOSE_MAX_AGE:
                         continue
                     if order_id in self._close_orders:
                         continue

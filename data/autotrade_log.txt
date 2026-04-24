@@ -27193,3 +27193,58 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 [2026-04-24 19:42:49] Scan passes: 2
 [2026-04-24 19:42:49] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
+[2026-04-24 19:42:55]   ✅ GitHub backup on restart complete
+[2026-04-24 19:42:55] 🔌 Connecting to TWS...
+[2026-04-24 19:42:55] ✅ TWS connected — next order ID: 19
+[2026-04-24 19:42:57]   📊 3 option position(s) loaded from IBKR
+[2026-04-24 19:42:57]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-24 19:42:57]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-24 19:42:57]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-24 19:43:00]   ↺ Restored 3 pending close order(s) from journal
+[2026-04-24 19:43:00] 
+━━━ Scan Pass 1/2 ━━━
+[2026-04-24 19:43:00] 
+============================================================
+[2026-04-24 19:43:00] 🌅 MORNING SCAN STARTED
+[2026-04-24 19:43:00] ============================================================
+[2026-04-24 19:43:01]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-24 19:43:02]   📊 VIX: 18.73 — Regime: Normal (Δ 0.15-0.25, risk × 1.0)
+[2026-04-24 19:43:02]   Open positions: 3/5
+[2026-04-24 19:43:02] 
+  Scanning SPY...
+[2026-04-24 19:43:02]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-24 19:43:03]   SPY: $713.17
+[2026-04-24 19:43:03]   SPY: conId=756733 (STK)
+[2026-04-24 19:43:05]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-24 19:43:10]   TWS error 300: Can't find EId with tickerId:1006
+[2026-04-24 19:43:16]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-24 19:43:21]   TWS error 300: Can't find EId with tickerId:1012
+[2026-04-24 19:43:29]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-24 19:43:34]   TWS error 300: Can't find EId with tickerId:1018
+[2026-04-24 19:43:39]   SPY $685.0P: missing delta/greeks — skipped
+[2026-04-24 19:43:42]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-24 19:43:47]   TWS error 300: Can't find EId with tickerId:1024
+[2026-04-24 19:43:49]   SPY: skipped spread — credit $1.25 is below 15% of $10 width
+[2026-04-24 19:43:49] 
+  Scanning QQQ...
+[2026-04-24 19:43:49]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-24 19:43:50]   QQQ: $663.45
+[2026-04-24 19:43:50]   QQQ: conId=320227571 (STK)
+[2026-04-24 19:44:22]   QQQ: skipped spread — credit $1.04 is below 15% of $10 width
+[2026-04-24 19:44:22]   SMH: skipped (already have position)
+[2026-04-24 19:44:22] 
+  Scanning GDX...
+[2026-04-24 19:44:22]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-24 19:44:23]   GDX: $94.19
+[2026-04-24 19:44:23]   GDX: conId=229726316 (STK)
+[2026-04-24 19:44:27]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-24 19:44:30] 
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+[2026-04-24 19:44:30] Options Pro Ultra v6 — Autotrade Engine
+[2026-04-24 19:44:30] Account: DU4735568 | Size: $250,000
+[2026-04-24 19:44:30] Max positions: 5 | Max risk: $12,500
+[2026-04-24 19:44:30] Delta: 0.15-0.25 | DTE: 21-45
+[2026-04-24 19:44:30] Close: 50% profit | Stop: 2.0× credit
+[2026-04-24 19:44:30] Scan passes: 2
+[2026-04-24 19:44:30] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+
