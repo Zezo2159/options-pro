@@ -23,3 +23,7 @@ timestamp,action,ticker,strategy,strike,expiry,qty,credit,delta,iv,dte,status,pn
 2026-04-24 19:04,CLOSE_PROFIT,QQQ,CLOSE,600.0,20260522,1,2.42,0,0,0,Filled,253.48,50% profit ($253 >= $248) | CSP | OrderID 16 | Filled 2026-04-24T19:04:48+02:00
 2026-04-24 19:04,CLOSE_PROFIT,SMH,CLOSE,385.0,20260515,2,0.915,0,0,0,Submitted,377.59,50% profit ($378 >= $280) | CSP | OrderID 17
 2026-04-24 19:19,CLOSE_PROFIT,SMH,CLOSE,385.0,20260515,2,0.8728378892560869,0,0,0,Cancelled,386.02,50% profit ($386 >= $280) | CSP | OrderID 18 | Cancelled 2026-04-24T19:31:40+02:00
+2026-04-24 19:49,OPEN,GDX,BPS,84.0,20260529,1,1.6200000047683716,0.21034590869406805,48.62%,34,Cancelled,0,Score 80 | Buffer 10.8% | OrderID 19 | SignalID GDX-BPS-84.0--20260529 | Cancelled 2026-04-24T19:54:11+02:00
+2026-04-24 19:49,OPEN,XLE,CSP,53.0,20260529,2,0.57,0.21227355585163485,29.13%,34,Filled,0,Score 73 | Buffer 6.2% | OrderID 20 | SignalID XLE-CSP-53.0--20260529 | Filled 2026-04-24T19:49:24+02:00
+2026-04-24 19:57,CLOSE_MANUAL,XLE,CLOSE,53.0,20260529,2,0,0,0,0,ManualClose,0,No longer present in IBKR during cleanup after accidental paper-auto fill; reconciled manually
+2026-04-24 19:54,CLOSE_CANCEL,GDX,CLOSE,84.0,20260529,1,0,0,0,0,NotFilled,0,Order 19 canceled before fill — reconciled manually

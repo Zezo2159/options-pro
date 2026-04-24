@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-24T19:20:00+02:00",
+  "updated": "2026-04-24T20:08:15+02:00",
   "engine_running": true,
   "connected": true,
   "market_status": "open",
@@ -8,7 +8,7 @@
   "signal_only": true,
   "signal_only_file": "/Users/islam/options-pro/data/optionspro_signal_only",
   "signals_file": "/Users/islam/options-pro/data/trade_signals.json",
-  "vix": 18.8,
+  "vix": 18.76,
   "regime": "Normal",
   "positions": [
     {
@@ -18,10 +18,10 @@
       "qty": 1,
       "strategy": "CSP",
       "entry_credit": 3.54,
-      "current_price": 1.95,
+      "current_price": 1.93,
       "price_valid": true,
-      "pnl": 159.22,
-      "pnl_pct": 44.9,
+      "pnl": 160.83,
+      "pnl_pct": 45.4,
       "dte": 20
     },
     {
@@ -31,10 +31,10 @@
       "qty": 2,
       "strategy": "CSP",
       "entry_credit": 2.8,
-      "current_price": 0.87,
-      "price_valid": true,
-      "pnl": 386.02,
-      "pnl_pct": 68.9,
+      "current_price": 0.0,
+      "price_valid": false,
+      "pnl": 0.0,
+      "pnl_pct": 0,
       "dte": 20
     },
     {
@@ -44,30 +44,30 @@
       "qty": 1,
       "strategy": "CSP",
       "entry_credit": 3.18,
-      "current_price": 1.63,
+      "current_price": 1.72,
       "price_valid": true,
-      "pnl": 155.13,
-      "pnl_pct": 48.8,
+      "pnl": 146.13,
+      "pnl_pct": 45.9,
       "dte": 27
     }
   ],
   "positions_count": 3,
   "max_positions": 5,
-  "total_pnl": 700.37,
+  "total_pnl": 306.96,
   "account_size": 250000,
   "ibkr_legs_total": 3,
   "ibkr_legs_short": 3,
   "ibkr_legs_long": 0,
   "reconciliation": {
-    "checked_at": "2026-04-24T19:19:58+02:00",
+    "checked_at": "2026-04-24T20:08:15+02:00",
     "ok": false,
     "missing_in_ibkr": [
       {
-        "ticker": "QQQ",
-        "strike": 600.0,
+        "ticker": "GDX",
+        "strike": 84.0,
         "qty": 1,
-        "strategy": "CSP",
-        "status": "Filled"
+        "strategy": "BPS",
+        "status": "Cancelled"
       }
     ],
     "missing_in_journal": [],
