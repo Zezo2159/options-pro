@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-20T18:42:23+02:00",
+  "updated": "2026-04-20T20:25:05+02:00",
   "engine_running": true,
   "connected": true,
   "market_status": "open",
@@ -8,7 +8,7 @@
   "signal_only": true,
   "signal_only_file": "/Users/islam/options-pro/data/optionspro_signal_only",
   "signals_file": "/Users/islam/options-pro/data/trade_signals.json",
-  "vix": 18.86,
+  "vix": 19.18,
   "regime": "Normal",
   "positions": [
     {
@@ -18,10 +18,10 @@
       "qty": 1,
       "strategy": "CSP",
       "entry_credit": 3.54,
-      "current_price": 2.08,
+      "current_price": 1.89,
       "price_valid": true,
-      "pnl": 146.22,
-      "pnl_pct": 41.3,
+      "pnl": 165.22,
+      "pnl_pct": 46.6,
       "dte": 24
     },
     {
@@ -31,10 +31,10 @@
       "qty": 1,
       "strategy": "CSP",
       "entry_credit": 4.97,
-      "current_price": 4.17,
+      "current_price": 4.12,
       "price_valid": true,
-      "pnl": 80.05,
-      "pnl_pct": 16.1,
+      "pnl": 84.95,
+      "pnl_pct": 17.1,
       "dte": 31
     },
     {
@@ -44,10 +44,10 @@
       "qty": 2,
       "strategy": "CSP",
       "entry_credit": 2.8,
-      "current_price": 2.1,
+      "current_price": 2.05,
       "price_valid": true,
-      "pnl": 139.59,
-      "pnl_pct": 24.9,
+      "pnl": 150.59,
+      "pnl_pct": 26.9,
       "dte": 24
     },
     {
@@ -57,22 +57,22 @@
       "qty": 1,
       "strategy": "CSP",
       "entry_credit": 3.18,
-      "current_price": 2.0,
+      "current_price": 1.93,
       "price_valid": true,
-      "pnl": 118.63,
-      "pnl_pct": 37.3,
+      "pnl": 124.86,
+      "pnl_pct": 39.2,
       "dte": 31
     }
   ],
   "positions_count": 4,
   "max_positions": 5,
-  "total_pnl": 484.49,
+  "total_pnl": 525.62,
   "account_size": 250000,
   "ibkr_legs_total": 4,
   "ibkr_legs_short": 4,
   "ibkr_legs_long": 0,
   "reconciliation": {
-    "checked_at": "2026-04-20T18:42:23+02:00",
+    "checked_at": "2026-04-20T20:25:05+02:00",
     "ok": true,
     "missing_in_ibkr": [],
     "missing_in_journal": [],

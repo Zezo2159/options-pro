@@ -1,3 +1,4 @@
 {"generated":"2026-04-20T15:38:04+02:00","id":"GDX-BPS-94.0-92.0-20260529","ticker":"GDX","strategy":"BPS","strike":94.0,"long_strike":92.0,"expiry":"20260529","score":48,"copyable":false,"real_qty":19}
 {"generated":"2026-04-20T15:40:24+02:00","id":"XLE-CSP-51.0--20260529","ticker":"XLE","strategy":"CSP","strike":51.0,"long_strike":null,"expiry":"20260529","score":77,"copyable":false,"real_qty":0}
 {"generated":"2026-04-20T15:41:24+02:00","id":"XLE-CSP-51.0--20260529","ticker":"XLE","strategy":"CSP","strike":51.0,"long_strike":null,"expiry":"20260529","score":74,"copyable":false,"real_qty":0}
+{"generated":"2026-04-20T18:54:31+02:00","id":"XLE-CSP-52.5--20260529","ticker":"XLE","strategy":"CSP","strike":52.5,"long_strike":null,"expiry":"20260529","score":60,"copyable":false,"real_qty":0}
