@@ -27,3 +27,5 @@ timestamp,action,ticker,strategy,strike,expiry,qty,credit,delta,iv,dte,status,pn
 2026-04-24 19:49,OPEN,XLE,CSP,53.0,20260529,2,0.57,0.21227355585163485,29.13%,34,Filled,0,Score 73 | Buffer 6.2% | OrderID 20 | SignalID XLE-CSP-53.0--20260529 | Filled 2026-04-24T19:49:24+02:00
 2026-04-24 19:57,CLOSE_MANUAL,XLE,CLOSE,53.0,20260529,2,0,0,0,0,ManualClose,0,No longer present in IBKR during cleanup after accidental paper-auto fill; reconciled manually
 2026-04-24 19:54,CLOSE_CANCEL,GDX,CLOSE,84.0,20260529,1,0,0,0,0,NotFilled,0,Order 19 canceled before fill — reconciled manually
+2026-04-24 20:24,OPEN,GDX,BPS,84.0,20260529,1,1.649999976158142,0.19593384253066679,46.75%,34,Submitted,0,Score 83 | Buffer 10.8% | OrderID 21 | SignalID GDX-BPS-84.0--20260529
+2026-04-24 20:24,OPEN,TLT,CSP,84.0,20260529,1,0.31485749644660954,0.1889101203177138,11.28%,34,Submitted,0,Score 52 | Buffer 3.0% | OrderID 22 | SignalID TLT-CSP-84.0--20260529

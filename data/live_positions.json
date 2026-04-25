@@ -1,14 +1,14 @@
 {
-  "updated": "2026-04-24T20:08:15+02:00",
+  "updated": "2026-04-24T22:31:01+02:00",
   "engine_running": true,
   "connected": true,
-  "market_status": "open",
+  "market_status": "closed",
   "kill_switch": false,
   "kill_switch_file": "/Users/islam/options-pro/data/optionspro_kill_switch",
-  "signal_only": true,
+  "signal_only": false,
   "signal_only_file": "/Users/islam/options-pro/data/optionspro_signal_only",
   "signals_file": "/Users/islam/options-pro/data/trade_signals.json",
-  "vix": 18.76,
+  "vix": 18.61,
   "regime": "Normal",
   "positions": [
     {
@@ -18,11 +18,24 @@
       "qty": 1,
       "strategy": "CSP",
       "entry_credit": 3.54,
-      "current_price": 1.93,
+      "current_price": 1.98,
       "price_valid": true,
-      "pnl": 160.83,
-      "pnl_pct": 45.4,
+      "pnl": 156.22,
+      "pnl_pct": 44.1,
       "dte": 20
+    },
+    {
+      "ticker": "TLT",
+      "strike": 84.0,
+      "expiry": "20260529",
+      "qty": 1,
+      "strategy": "CSP",
+      "entry_credit": 0.3,
+      "current_price": 0.3,
+      "price_valid": true,
+      "pnl": 0.23,
+      "pnl_pct": 0.8,
+      "dte": 34
     },
     {
       "ticker": "SMH",
@@ -44,22 +57,22 @@
       "qty": 1,
       "strategy": "CSP",
       "entry_credit": 3.18,
-      "current_price": 1.72,
+      "current_price": 2.03,
       "price_valid": true,
-      "pnl": 146.13,
-      "pnl_pct": 45.9,
+      "pnl": 114.91,
+      "pnl_pct": 36.1,
       "dte": 27
     }
   ],
-  "positions_count": 3,
+  "positions_count": 4,
   "max_positions": 5,
-  "total_pnl": 306.96,
+  "total_pnl": 271.36,
   "account_size": 250000,
-  "ibkr_legs_total": 3,
-  "ibkr_legs_short": 3,
+  "ibkr_legs_total": 4,
+  "ibkr_legs_short": 4,
   "ibkr_legs_long": 0,
   "reconciliation": {
-    "checked_at": "2026-04-24T20:08:15+02:00",
+    "checked_at": "2026-04-24T22:30:59+02:00",
     "ok": false,
     "missing_in_ibkr": [
       {
@@ -67,7 +80,7 @@
         "strike": 84.0,
         "qty": 1,
         "strategy": "BPS",
-        "status": "Cancelled"
+        "status": "Submitted"
       }
     ],
     "missing_in_journal": [],

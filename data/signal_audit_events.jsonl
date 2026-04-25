@@ -5,3 +5,7 @@
 {"generated":"2026-04-24T19:49:18+02:00","id":"GDX-BPS-84.0--20260529","ticker":"GDX","strategy":"BPS","strike":84.0,"long_strike":null,"expiry":"20260529","score":80,"copyable":false,"real_qty":0}
 {"generated":"2026-04-24T19:49:18+02:00","id":"XLE-CSP-53.0--20260529","ticker":"XLE","strategy":"CSP","strike":53.0,"long_strike":null,"expiry":"20260529","score":73,"copyable":false,"real_qty":0}
 {"generated":"2026-04-24T19:53:00+02:00","id":"GDX-BPS-84.0--20260529","ticker":"GDX","strategy":"BPS","strike":84.0,"long_strike":null,"expiry":"20260529","score":80,"copyable":false,"real_qty":0}
+{"generated":"2026-04-24T20:21:07+02:00","id":"GDX-BPS-84.0--20260529","ticker":"GDX","strategy":"BPS","strike":84.0,"long_strike":null,"expiry":"20260529","score":82,"copyable":false,"real_qty":0}
+{"generated":"2026-04-24T20:21:07+02:00","id":"TLT-CSP-84.0--20260529","ticker":"TLT","strategy":"CSP","strike":84.0,"long_strike":null,"expiry":"20260529","score":54,"copyable":false,"real_qty":0}
+{"generated":"2026-04-24T20:24:17+02:00","id":"GDX-BPS-84.0--20260529","ticker":"GDX","strategy":"BPS","strike":84.0,"long_strike":null,"expiry":"20260529","score":83,"copyable":false,"real_qty":0}
+{"generated":"2026-04-24T20:24:17+02:00","id":"TLT-CSP-84.0--20260529","ticker":"TLT","strategy":"CSP","strike":84.0,"long_strike":null,"expiry":"20260529","score":52,"copyable":false,"real_qty":0}

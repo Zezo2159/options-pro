@@ -1,6 +1,6 @@
 {
-  "generated": "2026-04-24T19:53:00+02:00",
-  "mode": "signal_only",
+  "generated": "2026-04-24T20:24:17+02:00",
+  "mode": "paper_auto",
   "account": "DU4735568",
   "max_positions": 5,
   "signals": [
@@ -11,13 +11,13 @@
       "long_strike": null,
       "expiry": "20260529",
       "qty": 1,
-      "credit": 1.93,
-      "delta": 0.211,
-      "iv": 51.8,
+      "credit": 1.65,
+      "delta": 0.196,
+      "iv": 46.8,
       "dte": 34,
-      "score": 80,
+      "score": 83,
       "estimated_risk": 8400.0,
-      "buffer_pct": 10.7,
+      "buffer_pct": 10.8,
       "warnings": [
         "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
         "Do not copy if portfolio risk, correlation, or news/event risk is elevated."
@@ -32,21 +32,50 @@
         "Real-account risk rules allow 0 contracts for this setup."
       ],
       "max_real_risk": 2500.0
+    },
+    {
+      "ticker": "TLT",
+      "strategy": "CSP",
+      "strike": 84.0,
+      "long_strike": null,
+      "expiry": "20260529",
+      "qty": 1,
+      "credit": 0.31,
+      "delta": 0.189,
+      "iv": 11.3,
+      "dte": 34,
+      "score": 52,
+      "estimated_risk": 8400.0,
+      "buffer_pct": 3.0,
+      "warnings": [
+        "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
+        "Do not copy if portfolio risk, correlation, or news/event risk is elevated."
+      ],
+      "id": "TLT-CSP-84.0--20260529",
+      "copyable": false,
+      "real_qty": 0,
+      "reasons": [
+        "real_qty_zero"
+      ],
+      "reason_labels": [
+        "Real-account risk rules allow 0 contracts for this setup."
+      ],
+      "max_real_risk": 2500.0
     }
   ],
   "audit": {
     "file": "/Users/islam/options-pro/data/signal_audit.json",
-    "total": 1,
+    "total": 2,
     "copyable": 0
   },
   "scan_summary": {
-    "generated": "2026-04-24T19:49:32+02:00",
+    "generated": "2026-04-24T20:21:13+02:00",
     "market_status": "open",
-    "vix": 18.76,
+    "vix": 18.61,
     "regime": "Normal",
-    "open_positions": 4,
-    "slots": 1,
-    "selected_count": 1,
+    "open_positions": 3,
+    "slots": 2,
+    "selected_count": 2,
     "watchlist_count": 10,
     "by_ticker": [
       {
@@ -60,9 +89,9 @@
       {
         "ticker": "QQQ",
         "status": "blocked",
-        "reason": "Spread credit $0.87 is below 15% of $10 width.",
+        "reason": "Spread credit $1.40 is below 15% of $10 width.",
         "expiry": "20260529",
-        "strike": 631.0,
+        "strike": 630.0,
         "long_strike": null
       },
       {
@@ -77,9 +106,9 @@
         "expiry": "20260529",
         "strike": 84.0,
         "long_strike": null,
-        "delta": 0.211,
-        "iv": 51.8,
-        "score": 80,
+        "delta": 0.196,
+        "iv": 46.8,
+        "score": 83,
         "qty": 1
       },
       {
@@ -95,7 +124,7 @@
       {
         "ticker": "XLE",
         "status": "skipped",
-        "reason": "Already open in paper account."
+        "reason": "No underlying price data from IBKR."
       },
       {
         "ticker": "TLT",
@@ -104,9 +133,9 @@
         "expiry": "20260529",
         "strike": 84.0,
         "long_strike": null,
-        "delta": 0.188,
+        "delta": 0.189,
         "iv": 11.3,
-        "score": 67,
+        "score": 52,
         "qty": 1
       },
       {
@@ -115,8 +144,8 @@
         "reason": "Assignment exposure $68,500 exceeds paper risk budget $12,500.",
         "expiry": "20260529",
         "strike": 685.0,
-        "delta": 0.212,
-        "iv": 19.8
+        "delta": 0.214,
+        "iv": 19.6
       },
       {
         "ticker": "QQQM",
