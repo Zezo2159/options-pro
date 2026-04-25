@@ -896,6 +896,7 @@ class AutoTradeEngine:
     def _restore_pending_close_orders_from_journal(self):
         ensure_journal()
         restored = 0
+        market_is_open = self.market_status() == "open"
         try:
             with open(JOURNAL, "r") as f:
                 reader = csv.DictReader(f)
@@ -933,6 +934,18 @@ class AutoTradeEngine:
                             note_suffix=f"Expired on restart after {int(age_secs)}s {now_iso()}",
                         )
                         log(f"  ⚠ Expired stale restored close order {order_id} for {ticker} ${strike}P")
+                        continue
+                    if not market_is_open:
+                        try:
+                            self.app.cancelOrder(order_id)
+                        except Exception as e:
+                            log(f"  ⚠ Could not cancel closed-market close order {order_id}: {e}")
+                        update_journal_order_status(
+                            order_id,
+                            "Expired",
+                            note_suffix=f"Expired on restart because market is closed {now_iso()}",
+                        )
+                        log(f"  ⚠ Expired closed-market close order {order_id} for {ticker} ${strike}P")
                         continue
                     if order_id in self._close_orders:
                         continue
@@ -1093,6 +1106,20 @@ class AutoTradeEngine:
                 continue
             order_id = pending_meta.get("order_id")
             reason = f"{context} age {int(age)}s".strip()
+            self._expire_pending_close(pending_key, order_id, reason=reason)
+            expired += 1
+        if expired:
+            self.write_live_snapshot()
+        return expired
+
+    def _expire_closed_market_pending_closes(self, ms):
+        """Cancel queued auto-close orders when options are not open."""
+        if ms == "open":
+            return 0
+        expired = 0
+        for pending_key, pending_meta in list(self._pending_closes.items()):
+            order_id = pending_meta.get("order_id")
+            reason = f"market {ms}; canceling queued close order"
             self._expire_pending_close(pending_key, order_id, reason=reason)
             expired += 1
         if expired:
@@ -2570,8 +2597,9 @@ class AutoTradeEngine:
             if not self.app._connected:
                 self._write_close_result(req, "rejected", "TWS disconnected")
                 continue
-            if self.market_status() == "tws_restart":
-                self._write_close_result(req, "rejected", "TWS restart window")
+            ms = self.market_status()
+            if ms != "open":
+                self._write_close_result(req, "rejected", f"Market is {ms}; close requests are only accepted during market hours")
                 continue
 
             ticker = str(req.get("ticker", "")).upper().strip()
@@ -3369,6 +3397,7 @@ class AutoTradeEngine:
 
                 # Pending close timers must advance even while scans are busy.
                 self._expire_stale_pending_closes("monitor-loop")
+                self._expire_closed_market_pending_closes(ms)
 
                 # ── Manual scan trigger (from dashboard /api/trigger-scan) ──
                 self._run_manual_scan_if_requested(ms)

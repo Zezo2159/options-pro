@@ -33369,3 +33369,44 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 [2026-04-25 22:04:18] Scan passes: 2
 [2026-04-25 22:04:18] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
+[2026-04-25 22:04:23]   ✅ GitHub backup on restart complete
+[2026-04-25 22:04:23] 🔌 Connecting to TWS...
+[2026-04-25 22:04:23] ✅ TWS connected — next order ID: 28
+[2026-04-25 22:04:25]   📊 4 option position(s) loaded from IBKR
+[2026-04-25 22:04:25]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-25 22:04:25]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-25 22:04:25]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-25 22:04:25]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-25 22:04:29]   ↺ Restored 1 pending close order(s) from journal
+[2026-04-25 22:04:29]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-04-25 22:04:31]   📧 Email sent: ⚠ Options Pro: Position Reconciliation Drift
+[2026-04-25 22:04:31] 🌙 Market closed — skipping initial scan, entering monitor mode
+[2026-04-25 22:04:31] 
+✅ Entering monitor mode (checking every 15 min)
+[2026-04-25 22:04:31]   📊 4 option position(s) loaded from IBKR
+[2026-04-25 22:04:31]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-25 22:04:31]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-25 22:04:31]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-25 22:04:31]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-25 22:04:34] 
+============================================================
+[2026-04-25 22:04:34] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-25 22:04:34] ============================================================
+[2026-04-25 22:04:46]   GLD $405.0P x1: no current price — skipping
+[2026-04-25 22:04:58]   TLT $84.0P x1: no current price — skipping
+[2026-04-25 22:04:58]   SMH $385.0P: close order pending (1618s ago) — skipping
+[2026-04-25 22:04:59] 
+  IWM   $256.0P x1 [CSP]: entry=$318 now=$1.60 P/L=$158 DTE=26
+[2026-04-25 22:04:59]    >> HOLD (target=$159 stop=$-636)
+[2026-04-25 22:04:59] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-25 22:06:53] 
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+[2026-04-25 22:06:53] Options Pro Ultra v6 — Autotrade Engine
+[2026-04-25 22:06:53] Account: DU4735568 | Size: $250,000
+[2026-04-25 22:06:53] Max positions: 5 | Max risk: $12,500
+[2026-04-25 22:06:53] Delta: 0.15-0.25 | DTE: 21-45
+[2026-04-25 22:06:53] Close: 50% profit | Stop: 2.0× credit
+[2026-04-25 22:06:53] Scan passes: 2
+[2026-04-25 22:06:53] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+
