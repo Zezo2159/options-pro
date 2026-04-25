@@ -41,14 +41,7 @@ DATA_DIR = Path.home() / "options-pro" / "data"
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 def _data_file(name):
-    path = DATA_DIR / name
-    old_path = Path.home() / "Desktop" / name
-    if not path.exists() and old_path.exists():
-        try:
-            path.write_bytes(old_path.read_bytes())
-        except Exception:
-            pass
-    return path
+    return DATA_DIR / name
 
 JOURNAL = _data_file("autotrade_journal.csv")
 LOG_FILE = _data_file("autotrade_log.txt")
@@ -198,6 +191,7 @@ SCORE_CORR_BONUS = 15
 # Monitoring interval (seconds). This also drives the journal-vs-IBKR
 # reconciliation cadence outside the nightly TWS restart window.
 MONITOR_INTERVAL = 900  # 15 minutes
+SCAN_NOW_POLL_SECONDS = 10
 AUTO_CLOSE_UNMATCHED_LONGS = False  # Safety first: alert on unexpected longs, do not market-sell by default.
 RECONCILE_ALERT_INTERVAL = 7200  # seconds between journal-vs-IBKR drift email alerts
 
@@ -209,7 +203,7 @@ RECONCILE_ALERT_INTERVAL = 7200  # seconds between journal-vs-IBKR drift email a
 # GLD-stays-open issue should be handled via PENDING_CLOSE_MAX_AGE, not here.
 FILLED_STATUSES = {"filled", "closed", "manualclose"}
 OPEN_LIKE_STATUSES = {"SUBMITTED", "PRESUBMITTED", "PENDINGSUBMIT", "PENDING", "WORKING"}
-TERMINAL_ORDER_STATUSES = {"FILLED", "CANCELLED", "APICANCELLED", "INACTIVE"}
+TERMINAL_ORDER_STATUSES = {"FILLED", "CANCELLED", "APICANCELLED", "INACTIVE", "EXPIRED"}
 PENDING_CLOSE_MAX_AGE = 4 * 3600
 
 
@@ -604,15 +598,17 @@ def read_open_positions():
                 strike_f = float(strike_raw)
             except:
                 strike_f = 0
-            # Normalize key: ticker + float strike (handles "390" vs "390.0")
-            key = f"{ticker}-{strike_f}"
+            expiry = row.get("expiry", "").strip()
+            # Normalize key: ticker + float strike + expiry. Same-strike laddered
+            # positions should never erase each other.
+            key = f"{ticker}-{strike_f}-{expiry}"
 
             if action == "OPEN":
                 positions[key] = {
                     "ticker": ticker,
                     "strategy": row.get("strategy", "CSP").strip(),
                     "strike": strike_f,
-                    "expiry": row.get("expiry", "").strip(),
+                    "expiry": expiry,
                     "qty": int(row.get("qty", "1").strip()),
                     "credit": float(row.get("credit", "0").strip()),
                     "delta": float(row.get("delta", "0").strip()),
@@ -860,10 +856,21 @@ class AutoTradeEngine:
         self._req_id = 1000
         self._running = True
         self._pending_orders = {}  # key: "TICKER-STRIKE" -> timestamp of order placement
-        self._pending_closes = {}  # key: "TICKER-STRIKE" -> timestamp of close order placement
+        self._pending_closes = {}  # key: "TICKER-STRIKE-EXPIRY" -> close order metadata
         self._close_orders = {}
         self._last_reconcile_alert = None
         self._processed_close_requests = self._load_processed_close_requests()
+
+    @staticmethod
+    def _position_key(ticker, strike, expiry):
+        try:
+            strike_f = round(float(strike), 2)
+        except Exception:
+            strike_f = 0.0
+        return f"{str(ticker).upper()}-{strike_f}-{str(expiry)}"
+
+    def _pending_close_key(self, ticker, strike, expiry):
+        return self._position_key(ticker, strike, expiry)
 
     def _restore_pending_close_orders_from_journal(self):
         ensure_journal()
@@ -886,15 +893,25 @@ class AutoTradeEngine:
                     if not ticker or not expiry:
                         continue
                     try:
-                        ts = datetime.strptime(str(row.get("timestamp", "")).strip()[:16], "%Y-%m-%d %H:%M")
+                        placed_at = datetime.strptime(str(row.get("timestamp", "")).strip()[:16], "%Y-%m-%d %H:%M")
                         strike = float(row.get("strike") or 0)
                         qty = int(float(row.get("qty") or 0))
                         price = float(row.get("credit") or 0)
                         pnl = float(row.get("pnl") or 0)
                     except Exception:
                         continue
-                    age_secs = (datetime.now() - ts).total_seconds()
+                    age_secs = (datetime.now() - placed_at).total_seconds()
                     if age_secs > PENDING_CLOSE_MAX_AGE:
+                        try:
+                            self.app.cancelOrder(order_id)
+                        except Exception as e:
+                            log(f"  ⚠ Could not cancel stale restored close order {order_id}: {e}")
+                        update_journal_order_status(
+                            order_id,
+                            "Expired",
+                            note_suffix=f"Expired on restart after {int(age_secs)}s {now_iso()}",
+                        )
+                        log(f"  ⚠ Expired stale restored close order {order_id} for {ticker} ${strike}P")
                         continue
                     if order_id in self._close_orders:
                         continue
@@ -909,6 +926,7 @@ class AutoTradeEngine:
                         price,
                         pnl,
                         notes or "Restored from journal",
+                        placed_at=placed_at,
                     )
                     restored += 1
         except Exception as e:
@@ -997,11 +1015,17 @@ class AutoTradeEngine:
         self.app._order_status_callback = self._handle_order_status
         return self.connect()
 
-    def _register_close_order(self, order_id, ticker, strike, expiry, qty, action, strategy, submitted_price, pnl, reason):
-        pending_key = f"{ticker}-{float(strike)}"
+    def _register_close_order(self, order_id, ticker, strike, expiry, qty, action, strategy, submitted_price, pnl, reason, placed_at=None):
+        pending_key = self._pending_close_key(ticker, strike, expiry)
         self._pending_closes[pending_key] = {
-            "at": datetime.now(),
+            "at": placed_at or datetime.now(),
             "order_id": order_id,
+            "ticker": str(ticker).upper(),
+            "strike": float(strike),
+            "expiry": str(expiry),
+            "qty": int(qty),
+            "action": action,
+            "strategy": strategy,
         }
         self._close_orders[order_id] = {
             "ticker": ticker,
@@ -1015,6 +1039,26 @@ class AutoTradeEngine:
             "reason": reason,
             "pending_key": pending_key,
         }
+
+    def _expire_pending_close(self, pending_key, order_id=None, reason="stale"):
+        meta = self._close_orders.get(order_id) if order_id is not None else None
+        pending_meta = self._pending_closes.get(pending_key) or {}
+        ticker = (meta or pending_meta).get("ticker", "")
+        strike = (meta or pending_meta).get("strike", "")
+        try:
+            if order_id is not None:
+                self.app.cancelOrder(order_id)
+        except Exception as e:
+            log(f"  ⚠ Could not cancel stale close order {order_id}: {e}")
+        if order_id is not None:
+            update_journal_order_status(
+                order_id,
+                "Expired",
+                note_suffix=f"Expired {now_iso()} ({reason})",
+            )
+            self._close_orders.pop(order_id, None)
+        self._pending_closes.pop(pending_key, None)
+        log(f"  ⚠ Expired pending close {order_id or '-'} for {ticker} ${strike}P ({reason})")
 
     def _remove_position_from_cache(self, ticker, strike, expiry):
         for key, pos in list((self.app.positions or {}).items()):
@@ -1064,7 +1108,7 @@ class AutoTradeEngine:
                 self.write_live_snapshot()
             return
 
-        if status_upper in {"CANCELLED", "APICANCELLED", "INACTIVE"}:
+        if status_upper in TERMINAL_ORDER_STATUSES:
             update_journal_order_status(
                 order_id,
                 status_upper.title(),
@@ -1615,6 +1659,22 @@ class AutoTradeEngine:
 
         if kill_switch_active():
             log(f"  🛑 Kill switch active ({KILL_SWITCH_FILE}) — no new opening trades")
+            write_trade_signals(
+                [],
+                mode="signal_only" if signal_only_active() else "paper_auto",
+                scan_summary={
+                    "generated": now_iso(),
+                    "market_status": self.market_status(),
+                    "global_status": "blocked",
+                    "global_reason": "Paper-account kill switch is active.",
+                    "selected_count": 0,
+                    "watchlist_count": len(WATCHLIST),
+                    "by_ticker": [
+                        {"ticker": ticker, "status": "blocked", "reason": "Paper-account kill switch is active."}
+                        for ticker in WATCHLIST
+                    ],
+                },
+            )
             return []
 
         # Detect market regime from VIX
@@ -1647,6 +1707,30 @@ class AutoTradeEngine:
         log(f"  Open positions: {num_open}/{MAX_POSITIONS}")
         if num_open >= MAX_POSITIONS:
             log("  ⚠ Maximum positions reached — no new trades")
+            write_trade_signals(
+                [],
+                mode="signal_only" if signal_only_active() else "paper_auto",
+                scan_summary={
+                    "generated": now_iso(),
+                    "market_status": self.market_status(),
+                    "vix": round(vix, 2),
+                    "regime": regime.get("label", "Unknown"),
+                    "open_positions": num_open,
+                    "slots": 0,
+                    "global_status": "blocked",
+                    "global_reason": f"Maximum paper positions reached ({num_open}/{MAX_POSITIONS}).",
+                    "selected_count": 0,
+                    "watchlist_count": len(WATCHLIST),
+                    "by_ticker": [
+                        {
+                            "ticker": ticker,
+                            "status": "blocked",
+                            "reason": f"Maximum paper positions reached ({num_open}/{MAX_POSITIONS}).",
+                        }
+                        for ticker in WATCHLIST
+                    ],
+                },
+            )
             return []
 
         slots = MAX_POSITIONS - num_open
@@ -1784,56 +1868,92 @@ class AutoTradeEngine:
                 target_long = strike - width
                 # Find closest available strike below short strike
                 candidate_longs = [s for s in chain["strikes"] if s <= target_long and s >= strike - width * 2]
-                if candidate_longs:
-                    long_strike = max(candidate_longs)  # Closest to target
-                    long_opt = self.get_option_data(ticker, long_strike, expiry, "P")
-                    long_premium = long_opt.get("price", 0)
-                    if long_premium > 0:
-                        net_credit = premium - long_premium
-                        # Recompute qty based on spread risk with regime adjustment
-                        regime = getattr(self, '_current_regime', None) or REGIMES["normal"]
-                        adjusted_risk = MAX_RISK * regime.get("risk_mult", 1.0)
-                        spread_max_loss = (width - net_credit) * 100
-                        if spread_max_loss > 0:
-                            max_spreads = int(adjusted_risk / spread_max_loss)
-                            if net_credit < width * MIN_SPREAD_CREDIT_PCT:
-                                log(f"  {ticker}: skipped spread — credit ${net_credit:.2f} "
-                                    f"is below {MIN_SPREAD_CREDIT_PCT*100:.0f}% of ${width} width")
-                                long_strike = None
-                                qty = 0
-                                scan_summary["by_ticker"].append({
-                                    "ticker": ticker,
-                                    "status": "blocked",
-                                    "reason": f"Spread credit ${net_credit:.2f} is below {MIN_SPREAD_CREDIT_PCT*100:.0f}% of ${width} width.",
-                                    "expiry": expiry,
-                                    "strike": strike,
-                                    "long_strike": long_strike,
-                                })
-                                continue
-                            # Apply same per-price caps as CSP (stock >$500 = 2 contracts)
-                            if stock_price > 500:
-                                price_cap = 2
-                            elif stock_price > 100:
-                                price_cap = 3
-                            elif stock_price > 50:
-                                price_cap = 4
-                            else:
-                                price_cap = 5
-                            qty = min(max_spreads, price_cap)
-                            if qty <= 0:
-                                log(f"  {ticker}: skipped spread — max risk budget allows 0 contracts")
-                                long_strike = None
-                                scan_summary["by_ticker"].append({
-                                    "ticker": ticker,
-                                    "status": "blocked",
-                                    "reason": "Spread risk budget allows 0 contracts.",
-                                    "expiry": expiry,
-                                    "strike": strike,
-                                })
-                                continue
-                    else:
-                        # Can't get long leg price — fall back to naked
-                        long_strike = None
+                if not candidate_longs:
+                    log(f"  {ticker}: skipped spread — no protective long strike near ${target_long}")
+                    scan_summary["by_ticker"].append({
+                        "ticker": ticker,
+                        "status": "blocked",
+                        "reason": f"No protective long strike found near ${target_long}.",
+                        "expiry": expiry,
+                        "strike": strike,
+                    })
+                    continue
+                long_strike = max(candidate_longs)  # Closest to target
+                long_opt = self.get_option_data(ticker, long_strike, expiry, "P")
+                long_premium = long_opt.get("price", 0) or long_opt.get("optPrice", 0)
+                if long_premium <= 0:
+                    log(f"  {ticker}: skipped spread — no quote for protective long ${long_strike}P")
+                    scan_summary["by_ticker"].append({
+                        "ticker": ticker,
+                        "status": "blocked",
+                        "reason": f"No usable quote for protective long ${long_strike}P.",
+                        "expiry": expiry,
+                        "strike": strike,
+                        "long_strike": long_strike,
+                    })
+                    continue
+                ok, reason = self.quote_is_acceptable(ticker, {**long_opt, "price": long_premium}, f"long ${long_strike}P")
+                if not ok:
+                    log(f"  {reason}")
+                    scan_summary["by_ticker"].append({
+                        "ticker": ticker,
+                        "status": "blocked",
+                        "reason": reason,
+                        "expiry": expiry,
+                        "strike": strike,
+                        "long_strike": long_strike,
+                    })
+                    continue
+                net_credit = premium - long_premium
+                # Recompute qty based on spread risk with regime adjustment
+                regime = getattr(self, '_current_regime', None) or REGIMES["normal"]
+                adjusted_risk = MAX_RISK * regime.get("risk_mult", 1.0)
+                spread_max_loss = (width - net_credit) * 100
+                if spread_max_loss <= 0:
+                    log(f"  {ticker}: skipped spread — invalid max loss from credit ${net_credit:.2f}")
+                    scan_summary["by_ticker"].append({
+                        "ticker": ticker,
+                        "status": "blocked",
+                        "reason": f"Invalid spread max loss from net credit ${net_credit:.2f}.",
+                        "expiry": expiry,
+                        "strike": strike,
+                        "long_strike": long_strike,
+                    })
+                    continue
+                max_spreads = int(adjusted_risk / spread_max_loss)
+                if net_credit < width * MIN_SPREAD_CREDIT_PCT:
+                    log(f"  {ticker}: skipped spread — credit ${net_credit:.2f} "
+                        f"is below {MIN_SPREAD_CREDIT_PCT*100:.0f}% of ${width} width")
+                    scan_summary["by_ticker"].append({
+                        "ticker": ticker,
+                        "status": "blocked",
+                        "reason": f"Spread credit ${net_credit:.2f} is below {MIN_SPREAD_CREDIT_PCT*100:.0f}% of ${width} width.",
+                        "expiry": expiry,
+                        "strike": strike,
+                        "long_strike": long_strike,
+                    })
+                    continue
+                # Apply same per-price caps as CSP (stock >$500 = 2 contracts)
+                if stock_price > 500:
+                    price_cap = 2
+                elif stock_price > 100:
+                    price_cap = 3
+                elif stock_price > 50:
+                    price_cap = 4
+                else:
+                    price_cap = 5
+                qty = min(max_spreads, price_cap)
+                if qty <= 0:
+                    log(f"  {ticker}: skipped spread — max risk budget allows 0 contracts")
+                    scan_summary["by_ticker"].append({
+                        "ticker": ticker,
+                        "status": "blocked",
+                        "reason": "Spread risk budget allows 0 contracts.",
+                        "expiry": expiry,
+                        "strike": strike,
+                        "long_strike": long_strike,
+                    })
+                    continue
             if qty <= 0:
                 continue
 
@@ -1873,7 +1993,14 @@ class AutoTradeEngine:
         # Sort by score descending after scanning the full watchlist.
         opportunities.sort(key=lambda x: x["score"], reverse=True)
         selected = opportunities[:slots]
+        selected_tickers = {opp["ticker"] for opp in selected}
+        for row in scan_summary["by_ticker"]:
+            if row.get("status") == "selected" and row.get("ticker") not in selected_tickers:
+                row["status"] = "candidate"
+                row["reason"] = "Candidate passed filters but was not selected because higher-ranked candidates used the available slots."
         scan_summary["selected_count"] = len(selected)
+        scan_summary["candidate_count"] = len(opportunities)
+        scan_summary["blocked_count"] = sum(1 for row in scan_summary["by_ticker"] if row.get("status") not in {"selected", "candidate"})
         write_trade_signals(
             selected,
             mode="signal_only" if signal_only_active() else "paper_auto",
@@ -1881,6 +2008,12 @@ class AutoTradeEngine:
         )
 
         log(f"\n  📊 Found {len(opportunities)} opportunities, {slots} slot(s) available")
+        log(
+            f"  🧭 Gate summary: selected={scan_summary['selected_count']} "
+            f"candidates={scan_summary['candidate_count']} blocked={scan_summary['blocked_count']}"
+        )
+        for row in scan_summary["by_ticker"]:
+            log(f"    {row.get('ticker')}: {row.get('status')} — {row.get('reason')}")
         for opp in selected:
             log(f"    #{opp['score']}: {opp['ticker']} ${opp['strike']}P @ ${opp['premium']:.2f} "
                 f"({opp['strategy']}) DTE={opp['dte']}")
@@ -1916,6 +2049,9 @@ class AutoTradeEngine:
                 continue
             if signal_only_active():
                 log(f"  📡 SIGNAL ONLY: {ticker} ${strike}P x{qty} — no paper order submitted")
+                continue
+            if strategy == "BPS" and long_strike is None:
+                log(f"  {ticker}: skipped execution — BPS signal has no protective long leg")
                 continue
 
             # Route to spread or naked put
@@ -1978,7 +2114,7 @@ class AutoTradeEngine:
         journal_pos = read_open_positions()
         journal_by_pos = {}
         for k, v in journal_pos.items():
-            journal_by_pos[(v["ticker"], round(float(v["strike"]), 2))] = v
+            journal_by_pos[(v["ticker"], round(float(v["strike"]), 2), str(v.get("expiry", "")))] = v
 
         # Separate short (ours) from accidental longs
         shorts = {k: v for k, v in ibkr_pos.items() if v["position"] < 0}
@@ -2003,7 +2139,7 @@ class AutoTradeEngine:
                 if int(abs(short_pos.get("position", 0))) != long_qty:
                     continue
                 short_strike = float(short_pos["strike"])
-                lookup_key = (ticker, round(short_strike, 2))
+                lookup_key = (ticker, round(short_strike, 2), expiry)
                 j = journal_by_pos.get(lookup_key)
                 if not j or j.get("strategy") != "BPS":
                     continue
@@ -2047,21 +2183,22 @@ class AutoTradeEngine:
             avg_cost = ibkr.get("avgCost", 0)
 
             # Skip pending orders
-            pending_key = f"{ticker}-{float(strike)}"
-            if pending_key in self._pending_orders:
-                age = (datetime.now() - self._pending_orders[pending_key]).total_seconds()
+            pending_order_key = f"{ticker}-{float(strike)}"
+            if pending_order_key in self._pending_orders:
+                age = (datetime.now() - self._pending_orders[pending_order_key]).total_seconds()
                 if age < 600:
                     log(f"  {ticker} ${strike}P: pending order ({int(age)}s ago) — skipping")
                     continue
                 else:
-                    del self._pending_orders[pending_key]
+                    del self._pending_orders[pending_order_key]
+            pending_key = self._pending_close_key(ticker, strike, expiry)
             if pending_key in self._pending_closes:
                 pending_meta = self._pending_closes[pending_key]
                 age = (datetime.now() - pending_meta["at"]).total_seconds()
                 order_id = pending_meta.get("order_id")
                 status = str(self.app.order_statuses.get(order_id, {}).get("status", "")).upper()
                 if status in TERMINAL_ORDER_STATUSES:
-                    del self._pending_closes[pending_key]
+                    self._pending_closes.pop(pending_key, None)
                     if order_id is not None:
                         self._close_orders.pop(order_id, None)
                 elif age < PENDING_CLOSE_MAX_AGE:
@@ -2069,11 +2206,9 @@ class AutoTradeEngine:
                     continue
                 else:
                     log(f"  ⚠ {ticker} ${strike}P: pending close is stale after {int(age)}s — allowing retry")
-                    del self._pending_closes[pending_key]
-                    if order_id is not None:
-                        self._close_orders.pop(order_id, None)
+                    self._expire_pending_close(pending_key, order_id, reason=f"age {int(age)}s")
 
-            lookup_key = (ticker, round(float(strike), 2))
+            lookup_key = (ticker, round(float(strike), 2), str(expiry))
             j = journal_by_pos.get(lookup_key)
             strategy = j.get("strategy", "CSP") if j else "CSP"
 
@@ -2284,7 +2419,7 @@ class AutoTradeEngine:
 
             broker_qty = int(abs(match.get("position", 0) or 0))
             qty = min(qty, broker_qty)
-            pending_key = f"{ticker}-{float(strike)}"
+            pending_key = self._pending_close_key(ticker, strike, expiry)
             if pending_key in self._pending_closes:
                 self._write_close_result(req, "rejected", "Close already pending")
                 continue
@@ -2569,30 +2704,51 @@ class AutoTradeEngine:
         ibkr_pos = ibkr_pos if ibkr_pos is not None else (self.app.positions or {})
         journal_pos = journal_pos if journal_pos is not None else read_open_positions()
 
-        def key_for(ticker, strike):
+        def key_for(ticker, strike, expiry):
             try:
                 strike_f = round(float(strike), 2)
             except:
                 strike_f = 0.0
-            return f"{str(ticker).upper()}-{strike_f}"
+            return f"{str(ticker).upper()}-{strike_f}-{str(expiry)}"
+
+        def infer_strategy(pos):
+            ticker = pos.get("symbol", "")
+            expiry = str(pos.get("expiry", ""))
+            strike = float(pos.get("strike", 0) or 0)
+            qty = int(abs(pos.get("position", 0) or 0))
+            width = SPREAD_WIDTHS.get(ticker, 5)
+            expected_long = round(strike - width, 2)
+            for other in ibkr_pos.values():
+                if other.get("position", 0) <= 0:
+                    continue
+                if other.get("symbol") != ticker or str(other.get("expiry", "")) != expiry:
+                    continue
+                if other.get("right") != "P" or int(abs(other.get("position", 0) or 0)) != qty:
+                    continue
+                if round(float(other.get("strike", 0) or 0), 2) == expected_long:
+                    return "BPS"
+            return "CSP"
 
         ibkr_shorts = {}
         for pos in ibkr_pos.values():
             if pos.get("position", 0) >= 0:
                 continue
-            key = key_for(pos.get("symbol", ""), pos.get("strike", 0))
+            key = key_for(pos.get("symbol", ""), pos.get("strike", 0), pos.get("expiry", ""))
             ibkr_shorts[key] = {
                 "ticker": pos.get("symbol", ""),
                 "strike": round(float(pos.get("strike", 0) or 0), 2),
+                "expiry": str(pos.get("expiry", "")),
                 "qty": int(abs(pos.get("position", 0) or 0)),
+                "strategy": infer_strategy(pos),
             }
 
         journal_open = {}
         for pos in journal_pos.values():
-            key = key_for(pos.get("ticker", ""), pos.get("strike", 0))
+            key = key_for(pos.get("ticker", ""), pos.get("strike", 0), pos.get("expiry", ""))
             journal_open[key] = {
                 "ticker": pos.get("ticker", ""),
                 "strike": round(float(pos.get("strike", 0) or 0), 2),
+                "expiry": str(pos.get("expiry", "")),
                 "qty": int(abs(pos.get("qty", 0) or 0)),
                 "strategy": pos.get("strategy", "CSP"),
                 "status": pos.get("status", ""),
@@ -2635,9 +2791,27 @@ class AutoTradeEngine:
             positions = []
             ibkr_pos = self.app.positions or {}
             journal_pos = read_open_positions()
-            # Key by (ticker, strike) so per-strike positions never collide
-            journal_by_pos = {(v["ticker"], round(float(v["strike"]), 2)): v
+            # Key by (ticker, strike, expiry) so same-strike ladders never collide
+            journal_by_pos = {(v["ticker"], round(float(v["strike"]), 2), str(v.get("expiry", ""))): v
                               for v in journal_pos.values()}
+
+            def infer_strategy(pos):
+                ticker = pos.get("symbol", "")
+                expiry = str(pos.get("expiry", ""))
+                strike = float(pos.get("strike", 0) or 0)
+                qty = int(abs(pos.get("position", 0) or 0))
+                width = SPREAD_WIDTHS.get(ticker, 5)
+                expected_long = round(strike - width, 2)
+                for other in ibkr_pos.values():
+                    if other.get("position", 0) <= 0:
+                        continue
+                    if other.get("symbol") != ticker or str(other.get("expiry", "")) != expiry:
+                        continue
+                    if other.get("right") != "P" or int(abs(other.get("position", 0) or 0)) != qty:
+                        continue
+                    if round(float(other.get("strike", 0) or 0), 2) == expected_long:
+                        return "BPS"
+                return "CSP"
 
             # Count legs so dashboard can show WHY shorts < total
             shorts_count = sum(1 for v in ibkr_pos.values() if v.get("position", 0) < 0)
@@ -2657,9 +2831,9 @@ class AutoTradeEngine:
                 expiry  = ibkr.get("expiry", "")
                 avg_cost = ibkr.get("avgCost", 0)
 
-                lookup_key = (ticker, round(float(strike), 2))
+                lookup_key = (ticker, round(float(strike), 2), str(expiry))
                 j = journal_by_pos.get(lookup_key)
-                strategy = j.get("strategy", "CSP") if j else "CSP"
+                strategy = j.get("strategy", "CSP") if j else infer_strategy(ibkr)
                 if strategy == "BPS" and j:
                     entry_credit = j.get("credit", 0)
                 else:
@@ -2687,6 +2861,15 @@ class AutoTradeEngine:
                 if has_live_price:
                     total_pnl += pnl
 
+                pending_key = self._pending_close_key(ticker, strike, expiry)
+                pending_close = self._pending_closes.get(pending_key)
+                pending_age = None
+                if pending_close:
+                    try:
+                        pending_age = int((datetime.now() - pending_close.get("at", datetime.now())).total_seconds())
+                    except Exception:
+                        pending_age = None
+
                 positions.append({
                     "ticker":        ticker,
                     "strike":        strike,
@@ -2699,6 +2882,9 @@ class AutoTradeEngine:
                     "pnl":           pnl,
                     "pnl_pct":       pnl_pct,
                     "dte":           dte,
+                    "pending_close": bool(pending_close),
+                    "pending_close_order_id": pending_close.get("order_id") if pending_close else None,
+                    "pending_close_age_secs": pending_age,
                 })
 
             regime = getattr(self, "_current_regime", None) or {}
@@ -2741,6 +2927,18 @@ class AutoTradeEngine:
                 "ibkr_legs_short":  shorts_count,
                 "ibkr_legs_long":   longs_count,
                 "reconciliation":   reconciliation,
+                "pending_closes":   [
+                    {
+                        "key": key,
+                        "order_id": meta.get("order_id"),
+                        "ticker": meta.get("ticker"),
+                        "strike": meta.get("strike"),
+                        "expiry": meta.get("expiry"),
+                        "age_secs": int((datetime.now() - meta.get("at", datetime.now())).total_seconds()),
+                    }
+                    for key, meta in self._pending_closes.items()
+                ],
+                "pending_close_max_age_secs": PENDING_CLOSE_MAX_AGE,
             }
 
             with open(LIVE_POSITIONS_FILE, "w") as f:
@@ -2774,6 +2972,44 @@ class AutoTradeEngine:
         if hhmm < MARKET_OPEN or hhmm >= MARKET_CLOSE:
             return "closed"
         return "open"
+
+    def _run_manual_scan_if_requested(self, ms=None):
+        """Honor dashboard Scan Now requests without waiting for the full monitor interval."""
+        if not SCAN_NOW_FILE.exists():
+            return False
+        if not getattr(self.app, "_connected", False):
+            log("🔔 Manual scan requested but TWS is disconnected — keeping marker for retry")
+            return False
+        ms = ms or self.market_status()
+        try:
+            marker = SCAN_NOW_FILE.read_text().strip()
+        except Exception:
+            marker = ""
+        try:
+            if ms == "open":
+                log("🔔 Manual scan triggered" + (f" ({marker})" if marker else ""))
+                try:
+                    SCAN_NOW_FILE.unlink()
+                except Exception as _e:
+                    log(f"  ⚠ Could not delete scan_now marker: {_e}")
+                opportunities = self.scan()
+                if opportunities:
+                    self.execute_trades(opportunities)
+                self.write_live_snapshot()
+            else:
+                log(f"🔔 Manual scan requested but market is '{ms}' — clearing marker")
+                try:
+                    SCAN_NOW_FILE.unlink()
+                except Exception:
+                    pass
+            return True
+        except Exception as _e:
+            log(f"  ❌ Manual scan failed: {_e}")
+            try:
+                SCAN_NOW_FILE.unlink()
+            except Exception:
+                pass
+            return False
 
     def run(self):
         """Main engine loop."""
@@ -2846,35 +3082,7 @@ class AutoTradeEngine:
                 ms = self.market_status()
 
                 # ── Manual scan trigger (from dashboard /api/trigger-scan) ──
-                # Proxy writes ~/options-pro/data/scan_now_requested when the
-                # user clicks "Scan Now". We honor it only during open market
-                # hours; otherwise we just clear the marker so it doesn't queue
-                # forever.
-                if SCAN_NOW_FILE.exists():
-                    try:
-                        if ms == "open":
-                            log("🔔 Manual scan triggered")
-                            try:
-                                SCAN_NOW_FILE.unlink()
-                            except Exception as _e:
-                                log(f"  ⚠ Could not delete scan_now marker: {_e}")
-                            opportunities = self.scan()
-                            if opportunities:
-                                self.execute_trades(opportunities)
-                            # Refresh dashboard snapshot right after manual scan
-                            self.write_live_snapshot()
-                        else:
-                            log(f"🔔 Manual scan requested but market is '{ms}' — clearing marker")
-                            try:
-                                SCAN_NOW_FILE.unlink()
-                            except Exception:
-                                pass
-                    except Exception as _e:
-                        log(f"  ❌ Manual scan failed: {_e}")
-                        try:
-                            SCAN_NOW_FILE.unlink()
-                        except Exception:
-                            pass
+                self._run_manual_scan_if_requested(ms)
 
                 if ms == "tws_restart":
                     # TWS is doing its nightly restart (11:45 PM – 6:30 AM ET).
@@ -3019,15 +3227,20 @@ class AutoTradeEngine:
         log("Engine shutdown complete.")
 
     def _sleep_with_command_checks(self, sleep_secs):
-        """Sleep in short chunks so dashboard panic-close requests are handled promptly."""
+        """Sleep in short chunks so dashboard commands are handled promptly."""
         end = time.time() + sleep_secs
+        last_scan_poll = 0
         while self._running and time.time() < end:
             time.sleep(min(5, max(0, end - time.time())))
             try:
                 if self.app._connected and self.market_status() != "tws_restart":
                     self.process_paper_close_requests()
+                    now = time.time()
+                    if now - last_scan_poll >= SCAN_NOW_POLL_SECONDS:
+                        last_scan_poll = now
+                        self._run_manual_scan_if_requested()
             except Exception as e:
-                log(f"  ⚠ Close-request check failed during sleep: {e}")
+                log(f"  ⚠ Command check failed during sleep: {e}")
 
 
 # ═══════════════════════════════════════════════

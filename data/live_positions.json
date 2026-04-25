@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-25T12:41:24+02:00",
+  "updated": "2026-04-25T13:56:42+02:00",
   "engine_running": true,
   "connected": true,
   "market_status": "closed",
@@ -8,8 +8,8 @@
   "signal_only": false,
   "signal_only_file": "/Users/islam/options-pro/data/optionspro_signal_only",
   "signals_file": "/Users/islam/options-pro/data/trade_signals.json",
-  "vix": 18.61,
-  "regime": "Normal",
+  "vix": null,
+  "regime": "Unknown",
   "positions": [
     {
       "ticker": "GLD",
@@ -18,10 +18,10 @@
       "qty": 1,
       "strategy": "CSP",
       "entry_credit": 3.54,
-      "current_price": 1.98,
+      "current_price": 1.89,
       "price_valid": true,
-      "pnl": 156.22,
-      "pnl_pct": 44.1,
+      "pnl": 164.85,
+      "pnl_pct": 46.5,
       "dte": 19
     },
     {
@@ -31,10 +31,10 @@
       "qty": 1,
       "strategy": "CSP",
       "entry_credit": 0.3,
-      "current_price": 0.3,
-      "price_valid": true,
-      "pnl": 0.23,
-      "pnl_pct": 0.8,
+      "current_price": 0.0,
+      "price_valid": false,
+      "pnl": 0.0,
+      "pnl_pct": 0,
       "dte": 33
     },
     {
@@ -44,10 +44,10 @@
       "qty": 2,
       "strategy": "CSP",
       "entry_credit": 2.8,
-      "current_price": 0.0,
-      "price_valid": false,
-      "pnl": 0.0,
-      "pnl_pct": 0,
+      "current_price": 0.87,
+      "price_valid": true,
+      "pnl": 385.7,
+      "pnl_pct": 68.8,
       "dte": 19
     },
     {
@@ -57,33 +57,39 @@
       "qty": 1,
       "strategy": "CSP",
       "entry_credit": 3.18,
-      "current_price": 1.6,
-      "price_valid": true,
-      "pnl": 158.37,
-      "pnl_pct": 49.8,
+      "current_price": 0.0,
+      "price_valid": false,
+      "pnl": 0.0,
+      "pnl_pct": 0,
       "dte": 26
     }
   ],
   "positions_count": 4,
   "max_positions": 5,
-  "total_pnl": 314.82,
+  "total_pnl": 550.55,
   "account_size": 250000,
   "ibkr_legs_total": 4,
   "ibkr_legs_short": 4,
   "ibkr_legs_long": 0,
   "reconciliation": {
-    "checked_at": "2026-04-25T12:41:23+02:00",
+    "checked_at": "2026-04-25T13:56:42+02:00",
     "ok": false,
     "missing_in_ibkr": [
       {
-        "ticker": "GDX",
-        "strike": 84.0,
+        "ticker": "QQQ",
+        "strike": 600.0,
         "qty": 1,
-        "strategy": "BPS",
-        "status": "Submitted"
+        "strategy": "CSP",
+        "status": "Filled"
       }
     ],
-    "missing_in_journal": [],
+    "missing_in_journal": [
+      {
+        "ticker": "TLT",
+        "strike": 84.0,
+        "qty": 1
+      }
+    ],
     "qty_mismatch": []
   }
 }
