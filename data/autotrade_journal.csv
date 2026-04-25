@@ -22,3 +22,5 @@ timestamp,action,ticker,strategy,strike,expiry,qty,credit,delta,iv,dte,status,pn
 2026-04-17 21:50,CLOSE_CANCEL,QQQ,CLOSE,618.0,20260522,15,0,0,0,0,NotFilled,0,Order 14 never filled — manual reconcile
 2026-04-17 21:55,CLOSE_MANUAL,GDX,CLOSE,91.5,20260522,12,0,0,0,0,ManualClose,0,Closed manually earlier; backfill
 2026-04-25 12:54,CLOSE_PROFIT,SMH,CLOSE,385.0,20260515,2,0.8744049910704995,0,0,0,Submitted,385.7,50% profit ($386 >= $280) | CSP | OrderID 23
+2026-04-25 14:45,CLOSE_MANUAL,QQQ,CLOSE,600.0,20260522,1,0,0,,0,ManualClose,0,Manual reconcile accepted IBKR view; position absent from live snapshot
+2026-04-25 14:45,OPEN,TLT,CSP,84.0,20260529,1,0.3,0,,33,Reconciled,0,Manual reconcile reconstructed from IBKR/live snapshot

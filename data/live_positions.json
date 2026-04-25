@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-25T14:44:04+02:00",
+  "updated": "2026-04-25T14:46:03+02:00",
   "engine_running": true,
   "connected": true,
   "market_status": "closed",
@@ -18,10 +18,10 @@
       "qty": 1,
       "strategy": "CSP",
       "entry_credit": 3.54,
-      "current_price": 1.89,
-      "price_valid": true,
-      "pnl": 164.85,
-      "pnl_pct": 46.5,
+      "current_price": 0.0,
+      "price_valid": false,
+      "pnl": 0.0,
+      "pnl_pct": 0,
       "dte": 19,
       "pending_close": false,
       "pending_close_order_id": null,
@@ -57,7 +57,7 @@
       "dte": 19,
       "pending_close": true,
       "pending_close_order_id": 23,
-      "pending_close_age_secs": 6604
+      "pending_close_age_secs": 6723
     },
     {
       "ticker": "IWM",
@@ -78,33 +78,16 @@
   ],
   "positions_count": 4,
   "max_positions": 5,
-  "total_pnl": 164.85,
+  "total_pnl": 0.0,
   "account_size": 250000,
   "ibkr_legs_total": 4,
   "ibkr_legs_short": 4,
   "ibkr_legs_long": 0,
   "reconciliation": {
-    "checked_at": "2026-04-25T14:44:04+02:00",
-    "ok": false,
-    "missing_in_ibkr": [
-      {
-        "ticker": "QQQ",
-        "strike": 600.0,
-        "expiry": "20260522",
-        "qty": 1,
-        "strategy": "CSP",
-        "status": "Filled"
-      }
-    ],
-    "missing_in_journal": [
-      {
-        "ticker": "TLT",
-        "strike": 84.0,
-        "expiry": "20260529",
-        "qty": 1,
-        "strategy": "CSP"
-      }
-    ],
+    "checked_at": "2026-04-25T14:46:03+02:00",
+    "ok": true,
+    "missing_in_ibkr": [],
+    "missing_in_journal": [],
     "qty_mismatch": []
   },
   "pending_closes": [
@@ -114,7 +97,7 @@
       "ticker": "SMH",
       "strike": 385.0,
       "expiry": "20260515",
-      "age_secs": 6604
+      "age_secs": 6723
     }
   ],
   "pending_close_max_age_secs": 14400
