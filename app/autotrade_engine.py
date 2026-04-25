@@ -2359,6 +2359,7 @@ class AutoTradeEngine:
 
         if not shorts:
             return
+        auto_close_allowed = self.market_status() == "open"
 
         for key, ibkr in shorts.items():
             ticker = ibkr["symbol"]
@@ -2472,8 +2473,11 @@ class AutoTradeEngine:
 
             if action:
                 log(f"   >> {action}: {reason}")
-                self.close_position(ticker, strike, expiry, qty, net_close_debit,
-                                    action, reason, pnl, strategy=strategy)
+                if auto_close_allowed:
+                    self.close_position(ticker, strike, expiry, qty, net_close_debit,
+                                        action, reason, pnl, strategy=strategy)
+                else:
+                    log("   >> AUTO CLOSE BLOCKED: market is closed; no order submitted")
             else:
                 log(f"   >> HOLD (target=${profit_target:.0f} stop=${stop_loss:.0f})")
 
@@ -3161,19 +3165,79 @@ class AutoTradeEngine:
         except Exception as e:
             log(f"  ⚠ write_live_snapshot failed: {e}")
 
+    def _nth_weekday(self, year, month, weekday, n):
+        """Return date for the nth weekday in a month. Monday is 0."""
+        first = datetime(year, month, 1).date()
+        offset = (weekday - first.weekday()) % 7
+        return first + timedelta(days=offset + (n - 1) * 7)
+
+    def _last_weekday(self, year, month, weekday):
+        """Return date for the last weekday in a month. Monday is 0."""
+        if month == 12:
+            d = datetime(year + 1, 1, 1).date() - timedelta(days=1)
+        else:
+            d = datetime(year, month + 1, 1).date() - timedelta(days=1)
+        return d - timedelta(days=(d.weekday() - weekday) % 7)
+
+    def _observed_market_holiday(self, d):
+        """NYSE-style observed date for fixed-date holidays."""
+        if d.weekday() == 5:  # Saturday -> Friday
+            return d - timedelta(days=1)
+        if d.weekday() == 6:  # Sunday -> Monday
+            return d + timedelta(days=1)
+        return d
+
+    def _easter_sunday(self, year):
+        """Gregorian Easter Sunday date, used to derive Good Friday."""
+        a = year % 19
+        b = year // 100
+        c = year % 100
+        d = b // 4
+        e = b % 4
+        f = (b + 8) // 25
+        g = (b - f + 1) // 3
+        h = (19 * a + b - d - g + 15) % 30
+        i = c // 4
+        k = c % 4
+        l = (32 + 2 * e + 2 * i - h - k) % 7
+        m = (a + 11 * h + 22 * l) // 451
+        month = (h + l - 7 * m + 114) // 31
+        day = ((h + l - 7 * m + 114) % 31) + 1
+        return datetime(year, month, day).date()
+
+    def _nyse_holidays(self, year):
+        """Common full-day NYSE closures for the supplied year."""
+        holidays = {
+            self._observed_market_holiday(datetime(year, 1, 1).date()),   # New Year's Day
+            self._nth_weekday(year, 1, 0, 3),                             # MLK Day
+            self._nth_weekday(year, 2, 0, 3),                             # Presidents' Day
+            self._easter_sunday(year) - timedelta(days=2),                # Good Friday
+            self._last_weekday(year, 5, 0),                               # Memorial Day
+            self._observed_market_holiday(datetime(year, 6, 19).date()),  # Juneteenth
+            self._observed_market_holiday(datetime(year, 7, 4).date()),   # Independence Day
+            self._nth_weekday(year, 9, 0, 1),                             # Labor Day
+            self._nth_weekday(year, 11, 3, 4),                            # Thanksgiving
+            self._observed_market_holiday(datetime(year, 12, 25).date()), # Christmas
+        }
+        # Include observed New Year's Day from the following year, which can
+        # fall on Dec 31 of this year.
+        holidays.add(self._observed_market_holiday(datetime(year + 1, 1, 1).date()))
+        return holidays
+
     def market_status(self):
-        """Return current market session based on US Eastern time.
+        """Return current market session based on the NYSE calendar and US Eastern time.
 
         Returns:
             "tws_restart"  — 11:45 PM to 6:30 AM ET (TWS daily restart window)
                              Engine sleeps entirely, no TWS interaction.
-            "closed"       — 6:30 AM to 9:25 AM ET and 4:05 PM to 11:45 PM ET
+            "closed"       — weekends, common NYSE holidays, and non-market hours
                              Monitor existing positions only, no new scans/trades.
                              Stale data alerts suppressed (no market data expected).
             "open"         — 9:25 AM to 4:05 PM ET (includes 5-min buffer each side)
                              Full scan, trade, and monitor cycle.
         """
         now_et = datetime.now(ZoneInfo("America/New_York"))
+        today_et = now_et.date()
         hhmm = now_et.hour * 60 + now_et.minute  # minutes since midnight ET
 
         TWS_RESTART_START = 23 * 60 + 45   # 11:45 PM
@@ -3181,6 +3245,8 @@ class AutoTradeEngine:
         MARKET_OPEN       =  9 * 60 + 25   #  9:25 AM (5-min early buffer)
         MARKET_CLOSE      = 16 * 60 +  5   #  4:05 PM (5-min late buffer)
 
+        if today_et.weekday() >= 5 or today_et in self._nyse_holidays(today_et.year):
+            return "closed"
         if hhmm >= TWS_RESTART_START or hhmm < TWS_RESTART_END:
             return "tws_restart"
         if hhmm < MARKET_OPEN or hhmm >= MARKET_CLOSE:

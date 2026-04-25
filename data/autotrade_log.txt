@@ -33284,3 +33284,88 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 [2026-04-25 22:00:51] Scan passes: 2
 [2026-04-25 22:00:51] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
+[2026-04-25 22:00:57]   ✅ GitHub backup on restart complete
+[2026-04-25 22:00:57] 🔌 Connecting to TWS...
+[2026-04-25 22:00:57] ✅ TWS connected — next order ID: 28
+[2026-04-25 22:00:59]   📊 4 option position(s) loaded from IBKR
+[2026-04-25 22:00:59]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-25 22:00:59]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-25 22:00:59]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-25 22:00:59]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-25 22:01:02]   ↺ Restored 1 pending close order(s) from journal
+[2026-04-25 22:01:02]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-04-25 22:01:04]   📧 Email sent: ⚠ Options Pro: Position Reconciliation Drift
+[2026-04-25 22:01:04] 
+━━━ Scan Pass 1/2 ━━━
+[2026-04-25 22:01:04] 
+============================================================
+[2026-04-25 22:01:04] 🌅 MORNING SCAN STARTED
+[2026-04-25 22:01:04] ============================================================
+[2026-04-25 22:01:06]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 22:01:06]   📊 VIX: 18.71 — Regime: Normal (Δ 0.15-0.25, risk × 1.0)
+[2026-04-25 22:01:06]   Open positions: 4/5
+[2026-04-25 22:01:06] 
+  Scanning SPY...
+[2026-04-25 22:01:07]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 22:01:07]   SPY: $714.01
+[2026-04-25 22:01:07]   SPY: conId=756733 (STK)
+[2026-04-25 22:01:07]   SPY: option chain SPY@SMART (35 expiries, 467 strikes)
+[2026-04-25 22:01:19]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 22:01:20]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 22:01:39]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 22:01:39]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 22:01:45]   SPY: no suitable strike found
+[2026-04-25 22:01:45] 
+  Scanning QQQ...
+[2026-04-25 22:01:45]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 22:01:45]   QQQ: $663.46
+[2026-04-25 22:01:46]   QQQ: conId=320227571 (STK)
+[2026-04-25 22:01:46]   QQQ: option chain QQQ@SMART (34 expiries, 440 strikes)
+[2026-04-25 22:02:32]   QQQ: no suitable strike found
+[2026-04-25 22:02:32] 
+  Scanning SMH...
+[2026-04-25 22:02:33]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 22:02:33]   SMH: $506.50
+[2026-04-25 22:02:33]   SMH: conId=229725622 (STK)
+[2026-04-25 22:02:33]   SMH: option chain SMH@SMART (21 expiries, 180 strikes)
+[2026-04-25 22:03:07]   TWS error 2108: Market data farm connection is inactive but should be available upon demand.usfarm.nj
+[2026-04-25 22:03:07]   TWS error 2108: Market data farm connection is inactive but should be available upon demand.usfarm.nj
+[2026-04-25 22:03:17]   SMH: no suitable strike found
+[2026-04-25 22:03:17] 
+  Scanning GDX...
+[2026-04-25 22:03:18]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 22:03:18]   GDX: $94.20
+[2026-04-25 22:03:18]   GDX: conId=229726316 (STK)
+[2026-04-25 22:03:18]   GDX: option chain GDX@SMART (18 expiries, 161 strikes)
+[2026-04-25 22:03:36]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 22:03:36]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 22:03:42]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 22:03:42]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 22:03:43]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 22:03:44]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 22:03:50]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 22:03:50]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 22:03:50]   GDX: no suitable strike found
+[2026-04-25 22:03:50] 
+  Scanning IWM...
+[2026-04-25 22:03:50]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 22:03:51]   IWM: $276.65
+[2026-04-25 22:03:51]   IWM: conId=9579970 (STK)
+[2026-04-25 22:03:51]   IWM: option chain IWM@SMART (33 expiries, 185 strikes)
+[2026-04-25 22:03:51]   IWM: skipped — proposed DTE 33 too close to existing [26] (need ≥14d gap)
+[2026-04-25 22:03:51] 
+  Scanning GLD...
+[2026-04-25 22:03:51]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 22:03:52]   GLD: $432.60
+[2026-04-25 22:03:52]   GLD: conId=51529211 (STK)
+[2026-04-25 22:03:52]   GLD: option chain GLD@SMART (28 expiries, 379 strikes)
+[2026-04-25 22:04:18] 
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+[2026-04-25 22:04:18] Options Pro Ultra v6 — Autotrade Engine
+[2026-04-25 22:04:18] Account: DU4735568 | Size: $250,000
+[2026-04-25 22:04:18] Max positions: 5 | Max risk: $12,500
+[2026-04-25 22:04:18] Delta: 0.15-0.25 | DTE: 21-45
+[2026-04-25 22:04:18] Close: 50% profit | Stop: 2.0× credit
+[2026-04-25 22:04:18] Scan passes: 2
+[2026-04-25 22:04:18] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+
