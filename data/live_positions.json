@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-24T22:31:01+02:00",
+  "updated": "2026-04-25T12:41:24+02:00",
   "engine_running": true,
   "connected": true,
   "market_status": "closed",
@@ -22,7 +22,7 @@
       "price_valid": true,
       "pnl": 156.22,
       "pnl_pct": 44.1,
-      "dte": 20
+      "dte": 19
     },
     {
       "ticker": "TLT",
@@ -35,7 +35,7 @@
       "price_valid": true,
       "pnl": 0.23,
       "pnl_pct": 0.8,
-      "dte": 34
+      "dte": 33
     },
     {
       "ticker": "SMH",
@@ -48,7 +48,7 @@
       "price_valid": false,
       "pnl": 0.0,
       "pnl_pct": 0,
-      "dte": 20
+      "dte": 19
     },
     {
       "ticker": "IWM",
@@ -57,22 +57,22 @@
       "qty": 1,
       "strategy": "CSP",
       "entry_credit": 3.18,
-      "current_price": 2.03,
+      "current_price": 1.6,
       "price_valid": true,
-      "pnl": 114.91,
-      "pnl_pct": 36.1,
-      "dte": 27
+      "pnl": 158.37,
+      "pnl_pct": 49.8,
+      "dte": 26
     }
   ],
   "positions_count": 4,
   "max_positions": 5,
-  "total_pnl": 271.36,
+  "total_pnl": 314.82,
   "account_size": 250000,
   "ibkr_legs_total": 4,
   "ibkr_legs_short": 4,
   "ibkr_legs_long": 0,
   "reconciliation": {
-    "checked_at": "2026-04-24T22:30:59+02:00",
+    "checked_at": "2026-04-25T12:41:23+02:00",
     "ok": false,
     "missing_in_ibkr": [
       {

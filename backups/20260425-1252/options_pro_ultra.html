@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Options Pro Ultra v6</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #070b12;
+      --panel: #0d1420;
+      --panel-2: #101927;
+      --line: #1f2b3d;
+      --line-soft: #162235;
+      --text: #e6edf7;
+      --muted: #7d8aa3;
+      --dim: #526078;
+      --green: #22c55e;
+      --red: #ef4444;
+      --amber: #f59e0b;
+      --cyan: #06b6d4;
+      --blue: #60a5fa;
+      --purple: #a78bfa;
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      letter-spacing: 0;
+    }
+    button, input { font: inherit; }
+    button {
+      border: 1px solid var(--line);
+      background: #111a29;
+      color: var(--text);
+      border-radius: 7px;
+      padding: 9px 12px;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 12px;
+    }
+    button:hover { border-color: #31435e; background: #142033; }
+    button:disabled { opacity: .45; cursor: not-allowed; }
+    .primary { background: rgba(6,182,212,.14); color: #67e8f9; border-color: rgba(6,182,212,.35); }
+    .warning { background: rgba(245,158,11,.12); color: #fbbf24; border-color: rgba(245,158,11,.36); }
+    .danger { background: rgba(239,68,68,.12); color: #fca5a5; border-color: rgba(239,68,68,.36); }
+    .good { color: var(--green); }
+    .bad { color: var(--red); }
+    .warn { color: var(--amber); }
+    .muted { color: var(--muted); }
+    .mono { font-family: var(--mono); }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-height: 38px;
+      padding: 6px 18px;
+      background: rgba(7,11,18,.94);
+      border-bottom: 1px solid var(--line-soft);
+      backdrop-filter: blur(10px);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); box-shadow: 0 0 16px rgba(239,68,68,.35); }
+    .dot.ok { background: var(--green); box-shadow: 0 0 16px rgba(34,197,94,.35); }
+    .dot.warn { background: var(--amber); box-shadow: 0 0 16px rgba(245,158,11,.35); }
+    .shell { max-width: 1320px; margin: 0 auto; padding: 18px 20px 44px; }
+    header { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+    h1 { margin: 0; font-size: 24px; line-height: 1.05; }
+    .subtitle { margin-top: 5px; color: var(--muted); font-size: 12px; }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 11px;
+      border: 1px solid rgba(34,197,94,.25);
+      border-radius: 7px;
+      background: rgba(34,197,94,.08);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .tabs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .tab {
+      min-height: 54px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 3px;
+      background: #0c1320;
+    }
+    .tab span:first-child { font-size: 15px; }
+    .tab span:last-child { font-size: 10px; color: var(--muted); font-weight: 700; }
+    .tab.active { border-color: rgba(6,182,212,.45); background: rgba(6,182,212,.10); color: #67e8f9; }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .band {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .band-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+    .band-title { font-size: 16px; font-weight: 950; }
+    .band-sub { color: var(--muted); font-size: 12px; margin-top: 4px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+    .stats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
+    .stat {
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 13px;
+      min-height: 86px;
+    }
+    .stat .label { color: var(--muted); font-size: 10px; font-weight: 900; text-transform: uppercase; }
+    .stat .value { font-family: var(--mono); font-size: 23px; font-weight: 950; margin-top: 8px; }
+    .stat .sub { color: var(--dim); font-size: 10px; margin-top: 3px; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .signals-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .card {
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .signal-card.stale { border-color: rgba(239,68,68,.45); }
+    .signal-card.blocked { opacity: .62; border-color: rgba(148,163,184,.25); }
+    .row { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+    .kicker { color: var(--muted); font-size: 10px; text-transform: uppercase; font-weight: 900; }
+    .big { font-size: 20px; font-weight: 950; }
+    .small { color: var(--muted); font-size: 11px; line-height: 1.55; }
+    .kv { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+    .kv div { min-width: 0; }
+    .kv .v { font-family: var(--mono); font-weight: 900; margin-top: 4px; overflow-wrap: anywhere; }
+    .notice {
+      border: 1px dashed var(--line);
+      background: rgba(255,255,255,.025);
+      border-radius: 8px;
+      padding: 13px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .notice.red { border-color: rgba(239,68,68,.45); background: rgba(239,68,68,.08); color: #fca5a5; }
+    .notice.amber { border-color: rgba(245,158,11,.45); background: rgba(245,158,11,.08); color: #fbbf24; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    th {
+      text-align: left;
+      color: var(--muted);
+      background: #080d15;
+      padding: 10px;
+      font-size: 10px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--line);
+    }
+    td { padding: 12px 10px; border-bottom: 1px solid var(--line-soft); }
+    tr:last-child td { border-bottom: 0; }
+    .chart {
+      width: 100%;
+      height: 210px;
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: #0a101a;
+      overflow: hidden;
+      margin-top: 12px;
+    }
+    .market-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+    .market-card { min-height: 150px; }
+    .meter {
+      height: 5px;
+      background: #050910;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 11px 0;
+    }
+    .meter span { display: block; height: 100%; background: var(--cyan); width: 50%; }
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 30;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,.72);
+      padding: 22px;
+    }
+    .modal.open { display: flex; }
+    .modal-box {
+      width: min(740px, 100%);
+      max-height: 88vh;
+      overflow: auto;
+      background: #0c1320;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.45);
+    }
+    textarea {
+      width: 100%;
+      min-height: 230px;
+      background: #060a11;
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 12px;
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.55;
+      resize: vertical;
+    }
+    @media (max-width: 980px) {
+      .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .grid, .signals-grid { grid-template-columns: 1fr; }
+      .market-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      header { align-items: flex-start; flex-direction: column; }
+    }
+    @media (max-width: 620px) {
+      .shell { padding: 14px 12px 34px; }
+      .tabs { grid-template-columns: 1fr; }
+      .stats, .kv, .market-grid { grid-template-columns: 1fr; }
+      .band-head { flex-direction: column; }
+      .actions { justify-content: flex-start; }
+      table { min-width: 760px; }
+      .table-wrap { overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <span id="status-dot" class="dot"></span>
+    <span>Engine <b id="top-engine">...</b></span>
+    <span>|</span>
+    <span>TWS <b id="top-tws">...</b></span>
+    <span>|</span>
+    <span>Market <b id="top-market">...</b></span>
+    <span>|</span>
+    <span>Positions <b id="top-pos">...</b></span>
+    <span>|</span>
+    <span>Live P/L <b id="top-pnl">...</b></span>
+    <span style="margin-left:auto">Updated <b id="top-updated">...</b></span>
+  </div>
+
+  <main class="shell">
+    <header>
+      <div>
+        <h1>Options Pro Ultra v6</h1>
+        <div class="subtitle">Signal provider mode: live paper monitoring, manual real-account review, no phantom panels.</div>
+      </div>
+      <div class="status-pill" id="ib-badge">IBKR: checking...</div>
+    </header>
+
+    <nav class="tabs" aria-label="Dashboard tabs">
+      <button class="tab active" data-tab="signals"><span>Signals</span><span>Real-account candidates</span></button>
+      <button class="tab" data-tab="positions"><span>Positions</span><span>Paper account truth</span></button>
+      <button class="tab" data-tab="market"><span>Market Data</span><span>ETF watchlist</span></button>
+    </nav>
+
+    <section id="panel-signals" class="panel active">
+      <div class="band">
+        <div class="band-head">
+          <div>
+            <div class="band-title">Live Engine Performance</div>
+            <div class="band-sub">Closed trades only, read from the local journal.</div>
+          </div>
+          <div class="actions">
+            <button class="primary" id="refresh-perf">Refresh</button>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="label">Total P/L</div><div class="value" id="perf-pnl">...</div><div class="sub">Closed trades</div></div>
+          <div class="stat"><div class="label">Win Rate</div><div class="value" id="perf-win">...</div><div class="sub" id="perf-wl">...</div></div>
+          <div class="stat"><div class="label">Average Win</div><div class="value good" id="perf-avg-win">...</div><div class="sub">Per winner</div></div>
+          <div class="stat"><div class="label">Average Loss</div><div class="value bad" id="perf-avg-loss">...</div><div class="sub">Per loser</div></div>
+          <div class="stat"><div class="label">Max Drawdown</div><div class="value warn" id="perf-dd">...</div><div class="sub">Peak to trough</div></div>
+          <div class="stat"><div class="label">Trades</div><div class="value" id="perf-trades">...</div><div class="sub">All closed</div></div>
+        </div>
+        <div class="chart" id="perf-chart"></div>
+        <div id="signal-audit" class="notice" style="margin-top:12px">Signal audit loading...</div>
+      </div>
+
+      <div class="band">
+        <div class="band-head">
+          <div>
+            <div class="band-title">Real Account Signals</div>
+            <div class="band-sub" id="sig-generated">Checking signal file...</div>
+          </div>
+          <div class="actions">
+            <button id="signal-mode" class="warning">Signal Only</button>
+            <button id="mirror-kill" class="danger">Mirror Kill</button>
+            <button id="refresh-signals" class="primary">Refresh</button>
+          </div>
+        </div>
+        <div id="sig-stale" class="notice red" style="display:none"></div>
+        <div id="mirror-state" class="notice amber" style="display:none"></div>
+        <div id="scan-summary" class="notice" style="display:none"></div>
+        <div id="sig-list" class="signals-grid">
+          <div class="notice">Loading signals...</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="panel-positions" class="panel">
+      <div class="band">
+        <div class="band-head">
+          <div>
+            <div class="band-title">Paper Account Positions</div>
+            <div class="band-sub">This tab reads `/api/live`, which is generated from TWS positions and the local journal.</div>
+          </div>
+          <div class="actions">
+            <button id="refresh-live" class="primary">Refresh</button>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="label">Open Positions</div><div class="value" id="pos-count">...</div><div class="sub">Paper account</div></div>
+          <div class="stat"><div class="label">Live P/L</div><div class="value" id="pos-pnl">...</div><div class="sub">Valid prices only</div></div>
+          <div class="stat"><div class="label">Max Positions</div><div class="value" id="pos-max">...</div><div class="sub">Engine cap</div></div>
+          <div class="stat"><div class="label">IBKR Legs</div><div class="value" id="pos-legs">...</div><div class="sub">Short/long split</div></div>
+          <div class="stat"><div class="label">Snapshot Age</div><div class="value" id="pos-age">...</div><div class="sub">Stale after 30m</div></div>
+          <div class="stat"><div class="label">Signal Mode</div><div class="value" id="pos-mode">...</div><div class="sub">Opening order control</div></div>
+        </div>
+        <div id="recon-box" class="notice" style="margin-top:14px">Checking reconciliation...</div>
+      </div>
+      <div class="band">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Contract</th>
+                <th>Strategy</th>
+                <th>Expiry</th>
+                <th>DTE</th>
+                <th>Qty</th>
+                <th>Entry Credit</th>
+                <th>Market Price</th>
+                <th>Unreal P/L</th>
+                <th>P/L %</th>
+                <th>Price State</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="positions-body">
+              <tr><td colspan="11" class="muted">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="panel-market" class="panel">
+      <div class="band">
+        <div class="band-head">
+          <div>
+            <div class="band-title">ETF Watchlist Market Data</div>
+            <div class="band-sub">Yahoo daily data via the local proxy. XSP is requested as `^XSP`.</div>
+          </div>
+          <div class="actions">
+            <button id="load-market" class="primary">Load Market Data</button>
+          </div>
+        </div>
+        <div class="market-grid" id="market-grid">
+          <div class="notice">Click Load Market Data.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="ticket-modal">
+    <div class="modal-box">
+      <div class="band-head">
+        <div>
+          <div class="band-title">Manual Real-Account Ticket</div>
+          <div class="band-sub">Review in TWS. This dashboard never submits a real-money order.</div>
+        </div>
+        <div class="actions">
+          <button id="copy-ticket" class="primary">Copy</button>
+          <button id="close-ticket">Close</button>
+        </div>
+      </div>
+      <textarea id="ticket-text" spellcheck="false"></textarea>
+    </div>
+  </div>
+
+  <script>
+    const TICKERS = ["SPY", "QQQ", "IWM", "GLD", "GDX", "XLE", "SMH", "TLT", "XSP", "QQQM"];
+    const YAHOO_SYMBOL = { XSP: "^XSP" };
+    const state = { live: null, signals: null, mirror: null, perf: null };
+
+    const $ = (id) => document.getElementById(id);
+    const money = (v, signed = false) => {
+      const n = Number(v);
+      if (!Number.isFinite(n)) return "-";
+      const sign = signed && n >= 0 ? "+" : (n < 0 ? "-" : "");
+      return sign + "$" + Math.abs(n).toLocaleString("en-US", { maximumFractionDigits: 0 });
+    };
+    const money2 = (v, signed = false) => {
+      const n = Number(v);
+      if (!Number.isFinite(n)) return "-";
+      const sign = signed && n >= 0 ? "+" : (n < 0 ? "-" : "");
+      return sign + "$" + Math.abs(n).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    };
+    const pct = (v) => Number.isFinite(Number(v)) ? Number(v).toFixed(1) + "%" : "-";
+    const escapeHtml = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+    const ageLabel = (secs) => {
+      const n = Number(secs);
+      if (!Number.isFinite(n)) return "-";
+      if (n < 60) return n + "s";
+      if (n < 3600) return Math.floor(n / 60) + "m";
+      return Math.floor(n / 3600) + "h " + Math.floor((n % 3600) / 60) + "m";
+    };
+
+    async function api(path, options = {}) {
+      const r = await fetch(path, { cache: "no-store", ...options });
+      const data = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(data.error || "HTTP " + r.status);
+      return data;
+    }
+
+    function setText(id, value, cls) {
+      const el = $(id);
+      if (!el) return;
+      el.textContent = value;
+      el.className = cls || "";
+    }
+
+    function setTopStatus(d) {
+      const connected = !!(d && d.engine_running && d.connected);
+      $("status-dot").className = "dot " + (connected ? "ok" : d && d.engine_running ? "warn" : "");
+      setText("top-engine", d?.engine_running ? "Running" : "Stopped", d?.engine_running ? "good" : "bad");
+      setText("top-tws", d?.connected ? "Connected" : "Disconnected", d?.connected ? "good" : "bad");
+      setText("top-market", (d?.market_status || "-").replace("_", " "), d?.market_status === "open" ? "good" : "warn");
+      setText("top-pos", `${d?.positions_count ?? 0}/${d?.max_positions ?? 5}`);
+      setText("top-pnl", money(d?.total_pnl || 0, true), Number(d?.total_pnl || 0) >= 0 ? "good" : "bad");
+      setText("top-updated", d?.updated ? new Date(d.updated).toLocaleTimeString() : "-");
+      const badge = $("ib-badge");
+      badge.textContent = connected ? "IBKR: Connected" : d?.engine_running ? "IBKR: Reconnecting" : "IBKR: Offline";
+      badge.style.color = connected ? "var(--green)" : "var(--amber)";
+      badge.style.borderColor = connected ? "rgba(34,197,94,.25)" : "rgba(245,158,11,.35)";
+      badge.style.background = connected ? "rgba(34,197,94,.08)" : "rgba(245,158,11,.08)";
+    }
+
+    function renderSparkline(cumulative) {
+      const host = $("perf-chart");
+      const points = Array.isArray(cumulative) ? cumulative : [];
+      if (!points.length) {
+        host.innerHTML = '<div class="notice" style="margin:16px">No closed trades yet.</div>';
+        return;
+      }
+      const w = 1000, h = 210, pad = 24;
+      const vals = points.map(p => Number(p.cum || 0));
+      const min = Math.min(0, ...vals), max = Math.max(1, ...vals);
+      const span = Math.max(1, max - min);
+      const x = (i) => pad + (i * (w - pad * 2) / Math.max(1, points.length - 1));
+      const y = (v) => h - pad - ((v - min) * (h - pad * 2) / span);
+      const line = vals.map((v, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
+      const area = `${line} L${x(points.length - 1)},${h - pad} L${x(0)},${h - pad} Z`;
+      host.innerHTML = `
+        <svg viewBox="0 0 ${w} ${h}" width="100%" height="100%" role="img" aria-label="Cumulative P/L">
+          <path d="${area}" fill="rgba(34,197,94,.10)"></path>
+          <path d="${line}" fill="none" stroke="#22c55e" stroke-width="3"></path>
+          <line x1="${pad}" y1="${y(0)}" x2="${w - pad}" y2="${y(0)}" stroke="rgba(255,255,255,.10)"></line>
+          ${points.map((p, i) => `<circle cx="${x(i)}" cy="${y(Number(p.cum || 0))}" r="4" fill="#22c55e"><title>${escapeHtml(p.date || "")} ${escapeHtml(p.ticker || "")}: ${money(p.cum, true)}</title></circle>`).join("")}
+          <text x="${pad}" y="20" fill="#7d8aa3" font-size="12">${money(max)}</text>
+          <text x="${pad}" y="${h - 8}" fill="#7d8aa3" font-size="12">${money(min)}</text>
+        </svg>`;
+    }
+
+    async function loadPerformance() {
+      try {
+        const d = await api("/api/performance");
+        state.perf = d;
+        setText("perf-pnl", money(d.total_pnl, true), Number(d.total_pnl || 0) >= 0 ? "value good" : "value bad");
+        setText("perf-win", d.trades ? pct(d.win_rate) : "-", "value " + (Number(d.win_rate || 0) >= 60 ? "good" : "warn"));
+        setText("perf-wl", `${d.wins || 0} W / ${d.losses || 0} L`, "sub");
+        setText("perf-avg-win", money(d.avg_win), "value good");
+        setText("perf-avg-loss", money(d.avg_loss), "value bad");
+        setText("perf-dd", money(d.max_drawdown), "value warn");
+        setText("perf-trades", String(d.trades || 0), "value");
+        renderSparkline(d.cumulative || []);
+        const audit = d.signal_audit || {};
+        const auditEl = $("signal-audit");
+        if (auditEl) {
+          const wr = audit.copyable_closed_signal_win_rate;
+          auditEl.textContent =
+            `Signal audit: ${audit.copyable_events || 0}/${audit.events || 0} generated signal events were copyable under real-account guardrails. ` +
+            `Closed copyable signal trades: ${audit.copyable_closed_signal_trades || 0}` +
+            `${wr === null || wr === undefined ? "" : `, win rate ${wr}%`}.`;
+        }
+      } catch (e) {
+        $("perf-chart").innerHTML = `<div class="notice red" style="margin:16px">Performance fetch failed: ${escapeHtml(e.message)}</div>`;
+      }
+    }
+
+    function renderMirrorState() {
+      const box = $("mirror-state");
+      const m = state.mirror;
+      if (!m) return;
+      const reasons = Array.isArray(m.reasons) ? m.reasons : [];
+      if (m.enabled) {
+        box.style.display = "none";
+      } else {
+        box.style.display = "block";
+        box.textContent = reasons.length ? reasons.join(" ") : "Copy to Real is disabled.";
+      }
+      $("mirror-kill").textContent = m.kill_switch ? "Mirror Killed" : "Mirror Kill";
+      $("mirror-kill").className = m.kill_switch ? "warning" : "danger";
+    }
+
+    async function loadMirrorState() {
+      state.mirror = await api("/api/mirror-state");
+      renderMirrorState();
+    }
+
+    function realQtyForSignal(signal) {
+      const m = state.mirror || {};
+      const rules = m.rules || {};
+      const capital = Number(rules.capital || 0);
+      const riskPct = Number(rules.max_risk_per_trade_pct || 0);
+      const hardCap = Number(rules.max_risk_per_trade_dollars || 0);
+      if (!capital || !riskPct) return 0;
+      const pctCap = capital * (riskPct / 100);
+      const maxRisk = hardCap > 0 ? Math.min(hardCap, pctCap) : pctCap;
+      const paperQty = Math.max(1, Number(signal.qty || 1));
+      const totalRisk = Number(signal.estimated_risk || 0);
+      const unitRisk = totalRisk > 0 ? totalRisk / paperQty : 0;
+      if (!unitRisk) return 0;
+      return Math.max(0, Math.floor(maxRisk / unitRisk));
+    }
+
+    function ticketText(signal) {
+      const qty = realQtyForSignal(signal);
+      const rules = state.mirror?.rules || {};
+      const longLine = signal.long_strike ? `Long put: ${signal.long_strike}P` : "Long put: none";
+      return [
+        "MANUAL REAL-ACCOUNT TICKET",
+        "",
+        "Submit manually in TWS only after review. This dashboard does not place real-money orders.",
+        "",
+        `Symbol: ${signal.ticker || "-"}`,
+        `Strategy: ${signal.strategy || "CSP"}`,
+        `Expiry: ${signal.expiry || "-"}`,
+        `Short put: ${signal.strike || "-"}P`,
+        longLine,
+        `Real quantity from rules: ${qty || "NOT CONFIGURED"}`,
+        `Signal credit: ${money2(signal.credit || 0)}`,
+        `Estimated paper risk: ${money(signal.estimated_risk || 0)}`,
+        `Delta: ${signal.delta ?? "-"}`,
+        `IV: ${signal.iv ?? "-"}%`,
+        `DTE: ${signal.dte ?? "-"}`,
+        `Score: ${signal.score ?? "-"}`,
+        "",
+        "Required checks before submitting:",
+        "1. Confirm real account, not paper account.",
+        "2. Verify live bid/ask and use a limit order.",
+        "3. Confirm margin impact and max loss are inside the real rules.",
+        "4. Confirm no stale signal warning, major news, earnings, or event risk.",
+        "5. Submit manually in TWS only if all checks pass.",
+        "",
+        `Rules file: ${state.mirror?.rules_file || ""}`,
+        `Real capital configured: ${money(rules.capital || 0)}`,
+        `Max risk per trade: ${rules.max_risk_per_trade_pct || 0}%`,
+      ].join("\n");
+    }
+
+    function openTicket(signal) {
+      $("ticket-text").value = ticketText(signal);
+      $("ticket-modal").classList.add("open");
+    }
+
+    function renderSignals(d) {
+      const list = $("sig-list");
+      const stale = $("sig-stale");
+      const scanBox = $("scan-summary");
+      const signalOnly = !!d.signal_only;
+      $("signal-mode").textContent = signalOnly ? "Signal Only" : "Paper Auto";
+      $("signal-mode").className = signalOnly ? "warning" : "primary";
+      const suffix = d.market_status ? ` Market: ${String(d.market_status).replace("_", " ")}.` : "";
+      $("sig-generated").textContent = d.generated ? `Generated ${new Date(d.generated).toLocaleString()}.${suffix}` : `No scan file yet.${suffix}`;
+      if (d.signals_stale) {
+        stale.style.display = "block";
+        stale.textContent = `STALE SIGNALS: file age is ${ageLabel(d.signals_age_secs)}. Do not copy without a fresh market-open scan.`;
+      } else {
+        stale.style.display = "none";
+      }
+      const scan = d.scan_summary || {};
+      const blocked = Array.isArray(scan.by_ticker) ? scan.by_ticker.filter(x => x.status !== "selected") : [];
+      if (scanBox) {
+        if (blocked.length) {
+          const top = blocked.slice(0, 6).map(x => `${x.ticker}: ${x.reason}`).join(" | ");
+          scanBox.style.display = "block";
+          scanBox.textContent = `Scan summary: ${scan.selected_count || 0} selected, ${blocked.length} blocked/skipped. ${top}`;
+        } else {
+          scanBox.style.display = "none";
+        }
+      }
+      const signals = Array.isArray(d.signals) ? d.signals : [];
+      if (!signals.length) {
+        list.innerHTML = `<div class="notice">${escapeHtml(d.message || "No current signals.")}</div>`;
+        return;
+      }
+      list.innerHTML = signals.map((s, i) => {
+        const realQty = realQtyForSignal(s);
+        const blockedByRules = realQty < 1;
+        const disabled = d.signals_stale || !(state.mirror && state.mirror.enabled) || blockedByRules;
+        const blockers = Array.isArray(s.reason_labels) ? s.reason_labels : [];
+        const why = blockedByRules
+          ? "Real account rules do not permit this position size."
+          : (disabled ? "Disabled until signals are fresh and mirror controls allow copying." : "Open manual review ticket");
+        return `
+          <article class="card signal-card ${d.signals_stale ? "stale" : ""} ${blockedByRules ? "blocked" : ""}">
+            <div class="row">
+              <div>
+                <div class="kicker">${escapeHtml(s.strategy || "CSP")}</div>
+                <div class="big mono">${escapeHtml(s.ticker || "-")} ${escapeHtml(s.strike || "-")}${s.long_strike ? "/" + escapeHtml(s.long_strike) : ""}P</div>
+                <div class="small">${escapeHtml(s.expiry || "-")} - ${escapeHtml(s.dte ?? "-")} DTE</div>
+              </div>
+              <div class="big mono" style="color:var(--cyan)">${escapeHtml(s.score ?? "-")}</div>
+            </div>
+            <div class="kv">
+              <div><div class="kicker">Qty</div><div class="v">${escapeHtml(s.qty ?? "-")}</div></div>
+              <div><div class="kicker">Credit</div><div class="v good">${money2(s.credit || 0)}</div></div>
+              <div><div class="kicker">Risk</div><div class="v warn">${money(s.estimated_risk || 0)}</div></div>
+              <div><div class="kicker">Real Qty</div><div class="v">${realQty || "Blocked"}</div></div>
+              <div><div class="kicker">Delta</div><div class="v">${escapeHtml(s.delta ?? "-")}</div></div>
+              <div><div class="kicker">IV</div><div class="v">${escapeHtml(s.iv ?? "-")}%</div></div>
+              <div><div class="kicker">Buffer</div><div class="v">${escapeHtml(s.buffer_pct ?? "-")}%</div></div>
+              <div><div class="kicker">Mode</div><div class="v">${signalOnly ? "Signal" : "Paper"}</div></div>
+            </div>
+            <div class="actions" style="margin-top:14px;justify-content:flex-start">
+              <button class="primary" data-signal="${i}" ${disabled ? "disabled" : ""} title="${escapeHtml(why)}">Copy to Real</button>
+            </div>
+            ${blockers.length ? `<div class="notice amber" style="margin-top:10px">${escapeHtml(blockers.join(" "))}</div>` : ""}
+            ${blockedByRules ? `<div class="notice amber" style="margin-top:10px">Real account rules do not permit even 1 contract for this signal. Do not override manually.</div>` : ""}
+          </article>`;
+      }).join("");
+      list.querySelectorAll("[data-signal]").forEach(btn => {
+        btn.addEventListener("click", () => openTicket(signals[Number(btn.dataset.signal)]));
+      });
+    }
+
+    async function loadSignals() {
+      try {
+        await loadMirrorState();
+        const d = await api("/api/signals");
+        state.signals = d;
+        renderSignals(d);
+      } catch (e) {
+        $("sig-list").innerHTML = `<div class="notice red">Signal fetch failed: ${escapeHtml(e.message)}</div>`;
+      }
+    }
+
+    function renderPositions(d) {
+      setText("pos-count", String(d.positions_count || 0), "value");
+      setText("pos-pnl", money(d.total_pnl || 0, true), "value " + (Number(d.total_pnl || 0) >= 0 ? "good" : "bad"));
+      setText("pos-max", String(d.max_positions || 0), "value");
+      setText("pos-legs", `${d.ibkr_legs_short || 0}/${d.ibkr_legs_long || 0}`, "value");
+      setText("pos-age", ageLabel(d.snapshot_age_secs), "value " + (d.snapshot_stale ? "bad" : "good"));
+      setText("pos-mode", d.signal_only ? "Signal" : "Paper", "value " + (d.signal_only ? "warn" : "good"));
+      const recon = d.reconciliation || {};
+      const reconBox = $("recon-box");
+      if (recon.ok) {
+        reconBox.className = "notice";
+        reconBox.textContent = `Reconciliation OK. Checked ${recon.checked_at || "-"}.`;
+      } else {
+        reconBox.className = "notice red";
+        reconBox.textContent = `Reconciliation mismatch. Missing in IBKR: ${(recon.missing_in_ibkr || []).length}. Missing in journal: ${(recon.missing_in_journal || []).length}. Qty mismatches: ${(recon.qty_mismatch || []).length}.`;
+      }
+      const rows = Array.isArray(d.positions) ? d.positions : [];
+      $("positions-body").innerHTML = rows.length ? rows.map(p => `
+        <tr>
+          <td class="mono">${escapeHtml(p.ticker)} ${escapeHtml(p.strike)}P</td>
+          <td>${escapeHtml(p.strategy || "CSP")}</td>
+          <td class="mono">${escapeHtml(p.expiry || "-")}</td>
+          <td class="good">${escapeHtml(p.dte ?? "-")}</td>
+          <td class="mono">${escapeHtml(p.qty ?? "-")}</td>
+          <td class="mono">${money2(p.entry_credit || 0)}</td>
+          <td class="mono">${p.price_valid ? money2(p.current_price || 0) : "-"}</td>
+          <td class="mono ${Number(p.pnl || 0) >= 0 ? "good" : "bad"}">${money(p.pnl || 0, true)}</td>
+          <td class="mono ${Number(p.pnl_pct || 0) >= 0 ? "good" : "bad"}">${pct(p.pnl_pct || 0)}</td>
+          <td>${p.price_valid ? '<span class="good">valid</span>' : '<span class="warn">missing quote</span>'}</td>
+          <td><button class="danger" data-paper-close="${escapeHtml(p.ticker)}|${escapeHtml(p.strike)}|${escapeHtml(p.expiry)}|${escapeHtml(p.qty)}|${escapeHtml(p.strategy || "CSP")}">Close</button></td>
+        </tr>`).join("") : '<tr><td colspan="11" class="muted">No open positions.</td></tr>';
+      $("positions-body").querySelectorAll("[data-paper-close]").forEach(btn => {
+        btn.addEventListener("click", () => requestPaperClose(btn.dataset.paperClose));
+      });
+    }
+
+    async function loadLive() {
+      try {
+        const d = await api("/api/live");
+        state.live = d;
+        setTopStatus(d);
+        renderPositions(d);
+      } catch (e) {
+        setTopStatus({ engine_running: false, connected: false, positions_count: 0, max_positions: 5, total_pnl: 0 });
+        $("positions-body").innerHTML = `<tr><td colspan="11" class="bad">Live snapshot failed: ${escapeHtml(e.message)}</td></tr>`;
+      }
+    }
+
+    async function requestPaperClose(encoded) {
+      const [ticker, strikeRaw, expiry, qtyRaw, strategy] = encoded.split("|");
+      const strike = Number(strikeRaw);
+      const qty = Number(qtyRaw);
+      const phrase = `CLOSE PAPER ${ticker} ${strike}`;
+      const warning =
+        `This submits a MARKET close request to the IBKR PAPER account only.\n\n` +
+        `${ticker} ${strike}P x${qty}, expiry ${expiry}, strategy ${strategy}.\n\n` +
+        `Type exactly: ${phrase}`;
+      const typed = prompt(warning, "");
+      if (typed === null) return;
+      if (typed.trim().toUpperCase() !== phrase) {
+        alert("Close request cancelled. Confirmation phrase did not match.");
+        return;
+      }
+      if (!confirm("Final confirmation: queue this paper panic close now?")) return;
+      try {
+        const result = await api("/api/paper-close", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ticker, strike, expiry, qty, strategy, confirm: phrase })
+        });
+        alert(`Paper close queued: ${result.queued.id}`);
+        await loadLive();
+      } catch (e) {
+        alert("Paper close request failed: " + e.message);
+      }
+    }
+
+    function parseYahoo(data) {
+      const result = data?.chart?.result?.[0];
+      if (!result) throw new Error(data?.chart?.error?.description || data?.error || "No data");
+      const meta = result.meta || {};
+      const closes = (result.indicators?.quote?.[0]?.close || []).filter(v => Number.isFinite(Number(v)));
+      const price = Number(meta.regularMarketPrice || closes[closes.length - 1] || 0);
+      const prev = Number(meta.chartPreviousClose || closes[closes.length - 2] || price);
+      const hi = Math.max(...closes, price);
+      const lo = Math.min(...closes, price);
+      const change = price - prev;
+      const changePct = prev ? change / prev * 100 : 0;
+      return { price, prev, hi, lo, change, changePct, pos: hi > lo ? (price - lo) / (hi - lo) * 100 : 50 };
+    }
+
+    async function loadMarket() {
+      const host = $("market-grid");
+      host.innerHTML = TICKERS.map(t => `<div class="card market-card"><div class="kicker">${t}</div><div class="big mono">Loading...</div></div>`).join("");
+      await Promise.all(TICKERS.map(async (t, i) => {
+        const card = host.children[i];
+        try {
+          const data = await api(`/api/yahoo?ticker=${encodeURIComponent(YAHOO_SYMBOL[t] || t)}&range=1y`);
+          const m = parseYahoo(data);
+          card.innerHTML = `
+            <div class="row"><div class="kicker">${t}</div><div class="small mono">${YAHOO_SYMBOL[t] || t}</div></div>
+            <div class="big mono" style="margin-top:10px">${money2(m.price)}</div>
+            <div class="${m.change >= 0 ? "good" : "bad"} mono">${m.change >= 0 ? "+" : ""}${m.change.toFixed(2)} (${m.changePct.toFixed(2)}%)</div>
+            <div class="meter"><span style="width:${Math.max(1, Math.min(100, m.pos)).toFixed(0)}%"></span></div>
+            <div class="row small"><span>52w low ${money2(m.lo)}</span><span>52w high ${money2(m.hi)}</span></div>`;
+        } catch (e) {
+          card.innerHTML = `<div class="kicker">${t}</div><div class="bad" style="margin-top:10px">Failed to load</div><div class="small">${escapeHtml(e.message)}</div>`;
+        }
+      }));
+    }
+
+    async function toggleSignalMode() {
+      const current = !!state.signals?.signal_only;
+      const next = !current;
+      const msg = next
+        ? "Switch to Signal Only? The engine will monitor and write signals, but will not submit new paper opening orders."
+        : "Switch to Paper Auto? The engine may submit new paper opening orders during market scans.";
+      if (!confirm(msg)) return;
+      await api("/api/signal-mode", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ enabled: next })
+      });
+      await Promise.all([loadSignals(), loadLive()]);
+    }
+
+    async function toggleMirrorKill() {
+      const killed = !!state.mirror?.kill_switch;
+      const msg = killed ? "Turn off the real-account mirror kill switch?" : "Turn on the real-account mirror kill switch? Copy to Real will be disabled.";
+      if (!confirm(msg)) return;
+      await api("/api/mirror-kill", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ killed: !killed })
+      });
+      await loadSignals();
+    }
+
+    document.querySelectorAll(".tab").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
+        btn.classList.add("active");
+        $("panel-" + btn.dataset.tab).classList.add("active");
+        if (btn.dataset.tab === "market") loadMarket();
+      });
+    });
+
+    $("refresh-perf").addEventListener("click", loadPerformance);
+    $("refresh-signals").addEventListener("click", loadSignals);
+    $("refresh-live").addEventListener("click", loadLive);
+    $("load-market").addEventListener("click", loadMarket);
+    $("signal-mode").addEventListener("click", () => toggleSignalMode().catch(e => alert(e.message)));
+    $("mirror-kill").addEventListener("click", () => toggleMirrorKill().catch(e => alert(e.message)));
+    $("close-ticket").addEventListener("click", () => $("ticket-modal").classList.remove("open"));
+    $("ticket-modal").addEventListener("click", e => { if (e.target.id === "ticket-modal") $("ticket-modal").classList.remove("open"); });
+    $("copy-ticket").addEventListener("click", async () => {
+      const text = $("ticket-text").value;
+      try {
+        await navigator.clipboard.writeText(text);
+        $("copy-ticket").textContent = "Copied";
+        setTimeout(() => $("copy-ticket").textContent = "Copy", 1200);
+      } catch {
+        $("ticket-text").select();
+        document.execCommand("copy");
+      }
+    });
+
+    loadLive();
+    loadPerformance();
+    loadSignals();
+    setInterval(loadLive, 30000);
+    setInterval(loadPerformance, 60000);
+    setInterval(loadSignals, 60000);
+  </script>
+</body>
+</html>

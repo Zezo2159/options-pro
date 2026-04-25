@@ -63,7 +63,6 @@ MIRROR_KILL_FILE = _data_file("optionspro_real_mirror_kill")
 SIGNAL_AUDIT_FILE = _data_file("signal_audit.json")
 SIGNAL_AUDIT_EVENTS_FILE = _data_file("signal_audit_events.jsonl")
 PAPER_CLOSE_REQUESTS_FILE = _data_file("paper_close_requests.jsonl")
-SCAN_NOW_FILE = _data_file("scan_now_requested")  # Marker file written by proxy /api/trigger-scan
 PAPER_CLOSE_RESULTS_FILE = _data_file("paper_close_results.jsonl")
 PAPER_CLOSE_STATE_FILE = _data_file("paper_close_processed.json")
 
@@ -105,14 +104,6 @@ EMAIL_PASS = _load_email_pass()
 MAX_POSITIONS = 5
 MAX_RISK_PCT = 0.05  # 5% per trade
 MAX_RISK = ACCOUNT_SIZE * MAX_RISK_PCT  # $12,500
-
-# Per-ticker limits (introduced to allow laddered positions on the same
-# underlying without doubling-down at nearly identical expiries).
-# - MAX_PER_TICKER: hard cap on simultaneous open positions per ticker.
-# - MIN_LADDER_DTE_GAP: a new candidate's DTE must differ from every
-#   existing position's DTE on the same ticker by at least this many days.
-MAX_PER_TICKER = 2
-MIN_LADDER_DTE_GAP = 14
 
 # Watchlist & Tiers
 TIER1 = ["SPY", "QQQ", "SMH", "GDX"]       # Spreads ONLY
@@ -201,13 +192,7 @@ MONITOR_INTERVAL = 900  # 15 minutes
 AUTO_CLOSE_UNMATCHED_LONGS = False  # Safety first: alert on unexpected longs, do not market-sell by default.
 RECONCILE_ALERT_INTERVAL = 7200  # seconds between journal-vs-IBKR drift email alerts
 
-# Lowercase to match proxy.py convention. Always compare via .lower().
-# NOTE: "submitted" is intentionally NOT included. A submitted-but-unfilled
-# BTC order is a *working* order, not a closed trade — including it here
-# would cause read_open_positions() to silently drop a real IBKR position
-# from the journal view if the close order later cancels. The
-# GLD-stays-open issue should be handled via PENDING_CLOSE_MAX_AGE, not here.
-FILLED_STATUSES = {"filled", "closed", "manualclose"}
+FILLED_STATUSES = {"FILLED", "CLOSED", "MANUALCLOSE"}
 OPEN_LIKE_STATUSES = {"SUBMITTED", "PRESUBMITTED", "PENDINGSUBMIT", "PENDING", "WORKING"}
 TERMINAL_ORDER_STATUSES = {"FILLED", "CANCELLED", "APICANCELLED", "INACTIVE"}
 PENDING_CLOSE_MAX_AGE = 4 * 3600
@@ -229,23 +214,15 @@ def log(msg):
 
 def log_reconciliation(result):
     try:
-        if result.get("skipped"):
-            line = (
-                f"{now_iso()},"
-                f"status=skipped,"
-                f"ok={result.get('ok')},"
-                f"reason={result.get('reason', '')}"
-            )
-        else:
-            line = (
-                f"{now_iso()},"
-                f"status={result.get('status', 'checked')},"
-                f"ok={result.get('ok')},"
-                f"missing_in_ibkr={len(result.get('missing_in_ibkr', []))},"
-                f"missing_in_journal={len(result.get('missing_in_journal', []))},"
-                f"qty_mismatch={len(result.get('qty_mismatch', []))},"
-                f"reason={result.get('reason', '')}"
-            )
+        line = (
+            f"{now_iso()},"
+            f"status={result.get('status', 'checked')},"
+            f"ok={result.get('ok')},"
+            f"missing_in_ibkr={len(result.get('missing_in_ibkr', []))},"
+            f"missing_in_journal={len(result.get('missing_in_journal', []))},"
+            f"qty_mismatch={len(result.get('qty_mismatch', []))},"
+            f"reason={result.get('reason', '')}"
+        )
         with open(RECONCILE_LOG, "a") as f:
             f.write(line + "\n")
     except:
@@ -622,7 +599,7 @@ def read_open_positions():
                     "notes": row.get("notes", "").strip(),
                 }
             elif action.startswith("CLOSE"):
-                status = row.get("status", "").strip().lower()
+                status = row.get("status", "").strip().upper()
                 # A submitted close order is only a working order, not a closed
                 # trade. Remove the OPEN only after a fill/manual reconciliation,
                 # or when explicitly cancelling a never-filled OPEN ghost.
@@ -1630,20 +1607,6 @@ class AutoTradeEngine:
         open_tickers = [p["symbol"] for p in ibkr_shorts]
         num_open = len(ibkr_shorts)
 
-        # Per-ticker open count + existing DTEs, for MAX_PER_TICKER /
-        # MIN_LADDER_DTE_GAP gating below. Expiry comes from IBKR contract
-        # field lastTradeDateOrContractMonth, stored as "YYYYMMDD".
-        existing_per_ticker = {}  # ticker -> list of existing DTE ints
-        _now = datetime.now()
-        for _p in ibkr_shorts:
-            _sym = _p.get("symbol", "")
-            _exp = _p.get("expiry") or ""
-            try:
-                _ex_dte = (datetime.strptime(_exp, "%Y%m%d") - _now).days
-            except Exception:
-                _ex_dte = None
-            existing_per_ticker.setdefault(_sym, []).append(_ex_dte)
-
         log(f"  Open positions: {num_open}/{MAX_POSITIONS}")
         if num_open >= MAX_POSITIONS:
             log("  ⚠ Maximum positions reached — no new trades")
@@ -1664,15 +1627,13 @@ class AutoTradeEngine:
         }
 
         for ticker in WATCHLIST:
-            existing_dtes = existing_per_ticker.get(ticker, [])
-            # Hard cap on per-ticker open positions
-            if len(existing_dtes) >= MAX_PER_TICKER:
-                log(f"  {ticker}: skipped (already at MAX_PER_TICKER={MAX_PER_TICKER}, "
-                    f"existing DTEs={existing_dtes})")
+            # Skip if already have a position in this ticker
+            if ticker in open_tickers:
+                log(f"  {ticker}: skipped (already have position)")
                 scan_summary["by_ticker"].append({
                     "ticker": ticker,
                     "status": "skipped",
-                    "reason": f"At MAX_PER_TICKER ({MAX_PER_TICKER}). Existing DTEs: {existing_dtes}.",
+                    "reason": "Already open in paper account.",
                 })
                 continue
 
@@ -1715,25 +1676,6 @@ class AutoTradeEngine:
 
             exp_date = datetime.strptime(expiry, "%Y%m%d")
             dte = (exp_date - datetime.now()).days
-
-            # Ladder gap check: if this ticker already has a position, the new
-            # candidate must differ in DTE by at least MIN_LADDER_DTE_GAP days.
-            # Prevents stacking two near-identical-expiry positions on one
-            # underlying (which would just be doubling-down, not laddering).
-            if existing_dtes:
-                _conflicts = [d for d in existing_dtes
-                              if d is not None and abs(dte - d) < MIN_LADDER_DTE_GAP]
-                if _conflicts:
-                    log(f"  {ticker}: skipped — proposed DTE {dte} too close to "
-                        f"existing {existing_dtes} (need ≥{MIN_LADDER_DTE_GAP}d gap)")
-                    scan_summary["by_ticker"].append({
-                        "ticker": ticker,
-                        "status": "skipped",
-                        "reason": (f"DTE ladder gap < {MIN_LADDER_DTE_GAP}d: "
-                                   f"proposed {dte}, conflicts with {_conflicts}."),
-                        "expiry": expiry,
-                    })
-                    continue
 
             # Find best strike
             strike, opt_data, strike_diag = self.find_target_strike(ticker, stock_price, chain["strikes"], expiry)
@@ -2544,28 +2486,6 @@ class AutoTradeEngine:
     # ═══════════════════════════════════════════════
     def reconcile_positions(self, ibkr_pos=None, journal_pos=None, alert=True):
         """Compare IBKR short option positions with journal OPEN rows."""
-        # Skip entirely when TWS isn't actually connected, or during the
-        # nightly restart window. Otherwise an empty self.app.positions
-        # would look like "all positions vanished" and fire a drift alert.
-        try:
-            connected = bool(getattr(self.app, "_connected", False))
-        except Exception:
-            connected = False
-        try:
-            ms = self.market_status()
-        except Exception:
-            ms = "unknown"
-        if not connected or ms == "tws_restart":
-            return {
-                "ok": True,
-                "skipped": True,
-                "reason": ("TWS not connected" if not connected else "TWS restart window"),
-                "checked_at": now_iso(),
-                "ibkr_count": 0,
-                "journal_count": 0,
-                "drift": [],
-            }
-
         ibkr_pos = ibkr_pos if ibkr_pos is not None else (self.app.positions or {})
         journal_pos = journal_pos if journal_pos is not None else read_open_positions()
 
@@ -2844,37 +2764,6 @@ class AutoTradeEngine:
             try:
                 # ── Market hours gate ──
                 ms = self.market_status()
-
-                # ── Manual scan trigger (from dashboard /api/trigger-scan) ──
-                # Proxy writes ~/options-pro/data/scan_now_requested when the
-                # user clicks "Scan Now". We honor it only during open market
-                # hours; otherwise we just clear the marker so it doesn't queue
-                # forever.
-                if SCAN_NOW_FILE.exists():
-                    try:
-                        if ms == "open":
-                            log("🔔 Manual scan triggered")
-                            try:
-                                SCAN_NOW_FILE.unlink()
-                            except Exception as _e:
-                                log(f"  ⚠ Could not delete scan_now marker: {_e}")
-                            opportunities = self.scan()
-                            if opportunities:
-                                self.execute_trades(opportunities)
-                            # Refresh dashboard snapshot right after manual scan
-                            self.write_live_snapshot()
-                        else:
-                            log(f"🔔 Manual scan requested but market is '{ms}' — clearing marker")
-                            try:
-                                SCAN_NOW_FILE.unlink()
-                            except Exception:
-                                pass
-                    except Exception as _e:
-                        log(f"  ❌ Manual scan failed: {_e}")
-                        try:
-                            SCAN_NOW_FILE.unlink()
-                        except Exception:
-                            pass
 
                 if ms == "tws_restart":
                     # TWS is doing its nightly restart (11:45 PM – 6:30 AM ET).
