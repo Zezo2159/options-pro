@@ -31514,3 +31514,615 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 [2026-04-25 14:47:53] Scan passes: 2
 [2026-04-25 14:47:53] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
+[2026-04-25 14:47:58]   ✅ GitHub backup on restart complete
+[2026-04-25 14:47:58] 🔌 Connecting to TWS...
+[2026-04-25 14:47:58] ✅ TWS connected — next order ID: 24
+[2026-04-25 14:48:00]   📊 4 option position(s) loaded from IBKR
+[2026-04-25 14:48:00]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-25 14:48:00]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-25 14:48:00]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-25 14:48:00]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-25 14:48:03]   ↺ Restored 1 pending close order(s) from journal
+[2026-04-25 14:48:03] 🌙 Market closed — skipping initial scan, entering monitor mode
+[2026-04-25 14:48:03] 
+✅ Entering monitor mode (checking every 15 min)
+[2026-04-25 14:48:03]   📊 4 option position(s) loaded from IBKR
+[2026-04-25 14:48:03]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-25 14:48:03]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-25 14:48:03]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-25 14:48:03]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-25 14:48:06] 
+============================================================
+[2026-04-25 14:48:06] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-25 14:48:06] ============================================================
+[2026-04-25 14:48:18]   GLD $405.0P x1: no current price — skipping
+[2026-04-25 14:48:30]   TLT $84.0P x1: no current price — skipping
+[2026-04-25 14:48:30]   SMH $385.0P: close order pending (6870s ago) — skipping
+[2026-04-25 14:48:41]   IWM $256.0P x1: no current price — skipping
+[2026-04-25 14:48:41] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-25 14:51:58] 🔔 Manual scan requested but market is 'closed' — clearing marker
+[2026-04-25 15:03:41]   📊 4 option position(s) loaded from IBKR
+[2026-04-25 15:03:41]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-25 15:03:41]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-25 15:03:41]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-25 15:03:41]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-25 15:03:44] 
+============================================================
+[2026-04-25 15:03:44] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-25 15:03:44] ============================================================
+[2026-04-25 15:03:56]   GLD $405.0P x1: no current price — skipping
+[2026-04-25 15:04:08]   TLT $84.0P x1: no current price — skipping
+[2026-04-25 15:04:08]   SMH $385.0P: close order pending (7808s ago) — skipping
+[2026-04-25 15:04:19]   IWM $256.0P x1: no current price — skipping
+[2026-04-25 15:04:19] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-25 15:19:19]   📊 4 option position(s) loaded from IBKR
+[2026-04-25 15:19:19]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-25 15:19:19]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-25 15:19:19]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-25 15:19:19]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-25 15:19:23] 
+============================================================
+[2026-04-25 15:19:23] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-25 15:19:23] ============================================================
+[2026-04-25 15:19:34]   GLD $405.0P x1: no current price — skipping
+[2026-04-25 15:19:46]   TLT $84.0P x1: no current price — skipping
+[2026-04-25 15:19:46]   SMH $385.0P: close order pending (8746s ago) — skipping
+[2026-04-25 15:19:58]   IWM $256.0P x1: no current price — skipping
+[2026-04-25 15:19:58] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-25 15:34:58] 
+━━━ Daily Market-Open Scan ━━━
+[2026-04-25 15:34:58] 
+━━━ Scan Pass 1/2 ━━━
+[2026-04-25 15:34:58] 
+============================================================
+[2026-04-25 15:34:58] 🌅 MORNING SCAN STARTED
+[2026-04-25 15:34:58] ============================================================
+[2026-04-25 15:34:58]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 15:34:58]   📊 VIX: 18.71 — Regime: Normal (Δ 0.15-0.25, risk × 1.0)
+[2026-04-25 15:34:58]   Open positions: 4/5
+[2026-04-25 15:34:58] 
+  Scanning SPY...
+[2026-04-25 15:34:59]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 15:34:59]   SPY: $714.01
+[2026-04-25 15:35:00]   SPY: conId=756733 (STK)
+[2026-04-25 15:35:01]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:35:07]   TWS error 300: Can't find EId with tickerId:1014
+[2026-04-25 15:35:07]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:35:12]   TWS error 300: Can't find EId with tickerId:1015
+[2026-04-25 15:35:13]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:35:18]   TWS error 300: Can't find EId with tickerId:1016
+[2026-04-25 15:35:18]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:35:24]   TWS error 300: Can't find EId with tickerId:1017
+[2026-04-25 15:35:24]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:35:30]   TWS error 300: Can't find EId with tickerId:1018
+[2026-04-25 15:35:30]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:35:35]   TWS error 300: Can't find EId with tickerId:1019
+[2026-04-25 15:35:36]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:35:41]   TWS error 300: Can't find EId with tickerId:1020
+[2026-04-25 15:35:41]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:35:47]   TWS error 300: Can't find EId with tickerId:1021
+[2026-04-25 15:35:47]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:35:52]   TWS error 300: Can't find EId with tickerId:1022
+[2026-04-25 15:35:53]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:35:58]   TWS error 300: Can't find EId with tickerId:1023
+[2026-04-25 15:35:58]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:36:04]   TWS error 300: Can't find EId with tickerId:1024
+[2026-04-25 15:36:04]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:36:09]   TWS error 300: Can't find EId with tickerId:1025
+[2026-04-25 15:36:10]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:36:15]   TWS error 300: Can't find EId with tickerId:1026
+[2026-04-25 15:36:16]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:36:21]   TWS error 300: Can't find EId with tickerId:1027
+[2026-04-25 15:36:21]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:36:26]   TWS error 300: Can't find EId with tickerId:1028
+[2026-04-25 15:36:27]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:36:32]   TWS error 300: Can't find EId with tickerId:1029
+[2026-04-25 15:36:32]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:36:38]   TWS error 300: Can't find EId with tickerId:1030
+[2026-04-25 15:36:38]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:36:44]   TWS error 300: Can't find EId with tickerId:1031
+[2026-04-25 15:36:44]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:36:49]   TWS error 300: Can't find EId with tickerId:1032
+[2026-04-25 15:36:50]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:36:55]   SPY: no suitable strike found
+[2026-04-25 15:36:55] 
+  Scanning QQQ...
+[2026-04-25 15:36:55]   TWS error 300: Can't find EId with tickerId:1033
+[2026-04-25 15:36:55]   TWS error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.QQQ NASDAQ.NMS/TOP/ALL
+[2026-04-25 15:37:05]   QQQ: no price data
+[2026-04-25 15:37:05] 
+  Scanning SMH...
+[2026-04-25 15:37:05]   TWS error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.SMH NASDAQ.NMS/TOP/ALL
+[2026-04-25 15:37:15]   SMH: no price data
+[2026-04-25 15:37:15] 
+  Scanning GDX...
+[2026-04-25 15:37:16]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 15:37:16]   GDX: $94.20
+[2026-04-25 15:37:17]   GDX: conId=229726316 (STK)
+[2026-04-25 15:37:35]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:37:40]   TWS error 300: Can't find EId with tickerId:1042
+[2026-04-25 15:37:46]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:37:52]   TWS error 300: Can't find EId with tickerId:1044
+[2026-04-25 15:37:58]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:38:03]   TWS error 300: Can't find EId with tickerId:1046
+[2026-04-25 15:38:04]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:38:10]   TWS error 300: Can't find EId with tickerId:1048
+[2026-04-25 15:38:16]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:38:21]   TWS error 300: Can't find EId with tickerId:1050
+[2026-04-25 15:38:22]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:38:28]   TWS error 300: Can't find EId with tickerId:1052
+[2026-04-25 15:38:34]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:38:39]   TWS error 300: Can't find EId with tickerId:1054
+[2026-04-25 15:38:41]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:38:46]   TWS error 300: Can't find EId with tickerId:1056
+[2026-04-25 15:38:52]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:38:58]   TWS error 300: Can't find EId with tickerId:1058
+[2026-04-25 15:38:58]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:39:09]   GDX: skipped spread — no quote for protective long $82.0P
+[2026-04-25 15:39:09] 
+  Scanning IWM...
+[2026-04-25 15:39:09]   TWS error 300: Can't find EId with tickerId:1059
+[2026-04-25 15:39:10]   TWS error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.IWM ARCA/TOP/ALL
+[2026-04-25 15:39:20]   IWM: no price data
+[2026-04-25 15:39:20] 
+  Scanning GLD...
+[2026-04-25 15:39:20]   TWS error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.GLD ARCA/TOP/ALL
+[2026-04-25 15:39:30]   GLD: no price data
+[2026-04-25 15:39:30] 
+  Scanning XLE...
+[2026-04-25 15:39:30]   TWS error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.XLE ARCA/TOP/ALL
+[2026-04-25 15:39:40]   XLE: no price data
+[2026-04-25 15:39:40] 
+  Scanning TLT...
+[2026-04-25 15:39:40]   TWS error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.TLT NASDAQ.NMS/TOP/ALL
+[2026-04-25 15:39:50]   TLT: no price data
+[2026-04-25 15:39:50] 
+  Scanning XSP...
+[2026-04-25 15:39:50]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 15:39:51]   XSP: $716.43
+[2026-04-25 15:39:51]   XSP: conId=137851301 (IND)
+[2026-04-25 15:39:52]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:39:57]   TWS error 300: Can't find EId with tickerId:1067
+[2026-04-25 15:39:58]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:40:03]   TWS error 300: Can't find EId with tickerId:1068
+[2026-04-25 15:40:04]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-25 15:40:04]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-25 15:40:05]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:40:10]   TWS error 300: Can't find EId with tickerId:1070
+[2026-04-25 15:40:10]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:40:16]   TWS error 300: Can't find EId with tickerId:1071
+[2026-04-25 15:40:16]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:40:22]   TWS error 300: Can't find EId with tickerId:1072
+[2026-04-25 15:40:22]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:40:27]   TWS error 300: Can't find EId with tickerId:1073
+[2026-04-25 15:40:28]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:40:33]   TWS error 300: Can't find EId with tickerId:1074
+[2026-04-25 15:40:34]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-25 15:40:34]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-25 15:40:35]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:40:40]   TWS error 300: Can't find EId with tickerId:1076
+[2026-04-25 15:40:41]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:40:46]   TWS error 300: Can't find EId with tickerId:1077
+[2026-04-25 15:40:46]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:40:52]   TWS error 300: Can't find EId with tickerId:1078
+[2026-04-25 15:40:52]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:40:58]   TWS error 300: Can't find EId with tickerId:1079
+[2026-04-25 15:40:58]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:41:04]   TWS error 300: Can't find EId with tickerId:1080
+[2026-04-25 15:41:04]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-25 15:41:04]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-25 15:41:05]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:41:10]   TWS error 300: Can't find EId with tickerId:1082
+[2026-04-25 15:41:11]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:41:16]   TWS error 300: Can't find EId with tickerId:1083
+[2026-04-25 15:41:16]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:41:22]   TWS error 300: Can't find EId with tickerId:1084
+[2026-04-25 15:41:22]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:41:27]   TWS error 300: Can't find EId with tickerId:1085
+[2026-04-25 15:41:28]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:41:33]   XSP: skipped CSP — assignment exposure $69,000 exceeds risk budget $12,500
+[2026-04-25 15:41:33] 
+  Scanning QQQM...
+[2026-04-25 15:41:33]   TWS error 300: Can't find EId with tickerId:1086
+[2026-04-25 15:41:33]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 15:41:34]   QQQM: $273.39
+[2026-04-25 15:41:34]   QQQM: conId=449738108 (STK)
+[2026-04-25 15:41:34]   QQQM: no suitable expiry in 21-45 DTE range
+[2026-04-25 15:41:34]   📡 Signals written: 0 candidate(s) -> /Users/islam/options-pro/data/trade_signals.json
+[2026-04-25 15:41:34] 
+  📊 Found 0 opportunities, 1 slot(s) available
+[2026-04-25 15:41:34]   🧭 Gate summary: selected=0 candidates=0 blocked=10
+[2026-04-25 15:41:34]     SPY: skipped — No suitable strike found.
+[2026-04-25 15:41:34]     QQQ: skipped — No underlying price data from IBKR.
+[2026-04-25 15:41:34]     SMH: skipped — No underlying price data from IBKR.
+[2026-04-25 15:41:34]     GDX: blocked — No usable quote for protective long $82.0P.
+[2026-04-25 15:41:34]     IWM: skipped — No underlying price data from IBKR.
+[2026-04-25 15:41:34]     GLD: skipped — No underlying price data from IBKR.
+[2026-04-25 15:41:34]     XLE: skipped — No underlying price data from IBKR.
+[2026-04-25 15:41:34]     TLT: skipped — No underlying price data from IBKR.
+[2026-04-25 15:41:34]     XSP: blocked — Assignment exposure $69,000 exceeds paper risk budget $12,500.
+[2026-04-25 15:41:34]     QQQM: skipped — No expiry in 21-45 DTE range.
+[2026-04-25 15:41:39] 
+━━━ Scan Pass 2/2 ━━━
+[2026-04-25 15:41:39] 
+============================================================
+[2026-04-25 15:41:39] 🌅 MORNING SCAN STARTED
+[2026-04-25 15:41:39] ============================================================
+[2026-04-25 15:41:40]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 15:41:40]   📊 VIX: 18.71 — Regime: Normal (Δ 0.15-0.25, risk × 1.0)
+[2026-04-25 15:41:40]   Open positions: 4/5
+[2026-04-25 15:41:40] 
+  Scanning SPY...
+[2026-04-25 15:41:41]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 15:41:41]   SPY: $714.01
+[2026-04-25 15:41:41]   SPY: conId=756733 (STK)
+[2026-04-25 15:41:42]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:41:47]   TWS error 300: Can't find EId with tickerId:1094
+[2026-04-25 15:41:47]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:41:53]   TWS error 300: Can't find EId with tickerId:1095
+[2026-04-25 15:41:53]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:41:58]   TWS error 300: Can't find EId with tickerId:1096
+[2026-04-25 15:41:59]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:42:04]   TWS error 300: Can't find EId with tickerId:1097
+[2026-04-25 15:42:04]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:42:09]   TWS error 300: Can't find EId with tickerId:1098
+[2026-04-25 15:42:10]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:42:15]   TWS error 300: Can't find EId with tickerId:1099
+[2026-04-25 15:42:15]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:42:21]   TWS error 300: Can't find EId with tickerId:1100
+[2026-04-25 15:42:21]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:42:26]   TWS error 300: Can't find EId with tickerId:1101
+[2026-04-25 15:42:27]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:42:32]   TWS error 300: Can't find EId with tickerId:1102
+[2026-04-25 15:42:32]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:42:38]   TWS error 300: Can't find EId with tickerId:1103
+[2026-04-25 15:42:38]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:42:43]   TWS error 300: Can't find EId with tickerId:1104
+[2026-04-25 15:42:44]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:42:49]   TWS error 300: Can't find EId with tickerId:1105
+[2026-04-25 15:42:49]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:42:55]   TWS error 300: Can't find EId with tickerId:1106
+[2026-04-25 15:42:55]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:43:01]   TWS error 300: Can't find EId with tickerId:1107
+[2026-04-25 15:43:01]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:43:06]   TWS error 300: Can't find EId with tickerId:1108
+[2026-04-25 15:43:07]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:43:12]   TWS error 300: Can't find EId with tickerId:1109
+[2026-04-25 15:43:12]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:43:18]   TWS error 300: Can't find EId with tickerId:1110
+[2026-04-25 15:43:18]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:43:23]   TWS error 300: Can't find EId with tickerId:1111
+[2026-04-25 15:43:24]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:43:29]   TWS error 300: Can't find EId with tickerId:1112
+[2026-04-25 15:43:30]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:43:35]   SPY: no suitable strike found
+[2026-04-25 15:43:35] 
+  Scanning QQQ...
+[2026-04-25 15:43:35]   TWS error 300: Can't find EId with tickerId:1113
+[2026-04-25 15:43:35]   TWS error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.QQQ NASDAQ.NMS/TOP/ALL
+[2026-04-25 15:43:45]   QQQ: no price data
+[2026-04-25 15:43:45] 
+  Scanning SMH...
+[2026-04-25 15:43:45]   TWS error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.SMH NASDAQ.NMS/TOP/ALL
+[2026-04-25 15:43:55]   SMH: no price data
+[2026-04-25 15:43:55] 
+  Scanning GDX...
+[2026-04-25 15:43:56]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 15:43:56]   GDX: $94.20
+[2026-04-25 15:43:56]   GDX: conId=229726316 (STK)
+[2026-04-25 15:44:09]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:44:14]   TWS error 300: Can't find EId with tickerId:1122
+[2026-04-25 15:44:20]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:44:26]   TWS error 300: Can't find EId with tickerId:1124
+[2026-04-25 15:44:32]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:44:37]   TWS error 300: Can't find EId with tickerId:1126
+[2026-04-25 15:44:38]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:44:44]   TWS error 300: Can't find EId with tickerId:1128
+[2026-04-25 15:44:50]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:44:55]   TWS error 300: Can't find EId with tickerId:1130
+[2026-04-25 15:45:01]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:45:06]   TWS error 300: Can't find EId with tickerId:1132
+[2026-04-25 15:45:08]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:45:13]   TWS error 300: Can't find EId with tickerId:1134
+[2026-04-25 15:45:19]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:45:25]   TWS error 300: Can't find EId with tickerId:1136
+[2026-04-25 15:45:31]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:45:36]   TWS error 300: Can't find EId with tickerId:1138
+[2026-04-25 15:45:48]   GDX: skipped spread — no quote for protective long $83.0P
+[2026-04-25 15:45:48] 
+  Scanning IWM...
+[2026-04-25 15:45:48]   TWS error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.IWM ARCA/TOP/ALL
+[2026-04-25 15:45:58]   IWM: no price data
+[2026-04-25 15:45:58] 
+  Scanning GLD...
+[2026-04-25 15:45:58]   TWS error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.GLD ARCA/TOP/ALL
+[2026-04-25 15:46:08]   GLD: no price data
+[2026-04-25 15:46:08] 
+  Scanning XLE...
+[2026-04-25 15:46:08]   TWS error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.XLE ARCA/TOP/ALL
+[2026-04-25 15:46:18]   XLE: no price data
+[2026-04-25 15:46:18] 
+  Scanning TLT...
+[2026-04-25 15:46:18]   TWS error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.TLT NASDAQ.NMS/TOP/ALL
+[2026-04-25 15:46:28]   TLT: no price data
+[2026-04-25 15:46:28] 
+  Scanning XSP...
+[2026-04-25 15:46:29]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 15:46:29]   XSP: $716.43
+[2026-04-25 15:46:29]   XSP: conId=137851301 (IND)
+[2026-04-25 15:46:30]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:46:35]   TWS error 300: Can't find EId with tickerId:1147
+[2026-04-25 15:46:35]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:46:41]   TWS error 300: Can't find EId with tickerId:1148
+[2026-04-25 15:46:42]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-25 15:46:42]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-25 15:46:43]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:46:48]   TWS error 300: Can't find EId with tickerId:1150
+[2026-04-25 15:46:49]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:46:54]   TWS error 300: Can't find EId with tickerId:1151
+[2026-04-25 15:46:54]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:47:00]   TWS error 300: Can't find EId with tickerId:1152
+[2026-04-25 15:47:00]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:47:05]   TWS error 300: Can't find EId with tickerId:1153
+[2026-04-25 15:47:07]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:47:11]   TWS error 300: Can't find EId with tickerId:1154
+[2026-04-25 15:47:12]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-25 15:47:12]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-25 15:47:13]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:47:18]   TWS error 300: Can't find EId with tickerId:1156
+[2026-04-25 15:47:19]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:47:24]   TWS error 300: Can't find EId with tickerId:1157
+[2026-04-25 15:47:24]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:47:30]   TWS error 300: Can't find EId with tickerId:1158
+[2026-04-25 15:47:30]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:47:35]   TWS error 300: Can't find EId with tickerId:1159
+[2026-04-25 15:47:36]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:47:41]   TWS error 300: Can't find EId with tickerId:1160
+[2026-04-25 15:47:42]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-25 15:47:42]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-25 15:47:43]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:47:48]   TWS error 300: Can't find EId with tickerId:1162
+[2026-04-25 15:47:49]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:47:54]   TWS error 300: Can't find EId with tickerId:1163
+[2026-04-25 15:47:54]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:48:00]   TWS error 300: Can't find EId with tickerId:1164
+[2026-04-25 15:48:00]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:48:05]   TWS error 300: Can't find EId with tickerId:1165
+[2026-04-25 15:48:06]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 15:48:11]   XSP: skipped CSP — assignment exposure $69,000 exceeds risk budget $12,500
+[2026-04-25 15:48:11] 
+  Scanning QQQM...
+[2026-04-25 15:48:11]   TWS error 300: Can't find EId with tickerId:1166
+[2026-04-25 15:48:12]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 15:48:12]   QQQM: $273.39
+[2026-04-25 15:48:12]   QQQM: conId=449738108 (STK)
+[2026-04-25 15:48:12]   QQQM: no suitable expiry in 21-45 DTE range
+[2026-04-25 15:48:12]   📡 Signals written: 0 candidate(s) -> /Users/islam/options-pro/data/trade_signals.json
+[2026-04-25 15:48:12] 
+  📊 Found 0 opportunities, 1 slot(s) available
+[2026-04-25 15:48:12]   🧭 Gate summary: selected=0 candidates=0 blocked=10
+[2026-04-25 15:48:12]     SPY: skipped — No suitable strike found.
+[2026-04-25 15:48:12]     QQQ: skipped — No underlying price data from IBKR.
+[2026-04-25 15:48:12]     SMH: skipped — No underlying price data from IBKR.
+[2026-04-25 15:48:12]     GDX: blocked — No usable quote for protective long $83.0P.
+[2026-04-25 15:48:12]     IWM: skipped — No underlying price data from IBKR.
+[2026-04-25 15:48:12]     GLD: skipped — No underlying price data from IBKR.
+[2026-04-25 15:48:12]     XLE: skipped — No underlying price data from IBKR.
+[2026-04-25 15:48:12]     TLT: skipped — No underlying price data from IBKR.
+[2026-04-25 15:48:12]     XSP: blocked — Assignment exposure $69,000 exceeds paper risk budget $12,500.
+[2026-04-25 15:48:12]     QQQM: skipped — No expiry in 21-45 DTE range.
+[2026-04-25 15:48:17]   📊 4 option position(s) loaded from IBKR
+[2026-04-25 15:48:17]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-25 15:48:17]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-25 15:48:17]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-25 15:48:17]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-25 15:48:20] 
+============================================================
+[2026-04-25 15:48:20] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-25 15:48:20] ============================================================
+[2026-04-25 15:48:32]   GLD $405.0P x1: no current price — skipping
+[2026-04-25 15:48:44]   TLT $84.0P x1: no current price — skipping
+[2026-04-25 15:48:44]   SMH $385.0P: close order pending (10484s ago) — skipping
+[2026-04-25 15:48:56]   IWM $256.0P x1: no current price — skipping
+[2026-04-25 15:48:56] 
+  ⏳ Next check in 15 min...
+[2026-04-25 15:52:33]   ⚠ TWS error 2103: data farm issue
+[2026-04-25 15:52:51]   🔴 TWS error 1100: IBKR connectivity LOST — marking disconnected
+[2026-04-25 15:52:51]   TWS error 2108: Market data farm connection is inactive but should be available upon demand.usfarm.nj
+[2026-04-25 16:03:56] ⚠ Connection lost (664s ago) — attempting reconnect...
+[2026-04-25 16:03:56] 🔄 Attempting reconnect...
+[2026-04-25 16:03:56] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-25 16:04:01] 🔌 Connecting to TWS...
+[2026-04-25 16:04:01] ✅ TWS connected — next order ID: 24
+[2026-04-25 16:04:01]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-25 16:04:01]   ⚠ TWS error 2103: data farm issue
+[2026-04-25 16:04:34] ❌ Failed to connect to TWS after 30s
+[2026-04-25 16:04:34] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-25 16:05:34] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-25 16:05:34] 🔄 Attempting reconnect...
+[2026-04-25 16:05:34] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-25 16:05:40] 🔌 Connecting to TWS...
+[2026-04-25 16:05:40] ✅ TWS connected — next order ID: 24
+[2026-04-25 16:05:40]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-25 16:05:40]   ⚠ TWS error 2103: data farm issue
+[2026-04-25 16:06:13] ❌ Failed to connect to TWS after 30s
+[2026-04-25 16:06:13] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-25 16:07:13] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-25 16:07:13] 🔄 Attempting reconnect...
+[2026-04-25 16:07:13] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-25 16:07:18] 🔌 Connecting to TWS...
+[2026-04-25 16:07:18] ✅ TWS connected — next order ID: 24
+[2026-04-25 16:07:18]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-25 16:07:18]   ⚠ TWS error 2103: data farm issue
+[2026-04-25 16:07:51] ❌ Failed to connect to TWS after 30s
+[2026-04-25 16:07:51] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-25 16:08:52] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-25 16:08:52] 🔄 Attempting reconnect...
+[2026-04-25 16:08:52] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-25 16:08:57] 🔌 Connecting to TWS...
+[2026-04-25 16:08:57] ✅ TWS connected — next order ID: 24
+[2026-04-25 16:08:57]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-25 16:08:57]   ⚠ TWS error 2103: data farm issue
+[2026-04-25 16:09:30] ❌ Failed to connect to TWS after 30s
+[2026-04-25 16:09:30] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-25 16:10:30] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-25 16:10:30] 🔄 Attempting reconnect...
+[2026-04-25 16:10:30] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-25 16:10:35] 🔌 Connecting to TWS...
+[2026-04-25 16:10:35] ✅ TWS connected — next order ID: 24
+[2026-04-25 16:10:35]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-25 16:10:35]   ⚠ TWS error 2103: data farm issue
+[2026-04-25 16:11:09] ❌ Failed to connect to TWS after 30s
+[2026-04-25 16:11:09] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-25 16:12:09] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-25 16:12:09] 🔄 Attempting reconnect...
+[2026-04-25 16:12:09] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-25 16:12:14] 🔌 Connecting to TWS...
+[2026-04-25 16:12:14] ✅ TWS connected — next order ID: 24
+[2026-04-25 16:12:14]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-25 16:12:14]   ⚠ TWS error 2103: data farm issue
+[2026-04-25 16:12:48] ❌ Failed to connect to TWS after 30s
+[2026-04-25 16:12:48] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-25 16:13:48] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-25 16:13:48] 🔄 Attempting reconnect...
+[2026-04-25 16:13:48] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-25 16:13:53] 🔌 Connecting to TWS...
+[2026-04-25 16:13:53] ✅ TWS connected — next order ID: 24
+[2026-04-25 16:13:53]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-25 16:13:53]   ⚠ TWS error 2103: data farm issue
+[2026-04-25 16:14:27] ❌ Failed to connect to TWS after 30s
+[2026-04-25 16:14:27] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-25 16:15:27] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-25 16:15:27] 🔄 Attempting reconnect...
+[2026-04-25 16:15:27] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-25 16:15:32] 🔌 Connecting to TWS...
+[2026-04-25 16:15:32] ✅ TWS connected — next order ID: 24
+[2026-04-25 16:15:32]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-25 16:15:32]   ⚠ TWS error 2103: data farm issue
+[2026-04-25 16:16:06] ❌ Failed to connect to TWS after 30s
+[2026-04-25 16:16:06] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-25 16:17:06] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-25 16:17:06] 🔄 Attempting reconnect...
+[2026-04-25 16:17:06] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-25 16:17:11] 🔌 Connecting to TWS...
+[2026-04-25 16:17:11] ✅ TWS connected — next order ID: 24
+[2026-04-25 16:17:11]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-25 16:17:11]   ⚠ TWS error 2103: data farm issue
+[2026-04-25 16:17:44] ❌ Failed to connect to TWS after 30s
+[2026-04-25 16:17:44] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-25 16:18:44] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-25 16:18:44] 🔄 Attempting reconnect...
+[2026-04-25 16:18:44] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-25 16:18:49] 🔌 Connecting to TWS...
+[2026-04-25 16:18:49] ✅ TWS connected — next order ID: 24
+[2026-04-25 16:18:49]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-25 16:18:49]   ⚠ TWS error 2103: data farm issue
+[2026-04-25 16:19:23] ❌ Failed to connect to TWS after 30s
+[2026-04-25 16:19:23] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-25 16:20:23] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-25 16:20:23] 🔄 Attempting reconnect...
+[2026-04-25 16:20:23] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-25 16:20:28] 🔌 Connecting to TWS...
+[2026-04-25 16:20:28] ✅ TWS connected — next order ID: 24
+[2026-04-25 16:20:28]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-25 16:20:28]   ⚠ TWS error 2103: data farm issue
+[2026-04-25 16:21:02] ❌ Failed to connect to TWS after 30s
+[2026-04-25 16:21:02] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-25 16:22:02] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-25 16:22:02] 🔄 Attempting reconnect...
+[2026-04-25 16:22:02] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-25 16:22:07] 🔌 Connecting to TWS...
+[2026-04-25 16:22:07] ✅ TWS connected — next order ID: 24
+[2026-04-25 16:22:07]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-25 16:22:07]   ⚠ TWS error 2103: data farm issue
+[2026-04-25 16:22:41] ❌ Failed to connect to TWS after 30s
+[2026-04-25 16:22:41] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-25 16:23:41] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-25 16:23:41] 🔄 Attempting reconnect...
+[2026-04-25 16:23:41] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-25 16:23:46] 🔌 Connecting to TWS...
+[2026-04-25 16:23:46] ✅ TWS connected — next order ID: 24
+[2026-04-25 16:23:46]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-25 16:23:46]   ⚠ TWS error 2103: data farm issue
+[2026-04-25 16:24:19] ❌ Failed to connect to TWS after 30s
+[2026-04-25 16:24:19] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-25 16:25:20] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-25 16:25:20] 🔄 Attempting reconnect...
+[2026-04-25 16:25:20] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-25 16:25:25] 🔌 Connecting to TWS...
+[2026-04-25 16:25:25] ✅ TWS connected — next order ID: 24
+[2026-04-25 16:25:25]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-25 16:25:25]   ⚠ TWS error 2103: data farm issue
+[2026-04-25 16:25:58] ❌ Failed to connect to TWS after 30s
+[2026-04-25 16:25:58] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-25 16:26:58] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-25 16:26:58] 🔄 Attempting reconnect...
+[2026-04-25 16:26:58] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-25 16:27:03] 🔌 Connecting to TWS...
+[2026-04-25 16:27:03] ✅ TWS connected — next order ID: 24
+[2026-04-25 16:27:03]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-25 16:27:03]   ⚠ TWS error 2103: data farm issue
+[2026-04-25 16:27:37] ❌ Failed to connect to TWS after 30s
+[2026-04-25 16:27:37] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-25 16:28:37] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-25 16:28:37] 🔄 Attempting reconnect...
+[2026-04-25 16:28:37] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-25 16:28:42] 🔌 Connecting to TWS...
+[2026-04-25 16:28:42] ✅ TWS connected — next order ID: 24
+[2026-04-25 16:28:42]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-25 16:28:42]   ⚠ TWS error 2103: data farm issue
+[2026-04-25 16:29:15] ❌ Failed to connect to TWS after 30s
+[2026-04-25 16:29:15] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-25 16:30:16] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-25 16:30:16] 🔄 Attempting reconnect...
+[2026-04-25 16:30:16] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-25 16:30:21] 🔌 Connecting to TWS...
+[2026-04-25 16:30:21] ✅ TWS connected — next order ID: 24
+[2026-04-25 16:30:21]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-25 16:30:21]   ⚠ TWS error 2103: data farm issue
+[2026-04-25 16:30:54] ❌ Failed to connect to TWS after 30s
+[2026-04-25 16:30:54] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-25 16:31:54] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-25 16:31:54] 🔄 Attempting reconnect...
+[2026-04-25 16:31:54] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-25 16:31:59] 🔌 Connecting to TWS...
+[2026-04-25 16:31:59] ✅ TWS connected — next order ID: 24
+[2026-04-25 16:32:01]   📊 4 option position(s) loaded from IBKR
+[2026-04-25 16:32:01]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-25 16:32:01]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-25 16:32:01]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-25 16:32:01]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-25 16:32:04]   📊 4 option position(s) loaded from IBKR
+[2026-04-25 16:32:04]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-25 16:32:04]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-25 16:32:04]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-25 16:32:04]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-25 16:32:07] 
+============================================================
+[2026-04-25 16:32:07] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-25 16:32:07] ============================================================
+[2026-04-25 16:32:19]   GLD $405.0P x1: no current price — skipping
+[2026-04-25 16:32:22]   🟢 TWS error 1102: Connection fully restored
+[2026-04-25 16:32:24]   ⚠ TWS error 2103: data farm issue
+[2026-04-25 16:32:30] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.32 P/L=$-2 DTE=33
+[2026-04-25 16:32:30]    >> HOLD (target=$15 stop=$-60)
+[2026-04-25 16:32:30]   SMH $385.0P: close order pending (13110s ago) — skipping
+[2026-04-25 16:32:31] 
+  IWM   $256.0P x1 [CSP]: entry=$318 now=$1.60 P/L=$158 DTE=26
+[2026-04-25 16:32:31]    >> HOLD (target=$159 stop=$-636)
+[2026-04-25 16:32:31] 
+  ⏳ Next check in 15 min...
+[2026-04-25 16:36:59] 
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+[2026-04-25 16:36:59] Options Pro Ultra v6 — Autotrade Engine
+[2026-04-25 16:36:59] Account: DU4735568 | Size: $250,000
+[2026-04-25 16:36:59] Max positions: 5 | Max risk: $12,500
+[2026-04-25 16:36:59] Delta: 0.15-0.25 | DTE: 21-45
+[2026-04-25 16:36:59] Close: 50% profit | Stop: 2.0× credit
+[2026-04-25 16:36:59] Scan passes: 2
+[2026-04-25 16:36:59] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+

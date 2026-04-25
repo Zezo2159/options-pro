@@ -58,3 +58,9 @@
 2026-04-25T14:44:04+02:00,status=checked,ok=False,missing_in_ibkr=1,missing_in_journal=1,qty_mismatch=0,reason=
 2026-04-25T14:45:25+02:00,status=checked,ok=False,missing_in_ibkr=1,missing_in_journal=1,qty_mismatch=0,reason=
 2026-04-25T14:46:03+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-04-25T14:48:03+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-04-25T14:48:41+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-04-25T15:04:19+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-04-25T15:19:58+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-04-25T15:48:56+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-04-25T16:32:31+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=

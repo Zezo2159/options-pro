@@ -2822,6 +2822,8 @@ class AutoTradeEngine:
                     f"(longs are BPS protective puts, excluded from snapshot)")
 
             total_pnl = 0.0
+            valid_price_count = 0
+            missing_quote_count = 0
             for key, ibkr in ibkr_pos.items():
                 if ibkr.get("position", 0) >= 0:
                     continue  # skip longs
@@ -2860,13 +2862,21 @@ class AutoTradeEngine:
                 pnl_pct       = round((pnl / entry_total * 100) if entry_total and has_live_price else 0, 1)
                 if has_live_price:
                     total_pnl += pnl
+                    valid_price_count += 1
+                else:
+                    missing_quote_count += 1
 
                 pending_key = self._pending_close_key(ticker, strike, expiry)
                 pending_close = self._pending_closes.get(pending_key)
                 pending_age = None
+                pending_remaining = None
+                pending_started_at = None
                 if pending_close:
                     try:
-                        pending_age = int((datetime.now() - pending_close.get("at", datetime.now())).total_seconds())
+                        pending_at = pending_close.get("at", datetime.now())
+                        pending_age = int((datetime.now() - pending_at).total_seconds())
+                        pending_remaining = max(0, int(PENDING_CLOSE_MAX_AGE - pending_age))
+                        pending_started_at = pending_at.astimezone().isoformat(timespec="seconds")
                     except Exception:
                         pending_age = None
 
@@ -2885,6 +2895,9 @@ class AutoTradeEngine:
                     "pending_close": bool(pending_close),
                     "pending_close_order_id": pending_close.get("order_id") if pending_close else None,
                     "pending_close_age_secs": pending_age,
+                    "pending_close_remaining_secs": pending_remaining,
+                    "pending_close_started_at": pending_started_at,
+                    "pending_close_max_age_secs": PENDING_CLOSE_MAX_AGE if pending_close else None,
                 })
 
             regime = getattr(self, "_current_regime", None) or {}
@@ -2906,6 +2919,16 @@ class AutoTradeEngine:
                 reconciliation = self.reconcile_positions(ibkr_pos, journal_pos)
             log_reconciliation(reconciliation)
 
+            positions_count = len(positions)
+            if positions_count <= 0:
+                pnl_status = "none"
+            elif valid_price_count <= 0:
+                pnl_status = "unavailable"
+            elif missing_quote_count > 0:
+                pnl_status = "partial"
+            else:
+                pnl_status = "complete"
+
             snapshot = {
                 "updated":          now_iso(),
                 "engine_running":   True,
@@ -2919,9 +2942,12 @@ class AutoTradeEngine:
                 "vix":              round(vix, 2) if vix else None,
                 "regime":           regime.get("label", "Unknown"),
                 "positions":        positions,
-                "positions_count":  len(positions),
+                "positions_count":  positions_count,
                 "max_positions":    MAX_POSITIONS,
                 "total_pnl":        round(total_pnl, 2),
+                "pnl_status":       pnl_status,
+                "valid_price_count": valid_price_count,
+                "missing_quote_count": missing_quote_count,
                 "account_size":     ACCOUNT_SIZE,
                 "ibkr_legs_total":  total_ibkr,
                 "ibkr_legs_short":  shorts_count,
@@ -2935,6 +2961,9 @@ class AutoTradeEngine:
                         "strike": meta.get("strike"),
                         "expiry": meta.get("expiry"),
                         "age_secs": int((datetime.now() - meta.get("at", datetime.now())).total_seconds()),
+                        "remaining_secs": max(0, int(PENDING_CLOSE_MAX_AGE - (datetime.now() - meta.get("at", datetime.now())).total_seconds())),
+                        "started_at": meta.get("at", datetime.now()).astimezone().isoformat(timespec="seconds"),
+                        "max_age_secs": PENDING_CLOSE_MAX_AGE,
                     }
                     for key, meta in self._pending_closes.items()
                 ],
