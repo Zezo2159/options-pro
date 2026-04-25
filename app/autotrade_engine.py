@@ -812,9 +812,16 @@ class TWSApp(EWrapper, EClient):
     def securityDefinitionOptionParameter(self, reqId, exchange, underlyingConId,
                                             tradingClass, multiplier, expirations, strikes):
         if reqId not in self.option_chains:
-            self.option_chains[reqId] = {"expirations": set(), "strikes": set()}
+            self.option_chains[reqId] = {"expirations": set(), "strikes": set(), "chains": []}
         self.option_chains[reqId]["expirations"].update(expirations)
         self.option_chains[reqId]["strikes"].update(strikes)
+        self.option_chains[reqId].setdefault("chains", []).append({
+            "exchange": exchange,
+            "tradingClass": tradingClass,
+            "multiplier": multiplier,
+            "expirations": set(expirations),
+            "strikes": set(strikes),
+        })
 
     def securityDefinitionOptionParameterEnd(self, reqId):
         if reqId in self._chain_events:
@@ -1148,45 +1155,77 @@ class AutoTradeEngine:
             price = (md["bid"] + md["ask"]) / 2
         return price
 
-    def get_option_data(self, ticker, strike, expiry, right="P", timeout=10):
+    def get_option_data(self, ticker, strike, expiry, right="P", timeout=10, exchange=None, trading_class=None):
         """Get option price, IV, delta, greeks."""
-        req_id = self.next_req_id()
-        contract = Contract()
-        contract.symbol = ticker
-        contract.secType = "OPT"
-        # XSP options are CBOE-listed, not SMART-routed
-        contract.exchange = "CBOE" if ticker in self.INDEX_TICKERS else "SMART"
-        contract.currency = "USD"
-        contract.strike = strike
-        contract.lastTradeDateOrContractMonth = expiry
-        contract.right = right
-        contract.multiplier = "100"
+        default_exchange = "CBOE" if ticker in self.INDEX_TICKERS else "SMART"
+        native_exchange = self.PRIMARY_EXCHANGES.get(ticker)
+        default_class = trading_class if trading_class is not None else _TRADING_CLASS.get(ticker, ticker)
+        attempts = []
 
-        event = threading.Event()
-        self.app._price_events[req_id] = event
-        self.app.market_data[req_id] = {}
+        def add_attempt(ex, tc):
+            key = (ex or default_exchange, tc or "")
+            if key not in attempts:
+                attempts.append(key)
 
-        # tradingClass required — without it IBKR returns error 200 for ETF options
-        contract.tradingClass = _TRADING_CLASS.get(ticker, ticker)
-        
-        self.app.reqMktData(req_id, contract, "106", False, False, [])
-        event.wait(timeout=timeout)
+        add_attempt(exchange or default_exchange, default_class)
+        if default_class:
+            add_attempt(exchange or default_exchange, None)
+        if native_exchange and native_exchange != (exchange or default_exchange):
+            add_attempt(native_exchange, default_class)
+            if default_class:
+                add_attempt(native_exchange, None)
 
-        # Delayed/paper option greeks often arrive slightly after the first
-        # bid/ask tick. Give them a brief grace window before cancelling the
-        # subscription so we don't self-inflict "missing delta" skips.
-        grace_deadline = time.time() + OPTION_GREEKS_GRACE_SECS
-        while time.time() < grace_deadline:
-            md = self.app.market_data.get(req_id, {})
-            delta = md.get("delta")
-            iv = md.get("iv")
-            if delta not in (None, 0, -1, -2) or (iv and iv > 0):
+        md = {}
+        for idx, (attempt_exchange, attempt_class) in enumerate(attempts):
+            req_id = self.next_req_id()
+            contract = Contract()
+            contract.symbol = ticker
+            contract.secType = "OPT"
+            contract.exchange = attempt_exchange
+            contract.currency = "USD"
+            contract.strike = strike
+            contract.lastTradeDateOrContractMonth = expiry
+            contract.right = right
+            contract.multiplier = "100"
+            if attempt_class:
+                contract.tradingClass = attempt_class
+
+            event = threading.Event()
+            self.app._price_events[req_id] = event
+            self.app.market_data[req_id] = {}
+
+            wait_time = timeout if idx == 0 else min(2, timeout)
+            self.app.reqMktData(req_id, contract, "106", False, False, [])
+            event.wait(timeout=wait_time)
+
+            # Delayed/paper option greeks often arrive slightly after the first
+            # bid/ask tick. Give them a brief grace window before cancelling the
+            # subscription so we don't self-inflict "missing delta" skips.
+            grace_secs = OPTION_GREEKS_GRACE_SECS if idx == 0 else 0.4
+            grace_deadline = time.time() + grace_secs
+            while time.time() < grace_deadline:
+                md_try = self.app.market_data.get(req_id, {})
+                delta = md_try.get("delta")
+                iv = md_try.get("iv")
+                if delta not in (None, 0, -1, -2) or (iv and iv > 0):
+                    break
+                time.sleep(0.1)
+
+            self.app.cancelMktData(req_id)
+            md_try = self.app.market_data.get(req_id, {})
+            bid_try = md_try.get("bid", 0) or 0
+            ask_try = md_try.get("ask", 0) or 0
+            if not md_try.get("optPrice") and bid_try > 0 and ask_try > 0:
+                md_try["optPrice"] = (bid_try + ask_try) / 2
+            price_try = md_try.get("optPrice") or md_try.get("last")
+            if not price_try and "bid" in md_try and "ask" in md_try:
+                price_try = (md_try["bid"] + md_try["ask"]) / 2
+                md_try["optPrice"] = price_try
+            if md_try:
+                md = md_try
+            if (price_try or 0) > 0 or (bid_try > 0 and ask_try > 0):
                 break
-            time.sleep(0.1)
 
-        self.app.cancelMktData(req_id)
-
-        md = self.app.market_data.get(req_id, {})
         bid = md.get("bid", 0) or 0
         ask = md.get("ask", 0) or 0
 
@@ -1266,28 +1305,37 @@ class AutoTradeEngine:
 
     def get_option_con_id(self, ticker, strike, expiry, right="P", timeout=10):
         """Resolve an option contract's conId — needed for combo legs."""
-        req_id = self.next_req_id()
-        contract = Contract()
-        contract.symbol = ticker
-        contract.secType = "OPT"
-        contract.exchange = "CBOE" if ticker in self.INDEX_TICKERS else "SMART"
-        contract.currency = "USD"
-        contract.strike = strike
-        contract.lastTradeDateOrContractMonth = str(expiry)
-        contract.right = right
-        contract.multiplier = "100"
-        contract.tradingClass = _TRADING_CLASS.get(ticker, ticker)
+        default_exchange = "CBOE" if ticker in self.INDEX_TICKERS else "SMART"
+        default_class = _TRADING_CLASS.get(ticker, ticker)
+        attempts = [(default_exchange, default_class), (default_exchange, None)]
+        native_exchange = self.PRIMARY_EXCHANGES.get(ticker)
+        if native_exchange and native_exchange != default_exchange:
+            attempts.extend([(native_exchange, default_class), (native_exchange, None)])
 
-        event = threading.Event()
-        self.app._detail_events[req_id] = event
-        self.app.contract_details[req_id] = None
+        for idx, (exchange, trading_class) in enumerate(attempts):
+            req_id = self.next_req_id()
+            contract = Contract()
+            contract.symbol = ticker
+            contract.secType = "OPT"
+            contract.exchange = exchange
+            contract.currency = "USD"
+            contract.strike = strike
+            contract.lastTradeDateOrContractMonth = str(expiry)
+            contract.right = right
+            contract.multiplier = "100"
+            if trading_class:
+                contract.tradingClass = trading_class
 
-        self.app.reqContractDetails(req_id, contract)
-        event.wait(timeout=timeout)
+            event = threading.Event()
+            self.app._detail_events[req_id] = event
+            self.app.contract_details[req_id] = None
 
-        details = self.app.contract_details.get(req_id)
-        if details:
-            return details.contract.conId
+            self.app.reqContractDetails(req_id, contract)
+            event.wait(timeout=timeout if idx == 0 else min(3, timeout))
+
+            details = self.app.contract_details.get(req_id)
+            if details:
+                return details.contract.conId
         return None
 
     def get_vix(self, timeout=10):
@@ -1346,9 +1394,42 @@ class AutoTradeEngine:
         event.wait(timeout=timeout)
 
         chain = self.app.option_chains.get(req_id, {})
+        chains = [c for c in chain.get("chains", []) if c.get("expirations") and c.get("strikes")]
+        expected_class = _TRADING_CLASS.get(ticker, ticker)
+        if chains:
+            preferred = ["CBOE"] if ticker in self.INDEX_TICKERS else ["SMART", self.PRIMARY_EXCHANGES.get(ticker), "CBOE"]
+            preferred = [x for x in preferred if x]
+
+            def rank(c):
+                exchange = c.get("exchange")
+                try:
+                    exchange_rank = preferred.index(exchange)
+                except ValueError:
+                    exchange_rank = len(preferred)
+                class_match = 1 if str(c.get("tradingClass", "")).upper() == str(expected_class).upper() else 0
+                multiplier_match = 1 if str(c.get("multiplier", "")) == "100" else 0
+                depth = len(c.get("expirations", [])) + len(c.get("strikes", []))
+                return (class_match, multiplier_match, -exchange_rank, depth)
+
+            chosen = max(chains, key=rank)
+            log(
+                f"  {ticker}: option chain {chosen.get('tradingClass') or '-'}"
+                f"@{chosen.get('exchange') or '-'} "
+                f"({len(chosen.get('expirations', []))} expiries, {len(chosen.get('strikes', []))} strikes)"
+            )
+            return {
+                "expirations": sorted(chosen.get("expirations", set())),
+                "strikes": sorted(chosen.get("strikes", set())),
+                "exchange": chosen.get("exchange"),
+                "tradingClass": chosen.get("tradingClass") or expected_class,
+                "multiplier": chosen.get("multiplier"),
+            }
         return {
             "expirations": sorted(chain.get("expirations", set())),
             "strikes": sorted(chain.get("strikes", set())),
+            "exchange": None,
+            "tradingClass": expected_class,
+            "multiplier": "100",
         }
 
     # ── Scoring ──
@@ -1471,7 +1552,7 @@ class AutoTradeEngine:
         return best
 
     # ── Find Best Strike ──
-    def find_target_strike(self, ticker, stock_price, strikes, expiry):
+    def find_target_strike(self, ticker, stock_price, strikes, expiry, option_exchange=None, trading_class=None):
         """Find the put strike with delta closest to target range.
         Uses regime-adjusted delta bounds when available.
         Requires valid delta data; missing Greeks are not safe signal inputs."""
@@ -1504,7 +1585,10 @@ class AutoTradeEngine:
 
         for strike in otm_strikes[:20]:
             diagnostics["examined"] += 1
-            opt = self.get_option_data(ticker, strike, expiry, "P", timeout=4)
+            opt = self.get_option_data(
+                ticker, strike, expiry, "P", timeout=4,
+                exchange=option_exchange, trading_class=trading_class,
+            )
             delta = abs(opt.get("delta", 0))
             # get_option_data returns "optPrice" — check both keys for safety
             price = opt.get("optPrice", 0) or opt.get("price", 0)
@@ -1820,7 +1904,13 @@ class AutoTradeEngine:
                     continue
 
             # Find best strike
-            strike, opt_data, strike_diag = self.find_target_strike(ticker, stock_price, chain["strikes"], expiry)
+            option_exchange = chain.get("exchange")
+            trading_class = chain.get("tradingClass")
+            strike, opt_data, strike_diag = self.find_target_strike(
+                ticker, stock_price, chain["strikes"], expiry,
+                option_exchange=option_exchange,
+                trading_class=trading_class,
+            )
             if not strike or not opt_data:
                 log(f"  {ticker}: no suitable strike found")
                 scan_summary["by_ticker"].append({
@@ -1879,7 +1969,10 @@ class AutoTradeEngine:
                     })
                     continue
                 long_strike = max(candidate_longs)  # Closest to target
-                long_opt = self.get_option_data(ticker, long_strike, expiry, "P")
+                long_opt = self.get_option_data(
+                    ticker, long_strike, expiry, "P",
+                    exchange=option_exchange, trading_class=trading_class,
+                )
                 long_premium = long_opt.get("price", 0) or long_opt.get("optPrice", 0)
                 if long_premium <= 0:
                     log(f"  {ticker}: skipped spread — no quote for protective long ${long_strike}P")
@@ -1976,6 +2069,8 @@ class AutoTradeEngine:
                 "strategy": strategy,
                 "qty": qty,
                 "stock_price": stock_price,
+                "option_exchange": option_exchange,
+                "trading_class": trading_class,
             })
             scan_summary["by_ticker"].append({
                 "ticker": ticker,

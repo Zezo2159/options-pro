@@ -32196,3 +32196,92 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 [2026-04-25 16:39:07] Scan passes: 2
 [2026-04-25 16:39:07] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
+[2026-04-25 16:39:12]   ✅ GitHub backup on restart complete
+[2026-04-25 16:39:12] 🔌 Connecting to TWS...
+[2026-04-25 16:39:12] ✅ TWS connected — next order ID: 24
+[2026-04-25 16:39:13]   TWS error 2108: Market data farm connection is inactive but should be available upon demand.usfarm.nj
+[2026-04-25 16:39:13]   TWS error 2108: Market data farm connection is inactive but should be available upon demand.usfarm.nj
+[2026-04-25 16:39:14]   📊 4 option position(s) loaded from IBKR
+[2026-04-25 16:39:14]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-25 16:39:14]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-25 16:39:14]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-25 16:39:14]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-25 16:39:17]   ↺ Restored 1 pending close order(s) from journal
+[2026-04-25 16:39:17] 
+━━━ Scan Pass 1/2 ━━━
+[2026-04-25 16:39:17] 
+============================================================
+[2026-04-25 16:39:17] 🌅 MORNING SCAN STARTED
+[2026-04-25 16:39:17] ============================================================
+[2026-04-25 16:39:19]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 16:39:19]   📊 VIX: 18.71 — Regime: Normal (Δ 0.15-0.25, risk × 1.0)
+[2026-04-25 16:39:19]   Open positions: 4/5
+[2026-04-25 16:39:19] 
+  Scanning SPY...
+[2026-04-25 16:39:19]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 16:39:20]   SPY: $714.01
+[2026-04-25 16:39:20]   SPY: conId=756733 (STK)
+[2026-04-25 16:39:20]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:39:26]   TWS error 300: Can't find EId with tickerId:1005
+[2026-04-25 16:39:26]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:39:31]   TWS error 300: Can't find EId with tickerId:1006
+[2026-04-25 16:39:32]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:39:37]   TWS error 300: Can't find EId with tickerId:1007
+[2026-04-25 16:39:37]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:39:42]   TWS error 300: Can't find EId with tickerId:1008
+[2026-04-25 16:39:43]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:39:48]   TWS error 300: Can't find EId with tickerId:1009
+[2026-04-25 16:39:48]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:39:54]   TWS error 300: Can't find EId with tickerId:1010
+[2026-04-25 16:39:54]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:39:59]   TWS error 300: Can't find EId with tickerId:1011
+[2026-04-25 16:40:00]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:40:05]   TWS error 300: Can't find EId with tickerId:1012
+[2026-04-25 16:40:05]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:40:11]   TWS error 300: Can't find EId with tickerId:1013
+[2026-04-25 16:40:11]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:40:16]   TWS error 300: Can't find EId with tickerId:1014
+[2026-04-25 16:40:17]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:40:22]   TWS error 300: Can't find EId with tickerId:1015
+[2026-04-25 16:40:22]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:40:28]   TWS error 300: Can't find EId with tickerId:1016
+[2026-04-25 16:40:28]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:40:33]   TWS error 300: Can't find EId with tickerId:1017
+[2026-04-25 16:40:34]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:40:39]   TWS error 300: Can't find EId with tickerId:1018
+[2026-04-25 16:40:39]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:40:44]   TWS error 300: Can't find EId with tickerId:1019
+[2026-04-25 16:40:45]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:40:50]   TWS error 300: Can't find EId with tickerId:1020
+[2026-04-25 16:40:50]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:40:56]   TWS error 300: Can't find EId with tickerId:1021
+[2026-04-25 16:40:56]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:41:01]   TWS error 300: Can't find EId with tickerId:1022
+[2026-04-25 16:41:02]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:41:07]   TWS error 300: Can't find EId with tickerId:1023
+[2026-04-25 16:41:07]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:41:12]   SPY: no suitable strike found
+[2026-04-25 16:41:12]   TWS error 300: Can't find EId with tickerId:1024
+[2026-04-25 16:41:12] 
+  Scanning QQQ...
+[2026-04-25 16:41:13]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 16:41:13]   QQQ: $663.46
+[2026-04-25 16:41:14]   QQQ: conId=320227571 (STK)
+[2026-04-25 16:41:19]   TWS error 2108: Market data farm connection is inactive but should be available upon demand.usfarm.nj
+[2026-04-25 16:41:19]   TWS error 2108: Market data farm connection is inactive but should be available upon demand.usfarm.nj
+[2026-04-25 16:42:31]   QQQ: skipped spread — no quote for protective long $622.0P
+[2026-04-25 16:42:31] 
+  Scanning SMH...
+[2026-04-25 16:42:32]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 16:42:32]   SMH: $506.50
+[2026-04-25 16:42:33]   SMH: conId=229725622 (STK)
+[2026-04-25 16:43:58] 
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+[2026-04-25 16:43:58] Options Pro Ultra v6 — Autotrade Engine
+[2026-04-25 16:43:58] Account: DU4735568 | Size: $250,000
+[2026-04-25 16:43:58] Max positions: 5 | Max risk: $12,500
+[2026-04-25 16:43:58] Delta: 0.15-0.25 | DTE: 21-45
+[2026-04-25 16:43:58] Close: 50% profit | Stop: 2.0× credit
+[2026-04-25 16:43:58] Scan passes: 2
+[2026-04-25 16:43:58] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+
