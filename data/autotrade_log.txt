@@ -31392,3 +31392,86 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 [2026-04-25 14:11:57] Scan passes: 2
 [2026-04-25 14:11:57] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
+[2026-04-25 14:12:02]   ✅ GitHub backup on restart complete
+[2026-04-25 14:12:02] 🔌 Connecting to TWS...
+[2026-04-25 14:12:02] ✅ TWS connected — next order ID: 24
+[2026-04-25 14:12:04]   📊 4 option position(s) loaded from IBKR
+[2026-04-25 14:12:04]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-25 14:12:04]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-25 14:12:04]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-25 14:12:04]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-25 14:12:07]   ⚠ Expired stale restored close order 15 for GLD $405.0P
+[2026-04-25 14:12:07]   ↺ Restored 1 pending close order(s) from journal
+[2026-04-25 14:12:07] 🌙 Market closed — skipping initial scan, entering monitor mode
+[2026-04-25 14:12:07]   TWS error 10147: OrderId 15 that needs to be cancelled is not found.
+[2026-04-25 14:12:07]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-04-25 14:12:11]   📧 Email sent: ⚠ Options Pro: Position Reconciliation Drift
+[2026-04-25 14:12:11] 
+✅ Entering monitor mode (checking every 15 min)
+[2026-04-25 14:12:11]   📊 4 option position(s) loaded from IBKR
+[2026-04-25 14:12:11]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-25 14:12:11]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-25 14:12:11]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-25 14:12:11]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-25 14:12:14] 
+============================================================
+[2026-04-25 14:12:14] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-25 14:12:14] ============================================================
+[2026-04-25 14:12:15] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.89 P/L=$165 DTE=19
+[2026-04-25 14:12:15]    >> HOLD (target=$177 stop=$-708)
+[2026-04-25 14:12:26]   TLT $84.0P x1: no current price — skipping
+[2026-04-25 14:12:26]   SMH $385.0P: close order pending (4706s ago) — skipping
+[2026-04-25 14:12:38]   IWM $256.0P x1: no current price — skipping
+[2026-04-25 14:12:38] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-25 14:21:27] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-25 14:27:38] ⚠ Connection lost (370s ago) — attempting reconnect...
+[2026-04-25 14:27:38] 🔄 Attempting reconnect...
+[2026-04-25 14:27:43] 🔌 Connecting to TWS...
+[2026-04-25 14:27:43] ✅ TWS connected — next order ID: 24
+[2026-04-25 14:27:45]   📊 4 option position(s) loaded from IBKR
+[2026-04-25 14:27:45]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-25 14:27:45]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-25 14:27:45]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-25 14:27:45]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-25 14:27:48]   📊 4 option position(s) loaded from IBKR
+[2026-04-25 14:27:48]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-25 14:27:48]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-25 14:27:48]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-25 14:27:48]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-25 14:27:51] 
+============================================================
+[2026-04-25 14:27:51] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-25 14:27:51] ============================================================
+[2026-04-25 14:28:03]   GLD $405.0P x1: no current price — skipping
+[2026-04-25 14:28:14]   TLT $84.0P x1: no current price — skipping
+[2026-04-25 14:28:14]   SMH $385.0P: close order pending (5654s ago) — skipping
+[2026-04-25 14:28:26]   IWM $256.0P x1: no current price — skipping
+[2026-04-25 14:28:26] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-25 14:43:26]   📊 4 option position(s) loaded from IBKR
+[2026-04-25 14:43:26]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-25 14:43:26]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-25 14:43:26]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-25 14:43:26]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-25 14:43:29] 
+============================================================
+[2026-04-25 14:43:29] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-25 14:43:29] ============================================================
+[2026-04-25 14:43:41]   GLD $405.0P x1: no current price — skipping
+[2026-04-25 14:43:52]   TLT $84.0P x1: no current price — skipping
+[2026-04-25 14:43:52]   SMH $385.0P: close order pending (6592s ago) — skipping
+[2026-04-25 14:44:04]   IWM $256.0P x1: no current price — skipping
+[2026-04-25 14:44:04] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-25 14:45:13] 
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+[2026-04-25 14:45:13] Options Pro Ultra v6 — Autotrade Engine
+[2026-04-25 14:45:13] Account: DU4735568 | Size: $250,000
+[2026-04-25 14:45:13] Max positions: 5 | Max risk: $12,500
+[2026-04-25 14:45:13] Delta: 0.15-0.25 | DTE: 21-45
+[2026-04-25 14:45:13] Close: 50% profit | Stop: 2.0× credit
+[2026-04-25 14:45:13] Scan passes: 2
+[2026-04-25 14:45:13] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+

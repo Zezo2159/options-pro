@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-25T13:56:42+02:00",
+  "updated": "2026-04-25T14:44:04+02:00",
   "engine_running": true,
   "connected": true,
   "market_status": "closed",
@@ -22,7 +22,10 @@
       "price_valid": true,
       "pnl": 164.85,
       "pnl_pct": 46.5,
-      "dte": 19
+      "dte": 19,
+      "pending_close": false,
+      "pending_close_order_id": null,
+      "pending_close_age_secs": null
     },
     {
       "ticker": "TLT",
@@ -35,7 +38,10 @@
       "price_valid": false,
       "pnl": 0.0,
       "pnl_pct": 0,
-      "dte": 33
+      "dte": 33,
+      "pending_close": false,
+      "pending_close_order_id": null,
+      "pending_close_age_secs": null
     },
     {
       "ticker": "SMH",
@@ -44,11 +50,14 @@
       "qty": 2,
       "strategy": "CSP",
       "entry_credit": 2.8,
-      "current_price": 0.87,
-      "price_valid": true,
-      "pnl": 385.7,
-      "pnl_pct": 68.8,
-      "dte": 19
+      "current_price": 0.0,
+      "price_valid": false,
+      "pnl": 0.0,
+      "pnl_pct": 0,
+      "dte": 19,
+      "pending_close": true,
+      "pending_close_order_id": 23,
+      "pending_close_age_secs": 6604
     },
     {
       "ticker": "IWM",
@@ -61,23 +70,27 @@
       "price_valid": false,
       "pnl": 0.0,
       "pnl_pct": 0,
-      "dte": 26
+      "dte": 26,
+      "pending_close": false,
+      "pending_close_order_id": null,
+      "pending_close_age_secs": null
     }
   ],
   "positions_count": 4,
   "max_positions": 5,
-  "total_pnl": 550.55,
+  "total_pnl": 164.85,
   "account_size": 250000,
   "ibkr_legs_total": 4,
   "ibkr_legs_short": 4,
   "ibkr_legs_long": 0,
   "reconciliation": {
-    "checked_at": "2026-04-25T13:56:42+02:00",
+    "checked_at": "2026-04-25T14:44:04+02:00",
     "ok": false,
     "missing_in_ibkr": [
       {
         "ticker": "QQQ",
         "strike": 600.0,
+        "expiry": "20260522",
         "qty": 1,
         "strategy": "CSP",
         "status": "Filled"
@@ -87,9 +100,22 @@
       {
         "ticker": "TLT",
         "strike": 84.0,
-        "qty": 1
+        "expiry": "20260529",
+        "qty": 1,
+        "strategy": "CSP"
       }
     ],
     "qty_mismatch": []
-  }
+  },
+  "pending_closes": [
+    {
+      "key": "SMH-385.0-20260515",
+      "order_id": 23,
+      "ticker": "SMH",
+      "strike": 385.0,
+      "expiry": "20260515",
+      "age_secs": 6604
+    }
+  ],
+  "pending_close_max_age_secs": 14400
 }
