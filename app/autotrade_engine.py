@@ -3178,6 +3178,12 @@ class AutoTradeEngine:
             log("❌ Cannot start — TWS connection failed")
             return
 
+        # Publish broker truth immediately after connect. Startup scans can take
+        # a while when IBKR rejects option quotes, and the dashboard should not
+        # look stale while the scanner is working.
+        self.write_live_snapshot()
+        self.process_paper_close_requests()
+
         # Initial scan & trade — only during market hours
         ms = self.market_status()
         last_scan_date = None
@@ -3194,7 +3200,7 @@ class AutoTradeEngine:
         else:
             log("🌙 Market closed — skipping initial scan, entering monitor mode")
 
-        # Write initial snapshot immediately so dashboard shows data
+        # Refresh the snapshot after the initial scan/trade pass as well.
         self.write_live_snapshot()
         self.process_paper_close_requests()
 
