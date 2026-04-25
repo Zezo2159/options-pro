@@ -32486,3 +32486,54 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 [2026-04-25 16:53:03] Scan passes: 2
 [2026-04-25 16:53:03] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
+[2026-04-25 16:53:08]   ✅ GitHub backup on restart complete
+[2026-04-25 16:53:08] 🔌 Connecting to TWS...
+[2026-04-25 16:53:08] ✅ TWS connected — next order ID: 24
+[2026-04-25 16:53:10]   📊 4 option position(s) loaded from IBKR
+[2026-04-25 16:53:10]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-25 16:53:10]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-25 16:53:10]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-25 16:53:10]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-25 16:53:13]   ↺ Restored 1 pending close order(s) from journal
+[2026-04-25 16:53:13] 
+━━━ Scan Pass 1/2 ━━━
+[2026-04-25 16:53:13] 
+============================================================
+[2026-04-25 16:53:13] 🌅 MORNING SCAN STARTED
+[2026-04-25 16:53:13] ============================================================
+[2026-04-25 16:53:15]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 16:53:15]   📊 VIX: 18.71 — Regime: Normal (Δ 0.15-0.25, risk × 1.0)
+[2026-04-25 16:53:15]   Open positions: 4/5
+[2026-04-25 16:53:15] 
+  Scanning SPY...
+[2026-04-25 16:53:16]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 16:53:16]   SPY: $714.01
+[2026-04-25 16:53:16]   SPY: conId=756733 (STK)
+[2026-04-25 16:53:16]   SPY: option chain SPY@SMART (35 expiries, 467 strikes)
+[2026-04-25 16:53:33]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:53:38]   TWS error 300: Can't find EId with tickerId:1009
+[2026-04-25 16:53:39]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:53:41]   TWS error 300: Can't find EId with tickerId:1010
+[2026-04-25 16:54:05]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:54:11]   TWS error 300: Can't find EId with tickerId:1019
+[2026-04-25 16:54:11]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:54:13]   TWS error 300: Can't find EId with tickerId:1020
+[2026-04-25 16:54:20]   SPY: no suitable strike found
+[2026-04-25 16:54:20] 
+  Scanning QQQ...
+[2026-04-25 16:54:20]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 16:54:21]   QQQ: $663.46
+[2026-04-25 16:54:21]   QQQ: conId=320227571 (STK)
+[2026-04-25 16:54:21]   QQQ: option chain QQQ@SMART (34 expiries, 440 strikes)
+[2026-04-25 16:55:16]   TWS error 2108: Market data farm connection is inactive but should be available upon demand.usfarm.nj
+[2026-04-25 16:55:16]   TWS error 2108: Market data farm connection is inactive but should be available upon demand.usfarm.nj
+[2026-04-25 16:55:29] 
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+[2026-04-25 16:55:29] Options Pro Ultra v6 — Autotrade Engine
+[2026-04-25 16:55:29] Account: DU4735568 | Size: $250,000
+[2026-04-25 16:55:29] Max positions: 5 | Max risk: $12,500
+[2026-04-25 16:55:29] Delta: 0.15-0.25 | DTE: 21-45
+[2026-04-25 16:55:29] Close: 50% profit | Stop: 2.0× credit
+[2026-04-25 16:55:29] Scan passes: 2
+[2026-04-25 16:55:29] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+

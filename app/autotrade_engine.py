@@ -943,6 +943,7 @@ class AutoTradeEngine:
             return
         if restored:
             log(f"  ↺ Restored {restored} pending close order(s) from journal")
+        self._expire_stale_pending_closes("post-restore")
 
     def _load_processed_close_requests(self):
         try:
@@ -1068,6 +1069,23 @@ class AutoTradeEngine:
             self._close_orders.pop(order_id, None)
         self._pending_closes.pop(pending_key, None)
         log(f"  ⚠ Expired pending close {order_id or '-'} for {ticker} ${strike}P ({reason})")
+
+    def _expire_stale_pending_closes(self, context=""):
+        expired = 0
+        for pending_key, pending_meta in list(self._pending_closes.items()):
+            try:
+                age = (datetime.now() - pending_meta.get("at", datetime.now())).total_seconds()
+            except Exception:
+                age = 0
+            if age < PENDING_CLOSE_MAX_AGE:
+                continue
+            order_id = pending_meta.get("order_id")
+            reason = f"{context} age {int(age)}s".strip()
+            self._expire_pending_close(pending_key, order_id, reason=reason)
+            expired += 1
+        if expired:
+            self.write_live_snapshot()
+        return expired
 
     def _remove_position_from_cache(self, ticker, strike, expiry):
         for key, pos in list((self.app.positions or {}).items()):
@@ -1745,6 +1763,7 @@ class AutoTradeEngine:
         log("\n" + "=" * 60)
         log("🌅 MORNING SCAN STARTED")
         log("=" * 60)
+        self._expire_stale_pending_closes("scan-start")
 
         if kill_switch_active():
             log(f"  🛑 Kill switch active ({KILL_SWITCH_FILE}) — no new opening trades")
@@ -1837,6 +1856,7 @@ class AutoTradeEngine:
         }
 
         for ticker in WATCHLIST:
+            self._expire_stale_pending_closes(f"scan {ticker}")
             existing_dtes = existing_per_ticker.get(ticker, [])
             # Hard cap on per-ticker open positions
             if len(existing_dtes) >= MAX_PER_TICKER:
@@ -3215,6 +3235,9 @@ class AutoTradeEngine:
             try:
                 # ── Market hours gate ──
                 ms = self.market_status()
+
+                # Pending close timers must advance even while scans are busy.
+                self._expire_stale_pending_closes("monitor-loop")
 
                 # ── Manual scan trigger (from dashboard /api/trigger-scan) ──
                 self._run_manual_scan_if_requested(ms)
