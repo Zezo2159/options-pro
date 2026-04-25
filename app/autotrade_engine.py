@@ -640,6 +640,7 @@ class TWSApp(EWrapper, EClient):
         self.market_data = {}
         self.option_chains = {}
         self.contract_details = {}
+        self.request_errors = {}
         self.order_statuses = {}
         self._data_events = {}
         self._price_events = {}
@@ -658,6 +659,15 @@ class TWSApp(EWrapper, EClient):
         log(f"✅ TWS connected — next order ID: {orderId}")
 
     def error(self, reqId, errorCode, errorString, advancedOrderRejectJson=""):
+        if reqId not in (None, -1) and errorCode in (200, 162, 321, 354):
+            self.request_errors[reqId] = {"code": errorCode, "message": errorString}
+            if reqId in self._detail_events:
+                self._detail_events[reqId].set()
+            if reqId in self._price_events:
+                self._price_events[reqId].set()
+            if reqId in self._chain_events:
+                self._chain_events[reqId].set()
+
         # Filter informational messages
         if errorCode in (2104, 2106, 2158, 2107):
             return  # Market data connection messages (benign)
@@ -867,6 +877,8 @@ class AutoTradeEngine:
         self._pending_orders = {}  # key: "TICKER-STRIKE" -> timestamp of order placement
         self._pending_closes = {}  # key: "TICKER-STRIKE-EXPIRY" -> close order metadata
         self._close_orders = {}
+        self._option_contract_cache = {}
+        self._bad_option_contract_cache = {}
         self._last_reconcile_alert = None
         self._processed_close_requests = self._load_processed_close_requests()
 
@@ -1175,71 +1187,137 @@ class AutoTradeEngine:
             price = (md["bid"] + md["ask"]) / 2
         return price
 
-    def get_option_data(self, ticker, strike, expiry, right="P", timeout=10, exchange=None, trading_class=None):
-        """Get option price, IV, delta, greeks."""
+    def _option_contract_key(self, ticker, strike, expiry, right="P", exchange=None, trading_class=None):
+        try:
+            strike_f = round(float(strike), 3)
+        except Exception:
+            strike_f = 0.0
+        return (
+            str(ticker).upper(),
+            strike_f,
+            str(expiry),
+            str(right).upper(),
+            str(exchange or ""),
+            str(trading_class or ""),
+        )
+
+    def resolve_option_contract(self, ticker, strike, expiry, right="P", exchange=None, trading_class=None, timeout=3):
+        """Resolve an exact option contract before requesting market data.
+        reqSecDefOptParams returns expirations and strikes separately, so a
+        strike from the chain set can still be invalid for a specific expiry.
+        Resolving first avoids slow/noisy market-data requests for bad pairs.
+        """
         default_exchange = "CBOE" if ticker in self.INDEX_TICKERS else "SMART"
         default_class = trading_class if trading_class is not None else _TRADING_CLASS.get(ticker, ticker)
         attempts = []
 
         def add_attempt(ex, tc):
-            key = (ex or default_exchange, tc or "")
-            if key not in attempts:
-                attempts.append(key)
+            key = self._option_contract_key(ticker, strike, expiry, right, ex or default_exchange, tc)
+            if key not in [a[0] for a in attempts]:
+                attempts.append((key, ex or default_exchange, tc))
 
         add_attempt(exchange or default_exchange, default_class)
         if default_class:
             add_attempt(exchange or default_exchange, None)
 
-        md = {}
-        for idx, (attempt_exchange, attempt_class) in enumerate(attempts):
+        last_error = None
+        for cache_key, attempt_exchange, attempt_class in attempts:
+            cached = self._option_contract_cache.get(cache_key)
+            if cached:
+                return cached, None
+            bad = self._bad_option_contract_cache.get(cache_key)
+            if bad and time.time() - bad.get("at", 0) < 900:
+                last_error = bad.get("error")
+                continue
+
             req_id = self.next_req_id()
             contract = Contract()
             contract.symbol = ticker
             contract.secType = "OPT"
             contract.exchange = attempt_exchange
             contract.currency = "USD"
-            contract.strike = strike
-            contract.lastTradeDateOrContractMonth = expiry
+            contract.strike = float(strike)
+            contract.lastTradeDateOrContractMonth = str(expiry)
             contract.right = right
             contract.multiplier = "100"
             if attempt_class:
                 contract.tradingClass = attempt_class
 
             event = threading.Event()
-            self.app._price_events[req_id] = event
-            self.app.market_data[req_id] = {}
+            self.app._detail_events[req_id] = event
+            self.app.contract_details[req_id] = None
+            self.app.request_errors.pop(req_id, None)
 
-            wait_time = timeout if idx == 0 else min(2, timeout)
-            self.app.reqMktData(req_id, contract, "106", False, False, [])
-            event.wait(timeout=wait_time)
+            self.app.reqContractDetails(req_id, contract)
+            event.wait(timeout=timeout)
 
-            # Delayed/paper option greeks often arrive slightly after the first
-            # bid/ask tick. Give them a brief grace window before cancelling the
-            # subscription so we don't self-inflict "missing delta" skips.
-            grace_secs = OPTION_GREEKS_GRACE_SECS if idx == 0 else 0.4
-            grace_deadline = time.time() + grace_secs
-            while time.time() < grace_deadline:
-                md_try = self.app.market_data.get(req_id, {})
-                delta = md_try.get("delta")
-                iv = md_try.get("iv")
-                if delta not in (None, 0, -1, -2) or (iv and iv > 0):
-                    break
-                time.sleep(0.1)
+            err = self.app.request_errors.pop(req_id, None)
+            details = self.app.contract_details.get(req_id)
+            if details:
+                resolved = details.contract
+                if not getattr(resolved, "exchange", ""):
+                    resolved.exchange = attempt_exchange
+                self._option_contract_cache[cache_key] = resolved
+                return resolved, None
 
-            self.app.cancelMktData(req_id)
+            last_error = err.get("message") if isinstance(err, dict) else "No contract details returned"
+            self._bad_option_contract_cache[cache_key] = {"at": time.time(), "error": last_error}
+
+        return None, last_error or "No matching option contract"
+
+    def get_option_data(self, ticker, strike, expiry, right="P", timeout=10, exchange=None, trading_class=None):
+        """Get option price, IV, delta, greeks."""
+        contract, contract_error = self.resolve_option_contract(
+            ticker, strike, expiry, right,
+            exchange=exchange,
+            trading_class=trading_class,
+            timeout=min(3, timeout),
+        )
+        if not contract:
+            return {
+                "price": 0,
+                "bid": 0,
+                "ask": 0,
+                "spread": 0,
+                "spread_pct": 0,
+                "quote_valid": False,
+                "iv": 0,
+                "delta": 0,
+                "gamma": 0,
+                "theta": 0,
+                "vega": 0,
+                "undPrice": 0,
+                "contract_error": contract_error,
+                "contract_resolved": False,
+            }
+
+        md = {}
+        req_id = self.next_req_id()
+        event = threading.Event()
+        self.app._price_events[req_id] = event
+        self.app.market_data[req_id] = {}
+        self.app.request_errors.pop(req_id, None)
+
+        self.app.reqMktData(req_id, contract, "106", False, False, [])
+        event.wait(timeout=timeout)
+
+        # Delayed/paper option greeks often arrive slightly after the first
+        # bid/ask tick. Give them a brief grace window before cancelling the
+        # subscription so we don't self-inflict "missing delta" skips.
+        grace_deadline = time.time() + OPTION_GREEKS_GRACE_SECS
+        while time.time() < grace_deadline:
             md_try = self.app.market_data.get(req_id, {})
-            bid_try = md_try.get("bid", 0) or 0
-            ask_try = md_try.get("ask", 0) or 0
-            if not md_try.get("optPrice") and bid_try > 0 and ask_try > 0:
-                md_try["optPrice"] = (bid_try + ask_try) / 2
-            price_try = md_try.get("optPrice") or md_try.get("last")
-            if not price_try and "bid" in md_try and "ask" in md_try:
-                price_try = (md_try["bid"] + md_try["ask"]) / 2
-                md_try["optPrice"] = price_try
-            if md_try:
-                md = md_try
-            if (price_try or 0) > 0 or (bid_try > 0 and ask_try > 0):
+            delta = md_try.get("delta")
+            iv = md_try.get("iv")
+            if delta not in (None, 0, -1, -2) or (iv and iv > 0):
                 break
+            time.sleep(0.1)
+
+        self.app.cancelMktData(req_id)
+        err = self.app.request_errors.pop(req_id, None)
+        md = self.app.market_data.get(req_id, {})
+        if err and not md:
+            md["quote_error"] = err.get("message")
 
         bid = md.get("bid", 0) or 0
         ask = md.get("ask", 0) or 0
@@ -1267,6 +1345,10 @@ class AutoTradeEngine:
             "theta": md.get("theta", 0),
             "vega": md.get("vega", 0),
             "undPrice": md.get("undPrice", 0),
+            "contract_resolved": True,
+            "conId": getattr(contract, "conId", None),
+            "localSymbol": getattr(contract, "localSymbol", ""),
+            "quote_error": md.get("quote_error", ""),
         }
 
     # Primary exchange mapping for ETFs (needed for unambiguous conId resolution)
@@ -1320,35 +1402,8 @@ class AutoTradeEngine:
 
     def get_option_con_id(self, ticker, strike, expiry, right="P", timeout=10):
         """Resolve an option contract's conId — needed for combo legs."""
-        default_exchange = "CBOE" if ticker in self.INDEX_TICKERS else "SMART"
-        default_class = _TRADING_CLASS.get(ticker, ticker)
-        attempts = [(default_exchange, default_class), (default_exchange, None)]
-
-        for idx, (exchange, trading_class) in enumerate(attempts):
-            req_id = self.next_req_id()
-            contract = Contract()
-            contract.symbol = ticker
-            contract.secType = "OPT"
-            contract.exchange = exchange
-            contract.currency = "USD"
-            contract.strike = strike
-            contract.lastTradeDateOrContractMonth = str(expiry)
-            contract.right = right
-            contract.multiplier = "100"
-            if trading_class:
-                contract.tradingClass = trading_class
-
-            event = threading.Event()
-            self.app._detail_events[req_id] = event
-            self.app.contract_details[req_id] = None
-
-            self.app.reqContractDetails(req_id, contract)
-            event.wait(timeout=timeout if idx == 0 else min(3, timeout))
-
-            details = self.app.contract_details.get(req_id)
-            if details:
-                return details.contract.conId
-        return None
+        contract, _ = self.resolve_option_contract(ticker, strike, expiry, right, timeout=min(3, timeout))
+        return getattr(contract, "conId", None) if contract else None
 
     def get_vix(self, timeout=10):
         """Fetch current VIX level from TWS."""
@@ -1579,6 +1634,8 @@ class AutoTradeEngine:
         diagnostics = {
             "examined": 0,
             "missing_price": 0,
+            "contract_error": 0,
+            "quote_error": 0,
             "missing_delta": 0,
             "quote_rejected": 0,
             "delta_out_of_range": 0,
@@ -1608,11 +1665,19 @@ class AutoTradeEngine:
 
             if price <= 0:
                 diagnostics["missing_price"] += 1
+                if opt.get("contract_resolved") is False:
+                    diagnostics["contract_error"] += 1
+                    diagnostics["last_error"] = opt.get("contract_error") or "No matching option contract"
+                elif opt.get("quote_error"):
+                    diagnostics["quote_error"] += 1
+                    diagnostics["last_error"] = opt.get("quote_error")
                 missing_price_streak += 1
                 if missing_price_streak >= OPTION_SCAN_MAX_MISSING_STREAK:
+                    source = "contract resolution" if diagnostics["contract_error"] >= missing_price_streak else "option quotes"
+                    suffix = f" Last error: {diagnostics.get('last_error')}." if diagnostics.get("last_error") else ""
                     diagnostics["reason"] = (
-                        f"First {missing_price_streak} option quotes returned no price from IBKR; "
-                        "aborted ticker quote scan."
+                        f"First {missing_price_streak} {source} attempts returned no usable price from IBKR; "
+                        f"aborted ticker quote scan.{suffix}"
                     )
                     break
                 continue
