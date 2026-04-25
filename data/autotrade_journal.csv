@@ -27,4 +27,6 @@ timestamp,action,ticker,strategy,strike,expiry,qty,credit,delta,iv,dte,status,pn
 2026-04-25 17:02,OPEN,XLE,CSP,53.0,20260529,2,0.5701931328271672,0.1927631827403804,29.24%,33,Submitted,0,Score 90 | Buffer 6.8% | OrderID 24 | SignalID XLE-CSP-53.0--20260529
 2026-04-25 17:10,OPEN,XLE,CSP,53.5,20260529,2,0.6726197709458761,0.2202369380000996,28.97%,33,Submitted,0,Score 85 | Buffer 5.9% | OrderID 25 | SignalID XLE-CSP-53.5--20260529
 2026-04-25 17:27,CLOSE_PROFIT,SMH,CLOSE,385.0,20260515,2,0.8744049910704995,0,0,0,Expired,385.7,50% profit ($386 >= $280) | CSP | OrderID 26 | Expired 2026-04-25T21:38:22+02:00 (monitor-loop age 15046s)
-2026-04-25 21:38,CLOSE_PROFIT,SMH,CLOSE,385.0,20260515,2,0.8744049910704995,0,0,0,Submitted,385.7,50% profit ($386 >= $280) | CSP | OrderID 27
+2026-04-25 21:38,CLOSE_PROFIT,SMH,CLOSE,385.0,20260515,2,0.8744049910704995,0,0,0,Expired,385.7,50% profit ($386 >= $280) | CSP | OrderID 27 | Expired on restart because market is closed 2026-04-25T22:07:03+02:00
+2026-04-25 22:07,CLOSE_MANUAL,XLE,CLOSE,53.0,20260529,2,0,0,,0,ManualClose,0,Manual reconcile accepted IBKR view; position absent from live snapshot
+2026-04-25 22:07,CLOSE_MANUAL,XLE,CLOSE,53.5,20260529,2,0,0,,0,ManualClose,0,Manual reconcile accepted IBKR view; position absent from live snapshot

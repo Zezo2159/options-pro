@@ -91,3 +91,6 @@
 2026-04-25T22:04:31+02:00,status=checked,ok=False,missing_in_ibkr=2,missing_in_journal=0,qty_mismatch=0,reason=
 2026-04-25T22:04:31+02:00,status=checked,ok=False,missing_in_ibkr=2,missing_in_journal=0,qty_mismatch=0,reason=
 2026-04-25T22:04:59+02:00,status=checked,ok=False,missing_in_ibkr=2,missing_in_journal=0,qty_mismatch=0,reason=
+2026-04-25T22:07:05+02:00,status=checked,ok=False,missing_in_ibkr=2,missing_in_journal=0,qty_mismatch=0,reason=
+2026-04-25T22:07:05+02:00,status=checked,ok=False,missing_in_ibkr=2,missing_in_journal=0,qty_mismatch=0,reason=
+2026-04-25T22:07:55+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
