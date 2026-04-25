@@ -32285,3 +32285,138 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 [2026-04-25 16:43:58] Scan passes: 2
 [2026-04-25 16:43:58] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
+[2026-04-25 16:44:04]   ✅ GitHub backup on restart complete
+[2026-04-25 16:44:04] 🔌 Connecting to TWS...
+[2026-04-25 16:44:04] ✅ TWS connected — next order ID: 24
+[2026-04-25 16:44:06]   📊 4 option position(s) loaded from IBKR
+[2026-04-25 16:44:06]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-25 16:44:06]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-25 16:44:06]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-25 16:44:06]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-25 16:44:09]   ↺ Restored 1 pending close order(s) from journal
+[2026-04-25 16:44:09] 
+━━━ Scan Pass 1/2 ━━━
+[2026-04-25 16:44:09] 
+============================================================
+[2026-04-25 16:44:09] 🌅 MORNING SCAN STARTED
+[2026-04-25 16:44:09] ============================================================
+[2026-04-25 16:44:11]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 16:44:11]   📊 VIX: 18.71 — Regime: Normal (Δ 0.15-0.25, risk × 1.0)
+[2026-04-25 16:44:11]   Open positions: 4/5
+[2026-04-25 16:44:11] 
+  Scanning SPY...
+[2026-04-25 16:44:11]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 16:44:12]   SPY: $714.01
+[2026-04-25 16:44:12]   SPY: conId=756733 (STK)
+[2026-04-25 16:44:12]   SPY: option chain SPY@SMART (35 expiries, 467 strikes)
+[2026-04-25 16:44:22]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:44:24]   TWS error 300: Can't find EId with tickerId:1008
+[2026-04-25 16:44:24]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:44:27]   TWS error 300: Can't find EId with tickerId:1009
+[2026-04-25 16:44:27]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:44:32]   TWS error 300: Can't find EId with tickerId:1010
+[2026-04-25 16:44:32]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:44:34]   TWS error 300: Can't find EId with tickerId:1011
+[2026-04-25 16:44:35]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:44:37]   TWS error 300: Can't find EId with tickerId:1012
+[2026-04-25 16:44:37]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:44:40]   TWS error 300: Can't find EId with tickerId:1013
+[2026-04-25 16:44:48]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:44:50]   TWS error 300: Can't find EId with tickerId:1016
+[2026-04-25 16:44:50]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:44:53]   TWS error 300: Can't find EId with tickerId:1017
+[2026-04-25 16:45:02]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:45:04]   TWS error 300: Can't find EId with tickerId:1021
+[2026-04-25 16:45:05]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:45:07]   TWS error 300: Can't find EId with tickerId:1022
+[2026-04-25 16:45:16]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:45:19]   TWS error 300: Can't find EId with tickerId:1026
+[2026-04-25 16:45:19]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:45:21]   TWS error 300: Can't find EId with tickerId:1027
+[2026-04-25 16:45:21]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:45:27]   TWS error 300: Can't find EId with tickerId:1028
+[2026-04-25 16:45:27]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:45:29]   TWS error 300: Can't find EId with tickerId:1029
+[2026-04-25 16:45:30]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:45:32]   TWS error 300: Can't find EId with tickerId:1030
+[2026-04-25 16:45:32]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:45:34]   TWS error 300: Can't find EId with tickerId:1031
+[2026-04-25 16:45:43]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:45:45]   TWS error 300: Can't find EId with tickerId:1034
+[2026-04-25 16:45:45]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:45:47]   TWS error 300: Can't find EId with tickerId:1035
+[2026-04-25 16:45:58]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:46:00]   TWS error 300: Can't find EId with tickerId:1041
+[2026-04-25 16:46:01]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:46:03]   TWS error 300: Can't find EId with tickerId:1042
+[2026-04-25 16:46:03]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:46:09]   TWS error 300: Can't find EId with tickerId:1043
+[2026-04-25 16:46:09]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:46:11]   TWS error 300: Can't find EId with tickerId:1044
+[2026-04-25 16:46:11]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:46:14]   TWS error 300: Can't find EId with tickerId:1045
+[2026-04-25 16:46:14]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:46:16]   TWS error 300: Can't find EId with tickerId:1046
+[2026-04-25 16:46:16]   TWS error 2108: Market data farm connection is inactive but should be available upon demand.usfarm.nj
+[2026-04-25 16:46:16]   TWS error 2108: Market data farm connection is inactive but should be available upon demand.usfarm.nj
+[2026-04-25 16:46:26]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:46:28]   TWS error 300: Can't find EId with tickerId:1050
+[2026-04-25 16:46:28]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:46:31]   TWS error 300: Can't find EId with tickerId:1051
+[2026-04-25 16:46:40]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:46:42]   TWS error 300: Can't find EId with tickerId:1055
+[2026-04-25 16:46:42]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:46:45]   TWS error 300: Can't find EId with tickerId:1056
+[2026-04-25 16:47:00]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:47:02]   TWS error 300: Can't find EId with tickerId:1060
+[2026-04-25 16:47:03]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:47:05]   SPY: skipped spread — no quote for protective long $673.0P
+[2026-04-25 16:47:05] 
+  Scanning QQQ...
+[2026-04-25 16:47:05]   TWS error 300: Can't find EId with tickerId:1061
+[2026-04-25 16:47:05]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-25 16:47:06]   QQQ: $663.46
+[2026-04-25 16:47:06]   QQQ: conId=320227571 (STK)
+[2026-04-25 16:47:06]   QQQ: option chain QQQ@SMART (34 expiries, 440 strikes)
+[2026-04-25 16:47:16]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:47:18]   TWS error 300: Can't find EId with tickerId:1068
+[2026-04-25 16:47:18]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:47:20]   TWS error 300: Can't find EId with tickerId:1069
+[2026-04-25 16:47:36]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:47:38]   TWS error 300: Can't find EId with tickerId:1075
+[2026-04-25 16:47:38]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:47:41]   TWS error 300: Can't find EId with tickerId:1076
+[2026-04-25 16:47:50]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:47:52]   TWS error 300: Can't find EId with tickerId:1080
+[2026-04-25 16:47:52]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:47:55]   TWS error 300: Can't find EId with tickerId:1081
+[2026-04-25 16:48:03]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:48:05]   TWS error 300: Can't find EId with tickerId:1084
+[2026-04-25 16:48:06]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:48:08]   TWS error 300: Can't find EId with tickerId:1085
+[2026-04-25 16:48:16]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:48:19]   TWS error 300: Can't find EId with tickerId:1088
+[2026-04-25 16:48:19]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:48:21]   TWS error 300: Can't find EId with tickerId:1089
+[2026-04-25 16:48:30]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:48:33]   TWS error 300: Can't find EId with tickerId:1093
+[2026-04-25 16:48:33]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:48:35]   TWS error 300: Can't find EId with tickerId:1094
+[2026-04-25 16:48:43]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:48:46]   TWS error 300: Can't find EId with tickerId:1097
+[2026-04-25 16:48:46]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:48:48]   TWS error 300: Can't find EId with tickerId:1098
+[2026-04-25 16:49:03]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:49:05]   TWS error 300: Can't find EId with tickerId:1103
+[2026-04-25 16:49:06]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-25 16:49:08]   TWS error 300: Can't find EId with tickerId:1104
+[2026-04-25 16:49:18] 
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+[2026-04-25 16:49:18] Options Pro Ultra v6 — Autotrade Engine
+[2026-04-25 16:49:18] Account: DU4735568 | Size: $250,000
+[2026-04-25 16:49:18] Max positions: 5 | Max risk: $12,500
+[2026-04-25 16:49:18] Delta: 0.15-0.25 | DTE: 21-45
+[2026-04-25 16:49:18] Close: 50% profit | Stop: 2.0× credit
+[2026-04-25 16:49:18] Scan passes: 2
+[2026-04-25 16:49:18] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+

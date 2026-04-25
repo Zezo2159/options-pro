@@ -143,6 +143,8 @@ MAX_OPTION_BID_ASK_PCT = 0.35
 MAX_OPTION_BID_ASK_ABS = 0.75
 MIN_SPREAD_CREDIT_PCT = 0.15  # Credit should be at least 15% of spread width.
 OPTION_GREEKS_GRACE_SECS = 1.5
+OPTION_SCAN_MAX_STRIKES = 10
+OPTION_SCAN_MAX_MISSING_STREAK = 8
 
 # ═══════════════════════════════════════════════
 # MARKET REGIME — VIX-based adjustments
@@ -1158,7 +1160,6 @@ class AutoTradeEngine:
     def get_option_data(self, ticker, strike, expiry, right="P", timeout=10, exchange=None, trading_class=None):
         """Get option price, IV, delta, greeks."""
         default_exchange = "CBOE" if ticker in self.INDEX_TICKERS else "SMART"
-        native_exchange = self.PRIMARY_EXCHANGES.get(ticker)
         default_class = trading_class if trading_class is not None else _TRADING_CLASS.get(ticker, ticker)
         attempts = []
 
@@ -1170,10 +1171,6 @@ class AutoTradeEngine:
         add_attempt(exchange or default_exchange, default_class)
         if default_class:
             add_attempt(exchange or default_exchange, None)
-        if native_exchange and native_exchange != (exchange or default_exchange):
-            add_attempt(native_exchange, default_class)
-            if default_class:
-                add_attempt(native_exchange, None)
 
         md = {}
         for idx, (attempt_exchange, attempt_class) in enumerate(attempts):
@@ -1308,9 +1305,6 @@ class AutoTradeEngine:
         default_exchange = "CBOE" if ticker in self.INDEX_TICKERS else "SMART"
         default_class = _TRADING_CLASS.get(ticker, ticker)
         attempts = [(default_exchange, default_class), (default_exchange, None)]
-        native_exchange = self.PRIMARY_EXCHANGES.get(ticker)
-        if native_exchange and native_exchange != default_exchange:
-            attempts.extend([(native_exchange, default_class), (native_exchange, None)])
 
         for idx, (exchange, trading_class) in enumerate(attempts):
             req_id = self.next_req_id()
@@ -1582,8 +1576,9 @@ class AutoTradeEngine:
         best_strike = None
         best_data = None
         best_delta_fit = float("inf")
+        missing_price_streak = 0
 
-        for strike in otm_strikes[:20]:
+        for strike in otm_strikes[:OPTION_SCAN_MAX_STRIKES]:
             diagnostics["examined"] += 1
             opt = self.get_option_data(
                 ticker, strike, expiry, "P", timeout=4,
@@ -1595,7 +1590,15 @@ class AutoTradeEngine:
 
             if price <= 0:
                 diagnostics["missing_price"] += 1
+                missing_price_streak += 1
+                if missing_price_streak >= OPTION_SCAN_MAX_MISSING_STREAK:
+                    diagnostics["reason"] = (
+                        f"First {missing_price_streak} option quotes returned no price from IBKR; "
+                        "aborted ticker quote scan."
+                    )
+                    break
                 continue
+            missing_price_streak = 0
             if delta <= 0:
                 log(f"  {ticker} ${strike}P: missing delta/greeks — skipped")
                 diagnostics["missing_delta"] += 1
@@ -1621,6 +1624,8 @@ class AutoTradeEngine:
             diagnostics["reason"] = f"Selected strike {best_strike} within target delta range."
             return best_strike, best_data, diagnostics
 
+        if diagnostics.get("reason"):
+            return None, None, diagnostics
         if diagnostics["missing_delta"] and diagnostics["examined"] == diagnostics["missing_delta"] + diagnostics["missing_price"]:
             diagnostics["reason"] = "All examined strikes lacked usable delta/Greek data."
         elif diagnostics["quote_rejected"]:
