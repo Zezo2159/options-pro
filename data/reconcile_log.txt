@@ -94,3 +94,10 @@
 2026-04-25T22:07:05+02:00,status=checked,ok=False,missing_in_ibkr=2,missing_in_journal=0,qty_mismatch=0,reason=
 2026-04-25T22:07:05+02:00,status=checked,ok=False,missing_in_ibkr=2,missing_in_journal=0,qty_mismatch=0,reason=
 2026-04-25T22:07:55+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-04-25T22:11:08+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-04-25T22:11:08+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-04-25T22:11:47+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-04-25T22:27:36+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-04-25T22:43:15+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-04-25T22:58:55+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-04-25T23:14:45+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=

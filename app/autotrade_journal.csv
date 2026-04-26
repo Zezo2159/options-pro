@@ -17,7 +17,16 @@ timestamp,action,ticker,strategy,strike,expiry,qty,credit,delta,iv,dte,status,pn
 2026-04-16 21:19,CLOSE_PROFIT,SMH,CLOSE,390.0,20260515,2,0.5413226266811115,0,0,0,Filled,1040.87,50% profit ($1041 >= $575) | BPS | OrderID 12
 2026-04-16 21:33,OPEN,QQQM,CSP,245.0,20260515,1,1.4,0,0,28,Submitted,0,Score 56 | Buffer 6.8% | OrderID 13
 2026-04-16 21:33,OPEN,QQQ,BPS,618.0,20260522,15,1.9350000000000005,0,0,35,Submitted,0,Spread $618.0/608.0 | Score 52 | Buffer 3.4% | OrderID 14
-2026-04-17 21:36,CLOSE_PROFIT,GLD,CLOSE,405.0,20260515,1,1.7000000476837158,0,0,0,Submitted,184.22,50% profit ($184 >= $177) | CSP | OrderID 15
+2026-04-17 21:36,CLOSE_PROFIT,GLD,CLOSE,405.0,20260515,1,1.7000000476837158,0,0,0,Expired,184.22,50% profit ($184 >= $177) | CSP | OrderID 15 | Expired on restart after 664567s 2026-04-25T14:12:07+02:00
 2026-04-17 21:50,CLOSE_CANCEL,QQQM,CLOSE,245.0,20260515,1,0,0,0,0,NotFilled,0,Order 13 never filled — manual reconcile
 2026-04-17 21:50,CLOSE_CANCEL,QQQ,CLOSE,618.0,20260522,15,0,0,0,0,NotFilled,0,Order 14 never filled — manual reconcile
 2026-04-17 21:55,CLOSE_MANUAL,GDX,CLOSE,91.5,20260522,12,0,0,0,0,ManualClose,0,Closed manually earlier; backfill
+2026-04-25 12:54,CLOSE_PROFIT,SMH,CLOSE,385.0,20260515,2,0.8744049910704995,0,0,0,Expired,385.7,50% profit ($386 >= $280) | CSP | OrderID 23 | Expired on restart after 14499s 2026-04-25T16:55:39+02:00
+2026-04-25 14:45,CLOSE_MANUAL,QQQ,CLOSE,600.0,20260522,1,0,0,,0,ManualClose,0,Manual reconcile accepted IBKR view; position absent from live snapshot
+2026-04-25 14:45,OPEN,TLT,CSP,84.0,20260529,1,0.3,0,,33,Reconciled,0,Manual reconcile reconstructed from IBKR/live snapshot
+2026-04-25 17:02,OPEN,XLE,CSP,53.0,20260529,2,0.5701931328271672,0.1927631827403804,29.24%,33,Submitted,0,Score 90 | Buffer 6.8% | OrderID 24 | SignalID XLE-CSP-53.0--20260529
+2026-04-25 17:10,OPEN,XLE,CSP,53.5,20260529,2,0.6726197709458761,0.2202369380000996,28.97%,33,Submitted,0,Score 85 | Buffer 5.9% | OrderID 25 | SignalID XLE-CSP-53.5--20260529
+2026-04-25 17:27,CLOSE_PROFIT,SMH,CLOSE,385.0,20260515,2,0.8744049910704995,0,0,0,Expired,385.7,50% profit ($386 >= $280) | CSP | OrderID 26 | Expired 2026-04-25T21:38:22+02:00 (monitor-loop age 15046s)
+2026-04-25 21:38,CLOSE_PROFIT,SMH,CLOSE,385.0,20260515,2,0.8744049910704995,0,0,0,Expired,385.7,50% profit ($386 >= $280) | CSP | OrderID 27 | Expired on restart because market is closed 2026-04-25T22:07:03+02:00
+2026-04-25 22:07,CLOSE_MANUAL,XLE,CLOSE,53.0,20260529,2,0,0,,0,ManualClose,0,Manual reconcile accepted IBKR view; position absent from live snapshot
+2026-04-25 22:07,CLOSE_MANUAL,XLE,CLOSE,53.5,20260529,2,0,0,,0,ManualClose,0,Manual reconcile accepted IBKR view; position absent from live snapshot

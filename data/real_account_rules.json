@@ -20,7 +20,7 @@
   "manual_submit_required": true,
   "max_open_positions": 3,
   "max_risk_per_trade_dollars": 0,
-  "max_risk_per_trade_pct": 1.0,
+  "max_risk_per_trade_pct": 5.0,
   "max_total_risk_pct": 10.0,
   "notes": [
     "Real-account deployable capital is set to $250,000.",
