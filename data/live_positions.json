@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-27T17:56:05+02:00",
+  "updated": "2026-04-27T21:10:20+02:00",
   "engine_running": true,
   "connected": true,
   "market_status": "open",
@@ -8,8 +8,8 @@
   "signal_only": false,
   "signal_only_file": "/Users/islam/options-pro/data/optionspro_signal_only",
   "signals_file": "/Users/islam/options-pro/data/trade_signals.json",
-  "vix": 19.06,
-  "regime": "Normal",
+  "vix": null,
+  "regime": "Unknown",
   "positions": [
     {
       "ticker": "GLD",
@@ -18,17 +18,17 @@
       "qty": 1,
       "strategy": "CSP",
       "entry_credit": 3.54,
-      "current_price": 1.75,
+      "current_price": 1.85,
       "price_valid": true,
-      "pnl": 179.22,
-      "pnl_pct": 50.6,
+      "pnl": 169.22,
+      "pnl_pct": 47.8,
       "dte": 17,
-      "pending_close": true,
-      "pending_close_order_id": 33,
-      "pending_close_age_secs": 4521,
-      "pending_close_remaining_secs": 9879,
-      "pending_close_started_at": "2026-04-27T16:40:44+02:00",
-      "pending_close_max_age_secs": 14400
+      "pending_close": false,
+      "pending_close_order_id": null,
+      "pending_close_age_secs": null,
+      "pending_close_remaining_secs": null,
+      "pending_close_started_at": null,
+      "pending_close_max_age_secs": null
     },
     {
       "ticker": "TLT",
@@ -37,10 +37,10 @@
       "qty": 1,
       "strategy": "CSP",
       "entry_credit": 0.3,
-      "current_price": 0.35,
+      "current_price": 0.36,
       "price_valid": true,
-      "pnl": -4.77,
-      "pnl_pct": -15.8,
+      "pnl": -6.15,
+      "pnl_pct": -20.3,
       "dte": 31,
       "pending_close": false,
       "pending_close_order_id": null,
@@ -52,7 +52,7 @@
   ],
   "positions_count": 2,
   "max_positions": 5,
-  "total_pnl": 174.45,
+  "total_pnl": 163.07,
   "pnl_status": "complete",
   "valid_price_count": 2,
   "missing_quote_count": 0,
@@ -61,41 +61,12 @@
   "ibkr_legs_short": 2,
   "ibkr_legs_long": 0,
   "reconciliation": {
-    "checked_at": "2026-04-27T17:56:05+02:00",
-    "ok": false,
-    "missing_in_ibkr": [
-      {
-        "ticker": "XLE",
-        "strike": 53.5,
-        "expiry": "20260605",
-        "qty": 2,
-        "strategy": "CSP",
-        "status": "Submitted"
-      },
-      {
-        "ticker": "XLE",
-        "strike": 52.5,
-        "expiry": "20260605",
-        "qty": 2,
-        "strategy": "CSP",
-        "status": "Submitted"
-      }
-    ],
+    "checked_at": "2026-04-27T21:10:20+02:00",
+    "ok": true,
+    "missing_in_ibkr": [],
     "missing_in_journal": [],
     "qty_mismatch": []
   },
-  "pending_closes": [
-    {
-      "key": "GLD-405.0-20260515",
-      "order_id": 33,
-      "ticker": "GLD",
-      "strike": 405.0,
-      "expiry": "20260515",
-      "age_secs": 4521,
-      "remaining_secs": 9878,
-      "started_at": "2026-04-27T16:40:44+02:00",
-      "max_age_secs": 14400
-    }
-  ],
+  "pending_closes": [],
   "pending_close_max_age_secs": 14400
 }

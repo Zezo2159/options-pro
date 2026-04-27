@@ -35,4 +35,6 @@ timestamp,action,ticker,strategy,strike,expiry,qty,credit,delta,iv,dte,status,pn
 2026-04-27 15:40,OPEN,XLE,CSP,52.5,20260605,2,0.8500000238418579,0.20353516709042727,32.59%,38,Submitted,0,Score 100 | Buffer 8.7% | OrderID 30 | SignalID XLE-CSP-52.5--20260605
 2026-04-27 15:40,CLOSE_PROFIT,SMH,CLOSE,385.0,20260515,2,1.13,0,0,0,Filled,334.59,50% profit ($335 >= $280) | CSP | OrderID 31 | Filled 2026-04-27T15:40:25+02:00
 2026-04-27 15:40,CLOSE_PROFIT,IWM,CLOSE,256.0,20260522,1,1.5,0,0,0,Filled,168.13,50% profit ($168 >= $159) | CSP | OrderID 32 | Filled 2026-04-27T15:40:27+02:00
-2026-04-27 16:40,CLOSE_PROFIT,GLD,CLOSE,405.0,20260515,1,1.75,0,0,0,Submitted,179.22,50% profit ($179 >= $177) | CSP | OrderID 33
+2026-04-27 16:40,CLOSE_PROFIT,GLD,CLOSE,405.0,20260515,1,1.75,0,0,0,Expired,179.22,50% profit ($179 >= $177) | CSP | OrderID 33 | Expired 2026-04-27T20:40:08+02:00 (monitor-loop age 14408s)
+2026-04-27 18:09,CLOSE_MANUAL,XLE,CLOSE,53.5,20260605,2,0,0,,0,ManualClose,0,Manual reconcile accepted IBKR view; position absent from live snapshot
+2026-04-27 18:09,CLOSE_MANUAL,XLE,CLOSE,52.5,20260605,2,0,0,,0,ManualClose,0,Manual reconcile accepted IBKR view; position absent from live snapshot
