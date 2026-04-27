@@ -36415,3 +36415,1960 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 [2026-04-26 13:10:22] Scan passes: 2
 [2026-04-26 13:10:22] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
+[2026-04-26 13:10:28]   ✅ GitHub backup on restart complete
+[2026-04-26 13:10:28] 🔌 Connecting to TWS...
+[2026-04-26 13:10:28] ✅ TWS connected — next order ID: 28
+[2026-04-26 13:10:30]   📊 4 option position(s) loaded from IBKR
+[2026-04-26 13:10:30]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-26 13:10:30]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-26 13:10:30]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-26 13:10:30]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-26 13:10:33] 🌙 Market closed — skipping initial scan, entering monitor mode
+[2026-04-26 13:10:33] 
+✅ Entering monitor mode (checking every 15 min)
+[2026-04-26 13:10:33]   📊 4 option position(s) loaded from IBKR
+[2026-04-26 13:10:33]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-26 13:10:33]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-26 13:10:33]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-26 13:10:33]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-26 13:10:36] 
+============================================================
+[2026-04-26 13:10:36] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-26 13:10:36] ============================================================
+[2026-04-26 13:10:48]   GLD $405.0P x1: no current price — skipping
+[2026-04-26 13:11:00]   TLT $84.0P x1: no current price — skipping
+[2026-04-26 13:11:12]   SMH $385.0P x2: no current price — skipping
+[2026-04-26 13:11:24]   IWM $256.0P x1: no current price — skipping
+[2026-04-26 13:11:24] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-26 13:26:24]   📊 4 option position(s) loaded from IBKR
+[2026-04-26 13:26:24]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-26 13:26:24]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-26 13:26:24]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-26 13:26:24]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-26 13:26:28] 
+============================================================
+[2026-04-26 13:26:28] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-26 13:26:28] ============================================================
+[2026-04-26 13:26:39]   GLD $405.0P x1: no current price — skipping
+[2026-04-26 13:26:51]   TLT $84.0P x1: no current price — skipping
+[2026-04-26 13:27:03]   SMH $385.0P x2: no current price — skipping
+[2026-04-26 13:27:14]   IWM $256.0P x1: no current price — skipping
+[2026-04-26 13:27:14] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-26 13:42:15]   📊 4 option position(s) loaded from IBKR
+[2026-04-26 13:42:15]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-26 13:42:15]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-26 13:42:15]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-26 13:42:15]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-26 13:42:18] 
+============================================================
+[2026-04-26 13:42:18] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-26 13:42:18] ============================================================
+[2026-04-26 13:42:29]   GLD $405.0P x1: no current price — skipping
+[2026-04-26 13:42:41]   TLT $84.0P x1: no current price — skipping
+[2026-04-26 13:42:53]   SMH $385.0P x2: no current price — skipping
+[2026-04-26 13:43:05]   IWM $256.0P x1: no current price — skipping
+[2026-04-26 13:43:05] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-26 13:58:05]   📊 4 option position(s) loaded from IBKR
+[2026-04-26 13:58:05]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-26 13:58:05]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-26 13:58:05]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-26 13:58:05]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-26 13:58:08] 
+============================================================
+[2026-04-26 13:58:08] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-26 13:58:08] ============================================================
+[2026-04-26 13:58:20]   GLD $405.0P x1: no current price — skipping
+[2026-04-26 13:58:31]   TLT $84.0P x1: no current price — skipping
+[2026-04-26 13:58:43]   SMH $385.0P x2: no current price — skipping
+[2026-04-26 13:58:55]   IWM $256.0P x1: no current price — skipping
+[2026-04-26 13:58:55] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-26 14:13:55]   📊 4 option position(s) loaded from IBKR
+[2026-04-26 14:13:55]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-26 14:13:55]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-26 14:13:55]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-26 14:13:55]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-26 14:13:58] 
+============================================================
+[2026-04-26 14:13:58] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-26 14:13:58] ============================================================
+[2026-04-26 14:14:10]   GLD $405.0P x1: no current price — skipping
+[2026-04-26 14:14:22]   TLT $84.0P x1: no current price — skipping
+[2026-04-26 14:14:34]   SMH $385.0P x2: no current price — skipping
+[2026-04-26 14:14:45]   IWM $256.0P x1: no current price — skipping
+[2026-04-26 14:14:45] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-26 14:29:45]   📊 4 option position(s) loaded from IBKR
+[2026-04-26 14:29:45]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-26 14:29:45]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-26 14:29:45]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-26 14:29:45]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-26 14:29:48] 
+============================================================
+[2026-04-26 14:29:48] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-26 14:29:48] ============================================================
+[2026-04-26 14:30:00]   GLD $405.0P x1: no current price — skipping
+[2026-04-26 14:30:12]   TLT $84.0P x1: no current price — skipping
+[2026-04-26 14:30:24]   SMH $385.0P x2: no current price — skipping
+[2026-04-26 14:30:35]   IWM $256.0P x1: no current price — skipping
+[2026-04-26 14:30:35] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-26 14:45:35]   📊 4 option position(s) loaded from IBKR
+[2026-04-26 14:45:35]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-26 14:45:35]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-26 14:45:35]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-26 14:45:35]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-26 14:45:39] 
+============================================================
+[2026-04-26 14:45:39] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-26 14:45:39] ============================================================
+[2026-04-26 14:45:50]   GLD $405.0P x1: no current price — skipping
+[2026-04-26 14:46:02]   TLT $84.0P x1: no current price — skipping
+[2026-04-26 14:46:14]   SMH $385.0P x2: no current price — skipping
+[2026-04-26 14:46:25]   IWM $256.0P x1: no current price — skipping
+[2026-04-26 14:46:25] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-26 15:01:25]   📊 4 option position(s) loaded from IBKR
+[2026-04-26 15:01:25]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-26 15:01:25]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-26 15:01:25]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-26 15:01:25]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-26 15:01:28] 
+============================================================
+[2026-04-26 15:01:28] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-26 15:01:28] ============================================================
+[2026-04-26 15:01:40]   GLD $405.0P x1: no current price — skipping
+[2026-04-26 15:01:52]   TLT $84.0P x1: no current price — skipping
+[2026-04-26 15:02:04]   SMH $385.0P x2: no current price — skipping
+[2026-04-26 15:02:15]   IWM $256.0P x1: no current price — skipping
+[2026-04-26 15:02:15] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-26 15:17:15]   📊 4 option position(s) loaded from IBKR
+[2026-04-26 15:17:15]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-26 15:17:15]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-26 15:17:15]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-26 15:17:15]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-26 15:17:19] 
+============================================================
+[2026-04-26 15:17:19] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-26 15:17:19] ============================================================
+[2026-04-26 15:17:30]   GLD $405.0P x1: no current price — skipping
+[2026-04-26 15:17:42]   TLT $84.0P x1: no current price — skipping
+[2026-04-26 15:17:54]   SMH $385.0P x2: no current price — skipping
+[2026-04-26 15:18:05]   IWM $256.0P x1: no current price — skipping
+[2026-04-26 15:18:05] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-26 15:33:06]   📊 4 option position(s) loaded from IBKR
+[2026-04-26 15:33:06]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-26 15:33:06]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-26 15:33:06]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-26 15:33:06]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-26 15:33:09] 
+============================================================
+[2026-04-26 15:33:09] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-26 15:33:09] ============================================================
+[2026-04-26 15:33:20]   GLD $405.0P x1: no current price — skipping
+[2026-04-26 15:33:32]   TLT $84.0P x1: no current price — skipping
+[2026-04-26 15:33:44]   SMH $385.0P x2: no current price — skipping
+[2026-04-26 15:33:56]   IWM $256.0P x1: no current price — skipping
+[2026-04-26 15:33:56] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-26 15:48:56]   📊 4 option position(s) loaded from IBKR
+[2026-04-26 15:48:56]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-26 15:48:56]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-26 15:48:56]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-26 15:48:56]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-26 15:48:59] 
+============================================================
+[2026-04-26 15:48:59] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-26 15:48:59] ============================================================
+[2026-04-26 15:49:11]   GLD $405.0P x1: no current price — skipping
+[2026-04-26 15:49:22]   TLT $84.0P x1: no current price — skipping
+[2026-04-26 15:49:34]   SMH $385.0P x2: no current price — skipping
+[2026-04-26 15:49:45]   IWM $256.0P x1: no current price — skipping
+[2026-04-26 15:49:45] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-26 16:04:45]   📊 4 option position(s) loaded from IBKR
+[2026-04-26 16:04:45]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-26 16:04:45]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-26 16:04:45]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-26 16:04:45]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-26 16:04:49] 
+============================================================
+[2026-04-26 16:04:49] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-26 16:04:49] ============================================================
+[2026-04-26 16:05:00]   GLD $405.0P x1: no current price — skipping
+[2026-04-26 16:05:12]   TLT $84.0P x1: no current price — skipping
+[2026-04-26 16:05:24]   SMH $385.0P x2: no current price — skipping
+[2026-04-26 16:05:35]   IWM $256.0P x1: no current price — skipping
+[2026-04-26 16:05:35] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-26 16:09:19]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:10:29]   🔴 TWS error 1100: IBKR connectivity LOST — marking disconnected
+[2026-04-26 16:20:35] ⚠ Connection lost (606s ago) — attempting reconnect...
+[2026-04-26 16:20:35] 🔄 Attempting reconnect...
+[2026-04-26 16:20:35] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:20:41] 🔌 Connecting to TWS...
+[2026-04-26 16:20:41] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:20:41]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:20:41]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:21:14] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:21:14] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:22:14] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:22:14] 🔄 Attempting reconnect...
+[2026-04-26 16:22:14] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:22:19] 🔌 Connecting to TWS...
+[2026-04-26 16:22:19] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:22:19]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:22:19]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:22:53] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:22:53] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:23:53] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:23:53] 🔄 Attempting reconnect...
+[2026-04-26 16:23:53] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:23:58] 🔌 Connecting to TWS...
+[2026-04-26 16:23:58] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:23:58]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:23:58]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:24:31] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:24:31] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:25:31] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:25:31] 🔄 Attempting reconnect...
+[2026-04-26 16:25:31] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:25:37] 🔌 Connecting to TWS...
+[2026-04-26 16:25:37] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:25:37]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:25:37]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:26:10] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:26:10] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:27:10] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:27:10] 🔄 Attempting reconnect...
+[2026-04-26 16:27:10] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:27:16] 🔌 Connecting to TWS...
+[2026-04-26 16:27:16] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:27:16]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:27:16]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:27:49] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:27:49] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:28:49] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:28:49] 🔄 Attempting reconnect...
+[2026-04-26 16:28:49] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:28:54] 🔌 Connecting to TWS...
+[2026-04-26 16:28:54] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:28:54]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:28:54]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:29:28] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:29:28] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:30:28] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:30:28] 🔄 Attempting reconnect...
+[2026-04-26 16:30:28] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:30:33] 🔌 Connecting to TWS...
+[2026-04-26 16:30:33] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:30:33]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:30:33]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:31:07] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:31:07] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:32:07] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:32:07] 🔄 Attempting reconnect...
+[2026-04-26 16:32:07] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:32:12] 🔌 Connecting to TWS...
+[2026-04-26 16:32:12] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:32:12]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:32:12]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:32:46] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:32:46] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:33:46] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:33:46] 🔄 Attempting reconnect...
+[2026-04-26 16:33:46] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:33:51] 🔌 Connecting to TWS...
+[2026-04-26 16:33:51] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:33:51]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:33:51]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:34:25] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:34:25] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:35:25] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:35:25] 🔄 Attempting reconnect...
+[2026-04-26 16:35:25] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:35:30] 🔌 Connecting to TWS...
+[2026-04-26 16:35:30] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:35:30]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:35:30]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:36:03] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:36:03] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:37:03] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:37:03] 🔄 Attempting reconnect...
+[2026-04-26 16:37:03] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:37:08] 🔌 Connecting to TWS...
+[2026-04-26 16:37:08] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:37:08]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:37:08]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:37:42] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:37:42] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:38:42] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:38:42] 🔄 Attempting reconnect...
+[2026-04-26 16:38:42] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:38:47] 🔌 Connecting to TWS...
+[2026-04-26 16:38:47] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:38:47]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:38:47]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:39:20] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:39:20] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:40:21] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:40:21] 🔄 Attempting reconnect...
+[2026-04-26 16:40:21] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:40:26] 🔌 Connecting to TWS...
+[2026-04-26 16:40:26] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:40:26]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:40:26]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:40:59] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:40:59] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:41:59] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:41:59] 🔄 Attempting reconnect...
+[2026-04-26 16:41:59] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:42:04] 🔌 Connecting to TWS...
+[2026-04-26 16:42:04] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:42:04]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:42:04]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:42:38] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:42:38] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:43:38] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:43:38] 🔄 Attempting reconnect...
+[2026-04-26 16:43:38] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:43:43] 🔌 Connecting to TWS...
+[2026-04-26 16:43:43] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:43:43]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:43:43]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:44:17] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:44:17] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:45:17] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:45:17] 🔄 Attempting reconnect...
+[2026-04-26 16:45:17] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:45:22] 🔌 Connecting to TWS...
+[2026-04-26 16:45:22] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:45:22]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:45:22]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:45:55] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:45:55] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:46:56] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:46:56] 🔄 Attempting reconnect...
+[2026-04-26 16:46:56] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:47:01] 🔌 Connecting to TWS...
+[2026-04-26 16:47:01] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:47:01]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:47:01]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:47:34] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:47:34] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:48:35] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:48:35] 🔄 Attempting reconnect...
+[2026-04-26 16:48:35] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:48:40] 🔌 Connecting to TWS...
+[2026-04-26 16:48:40] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:48:40]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:48:40]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:49:13] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:49:13] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:50:13] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:50:13] 🔄 Attempting reconnect...
+[2026-04-26 16:50:13] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:50:18] 🔌 Connecting to TWS...
+[2026-04-26 16:50:18] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:50:18]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:50:18]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:50:52] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:50:52] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:51:52] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:51:52] 🔄 Attempting reconnect...
+[2026-04-26 16:51:52] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:51:58] 🔌 Connecting to TWS...
+[2026-04-26 16:51:58] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:51:58]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:51:58]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:52:31] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:52:31] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:53:31] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:53:31] 🔄 Attempting reconnect...
+[2026-04-26 16:53:31] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:53:36] 🔌 Connecting to TWS...
+[2026-04-26 16:53:36] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:53:36]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:53:36]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:54:10] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:54:10] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:55:10] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:55:10] 🔄 Attempting reconnect...
+[2026-04-26 16:55:10] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:55:15] 🔌 Connecting to TWS...
+[2026-04-26 16:55:15] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:55:15]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:55:15]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:55:48] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:55:48] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:56:49] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:56:49] 🔄 Attempting reconnect...
+[2026-04-26 16:56:49] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:56:54] 🔌 Connecting to TWS...
+[2026-04-26 16:56:54] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:56:54]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:56:54]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:57:27] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:57:27] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 16:58:27] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 16:58:27] 🔄 Attempting reconnect...
+[2026-04-26 16:58:27] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 16:58:32] 🔌 Connecting to TWS...
+[2026-04-26 16:58:32] ✅ TWS connected — next order ID: 28
+[2026-04-26 16:58:32]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 16:58:32]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 16:59:06] ❌ Failed to connect to TWS after 30s
+[2026-04-26 16:59:06] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:00:06] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:00:06] 🔄 Attempting reconnect...
+[2026-04-26 17:00:06] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:00:11] 🔌 Connecting to TWS...
+[2026-04-26 17:00:11] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:00:11]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:00:11]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:00:45] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:00:45] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:01:45] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:01:45] 🔄 Attempting reconnect...
+[2026-04-26 17:01:45] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:01:50] 🔌 Connecting to TWS...
+[2026-04-26 17:01:50] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:01:50]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:01:50]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:02:23] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:02:23] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:03:24] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:03:24] 🔄 Attempting reconnect...
+[2026-04-26 17:03:24] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:03:29] 🔌 Connecting to TWS...
+[2026-04-26 17:03:29] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:03:29]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:03:29]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:04:02] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:04:02] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:05:02] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:05:02] 🔄 Attempting reconnect...
+[2026-04-26 17:05:02] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:05:07] 🔌 Connecting to TWS...
+[2026-04-26 17:05:07] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:05:07]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:05:07]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:05:40] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:05:40] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:06:41] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:06:41] 🔄 Attempting reconnect...
+[2026-04-26 17:06:41] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:06:46] 🔌 Connecting to TWS...
+[2026-04-26 17:06:46] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:06:46]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:06:46]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:07:19] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:07:19] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:08:19] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:08:19] 🔄 Attempting reconnect...
+[2026-04-26 17:08:19] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:08:25] 🔌 Connecting to TWS...
+[2026-04-26 17:08:25] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:08:25]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:08:25]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:08:58] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:08:58] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:09:58] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:09:58] 🔄 Attempting reconnect...
+[2026-04-26 17:09:58] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:10:03] 🔌 Connecting to TWS...
+[2026-04-26 17:10:04] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:10:04]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:10:04]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:10:37] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:10:37] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:11:37] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:11:37] 🔄 Attempting reconnect...
+[2026-04-26 17:11:37] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:11:42] 🔌 Connecting to TWS...
+[2026-04-26 17:11:42] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:11:42]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:11:42]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:12:16] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:12:16] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:13:16] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:13:16] 🔄 Attempting reconnect...
+[2026-04-26 17:13:16] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:13:21] 🔌 Connecting to TWS...
+[2026-04-26 17:13:21] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:13:21]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:13:21]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:13:55] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:13:55] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:14:55] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:14:55] 🔄 Attempting reconnect...
+[2026-04-26 17:14:55] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:15:00] 🔌 Connecting to TWS...
+[2026-04-26 17:15:00] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:15:00]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:15:00]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:15:34] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:15:34] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:16:34] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:16:34] 🔄 Attempting reconnect...
+[2026-04-26 17:16:34] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:16:39] 🔌 Connecting to TWS...
+[2026-04-26 17:16:39] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:16:39]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:16:39]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:17:12] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:17:12] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:18:13] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:18:13] 🔄 Attempting reconnect...
+[2026-04-26 17:18:13] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:18:18] 🔌 Connecting to TWS...
+[2026-04-26 17:18:18] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:18:18]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:18:18]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:18:51] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:18:51] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:19:51] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:19:51] 🔄 Attempting reconnect...
+[2026-04-26 17:19:51] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:19:57] 🔌 Connecting to TWS...
+[2026-04-26 17:19:57] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:19:57]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:19:57]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:20:30] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:20:30] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:21:30] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:21:30] 🔄 Attempting reconnect...
+[2026-04-26 17:21:30] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:21:35] 🔌 Connecting to TWS...
+[2026-04-26 17:21:35] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:21:35]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:21:35]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:22:09] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:22:09] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:23:09] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:23:09] 🔄 Attempting reconnect...
+[2026-04-26 17:23:09] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:23:14] 🔌 Connecting to TWS...
+[2026-04-26 17:23:14] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:23:14]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:23:14]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:23:47] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:23:47] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:24:47] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:24:47] 🔄 Attempting reconnect...
+[2026-04-26 17:24:47] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:24:52] 🔌 Connecting to TWS...
+[2026-04-26 17:24:52] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:24:52]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:24:52]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:25:26] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:25:26] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:26:26] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:26:26] 🔄 Attempting reconnect...
+[2026-04-26 17:26:26] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:26:31] 🔌 Connecting to TWS...
+[2026-04-26 17:26:31] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:26:31]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:26:31]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:27:05] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:27:05] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:28:05] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:28:05] 🔄 Attempting reconnect...
+[2026-04-26 17:28:05] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:28:10] 🔌 Connecting to TWS...
+[2026-04-26 17:28:10] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:28:10]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:28:10]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:28:44] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:28:44] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:29:44] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:29:44] 🔄 Attempting reconnect...
+[2026-04-26 17:29:44] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:29:49] 🔌 Connecting to TWS...
+[2026-04-26 17:29:49] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:29:49]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:29:49]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:30:22] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:30:22] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:31:22] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:31:22] 🔄 Attempting reconnect...
+[2026-04-26 17:31:22] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:31:28] 🔌 Connecting to TWS...
+[2026-04-26 17:31:28] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:31:28]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:31:28]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:32:01] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:32:01] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:33:01] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:33:01] 🔄 Attempting reconnect...
+[2026-04-26 17:33:01] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:33:06] 🔌 Connecting to TWS...
+[2026-04-26 17:33:06] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:33:06]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:33:06]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:33:40] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:33:40] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:34:40] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:34:40] 🔄 Attempting reconnect...
+[2026-04-26 17:34:40] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:34:45] 🔌 Connecting to TWS...
+[2026-04-26 17:34:45] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:34:45]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:34:45]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:35:19] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:35:19] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:36:19] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:36:19] 🔄 Attempting reconnect...
+[2026-04-26 17:36:19] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:36:24] 🔌 Connecting to TWS...
+[2026-04-26 17:36:24] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:36:24]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:36:24]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:36:58] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:36:58] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:37:58] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:37:58] 🔄 Attempting reconnect...
+[2026-04-26 17:37:58] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:38:03] 🔌 Connecting to TWS...
+[2026-04-26 17:38:03] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:38:03]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:38:03]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:38:36] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:38:36] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:39:36] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:39:36] 🔄 Attempting reconnect...
+[2026-04-26 17:39:36] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:39:41] 🔌 Connecting to TWS...
+[2026-04-26 17:39:41] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:39:41]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:39:41]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:40:15] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:40:15] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:41:15] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:41:15] 🔄 Attempting reconnect...
+[2026-04-26 17:41:15] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:41:20] 🔌 Connecting to TWS...
+[2026-04-26 17:41:20] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:41:20]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:41:20]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:41:54] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:41:54] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:42:54] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:42:54] 🔄 Attempting reconnect...
+[2026-04-26 17:42:54] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:42:59] 🔌 Connecting to TWS...
+[2026-04-26 17:42:59] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:42:59]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:42:59]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:43:33] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:43:33] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:44:33] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:44:33] 🔄 Attempting reconnect...
+[2026-04-26 17:44:33] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:44:38] 🔌 Connecting to TWS...
+[2026-04-26 17:44:38] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:44:38]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:44:38]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:45:11] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:45:11] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:46:11] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:46:11] 🔄 Attempting reconnect...
+[2026-04-26 17:46:11] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:46:17] 🔌 Connecting to TWS...
+[2026-04-26 17:46:17] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:46:17]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:46:17]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:46:50] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:46:50] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:47:50] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:47:50] 🔄 Attempting reconnect...
+[2026-04-26 17:47:50] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:47:55] 🔌 Connecting to TWS...
+[2026-04-26 17:47:55] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:47:55]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:47:55]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:48:29] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:48:29] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:49:29] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:49:29] 🔄 Attempting reconnect...
+[2026-04-26 17:49:29] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:49:34] 🔌 Connecting to TWS...
+[2026-04-26 17:49:34] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:49:34]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:49:34]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:50:07] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:50:07] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:51:07] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:51:07] 🔄 Attempting reconnect...
+[2026-04-26 17:51:07] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:51:12] 🔌 Connecting to TWS...
+[2026-04-26 17:51:12] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:51:12]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:51:12]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:51:46] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:51:46] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:52:46] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:52:46] 🔄 Attempting reconnect...
+[2026-04-26 17:52:46] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:52:51] 🔌 Connecting to TWS...
+[2026-04-26 17:52:51] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:52:51]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:52:51]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:53:25] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:53:25] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:54:25] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:54:25] 🔄 Attempting reconnect...
+[2026-04-26 17:54:25] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:54:30] 🔌 Connecting to TWS...
+[2026-04-26 17:54:30] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:54:30]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:54:30]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:55:04] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:55:04] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:56:04] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:56:04] 🔄 Attempting reconnect...
+[2026-04-26 17:56:04] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:56:09] 🔌 Connecting to TWS...
+[2026-04-26 17:56:09] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:56:09]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:56:09]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:56:43] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:56:43] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:57:43] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:57:43] 🔄 Attempting reconnect...
+[2026-04-26 17:57:43] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:57:48] 🔌 Connecting to TWS...
+[2026-04-26 17:57:48] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:57:48]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:57:48]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 17:58:22] ❌ Failed to connect to TWS after 30s
+[2026-04-26 17:58:22] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 17:59:22] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 17:59:22] 🔄 Attempting reconnect...
+[2026-04-26 17:59:22] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 17:59:27] 🔌 Connecting to TWS...
+[2026-04-26 17:59:27] ✅ TWS connected — next order ID: 28
+[2026-04-26 17:59:27]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 17:59:27]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:00:00] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:00:00] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:01:01] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:01:01] 🔄 Attempting reconnect...
+[2026-04-26 18:01:01] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:01:06] 🔌 Connecting to TWS...
+[2026-04-26 18:01:06] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:01:06]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:01:06]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:01:39] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:01:39] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:02:39] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:02:39] 🔄 Attempting reconnect...
+[2026-04-26 18:02:39] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:02:44] 🔌 Connecting to TWS...
+[2026-04-26 18:02:44] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:02:44]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:02:44]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:03:18] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:03:18] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:04:18] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:04:18] 🔄 Attempting reconnect...
+[2026-04-26 18:04:18] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:04:23] 🔌 Connecting to TWS...
+[2026-04-26 18:04:23] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:04:23]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:04:23]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:04:56] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:04:56] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:05:56] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:05:56] 🔄 Attempting reconnect...
+[2026-04-26 18:05:56] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:06:01] 🔌 Connecting to TWS...
+[2026-04-26 18:06:01] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:06:01]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:06:01]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:06:35] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:06:35] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:07:35] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:07:35] 🔄 Attempting reconnect...
+[2026-04-26 18:07:35] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:07:40] 🔌 Connecting to TWS...
+[2026-04-26 18:07:40] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:07:40]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:07:40]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:08:14] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:08:14] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:09:14] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:09:14] 🔄 Attempting reconnect...
+[2026-04-26 18:09:14] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:09:19] 🔌 Connecting to TWS...
+[2026-04-26 18:09:19] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:09:19]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:09:19]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:09:53] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:09:53] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:10:53] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:10:53] 🔄 Attempting reconnect...
+[2026-04-26 18:10:53] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:10:58] 🔌 Connecting to TWS...
+[2026-04-26 18:10:58] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:10:58]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:10:58]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:11:32] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:11:32] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:12:32] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:12:32] 🔄 Attempting reconnect...
+[2026-04-26 18:12:32] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:12:37] 🔌 Connecting to TWS...
+[2026-04-26 18:12:37] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:12:37]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:12:37]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:13:10] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:13:10] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:14:10] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:14:10] 🔄 Attempting reconnect...
+[2026-04-26 18:14:10] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:14:16] 🔌 Connecting to TWS...
+[2026-04-26 18:14:16] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:14:16]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:14:16]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:14:49] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:14:49] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:15:49] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:15:49] 🔄 Attempting reconnect...
+[2026-04-26 18:15:49] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:15:54] 🔌 Connecting to TWS...
+[2026-04-26 18:15:54] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:15:54]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:15:54]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:16:28] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:16:28] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:17:28] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:17:28] 🔄 Attempting reconnect...
+[2026-04-26 18:17:28] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:17:33] 🔌 Connecting to TWS...
+[2026-04-26 18:17:33] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:17:33]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:17:33]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:18:07] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:18:07] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:19:07] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:19:07] 🔄 Attempting reconnect...
+[2026-04-26 18:19:07] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:19:12] 🔌 Connecting to TWS...
+[2026-04-26 18:19:12] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:19:12]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:19:12]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:19:46] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:19:46] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:20:46] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:20:46] 🔄 Attempting reconnect...
+[2026-04-26 18:20:46] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:20:51] 🔌 Connecting to TWS...
+[2026-04-26 18:20:51] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:20:51]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:20:51]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:21:24] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:21:24] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:22:24] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:22:24] 🔄 Attempting reconnect...
+[2026-04-26 18:22:24] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:22:29] 🔌 Connecting to TWS...
+[2026-04-26 18:22:29] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:22:29]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:22:29]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:23:03] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:23:03] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:24:03] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:24:03] 🔄 Attempting reconnect...
+[2026-04-26 18:24:03] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:24:08] 🔌 Connecting to TWS...
+[2026-04-26 18:24:08] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:24:08]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:24:08]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:24:41] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:24:41] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:25:41] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:25:41] 🔄 Attempting reconnect...
+[2026-04-26 18:25:41] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:25:47] 🔌 Connecting to TWS...
+[2026-04-26 18:25:47] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:25:47]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:25:47]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:26:20] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:26:20] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:27:20] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:27:20] 🔄 Attempting reconnect...
+[2026-04-26 18:27:20] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:27:26] 🔌 Connecting to TWS...
+[2026-04-26 18:27:26] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:27:26]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:27:26]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:27:59] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:27:59] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:28:59] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:28:59] 🔄 Attempting reconnect...
+[2026-04-26 18:28:59] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:29:04] 🔌 Connecting to TWS...
+[2026-04-26 18:29:04] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:29:04]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:29:04]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:29:38] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:29:38] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:30:38] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:30:38] 🔄 Attempting reconnect...
+[2026-04-26 18:30:38] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:30:43] 🔌 Connecting to TWS...
+[2026-04-26 18:30:43] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:30:43]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:30:43]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:31:17] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:31:17] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:32:17] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:32:17] 🔄 Attempting reconnect...
+[2026-04-26 18:32:17] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:32:22] 🔌 Connecting to TWS...
+[2026-04-26 18:32:22] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:32:22]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:32:22]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:32:56] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:32:56] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:33:56] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:33:56] 🔄 Attempting reconnect...
+[2026-04-26 18:33:56] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:34:01] 🔌 Connecting to TWS...
+[2026-04-26 18:34:01] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:34:01]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:34:01]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:34:35] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:34:35] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:35:35] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:35:35] 🔄 Attempting reconnect...
+[2026-04-26 18:35:35] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:35:40] 🔌 Connecting to TWS...
+[2026-04-26 18:35:40] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:35:40]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:35:40]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:36:13] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:36:13] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:37:14] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:37:14] 🔄 Attempting reconnect...
+[2026-04-26 18:37:14] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:37:19] 🔌 Connecting to TWS...
+[2026-04-26 18:37:19] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:37:19]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:37:19]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:37:52] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:37:52] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:38:52] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:38:52] 🔄 Attempting reconnect...
+[2026-04-26 18:38:52] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:38:57] 🔌 Connecting to TWS...
+[2026-04-26 18:38:57] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:38:57]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:38:57]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:39:31] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:39:31] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:40:31] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:40:31] 🔄 Attempting reconnect...
+[2026-04-26 18:40:31] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:40:36] 🔌 Connecting to TWS...
+[2026-04-26 18:40:36] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:40:36]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:40:36]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:41:09] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:41:09] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:42:10] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:42:10] 🔄 Attempting reconnect...
+[2026-04-26 18:42:10] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:42:15] 🔌 Connecting to TWS...
+[2026-04-26 18:42:15] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:42:15]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:42:15]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:42:49] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:42:49] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:43:49] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:43:49] 🔄 Attempting reconnect...
+[2026-04-26 18:43:49] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:43:54] 🔌 Connecting to TWS...
+[2026-04-26 18:43:54] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:43:54]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:43:54]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:44:27] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:44:27] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:45:27] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:45:27] 🔄 Attempting reconnect...
+[2026-04-26 18:45:27] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:45:32] 🔌 Connecting to TWS...
+[2026-04-26 18:45:32] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:45:32]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:45:32]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:46:05] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:46:05] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:47:06] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:47:06] 🔄 Attempting reconnect...
+[2026-04-26 18:47:06] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:47:11] 🔌 Connecting to TWS...
+[2026-04-26 18:47:11] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:47:11]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:47:11]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:47:44] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:47:44] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:48:44] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:48:44] 🔄 Attempting reconnect...
+[2026-04-26 18:48:44] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:48:49] 🔌 Connecting to TWS...
+[2026-04-26 18:48:49] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:48:49]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:48:49]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:49:21] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:49:21] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:50:21] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:50:21] 🔄 Attempting reconnect...
+[2026-04-26 18:50:21] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:50:26] 🔌 Connecting to TWS...
+[2026-04-26 18:50:26] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:50:26]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:50:26]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:50:58] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:50:58] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:51:58] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:51:58] 🔄 Attempting reconnect...
+[2026-04-26 18:51:58] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:52:03] 🔌 Connecting to TWS...
+[2026-04-26 18:52:03] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:52:03]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:52:03]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:52:35] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:52:35] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:53:35] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:53:35] 🔄 Attempting reconnect...
+[2026-04-26 18:53:35] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:53:40] 🔌 Connecting to TWS...
+[2026-04-26 18:53:40] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:53:40]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:53:40]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:54:11] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:54:11] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:55:11] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:55:11] 🔄 Attempting reconnect...
+[2026-04-26 18:55:11] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:55:16] 🔌 Connecting to TWS...
+[2026-04-26 18:55:16] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:55:16]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:55:16]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:55:48] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:55:48] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:56:48] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:56:48] 🔄 Attempting reconnect...
+[2026-04-26 18:56:48] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:56:53] 🔌 Connecting to TWS...
+[2026-04-26 18:56:53] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:56:53]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:56:53]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:57:25] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:57:25] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 18:58:25] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 18:58:25] 🔄 Attempting reconnect...
+[2026-04-26 18:58:25] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 18:58:30] 🔌 Connecting to TWS...
+[2026-04-26 18:58:30] ✅ TWS connected — next order ID: 28
+[2026-04-26 18:58:30]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 18:58:30]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 18:59:02] ❌ Failed to connect to TWS after 30s
+[2026-04-26 18:59:02] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:00:02] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:00:02] 🔄 Attempting reconnect...
+[2026-04-26 19:00:02] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:00:07] 🔌 Connecting to TWS...
+[2026-04-26 19:00:07] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:00:07]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:00:07]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:00:41] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:00:41] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:01:41] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:01:41] 🔄 Attempting reconnect...
+[2026-04-26 19:01:41] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:01:46] 🔌 Connecting to TWS...
+[2026-04-26 19:01:46] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:01:46]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:01:46]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:02:20] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:02:20] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:03:20] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:03:20] 🔄 Attempting reconnect...
+[2026-04-26 19:03:20] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:03:25] 🔌 Connecting to TWS...
+[2026-04-26 19:03:25] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:03:25]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:03:25]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:03:58] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:03:58] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:04:58] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:04:58] 🔄 Attempting reconnect...
+[2026-04-26 19:04:58] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:05:04] 🔌 Connecting to TWS...
+[2026-04-26 19:05:04] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:05:04]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:05:04]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:05:37] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:05:37] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:06:37] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:06:37] 🔄 Attempting reconnect...
+[2026-04-26 19:06:37] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:06:42] 🔌 Connecting to TWS...
+[2026-04-26 19:06:42] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:06:42]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:06:42]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:07:16] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:07:16] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:08:16] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:08:16] 🔄 Attempting reconnect...
+[2026-04-26 19:08:16] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:08:21] 🔌 Connecting to TWS...
+[2026-04-26 19:08:21] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:08:21]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:08:21]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:08:55] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:08:55] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:09:55] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:09:55] 🔄 Attempting reconnect...
+[2026-04-26 19:09:55] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:10:00] 🔌 Connecting to TWS...
+[2026-04-26 19:10:00] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:10:00]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:10:00]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:10:34] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:10:34] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:11:34] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:11:34] 🔄 Attempting reconnect...
+[2026-04-26 19:11:34] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:11:39] 🔌 Connecting to TWS...
+[2026-04-26 19:11:39] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:11:39]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:11:39]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:12:13] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:12:13] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:13:13] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:13:13] 🔄 Attempting reconnect...
+[2026-04-26 19:13:13] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:13:18] 🔌 Connecting to TWS...
+[2026-04-26 19:13:18] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:13:18]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:13:18]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:13:51] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:13:51] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:14:52] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:14:52] 🔄 Attempting reconnect...
+[2026-04-26 19:14:52] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:14:57] 🔌 Connecting to TWS...
+[2026-04-26 19:14:57] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:14:57]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:14:57]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:15:30] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:15:30] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:16:30] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:16:30] 🔄 Attempting reconnect...
+[2026-04-26 19:16:30] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:16:35] 🔌 Connecting to TWS...
+[2026-04-26 19:16:35] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:16:35]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:16:35]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:17:09] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:17:09] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:18:09] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:18:09] 🔄 Attempting reconnect...
+[2026-04-26 19:18:09] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:18:14] 🔌 Connecting to TWS...
+[2026-04-26 19:18:14] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:18:14]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:18:14]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:18:48] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:18:48] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:19:48] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:19:48] 🔄 Attempting reconnect...
+[2026-04-26 19:19:48] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:19:53] 🔌 Connecting to TWS...
+[2026-04-26 19:19:53] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:19:53]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:19:53]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:20:26] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:20:26] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:21:26] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:21:26] 🔄 Attempting reconnect...
+[2026-04-26 19:21:26] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:21:32] 🔌 Connecting to TWS...
+[2026-04-26 19:21:32] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:21:32]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:21:32]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:22:05] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:22:05] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:23:05] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:23:05] 🔄 Attempting reconnect...
+[2026-04-26 19:23:05] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:23:10] 🔌 Connecting to TWS...
+[2026-04-26 19:23:10] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:23:10]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:23:10]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:23:44] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:23:44] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:24:44] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:24:44] 🔄 Attempting reconnect...
+[2026-04-26 19:24:44] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:24:49] 🔌 Connecting to TWS...
+[2026-04-26 19:24:49] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:24:49]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:24:49]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:25:22] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:25:22] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:26:22] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:26:22] 🔄 Attempting reconnect...
+[2026-04-26 19:26:22] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:26:27] 🔌 Connecting to TWS...
+[2026-04-26 19:26:27] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:26:27]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:26:27]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:27:01] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:27:01] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:28:01] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:28:01] 🔄 Attempting reconnect...
+[2026-04-26 19:28:01] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:28:06] 🔌 Connecting to TWS...
+[2026-04-26 19:28:06] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:28:06]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:28:06]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:28:40] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:28:40] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:29:40] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:29:40] 🔄 Attempting reconnect...
+[2026-04-26 19:29:40] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:29:45] 🔌 Connecting to TWS...
+[2026-04-26 19:29:45] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:29:45]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:29:45]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:30:18] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:30:18] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:31:18] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:31:18] 🔄 Attempting reconnect...
+[2026-04-26 19:31:18] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:31:23] 🔌 Connecting to TWS...
+[2026-04-26 19:31:24] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:31:24]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:31:24]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:31:57] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:31:57] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:32:57] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:32:57] 🔄 Attempting reconnect...
+[2026-04-26 19:32:57] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:33:02] 🔌 Connecting to TWS...
+[2026-04-26 19:33:02] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:33:02]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:33:02]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:33:36] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:33:36] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:34:36] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:34:36] 🔄 Attempting reconnect...
+[2026-04-26 19:34:36] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:34:41] 🔌 Connecting to TWS...
+[2026-04-26 19:34:41] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:34:41]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:34:41]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:35:14] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:35:14] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:36:15] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:36:15] 🔄 Attempting reconnect...
+[2026-04-26 19:36:15] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:36:20] 🔌 Connecting to TWS...
+[2026-04-26 19:36:20] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:36:20]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:36:20]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:36:53] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:36:53] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:37:53] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:37:53] 🔄 Attempting reconnect...
+[2026-04-26 19:37:53] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:37:58] 🔌 Connecting to TWS...
+[2026-04-26 19:37:58] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:37:58]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:37:58]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:38:32] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:38:32] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:39:32] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:39:32] 🔄 Attempting reconnect...
+[2026-04-26 19:39:32] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:39:37] 🔌 Connecting to TWS...
+[2026-04-26 19:39:37] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:39:37]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:39:37]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:40:11] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:40:11] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:41:11] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:41:11] 🔄 Attempting reconnect...
+[2026-04-26 19:41:11] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:41:16] 🔌 Connecting to TWS...
+[2026-04-26 19:41:16] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:41:16]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:41:16]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:41:50] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:41:50] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:42:50] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:42:50] 🔄 Attempting reconnect...
+[2026-04-26 19:42:50] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:42:55] 🔌 Connecting to TWS...
+[2026-04-26 19:42:55] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:42:55]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:42:55]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:43:28] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:43:28] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:44:28] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:44:28] 🔄 Attempting reconnect...
+[2026-04-26 19:44:28] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:44:33] 🔌 Connecting to TWS...
+[2026-04-26 19:44:33] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:44:33]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:44:33]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:45:07] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:45:07] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:46:07] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:46:07] 🔄 Attempting reconnect...
+[2026-04-26 19:46:07] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:46:12] 🔌 Connecting to TWS...
+[2026-04-26 19:46:12] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:46:12]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:46:12]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:46:46] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:46:46] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:47:46] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:47:46] 🔄 Attempting reconnect...
+[2026-04-26 19:47:46] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:47:51] 🔌 Connecting to TWS...
+[2026-04-26 19:47:51] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:47:51]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:47:51]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:48:25] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:48:25] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:49:25] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:49:25] 🔄 Attempting reconnect...
+[2026-04-26 19:49:25] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:49:30] 🔌 Connecting to TWS...
+[2026-04-26 19:49:30] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:49:30]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:49:30]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:50:03] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:50:03] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:51:03] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:51:03] 🔄 Attempting reconnect...
+[2026-04-26 19:51:03] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:51:09] 🔌 Connecting to TWS...
+[2026-04-26 19:51:09] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:51:09]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:51:09]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:51:42] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:51:42] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:52:42] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:52:42] 🔄 Attempting reconnect...
+[2026-04-26 19:52:42] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:52:48] 🔌 Connecting to TWS...
+[2026-04-26 19:52:48] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:52:48]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:52:48]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:53:21] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:53:21] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:54:21] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:54:21] 🔄 Attempting reconnect...
+[2026-04-26 19:54:21] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:54:26] 🔌 Connecting to TWS...
+[2026-04-26 19:54:26] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:54:26]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:54:26]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:55:00] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:55:00] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:56:00] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:56:00] 🔄 Attempting reconnect...
+[2026-04-26 19:56:00] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:56:05] 🔌 Connecting to TWS...
+[2026-04-26 19:56:05] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:56:05]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:56:05]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:56:39] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:56:39] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:57:39] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:57:39] 🔄 Attempting reconnect...
+[2026-04-26 19:57:39] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:57:44] 🔌 Connecting to TWS...
+[2026-04-26 19:57:44] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:57:44]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:57:44]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:58:17] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:58:17] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 19:59:18] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 19:59:18] 🔄 Attempting reconnect...
+[2026-04-26 19:59:18] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 19:59:23] 🔌 Connecting to TWS...
+[2026-04-26 19:59:23] ✅ TWS connected — next order ID: 28
+[2026-04-26 19:59:23]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 19:59:23]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 19:59:56] ❌ Failed to connect to TWS after 30s
+[2026-04-26 19:59:56] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:00:57] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:00:57] 🔄 Attempting reconnect...
+[2026-04-26 20:00:57] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:01:02] 🔌 Connecting to TWS...
+[2026-04-26 20:01:02] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:01:02]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:01:02]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:01:35] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:01:35] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:02:35] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:02:35] 🔄 Attempting reconnect...
+[2026-04-26 20:02:35] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:02:41] 🔌 Connecting to TWS...
+[2026-04-26 20:02:41] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:02:41]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:02:41]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:03:14] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:03:14] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:04:15] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:04:15] 🔄 Attempting reconnect...
+[2026-04-26 20:04:15] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:04:20] 🔌 Connecting to TWS...
+[2026-04-26 20:04:20] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:04:20]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:04:20]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:04:53] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:04:53] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:05:53] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:05:53] 🔄 Attempting reconnect...
+[2026-04-26 20:05:53] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:05:58] 🔌 Connecting to TWS...
+[2026-04-26 20:05:58] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:05:58]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:05:58]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:06:32] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:06:32] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:07:32] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:07:32] 🔄 Attempting reconnect...
+[2026-04-26 20:07:32] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:07:37] 🔌 Connecting to TWS...
+[2026-04-26 20:07:37] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:07:37]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:07:37]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:08:10] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:08:10] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:09:10] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:09:10] 🔄 Attempting reconnect...
+[2026-04-26 20:09:10] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:09:16] 🔌 Connecting to TWS...
+[2026-04-26 20:09:16] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:09:16]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:09:16]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:09:49] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:09:49] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:10:49] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:10:49] 🔄 Attempting reconnect...
+[2026-04-26 20:10:49] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:10:54] 🔌 Connecting to TWS...
+[2026-04-26 20:10:54] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:10:54]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:10:54]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:11:28] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:11:28] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:12:28] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:12:28] 🔄 Attempting reconnect...
+[2026-04-26 20:12:28] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:12:33] 🔌 Connecting to TWS...
+[2026-04-26 20:12:33] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:12:33]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:12:33]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:13:06] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:13:06] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:14:07] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:14:07] 🔄 Attempting reconnect...
+[2026-04-26 20:14:07] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:14:12] 🔌 Connecting to TWS...
+[2026-04-26 20:14:12] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:14:12]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:14:12]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:14:45] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:14:45] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:15:45] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:15:45] 🔄 Attempting reconnect...
+[2026-04-26 20:15:45] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:15:50] 🔌 Connecting to TWS...
+[2026-04-26 20:15:50] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:15:50]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:15:50]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:16:23] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:16:23] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:17:24] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:17:24] 🔄 Attempting reconnect...
+[2026-04-26 20:17:24] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:17:29] 🔌 Connecting to TWS...
+[2026-04-26 20:17:29] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:17:29]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:17:29]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:18:02] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:18:02] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:19:02] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:19:02] 🔄 Attempting reconnect...
+[2026-04-26 20:19:02] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:19:07] 🔌 Connecting to TWS...
+[2026-04-26 20:19:07] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:19:07]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:19:07]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:19:41] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:19:41] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:20:41] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:20:41] 🔄 Attempting reconnect...
+[2026-04-26 20:20:41] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:20:46] 🔌 Connecting to TWS...
+[2026-04-26 20:20:46] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:20:46]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:20:46]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:21:20] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:21:20] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:22:20] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:22:20] 🔄 Attempting reconnect...
+[2026-04-26 20:22:20] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:22:25] 🔌 Connecting to TWS...
+[2026-04-26 20:22:25] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:22:25]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:22:25]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:22:59] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:22:59] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:23:59] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:23:59] 🔄 Attempting reconnect...
+[2026-04-26 20:23:59] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:24:04] 🔌 Connecting to TWS...
+[2026-04-26 20:24:04] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:24:04]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:24:04]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:24:38] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:24:38] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:25:38] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:25:38] 🔄 Attempting reconnect...
+[2026-04-26 20:25:38] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:25:43] 🔌 Connecting to TWS...
+[2026-04-26 20:25:43] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:25:43]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:25:43]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:26:16] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:26:16] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:27:16] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:27:16] 🔄 Attempting reconnect...
+[2026-04-26 20:27:16] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:27:21] 🔌 Connecting to TWS...
+[2026-04-26 20:27:21] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:27:21]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:27:21]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:27:55] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:27:55] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:28:55] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:28:55] 🔄 Attempting reconnect...
+[2026-04-26 20:28:55] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:29:00] 🔌 Connecting to TWS...
+[2026-04-26 20:29:00] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:29:00]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:29:00]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:29:34] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:29:34] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:30:34] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:30:34] 🔄 Attempting reconnect...
+[2026-04-26 20:30:34] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:30:39] 🔌 Connecting to TWS...
+[2026-04-26 20:30:39] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:30:39]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:30:39]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:31:12] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:31:12] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:32:12] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:32:12] 🔄 Attempting reconnect...
+[2026-04-26 20:32:12] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:32:17] 🔌 Connecting to TWS...
+[2026-04-26 20:32:17] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:32:17]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:32:17]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:32:51] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:32:51] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:33:51] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:33:51] 🔄 Attempting reconnect...
+[2026-04-26 20:33:51] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:33:56] 🔌 Connecting to TWS...
+[2026-04-26 20:33:56] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:33:56]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:33:56]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:34:29] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:34:29] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:35:30] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:35:30] 🔄 Attempting reconnect...
+[2026-04-26 20:35:30] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:35:35] 🔌 Connecting to TWS...
+[2026-04-26 20:35:35] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:35:35]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:35:35]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:36:08] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:36:08] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:37:08] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:37:08] 🔄 Attempting reconnect...
+[2026-04-26 20:37:08] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:37:14] 🔌 Connecting to TWS...
+[2026-04-26 20:37:14] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:37:14]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:37:14]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:37:47] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:37:47] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:38:47] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:38:47] 🔄 Attempting reconnect...
+[2026-04-26 20:38:47] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:38:53] 🔌 Connecting to TWS...
+[2026-04-26 20:38:53] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:38:53]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:38:53]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:39:26] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:39:26] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:40:26] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:40:26] 🔄 Attempting reconnect...
+[2026-04-26 20:40:26] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:40:31] 🔌 Connecting to TWS...
+[2026-04-26 20:40:31] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:40:31]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:40:31]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:41:05] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:41:05] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:42:05] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:42:05] 🔄 Attempting reconnect...
+[2026-04-26 20:42:05] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:42:10] 🔌 Connecting to TWS...
+[2026-04-26 20:42:10] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:42:10]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:42:10]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:42:44] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:42:44] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:43:44] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:43:44] 🔄 Attempting reconnect...
+[2026-04-26 20:43:44] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:43:49] 🔌 Connecting to TWS...
+[2026-04-26 20:43:49] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:43:49]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:43:49]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:44:22] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:44:22] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:45:23] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:45:23] 🔄 Attempting reconnect...
+[2026-04-26 20:45:23] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:45:28] 🔌 Connecting to TWS...
+[2026-04-26 20:45:28] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:45:28]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:45:28]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:46:01] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:46:01] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:47:01] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:47:01] 🔄 Attempting reconnect...
+[2026-04-26 20:47:01] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:47:06] 🔌 Connecting to TWS...
+[2026-04-26 20:47:06] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:47:06]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:47:06]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:47:40] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:47:40] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:48:40] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:48:40] 🔄 Attempting reconnect...
+[2026-04-26 20:48:40] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:48:45] 🔌 Connecting to TWS...
+[2026-04-26 20:48:45] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:48:45]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:48:45]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:49:19] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:49:19] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:50:19] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:50:19] 🔄 Attempting reconnect...
+[2026-04-26 20:50:19] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:50:24] 🔌 Connecting to TWS...
+[2026-04-26 20:50:24] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:50:24]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:50:24]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:50:57] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:50:57] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:51:58] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:51:58] 🔄 Attempting reconnect...
+[2026-04-26 20:51:58] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:52:03] 🔌 Connecting to TWS...
+[2026-04-26 20:52:03] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:52:03]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:52:03]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:52:36] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:52:36] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:53:36] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:53:36] 🔄 Attempting reconnect...
+[2026-04-26 20:53:36] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:53:42] 🔌 Connecting to TWS...
+[2026-04-26 20:53:42] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:53:42]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:53:42]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:54:15] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:54:15] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:55:15] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:55:15] 🔄 Attempting reconnect...
+[2026-04-26 20:55:15] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:55:20] 🔌 Connecting to TWS...
+[2026-04-26 20:55:20] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:55:20]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:55:20]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:55:54] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:55:54] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:56:54] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:56:54] 🔄 Attempting reconnect...
+[2026-04-26 20:56:54] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:56:59] 🔌 Connecting to TWS...
+[2026-04-26 20:56:59] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:56:59]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:56:59]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:57:33] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:57:33] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 20:58:33] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 20:58:33] 🔄 Attempting reconnect...
+[2026-04-26 20:58:33] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 20:58:38] 🔌 Connecting to TWS...
+[2026-04-26 20:58:38] ✅ TWS connected — next order ID: 28
+[2026-04-26 20:58:38]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 20:58:38]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 20:59:12] ❌ Failed to connect to TWS after 30s
+[2026-04-26 20:59:12] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 21:00:12] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 21:00:12] 🔄 Attempting reconnect...
+[2026-04-26 21:00:12] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 21:00:17] 🔌 Connecting to TWS...
+[2026-04-26 21:00:17] ✅ TWS connected — next order ID: 28
+[2026-04-26 21:00:17]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 21:00:17]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 21:00:50] ❌ Failed to connect to TWS after 30s
+[2026-04-26 21:00:50] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 21:01:50] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-26 21:01:50] 🔄 Attempting reconnect...
+[2026-04-26 21:01:50] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 21:01:55] 🔌 Connecting to TWS...
+[2026-04-26 21:01:55] ✅ TWS connected — next order ID: 28
+[2026-04-26 21:01:55]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-26 21:01:55]   ⚠ TWS error 2103: data farm issue
+[2026-04-26 21:02:27] ❌ Failed to connect to TWS after 30s
+[2026-04-26 21:02:27] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 21:03:22]   🟢 TWS error 1102: Connection fully restored
+[2026-04-26 21:03:26] ⚠ WATCHDOG: No successful monitor in 297 min — forcing reconnect
+[2026-04-26 21:03:26] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 21:03:31] 🔌 Connecting to TWS...
+[2026-04-26 21:03:31] ✅ TWS connected — next order ID: 28
+[2026-04-26 21:03:33]   📊 4 option position(s) loaded from IBKR
+[2026-04-26 21:03:33]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-26 21:03:33]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-26 21:03:33]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-26 21:03:33]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-26 21:03:37]   📊 4 option position(s) loaded from IBKR
+[2026-04-26 21:03:37]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-26 21:03:37]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-26 21:03:37]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-26 21:03:37]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-26 21:03:40] 
+============================================================
+[2026-04-26 21:03:40] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-26 21:03:40] ============================================================
+[2026-04-26 21:03:51]   GLD $405.0P x1: no current price — skipping
+[2026-04-26 21:03:52]   ⚠ TWS error 2105: data farm issue
+[2026-04-26 21:04:03]   TLT $84.0P x1: no current price — skipping
+[2026-04-26 21:04:14]   SMH $385.0P x2: no current price — skipping
+[2026-04-26 21:04:26]   IWM $256.0P x1: no current price — skipping
+[2026-04-26 21:04:26] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-26 21:19:26]   📊 4 option position(s) loaded from IBKR
+[2026-04-26 21:19:26]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-26 21:19:26]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-26 21:19:26]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-26 21:19:26]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-26 21:19:29] 
+============================================================
+[2026-04-26 21:19:29] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-26 21:19:29] ============================================================
+[2026-04-26 21:19:41]   GLD $405.0P x1: no current price — skipping
+[2026-04-26 21:19:52]   TLT $84.0P x1: no current price — skipping
+[2026-04-26 21:20:04]   SMH $385.0P x2: no current price — skipping
+[2026-04-26 21:20:16]   IWM $256.0P x1: no current price — skipping
+[2026-04-26 21:20:16] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-26 21:35:16]   📊 4 option position(s) loaded from IBKR
+[2026-04-26 21:35:16]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-26 21:35:16]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-26 21:35:16]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-26 21:35:16]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-26 21:35:19] 
+============================================================
+[2026-04-26 21:35:19] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-26 21:35:19] ============================================================
+[2026-04-26 21:35:31]   GLD $405.0P x1: no current price — skipping
+[2026-04-26 21:35:43]   TLT $84.0P x1: no current price — skipping
+[2026-04-26 21:35:54]   SMH $385.0P x2: no current price — skipping
+[2026-04-26 21:36:06]   IWM $256.0P x1: no current price — skipping
+[2026-04-26 21:36:06] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-26 21:51:06]   📊 4 option position(s) loaded from IBKR
+[2026-04-26 21:51:06]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-26 21:51:06]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-26 21:51:06]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-26 21:51:06]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-26 21:51:09] 
+============================================================
+[2026-04-26 21:51:09] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-26 21:51:09] ============================================================
+[2026-04-26 21:51:21]   GLD $405.0P x1: no current price — skipping
+[2026-04-26 21:51:33]   TLT $84.0P x1: no current price — skipping
+[2026-04-26 21:51:44]   SMH $385.0P x2: no current price — skipping
+[2026-04-26 21:51:56]   IWM $256.0P x1: no current price — skipping
+[2026-04-26 21:51:56] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-26 22:06:56]   📊 4 option position(s) loaded from IBKR
+[2026-04-26 22:06:56]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-26 22:06:56]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-26 22:06:56]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-26 22:06:56]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-26 22:06:59] 
+============================================================
+[2026-04-26 22:06:59] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-26 22:06:59] ============================================================
+[2026-04-26 22:07:11]   GLD $405.0P x1: no current price — skipping
+[2026-04-26 22:07:23]   TLT $84.0P x1: no current price — skipping
+[2026-04-26 22:07:34]   SMH $385.0P x2: no current price — skipping
+[2026-04-26 22:07:46]   IWM $256.0P x1: no current price — skipping
+[2026-04-26 22:07:46] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-26 22:22:46]   📊 4 option position(s) loaded from IBKR
+[2026-04-26 22:22:46]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-26 22:22:46]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-26 22:22:46]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-26 22:22:46]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-26 22:22:49] 
+============================================================
+[2026-04-26 22:22:49] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-26 22:22:49] ============================================================
+[2026-04-26 22:23:01]   GLD $405.0P x1: no current price — skipping
+[2026-04-26 22:23:13]   TLT $84.0P x1: no current price — skipping
+[2026-04-26 22:23:24]   SMH $385.0P x2: no current price — skipping
+[2026-04-26 22:23:36]   IWM $256.0P x1: no current price — skipping
+[2026-04-26 22:23:36] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-26 22:38:36]   📊 4 option position(s) loaded from IBKR
+[2026-04-26 22:38:36]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-26 22:38:36]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-26 22:38:36]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-26 22:38:36]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-26 22:38:39] 
+============================================================
+[2026-04-26 22:38:39] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-26 22:38:39] ============================================================
+[2026-04-26 22:38:51]   GLD $405.0P x1: no current price — skipping
+[2026-04-26 22:39:02]   TLT $84.0P x1: no current price — skipping
+[2026-04-26 22:39:14]   SMH $385.0P x2: no current price — skipping
+[2026-04-26 22:39:26]   IWM $256.0P x1: no current price — skipping
+[2026-04-26 22:39:26] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-26 22:42:00]   ⚠ TWS error 2105: data farm issue
+[2026-04-26 22:42:17] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 22:54:26] ⚠ Connection lost (728s ago) — attempting reconnect...
+[2026-04-26 22:54:26] 🔄 Attempting reconnect...
+[2026-04-26 22:54:31] 🔌 Connecting to TWS...
+[2026-04-26 22:54:31]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-04-26 22:54:31] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 22:55:02] ❌ Failed to connect to TWS after 30s
+[2026-04-26 22:55:02] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 22:56:02] ⚠ Connection lost (91s ago) — attempting reconnect...
+[2026-04-26 22:56:02] 🔄 Attempting reconnect...
+[2026-04-26 22:56:07] 🔌 Connecting to TWS...
+[2026-04-26 22:56:07]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-04-26 22:56:07] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 22:56:39] ❌ Failed to connect to TWS after 30s
+[2026-04-26 22:56:39] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 22:57:39] ⚠ Connection lost (91s ago) — attempting reconnect...
+[2026-04-26 22:57:39] 🔄 Attempting reconnect...
+[2026-04-26 22:57:44] 🔌 Connecting to TWS...
+[2026-04-26 22:57:44]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-04-26 22:57:44] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 22:58:15] ❌ Failed to connect to TWS after 30s
+[2026-04-26 22:58:15] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 22:59:15] ⚠ Connection lost (91s ago) — attempting reconnect...
+[2026-04-26 22:59:15] 🔄 Attempting reconnect...
+[2026-04-26 22:59:20] 🔌 Connecting to TWS...
+[2026-04-26 22:59:20]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-04-26 22:59:20] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 22:59:52] ❌ Failed to connect to TWS after 30s
+[2026-04-26 22:59:52] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 23:00:52] ⚠ Connection lost (91s ago) — attempting reconnect...
+[2026-04-26 23:00:52] 🔄 Attempting reconnect...
+[2026-04-26 23:00:57] 🔌 Connecting to TWS...
+[2026-04-26 23:00:57]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-04-26 23:00:57] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 23:01:29] ❌ Failed to connect to TWS after 30s
+[2026-04-26 23:01:29] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 23:02:29] ⚠ Connection lost (91s ago) — attempting reconnect...
+[2026-04-26 23:02:29] 🔄 Attempting reconnect...
+[2026-04-26 23:02:34] 🔌 Connecting to TWS...
+[2026-04-26 23:02:34]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-04-26 23:02:34] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 23:03:05] ❌ Failed to connect to TWS after 30s
+[2026-04-26 23:03:05] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 23:04:05] ⚠ Connection lost (91s ago) — attempting reconnect...
+[2026-04-26 23:04:05] 🔄 Attempting reconnect...
+[2026-04-26 23:04:11] 🔌 Connecting to TWS...
+[2026-04-26 23:04:11]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-04-26 23:04:11] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 23:04:42] ❌ Failed to connect to TWS after 30s
+[2026-04-26 23:04:42] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-26 23:05:42] ⚠ Connection lost (91s ago) — attempting reconnect...
+[2026-04-26 23:05:42] 🔄 Attempting reconnect...
+[2026-04-26 23:05:47] 🔌 Connecting to TWS...
+[2026-04-26 23:05:47]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-04-26 23:05:47] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-26 23:06:18] ❌ Failed to connect to TWS after 30s
+[2026-04-26 23:06:18] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-27 15:15:19] 
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+[2026-04-27 15:15:19] Options Pro Ultra v6 — Autotrade Engine
+[2026-04-27 15:15:19] Account: DU4735568 | Size: $250,000
+[2026-04-27 15:15:19] Max positions: 5 | Max risk: $12,500
+[2026-04-27 15:15:19] Delta: 0.15-0.25 | DTE: 21-45
+[2026-04-27 15:15:19] Close: 50% profit | Stop: 2.0× credit
+[2026-04-27 15:15:19] Scan passes: 2
+[2026-04-27 15:15:19] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+
