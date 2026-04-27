@@ -52,6 +52,7 @@ SIGNAL_ONLY_FILE = _data_file("optionspro_signal_only")
 SIGNALS_FILE = _data_file("trade_signals.json")
 LIVE_POSITIONS_FILE = _data_file("live_positions.json")
 REAL_RULES_FILE = _data_file("real_account_rules.json")
+EARNINGS_CALENDAR_FILE = _data_file("earnings_calendar.json")
 MIRROR_KILL_FILE = _data_file("optionspro_real_mirror_kill")
 SIGNAL_AUDIT_FILE = _data_file("signal_audit.json")
 SIGNAL_AUDIT_EVENTS_FILE = _data_file("signal_audit_events.jsonl")
@@ -112,6 +113,12 @@ TIER1 = ["SPY", "QQQ", "SMH", "GDX"]       # Spreads ONLY
 TIER2 = ["IWM", "GLD", "XLE", "TLT"]       # Naked CSP OK
 TIER3 = ["XSP", "QQQM"]                     # CSP mini
 WATCHLIST = TIER1 + TIER2 + TIER3
+SCAN_DISABLED_TICKERS = {
+    # XSP repeatedly returns weak/no usable options in the configured DTE/delta
+    # window via IBKR paper data. Keep it out of the slow option-chain path until
+    # the strategy/data source explicitly supports it.
+    "XSP": "Known poor/illiquid option chain in the configured 21-45 DTE window.",
+}
 
 # Spread widths per ticker (wider = more credit but more capital)
 _TRADING_CLASS = {
@@ -194,6 +201,9 @@ SCORE_CORR_BONUS = 15
 # reconciliation cadence outside the nightly TWS restart window.
 MONITOR_INTERVAL = 900  # 15 minutes
 SCAN_NOW_POLL_SECONDS = 10
+PRE_OPEN_WAKE_WINDOW_SECS = 30 * 60
+PRE_OPEN_POLL_SECONDS = 10
+EARNINGS_SKIP_WITHIN_DTE = True
 AUTO_CLOSE_UNMATCHED_LONGS = False  # Safety first: alert on unexpected longs, do not market-sell by default.
 RECONCILE_ALERT_INTERVAL = 7200  # seconds between journal-vs-IBKR drift email alerts
 
@@ -319,6 +329,10 @@ def _load_real_rules():
         "capital": 0,
         "max_risk_per_trade_pct": 1.0,
         "max_risk_per_trade_dollars": 0,
+        "csp_max_collateral_pct": 5.0,
+        "csp_max_collateral_dollars": 0,
+        "bps_max_loss_pct": 1.0,
+        "bps_max_loss_dollars": 0,
         "allowed_tickers": WATCHLIST,
         "allowed_strategies": ["BPS", "CSP"],
     }
@@ -344,12 +358,20 @@ def _real_copyability(signal):
     if signal.get("strategy") not in set(rules.get("allowed_strategies") or []):
         reasons.append("strategy_not_allowed")
 
+    strategy = str(signal.get("strategy") or "CSP").upper()
     paper_qty = max(1, int(signal.get("qty") or 1))
     total_risk = float(signal.get("estimated_risk") or 0)
     unit_risk = total_risk / paper_qty if total_risk > 0 else 0
     capital = float(rules.get("capital") or 0)
-    pct_cap = capital * (float(rules.get("max_risk_per_trade_pct") or 0) / 100)
-    hard_cap = float(rules.get("max_risk_per_trade_dollars") or 0)
+    if strategy == "CSP":
+        pct = float(rules.get("csp_max_collateral_pct") or rules.get("max_risk_per_trade_pct") or 0)
+        hard_cap = float(rules.get("csp_max_collateral_dollars") or rules.get("max_risk_per_trade_dollars") or 0)
+        cap_label = "CSP collateral"
+    else:
+        pct = float(rules.get("bps_max_loss_pct") or rules.get("max_risk_per_trade_pct") or 0)
+        hard_cap = float(rules.get("bps_max_loss_dollars") or rules.get("max_risk_per_trade_dollars") or 0)
+        cap_label = "BPS max-loss"
+    pct_cap = capital * (pct / 100)
     max_risk = min(hard_cap, pct_cap) if hard_cap > 0 else pct_cap
     real_qty = int(max_risk // unit_risk) if unit_risk > 0 and max_risk > 0 else 0
     if real_qty < 1:
@@ -369,7 +391,62 @@ def _real_copyability(signal):
         "reasons": reasons,
         "reason_labels": [reason_labels.get(r, r) for r in reasons],
         "max_real_risk": round(max_risk, 2),
+        "risk_cap_label": cap_label,
+        "risk_cap_pct": round(pct, 3),
     }
+
+
+def _parse_earnings_date(value):
+    if isinstance(value, dict):
+        value = value.get("date") or value.get("earnings_date") or value.get("confirmed")
+    if not value:
+        return None
+    text = str(value).strip()[:10]
+    for fmt in ("%Y-%m-%d", "%Y%m%d", "%m/%d/%Y", "%m-%d-%Y"):
+        try:
+            return datetime.strptime(text, fmt).date()
+        except Exception:
+            pass
+    try:
+        return datetime.fromisoformat(str(value).replace("Z", "+00:00")[:19]).date()
+    except Exception:
+        return None
+
+
+def _load_earnings_calendar():
+    """Read optional manually maintained earnings dates.
+
+    Supported shapes:
+      {"AAPL": "2026-05-01"}
+      {"AAPL": ["2026-05-01", "2026-08-01"]}
+      {"AAPL": [{"date": "2026-05-01", "source": "manual"}]}
+    ETF tickers can simply be omitted.
+    """
+    try:
+        if EARNINGS_CALENDAR_FILE.exists():
+            data = json.loads(EARNINGS_CALENDAR_FILE.read_text())
+            return data if isinstance(data, dict) else {}
+    except Exception as e:
+        log(f"  ⚠ Could not read earnings calendar: {e}")
+    return {}
+
+
+def earnings_event_for(ticker, expiry):
+    data = _load_earnings_calendar()
+    raw = data.get(str(ticker).upper())
+    if raw is None:
+        return None
+    items = raw if isinstance(raw, list) else [raw]
+    try:
+        exp_date = datetime.strptime(str(expiry)[:8], "%Y%m%d").date()
+    except Exception:
+        return None
+    today = datetime.now().date()
+    for item in items:
+        dt = _parse_earnings_date(item)
+        if dt and today <= dt <= exp_date:
+            return dt.isoformat()
+    return None
 
 
 def _update_signal_audit(payload):
@@ -1950,6 +2027,16 @@ class AutoTradeEngine:
         for ticker in WATCHLIST:
             self._expire_stale_pending_closes(f"scan {ticker}")
             existing_dtes = existing_per_ticker.get(ticker, [])
+            if ticker in SCAN_DISABLED_TICKERS:
+                reason = SCAN_DISABLED_TICKERS[ticker]
+                log(f"  {ticker}: skipped early — {reason}")
+                scan_summary["by_ticker"].append({
+                    "ticker": ticker,
+                    "status": "skipped",
+                    "reason": reason,
+                    "early_skip": True,
+                })
+                continue
             # Hard cap on per-ticker open positions
             if len(existing_dtes) >= MAX_PER_TICKER:
                 log(f"  {ticker}: skipped (already at MAX_PER_TICKER={MAX_PER_TICKER}, "
@@ -1970,7 +2057,8 @@ class AutoTradeEngine:
                 scan_summary["by_ticker"].append({
                     "ticker": ticker,
                     "status": "skipped",
-                    "reason": "No underlying price data from IBKR.",
+                    "reason": "No underlying price data from IBKR; likely market-data subscription or farm issue.",
+                    "early_skip": True,
                 })
                 continue
 
@@ -2000,6 +2088,17 @@ class AutoTradeEngine:
 
             exp_date = datetime.strptime(expiry, "%Y%m%d")
             dte = (exp_date - datetime.now()).days
+
+            earnings_date = earnings_event_for(ticker, expiry)
+            if earnings_date and EARNINGS_SKIP_WITHIN_DTE:
+                log(f"  {ticker}: skipped — earnings/event date {earnings_date} falls before expiry {expiry}")
+                scan_summary["by_ticker"].append({
+                    "ticker": ticker,
+                    "status": "blocked",
+                    "reason": f"Earnings/event date {earnings_date} falls inside option life.",
+                    "expiry": expiry,
+                })
+                continue
 
             # Ladder gap check: if this ticker already has a position, the new
             # candidate must differ in DTE by at least MIN_LADDER_DTE_GAP days.
@@ -3281,6 +3380,34 @@ class AutoTradeEngine:
             return "closed"
         return "open"
 
+    def seconds_until_next_market_open(self):
+        """Seconds until the next regular scan-open time, or None if unknown."""
+        ny = ZoneInfo("America/New_York")
+        now_et = datetime.now(ny)
+        for day_offset in range(0, 10):
+            d = (now_et + timedelta(days=day_offset)).date()
+            if d.weekday() >= 5 or d in self._nyse_holidays(d.year):
+                continue
+            open_dt = datetime(d.year, d.month, d.day, 9, 25, tzinfo=ny)
+            if open_dt > now_et:
+                return max(0, int((open_dt - now_et).total_seconds()))
+        return None
+
+    def last_signal_generated_date(self):
+        try:
+            if not SIGNALS_FILE.exists():
+                return None
+            payload = json.loads(SIGNALS_FILE.read_text())
+            generated = payload.get("generated") or payload.get("scan_summary", {}).get("generated")
+            if not generated:
+                return None
+            dt = datetime.fromisoformat(str(generated).replace("Z", "+00:00"))
+            if dt.tzinfo is None:
+                dt = dt.astimezone()
+            return dt.astimezone(ZoneInfo("America/New_York")).date()
+        except Exception:
+            return None
+
     def _run_manual_scan_if_requested(self, ms=None):
         """Honor dashboard Scan Now requests without waiting for the full monitor interval."""
         if not SCAN_NOW_FILE.exists():
@@ -3365,15 +3492,18 @@ class AutoTradeEngine:
 
         # Initial scan & trade — only during market hours
         ms = self.market_status()
-        last_scan_date = None
-        if ms == "open":
+        today_et = datetime.now(ZoneInfo("America/New_York")).date()
+        last_scan_date = self.last_signal_generated_date()
+        if ms == "open" and last_scan_date != today_et:
             for pass_num in range(self.scan_passes):
                 log(f"\n━━━ Scan Pass {pass_num + 1}/{self.scan_passes} ━━━")
                 opportunities = self.scan()
                 if opportunities:
                     self.execute_trades(opportunities)
                 time.sleep(5)
-            last_scan_date = datetime.now(ZoneInfo("America/New_York")).date()
+            last_scan_date = today_et
+        elif ms == "open":
+            log(f"✅ Startup scan already generated today ({last_scan_date}) — skipping duplicate initial scan")
         elif ms == "tws_restart":
             log("😴 Startup during TWS restart window — skipping initial scan, entering monitor mode")
         else:
@@ -3525,8 +3655,13 @@ class AutoTradeEngine:
                     sleep_secs = MONITOR_INTERVAL
                     log(f"\n  ⏳ Next check in {sleep_secs // 60} min...")
                 else:
-                    sleep_secs = 900  # 15 min when closed (saves CPU, avoids log spam)
-                    log(f"\n  🌙 Market closed — next check in 15 min...")
+                    wait_to_open = self.seconds_until_next_market_open()
+                    if wait_to_open is not None and wait_to_open <= PRE_OPEN_WAKE_WINDOW_SECS:
+                        sleep_secs = max(PRE_OPEN_POLL_SECONDS, min(60, wait_to_open + 2))
+                        log(f"\n  🌅 Market opens soon ({wait_to_open}s) — polling in {sleep_secs}s...")
+                    else:
+                        sleep_secs = 900  # 15 min when closed (saves CPU, avoids log spam)
+                        log(f"\n  🌙 Market closed — next check in 15 min...")
                 self._sleep_with_command_checks(sleep_secs)
 
             except KeyboardInterrupt:

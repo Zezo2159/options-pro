@@ -11,3 +11,6 @@
 {"generated":"2026-04-24T20:24:17+02:00","id":"TLT-CSP-84.0--20260529","ticker":"TLT","strategy":"CSP","strike":84.0,"long_strike":null,"expiry":"20260529","score":52,"copyable":false,"real_qty":0}
 {"generated":"2026-04-25T17:02:50+02:00","id":"XLE-CSP-53.0--20260529","ticker":"XLE","strategy":"CSP","strike":53.0,"long_strike":null,"expiry":"20260529","score":90,"copyable":false,"real_qty":0}
 {"generated":"2026-04-25T17:10:54+02:00","id":"XLE-CSP-53.5--20260529","ticker":"XLE","strategy":"CSP","strike":53.5,"long_strike":null,"expiry":"20260529","score":85,"copyable":false,"real_qty":0}
+{"generated":"2026-04-27T15:37:52+02:00","id":"XLE-CSP-53.5--20260605","ticker":"XLE","strategy":"CSP","strike":53.5,"long_strike":null,"expiry":"20260605","score":90,"copyable":true,"real_qty":2}
+{"generated":"2026-04-27T15:39:03+02:00","id":"XLE-CSP-53.5--20260605","ticker":"XLE","strategy":"CSP","strike":53.5,"long_strike":null,"expiry":"20260605","score":100,"copyable":true,"real_qty":2}
+{"generated":"2026-04-27T15:40:09+02:00","id":"XLE-CSP-52.5--20260605","ticker":"XLE","strategy":"CSP","strike":52.5,"long_strike":null,"expiry":"20260605","score":100,"copyable":true,"real_qty":2}

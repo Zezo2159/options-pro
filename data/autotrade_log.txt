@@ -38392,3 +38392,573 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 [2026-04-27 15:20:24] Scan passes: 2
 [2026-04-27 15:20:24] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
+[2026-04-27 15:20:31]   ✅ GitHub backup on restart complete
+[2026-04-27 15:20:31] 🔌 Connecting to TWS...
+[2026-04-27 15:20:31] ✅ TWS connected — next order ID: 28
+[2026-04-27 15:20:33]   📊 4 option position(s) loaded from IBKR
+[2026-04-27 15:20:33]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 15:20:33]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 15:20:33]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-27 15:20:33]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-27 15:20:36] 🌙 Market closed — skipping initial scan, entering monitor mode
+[2026-04-27 15:20:36] 
+✅ Entering monitor mode (checking every 15 min)
+[2026-04-27 15:20:36]   📊 4 option position(s) loaded from IBKR
+[2026-04-27 15:20:36]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 15:20:36]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 15:20:36]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-27 15:20:36]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-27 15:20:39] 
+============================================================
+[2026-04-27 15:20:39] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-27 15:20:39] ============================================================
+[2026-04-27 15:20:39]   TWS error 2108: Market data farm connection is inactive but should be available upon demand.hfarm
+[2026-04-27 15:20:39]   TWS error 2108: Market data farm connection is inactive but should be available upon demand.hfarm
+[2026-04-27 15:20:39]   TWS error 2108: Market data farm connection is inactive but should be available upon demand.eufarmnj
+[2026-04-27 15:20:39]   TWS error 2108: Market data farm connection is inactive but should be available upon demand.eufarmnj
+[2026-04-27 15:20:39]   TWS error 2108: Market data farm connection is inactive but should be available upon demand.cashfarm
+[2026-04-27 15:20:39]   TWS error 2108: Market data farm connection is inactive but should be available upon demand.cashfarm
+[2026-04-27 15:20:39]   TWS error 2108: Market data farm connection is inactive but should be available upon demand.usfuture
+[2026-04-27 15:20:39]   TWS error 2108: Market data farm connection is inactive but should be available upon demand.usfuture
+[2026-04-27 15:20:39]   TWS error 2108: Market data farm connection is inactive but should be available upon demand.jfarm
+[2026-04-27 15:20:39]   TWS error 2108: Market data farm connection is inactive but should be available upon demand.jfarm
+[2026-04-27 15:20:51]   GLD $405.0P x1: no current price — skipping
+[2026-04-27 15:20:53] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.30 P/L=$0 DTE=31
+[2026-04-27 15:20:53]    >> HOLD (target=$15 stop=$-60)
+[2026-04-27 15:20:54] 
+  SMH   $385.0P x2 [CSP]: entry=$561 now=$0.87 P/L=$386 DTE=17
+[2026-04-27 15:20:54]    >> CLOSE_PROFIT: 50% profit ($386 >= $280)
+[2026-04-27 15:20:54]    >> AUTO CLOSE BLOCKED: market is closed; no order submitted
+[2026-04-27 15:21:06]   IWM $256.0P x1: no current price — skipping
+[2026-04-27 15:21:06] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-27 15:35:24] 🔔 Manual scan triggered (requested 2026-04-27T15:35:16+02:00)
+[2026-04-27 15:35:24] 
+============================================================
+[2026-04-27 15:35:24] 🌅 MORNING SCAN STARTED
+[2026-04-27 15:35:24] ============================================================
+[2026-04-27 15:35:24]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:35:24]   📊 VIX: 19.06 — Regime: Normal (Δ 0.15-0.25, risk × 1.0)
+[2026-04-27 15:35:24]   Open positions: 4/5
+[2026-04-27 15:35:24] 
+  Scanning SPY...
+[2026-04-27 15:35:25]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:35:25]   SPY: $713.33
+[2026-04-27 15:35:26]   SPY: conId=756733 (STK)
+[2026-04-27 15:35:26]   SPY: option chain SPY@SMART (35 expiries, 462 strikes)
+[2026-04-27 15:35:40]   SPY $693.0P: missing delta/greeks — skipped
+[2026-04-27 15:35:46]   SPY: no suitable strike found
+[2026-04-27 15:35:46] 
+  Scanning QQQ...
+[2026-04-27 15:35:46]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:35:47]   QQQ: $663.59
+[2026-04-27 15:35:47]   QQQ: conId=320227571 (STK)
+[2026-04-27 15:35:48]   QQQ: option chain QQQ@SMART (34 expiries, 435 strikes)
+[2026-04-27 15:36:07]   QQQ: no suitable strike found
+[2026-04-27 15:36:07] 
+  Scanning SMH...
+[2026-04-27 15:36:07]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:36:07]   SMH: $509.38
+[2026-04-27 15:36:08]   SMH: conId=229725622 (STK)
+[2026-04-27 15:36:08]   SMH: option chain SMH@SMART (21 expiries, 180 strikes)
+[2026-04-27 15:36:20]   SMH $485.0P: missing delta/greeks — skipped
+[2026-04-27 15:36:22]   SMH $482.5P: missing delta/greeks — skipped
+[2026-04-27 15:36:24]   SMH $480.0P: missing delta/greeks — skipped
+[2026-04-27 15:36:29]   SMH: no suitable strike found
+[2026-04-27 15:36:29] 
+  Scanning GDX...
+[2026-04-27 15:36:29]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:36:30]   GDX: $93.54
+[2026-04-27 15:36:30]   GDX: conId=229726316 (STK)
+[2026-04-27 15:36:30]   GDX: option chain GDX@SMART (18 expiries, 157 strikes)
+[2026-04-27 15:36:33]   GDX $91.5P: quote too wide bid=$3.10 ask=$6.15 spread=66%
+[2026-04-27 15:36:34]   GDX $91.0P: quote too wide bid=$2.84 ask=$5.90 spread=52%
+[2026-04-27 15:36:36]   GDX $90.5P: quote too wide bid=$2.71 ask=$5.70 spread=71%
+[2026-04-27 15:36:38]   GDX $90.0P: quote too wide bid=$2.46 ask=$5.45 spread=55%
+[2026-04-27 15:36:40]   GDX $89.5P: quote too wide bid=$2.27 ask=$5.25 spread=57%
+[2026-04-27 15:36:42]   GDX $89.0P: quote too wide bid=$2.06 ask=$4.95 spread=58%
+[2026-04-27 15:36:42]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 15:36:42]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 15:36:43]   GDX $88.0P: quote too wide bid=$1.89 ask=$4.35 spread=57%
+[2026-04-27 15:36:43]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 15:36:43]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 15:36:45]   GDX $87.0P: quote too wide bid=$1.47 ask=$4.20 spread=65%
+[2026-04-27 15:36:45]   GDX: no suitable strike found
+[2026-04-27 15:36:45] 
+  Scanning IWM...
+[2026-04-27 15:36:45]   TWS error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.IWM ARCA/TOP/ALL
+[2026-04-27 15:36:55]   IWM: no price data
+[2026-04-27 15:36:55] 
+  Scanning GLD...
+[2026-04-27 15:36:55]   TWS error 300: Can't find EId with tickerId:1102
+[2026-04-27 15:36:55]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:36:55]   GLD: $431.81
+[2026-04-27 15:36:56]   GLD: conId=51529211 (STK)
+[2026-04-27 15:36:56]   GLD: option chain GLD@SMART (28 expiries, 374 strikes)
+[2026-04-27 15:37:13]   GLD: no suitable strike found
+[2026-04-27 15:37:13] 
+  Scanning XLE...
+[2026-04-27 15:37:13]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:37:13]   XLE: $57.19
+[2026-04-27 15:37:14]   XLE: conId=4215217 (STK)
+[2026-04-27 15:37:14]   XLE: option chain XLE@SMART (22 expiries, 89 strikes)
+[2026-04-27 15:37:18]   XLE $55.5P: quote too wide bid=$0.85 ask=$1.60 spread=47%
+[2026-04-27 15:37:31]   XLE: $53.5P @ $1.05 | Δ=0.205 IV=29.6% Buffer=6.5% DTE=38 | Score=90
+[2026-04-27 15:37:31] 
+  Scanning TLT...
+[2026-04-27 15:37:32]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:37:32]   TLT: $86.57
+[2026-04-27 15:37:33]   TLT: conId=15547841 (STK)
+[2026-04-27 15:37:33]   TLT: option chain TLT@SMART (28 expiries, 74 strikes)
+[2026-04-27 15:37:33]   TLT: skipped — proposed DTE 38 too close to existing [31] (need ≥14d gap)
+[2026-04-27 15:37:33] 
+  Scanning XSP...
+[2026-04-27 15:37:33]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:37:43]   XSP: $716.51
+[2026-04-27 15:37:43]   XSP: conId=137851301 (IND)
+[2026-04-27 15:37:44]   XSP: option chain XSP@CBOE (47 expiries, 477 strikes)
+[2026-04-27 15:37:44]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 15:37:44]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 15:37:44]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 15:37:45]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 15:37:45]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-27 15:37:47]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 15:37:47]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 15:37:47]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 15:37:47]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 15:37:48]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 15:37:48]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 15:37:48]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 15:37:48]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 15:37:49]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-27 15:37:50]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 15:37:50]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 15:37:50]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 15:37:50]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 15:37:50]   XSP: no suitable strike found
+[2026-04-27 15:37:50] 
+  Scanning QQQM...
+[2026-04-27 15:37:51]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:37:51]   QQQM: $273.21
+[2026-04-27 15:37:51]   QQQM: conId=449738108 (STK)
+[2026-04-27 15:37:52]   QQQM: option chain QQQM@SMART (8 expiries, 62 strikes)
+[2026-04-27 15:37:52]   QQQM: no suitable expiry in 21-45 DTE range
+[2026-04-27 15:37:52]   📡 Signals written: 1 candidate(s) -> /Users/islam/options-pro/data/trade_signals.json
+[2026-04-27 15:37:52] 
+  📊 Found 1 opportunities, 1 slot(s) available
+[2026-04-27 15:37:52]   🧭 Gate summary: selected=1 candidates=1 blocked=9
+[2026-04-27 15:37:52]     SPY: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-04-27 15:37:52]     QQQ: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-04-27 15:37:52]     SMH: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-04-27 15:37:52]     GDX: skipped — Quotes were available but failed width/quality checks.
+[2026-04-27 15:37:52]     IWM: skipped — No underlying price data from IBKR.
+[2026-04-27 15:37:52]     GLD: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-04-27 15:37:52]     XLE: selected — Candidate passed scanner filters.
+[2026-04-27 15:37:52]     TLT: skipped — DTE ladder gap < 14d: proposed 38, conflicts with [31].
+[2026-04-27 15:37:52]     XSP: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-04-27 15:37:52]     QQQM: skipped — No expiry in 21-45 DTE range.
+[2026-04-27 15:37:52]     #90: XLE $53.5P @ $1.05 (CSP) DTE=38
+[2026-04-27 15:37:52] 
+  🎯 EXECUTING: SELL 2x XLE $53.5P @ $1.05
+[2026-04-27 15:37:52]   📤 Placing order: SELL 2x XLE $53.5P @ $1.05 (ID: 28)
+[2026-04-27 15:37:52]   📝 Journal: OPEN XLE $53.5 x2
+[2026-04-27 15:37:54]   📧 Email sent: 🎯 Trade Placed: XLE $53.5P
+[2026-04-27 15:37:56]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-04-27 15:37:58]   📧 Email sent: ⚠ Options Pro: Position Reconciliation Drift
+[2026-04-27 15:37:58] 
+━━━ Daily Market-Open Scan ━━━
+[2026-04-27 15:37:58] 
+━━━ Scan Pass 1/2 ━━━
+[2026-04-27 15:37:58] 
+============================================================
+[2026-04-27 15:37:58] 🌅 MORNING SCAN STARTED
+[2026-04-27 15:37:58] ============================================================
+[2026-04-27 15:37:58]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:37:58]   📊 VIX: 19.07 — Regime: Normal (Δ 0.15-0.25, risk × 1.0)
+[2026-04-27 15:37:58]   Open positions: 4/5
+[2026-04-27 15:37:58] 
+  Scanning SPY...
+[2026-04-27 15:37:59]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:37:59]   SPY: $714.16
+[2026-04-27 15:37:59]   SPY: conId=756733 (STK)
+[2026-04-27 15:38:00]   SPY: option chain SPY@SMART (35 expiries, 462 strikes)
+[2026-04-27 15:38:11]   SPY: no suitable strike found
+[2026-04-27 15:38:11] 
+  Scanning QQQ...
+[2026-04-27 15:38:11]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:38:11]   QQQ: $662.30
+[2026-04-27 15:38:11]   QQQ: conId=320227571 (STK)
+[2026-04-27 15:38:11]   QQQ: option chain QQQ@SMART (34 expiries, 435 strikes)
+[2026-04-27 15:38:19]   QQQ: no suitable strike found
+[2026-04-27 15:38:19] 
+  Scanning SMH...
+[2026-04-27 15:38:19]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:38:19]   SMH: $508.14
+[2026-04-27 15:38:19]   SMH: conId=229725622 (STK)
+[2026-04-27 15:38:19]   SMH: option chain SMH@SMART (21 expiries, 180 strikes)
+[2026-04-27 15:38:25]   SMH: no suitable strike found
+[2026-04-27 15:38:25] 
+  Scanning GDX...
+[2026-04-27 15:38:26]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:38:26]   GDX: $92.96
+[2026-04-27 15:38:26]   GDX: conId=229726316 (STK)
+[2026-04-27 15:38:26]   GDX: option chain GDX@SMART (18 expiries, 157 strikes)
+[2026-04-27 15:38:26]   GDX $91.0P: quote too wide bid=$2.84 ask=$5.90 spread=52%
+[2026-04-27 15:38:27]   GDX $90.5P: quote too wide bid=$2.71 ask=$5.70 spread=52%
+[2026-04-27 15:38:28]   GDX $88.0P: quote too wide bid=$1.89 ask=$4.35 spread=57%
+[2026-04-27 15:38:29]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 15:38:29]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 15:38:29]   GDX: no suitable strike found
+[2026-04-27 15:38:29] 
+  Scanning IWM...
+[2026-04-27 15:38:29]   TWS error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.IWM ARCA/TOP/ALL
+[2026-04-27 15:38:39]   IWM: no price data
+[2026-04-27 15:38:39] 
+  Scanning GLD...
+[2026-04-27 15:38:39]   TWS error 300: Can't find EId with tickerId:1231
+[2026-04-27 15:38:40]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:38:40]   GLD: $431.08
+[2026-04-27 15:38:40]   GLD: conId=51529211 (STK)
+[2026-04-27 15:38:40]   GLD: option chain GLD@SMART (28 expiries, 374 strikes)
+[2026-04-27 15:38:46]   GLD: no suitable strike found
+[2026-04-27 15:38:46] 
+  Scanning XLE...
+[2026-04-27 15:38:46]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:38:46]   XLE: $57.53
+[2026-04-27 15:38:47]   XLE: conId=4215217 (STK)
+[2026-04-27 15:38:47]   XLE: option chain XLE@SMART (22 expiries, 89 strikes)
+[2026-04-27 15:38:47]   XLE $55.5P: quote too wide bid=$0.85 ask=$1.60 spread=64%
+[2026-04-27 15:38:51]   XLE: $53.5P @ $0.67 | Δ=0.205 IV=36.2% Buffer=7.0% DTE=38 | Score=100
+[2026-04-27 15:38:51] 
+  Scanning TLT...
+[2026-04-27 15:38:51]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:38:51]   TLT: $86.57
+[2026-04-27 15:38:52]   TLT: conId=15547841 (STK)
+[2026-04-27 15:38:52]   TLT: option chain TLT@SMART (28 expiries, 74 strikes)
+[2026-04-27 15:38:52]   TLT: skipped — proposed DTE 38 too close to existing [31] (need ≥14d gap)
+[2026-04-27 15:38:52] 
+  Scanning XSP...
+[2026-04-27 15:38:52]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:39:02]   XSP: $716.51
+[2026-04-27 15:39:02]   XSP: conId=137851301 (IND)
+[2026-04-27 15:39:02]   XSP: option chain XSP@CBOE (47 expiries, 477 strikes)
+[2026-04-27 15:39:02]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-27 15:39:02]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-27 15:39:03]   XSP: no suitable strike found
+[2026-04-27 15:39:03] 
+  Scanning QQQM...
+[2026-04-27 15:39:03]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:39:03]   QQQM: $273.21
+[2026-04-27 15:39:03]   QQQM: conId=449738108 (STK)
+[2026-04-27 15:39:03]   QQQM: option chain QQQM@SMART (8 expiries, 62 strikes)
+[2026-04-27 15:39:03]   QQQM: no suitable expiry in 21-45 DTE range
+[2026-04-27 15:39:03]   📡 Signals written: 1 candidate(s) -> /Users/islam/options-pro/data/trade_signals.json
+[2026-04-27 15:39:03] 
+  📊 Found 1 opportunities, 1 slot(s) available
+[2026-04-27 15:39:03]   🧭 Gate summary: selected=1 candidates=1 blocked=9
+[2026-04-27 15:39:03]     SPY: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-04-27 15:39:03]     QQQ: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-04-27 15:39:03]     SMH: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-04-27 15:39:03]     GDX: skipped — Quotes were available but failed width/quality checks.
+[2026-04-27 15:39:03]     IWM: skipped — No underlying price data from IBKR.
+[2026-04-27 15:39:03]     GLD: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-04-27 15:39:03]     XLE: selected — Candidate passed scanner filters.
+[2026-04-27 15:39:03]     TLT: skipped — DTE ladder gap < 14d: proposed 38, conflicts with [31].
+[2026-04-27 15:39:03]     XSP: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-04-27 15:39:03]     QQQM: skipped — No expiry in 21-45 DTE range.
+[2026-04-27 15:39:03]     #100: XLE $53.5P @ $0.67 (CSP) DTE=38
+[2026-04-27 15:39:03] 
+  🎯 EXECUTING: SELL 2x XLE $53.5P @ $0.67
+[2026-04-27 15:39:03]   📤 Placing order: SELL 2x XLE $53.5P @ $0.67 (ID: 29)
+[2026-04-27 15:39:03]   📝 Journal: OPEN XLE $53.5 x2
+[2026-04-27 15:39:05]   📧 Email sent: 🎯 Trade Placed: XLE $53.5P
+[2026-04-27 15:39:12] 
+━━━ Scan Pass 2/2 ━━━
+[2026-04-27 15:39:12] 
+============================================================
+[2026-04-27 15:39:12] 🌅 MORNING SCAN STARTED
+[2026-04-27 15:39:12] ============================================================
+[2026-04-27 15:39:12]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:39:13]   📊 VIX: 19.06 — Regime: Normal (Δ 0.15-0.25, risk × 1.0)
+[2026-04-27 15:39:13]   Open positions: 4/5
+[2026-04-27 15:39:13] 
+  Scanning SPY...
+[2026-04-27 15:39:13]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:39:13]   SPY: $714.12
+[2026-04-27 15:39:14]   SPY: conId=756733 (STK)
+[2026-04-27 15:39:14]   SPY: option chain SPY@SMART (35 expiries, 462 strikes)
+[2026-04-27 15:39:18]   SPY: no suitable strike found
+[2026-04-27 15:39:18] 
+  Scanning QQQ...
+[2026-04-27 15:39:19]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:39:19]   QQQ: $663.32
+[2026-04-27 15:39:19]   QQQ: conId=320227571 (STK)
+[2026-04-27 15:39:19]   QQQ: option chain QQQ@SMART (34 expiries, 435 strikes)
+[2026-04-27 15:39:25]   QQQ: no suitable strike found
+[2026-04-27 15:39:25] 
+  Scanning SMH...
+[2026-04-27 15:39:26]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:39:26]   SMH: $509.40
+[2026-04-27 15:39:27]   SMH: conId=229725622 (STK)
+[2026-04-27 15:39:27]   SMH: option chain SMH@SMART (21 expiries, 180 strikes)
+[2026-04-27 15:39:31]   SMH: no suitable strike found
+[2026-04-27 15:39:31] 
+  Scanning GDX...
+[2026-04-27 15:39:31]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:39:31]   GDX: $92.96
+[2026-04-27 15:39:32]   GDX: conId=229726316 (STK)
+[2026-04-27 15:39:32]   GDX: option chain GDX@SMART (18 expiries, 157 strikes)
+[2026-04-27 15:39:32]   GDX $91.0P: quote too wide bid=$2.84 ask=$5.90 spread=52%
+[2026-04-27 15:39:32]   GDX $90.5P: quote too wide bid=$2.71 ask=$5.70 spread=72%
+[2026-04-27 15:39:33]   GDX $89.5P: quote too wide bid=$2.27 ask=$5.25 spread=79%
+[2026-04-27 15:39:34]   GDX $88.0P: quote too wide bid=$1.89 ask=$4.35 spread=77%
+[2026-04-27 15:39:34]   GDX: no suitable strike found
+[2026-04-27 15:39:34] 
+  Scanning IWM...
+[2026-04-27 15:39:34]   TWS error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.IWM ARCA/TOP/ALL
+[2026-04-27 15:39:44]   IWM: no price data
+[2026-04-27 15:39:44] 
+  Scanning GLD...
+[2026-04-27 15:39:44]   TWS error 300: Can't find EId with tickerId:1320
+[2026-04-27 15:39:44]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:39:45]   GLD: $430.85
+[2026-04-27 15:39:45]   GLD: conId=51529211 (STK)
+[2026-04-27 15:39:45]   GLD: option chain GLD@SMART (28 expiries, 374 strikes)
+[2026-04-27 15:39:49]   GLD: no suitable strike found
+[2026-04-27 15:39:49] 
+  Scanning XLE...
+[2026-04-27 15:39:49]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:39:50]   XLE: $57.53
+[2026-04-27 15:39:50]   XLE: conId=4215217 (STK)
+[2026-04-27 15:39:50]   XLE: option chain XLE@SMART (22 expiries, 89 strikes)
+[2026-04-27 15:39:51]   XLE $55.5P: quote too wide bid=$0.85 ask=$1.60 spread=67%
+[2026-04-27 15:39:56]   XLE: $52.5P @ $0.85 | Δ=0.204 IV=32.6% Buffer=8.7% DTE=38 | Score=100
+[2026-04-27 15:39:56] 
+  Scanning TLT...
+[2026-04-27 15:39:56]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:39:56]   TLT: $86.57
+[2026-04-27 15:39:56]   TLT: conId=15547841 (STK)
+[2026-04-27 15:39:56]   TLT: option chain TLT@SMART (28 expiries, 74 strikes)
+[2026-04-27 15:39:56]   TLT: skipped — proposed DTE 38 too close to existing [31] (need ≥14d gap)
+[2026-04-27 15:39:56] 
+  Scanning XSP...
+[2026-04-27 15:39:57]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:40:07]   XSP: $716.51
+[2026-04-27 15:40:07]   XSP: conId=137851301 (IND)
+[2026-04-27 15:40:07]   XSP: option chain XSP@CBOE (47 expiries, 477 strikes)
+[2026-04-27 15:40:07]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-27 15:40:07]   TWS error 10090: Part of requested market data is not subscribed. Subscription-independent ticks are still active.Delayed market data is available.XSP Mini-SPX Index/TOP/ALL
+[2026-04-27 15:40:08]   XSP: no suitable strike found
+[2026-04-27 15:40:08] 
+  Scanning QQQM...
+[2026-04-27 15:40:08]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 15:40:09]   QQQM: $273.22
+[2026-04-27 15:40:09]   QQQM: conId=449738108 (STK)
+[2026-04-27 15:40:09]   QQQM: option chain QQQM@SMART (8 expiries, 62 strikes)
+[2026-04-27 15:40:09]   QQQM: no suitable expiry in 21-45 DTE range
+[2026-04-27 15:40:09]   📡 Signals written: 1 candidate(s) -> /Users/islam/options-pro/data/trade_signals.json
+[2026-04-27 15:40:09] 
+  📊 Found 1 opportunities, 1 slot(s) available
+[2026-04-27 15:40:09]   🧭 Gate summary: selected=1 candidates=1 blocked=9
+[2026-04-27 15:40:09]     SPY: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-04-27 15:40:09]     QQQ: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-04-27 15:40:09]     SMH: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-04-27 15:40:09]     GDX: skipped — Quotes were available but failed width/quality checks.
+[2026-04-27 15:40:09]     IWM: skipped — No underlying price data from IBKR.
+[2026-04-27 15:40:09]     GLD: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-04-27 15:40:09]     XLE: selected — Candidate passed scanner filters.
+[2026-04-27 15:40:09]     TLT: skipped — DTE ladder gap < 14d: proposed 38, conflicts with [31].
+[2026-04-27 15:40:09]     XSP: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-04-27 15:40:09]     QQQM: skipped — No expiry in 21-45 DTE range.
+[2026-04-27 15:40:09]     #100: XLE $52.5P @ $0.85 (CSP) DTE=38
+[2026-04-27 15:40:09] 
+  🎯 EXECUTING: SELL 2x XLE $52.5P @ $0.85
+[2026-04-27 15:40:09]   📤 Placing order: SELL 2x XLE $52.5P @ $0.85 (ID: 30)
+[2026-04-27 15:40:09]   📝 Journal: OPEN XLE $52.5 x2
+[2026-04-27 15:40:11]   📧 Email sent: 🎯 Trade Placed: XLE $52.5P
+[2026-04-27 15:40:18]   📊 4 option position(s) loaded from IBKR
+[2026-04-27 15:40:18]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 15:40:18]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 15:40:18]      IBKR: SMH-385.0 = SMH $385.0 P x-2.0 avg=$2.80
+[2026-04-27 15:40:18]      IBKR: IWM-256.0 = IWM $256.0 P x-1.0 avg=$3.18
+[2026-04-27 15:40:21] 
+============================================================
+[2026-04-27 15:40:21] 📡 MONITORING 4 SHORT POSITION(S)
+[2026-04-27 15:40:21] ============================================================
+[2026-04-27 15:40:22] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.87 P/L=$167 DTE=17
+[2026-04-27 15:40:22]    >> HOLD (target=$177 stop=$-708)
+[2026-04-27 15:40:23] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.31 P/L=$-1 DTE=31
+[2026-04-27 15:40:23]    >> HOLD (target=$15 stop=$-60)
+[2026-04-27 15:40:24] 
+  SMH   $385.0P x2 [CSP]: entry=$561 now=$1.13 P/L=$335 DTE=17
+[2026-04-27 15:40:24]    >> CLOSE_PROFIT: 50% profit ($335 >= $280)
+[2026-04-27 15:40:24]   📤 Close CSP: BUY 2x SMH $385.0P @ $1.13 (ID: 31)
+[2026-04-27 15:40:24]   📝 Journal: CLOSE_PROFIT SMH $385.0 x2
+[2026-04-27 15:40:24]   📓 Close submitted: CLOSE_PROFIT SMH $385.0P P/L=$335
+[2026-04-27 15:40:25]   📋 Exec: BOT 2.0x SMH @ $1.13 (OrderID 31)
+[2026-04-27 15:40:25]   ✅ Order 31 FILLED at $1.13
+[2026-04-27 15:40:25]   📧 Email sent: 📤 Close Submitted: SMH $385.0P [CSP]
+[2026-04-27 15:40:25]   📧 Submission email sent: 📤 Close Submitted: SMH $385.0P [CSP]
+[2026-04-27 15:40:27]   📧 Email sent: ✅ Closed: SMH $385.0P +$335 [CSP]
+[2026-04-27 15:40:27]   ✅ Order 31 FILLED at $1.13
+[2026-04-27 15:40:27] 
+  IWM   $256.0P x1 [CSP]: entry=$318 now=$1.50 P/L=$168 DTE=24
+[2026-04-27 15:40:27]    >> CLOSE_PROFIT: 50% profit ($168 >= $159)
+[2026-04-27 15:40:27]   📤 Close CSP: BUY 1x IWM $256.0P @ $1.50 (ID: 32)
+[2026-04-27 15:40:27]   📝 Journal: CLOSE_PROFIT IWM $256.0 x1
+[2026-04-27 15:40:27]   📓 Close submitted: CLOSE_PROFIT IWM $256.0P P/L=$168
+[2026-04-27 15:40:27]   📋 Exec: BOT 1.0x IWM @ $1.50 (OrderID 32)
+[2026-04-27 15:40:27]   ✅ Order 32 FILLED at $1.50
+[2026-04-27 15:40:29]   📧 Email sent: 📤 Close Submitted: IWM $256.0P [CSP]
+[2026-04-27 15:40:29]   📧 Submission email sent: 📤 Close Submitted: IWM $256.0P [CSP]
+[2026-04-27 15:40:29] 
+  ⏳ Next check in 15 min...
+[2026-04-27 15:40:29]   📧 Email sent: ✅ Closed: IWM $256.0P +$168 [CSP]
+[2026-04-27 15:40:29]   ✅ Order 32 FILLED at $1.50
+[2026-04-27 15:55:29]   📊 2 option position(s) loaded from IBKR
+[2026-04-27 15:55:29]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 15:55:29]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 15:55:32] 
+============================================================
+[2026-04-27 15:55:32] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-27 15:55:32] ============================================================
+[2026-04-27 15:55:32] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.80 P/L=$174 DTE=17
+[2026-04-27 15:55:32]    >> HOLD (target=$177 stop=$-708)
+[2026-04-27 15:55:32] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.31 P/L=$-1 DTE=31
+[2026-04-27 15:55:32]    >> HOLD (target=$15 stop=$-60)
+[2026-04-27 15:55:32] 
+  ⏳ Next check in 15 min...
+[2026-04-27 16:10:32]   📊 2 option position(s) loaded from IBKR
+[2026-04-27 16:10:32]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 16:10:32]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 16:10:36] 
+============================================================
+[2026-04-27 16:10:36] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-27 16:10:36] ============================================================
+[2026-04-27 16:10:36] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.83 P/L=$172 DTE=17
+[2026-04-27 16:10:36]    >> HOLD (target=$177 stop=$-708)
+[2026-04-27 16:10:36] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.30 P/L=$0 DTE=31
+[2026-04-27 16:10:36]    >> HOLD (target=$15 stop=$-60)
+[2026-04-27 16:10:36] 
+  ⏳ Next check in 15 min...
+[2026-04-27 16:25:18]   ⚠ TWS error 2105: data farm issue
+[2026-04-27 16:25:36]   📊 2 option position(s) loaded from IBKR
+[2026-04-27 16:25:36]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 16:25:36]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 16:25:40] 
+============================================================
+[2026-04-27 16:25:40] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-27 16:25:40] ============================================================
+[2026-04-27 16:25:40] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.85 P/L=$169 DTE=17
+[2026-04-27 16:25:40]    >> HOLD (target=$177 stop=$-708)
+[2026-04-27 16:25:40] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.30 P/L=$1 DTE=31
+[2026-04-27 16:25:40]    >> HOLD (target=$15 stop=$-60)
+[2026-04-27 16:25:40] 
+  ⏳ Next check in 15 min...
+[2026-04-27 16:40:40]   📊 2 option position(s) loaded from IBKR
+[2026-04-27 16:40:40]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 16:40:40]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 16:40:43] 
+============================================================
+[2026-04-27 16:40:43] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-27 16:40:43] ============================================================
+[2026-04-27 16:40:44] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.75 P/L=$179 DTE=17
+[2026-04-27 16:40:44]    >> CLOSE_PROFIT: 50% profit ($179 >= $177)
+[2026-04-27 16:40:44]   📤 Close CSP: BUY 1x GLD $405.0P @ $1.75 (ID: 33)
+[2026-04-27 16:40:44]   📝 Journal: CLOSE_PROFIT GLD $405.0 x1
+[2026-04-27 16:40:44]   📓 Close submitted: CLOSE_PROFIT GLD $405.0P P/L=$179
+[2026-04-27 16:40:46]   📧 Email sent: 📤 Close Submitted: GLD $405.0P [CSP]
+[2026-04-27 16:40:46]   📧 Submission email sent: 📤 Close Submitted: GLD $405.0P [CSP]
+[2026-04-27 16:40:46] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.30 P/L=$1 DTE=31
+[2026-04-27 16:40:46]    >> HOLD (target=$15 stop=$-60)
+[2026-04-27 16:40:46] 
+  ⏳ Next check in 15 min...
+[2026-04-27 16:55:46]   📊 2 option position(s) loaded from IBKR
+[2026-04-27 16:55:46]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 16:55:46]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 16:55:49] 
+============================================================
+[2026-04-27 16:55:49] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-27 16:55:49] ============================================================
+[2026-04-27 16:55:49]   GLD $405.0P: close order pending (905s ago) — skipping
+[2026-04-27 16:55:49] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.30 P/L=$1 DTE=31
+[2026-04-27 16:55:49]    >> HOLD (target=$15 stop=$-60)
+[2026-04-27 16:55:49] 
+  ⏳ Next check in 15 min...
+[2026-04-27 17:10:49]   📊 2 option position(s) loaded from IBKR
+[2026-04-27 17:10:49]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 17:10:49]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 17:10:53] 
+============================================================
+[2026-04-27 17:10:53] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-27 17:10:53] ============================================================
+[2026-04-27 17:10:53]   GLD $405.0P: close order pending (1808s ago) — skipping
+[2026-04-27 17:10:53] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.31 P/L=$-1 DTE=31
+[2026-04-27 17:10:53]    >> HOLD (target=$15 stop=$-60)
+[2026-04-27 17:10:53] 
+  ⏳ Next check in 15 min...
+[2026-04-27 17:25:29]   ⚠ TWS error 2105: data farm issue
+[2026-04-27 17:25:53]   📊 2 option position(s) loaded from IBKR
+[2026-04-27 17:25:53]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 17:25:53]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 17:25:56] 
+============================================================
+[2026-04-27 17:25:56] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-27 17:25:56] ============================================================
+[2026-04-27 17:25:56]   GLD $405.0P: close order pending (2712s ago) — skipping
+[2026-04-27 17:25:57] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.35 P/L=$-5 DTE=31
+[2026-04-27 17:25:57]    >> HOLD (target=$15 stop=$-60)
+[2026-04-27 17:25:57] 
+  ⏳ Next check in 15 min...
+[2026-04-27 17:40:57]   📊 2 option position(s) loaded from IBKR
+[2026-04-27 17:40:57]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 17:40:57]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 17:41:00] 
+============================================================
+[2026-04-27 17:41:00] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-27 17:41:00] ============================================================
+[2026-04-27 17:41:00]   GLD $405.0P: close order pending (3616s ago) — skipping
+[2026-04-27 17:41:00] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.37 P/L=$-7 DTE=31
+[2026-04-27 17:41:00]    >> HOLD (target=$15 stop=$-60)
+[2026-04-27 17:41:00]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-04-27 17:41:02]   📧 Email sent: ⚠ Options Pro: Position Reconciliation Drift
+[2026-04-27 17:41:02] 
+  ⏳ Next check in 15 min...
+[2026-04-27 17:56:02]   📊 2 option position(s) loaded from IBKR
+[2026-04-27 17:56:02]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 17:56:02]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 17:56:05] 
+============================================================
+[2026-04-27 17:56:05] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-27 17:56:05] ============================================================
+[2026-04-27 17:56:05]   GLD $405.0P: close order pending (4521s ago) — skipping
+[2026-04-27 17:56:05] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.35 P/L=$-5 DTE=31
+[2026-04-27 17:56:05]    >> HOLD (target=$15 stop=$-60)
+[2026-04-27 17:56:05] 
+  ⏳ Next check in 15 min...
+[2026-04-27 18:09:19] 
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+[2026-04-27 18:09:19] Options Pro Ultra v6 — Autotrade Engine
+[2026-04-27 18:09:19] Account: DU4735568 | Size: $250,000
+[2026-04-27 18:09:19] Max positions: 5 | Max risk: $12,500
+[2026-04-27 18:09:19] Delta: 0.15-0.25 | DTE: 21-45
+[2026-04-27 18:09:19] Close: 50% profit | Stop: 2.0× credit
+[2026-04-27 18:09:19] Scan passes: 2
+[2026-04-27 18:09:19] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+

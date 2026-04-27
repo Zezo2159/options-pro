@@ -104,6 +104,36 @@
       "last_score": 85,
       "last_copyable": false,
       "last_real_qty": 0
+    },
+    "XLE-CSP-53.5--20260605": {
+      "id": "XLE-CSP-53.5--20260605",
+      "ticker": "XLE",
+      "strategy": "CSP",
+      "strike": 53.5,
+      "long_strike": null,
+      "expiry": "20260605",
+      "first_seen": "2026-04-27T15:37:52+02:00",
+      "seen_count": 2,
+      "copyable_seen_count": 2,
+      "last_seen": "2026-04-27T15:39:03+02:00",
+      "last_score": 100,
+      "last_copyable": true,
+      "last_real_qty": 2
+    },
+    "XLE-CSP-52.5--20260605": {
+      "id": "XLE-CSP-52.5--20260605",
+      "ticker": "XLE",
+      "strategy": "CSP",
+      "strike": 52.5,
+      "long_strike": null,
+      "expiry": "20260605",
+      "first_seen": "2026-04-27T15:40:09+02:00",
+      "seen_count": 1,
+      "copyable_seen_count": 1,
+      "last_seen": "2026-04-27T15:40:09+02:00",
+      "last_score": 100,
+      "last_copyable": true,
+      "last_real_qty": 2
     }
   },
   "events": [
@@ -262,7 +292,43 @@
       "score": 85,
       "copyable": false,
       "real_qty": 0
+    },
+    {
+      "generated": "2026-04-27T15:37:52+02:00",
+      "id": "XLE-CSP-53.5--20260605",
+      "ticker": "XLE",
+      "strategy": "CSP",
+      "strike": 53.5,
+      "long_strike": null,
+      "expiry": "20260605",
+      "score": 90,
+      "copyable": true,
+      "real_qty": 2
+    },
+    {
+      "generated": "2026-04-27T15:39:03+02:00",
+      "id": "XLE-CSP-53.5--20260605",
+      "ticker": "XLE",
+      "strategy": "CSP",
+      "strike": 53.5,
+      "long_strike": null,
+      "expiry": "20260605",
+      "score": 100,
+      "copyable": true,
+      "real_qty": 2
+    },
+    {
+      "generated": "2026-04-27T15:40:09+02:00",
+      "id": "XLE-CSP-52.5--20260605",
+      "ticker": "XLE",
+      "strategy": "CSP",
+      "strike": 52.5,
+      "long_strike": null,
+      "expiry": "20260605",
+      "score": 100,
+      "copyable": true,
+      "real_qty": 2
     }
   ],
-  "updated": "2026-04-25T17:10:54+02:00"
+  "updated": "2026-04-27T15:40:09+02:00"
 }
