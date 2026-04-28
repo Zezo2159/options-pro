@@ -39163,3 +39163,983 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 [2026-04-27 21:25:40] Scan passes: 2
 [2026-04-27 21:25:40] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
+[2026-04-27 21:25:46]   ✅ GitHub backup on restart complete
+[2026-04-27 21:25:46] 🔌 Connecting to TWS...
+[2026-04-27 21:25:46] ✅ TWS connected — next order ID: 34
+[2026-04-27 21:25:48]   📊 2 option position(s) loaded from IBKR
+[2026-04-27 21:25:48]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 21:25:48]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 21:25:51] ✅ Startup scan already generated today (2026-04-27) — skipping duplicate initial scan
+[2026-04-27 21:25:51] 
+✅ Entering monitor mode (checking every 15 min)
+[2026-04-27 21:25:51]   📊 2 option position(s) loaded from IBKR
+[2026-04-27 21:25:51]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 21:25:51]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 21:25:54] 
+============================================================
+[2026-04-27 21:25:54] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-27 21:25:54] ============================================================
+[2026-04-27 21:25:55] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.88 P/L=$166 DTE=17
+[2026-04-27 21:25:55]    >> HOLD (target=$177 stop=$-708)
+[2026-04-27 21:25:55] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=31
+[2026-04-27 21:25:55]    >> HOLD (target=$15 stop=$-60)
+[2026-04-27 21:25:55] 
+  ⏳ Next check in 15 min...
+[2026-04-27 21:28:52] 🔔 Manual scan triggered (requested 2026-04-27T21:28:43+02:00)
+[2026-04-27 21:28:52] 
+============================================================
+[2026-04-27 21:28:52] 🌅 MORNING SCAN STARTED
+[2026-04-27 21:28:52] ============================================================
+[2026-04-27 21:28:52]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 21:28:53]   📊 VIX: 18.48 — Regime: Normal (Δ 0.15-0.25, risk × 1.0)
+[2026-04-27 21:28:53]   Open positions: 2/5
+[2026-04-27 21:28:53] 
+  Scanning SPY...
+[2026-04-27 21:28:53]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 21:28:53]   SPY: $714.90
+[2026-04-27 21:28:53]   SPY: conId=756733 (STK)
+[2026-04-27 21:28:54]   SPY: option chain SPY@SMART (35 expiries, 462 strikes)
+[2026-04-27 21:29:09]   SPY: no suitable strike found
+[2026-04-27 21:29:09] 
+  Scanning QQQ...
+[2026-04-27 21:29:09]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 21:29:09]   QQQ: $663.17
+[2026-04-27 21:29:09]   QQQ: conId=320227571 (STK)
+[2026-04-27 21:29:10]   QQQ: option chain QQQ@SMART (34 expiries, 435 strikes)
+[2026-04-27 21:29:22]   QQQ $640.0P: missing delta/greeks — skipped
+[2026-04-27 21:29:22]   QQQ: no suitable strike found
+[2026-04-27 21:29:22] 
+  Scanning SMH...
+[2026-04-27 21:29:22]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 21:29:22]   SMH: $505.94
+[2026-04-27 21:29:23]   SMH: conId=229725622 (STK)
+[2026-04-27 21:29:23]   SMH: option chain SMH@SMART (21 expiries, 180 strikes)
+[2026-04-27 21:29:35]   SMH: no suitable strike found
+[2026-04-27 21:29:35] 
+  Scanning GDX...
+[2026-04-27 21:29:36]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 21:29:36]   GDX: $92.29
+[2026-04-27 21:29:36]   GDX: conId=229726316 (STK)
+[2026-04-27 21:29:36]   GDX: option chain GDX@SMART (18 expiries, 157 strikes)
+[2026-04-27 21:29:40]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 21:29:40]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 21:29:41]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 21:29:42]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 21:29:44]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 21:29:44]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 21:29:46]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 21:29:46]   GDX: no suitable strike found
+[2026-04-27 21:29:46]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-04-27 21:29:46] 
+  Scanning IWM...
+[2026-04-27 21:29:46]   TWS error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.IWM ARCA/TOP/ALL
+[2026-04-27 21:29:56]   IWM: no price data
+[2026-04-27 21:29:56]   TWS error 300: Can't find EId with tickerId:1098
+[2026-04-27 21:29:56] 
+  Scanning GLD...
+[2026-04-27 21:29:57]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 21:29:57]   GLD: $429.89
+[2026-04-27 21:29:57]   GLD: conId=51529211 (STK)
+[2026-04-27 21:29:57]   GLD: option chain GLD@SMART (28 expiries, 374 strikes)
+[2026-04-27 21:30:13]   GLD: no suitable strike found
+[2026-04-27 21:30:13] 
+  Scanning XLE...
+[2026-04-27 21:30:13]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 21:30:14]   XLE: $57.52
+[2026-04-27 21:30:14]   XLE: conId=4215217 (STK)
+[2026-04-27 21:30:14]   XLE: option chain XLE@SMART (22 expiries, 89 strikes)
+[2026-04-27 21:30:27]   XLE $51.5P: quote too wide bid=$0.06 ask=$1.03 spread=94%
+[2026-04-27 21:30:27]   XLE: $53.0P @ $0.70 | Δ=0.209 IV=30.2% Buffer=7.9% DTE=38 | Score=99
+[2026-04-27 21:30:27] 
+  Scanning TLT...
+[2026-04-27 21:30:28]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 21:30:28]   TLT: $86.25
+[2026-04-27 21:30:29]   TLT: conId=15547841 (STK)
+[2026-04-27 21:30:29]   TLT: option chain TLT@SMART (28 expiries, 74 strikes)
+[2026-04-27 21:30:29]   TLT: skipped — proposed DTE 38 too close to existing [31] (need ≥14d gap)
+[2026-04-27 21:30:29]   XSP: skipped early — Known poor/illiquid option chain in the configured 21-45 DTE window.
+[2026-04-27 21:30:29] 
+  Scanning QQQM...
+[2026-04-27 21:30:30]   TWS error 10167: Requested market data is not subscribed. Displaying delayed market data.
+[2026-04-27 21:30:30]   QQQM: $273.19
+[2026-04-27 21:30:30]   QQQM: conId=449738108 (STK)
+[2026-04-27 21:30:30]   QQQM: option chain QQQM@SMART (8 expiries, 62 strikes)
+[2026-04-27 21:30:30]   QQQM: no suitable expiry in 21-45 DTE range
+[2026-04-27 21:30:30]   📡 Signals written: 1 candidate(s) -> /Users/islam/options-pro/data/trade_signals.json
+[2026-04-27 21:30:30] 
+  📊 Found 1 opportunities, 3 slot(s) available
+[2026-04-27 21:30:30]   🧭 Gate summary: selected=1 candidates=1 blocked=9
+[2026-04-27 21:30:30]     SPY: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-04-27 21:30:30]     QQQ: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-04-27 21:30:30]     SMH: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-04-27 21:30:30]     GDX: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-04-27 21:30:30]     IWM: skipped — No underlying price data from IBKR; likely market-data subscription or farm issue.
+[2026-04-27 21:30:30]     GLD: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-04-27 21:30:30]     XLE: selected — Candidate passed scanner filters.
+[2026-04-27 21:30:30]     TLT: skipped — DTE ladder gap < 14d: proposed 38, conflicts with [31].
+[2026-04-27 21:30:30]     XSP: skipped — Known poor/illiquid option chain in the configured 21-45 DTE window.
+[2026-04-27 21:30:30]     QQQM: skipped — No expiry in 21-45 DTE range.
+[2026-04-27 21:30:30]     #99: XLE $53.0P @ $0.70 (CSP) DTE=38
+[2026-04-27 21:30:30] 
+  🎯 EXECUTING: SELL 2x XLE $53.0P @ $0.70
+[2026-04-27 21:30:30]   📤 Placing order: SELL 2x XLE $53.0P @ $0.70 (ID: 34)
+[2026-04-27 21:30:30]   📝 Journal: OPEN XLE $53.0 x2
+[2026-04-27 21:30:32]   📧 Email sent: 🎯 Trade Placed: XLE $53.0P
+[2026-04-27 21:30:34]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-04-27 21:30:37]   📧 Email sent: ⚠ Options Pro: Position Reconciliation Drift
+[2026-04-27 21:40:55]   📊 2 option position(s) loaded from IBKR
+[2026-04-27 21:40:55]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 21:40:55]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 21:40:58] 
+============================================================
+[2026-04-27 21:40:58] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-27 21:40:58] ============================================================
+[2026-04-27 21:40:58] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.87 P/L=$167 DTE=17
+[2026-04-27 21:40:58]    >> HOLD (target=$177 stop=$-708)
+[2026-04-27 21:40:59] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=31
+[2026-04-27 21:40:59]    >> HOLD (target=$15 stop=$-60)
+[2026-04-27 21:40:59] 
+  ⏳ Next check in 15 min...
+[2026-04-27 21:55:59]   📊 2 option position(s) loaded from IBKR
+[2026-04-27 21:55:59]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 21:55:59]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 21:56:02] 
+============================================================
+[2026-04-27 21:56:02] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-27 21:56:02] ============================================================
+[2026-04-27 21:56:03] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.79 P/L=$175 DTE=17
+[2026-04-27 21:56:03]    >> HOLD (target=$177 stop=$-708)
+[2026-04-27 21:56:03] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.37 P/L=$-7 DTE=31
+[2026-04-27 21:56:03]    >> HOLD (target=$15 stop=$-60)
+[2026-04-27 21:56:03] 
+  ⏳ Next check in 15 min...
+[2026-04-27 22:11:03]   📊 2 option position(s) loaded from IBKR
+[2026-04-27 22:11:03]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 22:11:03]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 22:11:06] 
+============================================================
+[2026-04-27 22:11:06] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-27 22:11:06] ============================================================
+[2026-04-27 22:11:07] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.83 P/L=$171 DTE=17
+[2026-04-27 22:11:07]    >> HOLD (target=$177 stop=$-708)
+[2026-04-27 22:11:07] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.37 P/L=$-7 DTE=31
+[2026-04-27 22:11:07]    >> HOLD (target=$15 stop=$-60)
+[2026-04-27 22:11:07] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-27 22:21:43]   ⚠ TWS error 2105: data farm issue
+[2026-04-27 22:26:07]   📊 2 option position(s) loaded from IBKR
+[2026-04-27 22:26:07]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 22:26:07]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 22:26:10] 
+============================================================
+[2026-04-27 22:26:10] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-27 22:26:10] ============================================================
+[2026-04-27 22:26:11] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.89 P/L=$165 DTE=17
+[2026-04-27 22:26:11]    >> HOLD (target=$177 stop=$-708)
+[2026-04-27 22:26:11] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.30 P/L=$0 DTE=31
+[2026-04-27 22:26:11]    >> HOLD (target=$15 stop=$-60)
+[2026-04-27 22:26:11] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-27 22:41:11]   📊 2 option position(s) loaded from IBKR
+[2026-04-27 22:41:11]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 22:41:11]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 22:41:14] 
+============================================================
+[2026-04-27 22:41:14] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-27 22:41:14] ============================================================
+[2026-04-27 22:41:14] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.89 P/L=$165 DTE=17
+[2026-04-27 22:41:14]    >> HOLD (target=$177 stop=$-708)
+[2026-04-27 22:41:14] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.30 P/L=$0 DTE=31
+[2026-04-27 22:41:14]    >> HOLD (target=$15 stop=$-60)
+[2026-04-27 22:41:14] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-27 22:45:12]   ❌ Order 24 CANCELLED
+[2026-04-27 22:45:12]   TWS error 202: Order Canceled - reason:
+[2026-04-27 22:45:20]   ❌ Order 34 CANCELLED
+[2026-04-27 22:45:20]   TWS error 202: Order Canceled - reason:
+[2026-04-27 22:45:20]   ❌ Order 25 CANCELLED
+[2026-04-27 22:45:20]   TWS error 202: Order Canceled - reason:
+[2026-04-27 22:45:33]   ❌ Order 30 CANCELLED
+[2026-04-27 22:45:33]   TWS error 202: Order Canceled - reason:
+[2026-04-27 22:45:33]   ❌ Order 28 CANCELLED
+[2026-04-27 22:45:33]   TWS error 202: Order Canceled - reason:
+[2026-04-27 22:45:35]   ❌ Order 29 CANCELLED
+[2026-04-27 22:45:35]   TWS error 202: Order Canceled - reason:
+[2026-04-27 22:56:15]   📊 2 option position(s) loaded from IBKR
+[2026-04-27 22:56:15]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 22:56:15]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 22:56:18] 
+============================================================
+[2026-04-27 22:56:18] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-27 22:56:18] ============================================================
+[2026-04-27 22:56:18] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.89 P/L=$165 DTE=17
+[2026-04-27 22:56:18]    >> HOLD (target=$177 stop=$-708)
+[2026-04-27 22:56:18] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.30 P/L=$0 DTE=31
+[2026-04-27 22:56:18]    >> HOLD (target=$15 stop=$-60)
+[2026-04-27 22:56:18] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-27 23:11:18]   📊 2 option position(s) loaded from IBKR
+[2026-04-27 23:11:18]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 23:11:18]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 23:11:21] 
+============================================================
+[2026-04-27 23:11:21] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-27 23:11:21] ============================================================
+[2026-04-27 23:11:22] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.80 P/L=$174 DTE=17
+[2026-04-27 23:11:22]    >> HOLD (target=$177 stop=$-708)
+[2026-04-27 23:11:22] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.30 P/L=$0 DTE=31
+[2026-04-27 23:11:22]    >> HOLD (target=$15 stop=$-60)
+[2026-04-27 23:11:22] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-27 23:26:22]   📊 2 option position(s) loaded from IBKR
+[2026-04-27 23:26:22]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 23:26:22]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 23:26:25] 
+============================================================
+[2026-04-27 23:26:25] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-27 23:26:25] ============================================================
+[2026-04-27 23:26:25] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.89 P/L=$165 DTE=17
+[2026-04-27 23:26:25]    >> HOLD (target=$177 stop=$-708)
+[2026-04-27 23:26:26] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.30 P/L=$0 DTE=31
+[2026-04-27 23:26:26]    >> HOLD (target=$15 stop=$-60)
+[2026-04-27 23:26:26] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-27 23:41:26]   📊 2 option position(s) loaded from IBKR
+[2026-04-27 23:41:26]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 23:41:26]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 23:41:29] 
+============================================================
+[2026-04-27 23:41:29] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-27 23:41:29] ============================================================
+[2026-04-27 23:41:29] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.89 P/L=$165 DTE=17
+[2026-04-27 23:41:29]    >> HOLD (target=$177 stop=$-708)
+[2026-04-27 23:41:30] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.30 P/L=$0 DTE=31
+[2026-04-27 23:41:30]    >> HOLD (target=$15 stop=$-60)
+[2026-04-27 23:41:30]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-04-27 23:41:32]   📧 Email sent: ⚠ Options Pro: Position Reconciliation Drift
+[2026-04-27 23:41:32] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-27 23:45:00] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-27 23:56:32] ⚠ Connection lost (691s ago) — attempting reconnect...
+[2026-04-27 23:56:32] 🔄 Attempting reconnect...
+[2026-04-27 23:56:37] 🔌 Connecting to TWS...
+[2026-04-27 23:56:37] ✅ TWS connected — next order ID: 35
+[2026-04-27 23:56:39]   📊 2 option position(s) loaded from IBKR
+[2026-04-27 23:56:39]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 23:56:39]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 23:56:42]   📊 2 option position(s) loaded from IBKR
+[2026-04-27 23:56:42]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-27 23:56:42]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-27 23:56:45] 
+============================================================
+[2026-04-27 23:56:45] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-27 23:56:45] ============================================================
+[2026-04-27 23:56:45] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.80 P/L=$174 DTE=17
+[2026-04-27 23:56:45]    >> HOLD (target=$177 stop=$-708)
+[2026-04-27 23:56:45] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=31
+[2026-04-27 23:56:45]    >> HOLD (target=$15 stop=$-60)
+[2026-04-27 23:56:45] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-28 00:11:46]   📊 2 option position(s) loaded from IBKR
+[2026-04-28 00:11:46]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-28 00:11:46]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-28 00:11:49] 
+============================================================
+[2026-04-28 00:11:49] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-28 00:11:49] ============================================================
+[2026-04-28 00:11:49] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.80 P/L=$174 DTE=16
+[2026-04-28 00:11:49]    >> HOLD (target=$177 stop=$-708)
+[2026-04-28 00:11:49] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=30
+[2026-04-28 00:11:49]    >> HOLD (target=$15 stop=$-60)
+[2026-04-28 00:11:49] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-28 00:26:49]   📊 2 option position(s) loaded from IBKR
+[2026-04-28 00:26:49]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-28 00:26:49]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-28 00:26:52] 
+============================================================
+[2026-04-28 00:26:52] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-28 00:26:52] ============================================================
+[2026-04-28 00:26:52] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.80 P/L=$174 DTE=16
+[2026-04-28 00:26:52]    >> HOLD (target=$177 stop=$-708)
+[2026-04-28 00:26:52] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=30
+[2026-04-28 00:26:52]    >> HOLD (target=$15 stop=$-60)
+[2026-04-28 00:26:52] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-28 00:41:52]   📊 2 option position(s) loaded from IBKR
+[2026-04-28 00:41:52]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-28 00:41:52]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-28 00:41:55] 
+============================================================
+[2026-04-28 00:41:55] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-28 00:41:55] ============================================================
+[2026-04-28 00:41:55] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.80 P/L=$174 DTE=16
+[2026-04-28 00:41:55]    >> HOLD (target=$177 stop=$-708)
+[2026-04-28 00:41:55] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=30
+[2026-04-28 00:41:55]    >> HOLD (target=$15 stop=$-60)
+[2026-04-28 00:41:55] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-28 00:56:55]   📊 2 option position(s) loaded from IBKR
+[2026-04-28 00:56:55]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-28 00:56:55]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-28 00:56:59] 
+============================================================
+[2026-04-28 00:56:59] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-28 00:56:59] ============================================================
+[2026-04-28 00:56:59] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.80 P/L=$174 DTE=16
+[2026-04-28 00:56:59]    >> HOLD (target=$177 stop=$-708)
+[2026-04-28 00:56:59] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=30
+[2026-04-28 00:56:59]    >> HOLD (target=$15 stop=$-60)
+[2026-04-28 00:56:59] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-28 01:11:59]   📊 2 option position(s) loaded from IBKR
+[2026-04-28 01:11:59]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-28 01:11:59]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-28 01:12:02] 
+============================================================
+[2026-04-28 01:12:02] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-28 01:12:02] ============================================================
+[2026-04-28 01:12:02] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.80 P/L=$174 DTE=16
+[2026-04-28 01:12:02]    >> HOLD (target=$177 stop=$-708)
+[2026-04-28 01:12:02] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=30
+[2026-04-28 01:12:02]    >> HOLD (target=$15 stop=$-60)
+[2026-04-28 01:12:02] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-28 01:27:02]   📊 2 option position(s) loaded from IBKR
+[2026-04-28 01:27:02]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-28 01:27:02]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-28 01:27:05] 
+============================================================
+[2026-04-28 01:27:05] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-28 01:27:05] ============================================================
+[2026-04-28 01:27:05] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.80 P/L=$174 DTE=16
+[2026-04-28 01:27:05]    >> HOLD (target=$177 stop=$-708)
+[2026-04-28 01:27:05] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=30
+[2026-04-28 01:27:05]    >> HOLD (target=$15 stop=$-60)
+[2026-04-28 01:27:05] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-28 01:42:05]   📊 2 option position(s) loaded from IBKR
+[2026-04-28 01:42:05]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-28 01:42:05]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-28 01:42:08] 
+============================================================
+[2026-04-28 01:42:08] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-28 01:42:08] ============================================================
+[2026-04-28 01:42:08] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.80 P/L=$174 DTE=16
+[2026-04-28 01:42:08]    >> HOLD (target=$177 stop=$-708)
+[2026-04-28 01:42:08] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=30
+[2026-04-28 01:42:08]    >> HOLD (target=$15 stop=$-60)
+[2026-04-28 01:42:08]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-04-28 01:42:10]   📧 Email sent: ⚠ Options Pro: Position Reconciliation Drift
+[2026-04-28 01:42:10] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-28 01:57:11]   📊 2 option position(s) loaded from IBKR
+[2026-04-28 01:57:11]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-28 01:57:11]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-28 01:57:14] 
+============================================================
+[2026-04-28 01:57:14] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-28 01:57:14] ============================================================
+[2026-04-28 01:57:14] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.80 P/L=$174 DTE=16
+[2026-04-28 01:57:14]    >> HOLD (target=$177 stop=$-708)
+[2026-04-28 01:57:14] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=30
+[2026-04-28 01:57:14]    >> HOLD (target=$15 stop=$-60)
+[2026-04-28 01:57:14] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-28 02:12:14]   📊 2 option position(s) loaded from IBKR
+[2026-04-28 02:12:14]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-28 02:12:14]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-28 02:12:17] 
+============================================================
+[2026-04-28 02:12:17] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-28 02:12:17] ============================================================
+[2026-04-28 02:12:17] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.80 P/L=$174 DTE=16
+[2026-04-28 02:12:17]    >> HOLD (target=$177 stop=$-708)
+[2026-04-28 02:12:17] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=30
+[2026-04-28 02:12:17]    >> HOLD (target=$15 stop=$-60)
+[2026-04-28 02:12:17] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-28 02:27:17]   📊 2 option position(s) loaded from IBKR
+[2026-04-28 02:27:17]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-28 02:27:17]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-28 02:27:20] 
+============================================================
+[2026-04-28 02:27:20] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-28 02:27:20] ============================================================
+[2026-04-28 02:27:20] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.80 P/L=$174 DTE=16
+[2026-04-28 02:27:20]    >> HOLD (target=$177 stop=$-708)
+[2026-04-28 02:27:20] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=30
+[2026-04-28 02:27:20]    >> HOLD (target=$15 stop=$-60)
+[2026-04-28 02:27:20] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-28 02:42:20]   📊 2 option position(s) loaded from IBKR
+[2026-04-28 02:42:20]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-28 02:42:20]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-28 02:42:23] 
+============================================================
+[2026-04-28 02:42:23] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-28 02:42:23] ============================================================
+[2026-04-28 02:42:23] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.80 P/L=$174 DTE=16
+[2026-04-28 02:42:23]    >> HOLD (target=$177 stop=$-708)
+[2026-04-28 02:42:23] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=30
+[2026-04-28 02:42:23]    >> HOLD (target=$15 stop=$-60)
+[2026-04-28 02:42:23] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-28 02:57:24]   📊 2 option position(s) loaded from IBKR
+[2026-04-28 02:57:24]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-28 02:57:24]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-28 02:57:27] 
+============================================================
+[2026-04-28 02:57:27] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-28 02:57:27] ============================================================
+[2026-04-28 02:57:27] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.80 P/L=$174 DTE=16
+[2026-04-28 02:57:27]    >> HOLD (target=$177 stop=$-708)
+[2026-04-28 02:57:27] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=30
+[2026-04-28 02:57:27]    >> HOLD (target=$15 stop=$-60)
+[2026-04-28 02:57:27] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-28 03:12:27]   📊 2 option position(s) loaded from IBKR
+[2026-04-28 03:12:27]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-28 03:12:27]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-28 03:12:30] 
+============================================================
+[2026-04-28 03:12:30] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-28 03:12:30] ============================================================
+[2026-04-28 03:12:30] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.80 P/L=$174 DTE=16
+[2026-04-28 03:12:30]    >> HOLD (target=$177 stop=$-708)
+[2026-04-28 03:12:30] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=30
+[2026-04-28 03:12:30]    >> HOLD (target=$15 stop=$-60)
+[2026-04-28 03:12:30] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-28 03:27:30]   📊 2 option position(s) loaded from IBKR
+[2026-04-28 03:27:30]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-28 03:27:30]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-28 03:27:33] 
+============================================================
+[2026-04-28 03:27:33] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-28 03:27:33] ============================================================
+[2026-04-28 03:27:33] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.80 P/L=$174 DTE=16
+[2026-04-28 03:27:33]    >> HOLD (target=$177 stop=$-708)
+[2026-04-28 03:27:43]   TLT $84.0P x1: no current price — skipping
+[2026-04-28 03:27:43] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-28 03:42:43]   📊 2 option position(s) loaded from IBKR
+[2026-04-28 03:42:43]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-28 03:42:43]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-28 03:42:47] 
+============================================================
+[2026-04-28 03:42:47] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-28 03:42:47] ============================================================
+[2026-04-28 03:42:47] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.80 P/L=$174 DTE=16
+[2026-04-28 03:42:47]    >> HOLD (target=$177 stop=$-708)
+[2026-04-28 03:42:57]   TLT $84.0P x1: no current price — skipping
+[2026-04-28 03:42:57]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-04-28 03:42:59]   📧 Email sent: ⚠ Options Pro: Position Reconciliation Drift
+[2026-04-28 03:42:59] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-28 03:57:59]   📊 2 option position(s) loaded from IBKR
+[2026-04-28 03:57:59]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-28 03:57:59]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-28 03:58:02] 
+============================================================
+[2026-04-28 03:58:02] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-28 03:58:02] ============================================================
+[2026-04-28 03:58:02] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.80 P/L=$174 DTE=16
+[2026-04-28 03:58:02]    >> HOLD (target=$177 stop=$-708)
+[2026-04-28 03:58:12]   TLT $84.0P x1: no current price — skipping
+[2026-04-28 03:58:12] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-28 04:13:12]   📊 2 option position(s) loaded from IBKR
+[2026-04-28 04:13:12]      IBKR: GLD-405.0 = GLD $405.0 P x-1.0 avg=$3.54
+[2026-04-28 04:13:12]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-28 04:13:15] 
+============================================================
+[2026-04-28 04:13:15] 📡 MONITORING 2 SHORT POSITION(S)
+[2026-04-28 04:13:15] ============================================================
+[2026-04-28 04:13:15] 
+  GLD   $405.0P x1 [CSP]: entry=$354 now=$1.80 P/L=$174 DTE=16
+[2026-04-28 04:13:15]    >> HOLD (target=$177 stop=$-708)
+[2026-04-28 04:13:25]   TLT $84.0P x1: no current price — skipping
+[2026-04-28 04:13:25] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-28 04:14:26]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 04:15:16]   🔴 TWS error 1100: IBKR connectivity LOST — marking disconnected
+[2026-04-28 04:17:15]   TWS error 2108: Market data farm connection is inactive but should be available upon demand.usfarm.nj
+[2026-04-28 04:28:25] ⚠ Connection lost (789s ago) — attempting reconnect...
+[2026-04-28 04:28:25] 🔄 Attempting reconnect...
+[2026-04-28 04:28:25] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 04:28:31] 🔌 Connecting to TWS...
+[2026-04-28 04:28:31] ✅ TWS connected — next order ID: 35
+[2026-04-28 04:28:31]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 04:28:31]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 04:29:04] ❌ Failed to connect to TWS after 30s
+[2026-04-28 04:29:04] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 04:30:04] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 04:30:04] 🔄 Attempting reconnect...
+[2026-04-28 04:30:04] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 04:30:09] 🔌 Connecting to TWS...
+[2026-04-28 04:30:09] ✅ TWS connected — next order ID: 35
+[2026-04-28 04:30:09]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 04:30:09]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 04:30:43] ❌ Failed to connect to TWS after 30s
+[2026-04-28 04:30:43] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 04:31:43] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 04:31:43] 🔄 Attempting reconnect...
+[2026-04-28 04:31:43] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 04:31:48] 🔌 Connecting to TWS...
+[2026-04-28 04:31:48] ✅ TWS connected — next order ID: 35
+[2026-04-28 04:31:48]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 04:31:48]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 04:32:21] ❌ Failed to connect to TWS after 30s
+[2026-04-28 04:32:21] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 04:33:22] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 04:33:22] 🔄 Attempting reconnect...
+[2026-04-28 04:33:22] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 04:33:27] 🔌 Connecting to TWS...
+[2026-04-28 04:33:27] ✅ TWS connected — next order ID: 35
+[2026-04-28 04:33:27]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 04:33:27]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 04:34:00] ❌ Failed to connect to TWS after 30s
+[2026-04-28 04:34:00] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 04:35:00] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 04:35:00] 🔄 Attempting reconnect...
+[2026-04-28 04:35:00] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 04:35:05] 🔌 Connecting to TWS...
+[2026-04-28 04:35:06] ✅ TWS connected — next order ID: 35
+[2026-04-28 04:35:06]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 04:35:06]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 04:35:39] ❌ Failed to connect to TWS after 30s
+[2026-04-28 04:35:39] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 04:36:39] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 04:36:39] 🔄 Attempting reconnect...
+[2026-04-28 04:36:39] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 04:36:44] 🔌 Connecting to TWS...
+[2026-04-28 04:36:44] ✅ TWS connected — next order ID: 35
+[2026-04-28 04:36:45]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 04:36:45]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 04:37:18] ❌ Failed to connect to TWS after 30s
+[2026-04-28 04:37:18] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 04:38:18] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 04:38:18] 🔄 Attempting reconnect...
+[2026-04-28 04:38:18] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 04:38:23] 🔌 Connecting to TWS...
+[2026-04-28 04:38:23] ✅ TWS connected — next order ID: 35
+[2026-04-28 04:38:23]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 04:38:23]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 04:38:57] ❌ Failed to connect to TWS after 30s
+[2026-04-28 04:38:57] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 04:39:57] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 04:39:57] 🔄 Attempting reconnect...
+[2026-04-28 04:39:57] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 04:40:02] 🔌 Connecting to TWS...
+[2026-04-28 04:40:02] ✅ TWS connected — next order ID: 35
+[2026-04-28 04:40:02]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 04:40:02]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 04:40:36] ❌ Failed to connect to TWS after 30s
+[2026-04-28 04:40:36] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 04:41:36] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 04:41:36] 🔄 Attempting reconnect...
+[2026-04-28 04:41:36] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 04:41:41] 🔌 Connecting to TWS...
+[2026-04-28 04:41:41] ✅ TWS connected — next order ID: 35
+[2026-04-28 04:41:41]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 04:41:41]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 04:42:15] ❌ Failed to connect to TWS after 30s
+[2026-04-28 04:42:15] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 04:43:15] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 04:43:15] 🔄 Attempting reconnect...
+[2026-04-28 04:43:15] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 04:43:20] 🔌 Connecting to TWS...
+[2026-04-28 04:43:20] ✅ TWS connected — next order ID: 35
+[2026-04-28 04:43:20]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 04:43:20]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 04:43:53] ❌ Failed to connect to TWS after 30s
+[2026-04-28 04:43:53] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 04:44:54] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 04:44:54] 🔄 Attempting reconnect...
+[2026-04-28 04:44:54] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 04:44:59] 🔌 Connecting to TWS...
+[2026-04-28 04:44:59] ✅ TWS connected — next order ID: 35
+[2026-04-28 04:44:59]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 04:44:59]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 04:45:32] ❌ Failed to connect to TWS after 30s
+[2026-04-28 04:45:32] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 04:46:32] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 04:46:32] 🔄 Attempting reconnect...
+[2026-04-28 04:46:32] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 04:46:37] 🔌 Connecting to TWS...
+[2026-04-28 04:46:37] ✅ TWS connected — next order ID: 35
+[2026-04-28 04:46:37]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 04:46:37]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 04:47:11] ❌ Failed to connect to TWS after 30s
+[2026-04-28 04:47:11] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 04:48:11] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 04:48:11] 🔄 Attempting reconnect...
+[2026-04-28 04:48:11] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 04:48:16] 🔌 Connecting to TWS...
+[2026-04-28 04:48:16] ✅ TWS connected — next order ID: 35
+[2026-04-28 04:48:16]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 04:48:16]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 04:48:49] ❌ Failed to connect to TWS after 30s
+[2026-04-28 04:48:49] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 04:49:49] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 04:49:49] 🔄 Attempting reconnect...
+[2026-04-28 04:49:49] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 04:49:54] 🔌 Connecting to TWS...
+[2026-04-28 04:49:54] ✅ TWS connected — next order ID: 35
+[2026-04-28 04:49:54]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 04:49:54]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 04:50:28] ❌ Failed to connect to TWS after 30s
+[2026-04-28 04:50:28] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 04:51:28] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 04:51:28] 🔄 Attempting reconnect...
+[2026-04-28 04:51:28] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 04:51:33] 🔌 Connecting to TWS...
+[2026-04-28 04:51:33] ✅ TWS connected — next order ID: 35
+[2026-04-28 04:51:33]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 04:51:33]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 04:52:07] ❌ Failed to connect to TWS after 30s
+[2026-04-28 04:52:07] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 04:53:07] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 04:53:07] 🔄 Attempting reconnect...
+[2026-04-28 04:53:07] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 04:53:12] 🔌 Connecting to TWS...
+[2026-04-28 04:53:12] ✅ TWS connected — next order ID: 35
+[2026-04-28 04:53:12]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 04:53:12]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 04:53:45] ❌ Failed to connect to TWS after 30s
+[2026-04-28 04:53:45] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 04:54:46] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 04:54:46] 🔄 Attempting reconnect...
+[2026-04-28 04:54:46] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 04:54:51] 🔌 Connecting to TWS...
+[2026-04-28 04:54:51] ✅ TWS connected — next order ID: 35
+[2026-04-28 04:54:51]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 04:54:51]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 04:55:24] ❌ Failed to connect to TWS after 30s
+[2026-04-28 04:55:24] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 04:56:24] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 04:56:24] 🔄 Attempting reconnect...
+[2026-04-28 04:56:24] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 04:56:29] 🔌 Connecting to TWS...
+[2026-04-28 04:56:29] ✅ TWS connected — next order ID: 35
+[2026-04-28 04:56:29]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 04:56:29]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 04:57:03] ❌ Failed to connect to TWS after 30s
+[2026-04-28 04:57:03] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 04:58:03] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 04:58:03] 🔄 Attempting reconnect...
+[2026-04-28 04:58:03] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 04:58:08] 🔌 Connecting to TWS...
+[2026-04-28 04:58:08] ✅ TWS connected — next order ID: 35
+[2026-04-28 04:58:08]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 04:58:08]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 04:58:42] ❌ Failed to connect to TWS after 30s
+[2026-04-28 04:58:42] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 04:59:42] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 04:59:42] 🔄 Attempting reconnect...
+[2026-04-28 04:59:42] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 04:59:47] 🔌 Connecting to TWS...
+[2026-04-28 04:59:47] ✅ TWS connected — next order ID: 35
+[2026-04-28 04:59:47]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 04:59:47]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:00:21] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:00:21] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:01:21] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:01:21] 🔄 Attempting reconnect...
+[2026-04-28 05:01:21] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:01:26] 🔌 Connecting to TWS...
+[2026-04-28 05:01:26] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:01:26]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:01:26]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:02:00] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:02:00] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:03:00] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:03:00] 🔄 Attempting reconnect...
+[2026-04-28 05:03:00] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:03:05] 🔌 Connecting to TWS...
+[2026-04-28 05:03:05] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:03:05]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:03:05]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:03:38] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:03:38] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:04:39] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:04:39] 🔄 Attempting reconnect...
+[2026-04-28 05:04:39] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:04:44] 🔌 Connecting to TWS...
+[2026-04-28 05:04:44] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:04:44]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:04:44]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:05:17] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:05:17] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:06:17] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:06:17] 🔄 Attempting reconnect...
+[2026-04-28 05:06:17] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:06:22] 🔌 Connecting to TWS...
+[2026-04-28 05:06:22] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:06:22]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:06:22]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:06:56] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:06:56] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:07:56] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:07:56] 🔄 Attempting reconnect...
+[2026-04-28 05:07:56] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:08:01] 🔌 Connecting to TWS...
+[2026-04-28 05:08:01] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:08:01]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:08:01]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:08:34] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:08:34] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:09:34] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:09:34] 🔄 Attempting reconnect...
+[2026-04-28 05:09:34] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:09:39] 🔌 Connecting to TWS...
+[2026-04-28 05:09:40] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:09:40]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:09:40]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:10:13] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:10:13] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:11:13] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:11:13] 🔄 Attempting reconnect...
+[2026-04-28 05:11:13] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:11:18] 🔌 Connecting to TWS...
+[2026-04-28 05:11:18] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:11:18]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:11:18]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:11:52] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:11:52] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:12:52] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:12:52] 🔄 Attempting reconnect...
+[2026-04-28 05:12:52] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:12:57] 🔌 Connecting to TWS...
+[2026-04-28 05:12:57] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:12:57]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:12:57]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:13:30] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:13:30] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:14:30] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:14:30] 🔄 Attempting reconnect...
+[2026-04-28 05:14:30] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:14:35] 🔌 Connecting to TWS...
+[2026-04-28 05:14:35] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:14:35]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:14:35]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:15:09] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:15:09] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:16:09] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:16:09] 🔄 Attempting reconnect...
+[2026-04-28 05:16:09] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:16:14] 🔌 Connecting to TWS...
+[2026-04-28 05:16:14] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:16:14]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:16:14]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:16:47] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:16:47] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:17:47] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:17:47] 🔄 Attempting reconnect...
+[2026-04-28 05:17:47] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:17:52] 🔌 Connecting to TWS...
+[2026-04-28 05:17:53] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:17:53]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:17:53]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:18:26] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:18:26] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:19:26] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:19:26] 🔄 Attempting reconnect...
+[2026-04-28 05:19:26] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:19:31] 🔌 Connecting to TWS...
+[2026-04-28 05:19:31] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:19:31]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:19:31]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:20:04] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:20:04] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:21:04] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:21:04] 🔄 Attempting reconnect...
+[2026-04-28 05:21:04] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:21:10] 🔌 Connecting to TWS...
+[2026-04-28 05:21:10] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:21:10]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:21:10]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:21:43] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:21:43] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:22:43] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:22:43] 🔄 Attempting reconnect...
+[2026-04-28 05:22:43] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:22:48] 🔌 Connecting to TWS...
+[2026-04-28 05:22:48] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:22:48]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:22:48]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:23:22] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:23:22] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:24:22] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:24:22] 🔄 Attempting reconnect...
+[2026-04-28 05:24:22] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:24:27] 🔌 Connecting to TWS...
+[2026-04-28 05:24:27] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:24:27]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:24:27]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:25:01] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:25:01] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:26:01] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:26:01] 🔄 Attempting reconnect...
+[2026-04-28 05:26:01] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:26:06] 🔌 Connecting to TWS...
+[2026-04-28 05:26:06] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:26:06]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:26:06]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:26:39] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:26:39] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:27:39] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:27:39] 🔄 Attempting reconnect...
+[2026-04-28 05:27:39] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:27:45] 🔌 Connecting to TWS...
+[2026-04-28 05:27:45] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:27:45]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:27:45]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:28:18] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:28:18] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:29:18] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:29:18] 🔄 Attempting reconnect...
+[2026-04-28 05:29:18] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:29:23] 🔌 Connecting to TWS...
+[2026-04-28 05:29:23] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:29:23]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:29:23]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:29:57] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:29:57] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:30:57] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:30:57] 🔄 Attempting reconnect...
+[2026-04-28 05:30:57] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:31:02] 🔌 Connecting to TWS...
+[2026-04-28 05:31:02] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:31:02]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:31:02]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:31:35] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:31:35] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:32:36] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:32:36] 🔄 Attempting reconnect...
+[2026-04-28 05:32:36] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:32:41] 🔌 Connecting to TWS...
+[2026-04-28 05:32:41] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:32:41]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:32:41]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:33:14] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:33:14] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:34:14] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:34:14] 🔄 Attempting reconnect...
+[2026-04-28 05:34:14] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:34:19] 🔌 Connecting to TWS...
+[2026-04-28 05:34:19] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:34:19]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:34:19]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:34:52] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:34:52] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:35:52] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:35:52] 🔄 Attempting reconnect...
+[2026-04-28 05:35:52] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:35:58] 🔌 Connecting to TWS...
+[2026-04-28 05:35:58] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:35:58]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:35:58]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:36:31] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:36:31] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:37:31] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:37:31] 🔄 Attempting reconnect...
+[2026-04-28 05:37:31] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:37:36] 🔌 Connecting to TWS...
+[2026-04-28 05:37:36] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:37:36]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:37:36]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:38:10] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:38:10] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:39:10] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:39:10] 🔄 Attempting reconnect...
+[2026-04-28 05:39:10] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:39:15] 🔌 Connecting to TWS...
+[2026-04-28 05:39:15] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:39:15]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:39:15]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:39:48] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:39:48] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:40:49] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:40:49] 🔄 Attempting reconnect...
+[2026-04-28 05:40:49] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:40:54] 🔌 Connecting to TWS...
+[2026-04-28 05:40:54] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:40:54]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:40:54]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:41:28] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:41:28] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:42:28] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:42:28] 🔄 Attempting reconnect...
+[2026-04-28 05:42:28] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:42:33] 🔌 Connecting to TWS...
+[2026-04-28 05:42:33] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:42:33]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:42:33]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:43:06] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:43:06] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:44:06] ⚠ Connection lost (0s ago) — attempting reconnect...
+[2026-04-28 05:44:06] 🔄 Attempting reconnect...
+[2026-04-28 05:44:06] ❌ TWS connection lost (connectionClosed callback)
+[2026-04-28 05:44:11] 🔌 Connecting to TWS...
+[2026-04-28 05:44:11] ✅ TWS connected — next order ID: 35
+[2026-04-28 05:44:11]   🔴 TWS error 2110: TWS-server connection broken
+[2026-04-28 05:44:11]   ⚠ TWS error 2103: data farm issue
+[2026-04-28 05:44:45] ❌ Failed to connect to TWS after 30s
+[2026-04-28 05:44:45] ❌ Reconnect failed — waiting 60s before retry
+[2026-04-28 05:45:45] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-04-28 05:50:45] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-04-28 05:55:45] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-04-28 06:00:46] 😴 TWS restart window — sleeping (next check in 5 min)

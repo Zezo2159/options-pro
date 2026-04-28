@@ -1,5 +1,5 @@
 {
-  "generated": "2026-04-27T15:40:09+02:00",
+  "generated": "2026-04-27T21:30:30+02:00",
   "mode": "paper_auto",
   "account": "DU4735568",
   "max_positions": 5,
@@ -7,27 +7,29 @@
     {
       "ticker": "XLE",
       "strategy": "CSP",
-      "strike": 52.5,
+      "strike": 53.0,
       "long_strike": null,
       "expiry": "20260605",
       "qty": 2,
-      "credit": 0.85,
-      "delta": 0.204,
-      "iv": 32.6,
+      "credit": 0.7,
+      "delta": 0.209,
+      "iv": 30.2,
       "dte": 38,
-      "score": 100,
-      "estimated_risk": 10500.0,
-      "buffer_pct": 8.7,
+      "score": 99,
+      "estimated_risk": 10600.0,
+      "buffer_pct": 7.9,
       "warnings": [
         "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
         "Do not copy if portfolio risk, correlation, or news/event risk is elevated."
       ],
-      "id": "XLE-CSP-52.5--20260605",
+      "id": "XLE-CSP-53.0--20260605",
       "copyable": true,
       "real_qty": 2,
       "reasons": [],
       "reason_labels": [],
-      "max_real_risk": 12500.0
+      "max_real_risk": 12500.0,
+      "risk_cap_label": "CSP collateral",
+      "risk_cap_pct": 5.0
     }
   ],
   "audit": {
@@ -36,12 +38,12 @@
     "copyable": 1
   },
   "scan_summary": {
-    "generated": "2026-04-27T15:39:13+02:00",
+    "generated": "2026-04-27T21:28:53+02:00",
     "market_status": "open",
-    "vix": 19.06,
+    "vix": 18.48,
     "regime": "Normal",
-    "open_positions": 4,
-    "slots": 1,
+    "open_positions": 2,
+    "slots": 3,
     "selected_count": 1,
     "watchlist_count": 10,
     "by_ticker": [
@@ -71,9 +73,9 @@
           "missing_price": 0,
           "contract_error": 0,
           "quote_error": 0,
-          "missing_delta": 0,
+          "missing_delta": 1,
           "quote_rejected": 0,
-          "delta_out_of_range": 10,
+          "delta_out_of_range": 9,
           "selected": null,
           "reason": "Quotes were available but no strike landed in the target delta band."
         },
@@ -99,17 +101,17 @@
       {
         "ticker": "GDX",
         "status": "skipped",
-        "reason": "Quotes were available but failed width/quality checks.",
+        "reason": "Quotes were available but no strike landed in the target delta band.",
         "details": {
           "examined": 10,
-          "missing_price": 3,
-          "contract_error": 3,
+          "missing_price": 4,
+          "contract_error": 4,
           "quote_error": 0,
           "missing_delta": 0,
-          "quote_rejected": 4,
-          "delta_out_of_range": 3,
+          "quote_rejected": 0,
+          "delta_out_of_range": 6,
           "selected": null,
-          "reason": "Quotes were available but failed width/quality checks.",
+          "reason": "Quotes were available but no strike landed in the target delta band.",
           "last_error": "No security definition has been found for the request"
         },
         "expiry": "20260605"
@@ -117,7 +119,8 @@
       {
         "ticker": "IWM",
         "status": "skipped",
-        "reason": "No underlying price data from IBKR."
+        "reason": "No underlying price data from IBKR; likely market-data subscription or farm issue.",
+        "early_skip": true
       },
       {
         "ticker": "GLD",
@@ -141,11 +144,11 @@
         "status": "selected",
         "reason": "Candidate passed scanner filters.",
         "expiry": "20260605",
-        "strike": 52.5,
+        "strike": 53.0,
         "long_strike": null,
-        "delta": 0.204,
-        "iv": 32.6,
-        "score": 100,
+        "delta": 0.209,
+        "iv": 30.2,
+        "score": 99,
         "qty": 2
       },
       {
@@ -157,20 +160,8 @@
       {
         "ticker": "XSP",
         "status": "skipped",
-        "reason": "Quotes were available but no strike landed in the target delta band.",
-        "details": {
-          "examined": 10,
-          "missing_price": 8,
-          "contract_error": 8,
-          "quote_error": 0,
-          "missing_delta": 0,
-          "quote_rejected": 0,
-          "delta_out_of_range": 2,
-          "selected": null,
-          "reason": "Quotes were available but no strike landed in the target delta band.",
-          "last_error": "No security definition has been found for the request"
-        },
-        "expiry": "20260601"
+        "reason": "Known poor/illiquid option chain in the configured 21-45 DTE window.",
+        "early_skip": true
       },
       {
         "ticker": "QQQM",

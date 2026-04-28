@@ -30,3 +30,12 @@ timestamp,action,ticker,strategy,strike,expiry,qty,credit,delta,iv,dte,status,pn
 2026-04-25 21:38,CLOSE_PROFIT,SMH,CLOSE,385.0,20260515,2,0.8744049910704995,0,0,0,Expired,385.7,50% profit ($386 >= $280) | CSP | OrderID 27 | Expired on restart because market is closed 2026-04-25T22:07:03+02:00
 2026-04-25 22:07,CLOSE_MANUAL,XLE,CLOSE,53.0,20260529,2,0,0,,0,ManualClose,0,Manual reconcile accepted IBKR view; position absent from live snapshot
 2026-04-25 22:07,CLOSE_MANUAL,XLE,CLOSE,53.5,20260529,2,0,0,,0,ManualClose,0,Manual reconcile accepted IBKR view; position absent from live snapshot
+2026-04-27 15:37,OPEN,XLE,CSP,53.5,20260605,2,1.0499999523162842,0.20530139009898493,29.58%,38,Submitted,0,Score 90 | Buffer 6.5% | OrderID 28 | SignalID XLE-CSP-53.5--20260605
+2026-04-27 15:39,OPEN,XLE,CSP,53.5,20260605,2,0.6749498886512014,0.20530139009898493,36.16%,38,Submitted,0,Score 100 | Buffer 7.0% | OrderID 29 | SignalID XLE-CSP-53.5--20260605
+2026-04-27 15:40,OPEN,XLE,CSP,52.5,20260605,2,0.8500000238418579,0.20353516709042727,32.59%,38,Submitted,0,Score 100 | Buffer 8.7% | OrderID 30 | SignalID XLE-CSP-52.5--20260605
+2026-04-27 15:40,CLOSE_PROFIT,SMH,CLOSE,385.0,20260515,2,1.13,0,0,0,Filled,334.59,50% profit ($335 >= $280) | CSP | OrderID 31 | Filled 2026-04-27T15:40:25+02:00
+2026-04-27 15:40,CLOSE_PROFIT,IWM,CLOSE,256.0,20260522,1,1.5,0,0,0,Filled,168.13,50% profit ($168 >= $159) | CSP | OrderID 32 | Filled 2026-04-27T15:40:27+02:00
+2026-04-27 16:40,CLOSE_PROFIT,GLD,CLOSE,405.0,20260515,1,1.75,0,0,0,Expired,179.22,50% profit ($179 >= $177) | CSP | OrderID 33 | Expired 2026-04-27T20:40:08+02:00 (monitor-loop age 14408s)
+2026-04-27 18:09,CLOSE_MANUAL,XLE,CLOSE,53.5,20260605,2,0,0,,0,ManualClose,0,Manual reconcile accepted IBKR view; position absent from live snapshot
+2026-04-27 18:09,CLOSE_MANUAL,XLE,CLOSE,52.5,20260605,2,0,0,,0,ManualClose,0,Manual reconcile accepted IBKR view; position absent from live snapshot
+2026-04-27 21:30,OPEN,XLE,CSP,53.0,20260605,2,0.699999988079071,0.20944304879837636,30.23%,38,Submitted,0,Score 99 | Buffer 7.9% | OrderID 34 | SignalID XLE-CSP-53.0--20260605

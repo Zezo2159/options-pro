@@ -38,3 +38,4 @@ timestamp,action,ticker,strategy,strike,expiry,qty,credit,delta,iv,dte,status,pn
 2026-04-27 16:40,CLOSE_PROFIT,GLD,CLOSE,405.0,20260515,1,1.75,0,0,0,Expired,179.22,50% profit ($179 >= $177) | CSP | OrderID 33 | Expired 2026-04-27T20:40:08+02:00 (monitor-loop age 14408s)
 2026-04-27 18:09,CLOSE_MANUAL,XLE,CLOSE,53.5,20260605,2,0,0,,0,ManualClose,0,Manual reconcile accepted IBKR view; position absent from live snapshot
 2026-04-27 18:09,CLOSE_MANUAL,XLE,CLOSE,52.5,20260605,2,0,0,,0,ManualClose,0,Manual reconcile accepted IBKR view; position absent from live snapshot
+2026-04-27 21:30,OPEN,XLE,CSP,53.0,20260605,2,0.699999988079071,0.20944304879837636,30.23%,38,Submitted,0,Score 99 | Buffer 7.9% | OrderID 34 | SignalID XLE-CSP-53.0--20260605
