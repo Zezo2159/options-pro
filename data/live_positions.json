@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-29T23:46:53+02:00",
+  "updated": "2026-04-29T23:53:34+02:00",
   "engine_running": true,
   "connected": true,
   "market_status": "closed",
@@ -8,8 +8,8 @@
   "signal_only": false,
   "signal_only_file": "/Users/islam/options-pro/data/optionspro_signal_only",
   "signals_file": "/Users/islam/options-pro/data/trade_signals.json",
-  "vix": 18.05,
-  "regime": "Normal",
+  "vix": null,
+  "regime": "Unknown",
   "positions": [
     {
       "ticker": "TLT",
@@ -42,7 +42,7 @@
   "ibkr_legs_short": 1,
   "ibkr_legs_long": 0,
   "reconciliation": {
-    "checked_at": "2026-04-29T23:46:53+02:00",
+    "checked_at": "2026-04-29T23:53:34+02:00",
     "ok": false,
     "missing_in_ibkr": [
       {

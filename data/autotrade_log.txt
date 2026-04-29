@@ -52248,3 +52248,34 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 [2026-04-29 23:53:18] Scan passes: 2
 [2026-04-29 23:53:18] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
+[2026-04-29 23:53:24]   ✅ GitHub backup on restart complete
+[2026-04-29 23:53:24] 🔌 Connecting to TWS...
+[2026-04-29 23:53:24] ✅ TWS connected — next order ID: 38
+[2026-04-29 23:53:26]   📊 1 option position(s) loaded from IBKR
+[2026-04-29 23:53:26]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-29 23:53:29]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-04-29 23:53:30]   📧 Email sent: ⚠ Options Pro: Position Reconciliation Drift
+[2026-04-29 23:53:30] 🌙 Market closed — skipping initial scan, entering monitor mode
+[2026-04-29 23:53:30] 
+✅ Entering monitor mode (checking every 15 min)
+[2026-04-29 23:53:30]   📊 1 option position(s) loaded from IBKR
+[2026-04-29 23:53:30]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-04-29 23:53:33] 
+============================================================
+[2026-04-29 23:53:33] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-04-29 23:53:33] ============================================================
+[2026-04-29 23:53:34] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.51 P/L=$-21 DTE=29
+[2026-04-29 23:53:34]    >> HOLD (target=$15 stop=$-60)
+[2026-04-29 23:53:34] 
+  🌙 Market closed — next check in 15 min...
+[2026-04-29 23:58:23] 
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+[2026-04-29 23:58:23] Options Pro Ultra v6 — Autotrade Engine
+[2026-04-29 23:58:23] Account: DU4735568 | Size: $250,000
+[2026-04-29 23:58:23] Max positions: 5 | Max risk: $12,500
+[2026-04-29 23:58:23] Delta: 0.15-0.25 | DTE: 21-45
+[2026-04-29 23:58:23] Close: 50% profit | Stop: 2.0× credit
+[2026-04-29 23:58:23] Scan passes: 2
+[2026-04-29 23:58:23] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+
