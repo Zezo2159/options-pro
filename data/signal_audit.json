@@ -113,10 +113,10 @@
       "long_strike": null,
       "expiry": "20260605",
       "first_seen": "2026-04-27T15:37:52+02:00",
-      "seen_count": 2,
-      "copyable_seen_count": 2,
-      "last_seen": "2026-04-27T15:39:03+02:00",
-      "last_score": 100,
+      "seen_count": 4,
+      "copyable_seen_count": 4,
+      "last_seen": "2026-04-29T15:27:43+02:00",
+      "last_score": 94,
       "last_copyable": true,
       "last_real_qty": 2
     },
@@ -355,7 +355,31 @@
       "score": 99,
       "copyable": true,
       "real_qty": 2
+    },
+    {
+      "generated": "2026-04-29T15:26:23+02:00",
+      "id": "XLE-CSP-53.5--20260605",
+      "ticker": "XLE",
+      "strategy": "CSP",
+      "strike": 53.5,
+      "long_strike": null,
+      "expiry": "20260605",
+      "score": 94,
+      "copyable": true,
+      "real_qty": 2
+    },
+    {
+      "generated": "2026-04-29T15:27:43+02:00",
+      "id": "XLE-CSP-53.5--20260605",
+      "ticker": "XLE",
+      "strategy": "CSP",
+      "strike": 53.5,
+      "long_strike": null,
+      "expiry": "20260605",
+      "score": 94,
+      "copyable": true,
+      "real_qty": 2
     }
   ],
-  "updated": "2026-04-27T21:30:30+02:00"
+  "updated": "2026-04-29T15:27:43+02:00"
 }

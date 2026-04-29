@@ -1,5 +1,5 @@
 {
-  "generated": "2026-04-27T21:30:30+02:00",
+  "generated": "2026-04-29T15:27:43+02:00",
   "mode": "paper_auto",
   "account": "DU4735568",
   "max_positions": 5,
@@ -7,22 +7,22 @@
     {
       "ticker": "XLE",
       "strategy": "CSP",
-      "strike": 53.0,
+      "strike": 53.5,
       "long_strike": null,
       "expiry": "20260605",
       "qty": 2,
-      "credit": 0.7,
-      "delta": 0.209,
-      "iv": 30.2,
-      "dte": 38,
-      "score": 99,
-      "estimated_risk": 10600.0,
-      "buffer_pct": 7.9,
+      "credit": 0.59,
+      "delta": 0.189,
+      "iv": 29.6,
+      "dte": 36,
+      "score": 94,
+      "estimated_risk": 10700.0,
+      "buffer_pct": 8.5,
       "warnings": [
         "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
         "Do not copy if portfolio risk, correlation, or news/event risk is elevated."
       ],
-      "id": "XLE-CSP-53.0--20260605",
+      "id": "XLE-CSP-53.5--20260605",
       "copyable": true,
       "real_qty": 2,
       "reasons": [],
@@ -38,9 +38,9 @@
     "copyable": 1
   },
   "scan_summary": {
-    "generated": "2026-04-27T21:28:53+02:00",
+    "generated": "2026-04-29T15:26:34+02:00",
     "market_status": "open",
-    "vix": 18.48,
+    "vix": 18.05,
     "regime": "Normal",
     "open_positions": 2,
     "slots": 3,
@@ -49,20 +49,11 @@
     "by_ticker": [
       {
         "ticker": "SPY",
-        "status": "skipped",
-        "reason": "Quotes were available but no strike landed in the target delta band.",
-        "details": {
-          "examined": 10,
-          "missing_price": 0,
-          "contract_error": 0,
-          "quote_error": 0,
-          "missing_delta": 0,
-          "quote_rejected": 0,
-          "delta_out_of_range": 10,
-          "selected": null,
-          "reason": "Quotes were available but no strike landed in the target delta band."
-        },
-        "expiry": "20260605"
+        "status": "blocked",
+        "reason": "Spread credit $1.50 is below 15% of $10 width.",
+        "expiry": "20260605",
+        "strike": 687.0,
+        "long_strike": 677.0
       },
       {
         "ticker": "QQQ",
@@ -73,9 +64,9 @@
           "missing_price": 0,
           "contract_error": 0,
           "quote_error": 0,
-          "missing_delta": 1,
+          "missing_delta": 0,
           "quote_rejected": 0,
-          "delta_out_of_range": 9,
+          "delta_out_of_range": 10,
           "selected": null,
           "reason": "Quotes were available but no strike landed in the target delta band."
         },
@@ -100,21 +91,11 @@
       },
       {
         "ticker": "GDX",
-        "status": "skipped",
-        "reason": "Quotes were available but no strike landed in the target delta band.",
-        "details": {
-          "examined": 10,
-          "missing_price": 4,
-          "contract_error": 4,
-          "quote_error": 0,
-          "missing_delta": 0,
-          "quote_rejected": 0,
-          "delta_out_of_range": 6,
-          "selected": null,
-          "reason": "Quotes were available but no strike landed in the target delta band.",
-          "last_error": "No security definition has been found for the request"
-        },
-        "expiry": "20260605"
+        "status": "blocked",
+        "reason": "No usable quote for protective long $78.0P.",
+        "expiry": "20260605",
+        "strike": 80.0,
+        "long_strike": 78.0
       },
       {
         "ticker": "IWM",
@@ -124,37 +105,29 @@
       },
       {
         "ticker": "GLD",
-        "status": "skipped",
-        "reason": "Quotes were available but no strike landed in the target delta band.",
-        "details": {
-          "examined": 10,
-          "missing_price": 0,
-          "contract_error": 0,
-          "quote_error": 0,
-          "missing_delta": 0,
-          "quote_rejected": 0,
-          "delta_out_of_range": 10,
-          "selected": null,
-          "reason": "Quotes were available but no strike landed in the target delta band."
-        },
-        "expiry": "20260605"
+        "status": "blocked",
+        "reason": "Assignment exposure $40,000 exceeds paper risk budget $12,500.",
+        "expiry": "20260605",
+        "strike": 400.0,
+        "delta": 0.226,
+        "iv": 24.7
       },
       {
         "ticker": "XLE",
         "status": "selected",
         "reason": "Candidate passed scanner filters.",
         "expiry": "20260605",
-        "strike": 53.0,
+        "strike": 53.5,
         "long_strike": null,
-        "delta": 0.209,
-        "iv": 30.2,
-        "score": 99,
+        "delta": 0.189,
+        "iv": 29.6,
+        "score": 94,
         "qty": 2
       },
       {
         "ticker": "TLT",
         "status": "skipped",
-        "reason": "DTE ladder gap < 14d: proposed 38, conflicts with [31].",
+        "reason": "DTE ladder gap < 14d: proposed 36, conflicts with [29].",
         "expiry": "20260605"
       },
       {

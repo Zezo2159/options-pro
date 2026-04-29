@@ -39,3 +39,6 @@ timestamp,action,ticker,strategy,strike,expiry,qty,credit,delta,iv,dte,status,pn
 2026-04-27 18:09,CLOSE_MANUAL,XLE,CLOSE,53.5,20260605,2,0,0,,0,ManualClose,0,Manual reconcile accepted IBKR view; position absent from live snapshot
 2026-04-27 18:09,CLOSE_MANUAL,XLE,CLOSE,52.5,20260605,2,0,0,,0,ManualClose,0,Manual reconcile accepted IBKR view; position absent from live snapshot
 2026-04-27 21:30,OPEN,XLE,CSP,53.0,20260605,2,0.699999988079071,0.20944304879837636,30.23%,38,Submitted,0,Score 99 | Buffer 7.9% | OrderID 34 | SignalID XLE-CSP-53.0--20260605
+2026-04-29 15:26,OPEN,XLE,CSP,53.5,20260605,2,0.5946313606794738,0.18870991454126393,29.61%,36,Submitted,0,Score 94 | Buffer 8.4% | OrderID 35 | SignalID XLE-CSP-53.5--20260605
+2026-04-29 15:27,OPEN,XLE,CSP,53.5,20260605,2,0.5946313606794738,0.18870991454126393,29.61%,36,Submitted,0,Score 94 | Buffer 8.5% | OrderID 36 | SignalID XLE-CSP-53.5--20260605
+2026-04-29 15:43,CLOSE_DTE,GLD,CLOSE,405.0,20260515,1,4.74,0,0,0,Filled,-119.3,DTE=15 losing — exit | CSP | OrderID 37 | Filled 2026-04-29T15:55:54+02:00
