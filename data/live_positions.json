@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-29T23:53:34+02:00",
+  "updated": "2026-04-30T00:43:49+02:00",
   "engine_running": true,
   "connected": true,
   "market_status": "closed",
@@ -20,9 +20,9 @@
       "entry_credit": 0.3,
       "current_price": 0.51,
       "price_valid": true,
-      "pnl": -20.77,
-      "pnl_pct": -68.7,
-      "dte": 29,
+      "pnl": -20.63,
+      "pnl_pct": -68.2,
+      "dte": 28,
       "pending_close": false,
       "pending_close_order_id": null,
       "pending_close_age_secs": null,
@@ -33,7 +33,7 @@
   ],
   "positions_count": 1,
   "max_positions": 5,
-  "total_pnl": -20.77,
+  "total_pnl": -20.63,
   "pnl_status": "complete",
   "valid_price_count": 1,
   "missing_quote_count": 0,
@@ -42,27 +42,51 @@
   "ibkr_legs_short": 1,
   "ibkr_legs_long": 0,
   "reconciliation": {
-    "checked_at": "2026-04-29T23:53:34+02:00",
+    "checked_at": "2026-04-30T00:43:49+02:00",
     "ok": false,
     "missing_in_ibkr": [
       {
-        "ticker": "XLE",
-        "strike": 53.0,
-        "expiry": "20260605",
-        "qty": 2,
+        "ticker": "GLD",
+        "strike": 405.0,
+        "expiry": "20260515",
+        "qty": 1,
         "strategy": "CSP",
-        "status": "Submitted"
+        "status": "Filled"
       },
       {
-        "ticker": "XLE",
-        "strike": 53.5,
-        "expiry": "20260605",
+        "ticker": "SMH",
+        "strike": 385.0,
+        "expiry": "20260515",
         "qty": 2,
         "strategy": "CSP",
-        "status": "Submitted"
+        "status": "Filled"
+      },
+      {
+        "ticker": "QQQ",
+        "strike": 600.0,
+        "expiry": "20260522",
+        "qty": 1,
+        "strategy": "CSP",
+        "status": "Filled"
+      },
+      {
+        "ticker": "IWM",
+        "strike": 256.0,
+        "expiry": "20260522",
+        "qty": 1,
+        "strategy": "CSP",
+        "status": "Filled"
       }
     ],
-    "missing_in_journal": [],
+    "missing_in_journal": [
+      {
+        "ticker": "TLT",
+        "strike": 84.0,
+        "expiry": "20260529",
+        "qty": 1,
+        "strategy": "CSP"
+      }
+    ],
     "qty_mismatch": []
   },
   "pending_closes": [],

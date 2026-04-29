@@ -626,6 +626,7 @@ def write_trade_signals(opportunities, mode="paper_auto", scan_summary=None):
             "qty": opp.get("qty"),
             "credit": round(float(opp.get("net_credit", opp.get("premium", 0))), 2),
             "delta": round(float(opp.get("delta", 0)), 3),
+            "delta_estimated": bool(opp.get("delta_estimated", False)),
             "iv": round(float(opp.get("iv", 0)) * 100, 1),
             "dte": opp.get("dte"),
             "score": opp.get("score"),
@@ -634,7 +635,10 @@ def write_trade_signals(opportunities, mode="paper_auto", scan_summary=None):
             "warnings": [
                 "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
                 "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
-            ],
+            ] + (
+                ["Delta was ESTIMATED from buffer/DTE because IBKR did not return Greeks for this strike. Verify the real delta in TWS before copying."]
+                if opp.get("delta_estimated") else []
+            ),
         }
         signal["id"] = _signal_id(signal)
         copy_state = _real_copyability(signal)
@@ -1722,11 +1726,42 @@ class AutoTradeEngine:
                 continue
         return best
 
+    # ── Greek-fallback helper ──
+    def _estimate_delta_from_buffer(self, stock_price, strike, dte):
+        """Rough delta estimate when IBKR didn't return Greek values.
+        Uses a simple OTM-put approximation tied to log-moneyness and time.
+        Not as good as a real model — used only to keep signals flowing when
+        delayed/unsubscribed market data omits delta. Signals using this path
+        are flagged delta_estimated=True so the dashboard can warn.
+        """
+        if stock_price <= 0 or strike <= 0 or dte <= 0:
+            return 0.0
+        # log-moneyness; deeper OTM puts have smaller (less negative) delta magnitude
+        m = math.log(strike / stock_price)  # negative for OTM puts
+        # Time scaling: longer DTE = wider distribution = higher delta magnitude
+        t_scale = math.sqrt(max(dte, 1) / 30.0)
+        # Implied vol guess: 25% (mid for ETFs)
+        sigma = 0.25
+        # Standardized z; works well enough for buffer-based gating
+        z = m / (sigma * t_scale * math.sqrt(max(dte, 1) / 252.0))
+        # Cumulative normal approx (Abramowitz & Stegun 7.1.26)
+        def ncdf(x):
+            t = 1 / (1 + 0.2316419 * abs(x))
+            d = 0.3989423 * math.exp(-x * x / 2)
+            p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))))
+            return 1 - p if x >= 0 else p
+        # Put delta magnitude = N(-d1) ≈ N(-z) for small carry
+        delta_est = ncdf(-z) if z > 0 else (1 - ncdf(z))
+        # Bound to plausible OTM range
+        return max(0.05, min(0.45, delta_est))
+
     # ── Find Best Strike ──
     def find_target_strike(self, ticker, stock_price, strikes, expiry, option_exchange=None, trading_class=None):
         """Find the put strike with delta closest to target range.
         Uses regime-adjusted delta bounds when available.
-        Requires valid delta data; missing Greeks are not safe signal inputs."""
+        If IBKR delta is unavailable (delayed/unsubscribed paper data), falls
+        back to a buffer-based delta estimate so signals keep flowing. Estimated
+        signals are flagged delta_estimated=True for human review."""
         # Get regime-adjusted delta bounds (fall back to config defaults)
         regime = getattr(self, '_current_regime', None) or REGIMES["normal"]
         d_min = regime.get("delta_min", DELTA_MIN)
@@ -1741,11 +1776,17 @@ class AutoTradeEngine:
             "contract_error": 0,
             "quote_error": 0,
             "missing_delta": 0,
+            "estimated_delta_used": 0,
             "quote_rejected": 0,
             "delta_out_of_range": 0,
             "selected": None,
             "reason": "",
         }
+        # DTE for the Greek-fallback estimator. Pulled once per call for efficiency.
+        try:
+            _dte_for_est = max(1, (datetime.strptime(expiry, "%Y%m%d") - datetime.now()).days)
+        except Exception:
+            _dte_for_est = 30
         if not otm_strikes:
             diagnostics["reason"] = "No OTM strikes available in scan window."
             return None, None, diagnostics
@@ -1786,10 +1827,18 @@ class AutoTradeEngine:
                     break
                 continue
             missing_price_streak = 0
+            delta_estimated = False
             if delta <= 0:
-                log(f"  {ticker} ${strike}P: missing delta/greeks — skipped")
-                diagnostics["missing_delta"] += 1
-                continue
+                # Fall back to buffer/DTE estimate so paper-data gaps don't
+                # silently kill all signals on unsubscribed tickers.
+                delta = self._estimate_delta_from_buffer(stock_price, strike, _dte_for_est)
+                if delta <= 0:
+                    log(f"  {ticker} ${strike}P: missing delta/greeks — skipped")
+                    diagnostics["missing_delta"] += 1
+                    continue
+                delta_estimated = True
+                diagnostics["estimated_delta_used"] += 1
+                log(f"  {ticker} ${strike}P: delta missing — estimated δ≈{delta:.3f} from buffer/DTE")
             ok, reason = self.quote_is_acceptable(ticker, {**opt, "price": price}, f"${strike}P")
             if not ok:
                 log(f"  {reason}")
@@ -1799,16 +1848,22 @@ class AutoTradeEngine:
             # Use regime-adjusted delta range
             if d_min <= delta <= d_max:
                 fit = abs(delta - d_target)
+                # Penalize estimated-delta selections so real-delta candidates
+                # win when both are available.
+                if delta_estimated:
+                    fit += 0.05
                 if fit < best_delta_fit:
                     best_delta_fit = fit
                     best_strike = strike
-                    best_data = {**opt, "price": price}  # normalize key
+                    best_data = {**opt, "price": price, "delta": delta,
+                                 "delta_estimated": delta_estimated}  # normalize keys
             else:
                 diagnostics["delta_out_of_range"] += 1
 
         if best_strike:
             diagnostics["selected"] = best_strike
-            diagnostics["reason"] = f"Selected strike {best_strike} within target delta range."
+            est_note = " (delta estimated)" if best_data.get("delta_estimated") else ""
+            diagnostics["reason"] = f"Selected strike {best_strike} within target delta range{est_note}."
             return best_strike, best_data, diagnostics
 
         if diagnostics.get("reason"):
@@ -2278,6 +2333,7 @@ class AutoTradeEngine:
                 "premium": premium,
                 "net_credit": net_credit,
                 "delta": delta,
+                "delta_estimated": bool(opt_data.get("delta_estimated")),
                 "iv": iv,
                 "buffer": buffer,
                 "dte": dte,
