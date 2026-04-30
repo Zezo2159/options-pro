@@ -17,7 +17,7 @@ timestamp,action,ticker,strategy,strike,expiry,qty,credit,delta,iv,dte,status,pn
 2026-04-16 21:19,CLOSE_PROFIT,SMH,CLOSE,390.0,20260515,2,0.5413226266811115,0,0,0,Filled,1040.87,50% profit ($1041 >= $575) | BPS | OrderID 12
 2026-04-16 21:33,OPEN,QQQM,CSP,245.0,20260515,1,1.4,0,0,28,Submitted,0,Score 56 | Buffer 6.8% | OrderID 13
 2026-04-16 21:33,OPEN,QQQ,BPS,618.0,20260522,15,1.9350000000000005,0,0,35,Submitted,0,Spread $618.0/608.0 | Score 52 | Buffer 3.4% | OrderID 14
-2026-04-17 21:36,CLOSE_PROFIT,GLD,CLOSE,405.0,20260515,1,1.7000000476837158,0,0,0,Submitted,184.22,50% profit ($184 >= $177) | CSP | OrderID 15
+2026-04-17 21:36,CLOSE_PROFIT,GLD,CLOSE,405.0,20260515,1,1.7000000476837158,0,0,0,Expired,184.22,50% profit ($184 >= $177) | CSP | OrderID 15 | Expired on restart after 1048840s 2026-04-30T00:56:40+02:00
 2026-04-17 21:50,CLOSE_CANCEL,QQQM,CLOSE,245.0,20260515,1,0,0,0,0,NotFilled,0,Order 13 never filled — manual reconcile
 2026-04-17 21:50,CLOSE_CANCEL,QQQ,CLOSE,618.0,20260522,15,0,0,0,0,NotFilled,0,Order 14 never filled — manual reconcile
 2026-04-17 21:55,CLOSE_MANUAL,GDX,CLOSE,91.5,20260522,12,0,0,0,0,ManualClose,0,Closed manually earlier; backfill
