@@ -55135,3 +55135,23 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 [2026-05-02 11:46:09] Scan passes: 2
 [2026-05-02 11:46:09] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
+[2026-05-02 11:46:17]   ✅ GitHub backup on restart complete
+[2026-05-02 11:46:17] 🔌 Connecting to TWS...
+[2026-05-02 11:46:17]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-02 11:46:17] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-02 11:46:50] ❌ Failed to connect to TWS after 30s
+[2026-05-02 11:46:50] ❌ Cannot start — TWS connection failed
+[2026-05-02 11:51:14] 
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+[2026-05-02 11:51:14] Options Pro Ultra v6 — Autotrade Engine
+[2026-05-02 11:51:14] Account: DU4735568 | Size: $250,000
+[2026-05-02 11:51:14] Max positions: 5 | Max risk: $12,500
+[2026-05-02 11:51:14] Delta: 0.15-0.25 | DTE: 21-45
+[2026-05-02 11:51:14] Close: 50% profit | Stop: 2.0× credit
+[2026-05-02 11:51:14] Scan passes: 2
+[2026-05-02 11:51:14] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+
