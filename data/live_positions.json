@@ -1,15 +1,15 @@
 {
-  "updated": "2026-04-30T22:29:55+02:00",
+  "updated": "2026-05-01T22:57:09+02:00",
   "engine_running": true,
   "connected": true,
   "market_status": "closed",
   "kill_switch": true,
   "kill_switch_file": "/Users/islam/options-pro/data/optionspro_kill_switch",
-  "signal_only": false,
+  "signal_only": true,
   "signal_only_file": "/Users/islam/options-pro/data/optionspro_signal_only",
   "signals_file": "/Users/islam/options-pro/data/trade_signals.json",
-  "vix": 17.94,
-  "regime": "Normal",
+  "vix": null,
+  "regime": "Unknown",
   "positions": [
     {
       "ticker": "TLT",
@@ -18,11 +18,11 @@
       "qty": 1,
       "strategy": "CSP",
       "entry_credit": 0.3,
-      "current_price": 0.41,
+      "current_price": 0.45,
       "price_valid": true,
-      "pnl": -10.77,
-      "pnl_pct": -35.6,
-      "dte": 28,
+      "pnl": -15.21,
+      "pnl_pct": -50.3,
+      "dte": 27,
       "pending_close": false,
       "pending_close_order_id": null,
       "pending_close_age_secs": null,
@@ -33,7 +33,7 @@
   ],
   "positions_count": 1,
   "max_positions": 5,
-  "total_pnl": -10.77,
+  "total_pnl": -15.21,
   "pnl_status": "complete",
   "valid_price_count": 1,
   "missing_quote_count": 0,
@@ -42,7 +42,7 @@
   "ibkr_legs_short": 1,
   "ibkr_legs_long": 0,
   "reconciliation": {
-    "checked_at": "2026-04-30T22:29:55+02:00",
+    "checked_at": "2026-05-01T22:57:09+02:00",
     "ok": false,
     "missing_in_ibkr": [
       {

@@ -1,181 +1,72 @@
 {
-  "generated": "2026-04-30T16:02:15+02:00",
+  "generated": "2026-05-01T19:06:51+02:00",
   "mode": "paper_auto",
   "account": "DU4735568",
   "max_positions": 5,
-  "signals": [
-    {
-      "ticker": "XLE",
-      "strategy": "CSP",
-      "strike": 55.0,
-      "long_strike": null,
-      "expiry": "20260605",
-      "qty": 2,
-      "credit": 0.59,
-      "delta": 0.191,
-      "delta_estimated": false,
-      "iv": 28.8,
-      "dte": 35,
-      "score": 75,
-      "estimated_risk": 11000.0,
-      "buffer_pct": 5.7,
-      "warnings": [
-        "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
-        "Do not copy if portfolio risk, correlation, or news/event risk is elevated."
-      ],
-      "id": "XLE-CSP-55.0--20260605",
-      "copyable": true,
-      "real_qty": 2,
-      "reasons": [],
-      "reason_labels": [],
-      "max_real_risk": 12500.0,
-      "risk_cap_label": "CSP collateral",
-      "risk_cap_pct": 5.0
-    }
-  ],
+  "signals": [],
   "audit": {
     "file": "/Users/islam/options-pro/data/signal_audit.json",
-    "total": 1,
-    "copyable": 1
+    "total": 0,
+    "copyable": 0
   },
   "scan_summary": {
-    "generated": "2026-04-30T16:01:00+02:00",
+    "generated": "2026-05-01T19:06:51+02:00",
     "market_status": "open",
-    "vix": 17.94,
-    "regime": "Normal",
-    "open_positions": 1,
-    "slots": 4,
-    "selected_count": 1,
+    "global_status": "blocked",
+    "global_reason": "Paper-account kill switch is active.",
+    "selected_count": 0,
     "watchlist_count": 10,
     "by_ticker": [
       {
         "ticker": "SPY",
-        "status": "skipped",
-        "reason": "Quotes were available but no strike landed in the target delta band.",
-        "details": {
-          "examined": 10,
-          "missing_price": 0,
-          "contract_error": 0,
-          "quote_error": 0,
-          "missing_delta": 0,
-          "estimated_delta_used": 0,
-          "quote_rejected": 0,
-          "delta_out_of_range": 10,
-          "selected": null,
-          "reason": "Quotes were available but no strike landed in the target delta band."
-        },
-        "expiry": "20260605"
+        "status": "blocked",
+        "reason": "Paper-account kill switch is active."
       },
       {
         "ticker": "QQQ",
-        "status": "skipped",
-        "reason": "Quotes were available but no strike landed in the target delta band.",
-        "details": {
-          "examined": 10,
-          "missing_price": 0,
-          "contract_error": 0,
-          "quote_error": 0,
-          "missing_delta": 0,
-          "estimated_delta_used": 0,
-          "quote_rejected": 0,
-          "delta_out_of_range": 10,
-          "selected": null,
-          "reason": "Quotes were available but no strike landed in the target delta band."
-        },
-        "expiry": "20260605"
+        "status": "blocked",
+        "reason": "Paper-account kill switch is active."
       },
       {
         "ticker": "SMH",
-        "status": "skipped",
-        "reason": "Quotes were available but no strike landed in the target delta band.",
-        "details": {
-          "examined": 10,
-          "missing_price": 0,
-          "contract_error": 0,
-          "quote_error": 0,
-          "missing_delta": 0,
-          "estimated_delta_used": 0,
-          "quote_rejected": 0,
-          "delta_out_of_range": 10,
-          "selected": null,
-          "reason": "Quotes were available but no strike landed in the target delta band."
-        },
-        "expiry": "20260605"
+        "status": "blocked",
+        "reason": "Paper-account kill switch is active."
       },
       {
         "ticker": "GDX",
-        "status": "skipped",
-        "reason": "Quotes were available but failed width/quality checks.",
-        "details": {
-          "examined": 10,
-          "missing_price": 5,
-          "contract_error": 5,
-          "quote_error": 0,
-          "missing_delta": 0,
-          "estimated_delta_used": 0,
-          "quote_rejected": 1,
-          "delta_out_of_range": 4,
-          "selected": null,
-          "reason": "Quotes were available but failed width/quality checks.",
-          "last_error": "No security definition has been found for the request"
-        },
-        "expiry": "20260605"
+        "status": "blocked",
+        "reason": "Paper-account kill switch is active."
       },
       {
         "ticker": "IWM",
-        "status": "skipped",
-        "reason": "No underlying price data from IBKR; likely market-data subscription or farm issue.",
-        "early_skip": true
+        "status": "blocked",
+        "reason": "Paper-account kill switch is active."
       },
       {
         "ticker": "GLD",
-        "status": "skipped",
-        "reason": "Quotes were available but no strike landed in the target delta band.",
-        "details": {
-          "examined": 10,
-          "missing_price": 0,
-          "contract_error": 0,
-          "quote_error": 0,
-          "missing_delta": 0,
-          "estimated_delta_used": 0,
-          "quote_rejected": 0,
-          "delta_out_of_range": 10,
-          "selected": null,
-          "reason": "Quotes were available but no strike landed in the target delta band."
-        },
-        "expiry": "20260605"
+        "status": "blocked",
+        "reason": "Paper-account kill switch is active."
       },
       {
         "ticker": "XLE",
-        "status": "selected",
-        "reason": "Candidate passed scanner filters.",
-        "expiry": "20260605",
-        "strike": 55.0,
-        "long_strike": null,
-        "delta": 0.191,
-        "iv": 28.8,
-        "score": 75,
-        "qty": 2
+        "status": "blocked",
+        "reason": "Paper-account kill switch is active."
       },
       {
         "ticker": "TLT",
-        "status": "skipped",
-        "reason": "DTE ladder gap < 14d: proposed 35, conflicts with [28].",
-        "expiry": "20260605"
+        "status": "blocked",
+        "reason": "Paper-account kill switch is active."
       },
       {
         "ticker": "XSP",
-        "status": "skipped",
-        "reason": "Known poor/illiquid option chain in the configured 21-45 DTE window.",
-        "early_skip": true
+        "status": "blocked",
+        "reason": "Paper-account kill switch is active."
       },
       {
         "ticker": "QQQM",
-        "status": "skipped",
-        "reason": "No expiry in 21-45 DTE range."
+        "status": "blocked",
+        "reason": "Paper-account kill switch is active."
       }
-    ],
-    "candidate_count": 1,
-    "blocked_count": 9
+    ]
   }
 }

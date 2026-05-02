@@ -53665,3 +53665,733 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 [2026-05-01 07:31:12] Scan passes: 2
 [2026-05-01 07:31:12] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
+[2026-05-01 07:31:19]   ✅ GitHub backup on restart complete
+[2026-05-01 07:31:19] 🔌 Connecting to TWS...
+[2026-05-01 07:31:19] ✅ TWS connected — next order ID: 41
+[2026-05-01 07:31:21]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 07:31:21]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 07:31:24] 😴 Startup during TWS restart window — skipping initial scan, entering monitor mode
+[2026-05-01 07:31:24] 
+✅ Entering monitor mode (checking every 15 min)
+[2026-05-01 07:31:24] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 07:36:24] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 07:41:24] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 07:46:24] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 07:51:25] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 07:56:25] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 08:01:25] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 08:06:25] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 08:11:25] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 08:16:25] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 08:21:25] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 08:26:25] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 08:31:25] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 08:36:25] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 08:41:25] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 08:46:25] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 08:51:25] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 08:56:25] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 09:01:25] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 09:06:26] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 09:11:26] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 09:16:26] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 09:21:26] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 09:26:26] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 09:31:26] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 09:36:26] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 09:41:26] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 09:46:26] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 09:51:27] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 09:56:27] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 10:01:27] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 10:06:27] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 10:11:27] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 10:16:27] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 10:21:27] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 10:26:27] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 10:31:27] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 10:36:27] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 10:41:27] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 10:46:28] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 10:51:28] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 10:56:28] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 11:01:28] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 11:06:28] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 11:11:28] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 11:16:28] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 11:21:28] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 11:26:29] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 11:31:29] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 11:36:29] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 11:41:29] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 11:46:29] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 11:51:29] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 11:56:29] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 12:01:29] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 12:06:30] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 12:11:30] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 12:16:30] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 12:21:30] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 12:26:30] 😴 TWS restart window — sleeping (next check in 5 min)
+[2026-05-01 12:31:30] ⚠ WATCHDOG: No successful monitor in 300 min — forcing reconnect
+[2026-05-01 12:31:30] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-01 12:31:35] 🔌 Connecting to TWS...
+[2026-05-01 12:31:35] ✅ TWS connected — next order ID: 41
+[2026-05-01 12:31:38]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 12:31:38]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 12:31:41]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 12:31:41]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 12:31:44] 
+============================================================
+[2026-05-01 12:31:44] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 12:31:44] ============================================================
+[2026-05-01 12:31:45] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.45 P/L=$-15 DTE=27
+[2026-05-01 12:31:45]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 12:31:45]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-05-01 12:31:46]   📧 Email sent: ⚠ Options Pro: Position Reconciliation Drift
+[2026-05-01 12:31:46] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-01 12:46:46]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 12:46:46]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 12:46:49] 
+============================================================
+[2026-05-01 12:46:49] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 12:46:49] ============================================================
+[2026-05-01 12:47:01]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 12:47:01] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-01 13:02:01]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 13:02:01]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 13:02:04] 
+============================================================
+[2026-05-01 13:02:04] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 13:02:04] ============================================================
+[2026-05-01 13:02:16]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 13:02:16] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-01 13:17:16]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 13:17:16]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 13:17:19] 
+============================================================
+[2026-05-01 13:17:19] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 13:17:19] ============================================================
+[2026-05-01 13:17:30]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 13:17:30] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-01 13:32:30]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 13:32:30]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 13:32:33] 
+============================================================
+[2026-05-01 13:32:33] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 13:32:33] ============================================================
+[2026-05-01 13:32:45]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 13:32:45] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-01 13:47:45]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 13:47:45]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 13:47:48] 
+============================================================
+[2026-05-01 13:47:48] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 13:47:48] ============================================================
+[2026-05-01 13:48:00]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 13:48:00] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-01 14:03:00]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 14:03:00]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 14:03:03] 
+============================================================
+[2026-05-01 14:03:03] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 14:03:03] ============================================================
+[2026-05-01 14:03:04] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.45 P/L=$-15 DTE=27
+[2026-05-01 14:03:04]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 14:03:04] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-01 14:18:04]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 14:18:04]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 14:18:07] 
+============================================================
+[2026-05-01 14:18:07] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 14:18:07] ============================================================
+[2026-05-01 14:18:19]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 14:18:19] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-01 14:33:19]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 14:33:19]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 14:33:22] 
+============================================================
+[2026-05-01 14:33:22] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 14:33:22] ============================================================
+[2026-05-01 14:33:34]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 14:33:34]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-05-01 14:33:35]   📧 Email sent: ⚠ Options Pro: Position Reconciliation Drift
+[2026-05-01 14:33:35] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-01 14:48:35]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 14:48:35]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 14:48:38] 
+============================================================
+[2026-05-01 14:48:38] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 14:48:38] ============================================================
+[2026-05-01 14:48:39] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.45 P/L=$-15 DTE=27
+[2026-05-01 14:48:39]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 14:48:39] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-01 15:03:39]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 15:03:39]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 15:03:42] 
+============================================================
+[2026-05-01 15:03:42] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 15:03:42] ============================================================
+[2026-05-01 15:03:54]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 15:03:54] 
+  🌅 Market opens soon (1265s) — polling in 60s...
+[2026-05-01 15:04:54]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 15:04:54]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 15:04:57] 
+============================================================
+[2026-05-01 15:04:57] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 15:04:57] ============================================================
+[2026-05-01 15:05:08]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 15:05:08] 
+  🌅 Market opens soon (1191s) — polling in 60s...
+[2026-05-01 15:06:09]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 15:06:09]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 15:06:12] 
+============================================================
+[2026-05-01 15:06:12] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 15:06:12] ============================================================
+[2026-05-01 15:06:23]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 15:06:23] 
+  🌅 Market opens soon (1116s) — polling in 60s...
+[2026-05-01 15:07:24]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 15:07:24]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 15:07:27] 
+============================================================
+[2026-05-01 15:07:27] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 15:07:27] ============================================================
+[2026-05-01 15:07:38]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 15:07:38] 
+  🌅 Market opens soon (1041s) — polling in 60s...
+[2026-05-01 15:08:39]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 15:08:39]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 15:08:42] 
+============================================================
+[2026-05-01 15:08:42] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 15:08:42] ============================================================
+[2026-05-01 15:08:53]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 15:08:53] 
+  🌅 Market opens soon (966s) — polling in 60s...
+[2026-05-01 15:09:53]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 15:09:53]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 15:09:56] 
+============================================================
+[2026-05-01 15:09:56] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 15:09:56] ============================================================
+[2026-05-01 15:10:08]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 15:10:08] 
+  🌅 Market opens soon (891s) — polling in 60s...
+[2026-05-01 15:11:08]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 15:11:08]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 15:11:11] 
+============================================================
+[2026-05-01 15:11:11] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 15:11:11] ============================================================
+[2026-05-01 15:11:23]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 15:11:23] 
+  🌅 Market opens soon (816s) — polling in 60s...
+[2026-05-01 15:12:23]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 15:12:23]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 15:12:26] 
+============================================================
+[2026-05-01 15:12:26] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 15:12:26] ============================================================
+[2026-05-01 15:12:38]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 15:12:38] 
+  🌅 Market opens soon (741s) — polling in 60s...
+[2026-05-01 15:13:38]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 15:13:38]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 15:13:41] 
+============================================================
+[2026-05-01 15:13:41] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 15:13:41] ============================================================
+[2026-05-01 15:13:53]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 15:13:53] 
+  🌅 Market opens soon (666s) — polling in 60s...
+[2026-05-01 15:14:53]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 15:14:53]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 15:14:57] 
+============================================================
+[2026-05-01 15:14:57] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 15:14:57] ============================================================
+[2026-05-01 15:15:08]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 15:15:08] 
+  🌅 Market opens soon (591s) — polling in 60s...
+[2026-05-01 15:16:08]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 15:16:08]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 15:16:11] 
+============================================================
+[2026-05-01 15:16:11] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 15:16:11] ============================================================
+[2026-05-01 15:16:23]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 15:16:23] 
+  🌅 Market opens soon (516s) — polling in 60s...
+[2026-05-01 15:17:23]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 15:17:23]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 15:17:26] 
+============================================================
+[2026-05-01 15:17:26] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 15:17:26] ============================================================
+[2026-05-01 15:17:38]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 15:17:38] 
+  🌅 Market opens soon (441s) — polling in 60s...
+[2026-05-01 15:18:38]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 15:18:38]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 15:18:41] 
+============================================================
+[2026-05-01 15:18:41] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 15:18:41] ============================================================
+[2026-05-01 15:18:53]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 15:18:53] 
+  🌅 Market opens soon (366s) — polling in 60s...
+[2026-05-01 15:19:53]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 15:19:53]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 15:19:56] 
+============================================================
+[2026-05-01 15:19:56] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 15:19:56] ============================================================
+[2026-05-01 15:20:08]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 15:20:08] 
+  🌅 Market opens soon (291s) — polling in 60s...
+[2026-05-01 15:21:08]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 15:21:08]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 15:21:11] 
+============================================================
+[2026-05-01 15:21:11] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 15:21:11] ============================================================
+[2026-05-01 15:21:12] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.45 P/L=$-15 DTE=27
+[2026-05-01 15:21:12]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 15:21:12] 
+  🌅 Market opens soon (227s) — polling in 60s...
+[2026-05-01 15:22:12]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 15:22:12]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 15:22:15] 
+============================================================
+[2026-05-01 15:22:15] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 15:22:15] ============================================================
+[2026-05-01 15:22:27]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 15:22:27] 
+  🌅 Market opens soon (152s) — polling in 60s...
+[2026-05-01 15:23:27]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 15:23:27]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 15:23:30] 
+============================================================
+[2026-05-01 15:23:30] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 15:23:30] ============================================================
+[2026-05-01 15:23:42]   TLT $84.0P x1: no current price — skipping
+[2026-05-01 15:23:42] 
+  🌅 Market opens soon (77s) — polling in 60s...
+[2026-05-01 15:24:42]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 15:24:42]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 15:24:45] 
+============================================================
+[2026-05-01 15:24:45] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 15:24:45] ============================================================
+[2026-05-01 15:24:46] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.45 P/L=$-15 DTE=27
+[2026-05-01 15:24:46]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 15:24:46] 
+  🌅 Market opens soon (13s) — polling in 15s...
+[2026-05-01 15:25:01] 
+━━━ Daily Market-Open Scan ━━━
+[2026-05-01 15:25:01] 
+━━━ Scan Pass 1/2 ━━━
+[2026-05-01 15:25:01] 
+============================================================
+[2026-05-01 15:25:01] 🌅 MORNING SCAN STARTED
+[2026-05-01 15:25:01] ============================================================
+[2026-05-01 15:25:01]   🛑 Kill switch active (/Users/islam/options-pro/data/optionspro_kill_switch) — no new opening trades
+[2026-05-01 15:25:01]   📡 Signals written: 0 candidate(s) -> /Users/islam/options-pro/data/trade_signals.json
+[2026-05-01 15:25:06] 
+━━━ Scan Pass 2/2 ━━━
+[2026-05-01 15:25:06] 
+============================================================
+[2026-05-01 15:25:06] 🌅 MORNING SCAN STARTED
+[2026-05-01 15:25:06] ============================================================
+[2026-05-01 15:25:06]   🛑 Kill switch active (/Users/islam/options-pro/data/optionspro_kill_switch) — no new opening trades
+[2026-05-01 15:25:06]   📡 Signals written: 0 candidate(s) -> /Users/islam/options-pro/data/trade_signals.json
+[2026-05-01 15:25:11]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 15:25:11]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 15:25:14] 
+============================================================
+[2026-05-01 15:25:14] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 15:25:14] ============================================================
+[2026-05-01 15:25:14] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.45 P/L=$-15 DTE=27
+[2026-05-01 15:25:14]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 15:25:14] 
+  ⏳ Next check in 15 min...
+[2026-05-01 15:40:14]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 15:40:14]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 15:40:18] 
+============================================================
+[2026-05-01 15:40:18] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 15:40:18] ============================================================
+[2026-05-01 15:40:19] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.45 P/L=$-15 DTE=27
+[2026-05-01 15:40:19]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 15:40:19] 
+  ⏳ Next check in 15 min...
+[2026-05-01 15:55:19]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 15:55:19]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 15:55:22] 
+============================================================
+[2026-05-01 15:55:22] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 15:55:22] ============================================================
+[2026-05-01 15:55:23] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.42 P/L=$-12 DTE=27
+[2026-05-01 15:55:23]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 15:55:23] 
+  ⏳ Next check in 15 min...
+[2026-05-01 16:10:23]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 16:10:23]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 16:10:26] 
+============================================================
+[2026-05-01 16:10:26] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 16:10:26] ============================================================
+[2026-05-01 16:10:26] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.30 P/L=$0 DTE=27
+[2026-05-01 16:10:26]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 16:10:26] 
+  ⏳ Next check in 15 min...
+[2026-05-01 16:25:26]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 16:25:26]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 16:25:29] 
+============================================================
+[2026-05-01 16:25:29] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 16:25:29] ============================================================
+[2026-05-01 16:25:30] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.28 P/L=$2 DTE=27
+[2026-05-01 16:25:30]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 16:25:30] 
+  ⏳ Next check in 15 min...
+[2026-05-01 16:40:30]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 16:40:30]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 16:40:33] 
+============================================================
+[2026-05-01 16:40:33] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 16:40:33] ============================================================
+[2026-05-01 16:40:34] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.27 P/L=$3 DTE=27
+[2026-05-01 16:40:34]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 16:40:34]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-05-01 16:40:35]   📧 Email sent: ⚠ Options Pro: Position Reconciliation Drift
+[2026-05-01 16:40:35] 
+  ⏳ Next check in 15 min...
+[2026-05-01 16:55:35]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 16:55:35]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 16:55:38] 
+============================================================
+[2026-05-01 16:55:38] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 16:55:38] ============================================================
+[2026-05-01 16:55:39] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.34 P/L=$-4 DTE=27
+[2026-05-01 16:55:39]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 16:55:39] 
+  ⏳ Next check in 15 min...
+[2026-05-01 17:10:39]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 17:10:39]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 17:10:42] 
+============================================================
+[2026-05-01 17:10:42] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 17:10:42] ============================================================
+[2026-05-01 17:10:42] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.37 P/L=$-7 DTE=27
+[2026-05-01 17:10:42]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 17:10:42] 
+  ⏳ Next check in 15 min...
+[2026-05-01 17:25:43]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 17:25:43]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 17:25:46] 
+============================================================
+[2026-05-01 17:25:46] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 17:25:46] ============================================================
+[2026-05-01 17:25:46] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.37 P/L=$-7 DTE=27
+[2026-05-01 17:25:46]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 17:25:46] 
+  ⏳ Next check in 15 min...
+[2026-05-01 17:40:46]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 17:40:46]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 17:40:49] 
+============================================================
+[2026-05-01 17:40:49] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 17:40:49] ============================================================
+[2026-05-01 17:40:50] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.35 P/L=$-5 DTE=27
+[2026-05-01 17:40:50]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 17:40:50] 
+  ⏳ Next check in 15 min...
+[2026-05-01 17:55:50]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 17:55:50]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 17:55:53] 
+============================================================
+[2026-05-01 17:55:53] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 17:55:53] ============================================================
+[2026-05-01 17:55:53] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=27
+[2026-05-01 17:55:53]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 17:55:53] 
+  ⏳ Next check in 15 min...
+[2026-05-01 18:10:53]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 18:10:53]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 18:10:56] 
+============================================================
+[2026-05-01 18:10:56] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 18:10:56] ============================================================
+[2026-05-01 18:10:57] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=27
+[2026-05-01 18:10:57]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 18:10:57] 
+  ⏳ Next check in 15 min...
+[2026-05-01 18:25:57]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 18:25:57]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 18:26:00] 
+============================================================
+[2026-05-01 18:26:00] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 18:26:00] ============================================================
+[2026-05-01 18:26:00] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=27
+[2026-05-01 18:26:00]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 18:26:00] 
+  ⏳ Next check in 15 min...
+[2026-05-01 18:41:00]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 18:41:00]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 18:41:04] 
+============================================================
+[2026-05-01 18:41:04] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 18:41:04] ============================================================
+[2026-05-01 18:41:04] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.35 P/L=$-5 DTE=27
+[2026-05-01 18:41:04]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 18:41:04]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-05-01 18:41:05]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-48a82307f28sm236208615e9.13 - gsmtp')
+[2026-05-01 18:41:05] 
+  ⏳ Next check in 15 min...
+[2026-05-01 18:56:05]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 18:56:05]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 18:56:08] 
+============================================================
+[2026-05-01 18:56:08] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 18:56:08] ============================================================
+[2026-05-01 18:56:09] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.35 P/L=$-5 DTE=27
+[2026-05-01 18:56:09]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 18:56:09] 
+  ⏳ Next check in 15 min...
+[2026-05-01 19:06:51] 🔔 Manual scan triggered (requested 2026-05-01T19:06:50+02:00)
+[2026-05-01 19:06:51] 
+============================================================
+[2026-05-01 19:06:51] 🌅 MORNING SCAN STARTED
+[2026-05-01 19:06:51] ============================================================
+[2026-05-01 19:06:51]   🛑 Kill switch active (/Users/islam/options-pro/data/optionspro_kill_switch) — no new opening trades
+[2026-05-01 19:06:51]   📡 Signals written: 0 candidate(s) -> /Users/islam/options-pro/data/trade_signals.json
+[2026-05-01 19:11:09]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 19:11:09]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 19:11:12] 
+============================================================
+[2026-05-01 19:11:12] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 19:11:12] ============================================================
+[2026-05-01 19:11:12] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.35 P/L=$-5 DTE=27
+[2026-05-01 19:11:12]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 19:11:12] 
+  ⏳ Next check in 15 min...
+[2026-05-01 19:26:12]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 19:26:12]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 19:26:15] 
+============================================================
+[2026-05-01 19:26:15] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 19:26:15] ============================================================
+[2026-05-01 19:26:16] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=27
+[2026-05-01 19:26:16]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 19:26:16] 
+  ⏳ Next check in 15 min...
+[2026-05-01 19:41:16]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 19:41:16]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 19:41:19] 
+============================================================
+[2026-05-01 19:41:19] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 19:41:19] ============================================================
+[2026-05-01 19:41:19] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=27
+[2026-05-01 19:41:19]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 19:41:19] 
+  ⏳ Next check in 15 min...
+[2026-05-01 19:56:19]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 19:56:19]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 19:56:22] 
+============================================================
+[2026-05-01 19:56:22] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 19:56:22] ============================================================
+[2026-05-01 19:56:23] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.35 P/L=$-5 DTE=27
+[2026-05-01 19:56:23]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 19:56:23] 
+  ⏳ Next check in 15 min...
+[2026-05-01 20:11:23]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 20:11:23]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 20:11:26] 
+============================================================
+[2026-05-01 20:11:26] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 20:11:26] ============================================================
+[2026-05-01 20:11:26] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=27
+[2026-05-01 20:11:26]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 20:11:26] 
+  ⏳ Next check in 15 min...
+[2026-05-01 20:22:49]   ⚠ TWS error 2103: data farm issue
+[2026-05-01 20:26:26]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 20:26:26]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 20:26:29] 
+============================================================
+[2026-05-01 20:26:29] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 20:26:29] ============================================================
+[2026-05-01 20:26:30] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.38 P/L=$-8 DTE=27
+[2026-05-01 20:26:30]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 20:26:30] 
+  ⏳ Next check in 15 min...
+[2026-05-01 20:37:42]   ⚠ TWS error 2103: data farm issue
+[2026-05-01 20:41:30]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 20:41:30]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 20:41:33] 
+============================================================
+[2026-05-01 20:41:33] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 20:41:33] ============================================================
+[2026-05-01 20:41:33] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.37 P/L=$-7 DTE=27
+[2026-05-01 20:41:33]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 20:41:33]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-05-01 20:41:34]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-44a9879ef45sm6687732f8f.32 - gsmtp')
+[2026-05-01 20:41:34] 
+  ⏳ Next check in 15 min...
+[2026-05-01 20:56:34]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 20:56:34]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 20:56:37] 
+============================================================
+[2026-05-01 20:56:37] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 20:56:37] ============================================================
+[2026-05-01 20:56:38] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=27
+[2026-05-01 20:56:38]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 20:56:38] 
+  ⏳ Next check in 15 min...
+[2026-05-01 21:11:38]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 21:11:38]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 21:11:41] 
+============================================================
+[2026-05-01 21:11:41] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 21:11:41] ============================================================
+[2026-05-01 21:11:41] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.37 P/L=$-7 DTE=27
+[2026-05-01 21:11:41]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 21:11:41] 
+  ⏳ Next check in 15 min...
+[2026-05-01 21:26:42]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 21:26:42]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 21:26:45] 
+============================================================
+[2026-05-01 21:26:45] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 21:26:45] ============================================================
+[2026-05-01 21:26:45] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.37 P/L=$-7 DTE=27
+[2026-05-01 21:26:45]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 21:26:45] 
+  ⏳ Next check in 15 min...
+[2026-05-01 21:41:45]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 21:41:45]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 21:41:48] 
+============================================================
+[2026-05-01 21:41:48] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 21:41:48] ============================================================
+[2026-05-01 21:41:49] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.38 P/L=$-8 DTE=27
+[2026-05-01 21:41:49]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 21:41:49] 
+  ⏳ Next check in 15 min...
+[2026-05-01 21:56:49]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 21:56:49]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 21:56:52] 
+============================================================
+[2026-05-01 21:56:52] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 21:56:52] ============================================================
+[2026-05-01 21:56:52] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.39 P/L=$-9 DTE=27
+[2026-05-01 21:56:52]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 21:56:52] 
+  ⏳ Next check in 15 min...
+[2026-05-01 22:11:53]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 22:11:53]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 22:11:56] 
+============================================================
+[2026-05-01 22:11:56] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 22:11:56] ============================================================
+[2026-05-01 22:11:56] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.39 P/L=$-9 DTE=27
+[2026-05-01 22:11:56]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 22:11:56] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-01 22:26:56]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 22:26:56]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 22:26:59] 
+============================================================
+[2026-05-01 22:26:59] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 22:26:59] ============================================================
+[2026-05-01 22:27:01] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.36 P/L=$-6 DTE=27
+[2026-05-01 22:27:01]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 22:27:01] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-01 22:42:01]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 22:42:01]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 22:42:04] 
+============================================================
+[2026-05-01 22:42:04] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 22:42:04] ============================================================
+[2026-05-01 22:42:05] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.38 P/L=$-8 DTE=27
+[2026-05-01 22:42:05]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 22:42:05]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-05-01 22:42:05]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-48a8eb3427fsm133525435e9.0 - gsmtp')
+[2026-05-01 22:42:05] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-01 22:57:06]   📊 1 option position(s) loaded from IBKR
+[2026-05-01 22:57:06]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-01 22:57:09] 
+============================================================
+[2026-05-01 22:57:09] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-01 22:57:09] ============================================================
+[2026-05-01 22:57:09] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.45 P/L=$-15 DTE=27
+[2026-05-01 22:57:09]    >> HOLD (target=$15 stop=$-60)
+[2026-05-01 22:57:09] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-01 23:03:04]   ⚠ TWS error 2103: data farm issue
+[2026-05-01 23:04:32]   ⚠ TWS error 2103: data farm issue
+[2026-05-01 23:06:04]   ⚠ TWS error 2103: data farm issue
+[2026-05-01 23:08:53] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-02 08:37:36] 
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+[2026-05-02 08:37:36] Options Pro Ultra v6 — Autotrade Engine
+[2026-05-02 08:37:36] Account: DU4735568 | Size: $250,000
+[2026-05-02 08:37:36] Max positions: 5 | Max risk: $12,500
+[2026-05-02 08:37:36] Delta: 0.15-0.25 | DTE: 21-45
+[2026-05-02 08:37:36] Close: 50% profit | Stop: 2.0× credit
+[2026-05-02 08:37:36] Scan passes: 2
+[2026-05-02 08:37:36] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+
