@@ -21,3 +21,6 @@ timestamp,action,ticker,strategy,strike,expiry,qty,credit,delta,iv,dte,status,pn
 2026-04-17 21:50,CLOSE_CANCEL,QQQM,CLOSE,245.0,20260515,1,0,0,0,0,NotFilled,0,Order 13 never filled — manual reconcile
 2026-04-17 21:50,CLOSE_CANCEL,QQQ,CLOSE,618.0,20260522,15,0,0,0,0,NotFilled,0,Order 14 never filled — manual reconcile
 2026-04-17 21:55,CLOSE_MANUAL,GDX,CLOSE,91.5,20260522,12,0,0,0,0,ManualClose,0,Closed manually earlier; backfill
+2026-04-30 15:26,OPEN,XLE,CSP,55.0,20260605,2,0.6878608173966079,0.20621391810294817,29.94%,35,Submitted,0,Score 77 | Buffer 5.8% | OrderID 38 | SignalID XLE-CSP-55.0--20260605
+2026-04-30 15:27,OPEN,XLE,CSP,55.0,20260605,2,0.6878608173966079,0.20621391810294817,29.94%,35,Submitted,0,Score 77 | Buffer 5.8% | OrderID 39 | SignalID XLE-CSP-55.0--20260605
+2026-04-30 16:02,OPEN,XLE,CSP,55.0,20260605,2,0.5854195134067477,0.19085085233649857,28.76%,35,Submitted,0,Score 75 | Buffer 5.7% | OrderID 40 | SignalID XLE-CSP-55.0--20260605

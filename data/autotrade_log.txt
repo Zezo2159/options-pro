@@ -55735,3 +55735,2842 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 [2026-05-02 14:18:52] Scan passes: 2
 [2026-05-02 14:18:52] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
+[2026-05-02 14:18:54]   ✅ GitHub backup on restart complete
+[2026-05-02 14:18:54] 🔌 Connecting to TWS...
+[2026-05-02 14:18:54] ✅ TWS connected — next order ID: 41
+[2026-05-02 14:18:56]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 14:18:56]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 14:18:59]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-05-02 14:19:00]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-44a8ea7d0c9sm11301186f8f.7 - gsmtp')
+[2026-05-02 14:19:00] 🌙 Market closed — skipping initial scan, entering monitor mode
+[2026-05-02 14:19:00] 
+✅ Entering monitor mode (checking every 15 min)
+[2026-05-02 14:19:00]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 14:19:00]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 14:19:03] 
+============================================================
+[2026-05-02 14:19:03] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 14:19:03] ============================================================
+[2026-05-02 14:19:15]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 14:19:15] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 14:22:04]   ⚠ TWS error 2103: data farm issue
+[2026-05-02 14:34:15]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 14:34:15]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 14:34:18] 
+============================================================
+[2026-05-02 14:34:18] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 14:34:18] ============================================================
+[2026-05-02 14:34:23]   TWS error 10197: No market data during competing live session
+[2026-05-02 14:34:30]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 14:34:30] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 14:49:30]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 14:49:30]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 14:49:33] 
+============================================================
+[2026-05-02 14:49:33] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 14:49:33] ============================================================
+[2026-05-02 14:49:45]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 14:49:45] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 15:04:45]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 15:04:45]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 15:04:48] 
+============================================================
+[2026-05-02 15:04:48] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 15:04:48] ============================================================
+[2026-05-02 15:05:00]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 15:05:00] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 15:20:00]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 15:20:00]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 15:20:03] 
+============================================================
+[2026-05-02 15:20:03] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 15:20:03] ============================================================
+[2026-05-02 15:20:15]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 15:20:15] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 15:35:15]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 15:35:15]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 15:35:18] 
+============================================================
+[2026-05-02 15:35:18] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 15:35:18] ============================================================
+[2026-05-02 15:35:29]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 15:35:29] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 15:50:30]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 15:50:30]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 15:50:33] 
+============================================================
+[2026-05-02 15:50:33] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 15:50:33] ============================================================
+[2026-05-02 15:50:44]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 15:50:44] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 16:05:45]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 16:05:45]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 16:05:48] 
+============================================================
+[2026-05-02 16:05:48] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 16:05:48] ============================================================
+[2026-05-02 16:05:59]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 16:05:59] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 16:20:59]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 16:20:59]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 16:21:03] 
+============================================================
+[2026-05-02 16:21:03] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 16:21:03] ============================================================
+[2026-05-02 16:21:14]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 16:21:14]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-05-02 16:21:15]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-48a8fef8f39sm35666505e9.32 - gsmtp')
+[2026-05-02 16:21:15] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 16:36:15]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 16:36:15]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 16:36:18] 
+============================================================
+[2026-05-02 16:36:18] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 16:36:18] ============================================================
+[2026-05-02 16:36:30]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 16:36:30] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 16:51:30]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 16:51:30]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 16:51:33] 
+============================================================
+[2026-05-02 16:51:33] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 16:51:33] ============================================================
+[2026-05-02 16:51:45]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 16:51:45] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 17:06:45]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 17:06:45]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 17:06:48] 
+============================================================
+[2026-05-02 17:06:48] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 17:06:48] ============================================================
+[2026-05-02 17:07:00]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 17:07:00] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 17:14:08]   ⚠ TWS error 2103: data farm issue
+[2026-05-02 17:21:42]   ⚠ TWS error 2103: data farm issue
+[2026-05-02 17:22:00]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 17:22:00]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 17:22:03] 
+============================================================
+[2026-05-02 17:22:03] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 17:22:03] ============================================================
+[2026-05-02 17:22:15]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 17:22:15] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 17:24:18]   ⚠ TWS error 2103: data farm issue
+[2026-05-02 17:37:15]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 17:37:15]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 17:37:18] 
+============================================================
+[2026-05-02 17:37:18] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 17:37:18] ============================================================
+[2026-05-02 17:37:30]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 17:37:30] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 17:52:30]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 17:52:30]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 17:52:33] 
+============================================================
+[2026-05-02 17:52:33] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 17:52:33] ============================================================
+[2026-05-02 17:52:44]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 17:52:44] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 18:01:07]   ⚠ TWS error 2105: data farm issue
+[2026-05-02 18:07:45]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 18:07:45]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 18:07:48] 
+============================================================
+[2026-05-02 18:07:48] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 18:07:48] ============================================================
+[2026-05-02 18:07:59]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 18:07:59] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 18:22:59]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 18:22:59]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 18:23:03] 
+============================================================
+[2026-05-02 18:23:03] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 18:23:03] ============================================================
+[2026-05-02 18:23:14]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 18:23:14]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-05-02 18:23:15]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-48a82301b7bsm245665235e9.11 - gsmtp')
+[2026-05-02 18:23:15] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 18:38:15]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 18:38:15]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 18:38:18] 
+============================================================
+[2026-05-02 18:38:18] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 18:38:18] ============================================================
+[2026-05-02 18:38:30]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 18:38:30] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 18:53:30]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 18:53:30]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 18:53:33] 
+============================================================
+[2026-05-02 18:53:33] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 18:53:33] ============================================================
+[2026-05-02 18:53:34] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.37 P/L=$-7 DTE=26
+[2026-05-02 18:53:34]    >> HOLD (target=$15 stop=$-60)
+[2026-05-02 18:53:34] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 18:55:18]   ⚠ TWS error 2105: data farm issue
+[2026-05-02 19:08:34]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 19:08:34]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 19:08:37] 
+============================================================
+[2026-05-02 19:08:37] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 19:08:37] ============================================================
+[2026-05-02 19:08:48]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 19:08:48] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 19:11:16]   ⚠ TWS error 2103: data farm issue
+[2026-05-02 19:15:31]   ⚠ TWS error 2103: data farm issue
+[2026-05-02 19:16:35]   ⚠ TWS error 2105: data farm issue
+[2026-05-02 19:23:48]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 19:23:48]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 19:23:51] 
+============================================================
+[2026-05-02 19:23:51] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 19:23:51] ============================================================
+[2026-05-02 19:24:03]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 19:24:03] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 19:39:03]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 19:39:03]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 19:39:06] 
+============================================================
+[2026-05-02 19:39:06] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 19:39:06] ============================================================
+[2026-05-02 19:39:18]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 19:39:18] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 19:54:18]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 19:54:18]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 19:54:21] 
+============================================================
+[2026-05-02 19:54:21] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 19:54:21] ============================================================
+[2026-05-02 19:54:33]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 19:54:33] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 20:09:33]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 20:09:33]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 20:09:36] 
+============================================================
+[2026-05-02 20:09:36] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 20:09:36] ============================================================
+[2026-05-02 20:09:48]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 20:09:48] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 20:24:48]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 20:24:48]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 20:24:51] 
+============================================================
+[2026-05-02 20:24:51] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 20:24:51] ============================================================
+[2026-05-02 20:25:03]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 20:25:03]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-05-02 20:25:04]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-48a8eb72a17sm145574155e9.6 - gsmtp')
+[2026-05-02 20:25:04] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 20:40:04]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 20:40:04]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 20:40:07] 
+============================================================
+[2026-05-02 20:40:07] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 20:40:07] ============================================================
+[2026-05-02 20:40:19]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 20:40:19] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 20:55:19]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 20:55:19]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 20:55:22] 
+============================================================
+[2026-05-02 20:55:22] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 20:55:22] ============================================================
+[2026-05-02 20:55:34]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 20:55:34] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 21:10:34]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 21:10:34]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 21:10:37] 
+============================================================
+[2026-05-02 21:10:37] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 21:10:37] ============================================================
+[2026-05-02 21:10:49]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 21:10:49] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 21:25:49]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 21:25:49]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 21:25:52] 
+============================================================
+[2026-05-02 21:25:52] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 21:25:52] ============================================================
+[2026-05-02 21:26:04]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 21:26:04] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 21:41:04]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 21:41:04]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 21:41:07] 
+============================================================
+[2026-05-02 21:41:07] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 21:41:07] ============================================================
+[2026-05-02 21:41:18]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 21:41:18] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 21:56:18]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 21:56:18]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 21:56:22] 
+============================================================
+[2026-05-02 21:56:22] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 21:56:22] ============================================================
+[2026-05-02 21:56:33]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 21:56:33] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 22:11:33]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 22:11:33]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 22:11:36] 
+============================================================
+[2026-05-02 22:11:36] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 22:11:36] ============================================================
+[2026-05-02 22:11:48]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 22:11:48] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 22:26:48]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 22:26:48]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 22:26:51] 
+============================================================
+[2026-05-02 22:26:51] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 22:26:51] ============================================================
+[2026-05-02 22:27:03]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 22:27:03]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-05-02 22:27:04]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-44a98b76fd0sm14789194f8f.35 - gsmtp')
+[2026-05-02 22:27:04] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 22:42:04]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 22:42:04]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 22:42:07] 
+============================================================
+[2026-05-02 22:42:07] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 22:42:07] ============================================================
+[2026-05-02 22:42:19]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 22:42:19] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 22:57:19]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 22:57:19]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 22:57:22] 
+============================================================
+[2026-05-02 22:57:22] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 22:57:22] ============================================================
+[2026-05-02 22:57:23] 
+  TLT   $84.0P x1 [CSP]: entry=$30 now=$0.37 P/L=$-7 DTE=26
+[2026-05-02 22:57:23]    >> HOLD (target=$15 stop=$-60)
+[2026-05-02 22:57:23] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 23:06:04]   ⚠ TWS error 2103: data farm issue
+[2026-05-02 23:12:23]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 23:12:23]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 23:12:26] 
+============================================================
+[2026-05-02 23:12:26] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 23:12:26] ============================================================
+[2026-05-02 23:12:37]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 23:12:37] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 23:27:37]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 23:27:37]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 23:27:41] 
+============================================================
+[2026-05-02 23:27:41] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 23:27:41] ============================================================
+[2026-05-02 23:27:52]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 23:27:52] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 23:41:40]   ⚠ TWS error 2103: data farm issue
+[2026-05-02 23:42:52]   📊 1 option position(s) loaded from IBKR
+[2026-05-02 23:42:52]      IBKR: TLT-84.0 = TLT $84.0 P x-1.0 avg=$0.30
+[2026-05-02 23:42:55] 
+============================================================
+[2026-05-02 23:42:55] 📡 MONITORING 1 SHORT POSITION(S)
+[2026-05-02 23:42:55] ============================================================
+[2026-05-02 23:43:07]   TLT $84.0P x1: no current price — skipping
+[2026-05-02 23:43:07] 
+  🌙 Market closed — next check in 15 min...
+[2026-05-02 23:45:00] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-02 23:58:07] ⚠ Connection lost (786s ago) — attempting reconnect...
+[2026-05-02 23:58:07] 🔄 Attempting reconnect...
+[2026-05-02 23:58:12] 🔌 Connecting to TWS...
+[2026-05-02 23:58:12]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-02 23:58:12] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-02 23:58:46] ❌ Failed to connect to TWS after 30s
+[2026-05-02 23:58:46] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-02 23:59:46] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-02 23:59:46] 🔄 Attempting reconnect...
+[2026-05-02 23:59:51] 🔌 Connecting to TWS...
+[2026-05-02 23:59:51]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-02 23:59:51] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:00:24] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:00:24] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:01:24] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:01:24] 🔄 Attempting reconnect...
+[2026-05-03 00:01:29] 🔌 Connecting to TWS...
+[2026-05-03 00:01:29]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:01:29] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:02:03] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:02:03] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:03:03] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:03:03] 🔄 Attempting reconnect...
+[2026-05-03 00:03:08] 🔌 Connecting to TWS...
+[2026-05-03 00:03:08]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:03:08] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:03:41] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:03:41] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:04:41] ⚠ Connection lost (92s ago) — attempting reconnect...
+[2026-05-03 00:04:41] 🔄 Attempting reconnect...
+[2026-05-03 00:04:46] 🔌 Connecting to TWS...
+[2026-05-03 00:04:46]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:04:46] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:05:19] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:05:19] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:06:19] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:06:19] 🔄 Attempting reconnect...
+[2026-05-03 00:06:24] 🔌 Connecting to TWS...
+[2026-05-03 00:06:24]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:06:24] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:06:57] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:06:57] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:07:57] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:07:57] 🔄 Attempting reconnect...
+[2026-05-03 00:08:02] 🔌 Connecting to TWS...
+[2026-05-03 00:08:02]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:08:02] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:08:36] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:08:36] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:09:36] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:09:36] 🔄 Attempting reconnect...
+[2026-05-03 00:09:41] 🔌 Connecting to TWS...
+[2026-05-03 00:09:41]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:09:41] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:10:14] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:10:14] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:11:14] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:11:14] 🔄 Attempting reconnect...
+[2026-05-03 00:11:19] 🔌 Connecting to TWS...
+[2026-05-03 00:11:19]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:11:19] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:11:52] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:11:52] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:12:52] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:12:52] 🔄 Attempting reconnect...
+[2026-05-03 00:12:58] 🔌 Connecting to TWS...
+[2026-05-03 00:12:58]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:12:58] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:13:31] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:13:31] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:14:31] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:14:31] 🔄 Attempting reconnect...
+[2026-05-03 00:14:36] 🔌 Connecting to TWS...
+[2026-05-03 00:14:36]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:14:36] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:15:09] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:15:09] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:16:10] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:16:10] 🔄 Attempting reconnect...
+[2026-05-03 00:16:15] 🔌 Connecting to TWS...
+[2026-05-03 00:16:15]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:16:15] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:16:48] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:16:48] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:17:48] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:17:48] 🔄 Attempting reconnect...
+[2026-05-03 00:17:53] 🔌 Connecting to TWS...
+[2026-05-03 00:17:53]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:17:53] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:18:26] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:18:27] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:19:27] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:19:27] 🔄 Attempting reconnect...
+[2026-05-03 00:19:32] 🔌 Connecting to TWS...
+[2026-05-03 00:19:32]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:19:32] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:20:05] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:20:05] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:21:05] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:21:05] 🔄 Attempting reconnect...
+[2026-05-03 00:21:10] 🔌 Connecting to TWS...
+[2026-05-03 00:21:10]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:21:10] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:21:44] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:21:44] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:22:44] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:22:44] 🔄 Attempting reconnect...
+[2026-05-03 00:22:49] 🔌 Connecting to TWS...
+[2026-05-03 00:22:49]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:22:49] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:23:22] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:23:22] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:24:22] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:24:22] 🔄 Attempting reconnect...
+[2026-05-03 00:24:27] 🔌 Connecting to TWS...
+[2026-05-03 00:24:27]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:24:27] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:25:00] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:25:00] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:26:00] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:26:00] 🔄 Attempting reconnect...
+[2026-05-03 00:26:06] 🔌 Connecting to TWS...
+[2026-05-03 00:26:06]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:26:06] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:26:39] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:26:39] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:27:39] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:27:39] 🔄 Attempting reconnect...
+[2026-05-03 00:27:44] 🔌 Connecting to TWS...
+[2026-05-03 00:27:44]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:27:44] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:28:17] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:28:17] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:29:17] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:29:17] 🔄 Attempting reconnect...
+[2026-05-03 00:29:22] 🔌 Connecting to TWS...
+[2026-05-03 00:29:22]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:29:22] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:29:55] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:29:55] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:30:55] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:30:55] 🔄 Attempting reconnect...
+[2026-05-03 00:31:01] 🔌 Connecting to TWS...
+[2026-05-03 00:31:01]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:31:01] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:31:34] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:31:34] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:32:34] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:32:34] 🔄 Attempting reconnect...
+[2026-05-03 00:32:40] 🔌 Connecting to TWS...
+[2026-05-03 00:32:40]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:32:40] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:33:13] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:33:13] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:34:13] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:34:13] 🔄 Attempting reconnect...
+[2026-05-03 00:34:18] 🔌 Connecting to TWS...
+[2026-05-03 00:34:18]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:34:18] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:34:51] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:34:51] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:35:51] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:35:51] 🔄 Attempting reconnect...
+[2026-05-03 00:35:56] 🔌 Connecting to TWS...
+[2026-05-03 00:35:56]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:35:56] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:36:30] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:36:30] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:37:30] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:37:30] 🔄 Attempting reconnect...
+[2026-05-03 00:37:35] 🔌 Connecting to TWS...
+[2026-05-03 00:37:35]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:37:35] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:38:08] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:38:08] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:39:08] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:39:08] 🔄 Attempting reconnect...
+[2026-05-03 00:39:14] 🔌 Connecting to TWS...
+[2026-05-03 00:39:14]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:39:14] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:39:47] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:39:47] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:40:47] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:40:47] 🔄 Attempting reconnect...
+[2026-05-03 00:40:52] 🔌 Connecting to TWS...
+[2026-05-03 00:40:52]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:40:52] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:41:26] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:41:26] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:42:26] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:42:26] 🔄 Attempting reconnect...
+[2026-05-03 00:42:31] 🔌 Connecting to TWS...
+[2026-05-03 00:42:31]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:42:31] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:43:04] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:43:04] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:44:04] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:44:04] 🔄 Attempting reconnect...
+[2026-05-03 00:44:09] 🔌 Connecting to TWS...
+[2026-05-03 00:44:09]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:44:09] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:44:42] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:44:42] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:45:42] ⚠ Connection lost (92s ago) — attempting reconnect...
+[2026-05-03 00:45:42] 🔄 Attempting reconnect...
+[2026-05-03 00:45:47] 🔌 Connecting to TWS...
+[2026-05-03 00:45:47]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:45:47] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:46:21] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:46:21] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:47:21] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:47:21] 🔄 Attempting reconnect...
+[2026-05-03 00:47:26] 🔌 Connecting to TWS...
+[2026-05-03 00:47:26]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:47:26] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:47:59] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:47:59] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:48:59] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:48:59] 🔄 Attempting reconnect...
+[2026-05-03 00:49:04] 🔌 Connecting to TWS...
+[2026-05-03 00:49:04]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:49:04] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:49:38] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:49:38] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:50:38] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:50:38] 🔄 Attempting reconnect...
+[2026-05-03 00:50:43] 🔌 Connecting to TWS...
+[2026-05-03 00:50:43]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:50:43] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:51:16] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:51:16] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:52:17] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:52:17] 🔄 Attempting reconnect...
+[2026-05-03 00:52:22] 🔌 Connecting to TWS...
+[2026-05-03 00:52:22]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:52:22] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:52:55] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:52:55] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:53:55] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:53:55] 🔄 Attempting reconnect...
+[2026-05-03 00:54:00] 🔌 Connecting to TWS...
+[2026-05-03 00:54:00]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:54:00] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:54:33] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:54:33] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:55:33] ⚠ Connection lost (92s ago) — attempting reconnect...
+[2026-05-03 00:55:33] 🔄 Attempting reconnect...
+[2026-05-03 00:55:38] 🔌 Connecting to TWS...
+[2026-05-03 00:55:38]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:55:38] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:56:11] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:56:11] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:57:11] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:57:11] 🔄 Attempting reconnect...
+[2026-05-03 00:57:17] 🔌 Connecting to TWS...
+[2026-05-03 00:57:17]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:57:17] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:57:50] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:57:50] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 00:58:50] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 00:58:50] 🔄 Attempting reconnect...
+[2026-05-03 00:58:55] 🔌 Connecting to TWS...
+[2026-05-03 00:58:55]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 00:58:55] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 00:59:28] ❌ Failed to connect to TWS after 30s
+[2026-05-03 00:59:28] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:00:28] ⚠ Connection lost (92s ago) — attempting reconnect...
+[2026-05-03 01:00:28] 🔄 Attempting reconnect...
+[2026-05-03 01:00:33] 🔌 Connecting to TWS...
+[2026-05-03 01:00:33]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:00:33] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:01:06] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:01:06] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:02:06] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:02:06] 🔄 Attempting reconnect...
+[2026-05-03 01:02:11] 🔌 Connecting to TWS...
+[2026-05-03 01:02:11]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:02:11] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:02:45] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:02:45] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:03:45] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:03:45] 🔄 Attempting reconnect...
+[2026-05-03 01:03:50] 🔌 Connecting to TWS...
+[2026-05-03 01:03:50]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:03:50] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:04:23] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:04:23] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:05:23] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:05:23] 🔄 Attempting reconnect...
+[2026-05-03 01:05:28] 🔌 Connecting to TWS...
+[2026-05-03 01:05:28]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:05:28] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:06:01] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:06:01] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:07:01] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:07:01] 🔄 Attempting reconnect...
+[2026-05-03 01:07:06] 🔌 Connecting to TWS...
+[2026-05-03 01:07:06]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:07:06] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:07:40] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:07:40] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:08:40] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:08:40] 🔄 Attempting reconnect...
+[2026-05-03 01:08:46] 🔌 Connecting to TWS...
+[2026-05-03 01:08:46]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:08:46] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:09:19] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:09:19] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:10:19] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:10:19] 🔄 Attempting reconnect...
+[2026-05-03 01:10:24] 🔌 Connecting to TWS...
+[2026-05-03 01:10:24]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:10:24] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:10:57] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:10:57] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:11:57] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:11:57] 🔄 Attempting reconnect...
+[2026-05-03 01:12:02] 🔌 Connecting to TWS...
+[2026-05-03 01:12:02]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:12:02] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:12:35] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:12:35] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:13:35] ⚠ Connection lost (92s ago) — attempting reconnect...
+[2026-05-03 01:13:35] 🔄 Attempting reconnect...
+[2026-05-03 01:13:40] 🔌 Connecting to TWS...
+[2026-05-03 01:13:40]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:13:40] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:14:13] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:14:13] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:15:14] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:15:14] 🔄 Attempting reconnect...
+[2026-05-03 01:15:19] 🔌 Connecting to TWS...
+[2026-05-03 01:15:19]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:15:19] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:15:52] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:15:52] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:16:52] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:16:52] 🔄 Attempting reconnect...
+[2026-05-03 01:16:57] 🔌 Connecting to TWS...
+[2026-05-03 01:16:57]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:16:57] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:17:31] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:17:31] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:18:31] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:18:31] 🔄 Attempting reconnect...
+[2026-05-03 01:18:36] 🔌 Connecting to TWS...
+[2026-05-03 01:18:36]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:18:36] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:19:10] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:19:10] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:20:10] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:20:10] 🔄 Attempting reconnect...
+[2026-05-03 01:20:15] 🔌 Connecting to TWS...
+[2026-05-03 01:20:15]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:20:15] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:20:48] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:20:48] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:21:48] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:21:48] 🔄 Attempting reconnect...
+[2026-05-03 01:21:53] 🔌 Connecting to TWS...
+[2026-05-03 01:21:53]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:21:53] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:22:26] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:22:26] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:23:26] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:23:26] 🔄 Attempting reconnect...
+[2026-05-03 01:23:32] 🔌 Connecting to TWS...
+[2026-05-03 01:23:32]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:23:32] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:24:05] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:24:05] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:25:05] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:25:05] 🔄 Attempting reconnect...
+[2026-05-03 01:25:10] 🔌 Connecting to TWS...
+[2026-05-03 01:25:10]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:25:10] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:25:43] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:25:43] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:26:43] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:26:43] 🔄 Attempting reconnect...
+[2026-05-03 01:26:48] 🔌 Connecting to TWS...
+[2026-05-03 01:26:48]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:26:48] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:27:22] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:27:22] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:28:22] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:28:22] 🔄 Attempting reconnect...
+[2026-05-03 01:28:27] 🔌 Connecting to TWS...
+[2026-05-03 01:28:27]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:28:27] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:29:00] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:29:00] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:30:00] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:30:00] 🔄 Attempting reconnect...
+[2026-05-03 01:30:06] 🔌 Connecting to TWS...
+[2026-05-03 01:30:06]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:30:06] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:30:39] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:30:39] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:31:39] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:31:39] 🔄 Attempting reconnect...
+[2026-05-03 01:31:44] 🔌 Connecting to TWS...
+[2026-05-03 01:31:44]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:31:44] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:32:17] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:32:17] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:33:17] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:33:17] 🔄 Attempting reconnect...
+[2026-05-03 01:33:23] 🔌 Connecting to TWS...
+[2026-05-03 01:33:23]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:33:23] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:33:56] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:33:56] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:34:56] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:34:56] 🔄 Attempting reconnect...
+[2026-05-03 01:35:01] 🔌 Connecting to TWS...
+[2026-05-03 01:35:01]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:35:01] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:35:35] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:35:35] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:36:35] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:36:35] 🔄 Attempting reconnect...
+[2026-05-03 01:36:40] 🔌 Connecting to TWS...
+[2026-05-03 01:36:40]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:36:40] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:37:13] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:37:13] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:38:14] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:38:14] 🔄 Attempting reconnect...
+[2026-05-03 01:38:19] 🔌 Connecting to TWS...
+[2026-05-03 01:38:19]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:38:19] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:38:51] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:38:51] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:39:52] ⚠ Connection lost (92s ago) — attempting reconnect...
+[2026-05-03 01:39:52] 🔄 Attempting reconnect...
+[2026-05-03 01:39:57] 🔌 Connecting to TWS...
+[2026-05-03 01:39:57]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:39:57] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:40:30] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:40:30] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:41:30] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:41:30] 🔄 Attempting reconnect...
+[2026-05-03 01:41:35] 🔌 Connecting to TWS...
+[2026-05-03 01:41:35]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:41:35] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:42:09] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:42:09] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:43:09] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:43:09] 🔄 Attempting reconnect...
+[2026-05-03 01:43:14] 🔌 Connecting to TWS...
+[2026-05-03 01:43:14]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:43:14] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:43:47] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:43:47] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:44:47] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:44:47] 🔄 Attempting reconnect...
+[2026-05-03 01:44:52] 🔌 Connecting to TWS...
+[2026-05-03 01:44:52]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:44:52] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:45:25] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:45:25] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:46:25] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:46:25] 🔄 Attempting reconnect...
+[2026-05-03 01:46:31] 🔌 Connecting to TWS...
+[2026-05-03 01:46:31]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:46:31] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:47:04] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:47:04] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:48:04] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:48:04] 🔄 Attempting reconnect...
+[2026-05-03 01:48:09] 🔌 Connecting to TWS...
+[2026-05-03 01:48:09]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:48:09] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:48:42] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:48:42] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:49:42] ⚠ Connection lost (92s ago) — attempting reconnect...
+[2026-05-03 01:49:42] 🔄 Attempting reconnect...
+[2026-05-03 01:49:47] 🔌 Connecting to TWS...
+[2026-05-03 01:49:47]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:49:47] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:50:20] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:50:20] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:51:20] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:51:20] 🔄 Attempting reconnect...
+[2026-05-03 01:51:26] 🔌 Connecting to TWS...
+[2026-05-03 01:51:26]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:51:26] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:51:59] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:51:59] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:52:59] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:52:59] 🔄 Attempting reconnect...
+[2026-05-03 01:53:04] 🔌 Connecting to TWS...
+[2026-05-03 01:53:04]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:53:04] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:53:37] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:53:37] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:54:38] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:54:38] 🔄 Attempting reconnect...
+[2026-05-03 01:54:43] 🔌 Connecting to TWS...
+[2026-05-03 01:54:43]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:54:43] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:55:16] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:55:16] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:56:16] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:56:16] 🔄 Attempting reconnect...
+[2026-05-03 01:56:21] 🔌 Connecting to TWS...
+[2026-05-03 01:56:21]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:56:21] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:56:55] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:56:55] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:57:55] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:57:55] 🔄 Attempting reconnect...
+[2026-05-03 01:58:00] 🔌 Connecting to TWS...
+[2026-05-03 01:58:00]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:58:00] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 01:58:33] ❌ Failed to connect to TWS after 30s
+[2026-05-03 01:58:33] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 01:59:34] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 01:59:34] 🔄 Attempting reconnect...
+[2026-05-03 01:59:39] 🔌 Connecting to TWS...
+[2026-05-03 01:59:39]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 01:59:39] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:00:12] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:00:12] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:01:12] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:01:12] 🔄 Attempting reconnect...
+[2026-05-03 02:01:17] 🔌 Connecting to TWS...
+[2026-05-03 02:01:17]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:01:17] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:01:50] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:01:50] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:02:50] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:02:50] 🔄 Attempting reconnect...
+[2026-05-03 02:02:56] 🔌 Connecting to TWS...
+[2026-05-03 02:02:56]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:02:56] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:03:29] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:03:29] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:04:29] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:04:29] 🔄 Attempting reconnect...
+[2026-05-03 02:04:35] 🔌 Connecting to TWS...
+[2026-05-03 02:04:35]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:04:35] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:05:08] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:05:08] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:06:08] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:06:08] 🔄 Attempting reconnect...
+[2026-05-03 02:06:13] 🔌 Connecting to TWS...
+[2026-05-03 02:06:13]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:06:13] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:06:47] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:06:47] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:07:47] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:07:47] 🔄 Attempting reconnect...
+[2026-05-03 02:07:52] 🔌 Connecting to TWS...
+[2026-05-03 02:07:52]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:07:52] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:08:25] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:08:25] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:09:25] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:09:25] 🔄 Attempting reconnect...
+[2026-05-03 02:09:30] 🔌 Connecting to TWS...
+[2026-05-03 02:09:30]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:09:30] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:10:04] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:10:04] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:11:04] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:11:04] 🔄 Attempting reconnect...
+[2026-05-03 02:11:09] 🔌 Connecting to TWS...
+[2026-05-03 02:11:09]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:11:09] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:11:42] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:11:42] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:12:42] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:12:42] 🔄 Attempting reconnect...
+[2026-05-03 02:12:48] 🔌 Connecting to TWS...
+[2026-05-03 02:12:48]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:12:48] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:13:21] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:13:21] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:14:21] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:14:21] 🔄 Attempting reconnect...
+[2026-05-03 02:14:26] 🔌 Connecting to TWS...
+[2026-05-03 02:14:26]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:14:26] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:14:59] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:14:59] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:15:59] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:15:59] 🔄 Attempting reconnect...
+[2026-05-03 02:16:05] 🔌 Connecting to TWS...
+[2026-05-03 02:16:05]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:16:05] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:16:38] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:16:38] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:17:38] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:17:38] 🔄 Attempting reconnect...
+[2026-05-03 02:17:43] 🔌 Connecting to TWS...
+[2026-05-03 02:17:43]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:17:43] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:18:16] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:18:16] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:19:16] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:19:16] 🔄 Attempting reconnect...
+[2026-05-03 02:19:21] 🔌 Connecting to TWS...
+[2026-05-03 02:19:21]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:19:21] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:19:54] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:19:54] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:20:55] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:20:55] 🔄 Attempting reconnect...
+[2026-05-03 02:21:00] 🔌 Connecting to TWS...
+[2026-05-03 02:21:00]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:21:00] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:21:33] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:21:33] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:22:33] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:22:33] 🔄 Attempting reconnect...
+[2026-05-03 02:22:38] 🔌 Connecting to TWS...
+[2026-05-03 02:22:38]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:22:38] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:23:12] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:23:12] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:24:12] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:24:12] 🔄 Attempting reconnect...
+[2026-05-03 02:24:17] 🔌 Connecting to TWS...
+[2026-05-03 02:24:17]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:24:17] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:24:50] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:24:50] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:25:50] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:25:50] 🔄 Attempting reconnect...
+[2026-05-03 02:25:55] 🔌 Connecting to TWS...
+[2026-05-03 02:25:55]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:25:55] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:26:29] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:26:29] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:27:29] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:27:29] 🔄 Attempting reconnect...
+[2026-05-03 02:27:34] 🔌 Connecting to TWS...
+[2026-05-03 02:27:34]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:27:34] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:28:07] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:28:07] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:29:07] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:29:07] 🔄 Attempting reconnect...
+[2026-05-03 02:29:13] 🔌 Connecting to TWS...
+[2026-05-03 02:29:13]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:29:13] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:29:46] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:29:46] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:30:46] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:30:46] 🔄 Attempting reconnect...
+[2026-05-03 02:30:51] 🔌 Connecting to TWS...
+[2026-05-03 02:30:51]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:30:51] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:31:24] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:31:24] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:32:24] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:32:24] 🔄 Attempting reconnect...
+[2026-05-03 02:32:29] 🔌 Connecting to TWS...
+[2026-05-03 02:32:29]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:32:29] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:33:02] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:33:02] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:34:02] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:34:02] 🔄 Attempting reconnect...
+[2026-05-03 02:34:08] 🔌 Connecting to TWS...
+[2026-05-03 02:34:08]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:34:08] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:34:41] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:34:41] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:35:41] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:35:41] 🔄 Attempting reconnect...
+[2026-05-03 02:35:46] 🔌 Connecting to TWS...
+[2026-05-03 02:35:46]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:35:46] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:36:19] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:36:19] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:37:19] ⚠ Connection lost (92s ago) — attempting reconnect...
+[2026-05-03 02:37:19] 🔄 Attempting reconnect...
+[2026-05-03 02:37:24] 🔌 Connecting to TWS...
+[2026-05-03 02:37:24]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:37:24] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:37:57] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:37:57] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:38:57] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:38:57] 🔄 Attempting reconnect...
+[2026-05-03 02:39:02] 🔌 Connecting to TWS...
+[2026-05-03 02:39:02]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:39:02] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:39:36] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:39:36] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:40:36] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:40:36] 🔄 Attempting reconnect...
+[2026-05-03 02:40:41] 🔌 Connecting to TWS...
+[2026-05-03 02:40:41]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:40:41] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:41:15] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:41:15] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:42:15] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:42:15] 🔄 Attempting reconnect...
+[2026-05-03 02:42:20] 🔌 Connecting to TWS...
+[2026-05-03 02:42:20]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:42:20] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:42:53] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:42:53] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:43:54] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:43:54] 🔄 Attempting reconnect...
+[2026-05-03 02:43:59] 🔌 Connecting to TWS...
+[2026-05-03 02:43:59]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:43:59] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:44:32] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:44:32] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:45:32] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:45:32] 🔄 Attempting reconnect...
+[2026-05-03 02:45:37] 🔌 Connecting to TWS...
+[2026-05-03 02:45:37]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:45:37] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:46:10] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:46:10] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:47:11] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:47:11] 🔄 Attempting reconnect...
+[2026-05-03 02:47:16] 🔌 Connecting to TWS...
+[2026-05-03 02:47:16]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:47:16] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:47:49] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:47:49] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:48:49] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:48:49] 🔄 Attempting reconnect...
+[2026-05-03 02:48:54] 🔌 Connecting to TWS...
+[2026-05-03 02:48:54]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:48:54] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:49:27] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:49:27] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:50:28] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:50:28] 🔄 Attempting reconnect...
+[2026-05-03 02:50:33] 🔌 Connecting to TWS...
+[2026-05-03 02:50:33]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:50:33] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:51:06] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:51:06] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:52:06] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:52:06] 🔄 Attempting reconnect...
+[2026-05-03 02:52:11] 🔌 Connecting to TWS...
+[2026-05-03 02:52:11]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:52:11] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:52:45] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:52:45] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:53:45] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:53:45] 🔄 Attempting reconnect...
+[2026-05-03 02:53:50] 🔌 Connecting to TWS...
+[2026-05-03 02:53:50]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:53:50] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:54:23] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:54:23] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:55:23] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:55:23] 🔄 Attempting reconnect...
+[2026-05-03 02:55:28] 🔌 Connecting to TWS...
+[2026-05-03 02:55:28]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:55:28] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:56:01] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:56:01] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:57:01] ⚠ Connection lost (92s ago) — attempting reconnect...
+[2026-05-03 02:57:01] 🔄 Attempting reconnect...
+[2026-05-03 02:57:06] 🔌 Connecting to TWS...
+[2026-05-03 02:57:06]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:57:06] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:57:39] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:57:39] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 02:58:40] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 02:58:40] 🔄 Attempting reconnect...
+[2026-05-03 02:58:45] 🔌 Connecting to TWS...
+[2026-05-03 02:58:45]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 02:58:45] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 02:59:18] ❌ Failed to connect to TWS after 30s
+[2026-05-03 02:59:18] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:00:18] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:00:18] 🔄 Attempting reconnect...
+[2026-05-03 03:00:23] 🔌 Connecting to TWS...
+[2026-05-03 03:00:23]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:00:23] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:00:57] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:00:57] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:01:57] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:01:57] 🔄 Attempting reconnect...
+[2026-05-03 03:02:02] 🔌 Connecting to TWS...
+[2026-05-03 03:02:02]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:02:02] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:02:35] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:02:35] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:03:35] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:03:35] 🔄 Attempting reconnect...
+[2026-05-03 03:03:40] 🔌 Connecting to TWS...
+[2026-05-03 03:03:40]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:03:40] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:04:13] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:04:13] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:05:14] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:05:14] 🔄 Attempting reconnect...
+[2026-05-03 03:05:19] 🔌 Connecting to TWS...
+[2026-05-03 03:05:19]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:05:19] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:05:52] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:05:52] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:06:52] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:06:52] 🔄 Attempting reconnect...
+[2026-05-03 03:06:57] 🔌 Connecting to TWS...
+[2026-05-03 03:06:57]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:06:57] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:07:31] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:07:31] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:08:31] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:08:31] 🔄 Attempting reconnect...
+[2026-05-03 03:08:36] 🔌 Connecting to TWS...
+[2026-05-03 03:08:36]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:08:36] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:09:09] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:09:09] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:10:10] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:10:10] 🔄 Attempting reconnect...
+[2026-05-03 03:10:15] 🔌 Connecting to TWS...
+[2026-05-03 03:10:15]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:10:15] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:10:48] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:10:48] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:11:48] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:11:48] 🔄 Attempting reconnect...
+[2026-05-03 03:11:53] 🔌 Connecting to TWS...
+[2026-05-03 03:11:53]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:11:53] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:12:26] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:12:26] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:13:26] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:13:26] 🔄 Attempting reconnect...
+[2026-05-03 03:13:31] 🔌 Connecting to TWS...
+[2026-05-03 03:13:31]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:13:31] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:14:05] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:14:05] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:15:05] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:15:05] 🔄 Attempting reconnect...
+[2026-05-03 03:15:10] 🔌 Connecting to TWS...
+[2026-05-03 03:15:10]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:15:10] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:15:43] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:15:43] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:16:43] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:16:43] 🔄 Attempting reconnect...
+[2026-05-03 03:16:48] 🔌 Connecting to TWS...
+[2026-05-03 03:16:48]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:16:48] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:17:22] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:17:22] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:18:22] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:18:22] 🔄 Attempting reconnect...
+[2026-05-03 03:18:27] 🔌 Connecting to TWS...
+[2026-05-03 03:18:27]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:18:27] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:19:00] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:19:00] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:20:00] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:20:00] 🔄 Attempting reconnect...
+[2026-05-03 03:20:05] 🔌 Connecting to TWS...
+[2026-05-03 03:20:05]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:20:05] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:20:38] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:20:38] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:21:38] ⚠ Connection lost (92s ago) — attempting reconnect...
+[2026-05-03 03:21:38] 🔄 Attempting reconnect...
+[2026-05-03 03:21:43] 🔌 Connecting to TWS...
+[2026-05-03 03:21:43]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:21:43] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:22:17] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:22:17] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:23:17] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:23:17] 🔄 Attempting reconnect...
+[2026-05-03 03:23:22] 🔌 Connecting to TWS...
+[2026-05-03 03:23:22]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:23:22] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:23:55] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:23:55] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:24:55] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:24:55] 🔄 Attempting reconnect...
+[2026-05-03 03:25:00] 🔌 Connecting to TWS...
+[2026-05-03 03:25:00]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:25:00] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:25:34] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:25:34] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:26:34] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:26:34] 🔄 Attempting reconnect...
+[2026-05-03 03:26:39] 🔌 Connecting to TWS...
+[2026-05-03 03:26:39]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:26:39] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:27:13] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:27:13] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:28:13] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:28:13] 🔄 Attempting reconnect...
+[2026-05-03 03:28:18] 🔌 Connecting to TWS...
+[2026-05-03 03:28:18]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:28:18] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:28:51] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:28:51] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:29:51] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:29:51] 🔄 Attempting reconnect...
+[2026-05-03 03:29:57] 🔌 Connecting to TWS...
+[2026-05-03 03:29:57]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:29:57] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:30:30] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:30:30] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:31:30] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:31:30] 🔄 Attempting reconnect...
+[2026-05-03 03:31:35] 🔌 Connecting to TWS...
+[2026-05-03 03:31:35]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:31:35] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:32:09] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:32:09] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:33:09] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:33:09] 🔄 Attempting reconnect...
+[2026-05-03 03:33:14] 🔌 Connecting to TWS...
+[2026-05-03 03:33:14]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:33:14] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:33:48] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:33:48] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:34:48] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:34:48] 🔄 Attempting reconnect...
+[2026-05-03 03:34:53] 🔌 Connecting to TWS...
+[2026-05-03 03:34:53]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:34:53] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:35:27] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:35:27] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:36:27] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:36:27] 🔄 Attempting reconnect...
+[2026-05-03 03:36:32] 🔌 Connecting to TWS...
+[2026-05-03 03:36:32]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:36:32] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:37:05] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:37:05] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:38:06] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:38:06] 🔄 Attempting reconnect...
+[2026-05-03 03:38:11] 🔌 Connecting to TWS...
+[2026-05-03 03:38:11]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:38:11] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:38:44] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:38:44] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:39:44] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:39:44] 🔄 Attempting reconnect...
+[2026-05-03 03:39:50] 🔌 Connecting to TWS...
+[2026-05-03 03:39:50]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:39:50] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:40:23] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:40:23] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:41:23] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:41:23] 🔄 Attempting reconnect...
+[2026-05-03 03:41:28] 🔌 Connecting to TWS...
+[2026-05-03 03:41:28]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:41:28] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:42:01] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:42:01] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:43:01] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:43:01] 🔄 Attempting reconnect...
+[2026-05-03 03:43:07] 🔌 Connecting to TWS...
+[2026-05-03 03:43:07]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:43:07] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:43:40] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:43:40] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:44:40] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:44:40] 🔄 Attempting reconnect...
+[2026-05-03 03:44:45] 🔌 Connecting to TWS...
+[2026-05-03 03:44:45]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:44:45] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:45:18] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:45:18] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:46:19] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:46:19] 🔄 Attempting reconnect...
+[2026-05-03 03:46:24] 🔌 Connecting to TWS...
+[2026-05-03 03:46:24]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:46:24] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:46:57] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:46:57] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:47:57] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:47:57] 🔄 Attempting reconnect...
+[2026-05-03 03:48:02] 🔌 Connecting to TWS...
+[2026-05-03 03:48:02]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:48:02] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:48:35] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:48:35] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:49:36] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:49:36] 🔄 Attempting reconnect...
+[2026-05-03 03:49:41] 🔌 Connecting to TWS...
+[2026-05-03 03:49:41]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:49:41] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:50:14] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:50:14] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:51:14] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:51:14] 🔄 Attempting reconnect...
+[2026-05-03 03:51:19] 🔌 Connecting to TWS...
+[2026-05-03 03:51:19]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:51:19] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:51:53] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:51:53] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:52:53] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:52:53] 🔄 Attempting reconnect...
+[2026-05-03 03:52:58] 🔌 Connecting to TWS...
+[2026-05-03 03:52:58]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:52:58] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:53:31] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:53:31] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:54:31] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:54:31] 🔄 Attempting reconnect...
+[2026-05-03 03:54:36] 🔌 Connecting to TWS...
+[2026-05-03 03:54:36]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:54:36] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:55:09] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:55:09] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:56:09] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:56:09] 🔄 Attempting reconnect...
+[2026-05-03 03:56:15] 🔌 Connecting to TWS...
+[2026-05-03 03:56:15]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:56:15] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:56:48] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:56:48] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:57:48] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:57:48] 🔄 Attempting reconnect...
+[2026-05-03 03:57:53] 🔌 Connecting to TWS...
+[2026-05-03 03:57:53]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:57:53] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 03:58:27] ❌ Failed to connect to TWS after 30s
+[2026-05-03 03:58:27] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 03:59:27] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 03:59:27] 🔄 Attempting reconnect...
+[2026-05-03 03:59:32] 🔌 Connecting to TWS...
+[2026-05-03 03:59:32]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 03:59:32] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:00:05] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:00:05] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:01:05] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:01:05] 🔄 Attempting reconnect...
+[2026-05-03 04:01:10] 🔌 Connecting to TWS...
+[2026-05-03 04:01:10]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:01:10] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:01:44] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:01:44] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:02:44] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:02:44] 🔄 Attempting reconnect...
+[2026-05-03 04:02:49] 🔌 Connecting to TWS...
+[2026-05-03 04:02:49]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:02:49] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:03:22] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:03:22] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:04:22] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:04:22] 🔄 Attempting reconnect...
+[2026-05-03 04:04:27] 🔌 Connecting to TWS...
+[2026-05-03 04:04:27]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:04:27] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:05:01] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:05:01] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:06:01] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:06:01] 🔄 Attempting reconnect...
+[2026-05-03 04:06:06] 🔌 Connecting to TWS...
+[2026-05-03 04:06:06]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:06:06] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:06:39] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:06:39] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:07:39] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:07:39] 🔄 Attempting reconnect...
+[2026-05-03 04:07:45] 🔌 Connecting to TWS...
+[2026-05-03 04:07:45]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:07:45] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:08:18] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:08:18] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:09:18] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:09:18] 🔄 Attempting reconnect...
+[2026-05-03 04:09:23] 🔌 Connecting to TWS...
+[2026-05-03 04:09:23]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:09:23] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:09:56] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:09:56] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:10:57] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:10:57] 🔄 Attempting reconnect...
+[2026-05-03 04:11:02] 🔌 Connecting to TWS...
+[2026-05-03 04:11:02]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:11:02] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:11:35] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:11:35] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:12:35] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:12:35] 🔄 Attempting reconnect...
+[2026-05-03 04:12:40] 🔌 Connecting to TWS...
+[2026-05-03 04:12:40]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:12:40] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:13:14] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:13:14] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:14:14] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:14:14] 🔄 Attempting reconnect...
+[2026-05-03 04:14:19] 🔌 Connecting to TWS...
+[2026-05-03 04:14:19]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:14:19] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:14:52] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:14:52] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:15:52] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:15:52] 🔄 Attempting reconnect...
+[2026-05-03 04:15:57] 🔌 Connecting to TWS...
+[2026-05-03 04:15:57]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:15:57] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:16:31] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:16:31] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:17:31] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:17:31] 🔄 Attempting reconnect...
+[2026-05-03 04:17:36] 🔌 Connecting to TWS...
+[2026-05-03 04:17:36]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:17:36] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:18:09] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:18:09] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:19:09] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:19:09] 🔄 Attempting reconnect...
+[2026-05-03 04:19:14] 🔌 Connecting to TWS...
+[2026-05-03 04:19:14]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:19:14] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:19:48] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:19:48] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:20:48] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:20:48] 🔄 Attempting reconnect...
+[2026-05-03 04:20:53] 🔌 Connecting to TWS...
+[2026-05-03 04:20:53]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:20:53] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:21:26] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:21:26] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:22:26] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:22:26] 🔄 Attempting reconnect...
+[2026-05-03 04:22:31] 🔌 Connecting to TWS...
+[2026-05-03 04:22:31]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:22:31] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:23:05] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:23:05] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:24:05] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:24:05] 🔄 Attempting reconnect...
+[2026-05-03 04:24:10] 🔌 Connecting to TWS...
+[2026-05-03 04:24:10]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:24:10] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:24:43] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:24:43] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:25:43] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:25:43] 🔄 Attempting reconnect...
+[2026-05-03 04:25:48] 🔌 Connecting to TWS...
+[2026-05-03 04:25:48]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:25:48] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:26:21] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:26:21] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:27:21] ⚠ Connection lost (92s ago) — attempting reconnect...
+[2026-05-03 04:27:21] 🔄 Attempting reconnect...
+[2026-05-03 04:27:26] 🔌 Connecting to TWS...
+[2026-05-03 04:27:26]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:27:26] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:27:59] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:27:59] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:29:00] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:29:00] 🔄 Attempting reconnect...
+[2026-05-03 04:29:05] 🔌 Connecting to TWS...
+[2026-05-03 04:29:05]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:29:05] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:29:38] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:29:38] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:30:38] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:30:38] 🔄 Attempting reconnect...
+[2026-05-03 04:30:43] 🔌 Connecting to TWS...
+[2026-05-03 04:30:43]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:30:43] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:31:16] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:31:16] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:32:17] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:32:17] 🔄 Attempting reconnect...
+[2026-05-03 04:32:22] 🔌 Connecting to TWS...
+[2026-05-03 04:32:22]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:32:22] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:32:55] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:32:55] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:33:55] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:33:55] 🔄 Attempting reconnect...
+[2026-05-03 04:34:01] 🔌 Connecting to TWS...
+[2026-05-03 04:34:01]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:34:01] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:34:34] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:34:34] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:35:34] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:35:34] 🔄 Attempting reconnect...
+[2026-05-03 04:35:39] 🔌 Connecting to TWS...
+[2026-05-03 04:35:39]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:35:39] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:36:12] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:36:12] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:37:12] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:37:12] 🔄 Attempting reconnect...
+[2026-05-03 04:37:17] 🔌 Connecting to TWS...
+[2026-05-03 04:37:17]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:37:17] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:37:51] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:37:51] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:38:51] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:38:51] 🔄 Attempting reconnect...
+[2026-05-03 04:38:56] 🔌 Connecting to TWS...
+[2026-05-03 04:38:56]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:38:56] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:39:30] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:39:30] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:40:30] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:40:30] 🔄 Attempting reconnect...
+[2026-05-03 04:40:35] 🔌 Connecting to TWS...
+[2026-05-03 04:40:35]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:40:35] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:41:08] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:41:08] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:42:08] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:42:08] 🔄 Attempting reconnect...
+[2026-05-03 04:42:14] 🔌 Connecting to TWS...
+[2026-05-03 04:42:14]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:42:14] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:42:47] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:42:47] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:43:48] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:43:48] 🔄 Attempting reconnect...
+[2026-05-03 04:43:53] 🔌 Connecting to TWS...
+[2026-05-03 04:43:53]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:43:53] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:44:26] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:44:26] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:45:26] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:45:26] 🔄 Attempting reconnect...
+[2026-05-03 04:45:31] 🔌 Connecting to TWS...
+[2026-05-03 04:45:31]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:45:31] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:46:05] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:46:05] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:47:05] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:47:05] 🔄 Attempting reconnect...
+[2026-05-03 04:47:10] 🔌 Connecting to TWS...
+[2026-05-03 04:47:10]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:47:10] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:47:43] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:47:43] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:48:43] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:48:43] 🔄 Attempting reconnect...
+[2026-05-03 04:48:48] 🔌 Connecting to TWS...
+[2026-05-03 04:48:48]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:48:48] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:49:22] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:49:22] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:50:22] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:50:22] 🔄 Attempting reconnect...
+[2026-05-03 04:50:27] 🔌 Connecting to TWS...
+[2026-05-03 04:50:27]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:50:27] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:51:00] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:51:00] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:52:00] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:52:00] 🔄 Attempting reconnect...
+[2026-05-03 04:52:05] 🔌 Connecting to TWS...
+[2026-05-03 04:52:05]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:52:05] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:52:39] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:52:39] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:53:39] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:53:39] 🔄 Attempting reconnect...
+[2026-05-03 04:53:44] 🔌 Connecting to TWS...
+[2026-05-03 04:53:44]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:53:44] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:54:17] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:54:17] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:55:17] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:55:17] 🔄 Attempting reconnect...
+[2026-05-03 04:55:22] 🔌 Connecting to TWS...
+[2026-05-03 04:55:22]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:55:22] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:55:56] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:55:56] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:56:56] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:56:56] 🔄 Attempting reconnect...
+[2026-05-03 04:57:01] 🔌 Connecting to TWS...
+[2026-05-03 04:57:01]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:57:01] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:57:35] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:57:35] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 04:58:35] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 04:58:35] 🔄 Attempting reconnect...
+[2026-05-03 04:58:40] 🔌 Connecting to TWS...
+[2026-05-03 04:58:40]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 04:58:40] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 04:59:13] ❌ Failed to connect to TWS after 30s
+[2026-05-03 04:59:13] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:00:13] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:00:13] 🔄 Attempting reconnect...
+[2026-05-03 05:00:19] 🔌 Connecting to TWS...
+[2026-05-03 05:00:19]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:00:19] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:00:52] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:00:52] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:01:52] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:01:52] 🔄 Attempting reconnect...
+[2026-05-03 05:01:57] 🔌 Connecting to TWS...
+[2026-05-03 05:01:57]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:01:57] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:02:30] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:02:30] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:03:30] ⚠ Connection lost (92s ago) — attempting reconnect...
+[2026-05-03 05:03:30] 🔄 Attempting reconnect...
+[2026-05-03 05:03:35] 🔌 Connecting to TWS...
+[2026-05-03 05:03:35]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:03:35] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:04:08] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:04:08] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:05:08] ⚠ Connection lost (92s ago) — attempting reconnect...
+[2026-05-03 05:05:08] 🔄 Attempting reconnect...
+[2026-05-03 05:05:13] 🔌 Connecting to TWS...
+[2026-05-03 05:05:13]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:05:13] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:05:47] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:05:47] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:06:47] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:06:47] 🔄 Attempting reconnect...
+[2026-05-03 05:06:52] 🔌 Connecting to TWS...
+[2026-05-03 05:06:52]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:06:52] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:07:25] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:07:25] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:08:25] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:08:25] 🔄 Attempting reconnect...
+[2026-05-03 05:08:30] 🔌 Connecting to TWS...
+[2026-05-03 05:08:30]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:08:30] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:09:03] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:09:03] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:10:03] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:10:03] 🔄 Attempting reconnect...
+[2026-05-03 05:10:08] 🔌 Connecting to TWS...
+[2026-05-03 05:10:08]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:10:08] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:10:42] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:10:42] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:11:42] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:11:42] 🔄 Attempting reconnect...
+[2026-05-03 05:11:47] 🔌 Connecting to TWS...
+[2026-05-03 05:11:47]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:11:47] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:12:20] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:12:20] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:13:20] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:13:20] 🔄 Attempting reconnect...
+[2026-05-03 05:13:25] 🔌 Connecting to TWS...
+[2026-05-03 05:13:25]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:13:25] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:13:59] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:13:59] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:14:59] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:14:59] 🔄 Attempting reconnect...
+[2026-05-03 05:15:04] 🔌 Connecting to TWS...
+[2026-05-03 05:15:04]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:15:04] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:15:38] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:15:38] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:16:38] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:16:38] 🔄 Attempting reconnect...
+[2026-05-03 05:16:43] 🔌 Connecting to TWS...
+[2026-05-03 05:16:43]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:16:43] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:17:16] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:17:16] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:18:16] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:18:16] 🔄 Attempting reconnect...
+[2026-05-03 05:18:21] 🔌 Connecting to TWS...
+[2026-05-03 05:18:21]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:18:21] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:18:54] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:18:54] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:19:55] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:19:55] 🔄 Attempting reconnect...
+[2026-05-03 05:20:00] 🔌 Connecting to TWS...
+[2026-05-03 05:20:00]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:20:00] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:20:33] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:20:33] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:21:33] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:21:33] 🔄 Attempting reconnect...
+[2026-05-03 05:21:38] 🔌 Connecting to TWS...
+[2026-05-03 05:21:38]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:21:38] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:22:11] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:22:11] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:23:12] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:23:12] 🔄 Attempting reconnect...
+[2026-05-03 05:23:17] 🔌 Connecting to TWS...
+[2026-05-03 05:23:17]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:23:17] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:23:50] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:23:50] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:24:50] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:24:50] 🔄 Attempting reconnect...
+[2026-05-03 05:24:55] 🔌 Connecting to TWS...
+[2026-05-03 05:24:55]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:24:55] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:25:29] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:25:29] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:26:29] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:26:29] 🔄 Attempting reconnect...
+[2026-05-03 05:26:34] 🔌 Connecting to TWS...
+[2026-05-03 05:26:34]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:26:34] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:27:07] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:27:07] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:28:07] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:28:07] 🔄 Attempting reconnect...
+[2026-05-03 05:28:12] 🔌 Connecting to TWS...
+[2026-05-03 05:28:13]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:28:13] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:28:46] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:28:46] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:29:46] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:29:46] 🔄 Attempting reconnect...
+[2026-05-03 05:29:51] 🔌 Connecting to TWS...
+[2026-05-03 05:29:51]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:29:51] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:30:25] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:30:25] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:31:25] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:31:25] 🔄 Attempting reconnect...
+[2026-05-03 05:31:30] 🔌 Connecting to TWS...
+[2026-05-03 05:31:30]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:31:30] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:32:03] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:32:03] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:33:03] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:33:03] 🔄 Attempting reconnect...
+[2026-05-03 05:33:08] 🔌 Connecting to TWS...
+[2026-05-03 05:33:08]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:33:08] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:33:42] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:33:42] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:34:42] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:34:42] 🔄 Attempting reconnect...
+[2026-05-03 05:34:47] 🔌 Connecting to TWS...
+[2026-05-03 05:34:47]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:34:47] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:35:20] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:35:20] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:36:20] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:36:20] 🔄 Attempting reconnect...
+[2026-05-03 05:36:25] 🔌 Connecting to TWS...
+[2026-05-03 05:36:25]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:36:25] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:36:59] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:36:59] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:37:59] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:37:59] 🔄 Attempting reconnect...
+[2026-05-03 05:38:04] 🔌 Connecting to TWS...
+[2026-05-03 05:38:04]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:38:04] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:38:38] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:38:38] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:39:38] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:39:38] 🔄 Attempting reconnect...
+[2026-05-03 05:39:43] 🔌 Connecting to TWS...
+[2026-05-03 05:39:43]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:39:43] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:40:16] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:40:16] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:41:17] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:41:17] 🔄 Attempting reconnect...
+[2026-05-03 05:41:22] 🔌 Connecting to TWS...
+[2026-05-03 05:41:22]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:41:22] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:41:55] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:41:55] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:42:55] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:42:55] 🔄 Attempting reconnect...
+[2026-05-03 05:43:00] 🔌 Connecting to TWS...
+[2026-05-03 05:43:00]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:43:00] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:43:34] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:43:34] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:44:34] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:44:34] 🔄 Attempting reconnect...
+[2026-05-03 05:44:39] 🔌 Connecting to TWS...
+[2026-05-03 05:44:39]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:44:39] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:45:13] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:45:13] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:46:13] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:46:13] 🔄 Attempting reconnect...
+[2026-05-03 05:46:18] 🔌 Connecting to TWS...
+[2026-05-03 05:46:18]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:46:18] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:46:51] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:46:51] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:47:51] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:47:51] 🔄 Attempting reconnect...
+[2026-05-03 05:47:56] 🔌 Connecting to TWS...
+[2026-05-03 05:47:56]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:47:56] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:48:30] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:48:30] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:49:30] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:49:30] 🔄 Attempting reconnect...
+[2026-05-03 05:49:35] 🔌 Connecting to TWS...
+[2026-05-03 05:49:35]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:49:35] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:50:08] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:50:08] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:51:08] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:51:08] 🔄 Attempting reconnect...
+[2026-05-03 05:51:14] 🔌 Connecting to TWS...
+[2026-05-03 05:51:14]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:51:14] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:51:47] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:51:47] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:52:47] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:52:47] 🔄 Attempting reconnect...
+[2026-05-03 05:52:52] 🔌 Connecting to TWS...
+[2026-05-03 05:52:52]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:52:52] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:53:25] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:53:25] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:54:26] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:54:26] 🔄 Attempting reconnect...
+[2026-05-03 05:54:31] 🔌 Connecting to TWS...
+[2026-05-03 05:54:31]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:54:31] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:55:04] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:55:04] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:56:04] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:56:04] 🔄 Attempting reconnect...
+[2026-05-03 05:56:09] 🔌 Connecting to TWS...
+[2026-05-03 05:56:09]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:56:09] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:56:43] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:56:43] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:57:43] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:57:43] 🔄 Attempting reconnect...
+[2026-05-03 05:57:48] 🔌 Connecting to TWS...
+[2026-05-03 05:57:48]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:57:48] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 05:58:21] ❌ Failed to connect to TWS after 30s
+[2026-05-03 05:58:21] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 05:59:21] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 05:59:21] 🔄 Attempting reconnect...
+[2026-05-03 05:59:27] 🔌 Connecting to TWS...
+[2026-05-03 05:59:27]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 05:59:27] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 06:00:00] ❌ Failed to connect to TWS after 30s
+[2026-05-03 06:00:00] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 06:01:00] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 06:01:00] 🔄 Attempting reconnect...
+[2026-05-03 06:01:05] 🔌 Connecting to TWS...
+[2026-05-03 06:01:05]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 06:01:05] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 06:01:38] ❌ Failed to connect to TWS after 30s
+[2026-05-03 06:01:38] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 06:02:38] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 06:02:38] 🔄 Attempting reconnect...
+[2026-05-03 06:02:43] 🔌 Connecting to TWS...
+[2026-05-03 06:02:43]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 06:02:43] ❌ TWS connection lost (connectionClosed callback)
+[2026-05-03 06:03:17] ❌ Failed to connect to TWS after 30s
+[2026-05-03 06:03:17] ❌ Reconnect failed — waiting 60s before retry
+[2026-05-03 06:04:17] ⚠ Connection lost (93s ago) — attempting reconnect...
+[2026-05-03 06:04:17] 🔄 Attempting reconnect...
+[2026-05-03 06:04:22] 🔌 Connecting to TWS...
+[2026-05-03 06:04:22]   TWS error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+[2026-05-03 06:04:22] ❌ TWS connection lost (connectionClosed callback)
