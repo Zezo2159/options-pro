@@ -1,6 +1,6 @@
 {
-  "generated": "2026-05-01T19:06:51+02:00",
-  "mode": "paper_auto",
+  "generated": "2026-05-04T15:26:34+02:00",
+  "mode": "signal_only",
   "account": "DU4735568",
   "max_positions": 5,
   "signals": [],
@@ -10,7 +10,7 @@
     "copyable": 0
   },
   "scan_summary": {
-    "generated": "2026-05-01T19:06:51+02:00",
+    "generated": "2026-05-04T15:26:34+02:00",
     "market_status": "open",
     "global_status": "blocked",
     "global_reason": "Paper-account kill switch is active.",
