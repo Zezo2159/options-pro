@@ -196,6 +196,8 @@ SCORE_BUFFER_WEIGHT = 25
 SCORE_DTE_WEIGHT = 15
 SCORE_CORR_PENALTY = -25
 SCORE_CORR_BONUS = 15
+MIN_PAPER_AUTO_SCORE = 35
+MIN_REAL_COPY_SCORE = 60
 
 # Monitoring interval (seconds). This also drives the journal-vs-IBKR
 # reconciliation cadence outside the nightly TWS restart window.
@@ -353,8 +355,14 @@ def _load_real_rules():
 def _real_copyability(signal):
     rules = _load_real_rules()
     reasons = []
+    try:
+        score = float(signal.get("score") or 0)
+    except Exception:
+        score = 0
     if MIRROR_KILL_FILE.exists():
         reasons.append("mirror_kill")
+    if score < MIN_REAL_COPY_SCORE:
+        reasons.append("score_below_real_min")
     if not rules.get("enabled") or float(rules.get("capital") or 0) <= 0:
         reasons.append("rules_not_configured")
     if signal.get("ticker") not in set(rules.get("allowed_tickers") or []):
@@ -387,6 +395,7 @@ def _real_copyability(signal):
         "ticker_not_allowed": "Ticker is not allowed by real-account rules.",
         "strategy_not_allowed": "Strategy is not allowed by real-account rules.",
         "real_qty_zero": "Real-account risk rules allow 0 contracts for this setup.",
+        "score_below_real_min": f"Score {score:g} is below the {MIN_REAL_COPY_SCORE} minimum for real-account copying.",
     }
 
     return {
@@ -397,6 +406,8 @@ def _real_copyability(signal):
         "max_real_risk": round(max_risk, 2),
         "risk_cap_label": cap_label,
         "risk_cap_pct": round(pct, 3),
+        "min_real_copy_score": MIN_REAL_COPY_SCORE,
+        "min_paper_auto_score": MIN_PAPER_AUTO_SCORE,
     }
 
 
@@ -640,12 +651,24 @@ def write_trade_signals(opportunities, mode="paper_auto", scan_summary=None):
                 "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
             ],
         }
+        try:
+            score = float(signal.get("score") or 0)
+        except Exception:
+            score = 0
+        signal["min_paper_auto_score"] = MIN_PAPER_AUTO_SCORE
+        signal["min_real_copy_score"] = MIN_REAL_COPY_SCORE
+        signal["paper_auto_eligible"] = score >= MIN_PAPER_AUTO_SCORE
+        if not signal["paper_auto_eligible"]:
+            signal["warnings"].append(
+                f"Score {score:g} is below the {MIN_PAPER_AUTO_SCORE} minimum for paper auto-open; manual review only."
+            )
         signal["id"] = _signal_id(signal)
         copy_state = _real_copyability(signal)
         signal.update(copy_state)
         opp["signal_id"] = signal["id"]
         opp["real_qty"] = signal["real_qty"]
         opp["copyable"] = signal["copyable"]
+        opp["paper_auto_eligible"] = signal["paper_auto_eligible"]
         signals.append(signal)
     payload = {
         "generated": now_iso(),
@@ -2418,6 +2441,20 @@ class AutoTradeEngine:
                 f"Buffer={buffer:.1f}% DTE={dte} | Score={score}"
                 + (f" | Spread ${strike}/{long_strike} credit=${net_credit:.2f}" if long_strike else ""))
 
+            paper_auto_eligible = score >= MIN_PAPER_AUTO_SCORE
+            real_score_eligible = score >= MIN_REAL_COPY_SCORE
+            selected_reason = "Candidate passed scanner filters."
+            if not paper_auto_eligible:
+                selected_reason = (
+                    f"Candidate passed hard filters but score {score} is below "
+                    f"{MIN_PAPER_AUTO_SCORE} paper-auto minimum; manual review only."
+                )
+            elif not real_score_eligible:
+                selected_reason = (
+                    f"Candidate passed paper filters but score {score} is below "
+                    f"{MIN_REAL_COPY_SCORE} real-account copy minimum."
+                )
+
             opportunities.append({
                 "ticker": ticker,
                 "strike": strike,
@@ -2435,11 +2472,13 @@ class AutoTradeEngine:
                 "stock_price": stock_price,
                 "option_exchange": option_exchange,
                 "trading_class": trading_class,
+                "paper_auto_eligible": paper_auto_eligible,
+                "real_score_eligible": real_score_eligible,
             })
             scan_summary["by_ticker"].append({
                 "ticker": ticker,
                 "status": "selected",
-                "reason": "Candidate passed scanner filters.",
+                "reason": selected_reason,
                 "expiry": expiry,
                 "strike": strike,
                 "long_strike": long_strike,
@@ -2447,6 +2486,8 @@ class AutoTradeEngine:
                 "iv": round(iv * 100, 1),
                 "score": score,
                 "qty": qty,
+                "paper_auto_eligible": paper_auto_eligible,
+                "real_score_eligible": real_score_eligible,
             })
 
         # Sort by score descending after scanning the full watchlist.
@@ -2505,6 +2546,12 @@ class AutoTradeEngine:
 
             if qty <= 0:
                 log(f"  {ticker}: skipped execution — quantity is 0 after risk checks")
+                continue
+            if float(score or 0) < MIN_PAPER_AUTO_SCORE:
+                log(
+                    f"  {ticker}: skipped paper auto-open — score {score} is below "
+                    f"{MIN_PAPER_AUTO_SCORE} minimum"
+                )
                 continue
             if signal_only_active():
                 log(f"  📡 SIGNAL ONLY: {ticker} ${strike}P x{qty} — no paper order submitted")
