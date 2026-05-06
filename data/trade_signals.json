@@ -1,72 +1,203 @@
 {
-  "generated": "2026-05-05T20:38:21+02:00",
-  "mode": "signal_only",
+  "generated": "2026-05-06T18:47:19+02:00",
+  "mode": "paper_auto",
   "account": "DU4735568",
   "max_positions": 5,
-  "signals": [],
+  "signals": [
+    {
+      "ticker": "SPY",
+      "strategy": "BPS",
+      "strike": 708.0,
+      "long_strike": 698.0,
+      "expiry": "20260612",
+      "qty": 2,
+      "credit": 1.55,
+      "delta": 0.248,
+      "iv": 17.5,
+      "dte": 36,
+      "score": 31,
+      "estimated_risk": 1690.0,
+      "buffer_pct": 3.2,
+      "warnings": [
+        "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
+        "Do not copy if portfolio risk, correlation, or news/event risk is elevated."
+      ],
+      "id": "SPY-BPS-708.0-698.0-20260612",
+      "copyable": true,
+      "real_qty": 2,
+      "reasons": [],
+      "reason_labels": [],
+      "max_real_risk": 2500.0,
+      "risk_cap_label": "BPS max-loss",
+      "risk_cap_pct": 1.0
+    },
+    {
+      "ticker": "TLT",
+      "strategy": "CSP",
+      "strike": 83.5,
+      "long_strike": null,
+      "expiry": "20260612",
+      "qty": 1,
+      "credit": 0.35,
+      "delta": 0.203,
+      "iv": 11.5,
+      "dte": 36,
+      "score": 8,
+      "estimated_risk": 8350.0,
+      "buffer_pct": 3.0,
+      "warnings": [
+        "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
+        "Do not copy if portfolio risk, correlation, or news/event risk is elevated."
+      ],
+      "id": "TLT-CSP-83.5--20260612",
+      "copyable": true,
+      "real_qty": 1,
+      "reasons": [],
+      "reason_labels": [],
+      "max_real_risk": 12500.0,
+      "risk_cap_label": "CSP collateral",
+      "risk_cap_pct": 5.0
+    }
+  ],
   "audit": {
     "file": "/Users/islam/options-pro/data/signal_audit.json",
-    "total": 0,
-    "copyable": 0
+    "total": 2,
+    "copyable": 2
   },
   "scan_summary": {
-    "generated": "2026-05-05T20:38:21+02:00",
+    "generated": "2026-05-06T18:45:11+02:00",
     "market_status": "open",
-    "global_status": "blocked",
-    "global_reason": "Paper-account kill switch is active.",
-    "selected_count": 0,
+    "vix": 17.22,
+    "regime": "Normal",
+    "open_positions": 1,
+    "slots": 4,
+    "selected_count": 2,
     "watchlist_count": 10,
     "by_ticker": [
       {
         "ticker": "SPY",
-        "status": "blocked",
-        "reason": "Paper-account kill switch is active."
+        "status": "selected",
+        "reason": "Candidate passed scanner filters.",
+        "expiry": "20260612",
+        "strike": 708.0,
+        "long_strike": 698.0,
+        "delta": 0.248,
+        "iv": 17.5,
+        "score": 31,
+        "qty": 2
       },
       {
         "ticker": "QQQ",
-        "status": "blocked",
-        "reason": "Paper-account kill switch is active."
+        "status": "skipped",
+        "reason": "Quotes were available but no strike landed in the target delta band.",
+        "details": {
+          "examined": 10,
+          "missing_price": 0,
+          "contract_error": 0,
+          "quote_error": 0,
+          "missing_delta": 0,
+          "quote_rejected": 0,
+          "delta_out_of_range": 10,
+          "selected": null,
+          "reason": "Quotes were available but no strike landed in the target delta band."
+        },
+        "expiry": "20260612"
       },
       {
         "ticker": "SMH",
-        "status": "blocked",
-        "reason": "Paper-account kill switch is active."
+        "status": "skipped",
+        "reason": "Quotes were available but no strike landed in the target delta band.",
+        "details": {
+          "examined": 10,
+          "missing_price": 0,
+          "contract_error": 0,
+          "quote_error": 0,
+          "missing_delta": 1,
+          "quote_rejected": 0,
+          "delta_out_of_range": 9,
+          "selected": null,
+          "reason": "Quotes were available but no strike landed in the target delta band."
+        },
+        "expiry": "20260612"
       },
       {
         "ticker": "GDX",
-        "status": "blocked",
-        "reason": "Paper-account kill switch is active."
+        "status": "skipped",
+        "reason": "Quotes were available but no strike landed in the target delta band.",
+        "details": {
+          "examined": 10,
+          "missing_price": 0,
+          "contract_error": 0,
+          "quote_error": 0,
+          "missing_delta": 0,
+          "quote_rejected": 0,
+          "delta_out_of_range": 10,
+          "selected": null,
+          "reason": "Quotes were available but no strike landed in the target delta band."
+        },
+        "expiry": "20260612"
       },
       {
         "ticker": "IWM",
         "status": "blocked",
-        "reason": "Paper-account kill switch is active."
+        "reason": "Assignment exposure $27,200 exceeds paper risk budget $12,500.",
+        "expiry": "20260612",
+        "strike": 272.0,
+        "delta": 0.245,
+        "iv": 24.4
       },
       {
         "ticker": "GLD",
-        "status": "blocked",
-        "reason": "Paper-account kill switch is active."
+        "status": "skipped",
+        "reason": "Quotes were available but no strike landed in the target delta band.",
+        "details": {
+          "examined": 10,
+          "missing_price": 0,
+          "contract_error": 0,
+          "quote_error": 0,
+          "missing_delta": 0,
+          "quote_rejected": 0,
+          "delta_out_of_range": 10,
+          "selected": null,
+          "reason": "Quotes were available but no strike landed in the target delta band."
+        },
+        "expiry": "20260612"
       },
       {
         "ticker": "XLE",
-        "status": "blocked",
-        "reason": "Paper-account kill switch is active."
+        "status": "skipped",
+        "reason": "No underlying price data from IBKR; likely market-data subscription or farm issue.",
+        "early_skip": true
       },
       {
         "ticker": "TLT",
-        "status": "blocked",
-        "reason": "Paper-account kill switch is active."
+        "status": "selected",
+        "reason": "Candidate passed scanner filters.",
+        "expiry": "20260612",
+        "strike": 83.5,
+        "long_strike": null,
+        "delta": 0.203,
+        "iv": 11.5,
+        "score": 8,
+        "qty": 1
       },
       {
         "ticker": "XSP",
-        "status": "blocked",
-        "reason": "Paper-account kill switch is active."
+        "status": "skipped",
+        "reason": "Known poor/illiquid option chain in the configured 21-45 DTE window.",
+        "early_skip": true
       },
       {
         "ticker": "QQQM",
         "status": "blocked",
-        "reason": "Paper-account kill switch is active."
+        "reason": "Assignment exposure $26,500 exceeds paper risk budget $12,500.",
+        "expiry": "20260618",
+        "strike": 265.0,
+        "delta": 0.177,
+        "iv": 25.6
       }
-    ]
+    ],
+    "candidate_count": 2,
+    "blocked_count": 8
   }
 }

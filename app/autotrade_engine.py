@@ -217,6 +217,10 @@ FILLED_STATUSES = {"filled", "closed", "manualclose"}
 OPEN_LIKE_STATUSES = {"SUBMITTED", "PRESUBMITTED", "PENDINGSUBMIT", "PENDING", "WORKING"}
 TERMINAL_ORDER_STATUSES = {"FILLED", "CANCELLED", "APICANCELLED", "INACTIVE", "EXPIRED"}
 PENDING_CLOSE_MAX_AGE = 4 * 3600
+PENDING_OPEN_MAX_AGE = 30 * 60
+OPEN_PENDING_STATUSES = {s.lower() for s in OPEN_LIKE_STATUSES}
+OPEN_TERMINAL_STATUSES = {"cancelled", "apicancelled", "inactive", "expired", "notfilled", "rejected"}
+OPEN_ACTIVE_STATUSES = FILLED_STATUSES | {"", "open", "reconciled"} | OPEN_PENDING_STATUSES
 
 
 # ═══════════════════════════════════════════════
@@ -683,6 +687,9 @@ def read_open_positions():
             key = f"{ticker}-{strike_f}-{expiry}"
 
             if action == "OPEN":
+                status = row.get("status", "").strip().lower()
+                if status in OPEN_TERMINAL_STATUSES or status not in OPEN_ACTIVE_STATUSES:
+                    continue
                 positions[key] = {
                     "ticker": ticker,
                     "strategy": row.get("strategy", "CSP").strip(),
@@ -952,6 +959,7 @@ class AutoTradeEngine:
         self._req_id = 1000
         self._running = True
         self._pending_orders = {}  # key: "TICKER-STRIKE" -> timestamp of order placement
+        self._open_orders = {}
         self._pending_closes = {}  # key: "TICKER-STRIKE-EXPIRY" -> close order metadata
         self._close_orders = {}
         self._option_contract_cache = {}
@@ -1047,6 +1055,116 @@ class AutoTradeEngine:
             log(f"  ↺ Restored {restored} pending close order(s) from journal")
         self._expire_stale_pending_closes("post-restore")
 
+    def _register_open_order(self, order_id, ticker, strike, expiry, qty, strategy, credit, pending_key=None, placed_at=None):
+        if order_id is None:
+            return
+        placed_at = placed_at or datetime.now()
+        pending_key = pending_key or f"{ticker}-{float(strike)}"
+        self._open_orders[int(order_id)] = {
+            "ticker": str(ticker).upper(),
+            "strike": round(float(strike), 2),
+            "expiry": str(expiry),
+            "qty": int(qty),
+            "strategy": str(strategy or "CSP").upper(),
+            "credit": float(credit or 0),
+            "pending_key": pending_key,
+            "placed_at": placed_at,
+        }
+        self._pending_orders[pending_key] = placed_at
+
+    def _ibkr_short_keys(self):
+        keys = set()
+        for pos in (self.app.positions or {}).values():
+            if pos.get("position", 0) >= 0:
+                continue
+            keys.add(self._position_key(pos.get("symbol", ""), pos.get("strike", 0), pos.get("expiry", "")))
+        return keys
+
+    def _restore_pending_open_orders_from_journal(self):
+        """Restore submitted opening orders so they do not become journal ghosts."""
+        ensure_journal()
+        restored = 0
+        ibkr_keys = self._ibkr_short_keys()
+        try:
+            with open(JOURNAL, "r") as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    if str(row.get("action", "")).strip().upper() != "OPEN":
+                        continue
+                    status = str(row.get("status", "")).strip().upper()
+                    if status not in OPEN_LIKE_STATUSES:
+                        continue
+                    ticker = str(row.get("ticker", "")).strip().upper()
+                    expiry = str(row.get("expiry", "")).strip()
+                    notes = str(row.get("notes", "")).strip()
+                    match = re.search(r"OrderID\s+(\d+)", notes)
+                    if not ticker or not expiry or not match:
+                        continue
+                    try:
+                        strike = float(row.get("strike") or 0)
+                        qty = int(float(row.get("qty") or 0))
+                        credit = float(row.get("credit") or 0)
+                        placed_at = datetime.strptime(str(row.get("timestamp", "")).strip()[:16], "%Y-%m-%d %H:%M")
+                    except Exception:
+                        continue
+                    order_id = int(match.group(1))
+                    key = self._position_key(ticker, strike, expiry)
+                    if key in ibkr_keys:
+                        update_journal_order_status(order_id, "Filled", note_suffix=f"Matched IBKR position {now_iso()}")
+                        continue
+                    age_secs = (datetime.now() - placed_at).total_seconds()
+                    if age_secs > PENDING_OPEN_MAX_AGE:
+                        try:
+                            self.app.cancelOrder(order_id)
+                        except Exception as e:
+                            log(f"  ⚠ Could not cancel stale opening order {order_id}: {e}")
+                        update_journal_order_status(
+                            order_id,
+                            "Expired",
+                            note_suffix=f"Opening order not present in IBKR after {int(age_secs)}s {now_iso()}",
+                        )
+                        log(f"  ⚠ Expired stale opening order {order_id} for {ticker} ${strike}P")
+                        continue
+                    pending_key = f"{ticker}-{float(strike)}"
+                    if order_id not in self._open_orders:
+                        self._register_open_order(order_id, ticker, strike, expiry, qty, row.get("strategy", "CSP"), credit, pending_key, placed_at)
+                        restored += 1
+        except Exception as e:
+            log(f"  ⚠ Could not restore pending opens from journal: {e}")
+            return
+        if restored:
+            log(f"  ↺ Restored {restored} pending opening order(s) from journal")
+
+    def _sync_pending_open_orders_with_ibkr(self):
+        """Mark submitted opens filled once IBKR shows the position; expire stale non-fills."""
+        ibkr_keys = self._ibkr_short_keys()
+        for order_id, meta in list(self._open_orders.items()):
+            key = self._position_key(meta.get("ticker", ""), meta.get("strike", 0), meta.get("expiry", ""))
+            if key in ibkr_keys:
+                update_journal_order_status(order_id, "Filled", note_suffix=f"Matched IBKR position {now_iso()}")
+                pending_key = meta.get("pending_key")
+                if pending_key:
+                    self._pending_orders.pop(pending_key, None)
+                self._open_orders.pop(order_id, None)
+                continue
+            age_secs = (datetime.now() - meta.get("placed_at", datetime.now())).total_seconds()
+            if age_secs <= PENDING_OPEN_MAX_AGE:
+                continue
+            try:
+                self.app.cancelOrder(order_id)
+            except Exception as e:
+                log(f"  ⚠ Could not cancel stale opening order {order_id}: {e}")
+            update_journal_order_status(
+                order_id,
+                "Expired",
+                note_suffix=f"Opening order not filled after {int(age_secs)}s {now_iso()}",
+            )
+            pending_key = meta.get("pending_key")
+            if pending_key:
+                self._pending_orders.pop(pending_key, None)
+            self._open_orders.pop(order_id, None)
+            log(f"  ⚠ Expired stale opening order {order_id} for {meta.get('ticker')} ${meta.get('strike')}P")
+
     def _load_processed_close_requests(self):
         try:
             if PAPER_CLOSE_STATE_FILE.exists():
@@ -1110,6 +1228,7 @@ class AutoTradeEngine:
         # Load existing positions from IBKR
         self.app.reqPositions()
         time.sleep(3)
+        self._restore_pending_open_orders_from_journal()
         self._restore_pending_close_orders_from_journal()
 
         return True
@@ -1217,13 +1336,10 @@ class AutoTradeEngine:
 
     def _handle_order_status(self, order_id, status, filled, remaining, avgFillPrice):
         meta = self._close_orders.get(order_id)
-        if not meta:
-            return
-
         status_upper = str(status or "").upper()
-        pending_key = meta.get("pending_key")
 
-        if status_upper == "FILLED":
+        if meta and status_upper == "FILLED":
+            pending_key = meta.get("pending_key")
             updated = update_journal_order_status(
                 order_id,
                 "Filled",
@@ -1251,7 +1367,8 @@ class AutoTradeEngine:
                 self.write_live_snapshot()
             return
 
-        if status_upper in TERMINAL_ORDER_STATUSES:
+        if meta and status_upper in TERMINAL_ORDER_STATUSES:
+            pending_key = meta.get("pending_key")
             update_journal_order_status(
                 order_id,
                 status_upper.title(),
@@ -1260,6 +1377,37 @@ class AutoTradeEngine:
             if pending_key:
                 self._pending_closes.pop(pending_key, None)
             self._close_orders.pop(order_id, None)
+            self.write_live_snapshot()
+            return
+
+        open_meta = self._open_orders.get(order_id)
+        if not open_meta:
+            return
+
+        pending_key = open_meta.get("pending_key")
+        if status_upper == "FILLED":
+            update_journal_order_status(
+                order_id,
+                "Filled",
+                credit=round(float(avgFillPrice or open_meta.get("credit") or 0), 4),
+                note_suffix=f"Filled {now_iso()}",
+            )
+            if pending_key:
+                self._pending_orders.pop(pending_key, None)
+            self._open_orders.pop(order_id, None)
+            self.write_live_snapshot()
+            return
+
+        if status_upper in TERMINAL_ORDER_STATUSES:
+            terminal = "NotFilled" if float(filled or 0) <= 0 else status_upper.title()
+            update_journal_order_status(
+                order_id,
+                terminal,
+                note_suffix=f"{terminal} {now_iso()}",
+            )
+            if pending_key:
+                self._pending_orders.pop(pending_key, None)
+            self._open_orders.pop(order_id, None)
             self.write_live_snapshot()
 
     # ── Market Data Helpers ──
@@ -2384,7 +2532,10 @@ class AutoTradeEngine:
             if order_id is not None:
                 # Track as pending to avoid monitoring conflict
                 pending_key = f"{ticker}-{float(strike)}"
-                self._pending_orders[pending_key] = datetime.now()
+                self._register_open_order(
+                    order_id, ticker, strike, expiry, qty,
+                    journal_strategy, journal_credit, pending_key
+                )
 
                 # Write to journal
                 notes = f"Score {score} | Buffer {buffer:.1f}% | OrderID {order_id}"
@@ -3059,9 +3210,10 @@ class AutoTradeEngine:
             }
 
         journal_open = {}
+        pending_open = {}
         for pos in journal_pos.values():
             key = key_for(pos.get("ticker", ""), pos.get("strike", 0), pos.get("expiry", ""))
-            journal_open[key] = {
+            item = {
                 "ticker": pos.get("ticker", ""),
                 "strike": round(float(pos.get("strike", 0) or 0), 2),
                 "expiry": str(pos.get("expiry", "")),
@@ -3069,9 +3221,15 @@ class AutoTradeEngine:
                 "strategy": pos.get("strategy", "CSP"),
                 "status": pos.get("status", ""),
             }
+            status_upper = str(pos.get("status", "")).strip().upper()
+            if status_upper in OPEN_LIKE_STATUSES:
+                pending_open[key] = item
+                if key not in ibkr_shorts:
+                    continue
+            journal_open[key] = item
 
         missing_in_ibkr = [v for k, v in journal_open.items() if k not in ibkr_shorts]
-        missing_in_journal = [v for k, v in ibkr_shorts.items() if k not in journal_open]
+        missing_in_journal = [v for k, v in ibkr_shorts.items() if k not in journal_open and k not in pending_open]
         qty_mismatch = []
         for key, broker in ibkr_shorts.items():
             journal = journal_open.get(key)
@@ -3084,6 +3242,7 @@ class AutoTradeEngine:
             "missing_in_ibkr": missing_in_ibkr,
             "missing_in_journal": missing_in_journal,
             "qty_mismatch": qty_mismatch,
+            "pending_open": [v for k, v in pending_open.items() if k not in ibkr_shorts],
         }
 
         if alert and not result["ok"]:
@@ -3607,6 +3766,7 @@ class AutoTradeEngine:
                 self.app.positions = {}
                 self.app.reqPositions()
                 time.sleep(3)
+                self._sync_pending_open_orders_with_ibkr()
                 self.process_paper_close_requests()
 
                 # ── Run monitor ──
