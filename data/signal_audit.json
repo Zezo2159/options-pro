@@ -194,6 +194,21 @@
       "last_score": 8,
       "last_copyable": true,
       "last_real_qty": 1
+    },
+    "SPY-BPS-707.0-697.0-20260612": {
+      "id": "SPY-BPS-707.0-697.0-20260612",
+      "ticker": "SPY",
+      "strategy": "BPS",
+      "strike": 707.0,
+      "long_strike": 697.0,
+      "expiry": "20260612",
+      "first_seen": "2026-05-06T20:25:21+02:00",
+      "seen_count": 1,
+      "copyable_seen_count": 0,
+      "last_seen": "2026-05-06T20:25:21+02:00",
+      "last_score": 38,
+      "last_copyable": false,
+      "last_real_qty": 2
     }
   },
   "events": [
@@ -484,7 +499,19 @@
       "score": 8,
       "copyable": true,
       "real_qty": 1
+    },
+    {
+      "generated": "2026-05-06T20:25:21+02:00",
+      "id": "SPY-BPS-707.0-697.0-20260612",
+      "ticker": "SPY",
+      "strategy": "BPS",
+      "strike": 707.0,
+      "long_strike": 697.0,
+      "expiry": "20260612",
+      "score": 38,
+      "copyable": false,
+      "real_qty": 2
     }
   ],
-  "updated": "2026-05-06T18:47:19+02:00"
+  "updated": "2026-05-06T21:59:04+02:00"
 }

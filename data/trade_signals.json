@@ -1,90 +1,31 @@
 {
-  "generated": "2026-05-06T18:47:19+02:00",
+  "generated": "2026-05-06T21:59:04+02:00",
   "mode": "paper_auto",
   "account": "DU4735568",
   "max_positions": 5,
-  "signals": [
-    {
-      "ticker": "SPY",
-      "strategy": "BPS",
-      "strike": 708.0,
-      "long_strike": 698.0,
-      "expiry": "20260612",
-      "qty": 2,
-      "credit": 1.55,
-      "delta": 0.248,
-      "iv": 17.5,
-      "dte": 36,
-      "score": 31,
-      "estimated_risk": 1690.0,
-      "buffer_pct": 3.2,
-      "warnings": [
-        "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
-        "Do not copy if portfolio risk, correlation, or news/event risk is elevated."
-      ],
-      "id": "SPY-BPS-708.0-698.0-20260612",
-      "copyable": true,
-      "real_qty": 2,
-      "reasons": [],
-      "reason_labels": [],
-      "max_real_risk": 2500.0,
-      "risk_cap_label": "BPS max-loss",
-      "risk_cap_pct": 1.0
-    },
-    {
-      "ticker": "TLT",
-      "strategy": "CSP",
-      "strike": 83.5,
-      "long_strike": null,
-      "expiry": "20260612",
-      "qty": 1,
-      "credit": 0.35,
-      "delta": 0.203,
-      "iv": 11.5,
-      "dte": 36,
-      "score": 8,
-      "estimated_risk": 8350.0,
-      "buffer_pct": 3.0,
-      "warnings": [
-        "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
-        "Do not copy if portfolio risk, correlation, or news/event risk is elevated."
-      ],
-      "id": "TLT-CSP-83.5--20260612",
-      "copyable": true,
-      "real_qty": 1,
-      "reasons": [],
-      "reason_labels": [],
-      "max_real_risk": 12500.0,
-      "risk_cap_label": "CSP collateral",
-      "risk_cap_pct": 5.0
-    }
-  ],
+  "signals": [],
   "audit": {
     "file": "/Users/islam/options-pro/data/signal_audit.json",
-    "total": 2,
-    "copyable": 2
+    "total": 0,
+    "copyable": 0
   },
   "scan_summary": {
-    "generated": "2026-05-06T18:45:11+02:00",
+    "generated": "2026-05-06T21:57:29+02:00",
     "market_status": "open",
-    "vix": 17.22,
+    "vix": 17.32,
     "regime": "Normal",
-    "open_positions": 1,
-    "slots": 4,
-    "selected_count": 2,
+    "open_positions": 2,
+    "slots": 3,
+    "selected_count": 0,
     "watchlist_count": 10,
     "by_ticker": [
       {
         "ticker": "SPY",
-        "status": "selected",
-        "reason": "Candidate passed scanner filters.",
+        "status": "blocked",
+        "reason": "Spread credit $1.36 is below 15% of $10 width.",
         "expiry": "20260612",
-        "strike": 708.0,
-        "long_strike": 698.0,
-        "delta": 0.248,
-        "iv": 17.5,
-        "score": 31,
-        "qty": 2
+        "strike": 709.0,
+        "long_strike": 699.0
       },
       {
         "ticker": "QQQ",
@@ -112,9 +53,9 @@
           "missing_price": 0,
           "contract_error": 0,
           "quote_error": 0,
-          "missing_delta": 1,
+          "missing_delta": 2,
           "quote_rejected": 0,
-          "delta_out_of_range": 9,
+          "delta_out_of_range": 8,
           "selected": null,
           "reason": "Quotes were available but no strike landed in the target delta band."
         },
@@ -129,9 +70,9 @@
           "missing_price": 0,
           "contract_error": 0,
           "quote_error": 0,
-          "missing_delta": 0,
+          "missing_delta": 3,
           "quote_rejected": 0,
-          "delta_out_of_range": 10,
+          "delta_out_of_range": 7,
           "selected": null,
           "reason": "Quotes were available but no strike landed in the target delta band."
         },
@@ -140,11 +81,11 @@
       {
         "ticker": "IWM",
         "status": "blocked",
-        "reason": "Assignment exposure $27,200 exceeds paper risk budget $12,500.",
+        "reason": "Assignment exposure $27,250 exceeds paper risk budget $12,500.",
         "expiry": "20260612",
-        "strike": 272.0,
-        "delta": 0.245,
-        "iv": 24.4
+        "strike": 272.5,
+        "delta": 0.227,
+        "iv": 24.3
       },
       {
         "ticker": "GLD",
@@ -155,9 +96,9 @@
           "missing_price": 0,
           "contract_error": 0,
           "quote_error": 0,
-          "missing_delta": 0,
+          "missing_delta": 1,
           "quote_rejected": 0,
-          "delta_out_of_range": 10,
+          "delta_out_of_range": 9,
           "selected": null,
           "reason": "Quotes were available but no strike landed in the target delta band."
         },
@@ -171,15 +112,8 @@
       },
       {
         "ticker": "TLT",
-        "status": "selected",
-        "reason": "Candidate passed scanner filters.",
-        "expiry": "20260612",
-        "strike": 83.5,
-        "long_strike": null,
-        "delta": 0.203,
-        "iv": 11.5,
-        "score": 8,
-        "qty": 1
+        "status": "skipped",
+        "reason": "At MAX_PER_TICKER (2). Existing DTEs: [22, 36]."
       },
       {
         "ticker": "XSP",
@@ -190,14 +124,14 @@
       {
         "ticker": "QQQM",
         "status": "blocked",
-        "reason": "Assignment exposure $26,500 exceeds paper risk budget $12,500.",
+        "reason": "Assignment exposure $27,000 exceeds paper risk budget $12,500.",
         "expiry": "20260618",
-        "strike": 265.0,
-        "delta": 0.177,
-        "iv": 25.6
+        "strike": 270.0,
+        "delta": 0.218,
+        "iv": 24.9
       }
     ],
-    "candidate_count": 2,
-    "blocked_count": 8
+    "candidate_count": 0,
+    "blocked_count": 10
   }
 }
