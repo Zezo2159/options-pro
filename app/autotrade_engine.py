@@ -790,9 +790,11 @@ def write_trade_signals(opportunities, mode="paper_auto", scan_summary=None):
                     or f"{signal['strategy']} signals are manual-review only until automated execution and close management are enabled."
                 )
             elif str(signal.get("strategy") or "").upper() in MANUAL_ONLY_STRATEGIES:
-                signal["warnings"].append(
+                manual_reason = (
                     f"{signal['strategy']} signals are manual-review only until automated execution and close management are enabled."
                 )
+                signal["manual_only_reason"] = signal.get("manual_only_reason") or manual_reason
+                signal["warnings"].append(manual_reason)
             else:
                 signal["warnings"].append(
                     f"Score {score:g} is below the {MIN_PAPER_AUTO_SCORE} minimum for paper auto-open; manual review only."
