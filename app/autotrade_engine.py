@@ -188,6 +188,8 @@ MIN_IC_CREDIT_PCT = 0.12      # ICs can accept slightly lower credit because bot
 IC_CALL_DELTA_MIN = 0.08
 IC_CALL_DELTA_MAX = 0.22
 MAX_AUTO_BPS_PER_SCAN = 1
+BPS_USE_LEGGED_ORDERS = True
+BPS_LEG_FILL_TIMEOUT_SECS = 30
 OPTION_GREEKS_GRACE_SECS = 1.5
 OPTION_SCAN_MAX_STRIKES = 10
 OPTION_SCAN_MAX_MISSING_STREAK = 8
@@ -1248,12 +1250,12 @@ class AutoTradeEngine:
             log(f"  ↺ Restored {restored} pending close order(s) from journal")
         self._expire_stale_pending_closes("post-restore")
 
-    def _register_open_order(self, order_id, ticker, strike, expiry, qty, strategy, credit, pending_key=None, placed_at=None):
+    def _register_open_order(self, order_id, ticker, strike, expiry, qty, strategy, credit, pending_key=None, placed_at=None, **extra):
         if order_id is None:
             return
         placed_at = placed_at or datetime.now()
         pending_key = pending_key or f"{ticker}-{float(strike)}"
-        self._open_orders[int(order_id)] = {
+        meta = {
             "ticker": str(ticker).upper(),
             "strike": round(float(strike), 2),
             "expiry": str(expiry),
@@ -1263,6 +1265,8 @@ class AutoTradeEngine:
             "pending_key": pending_key,
             "placed_at": placed_at,
         }
+        meta.update(extra)
+        self._open_orders[int(order_id)] = meta
         self._pending_orders[pending_key] = placed_at
 
     def _active_open_order_metas(self):
@@ -1390,6 +1394,7 @@ class AutoTradeEngine:
                 self.app.cancelOrder(order_id)
             except Exception as e:
                 log(f"  ⚠ Could not cancel stale opening order {order_id}: {e}")
+            self.close_orphan_bps_long_from_meta(meta)
             update_journal_order_status(
                 order_id,
                 "Expired",
@@ -1624,10 +1629,16 @@ class AutoTradeEngine:
 
         pending_key = open_meta.get("pending_key")
         if status_upper == "FILLED":
+            filled_credit = float(avgFillPrice or open_meta.get("credit") or 0)
+            if str(open_meta.get("strategy") or "").upper() == "BPS" and open_meta.get("long_debit") is not None:
+                try:
+                    filled_credit = max(0.0, filled_credit - float(open_meta.get("long_debit") or 0))
+                except Exception:
+                    pass
             update_journal_order_status(
                 order_id,
                 "Filled",
-                credit=round(float(avgFillPrice or open_meta.get("credit") or 0), 4),
+                credit=round(filled_credit, 4),
                 note_suffix=f"Filled {now_iso()}",
             )
             if pending_key:
@@ -1638,6 +1649,8 @@ class AutoTradeEngine:
 
         if status_upper in TERMINAL_ORDER_STATUSES:
             terminal = "NotFilled" if float(filled or 0) <= 0 else status_upper.title()
+            if terminal == "NotFilled":
+                self.close_orphan_bps_long_from_meta(open_meta)
             update_journal_order_status(
                 order_id,
                 terminal,
@@ -1659,6 +1672,7 @@ class AutoTradeEngine:
 
         open_meta = self._open_orders.get(order_id)
         if open_meta:
+            self.close_orphan_bps_long_from_meta(open_meta)
             update_journal_order_status(
                 order_id,
                 "Rejected",
@@ -2229,6 +2243,18 @@ class AutoTradeEngine:
             return round(max(0.01, min(fallback, ask * 0.75)), 2)
         return round(max(0.01, fallback), 2) if fallback > 0 else 0
 
+    def buy_open_limit_price(self, opt_data, fallback=0):
+        """Marketable-but-bounded debit limit for buying a protective option leg."""
+        bid = float(opt_data.get("bid", 0) or 0)
+        ask = float(opt_data.get("ask", 0) or 0)
+        fallback = float(fallback or opt_data.get("price", 0) or opt_data.get("optPrice", 0) or 0)
+        if ask > 0:
+            tick = 0.01 if ask < 3 else 0.05
+            return round(ask + tick, 2)
+        if bid > 0 and fallback > 0:
+            return round(max(fallback, bid * 1.25), 2)
+        return round(max(0.01, fallback), 2) if fallback > 0 else 0
+
     # ── Position Sizing ──
     def calc_position_size(self, ticker, strike, premium, stock_price, strategy=None):
         """Calculate number of contracts based on tier, risk rules, and regime."""
@@ -2464,10 +2490,138 @@ class AutoTradeEngine:
         return None, None, diagnostics
 
     # ── Place Order ──
+    def _option_order_contract(self, ticker, strike, expiry, right="P"):
+        contract = Contract()
+        contract.symbol = ticker
+        contract.secType = "OPT"
+        contract.exchange = "SMART"
+        contract.currency = "USD"
+        contract.strike = float(strike)
+        contract.lastTradeDateOrContractMonth = str(expiry)
+        contract.right = right
+        contract.multiplier = "100"
+        return contract
+
+    def place_option_order(self, action, ticker, strike, expiry, right, qty, limit_price, tag="option"):
+        if self.app.next_order_id is None:
+            log(f"  ❌ No valid order ID — cannot place {tag} order")
+            return None
+        if float(limit_price or 0) <= 0:
+            log(f"  ❌ Invalid {tag} limit ${float(limit_price or 0):.2f}")
+            return None
+
+        order_id = self.app.next_order_id
+        self.app.next_order_id += 1
+
+        order = Order()
+        order.action = str(action).upper()
+        order.totalQuantity = int(qty)
+        order.orderType = "LMT"
+        order.lmtPrice = round(float(limit_price), 2)
+        order.tif = "DAY"
+        order.eTradeOnly = False
+        order.firmQuoteOnly = False
+        order.account = ACCOUNT_ID
+
+        contract = self._option_order_contract(ticker, strike, expiry, right)
+        log(
+            f"  📤 {tag}: {order.action} {qty}x {ticker} ${float(strike):g}{right} "
+            f"@ ${float(limit_price):.2f} (ID: {order_id})"
+        )
+        try:
+            self.app.placeOrder(order_id, contract, order)
+            return order_id
+        except Exception as e:
+            log(f"  ❌ {tag} placement failed: {e}")
+            return None
+
+    def wait_for_order_fill(self, order_id, timeout=BPS_LEG_FILL_TIMEOUT_SECS):
+        deadline = time.time() + timeout
+        while time.time() < deadline:
+            status = self.app.order_statuses.get(order_id) or {}
+            status_text = str(status.get("status") or "").upper()
+            if status_text == "FILLED":
+                return True, float(status.get("avgFillPrice") or 0)
+            if status_text in TERMINAL_ORDER_STATUSES:
+                return False, float(status.get("avgFillPrice") or 0)
+            time.sleep(0.25)
+        try:
+            self.app.cancelOrder(order_id)
+        except Exception as e:
+            log(f"  ⚠ Could not cancel unfilled order {order_id}: {e}")
+        return False, 0.0
+
+    def close_orphan_long_put(self, ticker, long_strike, expiry, qty):
+        quote = self.get_option_data(ticker, long_strike, expiry, "P", timeout=6)
+        limit_price = self.sell_open_limit_price(quote, quote.get("price", 0))
+        if limit_price <= 0:
+            log(f"  ⚠ Could not auto-close orphan long {ticker} ${long_strike}P: no bid")
+            return None
+        return self.place_option_order("SELL", ticker, long_strike, expiry, "P", qty, limit_price, tag="BPS orphan-long close")
+
+    def close_orphan_bps_long_from_meta(self, meta):
+        if str(meta.get("strategy") or "").upper() != "BPS" or not meta.get("long_debit"):
+            return None
+        long_strike = meta.get("long_strike")
+        if not long_strike:
+            return None
+        log(f"  ⚠ Closing orphan BPS hedge for {meta.get('ticker')} ${long_strike}P")
+        return self.close_orphan_long_put(
+            meta.get("ticker"),
+            long_strike,
+            meta.get("expiry"),
+            int(meta.get("qty") or 0),
+        )
+
+    def place_bull_put_spread_legs(self, ticker, short_strike, long_strike, expiry, qty, net_credit):
+        """Paper fallback for IBKR combo rejects: buy hedge first, then sell short leg."""
+        long_quote = self.get_option_data(ticker, long_strike, expiry, "P", timeout=6)
+        long_price = long_quote.get("price", 0) or long_quote.get("optPrice", 0)
+        long_limit = self.buy_open_limit_price(long_quote, long_price)
+        if long_limit <= 0:
+            log(f"  ❌ BPS legged entry failed: no executable long-leg ask for {ticker} ${long_strike}P")
+            return None
+
+        long_order_id = self.place_option_order("BUY", ticker, long_strike, expiry, "P", qty, long_limit, tag="BPS hedge leg")
+        if long_order_id is None:
+            return None
+
+        filled, long_fill = self.wait_for_order_fill(long_order_id)
+        if not filled or long_fill <= 0:
+            log(f"  ❌ BPS legged entry failed: protective long order {long_order_id} did not fill")
+            return None
+
+        short_quote = self.get_option_data(ticker, short_strike, expiry, "P", timeout=6)
+        short_model = short_quote.get("price", 0) or short_quote.get("optPrice", 0) or (float(net_credit or 0) + long_fill)
+        short_limit = self.sell_open_limit_price(short_quote, short_model)
+        if short_limit <= long_fill:
+            log(
+                f"  ❌ BPS legged entry aborted: short-leg credit ${short_limit:.2f} "
+                f"does not cover long debit ${long_fill:.2f}"
+            )
+            self.close_orphan_long_put(ticker, long_strike, expiry, qty)
+            return None
+
+        short_order_id = self.place_option_order("SELL", ticker, short_strike, expiry, "P", qty, short_limit, tag="BPS short leg")
+        if short_order_id is None:
+            self.close_orphan_long_put(ticker, long_strike, expiry, qty)
+            return None
+        return {
+            "order_id": short_order_id,
+            "long_order_id": long_order_id,
+            "long_debit": round(long_fill, 4),
+            "short_limit": round(short_limit, 4),
+            "net_credit": round(max(0.01, short_limit - long_fill), 4),
+            "legged": True,
+        }
+
     def place_bull_put_spread(self, ticker, short_strike, long_strike, expiry, qty, net_credit):
         """Place a bull put spread as a combo order.
         Sells a higher-strike put and buys a lower-strike put.
         Net credit = short premium - long premium."""
+        if BPS_USE_LEGGED_ORDERS:
+            return self.place_bull_put_spread_legs(ticker, short_strike, long_strike, expiry, qty, net_credit)
+
         if self.app.next_order_id is None:
             log("  ❌ No valid order ID — cannot place spread")
             return None
@@ -3320,7 +3474,12 @@ class AutoTradeEngine:
 
             if is_spread:
                 log(f"\n  🎯 EXECUTING SPREAD: {qty}x {ticker} ${strike}/{long_strike}P @ ${net_credit:.2f} credit")
-                order_id = self.place_bull_put_spread(ticker, strike, long_strike, expiry, qty, net_credit)
+                order_result = self.place_bull_put_spread(ticker, strike, long_strike, expiry, qty, net_credit)
+                if isinstance(order_result, dict):
+                    order_id = order_result.get("order_id")
+                    net_credit = float(order_result.get("net_credit") or net_credit)
+                else:
+                    order_id = order_result
                 order_desc = f"${strike}/{long_strike}P"
                 journal_credit = net_credit
                 journal_strategy = "BPS"
@@ -3336,7 +3495,10 @@ class AutoTradeEngine:
                 pending_key = f"{ticker}-{float(strike)}"
                 self._register_open_order(
                     order_id, ticker, strike, expiry, qty,
-                    journal_strategy, journal_credit, pending_key
+                    journal_strategy, journal_credit, pending_key,
+                    long_debit=(order_result.get("long_debit") if is_spread and isinstance(order_result, dict) else None),
+                    long_strike=(long_strike if is_spread else None),
+                    long_order_id=(order_result.get("long_order_id") if is_spread and isinstance(order_result, dict) else None),
                 )
                 if is_spread:
                     bps_submitted_this_scan += 1
