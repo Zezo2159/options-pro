@@ -187,6 +187,7 @@ MIN_SPREAD_CREDIT_PCT = 0.15  # Credit should be at least 15% of spread width.
 MIN_IC_CREDIT_PCT = 0.12      # ICs can accept slightly lower credit because both wings contribute.
 IC_CALL_DELTA_MIN = 0.08
 IC_CALL_DELTA_MAX = 0.22
+IC_CALL_SCAN_MAX_STRIKES = 35
 MAX_AUTO_BPS_PER_SCAN = 1
 BPS_USE_LEGGED_ORDERS = True
 BPS_LEG_FILL_TIMEOUT_SECS = 30
@@ -2408,7 +2409,7 @@ class AutoTradeEngine:
             diagnostics["reason"] = "No suitable strike found."
         return None, None, diagnostics
 
-    def find_target_call_strike(self, ticker, stock_price, strikes, expiry, option_exchange=None, trading_class=None, delta_min=None, delta_max=None):
+    def find_target_call_strike(self, ticker, stock_price, strikes, expiry, option_exchange=None, trading_class=None, delta_min=None, delta_max=None, max_strikes=None):
         """Find an OTM call strike for covered calls / iron-condor call sides."""
         regime = getattr(self, '_current_regime', None) or REGIMES["normal"]
         d_min = delta_min if delta_min is not None else regime.get("delta_min", DELTA_MIN)
@@ -2437,7 +2438,8 @@ class AutoTradeEngine:
         best_delta_fit = float("inf")
         missing_price_streak = 0
 
-        for strike in otm_strikes[:OPTION_SCAN_MAX_STRIKES]:
+        scan_limit = int(max_strikes or OPTION_SCAN_MAX_STRIKES)
+        for strike in otm_strikes[:scan_limit]:
             diagnostics["examined"] += 1
             opt = self.get_option_data(
                 ticker, strike, expiry, "C", timeout=4,
@@ -3194,6 +3196,7 @@ class AutoTradeEngine:
                         trading_class=trading_class,
                         delta_min=IC_CALL_DELTA_MIN,
                         delta_max=IC_CALL_DELTA_MAX,
+                        max_strikes=IC_CALL_SCAN_MAX_STRIKES,
                     )
                     if call_strike and call_opt:
                         target_long_call = call_strike + width

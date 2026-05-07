@@ -50,3 +50,4 @@
 {"generated":"2026-05-07T17:43:46+02:00","id":"SLV-WHEEL-65.0--20260612","ticker":"SLV","strategy":"WHEEL","strike":65.0,"long_strike":null,"expiry":"20260612","score":75,"copyable":true,"real_qty":2}
 {"generated":"2026-05-07T17:43:46+02:00","id":"IWM-BPS-272.0-267.0-20260612","ticker":"IWM","strategy":"BPS","strike":272.0,"long_strike":267.0,"expiry":"20260612","score":69,"copyable":true,"real_qty":5}
 {"generated":"2026-05-07T17:43:46+02:00","id":"EEM-WHEEL-63.0--20260612","ticker":"EEM","strategy":"WHEEL","strike":63.0,"long_strike":null,"expiry":"20260612","score":58,"copyable":false,"real_qty":1}
+{"generated":"2026-05-07T17:54:16+02:00","id":"IWM-BPS-271.0-266.0-20260612","ticker":"IWM","strategy":"BPS","strike":271.0,"long_strike":266.0,"expiry":"20260612","score":88,"copyable":true,"real_qty":5}
