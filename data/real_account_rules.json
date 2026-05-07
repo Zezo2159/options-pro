@@ -1,7 +1,10 @@
 {
   "allowed_strategies": [
     "BPS",
-    "CSP"
+    "CSP",
+    "WHEEL",
+    "IC",
+    "CC"
   ],
   "allowed_tickers": [
     "SPY",
@@ -9,22 +12,34 @@
     "IWM",
     "GLD",
     "SMH",
-    "XLE",
+    "DIA",
+    "XLK",
     "TLT",
+    "XLF",
+    "XLE",
+    "XLV",
+    "XLI",
+    "XLP",
+    "SLV",
     "GDX",
-    "XSP",
-    "QQQM"
+    "EEM"
   ],
+  "bps_max_loss_pct": 1.0,
   "capital": 250000,
   "enabled": true,
   "manual_submit_required": true,
-  "max_open_positions": 3,
+  "cc_requires_confirmed_shares": true,
+  "csp_max_collateral_pct": 5.0,
+  "ic_manual_review_required": true,
+  "max_open_positions": 5,
   "max_risk_per_trade_dollars": 0,
   "max_risk_per_trade_pct": 5.0,
   "max_total_risk_pct": 10.0,
   "notes": [
     "Real-account deployable capital is set to $250,000.",
     "Copy-to-real is manual only. Verify live bid/ask, margin impact, and account risk in TWS.",
-    "Do not copy stale signals, event-risk setups, or trades that violate your separate real-account rules."
+    "Do not copy stale signals, event-risk setups, or trades that violate your separate real-account rules.",
+    "Covered calls require matching real-account shares in TWS/manual tracker before order entry.",
+    "Iron condors are manual review only until four-leg execution and close lifecycle automation are validated."
   ]
 }

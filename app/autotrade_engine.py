@@ -96,9 +96,21 @@ EMAIL_PASS = _load_email_pass()
 # ═══════════════════════════════════════════════
 # TRADING RULES
 # ═══════════════════════════════════════════════
-MAX_POSITIONS = 5
-MAX_RISK_PCT = 0.05  # 5% per trade
-MAX_RISK = ACCOUNT_SIZE * MAX_RISK_PCT  # $12,500
+# Paper-account portfolio budget. The engine should put paper capital to work,
+# but still leave a reserve for assignments, quotes widening, and manual fixes.
+MAX_POSITIONS = 10
+PAPER_TARGET_CASH_UTILIZATION_PCT = 0.90
+MAX_PAPER_PORTFOLIO_RISK = ACCOUNT_SIZE * PAPER_TARGET_CASH_UTILIZATION_PCT
+
+# Split paper sizing by strategy. CSP / wheel exposure is assignment collateral;
+# BPS / IC exposure is max defined loss. This fixes the old single 5% rule that
+# treated naked puts and defined-risk spreads as if they were the same product.
+PAPER_CSP_COLLATERAL_PCT = 0.08
+PAPER_HIGH_QUALITY_CSP_COLLATERAL_PCT = 0.12
+PAPER_BPS_MAX_LOSS_PCT = 0.02
+PAPER_IC_MAX_LOSS_PCT = 0.015
+MAX_RISK_PCT = PAPER_HIGH_QUALITY_CSP_COLLATERAL_PCT
+MAX_RISK = ACCOUNT_SIZE * MAX_RISK_PCT
 
 # Per-ticker limits (introduced to allow laddered positions on the same
 # underlying without doubling-down at nearly identical expiries).
@@ -109,26 +121,42 @@ MAX_PER_TICKER = 2
 MIN_LADDER_DTE_GAP = 14
 
 # Watchlist & Tiers
-TIER1 = ["SPY", "QQQ", "SMH", "GDX"]       # Spreads ONLY
-TIER2 = ["IWM", "GLD", "XLE", "TLT"]       # Naked CSP OK
-TIER3 = ["XSP", "QQQM"]                     # CSP mini
+TIER1 = ["SPY", "QQQ", "IWM", "GLD", "SMH", "DIA", "XLK"]  # Defined-risk spreads first
+TIER2 = ["TLT", "XLF", "XLE", "XLV", "XLI", "XLP", "SLV", "GDX", "EEM"]  # Wheel/CSP candidates
+TIER3 = []  # Kept for compatibility; intentionally empty until data quality improves.
 WATCHLIST = TIER1 + TIER2 + TIER3
 SCAN_DISABLED_TICKERS = {
     # XSP repeatedly returns weak/no usable options in the configured DTE/delta
     # window via IBKR paper data. Keep it out of the slow option-chain path until
     # the strategy/data source explicitly supports it.
     "XSP": "Known poor/illiquid option chain in the configured 21-45 DTE window.",
+    "QQQM": "Removed from the active scanner: weaker options liquidity than QQQ and CSP sizing is inefficient.",
 }
+
+HIGH_QUALITY_ETFS = {
+    "SPY", "QQQ", "IWM", "GLD", "TLT", "DIA", "XLF", "XLE", "XLV", "XLI", "XLP", "XLK", "SLV"
+}
+WHEEL_TICKERS = {"TLT", "XLF", "XLE", "XLV", "XLI", "XLP", "SLV", "GDX", "EEM"}
+IRON_CONDOR_TICKERS = {"SPY", "QQQ", "IWM", "GLD", "DIA", "TLT"}
+COVERED_CALL_TICKERS = set(WATCHLIST)
+CSP_LIKE_STRATEGIES = {"CSP", "WHEEL"}
+DEFINED_RISK_STRATEGIES = {"BPS", "IC"}
+MANUAL_ONLY_STRATEGIES = {"CC", "IC"}
+MAX_MANUAL_SIGNALS = 3
 
 # Spread widths per ticker (wider = more credit but more capital)
 _TRADING_CLASS = {
     "SPY": "SPY", "QQQ": "QQQ", "IWM": "IWM", "SMH": "SMH",
     "GLD": "GLD", "GDX": "GDX", "XLE": "XLE", "TLT": "TLT",
     "XSP": "XSP", "QQQM": "QQQM", "DIA": "DIA", "EEM": "EEM",
+    "XLF": "XLF", "XLV": "XLV", "XLI": "XLI", "XLP": "XLP",
+    "XLK": "XLK", "SLV": "SLV",
 }
 
 SPREAD_WIDTHS = {
-    "SPY": 10, "QQQ": 10, "SMH": 5, "GDX": 2,
+    "SPY": 10, "QQQ": 10, "IWM": 5, "GLD": 5, "SMH": 5, "DIA": 5, "XLK": 5,
+    "TLT": 3, "GDX": 2, "XLF": 2, "XLE": 2, "XLV": 3, "XLI": 3, "XLP": 2,
+    "SLV": 1, "EEM": 2,
 }
 
 # Delta / DTE targets
@@ -189,6 +217,34 @@ CORRELATIONS = {
     ("XSP", "QQQM"): 0.92,
 }
 
+TICKER_GROUPS = {
+    "SPY": "equity", "QQQ": "growth", "IWM": "equity", "DIA": "equity",
+    "SMH": "growth", "XLK": "growth", "XLF": "sector", "XLE": "sector",
+    "XLV": "sector", "XLI": "sector", "XLP": "defensive", "EEM": "international",
+    "TLT": "rates", "GLD": "metals", "SLV": "metals", "GDX": "miners",
+}
+
+GROUP_CORRELATIONS = {
+    ("equity", "growth"): 0.82,
+    ("equity", "sector"): 0.70,
+    ("equity", "defensive"): 0.55,
+    ("equity", "international"): 0.68,
+    ("growth", "sector"): 0.62,
+    ("growth", "defensive"): 0.45,
+    ("growth", "international"): 0.62,
+    ("sector", "defensive"): 0.50,
+    ("sector", "international"): 0.55,
+    ("rates", "equity"): -0.35,
+    ("rates", "growth"): -0.40,
+    ("rates", "sector"): -0.20,
+    ("rates", "defensive"): -0.10,
+    ("rates", "metals"): 0.35,
+    ("metals", "miners"): 0.85,
+    ("metals", "equity"): -0.15,
+    ("metals", "growth"): -0.20,
+    ("miners", "equity"): -0.05,
+}
+
 # Scoring weights
 SCORE_DELTA_WEIGHT = 20
 SCORE_IV_WEIGHT = 20
@@ -205,6 +261,7 @@ MONITOR_INTERVAL = 900  # 15 minutes
 SCAN_NOW_POLL_SECONDS = 10
 PRE_OPEN_WAKE_WINDOW_SECS = 30 * 60
 PRE_OPEN_POLL_SECONDS = 10
+INTRADAY_SCAN_TIMES_ET = [(9, 35), (10, 30), (14, 30)]
 EARNINGS_SKIP_WITHIN_DTE = True
 AUTO_CLOSE_UNMATCHED_LONGS = False  # Safety first: alert on unexpected longs, do not market-sell by default.
 RECONCILE_ALERT_INTERVAL = 7200  # seconds between journal-vs-IBKR drift email alerts
@@ -288,7 +345,16 @@ def get_correlation(a, b):
     if a == b:
         return 1.0
     key = (a, b) if (a, b) in CORRELATIONS else (b, a)
-    return CORRELATIONS.get(key, 0.0)
+    if key in CORRELATIONS:
+        return CORRELATIONS[key]
+    ga = TICKER_GROUPS.get(str(a).upper())
+    gb = TICKER_GROUPS.get(str(b).upper())
+    if ga and gb:
+        if ga == gb:
+            return 0.75
+        gkey = (ga, gb) if (ga, gb) in GROUP_CORRELATIONS else (gb, ga)
+        return GROUP_CORRELATIONS.get(gkey, 0.35)
+    return 0.35
 
 
 def get_tier(ticker):
@@ -305,7 +371,45 @@ def get_strategy(ticker):
     tier = get_tier(ticker)
     if tier == 1:
         return "BPS"  # Bull Put Spread
+    if ticker in WHEEL_TICKERS:
+        return "WHEEL"  # Wheel starts with a cash-secured put; CC stage requires shares.
     return "CSP"       # Cash Secured Put
+
+
+def paper_risk_budget(ticker, strategy):
+    strategy = str(strategy or "CSP").upper()
+    ticker = str(ticker or "").upper()
+    if strategy in CSP_LIKE_STRATEGIES:
+        pct = PAPER_HIGH_QUALITY_CSP_COLLATERAL_PCT if ticker in HIGH_QUALITY_ETFS else PAPER_CSP_COLLATERAL_PCT
+    elif strategy == "IC":
+        pct = PAPER_IC_MAX_LOSS_PCT
+    else:
+        pct = PAPER_BPS_MAX_LOSS_PCT
+    return ACCOUNT_SIZE * pct
+
+
+def estimate_opportunity_risk(opp):
+    """Paper risk estimate used for portfolio-capacity gating and signal display."""
+    try:
+        qty = int(opp.get("qty") or 0)
+        strategy = str(opp.get("strategy") or "CSP").upper()
+        if qty <= 0:
+            return 0
+        if strategy == "BPS" and opp.get("long_strike"):
+            width = abs(float(opp["strike"]) - float(opp["long_strike"]))
+            credit = float(opp.get("net_credit", 0) or 0)
+            return max(0, (width - credit) * 100 * qty)
+        if strategy == "IC" and opp.get("long_strike") and opp.get("call_strike") and opp.get("long_call_strike"):
+            put_width = abs(float(opp["strike"]) - float(opp["long_strike"]))
+            call_width = abs(float(opp["long_call_strike"]) - float(opp["call_strike"]))
+            width = max(put_width, call_width)
+            credit = float(opp.get("net_credit", 0) or 0)
+            return max(0, (width - credit) * 100 * qty)
+        if strategy == "CC":
+            return 0
+        return float(opp.get("strike", 0) or 0) * 100 * qty
+    except Exception:
+        return 0
 
 
 def kill_switch_active():
@@ -340,7 +444,7 @@ def _load_real_rules():
         "bps_max_loss_pct": 1.0,
         "bps_max_loss_dollars": 0,
         "allowed_tickers": WATCHLIST,
-        "allowed_strategies": ["BPS", "CSP"],
+        "allowed_strategies": ["BPS", "CSP", "WHEEL", "IC", "CC"],
     }
     try:
         if REAL_RULES_FILE.exists():
@@ -375,14 +479,19 @@ def _real_copyability(signal):
     total_risk = float(signal.get("estimated_risk") or 0)
     unit_risk = total_risk / paper_qty if total_risk > 0 else 0
     capital = float(rules.get("capital") or 0)
-    if strategy == "CSP":
+    if strategy in CSP_LIKE_STRATEGIES:
         pct = float(rules.get("csp_max_collateral_pct") or rules.get("max_risk_per_trade_pct") or 0)
         hard_cap = float(rules.get("csp_max_collateral_dollars") or rules.get("max_risk_per_trade_dollars") or 0)
-        cap_label = "CSP collateral"
+        cap_label = "CSP / wheel collateral"
+    elif strategy == "CC":
+        pct = 0
+        hard_cap = 0
+        cap_label = "covered shares"
+        reasons.append("covered_call_manual_share_check")
     else:
         pct = float(rules.get("bps_max_loss_pct") or rules.get("max_risk_per_trade_pct") or 0)
         hard_cap = float(rules.get("bps_max_loss_dollars") or rules.get("max_risk_per_trade_dollars") or 0)
-        cap_label = "BPS max-loss"
+        cap_label = "defined-risk max-loss"
     pct_cap = capital * (pct / 100)
     max_risk = min(hard_cap, pct_cap) if hard_cap > 0 else pct_cap
     real_qty = int(max_risk // unit_risk) if unit_risk > 0 and max_risk > 0 else 0
@@ -396,6 +505,7 @@ def _real_copyability(signal):
         "strategy_not_allowed": "Strategy is not allowed by real-account rules.",
         "real_qty_zero": "Real-account risk rules allow 0 contracts for this setup.",
         "score_below_real_min": f"Score {score:g} is below the {MIN_REAL_COPY_SCORE} minimum for real-account copying.",
+        "covered_call_manual_share_check": "Covered-call signals require confirming matching real-account shares before copying.",
     }
 
     return {
@@ -626,17 +736,14 @@ def write_trade_signals(opportunities, mode="paper_auto", scan_summary=None):
     """Write vetted scan results for manual review/copying to a real account."""
     signals = []
     for opp in opportunities:
-        risk = 0
-        if opp.get("strategy") == "BPS" and opp.get("long_strike"):
-            width = float(opp["strike"]) - float(opp["long_strike"])
-            risk = max(0, (width - float(opp.get("net_credit", 0))) * 100 * int(opp.get("qty", 0)))
-        else:
-            risk = float(opp.get("strike", 0)) * 100 * int(opp.get("qty", 0))
+        risk = estimate_opportunity_risk(opp)
         signal = {
             "ticker": opp.get("ticker"),
             "strategy": opp.get("strategy"),
             "strike": opp.get("strike"),
             "long_strike": opp.get("long_strike"),
+            "call_strike": opp.get("call_strike"),
+            "long_call_strike": opp.get("long_call_strike"),
             "expiry": opp.get("expiry"),
             "qty": opp.get("qty"),
             "credit": round(float(opp.get("net_credit", opp.get("premium", 0))), 2),
@@ -646,22 +753,35 @@ def write_trade_signals(opportunities, mode="paper_auto", scan_summary=None):
             "score": opp.get("score"),
             "estimated_risk": round(risk, 2),
             "buffer_pct": round(float(opp.get("buffer", 0)), 1),
+            "stock_price": round(float(opp.get("stock_price", 0) or 0), 2),
+            "score_details": opp.get("score_details") or {},
+            "strategy_stage": opp.get("strategy_stage"),
+            "manual_only_reason": opp.get("manual_only_reason"),
             "warnings": [
                 "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
                 "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
             ],
         }
+        if opp.get("shares_covered") is not None:
+            signal["shares_covered"] = opp.get("shares_covered")
+            signal["shares_required"] = int(opp.get("qty", 0) or 0) * 100
         try:
             score = float(signal.get("score") or 0)
         except Exception:
             score = 0
         signal["min_paper_auto_score"] = MIN_PAPER_AUTO_SCORE
         signal["min_real_copy_score"] = MIN_REAL_COPY_SCORE
-        signal["paper_auto_eligible"] = score >= MIN_PAPER_AUTO_SCORE
+        signal["paper_auto_eligible"] = score >= MIN_PAPER_AUTO_SCORE and not opp.get("signal_only_strategy")
         if not signal["paper_auto_eligible"]:
-            signal["warnings"].append(
-                f"Score {score:g} is below the {MIN_PAPER_AUTO_SCORE} minimum for paper auto-open; manual review only."
-            )
+            if opp.get("signal_only_strategy"):
+                signal["warnings"].append(
+                    opp.get("manual_only_reason")
+                    or f"{signal['strategy']} signals are manual-review only until automated execution and close management are enabled."
+                )
+            else:
+                signal["warnings"].append(
+                    f"Score {score:g} is below the {MIN_PAPER_AUTO_SCORE} minimum for paper auto-open; manual review only."
+                )
         signal["id"] = _signal_id(signal)
         copy_state = _real_copyability(signal)
         signal.update(copy_state)
@@ -744,6 +864,7 @@ class TWSApp(EWrapper, EClient):
         EClient.__init__(self, self)
         self.next_order_id = None
         self.positions = {}
+        self.stock_positions = {}
         self.market_data = {}
         self.option_chains = {}
         self.contract_details = {}
@@ -836,7 +957,17 @@ class TWSApp(EWrapper, EClient):
 
     # ── Account & Positions ──
     def position(self, account, contract, pos, avgCost):
-        if pos != 0 and contract.secType == "OPT":
+        if pos != 0 and contract.secType == "STK":
+            self.stock_positions[contract.symbol] = {
+                "account": account,
+                "symbol": contract.symbol,
+                "secType": contract.secType,
+                "position": pos,
+                "avgCost": avgCost,
+                "exchange": contract.exchange,
+                "conId": contract.conId,
+            }
+        elif pos != 0 and contract.secType == "OPT":
             # IBKR reports option avgCost as total per contract, not per share
             cost_per_share = avgCost / 100
             key = f"{contract.symbol}-{contract.strike}"
@@ -854,9 +985,11 @@ class TWSApp(EWrapper, EClient):
             }
 
     def positionEnd(self):
-        log(f"  📊 {len(self.positions)} option position(s) loaded from IBKR")
+        log(f"  📊 {len(self.positions)} option position(s), {len(self.stock_positions)} stock/ETF position(s) loaded from IBKR")
         for k, v in self.positions.items():
             log(f"     IBKR: {k} = {v['symbol']} ${v['strike']} {v['right']} x{v['position']} avg=${v['avgCost']:.2f}")
+        for k, v in self.stock_positions.items():
+            log(f"     IBKR: {k} shares x{v['position']} avg=${v['avgCost']:.2f}")
 
     def accountSummary(self, reqId, account, tag, value, currency):
         self._account_values[tag] = value
@@ -1630,7 +1763,9 @@ class AutoTradeEngine:
     PRIMARY_EXCHANGES = {
         "SPY": "ARCA", "QQQ": "NASDAQ", "SMH": "NASDAQ", "GDX": "ARCA",
         "IWM": "ARCA", "GLD": "ARCA", "XLE": "ARCA", "TLT": "NASDAQ",
-        "XSP": "CBOE", "QQQM": "NASDAQ",
+        "XSP": "CBOE", "QQQM": "NASDAQ", "DIA": "ARCA", "EEM": "ARCA",
+        "XLF": "ARCA", "XLV": "ARCA", "XLI": "ARCA", "XLP": "ARCA",
+        "XLK": "ARCA", "SLV": "ARCA",
     }
 
     # Tickers that are INDICES (not stocks/ETFs).
@@ -1775,54 +1910,87 @@ class AutoTradeEngine:
         }
 
     # ── Scoring ──
-    def score_opportunity(self, ticker, strike, stock_price, opt_data, dte, open_tickers):
+    def score_opportunity(self, ticker, strike, stock_price, opt_data, dte, open_tickers, right="P"):
         """Score an opportunity 0-100."""
+        score, _details = self.score_opportunity_details(ticker, strike, stock_price, opt_data, dte, open_tickers, right=right)
+        return score
+
+    def score_opportunity_details(self, ticker, strike, stock_price, opt_data, dte, open_tickers, right="P"):
+        """Score an opportunity and expose gate components for the dashboard."""
         score = 0
+        details = {}
         delta = abs(opt_data.get("delta", 0))
         iv = opt_data.get("iv", 0)
         premium = opt_data.get("price", 0)
-        buffer = (stock_price - strike) / stock_price * 100 if stock_price > 0 else 0
+        if str(right).upper() == "C":
+            buffer = (strike - stock_price) / stock_price * 100 if stock_price > 0 else 0
+        else:
+            buffer = (stock_price - strike) / stock_price * 100 if stock_price > 0 else 0
 
         # Delta score (sweet spot 0.15–0.25, ideal ~0.20)
+        delta_points = 0
         if DELTA_MIN <= delta <= DELTA_MAX:
             # Closer to 0.20 is better
             delta_score = SCORE_DELTA_WEIGHT * (1 - abs(delta - 0.20) / 0.05)
-            score += max(0, delta_score)
+            delta_points = max(0, delta_score)
+            score += delta_points
+        details["delta"] = round(delta_points, 1)
 
         # IV score (higher IV = more premium = better)
+        iv_points = 0
         if iv > 0:
             iv_pct = iv * 100
             if iv_pct >= 30:
-                score += SCORE_IV_WEIGHT
+                iv_points = SCORE_IV_WEIGHT
             elif iv_pct >= 20:
-                score += SCORE_IV_WEIGHT * 0.7
+                iv_points = SCORE_IV_WEIGHT * 0.7
             elif iv_pct >= 15:
-                score += SCORE_IV_WEIGHT * 0.4
+                iv_points = SCORE_IV_WEIGHT * 0.4
+            score += iv_points
+        details["iv"] = round(iv_points, 1)
 
         # Buffer score (distance from stock to strike)
+        buffer_points = 0
         if buffer >= 10:
-            score += SCORE_BUFFER_WEIGHT
+            buffer_points = SCORE_BUFFER_WEIGHT
         elif buffer >= 7:
-            score += SCORE_BUFFER_WEIGHT * 0.8
+            buffer_points = SCORE_BUFFER_WEIGHT * 0.8
         elif buffer >= 5:
-            score += SCORE_BUFFER_WEIGHT * 0.6
+            buffer_points = SCORE_BUFFER_WEIGHT * 0.6
         elif buffer >= 3:
-            score += SCORE_BUFFER_WEIGHT * 0.3
+            buffer_points = SCORE_BUFFER_WEIGHT * 0.3
+        score += buffer_points
+        details["buffer"] = round(buffer_points, 1)
 
         # DTE score (closer to target DTE is better)
+        dte_points = 0
         if DTE_MIN <= dte <= DTE_MAX:
             dte_score = SCORE_DTE_WEIGHT * (1 - abs(dte - DTE_TARGET) / (DTE_MAX - DTE_MIN))
-            score += max(0, dte_score)
+            dte_points = max(0, dte_score)
+            score += dte_points
+        details["dte"] = round(dte_points, 1)
 
         # Correlation penalty/bonus
+        corr_points = 0
+        corr_items = []
         for open_ticker in open_tickers:
             corr = abs(get_correlation(ticker, open_ticker))
             if corr > 0.80:
                 score += SCORE_CORR_PENALTY
+                corr_points += SCORE_CORR_PENALTY
             elif corr < 0.30:
                 score += SCORE_CORR_BONUS
+                corr_points += SCORE_CORR_BONUS
+            corr_items.append({"ticker": open_ticker, "corr": round(corr, 2)})
+        details["correlation"] = round(corr_points, 1)
+        details["open_correlations"] = corr_items
+        details["raw"] = round(score, 1)
+        details["buffer_pct"] = round(buffer, 1)
+        details["premium"] = round(float(premium or 0), 2)
 
-        return max(0, min(100, round(score)))
+        final = max(0, min(100, round(score)))
+        details["final"] = final
+        return final, details
 
     def quote_is_acceptable(self, ticker, opt_data, context=""):
         """Reject missing or excessively wide option quotes before signaling/trading."""
@@ -1843,12 +2011,13 @@ class AutoTradeEngine:
         return True, ""
 
     # ── Position Sizing ──
-    def calc_position_size(self, ticker, strike, premium, stock_price):
+    def calc_position_size(self, ticker, strike, premium, stock_price, strategy=None):
         """Calculate number of contracts based on tier, risk rules, and regime."""
+        strategy = strategy or get_strategy(ticker)
         # Regime-adjusted max risk
         regime = getattr(self, '_current_regime', None) or REGIMES["normal"]
         risk_mult = regime.get("risk_mult", 1.0)
-        adjusted_max_risk = MAX_RISK * risk_mult
+        adjusted_max_risk = paper_risk_budget(ticker, strategy) * risk_mult
 
         # CSP risk for sizing is assignment exposure, not loss-to-zero after
         # credit. If one contract exceeds the budget, return 0 and skip.
@@ -1994,6 +2163,87 @@ class AutoTradeEngine:
             diagnostics["reason"] = "No suitable strike found."
         return None, None, diagnostics
 
+    def find_target_call_strike(self, ticker, stock_price, strikes, expiry, option_exchange=None, trading_class=None, delta_min=None, delta_max=None):
+        """Find an OTM call strike for covered calls / iron-condor call sides."""
+        regime = getattr(self, '_current_regime', None) or REGIMES["normal"]
+        d_min = delta_min if delta_min is not None else regime.get("delta_min", DELTA_MIN)
+        d_max = delta_max if delta_max is not None else regime.get("delta_max", DELTA_MAX)
+        d_target = (d_min + d_max) / 2
+
+        otm_strikes = [s for s in strikes if s > stock_price * 1.02 and s < stock_price * 1.20]
+        diagnostics = {
+            "examined": 0,
+            "missing_price": 0,
+            "contract_error": 0,
+            "quote_error": 0,
+            "missing_delta": 0,
+            "quote_rejected": 0,
+            "delta_out_of_range": 0,
+            "selected": None,
+            "reason": "",
+        }
+        if not otm_strikes:
+            diagnostics["reason"] = "No OTM call strikes available in scan window."
+            return None, None, diagnostics
+
+        otm_strikes.sort()
+        best_strike = None
+        best_data = None
+        best_delta_fit = float("inf")
+        missing_price_streak = 0
+
+        for strike in otm_strikes[:OPTION_SCAN_MAX_STRIKES]:
+            diagnostics["examined"] += 1
+            opt = self.get_option_data(
+                ticker, strike, expiry, "C", timeout=4,
+                exchange=option_exchange, trading_class=trading_class,
+            )
+            delta = abs(opt.get("delta", 0))
+            price = opt.get("optPrice", 0) or opt.get("price", 0)
+            if price <= 0:
+                diagnostics["missing_price"] += 1
+                if opt.get("contract_resolved") is False:
+                    diagnostics["contract_error"] += 1
+                    diagnostics["last_error"] = opt.get("contract_error") or "No matching option contract"
+                elif opt.get("quote_error"):
+                    diagnostics["quote_error"] += 1
+                    diagnostics["last_error"] = opt.get("quote_error")
+                missing_price_streak += 1
+                if missing_price_streak >= OPTION_SCAN_MAX_MISSING_STREAK:
+                    diagnostics["reason"] = "Call side quote scan aborted after repeated missing prices."
+                    break
+                continue
+            missing_price_streak = 0
+            if delta <= 0:
+                diagnostics["missing_delta"] += 1
+                continue
+            ok, reason = self.quote_is_acceptable(ticker, {**opt, "price": price}, f"${strike}C")
+            if not ok:
+                diagnostics["quote_rejected"] += 1
+                continue
+            if d_min <= delta <= d_max:
+                fit = abs(delta - d_target)
+                if fit < best_delta_fit:
+                    best_delta_fit = fit
+                    best_strike = strike
+                    best_data = {**opt, "price": price}
+            else:
+                diagnostics["delta_out_of_range"] += 1
+
+        if best_strike:
+            diagnostics["selected"] = best_strike
+            diagnostics["reason"] = f"Selected call strike {best_strike} within target delta range."
+            return best_strike, best_data, diagnostics
+        if diagnostics.get("reason"):
+            return None, None, diagnostics
+        if diagnostics["quote_rejected"]:
+            diagnostics["reason"] = "Call quotes were available but failed width/quality checks."
+        elif diagnostics["delta_out_of_range"]:
+            diagnostics["reason"] = "Call quotes were available but no strike landed in the target delta band."
+        else:
+            diagnostics["reason"] = "No suitable call strike found."
+        return None, None, diagnostics
+
     # ── Place Order ──
     def place_bull_put_spread(self, ticker, short_strike, long_strike, expiry, qty, net_credit):
         """Place a bull put spread as a combo order.
@@ -2095,6 +2345,40 @@ class AutoTradeEngine:
             log(f"  ❌ Order placement failed: {e}")
             return None
 
+    def estimate_existing_paper_risk(self, ibkr_pos):
+        """Estimate open paper collateral/max-loss from IBKR positions."""
+        total = 0.0
+        for pos in ibkr_pos.values():
+            if pos.get("position", 0) >= 0:
+                continue
+            ticker = pos.get("symbol", "")
+            expiry = str(pos.get("expiry", ""))
+            right = pos.get("right", "P")
+            qty = int(abs(pos.get("position", 0) or 0))
+            strike = float(pos.get("strike", 0) or 0)
+            if qty <= 0 or strike <= 0:
+                continue
+            if right == "C":
+                # A short call should be covered by shares; count no extra cash
+                # here and let covered-call management handle share exposure.
+                continue
+            protective = None
+            for other in ibkr_pos.values():
+                if other.get("position", 0) <= 0:
+                    continue
+                if other.get("symbol") != ticker or str(other.get("expiry", "")) != expiry:
+                    continue
+                if other.get("right") != "P" or int(abs(other.get("position", 0) or 0)) != qty:
+                    continue
+                other_strike = float(other.get("strike", 0) or 0)
+                if other_strike < strike:
+                    protective = other_strike if protective is None else max(protective, other_strike)
+            if protective:
+                total += max(0, (strike - protective) * 100 * qty)
+            else:
+                total += strike * 100 * qty
+        return total
+
     # ═══════════════════════════════════════════════
     # SCANNER — Find & Score Opportunities
     # ═══════════════════════════════════════════════
@@ -2129,7 +2413,9 @@ class AutoTradeEngine:
         vix = self.get_vix()
         regime = self.detect_regime(vix)
         self._current_regime = regime  # Store for use by find_target_strike and sizing
-        log(f"  📊 VIX: {vix:.2f} — Regime: {regime['label']} "
+        vix_value = round(vix, 2) if isinstance(vix, (int, float)) and vix > 0 else None
+        vix_label = f"{vix_value:.2f}" if vix_value is not None else "n/a"
+        log(f"  📊 VIX: {vix_label} — Regime: {regime['label']} "
             f"(Δ {regime['delta_min']}-{regime['delta_max']}, risk × {regime['risk_mult']})")
 
         # Use IBKR positions as the gating source of truth. The journal is useful
@@ -2137,6 +2423,7 @@ class AutoTradeEngine:
         ibkr_shorts = [p for p in (self.app.positions or {}).values() if p.get("position", 0) < 0]
         open_tickers = [p["symbol"] for p in ibkr_shorts]
         num_open = len(ibkr_shorts)
+        paper_risk_used = self.estimate_existing_paper_risk(self.app.positions or {})
 
         # Per-ticker open count + existing DTEs, for MAX_PER_TICKER /
         # MIN_LADDER_DTE_GAP gating below. Expiry comes from IBKR contract
@@ -2153,6 +2440,7 @@ class AutoTradeEngine:
             existing_per_ticker.setdefault(_sym, []).append(_ex_dte)
 
         log(f"  Open positions: {num_open}/{MAX_POSITIONS}")
+        log(f"  Paper capital in use: ${paper_risk_used:,.0f}/${MAX_PAPER_PORTFOLIO_RISK:,.0f} target")
         if num_open >= MAX_POSITIONS:
             log("  ⚠ Maximum positions reached — no new trades")
             write_trade_signals(
@@ -2161,9 +2449,11 @@ class AutoTradeEngine:
                 scan_summary={
                     "generated": now_iso(),
                     "market_status": self.market_status(),
-                    "vix": round(vix, 2),
+                    "vix": vix_value,
                     "regime": regime.get("label", "Unknown"),
                     "open_positions": num_open,
+                    "paper_risk_used": round(paper_risk_used, 2),
+                    "paper_risk_cap": round(MAX_PAPER_PORTFOLIO_RISK, 2),
                     "slots": 0,
                     "global_status": "blocked",
                     "global_reason": f"Maximum paper positions reached ({num_open}/{MAX_POSITIONS}).",
@@ -2186,9 +2476,11 @@ class AutoTradeEngine:
         scan_summary = {
             "generated": now_iso(),
             "market_status": self.market_status(),
-            "vix": round(vix, 2),
+            "vix": vix_value,
             "regime": regime.get("label", "Unknown"),
             "open_positions": num_open,
+            "paper_risk_used": round(paper_risk_used, 2),
+            "paper_risk_cap": round(MAX_PAPER_PORTFOLIO_RISK, 2),
             "slots": slots,
             "selected_count": 0,
             "watchlist_count": len(WATCHLIST),
@@ -2259,6 +2551,8 @@ class AutoTradeEngine:
 
             exp_date = datetime.strptime(expiry, "%Y%m%d")
             dte = (exp_date - datetime.now()).days
+            option_exchange = chain.get("exchange")
+            trading_class = chain.get("tradingClass")
 
             earnings_date = earnings_event_for(ticker, expiry)
             if earnings_date and EARNINGS_SKIP_WITHIN_DTE:
@@ -2270,6 +2564,67 @@ class AutoTradeEngine:
                     "expiry": expiry,
                 })
                 continue
+
+            stock_pos = (self.app.stock_positions or {}).get(ticker) or {}
+            covered_shares = int(max(0, stock_pos.get("position", 0) or 0))
+            if covered_shares >= 100 and ticker in COVERED_CALL_TICKERS:
+                cc_strike, cc_data, cc_diag = self.find_target_call_strike(
+                    ticker, stock_price, chain["strikes"], expiry,
+                    option_exchange=option_exchange,
+                    trading_class=trading_class,
+                )
+                if cc_strike and cc_data:
+                    cc_premium = cc_data["price"]
+                    cc_delta = abs(cc_data.get("delta", 0))
+                    cc_iv = cc_data.get("iv", 0)
+                    cc_buffer = (cc_strike - stock_price) / stock_price * 100
+                    cc_score, cc_score_details = self.score_opportunity_details(
+                        ticker, cc_strike, stock_price, cc_data, dte, open_tickers, right="C"
+                    )
+                    cc_qty = covered_shares // 100
+                    cc_opp = {
+                        "ticker": ticker,
+                        "strategy": "CC",
+                        "strategy_stage": "covered_call",
+                        "strike": cc_strike,
+                        "long_strike": None,
+                        "expiry": expiry,
+                        "premium": cc_premium,
+                        "net_credit": cc_premium,
+                        "delta": cc_delta,
+                        "iv": cc_iv,
+                        "buffer": cc_buffer,
+                        "dte": dte,
+                        "score": cc_score,
+                        "score_details": cc_score_details,
+                        "qty": cc_qty,
+                        "stock_price": stock_price,
+                        "shares_covered": covered_shares,
+                        "option_exchange": option_exchange,
+                        "trading_class": trading_class,
+                        "signal_only_strategy": True,
+                        "manual_only_reason": "Covered-call signals require share ownership confirmation and are manual-review only.",
+                        "paper_auto_eligible": False,
+                        "real_score_eligible": cc_score >= MIN_REAL_COPY_SCORE,
+                    }
+                    cc_opp["estimated_risk"] = round(estimate_opportunity_risk(cc_opp), 2)
+                    opportunities.append(cc_opp)
+                    scan_summary["by_ticker"].append({
+                        "ticker": ticker,
+                        "status": "selected",
+                        "reason": f"Covered-call candidate for {covered_shares} paper shares; manual review only.",
+                        "strategy": "CC",
+                        "expiry": expiry,
+                        "strike": cc_strike,
+                        "delta": round(cc_delta, 3),
+                        "iv": round(cc_iv * 100, 1),
+                        "score": cc_score,
+                        "qty": cc_qty,
+                        "paper_auto_eligible": False,
+                        "real_score_eligible": cc_score >= MIN_REAL_COPY_SCORE,
+                    })
+                else:
+                    log(f"  {ticker}: no covered-call strike — {cc_diag.get('reason')}")
 
             # Ladder gap check: if this ticker already has a position, the new
             # candidate must differ in DTE by at least MIN_LADDER_DTE_GAP days.
@@ -2291,8 +2646,6 @@ class AutoTradeEngine:
                     continue
 
             # Find best strike
-            option_exchange = chain.get("exchange")
-            trading_class = chain.get("tradingClass")
             strike, opt_data, strike_diag = self.find_target_strike(
                 ticker, stock_price, chain["strikes"], expiry,
                 option_exchange=option_exchange,
@@ -2314,21 +2667,19 @@ class AutoTradeEngine:
             iv = opt_data.get("iv", 0)
             buffer = (stock_price - strike) / stock_price * 100
 
-            # Score it
-            score = self.score_opportunity(ticker, strike, stock_price, opt_data, dte, open_tickers)
-
             strategy = get_strategy(ticker)
-            qty = self.calc_position_size(ticker, strike, premium, stock_price)
-            if strategy == "CSP" and qty <= 0:
+            score, score_details = self.score_opportunity_details(ticker, strike, stock_price, opt_data, dte, open_tickers)
+            qty = self.calc_position_size(ticker, strike, premium, stock_price, strategy=strategy)
+            if strategy in CSP_LIKE_STRATEGIES and qty <= 0:
                 exposure = strike * 100
                 regime_mult = getattr(self, '_current_regime', REGIMES["normal"]).get("risk_mult", 1.0)
-                risk_budget = MAX_CSP_ASSIGNMENT_RISK * regime_mult
-                log(f"  {ticker}: skipped CSP — assignment exposure ${exposure:,.0f} "
+                risk_budget = paper_risk_budget(ticker, strategy) * regime_mult
+                log(f"  {ticker}: skipped {strategy} — assignment exposure ${exposure:,.0f} "
                     f"exceeds risk budget ${risk_budget:,.0f}")
                 scan_summary["by_ticker"].append({
                     "ticker": ticker,
                     "status": "blocked",
-                    "reason": f"Assignment exposure ${exposure:,.0f} exceeds paper risk budget ${risk_budget:,.0f}.",
+                    "reason": f"Assignment exposure ${exposure:,.0f} exceeds paper {strategy} collateral budget ${risk_budget:,.0f}.",
                     "expiry": expiry,
                     "strike": strike,
                     "delta": round(delta, 3),
@@ -2387,7 +2738,7 @@ class AutoTradeEngine:
                 net_credit = premium - long_premium
                 # Recompute qty based on spread risk with regime adjustment
                 regime = getattr(self, '_current_regime', None) or REGIMES["normal"]
-                adjusted_risk = MAX_RISK * regime.get("risk_mult", 1.0)
+                adjusted_risk = paper_risk_budget(ticker, strategy) * regime.get("risk_mult", 1.0)
                 spread_max_loss = (width - net_credit) * 100
                 if spread_max_loss <= 0:
                     log(f"  {ticker}: skipped spread — invalid max loss from credit ${net_credit:.2f}")
@@ -2434,6 +2785,107 @@ class AutoTradeEngine:
                         "long_strike": long_strike,
                     })
                     continue
+
+                if ticker in IRON_CONDOR_TICKERS:
+                    call_strike, call_opt, call_diag = self.find_target_call_strike(
+                        ticker, stock_price, chain["strikes"], expiry,
+                        option_exchange=option_exchange,
+                        trading_class=trading_class,
+                        delta_min=0.10,
+                        delta_max=0.20,
+                    )
+                    if call_strike and call_opt:
+                        target_long_call = call_strike + width
+                        candidate_long_calls = [
+                            s for s in chain["strikes"]
+                            if s >= target_long_call and s <= call_strike + width * 2
+                        ]
+                        if candidate_long_calls:
+                            long_call_strike = min(candidate_long_calls)
+                            long_call_opt = self.get_option_data(
+                                ticker, long_call_strike, expiry, "C",
+                                exchange=option_exchange, trading_class=trading_class,
+                            )
+                            long_call_premium = long_call_opt.get("price", 0) or long_call_opt.get("optPrice", 0)
+                            call_premium = call_opt.get("price", 0) or call_opt.get("optPrice", 0)
+                            if long_call_premium > 0 and call_premium > long_call_premium:
+                                ok, reason = self.quote_is_acceptable(
+                                    ticker, {**long_call_opt, "price": long_call_premium}, f"long ${long_call_strike}C"
+                                )
+                                if ok:
+                                    call_credit = call_premium - long_call_premium
+                                    ic_credit = net_credit + call_credit
+                                    call_buffer = (call_strike - stock_price) / stock_price * 100
+                                    call_score, call_score_details = self.score_opportunity_details(
+                                        ticker, call_strike, stock_price, call_opt, dte, open_tickers, right="C"
+                                    )
+                                    ic_width = max(width, long_call_strike - call_strike)
+                                    ic_max_loss = max(0, (ic_width - ic_credit) * 100)
+                                    adjusted_ic_risk = paper_risk_budget(ticker, "IC") * regime.get("risk_mult", 1.0)
+                                    ic_qty = int(adjusted_ic_risk / ic_max_loss) if ic_max_loss > 0 else 0
+                                    if stock_price > 500:
+                                        ic_price_cap = 1
+                                    elif stock_price > 100:
+                                        ic_price_cap = 2
+                                    else:
+                                        ic_price_cap = 3
+                                    ic_qty = min(ic_qty, ic_price_cap)
+                                    if ic_qty > 0 and ic_credit >= ic_width * MIN_SPREAD_CREDIT_PCT:
+                                        ic_score = max(0, min(100, round((score + call_score) / 2)))
+                                        ic_opp = {
+                                            "ticker": ticker,
+                                            "strategy": "IC",
+                                            "strategy_stage": "iron_condor",
+                                            "strike": strike,
+                                            "long_strike": long_strike,
+                                            "call_strike": call_strike,
+                                            "long_call_strike": long_call_strike,
+                                            "expiry": expiry,
+                                            "premium": premium,
+                                            "net_credit": ic_credit,
+                                            "delta": delta,
+                                            "iv": max(iv, call_opt.get("iv", 0) or 0),
+                                            "buffer": min(buffer, call_buffer),
+                                            "dte": dte,
+                                            "score": ic_score,
+                                            "score_details": {
+                                                "put_side": score_details,
+                                                "call_side": call_score_details,
+                                                "final": ic_score,
+                                            },
+                                            "qty": ic_qty,
+                                            "stock_price": stock_price,
+                                            "option_exchange": option_exchange,
+                                            "trading_class": trading_class,
+                                            "signal_only_strategy": True,
+                                            "manual_only_reason": "Iron-condor signals are manual-review only until automated 4-leg execution and close management are enabled.",
+                                            "paper_auto_eligible": False,
+                                            "real_score_eligible": ic_score >= MIN_REAL_COPY_SCORE,
+                                        }
+                                        ic_opp["estimated_risk"] = round(estimate_opportunity_risk(ic_opp), 2)
+                                        opportunities.append(ic_opp)
+                                        scan_summary["by_ticker"].append({
+                                            "ticker": ticker,
+                                            "status": "selected",
+                                            "reason": "Iron-condor candidate passed scanner filters; manual review only.",
+                                            "strategy": "IC",
+                                            "expiry": expiry,
+                                            "strike": strike,
+                                            "long_strike": long_strike,
+                                            "call_strike": call_strike,
+                                            "long_call_strike": long_call_strike,
+                                            "delta": round(delta, 3),
+                                            "iv": round(max(iv, call_opt.get("iv", 0) or 0) * 100, 1),
+                                            "score": ic_score,
+                                            "qty": ic_qty,
+                                            "estimated_risk": ic_opp["estimated_risk"],
+                                            "paper_auto_eligible": False,
+                                            "real_score_eligible": ic_score >= MIN_REAL_COPY_SCORE,
+                                        })
+                                else:
+                                    log(f"  {ticker}: skipped IC call wing — {reason}")
+                    elif call_diag.get("reason"):
+                        log(f"  {ticker}: no IC call side — {call_diag.get('reason')}")
             if qty <= 0:
                 continue
 
@@ -2455,7 +2907,7 @@ class AutoTradeEngine:
                     f"{MIN_REAL_COPY_SCORE} real-account copy minimum."
                 )
 
-            opportunities.append({
+            opp = {
                 "ticker": ticker,
                 "strike": strike,
                 "long_strike": long_strike,
@@ -2467,14 +2919,18 @@ class AutoTradeEngine:
                 "buffer": buffer,
                 "dte": dte,
                 "score": score,
+                "score_details": score_details,
                 "strategy": strategy,
                 "qty": qty,
                 "stock_price": stock_price,
                 "option_exchange": option_exchange,
                 "trading_class": trading_class,
+                "strategy_stage": "cash_secured_put" if strategy == "WHEEL" else None,
                 "paper_auto_eligible": paper_auto_eligible,
                 "real_score_eligible": real_score_eligible,
-            })
+            }
+            opp["estimated_risk"] = round(estimate_opportunity_risk(opp), 2)
+            opportunities.append(opp)
             scan_summary["by_ticker"].append({
                 "ticker": ticker,
                 "status": "selected",
@@ -2486,21 +2942,53 @@ class AutoTradeEngine:
                 "iv": round(iv * 100, 1),
                 "score": score,
                 "qty": qty,
+                "estimated_risk": opp["estimated_risk"],
                 "paper_auto_eligible": paper_auto_eligible,
                 "real_score_eligible": real_score_eligible,
             })
 
         # Sort by score descending after scanning the full watchlist.
         opportunities.sort(key=lambda x: x["score"], reverse=True)
-        selected = opportunities[:slots]
-        selected_tickers = {opp["ticker"] for opp in selected}
+        selected = []
+        selected_paper = []
+        manual_selected = []
+        planned_risk = paper_risk_used
+        for opp in opportunities:
+            if opp.get("signal_only_strategy"):
+                if len(manual_selected) < MAX_MANUAL_SIGNALS:
+                    manual_selected.append(opp)
+                continue
+            opp_risk = float(opp.get("estimated_risk") or estimate_opportunity_risk(opp) or 0)
+            if len(selected_paper) >= slots:
+                continue
+            if planned_risk + opp_risk > MAX_PAPER_PORTFOLIO_RISK:
+                opp["portfolio_blocked"] = True
+                opp["portfolio_block_reason"] = (
+                    f"Paper portfolio target would exceed ${MAX_PAPER_PORTFOLIO_RISK:,.0f} "
+                    f"after adding estimated risk ${opp_risk:,.0f}."
+                )
+                continue
+            selected_paper.append(opp)
+            planned_risk += opp_risk
+        selected = selected_paper + manual_selected
+        selected_ids = {_signal_id(opp) for opp in selected}
         for row in scan_summary["by_ticker"]:
-            if row.get("status") == "selected" and row.get("ticker") not in selected_tickers:
+            row_id = _signal_id({
+                "ticker": row.get("ticker", ""),
+                "strategy": row.get("strategy") or get_strategy(row.get("ticker", "")),
+                "strike": row.get("strike", ""),
+                "long_strike": row.get("long_strike") or "",
+                "expiry": row.get("expiry", ""),
+            })
+            if row.get("status") == "selected" and row_id not in selected_ids:
                 row["status"] = "candidate"
-                row["reason"] = "Candidate passed filters but was not selected because higher-ranked candidates used the available slots."
+                row["reason"] = "Candidate passed filters but was not selected because higher-ranked candidates used available slots or paper portfolio capacity."
         scan_summary["selected_count"] = len(selected)
+        scan_summary["paper_selected_count"] = len(selected_paper)
+        scan_summary["manual_selected_count"] = len(manual_selected)
         scan_summary["candidate_count"] = len(opportunities)
         scan_summary["blocked_count"] = sum(1 for row in scan_summary["by_ticker"] if row.get("status") not in {"selected", "candidate"})
+        scan_summary["paper_risk_planned"] = round(planned_risk, 2)
         write_trade_signals(
             selected,
             mode="signal_only" if signal_only_active() else "paper_auto",
@@ -2515,7 +3003,13 @@ class AutoTradeEngine:
         for row in scan_summary["by_ticker"]:
             log(f"    {row.get('ticker')}: {row.get('status')} — {row.get('reason')}")
         for opp in selected:
-            log(f"    #{opp['score']}: {opp['ticker']} ${opp['strike']}P @ ${opp['premium']:.2f} "
+            if opp.get("strategy") == "IC":
+                desc = f"${opp.get('long_strike')}/{opp.get('strike')}P ${opp.get('call_strike')}/{opp.get('long_call_strike')}C"
+            elif opp.get("strategy") == "CC":
+                desc = f"${opp.get('strike')}C"
+            else:
+                desc = f"${opp.get('strike')}P"
+            log(f"    #{opp['score']}: {opp['ticker']} {desc} @ ${opp['net_credit']:.2f} "
                 f"({opp['strategy']}) DTE={opp['dte']}")
 
         return selected
@@ -2555,6 +3049,9 @@ class AutoTradeEngine:
                 continue
             if signal_only_active():
                 log(f"  📡 SIGNAL ONLY: {ticker} ${strike}P x{qty} — no paper order submitted")
+                continue
+            if strategy in MANUAL_ONLY_STRATEGIES or opp.get("signal_only_strategy"):
+                log(f"  📡 MANUAL STRATEGY: {strategy} {ticker} — signal written, no paper order submitted")
                 continue
             if strategy == "BPS" and long_strike is None:
                 log(f"  {ticker}: skipped execution — BPS signal has no protective long leg")
@@ -3464,6 +3961,15 @@ class AutoTradeEngine:
                 "vix":              round(vix, 2) if vix else None,
                 "regime":           regime.get("label", "Unknown"),
                 "positions":        positions,
+                "stock_positions":  [
+                    {
+                        "ticker": k,
+                        "qty": int(v.get("position", 0) or 0),
+                        "avg_cost": round(float(v.get("avgCost", 0) or 0), 2),
+                    }
+                    for k, v in (self.app.stock_positions or {}).items()
+                    if int(v.get("position", 0) or 0) != 0
+                ],
                 "positions_count":  positions_count,
                 "max_positions":    MAX_POSITIONS,
                 "total_pnl":        round(total_pnl, 2),
@@ -3599,7 +4105,51 @@ class AutoTradeEngine:
                 return max(0, int((open_dt - now_et).total_seconds()))
         return None
 
+    def _scan_slot_key(self, d, hour, minute):
+        return f"{d.isoformat()}-{hour:02d}{minute:02d}"
+
+    def seed_completed_scan_slots(self):
+        """Avoid duplicate intraday scans after an engine restart."""
+        completed = set()
+        last_scan_dt = self.last_signal_generated_et()
+        now_et = datetime.now(ZoneInfo("America/New_York"))
+        if not last_scan_dt or last_scan_dt.date() != now_et.date():
+            return completed
+        for hour, minute in INTRADAY_SCAN_TIMES_ET:
+            slot_dt = datetime(now_et.year, now_et.month, now_et.day, hour, minute, tzinfo=now_et.tzinfo)
+            if slot_dt <= last_scan_dt:
+                completed.add(self._scan_slot_key(now_et.date(), hour, minute))
+        return completed
+
+    def due_scan_slot(self, completed_slots):
+        if self.market_status() != "open":
+            return None
+        now_et = datetime.now(ZoneInfo("America/New_York"))
+        for hour, minute in INTRADAY_SCAN_TIMES_ET:
+            slot_dt = datetime(now_et.year, now_et.month, now_et.day, hour, minute, tzinfo=now_et.tzinfo)
+            key = self._scan_slot_key(now_et.date(), hour, minute)
+            if now_et >= slot_dt and key not in completed_slots:
+                return {"key": key, "label": f"{hour:02d}:{minute:02d} ET"}
+        return None
+
+    def seconds_until_next_scan_slot(self, completed_slots):
+        if self.market_status() != "open":
+            return None
+        now_et = datetime.now(ZoneInfo("America/New_York"))
+        for hour, minute in INTRADAY_SCAN_TIMES_ET:
+            key = self._scan_slot_key(now_et.date(), hour, minute)
+            if key in completed_slots:
+                continue
+            slot_dt = datetime(now_et.year, now_et.month, now_et.day, hour, minute, tzinfo=now_et.tzinfo)
+            if slot_dt > now_et:
+                return max(0, int((slot_dt - now_et).total_seconds()))
+        return None
+
     def last_signal_generated_date(self):
+        dt = self.last_signal_generated_et()
+        return dt.date() if dt else None
+
+    def last_signal_generated_et(self):
         try:
             if not SIGNALS_FILE.exists():
                 return None
@@ -3610,7 +4160,7 @@ class AutoTradeEngine:
             dt = datetime.fromisoformat(str(generated).replace("Z", "+00:00"))
             if dt.tzinfo is None:
                 dt = dt.astimezone()
-            return dt.astimezone(ZoneInfo("America/New_York")).date()
+            return dt.astimezone(ZoneInfo("America/New_York"))
         except Exception:
             return None
 
@@ -3657,7 +4207,15 @@ class AutoTradeEngine:
         log("\n" + "🚀" * 20)
         log("Options Pro Ultra v6 — Autotrade Engine")
         log(f"Account: {ACCOUNT_ID} | Size: ${ACCOUNT_SIZE:,}")
-        log(f"Max positions: {MAX_POSITIONS} | Max risk: ${MAX_RISK:,.0f}")
+        log(
+            f"Max positions: {MAX_POSITIONS} | Paper target use: "
+            f"${MAX_PAPER_PORTFOLIO_RISK:,.0f} ({PAPER_TARGET_CASH_UTILIZATION_PCT*100:.0f}%)"
+        )
+        log(
+            f"Paper sizing: CSP {PAPER_CSP_COLLATERAL_PCT*100:.0f}% "
+            f"/ high-quality {PAPER_HIGH_QUALITY_CSP_COLLATERAL_PCT*100:.0f}%, "
+            f"BPS {PAPER_BPS_MAX_LOSS_PCT*100:.1f}%, IC {PAPER_IC_MAX_LOSS_PCT*100:.1f}%"
+        )
         log(f"Delta: {DELTA_MIN}-{DELTA_MAX} | DTE: {DTE_MIN}-{DTE_MAX}")
         log(f"Close: {PROFIT_TARGET_PCT*100:.0f}% profit | Stop: {STOP_LOSS_MULT}× credit")
         log(f"Scan passes: {self.scan_passes}")
@@ -3698,18 +4256,23 @@ class AutoTradeEngine:
 
         # Initial scan & trade — only during market hours
         ms = self.market_status()
-        today_et = datetime.now(ZoneInfo("America/New_York")).date()
-        last_scan_date = self.last_signal_generated_date()
-        if ms == "open" and last_scan_date != today_et:
+        completed_scan_slots = self.seed_completed_scan_slots()
+        due_slot = self.due_scan_slot(completed_scan_slots)
+        if ms == "open" and due_slot:
+            log(f"\n━━━ Scheduled Scan {due_slot['label']} ━━━")
             for pass_num in range(self.scan_passes):
                 log(f"\n━━━ Scan Pass {pass_num + 1}/{self.scan_passes} ━━━")
                 opportunities = self.scan()
                 if opportunities:
                     self.execute_trades(opportunities)
                 time.sleep(5)
-            last_scan_date = today_et
+            completed_scan_slots.add(due_slot["key"])
         elif ms == "open":
-            log(f"✅ Startup scan already generated today ({last_scan_date}) — skipping duplicate initial scan")
+            wait = self.seconds_until_next_scan_slot(completed_scan_slots)
+            if wait is not None:
+                log(f"✅ Startup during market hours — next scheduled scan in {wait}s")
+            else:
+                log("✅ Startup during market hours — all scheduled scan slots are complete")
         elif ms == "tws_restart":
             log("😴 Startup during TWS restart window — skipping initial scan, entering monitor mode")
         else:
@@ -3745,19 +4308,18 @@ class AutoTradeEngine:
                     time.sleep(300)
                     continue
 
-                # If the engine started before the bell, run the daily scan on
-                # the first open-market cycle so signal-only mode gets fresh
-                # candidates without needing a manual restart.
-                today_et = datetime.now(ZoneInfo("America/New_York")).date()
-                if ms == "open" and last_scan_date != today_et:
-                    log("\n━━━ Daily Market-Open Scan ━━━")
+                # Run deterministic intraday scan slots so the morning scan
+                # does not depend on the 15-minute monitor cadence.
+                due_slot = self.due_scan_slot(completed_scan_slots)
+                if ms == "open" and due_slot:
+                    log(f"\n━━━ Scheduled Scan {due_slot['label']} ━━━")
                     for pass_num in range(self.scan_passes):
                         log(f"\n━━━ Scan Pass {pass_num + 1}/{self.scan_passes} ━━━")
                         opportunities = self.scan()
                         if opportunities:
                             self.execute_trades(opportunities)
                         time.sleep(5)
-                    last_scan_date = today_et
+                    completed_scan_slots.add(due_slot["key"])
 
                 # ── Connection health check ──
                 if not self.app._connected:
@@ -3811,6 +4373,7 @@ class AutoTradeEngine:
 
                 # ── Refresh IBKR positions ──
                 self.app.positions = {}
+                self.app.stock_positions = {}
                 self.app.reqPositions()
                 time.sleep(3)
                 self._sync_pending_open_orders_with_ibkr()
@@ -3859,7 +4422,11 @@ class AutoTradeEngine:
 
                 # Sleep until next check — longer interval outside market hours
                 if ms == "open":
-                    sleep_secs = MONITOR_INTERVAL
+                    next_scan_wait = self.seconds_until_next_scan_slot(completed_scan_slots)
+                    if next_scan_wait is not None:
+                        sleep_secs = max(SCAN_NOW_POLL_SECONDS, min(MONITOR_INTERVAL, next_scan_wait + 2))
+                    else:
+                        sleep_secs = MONITOR_INTERVAL
                     log(f"\n  ⏳ Next check in {sleep_secs // 60} min...")
                 else:
                     wait_to_open = self.seconds_until_next_market_open()
