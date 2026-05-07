@@ -141,7 +141,10 @@ IRON_CONDOR_TICKERS = {"SPY", "QQQ", "IWM", "GLD", "DIA", "TLT"}
 COVERED_CALL_TICKERS = set(WATCHLIST)
 CSP_LIKE_STRATEGIES = {"CSP", "WHEEL"}
 DEFINED_RISK_STRATEGIES = {"BPS", "IC"}
-MANUAL_ONLY_STRATEGIES = {"CC", "IC"}
+# IBKR paper repeatedly left/cancelled combo opens today. Keep defined-risk
+# spreads visible as signals, but do not auto-submit them until combo routing
+# and close-management are validated.
+MANUAL_ONLY_STRATEGIES = {"BPS", "CC", "IC"}
 MAX_MANUAL_SIGNALS = 3
 
 # Spread widths per ticker (wider = more credit but more capital)
@@ -276,7 +279,7 @@ FILLED_STATUSES = {"filled", "closed", "manualclose"}
 OPEN_LIKE_STATUSES = {"SUBMITTED", "PRESUBMITTED", "PENDINGSUBMIT", "PENDING", "WORKING"}
 TERMINAL_ORDER_STATUSES = {"FILLED", "CANCELLED", "APICANCELLED", "INACTIVE", "EXPIRED"}
 PENDING_CLOSE_MAX_AGE = 4 * 3600
-PENDING_OPEN_MAX_AGE = 30 * 60
+PENDING_OPEN_MAX_AGE = 10 * 60
 OPEN_PENDING_STATUSES = {s.lower() for s in OPEN_LIKE_STATUSES}
 OPEN_TERMINAL_STATUSES = {"cancelled", "apicancelled", "inactive", "expired", "notfilled", "rejected"}
 OPEN_ACTIVE_STATUSES = FILLED_STATUSES | {"", "open", "reconciled"} | OPEN_PENDING_STATUSES
@@ -440,6 +443,7 @@ def _load_real_rules():
         "max_risk_per_trade_pct": 1.0,
         "max_risk_per_trade_dollars": 0,
         "csp_max_collateral_pct": 5.0,
+        "csp_high_quality_collateral_pct": 7.0,
         "csp_max_collateral_dollars": 0,
         "bps_max_loss_pct": 1.0,
         "bps_max_loss_dollars": 0,
@@ -480,7 +484,10 @@ def _real_copyability(signal):
     unit_risk = total_risk / paper_qty if total_risk > 0 else 0
     capital = float(rules.get("capital") or 0)
     if strategy in CSP_LIKE_STRATEGIES:
-        pct = float(rules.get("csp_max_collateral_pct") or rules.get("max_risk_per_trade_pct") or 0)
+        if str(signal.get("ticker") or "").upper() in HIGH_QUALITY_ETFS:
+            pct = float(rules.get("csp_high_quality_collateral_pct") or rules.get("csp_max_collateral_pct") or rules.get("max_risk_per_trade_pct") or 0)
+        else:
+            pct = float(rules.get("csp_max_collateral_pct") or rules.get("max_risk_per_trade_pct") or 0)
         hard_cap = float(rules.get("csp_max_collateral_dollars") or rules.get("max_risk_per_trade_dollars") or 0)
         cap_label = "CSP / wheel collateral"
     elif strategy == "CC":
@@ -771,12 +778,20 @@ def write_trade_signals(opportunities, mode="paper_auto", scan_summary=None):
             score = 0
         signal["min_paper_auto_score"] = MIN_PAPER_AUTO_SCORE
         signal["min_real_copy_score"] = MIN_REAL_COPY_SCORE
-        signal["paper_auto_eligible"] = score >= MIN_PAPER_AUTO_SCORE and not opp.get("signal_only_strategy")
+        signal["paper_auto_eligible"] = (
+            score >= MIN_PAPER_AUTO_SCORE
+            and not opp.get("signal_only_strategy")
+            and str(signal.get("strategy") or "").upper() not in MANUAL_ONLY_STRATEGIES
+        )
         if not signal["paper_auto_eligible"]:
             if opp.get("signal_only_strategy"):
                 signal["warnings"].append(
                     opp.get("manual_only_reason")
                     or f"{signal['strategy']} signals are manual-review only until automated execution and close management are enabled."
+                )
+            elif str(signal.get("strategy") or "").upper() in MANUAL_ONLY_STRATEGIES:
+                signal["warnings"].append(
+                    f"{signal['strategy']} signals are manual-review only until automated execution and close management are enabled."
                 )
             else:
                 signal["warnings"].append(
@@ -1227,6 +1242,30 @@ class AutoTradeEngine:
             "placed_at": placed_at,
         }
         self._pending_orders[pending_key] = placed_at
+
+    def _active_open_order_metas(self):
+        active = []
+        now = datetime.now()
+        for meta in (self._open_orders or {}).values():
+            try:
+                age = (now - meta.get("placed_at", now)).total_seconds()
+            except Exception:
+                age = 0
+            if age <= PENDING_OPEN_MAX_AGE:
+                active.append(meta)
+        return active
+
+    def estimate_pending_open_risk(self):
+        total = 0.0
+        for meta in self._active_open_order_metas():
+            strategy = str(meta.get("strategy") or "CSP").upper()
+            qty = int(meta.get("qty") or 0)
+            strike = float(meta.get("strike") or 0)
+            if qty <= 0 or strike <= 0:
+                continue
+            if strategy in CSP_LIKE_STRATEGIES:
+                total += strike * 100 * qty
+        return total
 
     def _ibkr_short_keys(self):
         keys = set()
@@ -2010,6 +2049,23 @@ class AutoTradeEngine:
                 )
         return True, ""
 
+    def sell_open_limit_price(self, opt_data, fallback=0):
+        """Marketable-but-bounded credit limit for paper auto short option opens.
+
+        For a sell order, a limit at or just below the displayed bid is far more
+        likely to fill than the model/mid price IBKR reports in delayed paper
+        data. We still keep a floor so bad zero-bid quotes are rejected upstream.
+        """
+        bid = float(opt_data.get("bid", 0) or 0)
+        ask = float(opt_data.get("ask", 0) or 0)
+        fallback = float(fallback or opt_data.get("price", 0) or opt_data.get("optPrice", 0) or 0)
+        if bid > 0:
+            tick = 0.01 if bid < 3 else 0.05
+            return round(max(0.01, bid - tick), 2)
+        if ask > 0 and fallback > 0:
+            return round(max(0.01, min(fallback, ask * 0.75)), 2)
+        return round(max(0.01, fallback), 2) if fallback > 0 else 0
+
     # ── Position Sizing ──
     def calc_position_size(self, ticker, strike, premium, stock_price, strategy=None):
         """Calculate number of contracts based on tier, risk rules, and regime."""
@@ -2388,6 +2444,7 @@ class AutoTradeEngine:
         log("🌅 MORNING SCAN STARTED")
         log("=" * 60)
         self._expire_stale_pending_closes("scan-start")
+        self._sync_pending_open_orders_with_ibkr()
 
         if kill_switch_active():
             log(f"  🛑 Kill switch active ({KILL_SWITCH_FILE}) — no new opening trades")
@@ -2421,9 +2478,11 @@ class AutoTradeEngine:
         # Use IBKR positions as the gating source of truth. The journal is useful
         # metadata, but submitted/cancelled orders can make it drift.
         ibkr_shorts = [p for p in (self.app.positions or {}).values() if p.get("position", 0) < 0]
+        pending_opens = self._active_open_order_metas()
         open_tickers = [p["symbol"] for p in ibkr_shorts]
-        num_open = len(ibkr_shorts)
-        paper_risk_used = self.estimate_existing_paper_risk(self.app.positions or {})
+        open_tickers += [p.get("ticker") for p in pending_opens if p.get("ticker")]
+        num_open = len(ibkr_shorts) + len(pending_opens)
+        paper_risk_used = self.estimate_existing_paper_risk(self.app.positions or {}) + self.estimate_pending_open_risk()
 
         # Per-ticker open count + existing DTEs, for MAX_PER_TICKER /
         # MIN_LADDER_DTE_GAP gating below. Expiry comes from IBKR contract
@@ -2438,8 +2497,18 @@ class AutoTradeEngine:
             except Exception:
                 _ex_dte = None
             existing_per_ticker.setdefault(_sym, []).append(_ex_dte)
+        for _p in pending_opens:
+            _sym = _p.get("ticker", "")
+            _exp = _p.get("expiry") or ""
+            try:
+                _ex_dte = (datetime.strptime(_exp, "%Y%m%d") - _now).days
+            except Exception:
+                _ex_dte = None
+            existing_per_ticker.setdefault(_sym, []).append(_ex_dte)
 
         log(f"  Open positions: {num_open}/{MAX_POSITIONS}")
+        if pending_opens:
+            log(f"  Pending opens counted as capacity: {len(pending_opens)}")
         log(f"  Paper capital in use: ${paper_risk_used:,.0f}/${MAX_PAPER_PORTFOLIO_RISK:,.0f} target")
         if num_open >= MAX_POSITIONS:
             log("  ⚠ Maximum positions reached — no new trades")
@@ -2452,6 +2521,7 @@ class AutoTradeEngine:
                     "vix": vix_value,
                     "regime": regime.get("label", "Unknown"),
                     "open_positions": num_open,
+                    "pending_open_orders": len(pending_opens),
                     "paper_risk_used": round(paper_risk_used, 2),
                     "paper_risk_cap": round(MAX_PAPER_PORTFOLIO_RISK, 2),
                     "slots": 0,
@@ -2479,6 +2549,7 @@ class AutoTradeEngine:
             "vix": vix_value,
             "regime": regime.get("label", "Unknown"),
             "open_positions": num_open,
+            "pending_open_orders": len(pending_opens),
             "paper_risk_used": round(paper_risk_used, 2),
             "paper_risk_cap": round(MAX_PAPER_PORTFOLIO_RISK, 2),
             "slots": slots,
@@ -2662,7 +2733,19 @@ class AutoTradeEngine:
                 })
                 continue
 
-            premium = opt_data["price"]
+            model_premium = opt_data["price"]
+            order_premium = self.sell_open_limit_price(opt_data, model_premium)
+            if order_premium <= 0:
+                log(f"  {ticker}: no executable bid/limit for selected put")
+                scan_summary["by_ticker"].append({
+                    "ticker": ticker,
+                    "status": "blocked",
+                    "reason": "Selected option had no executable bid for paper auto.",
+                    "expiry": expiry,
+                    "strike": strike,
+                })
+                continue
+            premium = order_premium
             delta = abs(opt_data.get("delta", 0))
             iv = opt_data.get("iv", 0)
             buffer = (stock_price - strike) / stock_price * 100
@@ -2841,7 +2924,8 @@ class AutoTradeEngine:
                                             "call_strike": call_strike,
                                             "long_call_strike": long_call_strike,
                                             "expiry": expiry,
-                                            "premium": premium,
+                    "premium": premium,
+                    "model_credit": model_premium,
                                             "net_credit": ic_credit,
                                             "delta": delta,
                                             "iv": max(iv, call_opt.get("iv", 0) or 0),
@@ -2954,7 +3038,7 @@ class AutoTradeEngine:
         manual_selected = []
         planned_risk = paper_risk_used
         for opp in opportunities:
-            if opp.get("signal_only_strategy"):
+            if opp.get("signal_only_strategy") or str(opp.get("strategy") or "").upper() in MANUAL_ONLY_STRATEGIES:
                 if len(manual_selected) < MAX_MANUAL_SIGNALS:
                     manual_selected.append(opp)
                 continue
@@ -3961,6 +4045,20 @@ class AutoTradeEngine:
                 "vix":              round(vix, 2) if vix else None,
                 "regime":           regime.get("label", "Unknown"),
                 "positions":        positions,
+                "pending_opens":    [
+                    {
+                        "order_id": order_id,
+                        "ticker": meta.get("ticker"),
+                        "strike": meta.get("strike"),
+                        "expiry": meta.get("expiry"),
+                        "qty": meta.get("qty"),
+                        "strategy": meta.get("strategy"),
+                        "limit_credit": round(float(meta.get("credit", 0) or 0), 2),
+                        "age_secs": int((datetime.now() - meta.get("placed_at", datetime.now())).total_seconds()),
+                        "expires_in_secs": max(0, int(PENDING_OPEN_MAX_AGE - (datetime.now() - meta.get("placed_at", datetime.now())).total_seconds())),
+                    }
+                    for order_id, meta in (self._open_orders or {}).items()
+                ],
                 "stock_positions":  [
                     {
                         "ticker": k,

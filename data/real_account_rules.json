@@ -29,6 +29,7 @@
   "enabled": true,
   "manual_submit_required": true,
   "cc_requires_confirmed_shares": true,
+  "csp_high_quality_collateral_pct": 7.0,
   "csp_max_collateral_pct": 5.0,
   "ic_manual_review_required": true,
   "max_open_positions": 5,
