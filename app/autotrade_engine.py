@@ -1267,6 +1267,17 @@ class AutoTradeEngine:
                 total += strike * 100 * qty
         return total
 
+    def _seconds_until_next_pending_open_expiry(self):
+        remaining = []
+        now = datetime.now()
+        for meta in (self._open_orders or {}).values():
+            try:
+                age_secs = (now - meta.get("placed_at", now)).total_seconds()
+            except Exception:
+                continue
+            remaining.append(max(0, int(PENDING_OPEN_MAX_AGE - age_secs)))
+        return min(remaining) if remaining else None
+
     def _ibkr_short_keys(self):
         keys = set()
         for pos in (self.app.positions or {}).values():
@@ -4525,6 +4536,9 @@ class AutoTradeEngine:
                         sleep_secs = max(SCAN_NOW_POLL_SECONDS, min(MONITOR_INTERVAL, next_scan_wait + 2))
                     else:
                         sleep_secs = MONITOR_INTERVAL
+                    next_open_expiry = self._seconds_until_next_pending_open_expiry()
+                    if next_open_expiry is not None:
+                        sleep_secs = max(SCAN_NOW_POLL_SECONDS, min(sleep_secs, next_open_expiry + 2))
                     log(f"\n  ⏳ Next check in {sleep_secs // 60} min...")
                 else:
                     wait_to_open = self.seconds_until_next_market_open()

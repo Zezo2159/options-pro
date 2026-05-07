@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-07T16:15:02+02:00",
+  "updated": "2026-05-07T16:20:59+02:00",
   "engine_running": true,
   "connected": true,
   "market_status": "open",
@@ -8,8 +8,8 @@
   "signal_only": false,
   "signal_only_file": "/Users/islam/options-pro/data/optionspro_signal_only",
   "signals_file": "/Users/islam/options-pro/data/trade_signals.json",
-  "vix": null,
-  "regime": "Unknown",
+  "vix": 17.18,
+  "regime": "Normal",
   "positions": [
     {
       "ticker": "TLT",
@@ -25,8 +25,8 @@
       "dte": 21,
       "pending_close": true,
       "pending_close_order_id": 54,
-      "pending_close_age_secs": 362,
-      "pending_close_remaining_secs": 14038,
+      "pending_close_age_secs": 719,
+      "pending_close_remaining_secs": 13681,
       "pending_close_started_at": "2026-05-07T16:09:00+02:00",
       "pending_close_max_age_secs": 14400
     },
@@ -48,27 +48,124 @@
       "pending_close_remaining_secs": null,
       "pending_close_started_at": null,
       "pending_close_max_age_secs": null
+    },
+    {
+      "ticker": "XLI",
+      "strike": 165.0,
+      "expiry": "20260612",
+      "qty": 1,
+      "strategy": "WHEEL",
+      "entry_credit": 1.11,
+      "current_price": 0.0,
+      "price_valid": false,
+      "pnl": 0.0,
+      "pnl_pct": 0,
+      "dte": 35,
+      "pending_close": false,
+      "pending_close_order_id": null,
+      "pending_close_age_secs": null,
+      "pending_close_remaining_secs": null,
+      "pending_close_started_at": null,
+      "pending_close_max_age_secs": null
     }
   ],
-  "pending_opens": [],
+  "pending_opens": [
+    {
+      "order_id": 56,
+      "ticker": "XLF",
+      "strike": 48.5,
+      "expiry": "20260612",
+      "qty": 4,
+      "strategy": "WHEEL",
+      "limit_credit": 0.35,
+      "age_secs": 14,
+      "expires_in_secs": 585
+    },
+    {
+      "order_id": 57,
+      "ticker": "XLV",
+      "strike": 139.0,
+      "expiry": "20260612",
+      "qty": 2,
+      "strategy": "WHEEL",
+      "limit_credit": 0.95,
+      "age_secs": 11,
+      "expires_in_secs": 588
+    },
+    {
+      "order_id": 58,
+      "ticker": "XLP",
+      "strike": 80.0,
+      "expiry": "20260612",
+      "qty": 3,
+      "strategy": "WHEEL",
+      "limit_credit": 0.61,
+      "age_secs": 8,
+      "expires_in_secs": 591
+    },
+    {
+      "order_id": 59,
+      "ticker": "EEM",
+      "strike": 63.5,
+      "expiry": "20260612",
+      "qty": 3,
+      "strategy": "WHEEL",
+      "limit_credit": 0.69,
+      "age_secs": 5,
+      "expires_in_secs": 594
+    }
+  ],
   "stock_positions": [],
-  "positions_count": 2,
+  "positions_count": 3,
   "max_positions": 10,
   "total_pnl": 5.37,
   "pnl_status": "partial",
   "valid_price_count": 1,
-  "missing_quote_count": 1,
+  "missing_quote_count": 2,
   "account_size": 250000,
-  "ibkr_legs_total": 2,
-  "ibkr_legs_short": 2,
+  "ibkr_legs_total": 3,
+  "ibkr_legs_short": 3,
   "ibkr_legs_long": 0,
   "reconciliation": {
-    "checked_at": "2026-05-07T16:15:02+02:00",
+    "checked_at": "2026-05-07T16:20:59+02:00",
     "ok": true,
     "missing_in_ibkr": [],
     "missing_in_journal": [],
     "qty_mismatch": [],
-    "pending_open": []
+    "pending_open": [
+      {
+        "ticker": "XLF",
+        "strike": 48.5,
+        "expiry": "20260612",
+        "qty": 4,
+        "strategy": "WHEEL",
+        "status": "Submitted"
+      },
+      {
+        "ticker": "XLV",
+        "strike": 139.0,
+        "expiry": "20260612",
+        "qty": 2,
+        "strategy": "WHEEL",
+        "status": "Submitted"
+      },
+      {
+        "ticker": "XLP",
+        "strike": 80.0,
+        "expiry": "20260612",
+        "qty": 3,
+        "strategy": "WHEEL",
+        "status": "Submitted"
+      },
+      {
+        "ticker": "EEM",
+        "strike": 63.5,
+        "expiry": "20260612",
+        "qty": 3,
+        "strategy": "WHEEL",
+        "status": "Submitted"
+      }
+    ]
   },
   "pending_closes": [
     {
@@ -77,8 +174,8 @@
       "ticker": "TLT",
       "strike": 84.0,
       "expiry": "20260529",
-      "age_secs": 362,
-      "remaining_secs": 14037,
+      "age_secs": 719,
+      "remaining_secs": 13680,
       "started_at": "2026-05-07T16:09:00+02:00",
       "max_age_secs": 14400
     }
