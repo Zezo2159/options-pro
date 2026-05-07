@@ -14,6 +14,9 @@ import math
 import re
 import smtplib
 import threading
+import urllib.error
+import urllib.parse
+import urllib.request
 from datetime import datetime, timedelta
 from pathlib import Path
 from email.mime.text import MIMEText
@@ -25,6 +28,7 @@ from ibapi.wrapper import EWrapper
 from ibapi.contract import Contract, ComboLeg
 from ibapi.order import Order
 from ibapi.common import TickerId
+from ibapi.tag_value import TagValue
 
 # ═══════════════════════════════════════════════
 # CONFIGURATION
@@ -141,10 +145,10 @@ IRON_CONDOR_TICKERS = {"SPY", "QQQ", "IWM", "GLD", "DIA", "TLT"}
 COVERED_CALL_TICKERS = set(WATCHLIST)
 CSP_LIKE_STRATEGIES = {"CSP", "WHEEL"}
 DEFINED_RISK_STRATEGIES = {"BPS", "IC"}
-# IBKR paper repeatedly left/cancelled combo opens today. Keep defined-risk
-# spreads visible as signals, but do not auto-submit them until combo routing
-# and close-management are validated.
-MANUAL_ONLY_STRATEGIES = {"BPS", "CC", "IC"}
+# Multi-leg strategies that still need a human before paper/live execution.
+# BPS paper auto is enabled with guarded combo routing below; IC/CC remain
+# signal-only until their full open/close lifecycle is implemented.
+MANUAL_ONLY_STRATEGIES = {"CC", "IC"}
 MAX_MANUAL_SIGNALS = 3
 
 # Spread widths per ticker (wider = more credit but more capital)
@@ -180,9 +184,16 @@ MAX_CSP_ASSIGNMENT_RISK = MAX_RISK
 MAX_OPTION_BID_ASK_PCT = 0.35
 MAX_OPTION_BID_ASK_ABS = 0.75
 MIN_SPREAD_CREDIT_PCT = 0.15  # Credit should be at least 15% of spread width.
+MIN_IC_CREDIT_PCT = 0.12      # ICs can accept slightly lower credit because both wings contribute.
+IC_CALL_DELTA_MIN = 0.08
+IC_CALL_DELTA_MAX = 0.22
+MAX_AUTO_BPS_PER_SCAN = 1
 OPTION_GREEKS_GRACE_SECS = 1.5
 OPTION_SCAN_MAX_STRIKES = 10
 OPTION_SCAN_MAX_MISSING_STREAK = 8
+YAHOO_UNDERLYING_FALLBACK = True
+YAHOO_PRICE_CACHE_SECS = 120
+YAHOO_PRICE_TIMEOUT_SECS = 4
 
 # ═══════════════════════════════════════════════
 # MARKET REGIME — VIX-based adjustments
@@ -896,6 +907,7 @@ class TWSApp(EWrapper, EClient):
         self._last_farm_error = None
         self._account_values = {}
         self._order_status_callback = None
+        self._order_error_callback = None
 
     # ── Connection ──
     def nextValidId(self, orderId):
@@ -904,7 +916,7 @@ class TWSApp(EWrapper, EClient):
         log(f"✅ TWS connected — next order ID: {orderId}")
 
     def error(self, reqId, errorCode, errorString, advancedOrderRejectJson=""):
-        if reqId not in (None, -1) and errorCode in (200, 162, 321, 354):
+        if reqId not in (None, -1) and errorCode in (200, 162, 321, 354, 10089, 10167):
             self.request_errors[reqId] = {"code": errorCode, "message": errorString}
             if reqId in self._detail_events:
                 self._detail_events[reqId].set()
@@ -912,6 +924,12 @@ class TWSApp(EWrapper, EClient):
                 self._price_events[reqId].set()
             if reqId in self._chain_events:
                 self._chain_events[reqId].set()
+
+        if reqId not in (None, -1) and errorCode in (201, 202) and callable(self._order_error_callback):
+            try:
+                self._order_error_callback(reqId, errorCode, errorString)
+            except Exception as e:
+                log(f"  ⚠ order error callback failed for {reqId}: {e}")
 
         # Filter informational messages
         if errorCode in (2104, 2106, 2158, 2107):
@@ -1128,6 +1146,7 @@ class AutoTradeEngine:
     def __init__(self, scan_passes=1):
         self.app = TWSApp()
         self.app._order_status_callback = self._handle_order_status
+        self.app._order_error_callback = self._handle_order_error
         self.scan_passes = scan_passes
         self._req_id = 1000
         self._running = True
@@ -1137,6 +1156,7 @@ class AutoTradeEngine:
         self._close_orders = {}
         self._option_contract_cache = {}
         self._bad_option_contract_cache = {}
+        self._yahoo_price_cache = {}
         self._last_reconcile_alert = None
         self._processed_close_requests = self._load_processed_close_requests()
 
@@ -1267,6 +1287,14 @@ class AutoTradeEngine:
                 continue
             if strategy in CSP_LIKE_STRATEGIES:
                 total += strike * 100 * qty
+            elif strategy == "BPS":
+                width = SPREAD_WIDTHS.get(str(meta.get("ticker") or "").upper(), 5)
+                credit = float(meta.get("credit") or 0)
+                total += max(0, (width - credit) * 100 * qty)
+            elif strategy == "IC":
+                width = SPREAD_WIDTHS.get(str(meta.get("ticker") or "").upper(), 5)
+                credit = float(meta.get("credit") or 0)
+                total += max(0, (width - credit) * 100 * qty)
         return total
 
     def _seconds_until_next_pending_open_expiry(self):
@@ -1413,6 +1441,7 @@ class AutoTradeEngine:
     def connect(self):
         log("🔌 Connecting to TWS...")
         self.app._order_status_callback = self._handle_order_status
+        self.app._order_error_callback = self._handle_order_error
         self.app.connect(TWS_HOST, TWS_PORT, CLIENT_ID)
 
         # Start API thread
@@ -1452,6 +1481,7 @@ class AutoTradeEngine:
 
         self.app = TWSApp()
         self.app._order_status_callback = self._handle_order_status
+        self.app._order_error_callback = self._handle_order_error
         return self.connect()
 
     def _register_close_order(self, order_id, ticker, strike, expiry, qty, action, strategy, submitted_price, pnl, reason, placed_at=None):
@@ -1618,10 +1648,114 @@ class AutoTradeEngine:
             self._open_orders.pop(order_id, None)
             self.write_live_snapshot()
 
+    def _handle_order_error(self, order_id, error_code, error_message):
+        """Immediately clear journal/pending state when TWS rejects an order."""
+        try:
+            order_id = int(order_id)
+        except Exception:
+            return
+        message = str(error_message or "").strip()
+        suffix = f"TWS {error_code}: {message}" if message else f"TWS {error_code}"
+
+        open_meta = self._open_orders.get(order_id)
+        if open_meta:
+            update_journal_order_status(
+                order_id,
+                "Rejected",
+                note_suffix=f"Rejected {now_iso()} ({suffix})",
+            )
+            pending_key = open_meta.get("pending_key")
+            if pending_key:
+                self._pending_orders.pop(pending_key, None)
+            self._open_orders.pop(order_id, None)
+            log(f"  ❌ Opening order {order_id} rejected by TWS ({suffix})")
+            self.write_live_snapshot()
+            return
+
+        close_meta = self._close_orders.get(order_id)
+        if close_meta:
+            update_journal_order_status(
+                order_id,
+                "Rejected",
+                note_suffix=f"Close rejected {now_iso()} ({suffix})",
+            )
+            pending_key = close_meta.get("pending_key")
+            if pending_key:
+                self._pending_closes.pop(pending_key, None)
+            self._close_orders.pop(order_id, None)
+            log(f"  ❌ Close order {order_id} rejected by TWS ({suffix})")
+            self.write_live_snapshot()
+
     # ── Market Data Helpers ──
-    def get_stock_price(self, ticker, timeout=10):
-        """Get current stock (or index) price."""
+    def _extract_underlying_price(self, md):
+        price = md.get("last") or md.get("close")
+        if not price and "bid" in md and "ask" in md:
+            price = (md["bid"] + md["ask"]) / 2
+        try:
+            return float(price) if price and float(price) > 0 else None
+        except Exception:
+            return None
+
+    def _request_underlying_price_once(self, contract, timeout=8):
         req_id = self.next_req_id()
+        event = threading.Event()
+        self.app._price_events[req_id] = event
+        self.app.market_data[req_id] = {}
+        self.app.request_errors.pop(req_id, None)
+
+        self.app.reqMktData(req_id, contract, "", False, False, [])
+        event.wait(timeout=timeout)
+        self.app.cancelMktData(req_id)
+
+        err = self.app.request_errors.pop(req_id, None)
+        md = self.app.market_data.get(req_id, {})
+        return self._extract_underlying_price(md), err
+
+    def get_yahoo_underlying_price(self, ticker):
+        if not YAHOO_UNDERLYING_FALLBACK or ticker in self.INDEX_TICKERS:
+            return None
+        ticker = str(ticker or "").upper().strip()
+        if not ticker:
+            return None
+        cached = self._yahoo_price_cache.get(ticker)
+        if cached and time.time() - cached.get("at", 0) < YAHOO_PRICE_CACHE_SECS:
+            return cached.get("price")
+
+        yahoo_symbol = ticker.replace(".", "-")
+        url = (
+            "https://query1.finance.yahoo.com/v8/finance/chart/"
+            f"{urllib.parse.quote(yahoo_symbol)}?range=1d&interval=1m&includePrePost=false"
+        )
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "OptionsPro/1.0"})
+            with urllib.request.urlopen(req, timeout=YAHOO_PRICE_TIMEOUT_SECS) as resp:
+                payload = json.loads(resp.read().decode("utf-8"))
+            result = ((payload.get("chart") or {}).get("result") or [None])[0] or {}
+            meta = result.get("meta") or {}
+            candidates = [
+                meta.get("regularMarketPrice"),
+                meta.get("previousClose"),
+                meta.get("chartPreviousClose"),
+            ]
+            quotes = (((result.get("indicators") or {}).get("quote") or [{}])[0] or {})
+            closes = quotes.get("close") or []
+            candidates.extend(reversed([x for x in closes if x]))
+            for raw in candidates:
+                try:
+                    price = float(raw)
+                except Exception:
+                    continue
+                if price > 0:
+                    self._yahoo_price_cache[ticker] = {"at": time.time(), "price": price}
+                    return price
+        except (urllib.error.URLError, TimeoutError, json.JSONDecodeError, OSError) as e:
+            log(f"  {ticker}: Yahoo fallback price unavailable ({e})")
+        except Exception as e:
+            log(f"  {ticker}: Yahoo fallback failed ({e})")
+        return None
+
+    def get_stock_price(self, ticker, timeout=10):
+        """Get current stock (or index) price, with a safe ETF underlying fallback."""
         contract = Contract()
         contract.symbol = ticker
         contract.currency = "USD"
@@ -1632,20 +1766,36 @@ class AutoTradeEngine:
         else:
             contract.secType = "STK"
             contract.exchange = "SMART"
+            primary = self.PRIMARY_EXCHANGES.get(ticker)
+            if primary:
+                contract.primaryExchange = primary
 
-        event = threading.Event()
-        self.app._price_events[req_id] = event
-        self.app.market_data[req_id] = {}
+        last_error = None
+        for market_data_type, label in ((3, "delayed"), (4, "delayed frozen")):
+            try:
+                self.app.reqMarketDataType(market_data_type)
+            except Exception:
+                pass
+            price, err = self._request_underlying_price_once(contract, timeout=timeout)
+            if price:
+                if market_data_type != 3:
+                    log(f"  {ticker}: using IBKR {label} underlying price ${price:.2f}")
+                return price
+            last_error = err or last_error
 
-        self.app.reqMktData(req_id, contract, "", False, False, [])
-        event.wait(timeout=timeout)
-        self.app.cancelMktData(req_id)
+        try:
+            self.app.reqMarketDataType(3)
+        except Exception:
+            pass
 
-        md = self.app.market_data.get(req_id, {})
-        price = md.get("last") or md.get("close")
-        if not price and "bid" in md and "ask" in md:
-            price = (md["bid"] + md["ask"]) / 2
-        return price
+        yahoo_price = self.get_yahoo_underlying_price(ticker)
+        if yahoo_price:
+            log(f"  {ticker}: using Yahoo ETF underlying fallback ${yahoo_price:.2f}; IBKR option quotes still required")
+            return yahoo_price
+
+        if last_error:
+            log(f"  {ticker}: IBKR underlying unavailable ({last_error.get('code')}: {last_error.get('message')})")
+        return None
 
     def _option_contract_key(self, ticker, strike, expiry, right="P", exchange=None, trading_class=None):
         try:
@@ -2366,6 +2516,7 @@ class AutoTradeEngine:
         order.eTradeOnly = False
         order.firmQuoteOnly = False
         order.account = ACCOUNT_ID
+        order.smartComboRoutingParams = [TagValue("NonGuaranteed", "1")]
 
         log(f"  📤 SPREAD: SELL {qty}x {ticker} ${short_strike}/{long_strike}P @ ${net_credit:.2f} credit (ID: {order_id})")
 
@@ -2604,7 +2755,7 @@ class AutoTradeEngine:
                 scan_summary["by_ticker"].append({
                     "ticker": ticker,
                     "status": "skipped",
-                    "reason": "No underlying price data from IBKR; likely market-data subscription or farm issue.",
+                    "reason": "No underlying price from IBKR or fallback; check IBKR subscriptions/farm status and network.",
                     "early_skip": True,
                 })
                 continue
@@ -2887,8 +3038,8 @@ class AutoTradeEngine:
                         ticker, stock_price, chain["strikes"], expiry,
                         option_exchange=option_exchange,
                         trading_class=trading_class,
-                        delta_min=0.10,
-                        delta_max=0.20,
+                        delta_min=IC_CALL_DELTA_MIN,
+                        delta_max=IC_CALL_DELTA_MAX,
                     )
                     if call_strike and call_opt:
                         target_long_call = call_strike + width
@@ -2904,12 +3055,13 @@ class AutoTradeEngine:
                             )
                             long_call_premium = long_call_opt.get("price", 0) or long_call_opt.get("optPrice", 0)
                             call_premium = call_opt.get("price", 0) or call_opt.get("optPrice", 0)
-                            if long_call_premium > 0 and call_premium > long_call_premium:
+                            call_sale_price = self.sell_open_limit_price(call_opt, call_premium)
+                            if long_call_premium > 0 and call_sale_price > long_call_premium:
                                 ok, reason = self.quote_is_acceptable(
                                     ticker, {**long_call_opt, "price": long_call_premium}, f"long ${long_call_strike}C"
                                 )
                                 if ok:
-                                    call_credit = call_premium - long_call_premium
+                                    call_credit = call_sale_price - long_call_premium
                                     ic_credit = net_credit + call_credit
                                     call_buffer = (call_strike - stock_price) / stock_price * 100
                                     call_score, call_score_details = self.score_opportunity_details(
@@ -2926,7 +3078,7 @@ class AutoTradeEngine:
                                     else:
                                         ic_price_cap = 3
                                     ic_qty = min(ic_qty, ic_price_cap)
-                                    if ic_qty > 0 and ic_credit >= ic_width * MIN_SPREAD_CREDIT_PCT:
+                                    if ic_qty > 0 and ic_credit >= ic_width * MIN_IC_CREDIT_PCT:
                                         ic_score = max(0, min(100, round((score + call_score) / 2)))
                                         ic_opp = {
                                             "ticker": ticker,
@@ -3120,6 +3272,12 @@ class AutoTradeEngine:
             log("  No trades to execute")
             return
 
+        bps_submitted_this_scan = 0
+        active_bps_orders = sum(
+            1 for meta in self._active_open_order_metas()
+            if str(meta.get("strategy") or "").upper() == "BPS"
+        )
+
         for opp in opportunities:
             ticker = opp["ticker"]
             strike = opp["strike"]
@@ -3153,6 +3311,9 @@ class AutoTradeEngine:
             if strategy == "BPS" and long_strike is None:
                 log(f"  {ticker}: skipped execution — BPS signal has no protective long leg")
                 continue
+            if strategy == "BPS" and active_bps_orders + bps_submitted_this_scan >= MAX_AUTO_BPS_PER_SCAN:
+                log(f"  {ticker}: skipped BPS auto-open — waiting for existing BPS combo order to finish")
+                continue
 
             # Route to spread or naked put
             is_spread = (strategy == "BPS" and long_strike is not None)
@@ -3177,6 +3338,8 @@ class AutoTradeEngine:
                     order_id, ticker, strike, expiry, qty,
                     journal_strategy, journal_credit, pending_key
                 )
+                if is_spread:
+                    bps_submitted_this_scan += 1
 
                 # Write to journal
                 notes = f"Score {score} | Buffer {buffer:.1f}% | OrderID {order_id}"
