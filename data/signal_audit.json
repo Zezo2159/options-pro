@@ -479,6 +479,21 @@
       "last_score": 58,
       "last_copyable": false,
       "last_real_qty": 1
+    },
+    "XLF-WHEEL-47.0--20260612": {
+      "id": "XLF-WHEEL-47.0--20260612",
+      "ticker": "XLF",
+      "strategy": "WHEEL",
+      "strike": 47.0,
+      "long_strike": null,
+      "expiry": "20260612",
+      "first_seen": "2026-05-07T18:35:28+02:00",
+      "seen_count": 2,
+      "copyable_seen_count": 2,
+      "last_seen": "2026-05-07T20:31:38+02:00",
+      "last_score": 100,
+      "last_copyable": true,
+      "last_real_qty": 3
     }
   },
   "events": [
@@ -1117,7 +1132,31 @@
       "score": 88,
       "copyable": true,
       "real_qty": 5
+    },
+    {
+      "generated": "2026-05-07T18:35:28+02:00",
+      "id": "XLF-WHEEL-47.0--20260612",
+      "ticker": "XLF",
+      "strategy": "WHEEL",
+      "strike": 47.0,
+      "long_strike": null,
+      "expiry": "20260612",
+      "score": 100,
+      "copyable": true,
+      "real_qty": 3
+    },
+    {
+      "generated": "2026-05-07T20:31:38+02:00",
+      "id": "XLF-WHEEL-47.0--20260612",
+      "ticker": "XLF",
+      "strategy": "WHEEL",
+      "strike": 47.0,
+      "long_strike": null,
+      "expiry": "20260612",
+      "score": 100,
+      "copyable": true,
+      "real_qty": 3
     }
   ],
-  "updated": "2026-05-07T17:54:16+02:00"
+  "updated": "2026-05-07T20:31:38+02:00"
 }

@@ -1,76 +1,76 @@
 {
-  "generated": "2026-05-07T17:54:16+02:00",
+  "generated": "2026-05-07T20:31:38+02:00",
   "mode": "paper_auto",
   "account": "DU4735568",
   "max_positions": 10,
   "signals": [
     {
-      "ticker": "IWM",
-      "strategy": "BPS",
-      "strike": 271.0,
-      "long_strike": 266.0,
+      "ticker": "XLF",
+      "strategy": "WHEEL",
+      "strike": 47.0,
+      "long_strike": null,
       "call_strike": null,
       "long_call_strike": null,
       "expiry": "20260612",
-      "qty": 3,
-      "credit": 0.81,
-      "delta": 0.234,
-      "iv": 24.1,
+      "qty": 4,
+      "credit": 0.56,
+      "delta": 0.204,
+      "iv": 40.0,
       "dte": 35,
-      "score": 88,
-      "estimated_risk": 1256.37,
-      "buffer_pct": 4.8,
-      "stock_price": 284.59,
+      "score": 100,
+      "estimated_risk": 18800.0,
+      "buffer_pct": 8.8,
+      "stock_price": 51.55,
       "score_details": {
-        "delta": 6.3,
-        "iv": 14.0,
-        "buffer": 7.5,
+        "delta": 18.2,
+        "iv": 20,
+        "buffer": 20.0,
         "dte": 15.0,
-        "correlation": 45,
+        "correlation": 30,
         "open_correlations": [
           {
             "ticker": "EEM",
-            "corr": 0.68
-          },
-          {
-            "ticker": "XLV",
-            "corr": 0.7
-          },
-          {
-            "ticker": "XLE",
-            "corr": 0.7
-          },
-          {
-            "ticker": "XLP",
             "corr": 0.55
           },
           {
+            "ticker": "XLV",
+            "corr": 0.75
+          },
+          {
+            "ticker": "XLE",
+            "corr": 0.75
+          },
+          {
+            "ticker": "XLP",
+            "corr": 0.5
+          },
+          {
+            "ticker": "IWM",
+            "corr": 0.7
+          },
+          {
             "ticker": "TLT",
-            "corr": 0.25
+            "corr": 0.2
           },
           {
             "ticker": "SLV",
-            "corr": 0.15
+            "corr": 0.35
           },
           {
             "ticker": "XLI",
-            "corr": 0.7
+            "corr": 0.75
           },
           {
             "ticker": "TLT",
-            "corr": 0.25
-          },
-          {
-            "ticker": "XLF",
-            "corr": 0.7
+            "corr": 0.2
           }
         ],
-        "raw": 87.8,
-        "buffer_pct": 4.8,
-        "premium": 3.05,
-        "final": 88
+        "raw": 103.2,
+        "buffer_pct": 8.8,
+        "premium": 0.75,
+        "final": 100
       },
-      "strategy_stage": null,
+      "strategy_stage": "cash_secured_put",
       "manual_only_reason": null,
       "warnings": [
         "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
@@ -79,14 +79,14 @@
       "min_paper_auto_score": 35,
       "min_real_copy_score": 60,
       "paper_auto_eligible": true,
-      "id": "IWM-BPS-271.0-266.0-20260612",
+      "id": "XLF-WHEEL-47.0--20260612",
       "copyable": true,
-      "real_qty": 5,
+      "real_qty": 3,
       "reasons": [],
       "reason_labels": [],
-      "max_real_risk": 2500.0,
-      "risk_cap_label": "defined-risk max-loss",
-      "risk_cap_pct": 1.0
+      "max_real_risk": 17500.0,
+      "risk_cap_label": "CSP / wheel collateral",
+      "risk_cap_pct": 7.0
     }
   ],
   "audit": {
@@ -95,13 +95,13 @@
     "copyable": 1
   },
   "scan_summary": {
-    "generated": "2026-05-07T17:52:26+02:00",
+    "generated": "2026-05-07T20:30:02+02:00",
     "market_status": "open",
     "vix": null,
     "regime": "Normal",
     "open_positions": 9,
-    "pending_open_orders": 1,
-    "paper_risk_used": 169950.0,
+    "pending_open_orders": 0,
+    "paper_risk_used": 152050.0,
     "paper_risk_cap": 225000.0,
     "slots": 1,
     "selected_count": 1,
@@ -109,18 +109,20 @@
     "by_ticker": [
       {
         "ticker": "SPY",
-        "status": "candidate",
-        "reason": "Candidate passed filters but was not selected because higher-ranked candidates used available slots or paper portfolio capacity.",
-        "expiry": "20260612",
-        "strike": 711.0,
-        "long_strike": 701.0,
-        "delta": 0.248,
-        "iv": 17.6,
-        "score": 46,
-        "qty": 2,
-        "estimated_risk": 1660.0,
-        "paper_auto_eligible": true,
-        "real_score_eligible": false
+        "status": "skipped",
+        "reason": "Quotes were available but no strike landed in the target delta band.",
+        "details": {
+          "examined": 10,
+          "missing_price": 0,
+          "contract_error": 0,
+          "quote_error": 0,
+          "missing_delta": 1,
+          "quote_rejected": 0,
+          "delta_out_of_range": 9,
+          "selected": null,
+          "reason": "Quotes were available but no strike landed in the target delta band."
+        },
+        "expiry": "20260612"
       },
       {
         "ticker": "QQQ",
@@ -141,18 +143,9 @@
       },
       {
         "ticker": "IWM",
-        "status": "selected",
-        "reason": "Candidate passed scanner filters.",
-        "expiry": "20260612",
-        "strike": 271.0,
-        "long_strike": 266.0,
-        "delta": 0.234,
-        "iv": 24.1,
-        "score": 88,
-        "qty": 3,
-        "estimated_risk": 1256.37,
-        "paper_auto_eligible": true,
-        "real_score_eligible": true
+        "status": "skipped",
+        "reason": "DTE ladder gap < 14d: proposed 35, conflicts with [35].",
+        "expiry": "20260612"
       },
       {
         "ticker": "GLD",
@@ -180,9 +173,9 @@
           "missing_price": 0,
           "contract_error": 0,
           "quote_error": 0,
-          "missing_delta": 0,
+          "missing_delta": 2,
           "quote_rejected": 0,
-          "delta_out_of_range": 10,
+          "delta_out_of_range": 8,
           "selected": null,
           "reason": "Quotes were available but no strike landed in the target delta band."
         },
@@ -191,10 +184,10 @@
       {
         "ticker": "DIA",
         "status": "blocked",
-        "reason": "Spread credit $0.65 is below 15% of $5 width.",
+        "reason": "Spread credit $0.46 is below 15% of $5 width.",
         "expiry": "20260612",
-        "strike": 481.0,
-        "long_strike": 476.0
+        "strike": 479.0,
+        "long_strike": 474.0
       },
       {
         "ticker": "XLK",
@@ -206,8 +199,8 @@
           "contract_error": 0,
           "quote_error": 0,
           "missing_delta": 1,
-          "quote_rejected": 8,
-          "delta_out_of_range": 1,
+          "quote_rejected": 6,
+          "delta_out_of_range": 3,
           "selected": null,
           "reason": "Quotes were available but failed width/quality checks."
         },
@@ -220,9 +213,18 @@
       },
       {
         "ticker": "XLF",
-        "status": "skipped",
-        "reason": "DTE ladder gap < 14d: proposed 35, conflicts with [35].",
-        "expiry": "20260612"
+        "status": "selected",
+        "reason": "Candidate passed scanner filters.",
+        "expiry": "20260612",
+        "strike": 47.0,
+        "long_strike": null,
+        "delta": 0.204,
+        "iv": 40.0,
+        "score": 100,
+        "qty": 4,
+        "estimated_risk": 18800.0,
+        "paper_auto_eligible": true,
+        "real_score_eligible": true
       },
       {
         "ticker": "XLE",
@@ -257,17 +259,17 @@
       {
         "ticker": "GDX",
         "status": "skipped",
-        "reason": "Quotes were available but no strike landed in the target delta band.",
+        "reason": "Quotes were available but failed width/quality checks.",
         "details": {
           "examined": 10,
           "missing_price": 0,
           "contract_error": 0,
           "quote_error": 0,
-          "missing_delta": 0,
-          "quote_rejected": 0,
-          "delta_out_of_range": 10,
+          "missing_delta": 1,
+          "quote_rejected": 1,
+          "delta_out_of_range": 8,
           "selected": null,
-          "reason": "Quotes were available but no strike landed in the target delta band."
+          "reason": "Quotes were available but failed width/quality checks."
         },
         "expiry": "20260612"
       },
@@ -280,8 +282,8 @@
     ],
     "paper_selected_count": 1,
     "manual_selected_count": 0,
-    "candidate_count": 2,
-    "blocked_count": 14,
-    "paper_risk_planned": 171206.37
+    "candidate_count": 1,
+    "blocked_count": 15,
+    "paper_risk_planned": 170850.0
   }
 }
