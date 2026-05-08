@@ -53,3 +53,8 @@
 {"generated":"2026-05-07T17:54:16+02:00","id":"IWM-BPS-271.0-266.0-20260612","ticker":"IWM","strategy":"BPS","strike":271.0,"long_strike":266.0,"expiry":"20260612","score":88,"copyable":true,"real_qty":5}
 {"generated":"2026-05-07T18:35:28+02:00","id":"XLF-WHEEL-47.0--20260612","ticker":"XLF","strategy":"WHEEL","strike":47.0,"long_strike":null,"expiry":"20260612","score":100,"copyable":true,"real_qty":3}
 {"generated":"2026-05-07T20:31:38+02:00","id":"XLF-WHEEL-47.0--20260612","ticker":"XLF","strategy":"WHEEL","strike":47.0,"long_strike":null,"expiry":"20260612","score":100,"copyable":true,"real_qty":3}
+{"generated":"2026-05-08T15:37:23+02:00","id":"XLF-WHEEL-47.0--20260612","ticker":"XLF","strategy":"WHEEL","strike":47.0,"long_strike":null,"expiry":"20260612","score":100,"copyable":true,"real_qty":3}
+{"generated":"2026-05-08T20:32:46+02:00","id":"XLF-WHEEL-46.5--20260612","ticker":"XLF","strategy":"WHEEL","strike":46.5,"long_strike":null,"expiry":"20260612","score":89,"copyable":true,"real_qty":3}
+{"generated":"2026-05-08T20:32:46+02:00","id":"XLI-WHEEL-164.0--20260612","ticker":"XLI","strategy":"WHEEL","strike":164.0,"long_strike":null,"expiry":"20260612","score":76,"copyable":true,"real_qty":1}
+{"generated":"2026-05-08T20:32:46+02:00","id":"SPY-BPS-713.0-703.0-20260612","ticker":"SPY","strategy":"BPS","strike":713.0,"long_strike":703.0,"expiry":"20260612","score":22,"copyable":false,"real_qty":2}
+{"generated":"2026-05-08T20:32:46+02:00","id":"SPY-IC-713.0-703.0-20260612","ticker":"SPY","strategy":"IC","strike":713.0,"long_strike":703.0,"expiry":"20260612","score":20,"copyable":false,"real_qty":3}
