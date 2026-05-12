@@ -74,6 +74,19 @@ SMTP_PORT = 587
 def now_iso():
     return datetime.now().astimezone().isoformat(timespec="seconds")
 
+MARKET_DATA_TYPE_LABELS = {
+    1: "LIVE",
+    2: "FROZEN",
+    3: "DELAYED",
+    4: "DELAYED_FROZEN",
+}
+
+def market_data_type_label(value):
+    try:
+        return MARKET_DATA_TYPE_LABELS.get(int(value), "UNKNOWN")
+    except Exception:
+        return "UNKNOWN"
+
 def _load_email_pass():
     """Load Gmail app password from ~/options-pro/credentials.env or environment.
     Never commit this file to git. Format:
@@ -150,6 +163,7 @@ DEFINED_RISK_STRATEGIES = {"BPS", "IC"}
 # signal-only until their full open/close lifecycle is implemented.
 MANUAL_ONLY_STRATEGIES = {"CC", "IC"}
 MAX_MANUAL_SIGNALS = 3
+REAL_MANUAL_SIGNAL_LIMIT = 10
 
 # Spread widths per ticker (wider = more credit but more capital)
 _TRADING_CLASS = {
@@ -778,6 +792,16 @@ def write_trade_signals(opportunities, mode="paper_auto", scan_summary=None):
             "score_details": opp.get("score_details") or {},
             "strategy_stage": opp.get("strategy_stage"),
             "manual_only_reason": opp.get("manual_only_reason"),
+            "bid": opp.get("bid"),
+            "ask": opp.get("ask"),
+            "mid": opp.get("mid"),
+            "quote_time": opp.get("quote_time"),
+            "quote_age_secs": opp.get("quote_age_secs"),
+            "market_data_type": opp.get("market_data_type", "UNKNOWN"),
+            "paper_status": opp.get("paper_status"),
+            "paper_reasons": opp.get("paper_reasons") or [],
+            "paper_current_positions": opp.get("paper_current_positions"),
+            "paper_auto_position_limit": opp.get("paper_auto_position_limit"),
             "warnings": [
                 "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
                 "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
@@ -793,6 +817,8 @@ def write_trade_signals(opportunities, mode="paper_auto", scan_summary=None):
         signal["min_paper_auto_score"] = MIN_PAPER_AUTO_SCORE
         signal["min_real_copy_score"] = MIN_REAL_COPY_SCORE
         signal["paper_auto_eligible"] = (
+            bool(opp.get("paper_auto_eligible", True))
+            and
             score >= MIN_PAPER_AUTO_SCORE
             and not opp.get("signal_only_strategy")
             and str(signal.get("strategy") or "").upper() not in MANUAL_ONLY_STRATEGIES
@@ -897,6 +923,7 @@ class TWSApp(EWrapper, EClient):
         self.positions = {}
         self.stock_positions = {}
         self.market_data = {}
+        self.market_data_types = {}
         self.option_chains = {}
         self.contract_details = {}
         self.request_errors = {}
@@ -1036,6 +1063,13 @@ class TWSApp(EWrapper, EClient):
         pass
 
     # ── Market Data ──
+    def marketDataType(self, reqId, marketDataType):
+        self.market_data_types[reqId] = marketDataType
+        if reqId not in self.market_data:
+            self.market_data[reqId] = {}
+        self.market_data[reqId]["data_type"] = marketDataType
+        self.market_data[reqId]["quote_ts"] = time.time()
+
     def tickPrice(self, reqId, tickType, price, attrib):
         if price <= 0:
             return
@@ -1047,6 +1081,7 @@ class TWSApp(EWrapper, EClient):
         name = type_map.get(tickType)
         if name:
             self.market_data[reqId][name] = price
+            self.market_data[reqId]["quote_ts"] = time.time()
             # Signal data ready when we have bid+ask or last
             if reqId in self._price_events:
                 md = self.market_data[reqId]
@@ -1081,6 +1116,7 @@ class TWSApp(EWrapper, EClient):
             self.market_data[reqId]["theta"] = theta
         if vega is not None:
             self.market_data[reqId]["vega"] = vega
+        self.market_data[reqId]["quote_ts"] = time.time()
         # Fire event when we have usable data (delta + price).
         # Don't gate on tickType==13 — after-hours/delayed data only sends
         # tickType 10/11 (bid/ask). We fire as soon as we have real values.
@@ -1464,8 +1500,10 @@ class AutoTradeEngine:
             log("❌ Failed to connect to TWS after 30s")
             return False
 
-        # Request delayed market data (type 3)
-        self.app.reqMarketDataType(3)
+        # Prefer live market data when the TWS username has the subscription.
+        # Individual requests still record the returned data type so the
+        # dashboard can distinguish LIVE from DELAYED/FROZEN quotes.
+        self.app.reqMarketDataType(1)
         time.sleep(1)
 
         # Load existing positions from IBKR
@@ -1786,20 +1824,20 @@ class AutoTradeEngine:
                 contract.primaryExchange = primary
 
         last_error = None
-        for market_data_type, label in ((3, "delayed"), (4, "delayed frozen")):
+        for market_data_type, label in ((1, "live"), (3, "delayed"), (4, "delayed frozen")):
             try:
                 self.app.reqMarketDataType(market_data_type)
             except Exception:
                 pass
             price, err = self._request_underlying_price_once(contract, timeout=timeout)
             if price:
-                if market_data_type != 3:
+                if market_data_type != 1:
                     log(f"  {ticker}: using IBKR {label} underlying price ${price:.2f}")
                 return price
             last_error = err or last_error
 
         try:
-            self.app.reqMarketDataType(3)
+            self.app.reqMarketDataType(1)
         except Exception:
             pass
 
@@ -1943,6 +1981,8 @@ class AutoTradeEngine:
         md = self.app.market_data.get(req_id, {})
         if err and not md:
             md["quote_error"] = err.get("message")
+        quote_ts = float(md.get("quote_ts") or time.time())
+        data_type_code = md.get("data_type") or self.app.market_data_types.get(req_id)
 
         bid = md.get("bid", 0) or 0
         ask = md.get("ask", 0) or 0
@@ -1974,6 +2014,11 @@ class AutoTradeEngine:
             "conId": getattr(contract, "conId", None),
             "localSymbol": getattr(contract, "localSymbol", ""),
             "quote_error": md.get("quote_error", ""),
+            "quote_ts": quote_ts,
+            "quote_time": datetime.fromtimestamp(quote_ts).astimezone().isoformat(timespec="seconds"),
+            "quote_age_secs": max(0, round(time.time() - quote_ts, 2)),
+            "data_type_code": data_type_code,
+            "data_type": market_data_type_label(data_type_code),
         }
 
     # Primary exchange mapping for ETFs (needed for unambiguous conId resolution)
@@ -2766,25 +2811,10 @@ class AutoTradeEngine:
         self._expire_stale_pending_closes("scan-start")
         self._sync_pending_open_orders_with_ibkr()
 
+        paper_global_block_reason = ""
         if kill_switch_active():
-            log(f"  🛑 Kill switch active ({KILL_SWITCH_FILE}) — no new opening trades")
-            write_trade_signals(
-                [],
-                mode="signal_only" if signal_only_active() else "paper_auto",
-                scan_summary={
-                    "generated": now_iso(),
-                    "market_status": self.market_status(),
-                    "global_status": "blocked",
-                    "global_reason": "Paper-account kill switch is active.",
-                    "selected_count": 0,
-                    "watchlist_count": len(WATCHLIST),
-                    "by_ticker": [
-                        {"ticker": ticker, "status": "blocked", "reason": "Paper-account kill switch is active."}
-                        for ticker in WATCHLIST
-                    ],
-                },
-            )
-            return []
+            paper_global_block_reason = "Paper-account kill switch is active."
+            log(f"  🛑 {paper_global_block_reason} Scan continues for real-account manual-review signals.")
 
         # Detect market regime from VIX
         vix = self.get_vix()
@@ -2830,38 +2860,12 @@ class AutoTradeEngine:
         if pending_opens:
             log(f"  Pending opens counted as capacity: {len(pending_opens)}")
         log(f"  Paper capital in use: ${paper_risk_used:,.0f}/${MAX_PAPER_PORTFOLIO_RISK:,.0f} target")
+        paper_capacity_reason = ""
         if num_open >= MAX_POSITIONS:
-            log("  ⚠ Maximum positions reached — no new trades")
-            write_trade_signals(
-                [],
-                mode="signal_only" if signal_only_active() else "paper_auto",
-                scan_summary={
-                    "generated": now_iso(),
-                    "market_status": self.market_status(),
-                    "vix": vix_value,
-                    "regime": regime.get("label", "Unknown"),
-                    "open_positions": num_open,
-                    "pending_open_orders": len(pending_opens),
-                    "paper_risk_used": round(paper_risk_used, 2),
-                    "paper_risk_cap": round(MAX_PAPER_PORTFOLIO_RISK, 2),
-                    "slots": 0,
-                    "global_status": "blocked",
-                    "global_reason": f"Maximum paper positions reached ({num_open}/{MAX_POSITIONS}).",
-                    "selected_count": 0,
-                    "watchlist_count": len(WATCHLIST),
-                    "by_ticker": [
-                        {
-                            "ticker": ticker,
-                            "status": "blocked",
-                            "reason": f"Maximum paper positions reached ({num_open}/{MAX_POSITIONS}).",
-                        }
-                        for ticker in WATCHLIST
-                    ],
-                },
-            )
-            return []
+            paper_capacity_reason = f"Maximum paper positions reached ({num_open}/{MAX_POSITIONS})."
+            log(f"  ⚠ {paper_capacity_reason} Paper auto is blocked, real signal scan continues.")
 
-        slots = MAX_POSITIONS - num_open
+        slots = max(0, MAX_POSITIONS - num_open)
         opportunities = []
         scan_summary = {
             "generated": now_iso(),
@@ -2869,6 +2873,9 @@ class AutoTradeEngine:
             "vix": vix_value,
             "regime": regime.get("label", "Unknown"),
             "open_positions": num_open,
+            "paper_current_positions": num_open,
+            "paper_auto_position_limit": MAX_POSITIONS,
+            "paper_auto_position_limit_reached": bool(paper_capacity_reason),
             "pending_open_orders": len(pending_opens),
             "paper_risk_used": round(paper_risk_used, 2),
             "paper_risk_cap": round(MAX_PAPER_PORTFOLIO_RISK, 2),
@@ -2881,6 +2888,11 @@ class AutoTradeEngine:
         for ticker in WATCHLIST:
             self._expire_stale_pending_closes(f"scan {ticker}")
             existing_dtes = existing_per_ticker.get(ticker, [])
+            paper_reasons = []
+            if paper_global_block_reason:
+                paper_reasons.append(paper_global_block_reason)
+            if paper_capacity_reason:
+                paper_reasons.append(paper_capacity_reason)
             if ticker in SCAN_DISABLED_TICKERS:
                 reason = SCAN_DISABLED_TICKERS[ticker]
                 log(f"  {ticker}: skipped early — {reason}")
@@ -2893,14 +2905,9 @@ class AutoTradeEngine:
                 continue
             # Hard cap on per-ticker open positions
             if len(existing_dtes) >= MAX_PER_TICKER:
-                log(f"  {ticker}: skipped (already at MAX_PER_TICKER={MAX_PER_TICKER}, "
-                    f"existing DTEs={existing_dtes})")
-                scan_summary["by_ticker"].append({
-                    "ticker": ticker,
-                    "status": "skipped",
-                    "reason": f"At MAX_PER_TICKER ({MAX_PER_TICKER}). Existing DTEs: {existing_dtes}.",
-                })
-                continue
+                reason = f"At paper MAX_PER_TICKER ({MAX_PER_TICKER}). Existing DTEs: {existing_dtes}."
+                log(f"  {ticker}: paper auto blocked — {reason}")
+                paper_reasons.append(reason)
 
             log(f"\n  Scanning {ticker}...")
 
@@ -2973,6 +2980,9 @@ class AutoTradeEngine:
                         ticker, cc_strike, stock_price, cc_data, dte, open_tickers, right="C"
                     )
                     cc_qty = covered_shares // 100
+                    cc_bid = round(float(cc_data.get("bid", 0) or 0), 2)
+                    cc_ask = round(float(cc_data.get("ask", 0) or 0), 2)
+                    cc_mid = round((cc_bid + cc_ask) / 2, 2) if cc_bid > 0 and cc_ask > 0 else round(float(cc_data.get("price", 0) or 0), 2)
                     cc_opp = {
                         "ticker": ticker,
                         "strategy": "CC",
@@ -2996,7 +3006,17 @@ class AutoTradeEngine:
                         "signal_only_strategy": True,
                         "manual_only_reason": "Covered-call signals require share ownership confirmation and are manual-review only.",
                         "paper_auto_eligible": False,
+                        "paper_status": "PAPER_BLOCKED",
+                        "paper_reasons": ["Covered-call signals require manual share confirmation; paper auto is disabled."],
+                        "paper_current_positions": num_open,
+                        "paper_auto_position_limit": MAX_POSITIONS,
                         "real_score_eligible": cc_score >= MIN_REAL_COPY_SCORE,
+                        "bid": cc_bid,
+                        "ask": cc_ask,
+                        "mid": cc_mid,
+                        "quote_time": cc_data.get("quote_time"),
+                        "quote_age_secs": cc_data.get("quote_age_secs"),
+                        "market_data_type": cc_data.get("data_type", "UNKNOWN"),
                     }
                     cc_opp["estimated_risk"] = round(estimate_opportunity_risk(cc_opp), 2)
                     opportunities.append(cc_opp)
@@ -3012,7 +3032,17 @@ class AutoTradeEngine:
                         "score": cc_score,
                         "qty": cc_qty,
                         "paper_auto_eligible": False,
+                        "paper_status": "PAPER_BLOCKED",
+                        "paper_reasons": ["Covered-call signals require manual share confirmation; paper auto is disabled."],
+                        "paper_current_positions": num_open,
+                        "paper_auto_position_limit": MAX_POSITIONS,
                         "real_score_eligible": cc_score >= MIN_REAL_COPY_SCORE,
+                        "bid": cc_bid,
+                        "ask": cc_ask,
+                        "mid": cc_mid,
+                        "quote_time": cc_data.get("quote_time"),
+                        "quote_age_secs": cc_data.get("quote_age_secs"),
+                        "market_data_type": cc_data.get("data_type", "UNKNOWN"),
                     })
                 else:
                     log(f"  {ticker}: no covered-call strike — {cc_diag.get('reason')}")
@@ -3025,16 +3055,12 @@ class AutoTradeEngine:
                 _conflicts = [d for d in existing_dtes
                               if d is not None and abs(dte - d) < MIN_LADDER_DTE_GAP]
                 if _conflicts:
-                    log(f"  {ticker}: skipped — proposed DTE {dte} too close to "
-                        f"existing {existing_dtes} (need ≥{MIN_LADDER_DTE_GAP}d gap)")
-                    scan_summary["by_ticker"].append({
-                        "ticker": ticker,
-                        "status": "skipped",
-                        "reason": (f"DTE ladder gap < {MIN_LADDER_DTE_GAP}d: "
-                                   f"proposed {dte}, conflicts with {_conflicts}."),
-                        "expiry": expiry,
-                    })
-                    continue
+                    reason = (
+                        f"Paper DTE ladder gap < {MIN_LADDER_DTE_GAP}d: "
+                        f"proposed {dte}, conflicts with {_conflicts}."
+                    )
+                    log(f"  {ticker}: paper auto blocked — {reason}")
+                    paper_reasons.append(reason)
 
             # Find best strike
             strike, opt_data, strike_diag = self.find_target_strike(
@@ -3237,6 +3263,15 @@ class AutoTradeEngine:
                                     ic_qty = min(ic_qty, ic_price_cap)
                                     if ic_qty > 0 and ic_credit >= ic_width * MIN_IC_CREDIT_PCT:
                                         ic_score = max(0, min(100, round((score + call_score) / 2)))
+                                        put_short_bid = float(opt_data.get("bid", 0) or 0)
+                                        put_long_ask = float(long_opt.get("ask", 0) or 0)
+                                        call_short_bid = float(call_opt.get("bid", 0) or 0)
+                                        call_long_ask = float(long_call_opt.get("ask", 0) or 0)
+                                        ic_bid = (
+                                            max(0, put_short_bid - put_long_ask + call_short_bid - call_long_ask)
+                                            if min(put_short_bid, put_long_ask, call_short_bid, call_long_ask) > 0
+                                            else ic_credit
+                                        )
                                         ic_opp = {
                                             "ticker": ticker,
                                             "strategy": "IC",
@@ -3266,7 +3301,17 @@ class AutoTradeEngine:
                                             "signal_only_strategy": True,
                                             "manual_only_reason": "Iron-condor signals are manual-review only until automated 4-leg execution and close management are enabled.",
                                             "paper_auto_eligible": False,
+                                            "paper_status": "PAPER_BLOCKED",
+                                            "paper_reasons": ["Iron-condor signals are manual-review only until automated four-leg paper execution and close management are enabled."],
+                                            "paper_current_positions": num_open,
+                                            "paper_auto_position_limit": MAX_POSITIONS,
                                             "real_score_eligible": ic_score >= MIN_REAL_COPY_SCORE,
+                                            "bid": round(ic_bid, 2),
+                                            "ask": None,
+                                            "mid": round(ic_credit, 2),
+                                            "quote_time": opt_data.get("quote_time") or call_opt.get("quote_time"),
+                                            "quote_age_secs": max(float(opt_data.get("quote_age_secs") or 0), float(call_opt.get("quote_age_secs") or 0)),
+                                            "market_data_type": opt_data.get("data_type", "UNKNOWN"),
                                         }
                                         ic_opp["estimated_risk"] = round(estimate_opportunity_risk(ic_opp), 2)
                                         opportunities.append(ic_opp)
@@ -3286,7 +3331,17 @@ class AutoTradeEngine:
                                             "qty": ic_qty,
                                             "estimated_risk": ic_opp["estimated_risk"],
                                             "paper_auto_eligible": False,
+                                            "paper_status": "PAPER_BLOCKED",
+                                            "paper_reasons": ["Iron-condor signals are manual-review only until automated four-leg paper execution and close management are enabled."],
+                                            "paper_current_positions": num_open,
+                                            "paper_auto_position_limit": MAX_POSITIONS,
                                             "real_score_eligible": ic_score >= MIN_REAL_COPY_SCORE,
+                                            "bid": round(ic_bid, 2),
+                                            "ask": None,
+                                            "mid": round(ic_credit, 2),
+                                            "quote_time": opt_data.get("quote_time") or call_opt.get("quote_time"),
+                                            "quote_age_secs": max(float(opt_data.get("quote_age_secs") or 0), float(call_opt.get("quote_age_secs") or 0)),
+                                            "market_data_type": opt_data.get("data_type", "UNKNOWN"),
                                         })
                                 else:
                                     log(f"  {ticker}: skipped IC call wing — {reason}")
@@ -3299,10 +3354,12 @@ class AutoTradeEngine:
                 f"Buffer={buffer:.1f}% DTE={dte} | Score={score}"
                 + (f" | Spread ${strike}/{long_strike} credit=${net_credit:.2f}" if long_strike else ""))
 
-            paper_auto_eligible = score >= MIN_PAPER_AUTO_SCORE
+            paper_auto_eligible = score >= MIN_PAPER_AUTO_SCORE and not paper_reasons
             real_score_eligible = score >= MIN_REAL_COPY_SCORE
             selected_reason = "Candidate passed scanner filters."
-            if not paper_auto_eligible:
+            if paper_reasons:
+                selected_reason = "Candidate passed scanner filters; paper auto blocked: " + " ".join(paper_reasons)
+            elif not paper_auto_eligible:
                 selected_reason = (
                     f"Candidate passed hard filters but score {score} is below "
                     f"{MIN_PAPER_AUTO_SCORE} paper-auto minimum; manual review only."
@@ -3312,6 +3369,10 @@ class AutoTradeEngine:
                     f"Candidate passed paper filters but score {score} is below "
                     f"{MIN_REAL_COPY_SCORE} real-account copy minimum."
                 )
+
+            bid = round(float(opt_data.get("bid", 0) or 0), 2)
+            ask = round(float(opt_data.get("ask", 0) or 0), 2)
+            mid = round((bid + ask) / 2, 2) if bid > 0 and ask > 0 else round(float(opt_data.get("price", 0) or 0), 2)
 
             opp = {
                 "ticker": ticker,
@@ -3333,7 +3394,17 @@ class AutoTradeEngine:
                 "trading_class": trading_class,
                 "strategy_stage": "cash_secured_put" if strategy == "WHEEL" else None,
                 "paper_auto_eligible": paper_auto_eligible,
+                "paper_status": "PAPER_READY" if paper_auto_eligible else "PAPER_BLOCKED",
+                "paper_reasons": list(paper_reasons),
+                "paper_current_positions": num_open,
+                "paper_auto_position_limit": MAX_POSITIONS,
                 "real_score_eligible": real_score_eligible,
+                "bid": bid,
+                "ask": ask,
+                "mid": mid,
+                "quote_time": opt_data.get("quote_time"),
+                "quote_age_secs": opt_data.get("quote_age_secs"),
+                "market_data_type": opt_data.get("data_type", "UNKNOWN"),
             }
             opp["estimated_risk"] = round(estimate_opportunity_risk(opp), 2)
             opportunities.append(opp)
@@ -3350,7 +3421,17 @@ class AutoTradeEngine:
                 "qty": qty,
                 "estimated_risk": opp["estimated_risk"],
                 "paper_auto_eligible": paper_auto_eligible,
+                "paper_status": opp["paper_status"],
+                "paper_reasons": list(paper_reasons),
+                "paper_current_positions": num_open,
+                "paper_auto_position_limit": MAX_POSITIONS,
                 "real_score_eligible": real_score_eligible,
+                "bid": bid,
+                "ask": ask,
+                "mid": mid,
+                "quote_time": opt_data.get("quote_time"),
+                "quote_age_secs": opt_data.get("quote_age_secs"),
+                "market_data_type": opt_data.get("data_type", "UNKNOWN"),
             })
 
         # Sort by score descending after scanning the full watchlist.
@@ -3359,13 +3440,19 @@ class AutoTradeEngine:
         selected_paper = []
         manual_selected = []
         planned_risk = paper_risk_used
+        selected_paper_ids = set()
         for opp in opportunities:
             if opp.get("signal_only_strategy") or str(opp.get("strategy") or "").upper() in MANUAL_ONLY_STRATEGIES:
-                if len(manual_selected) < MAX_MANUAL_SIGNALS:
-                    manual_selected.append(opp)
+                continue
+            if not bool(opp.get("paper_auto_eligible", True)):
                 continue
             opp_risk = float(opp.get("estimated_risk") or estimate_opportunity_risk(opp) or 0)
             if len(selected_paper) >= slots:
+                opp["paper_auto_eligible"] = False
+                opp["paper_status"] = "PAPER_BLOCKED"
+                opp.setdefault("paper_reasons", []).append(
+                    "Paper auto not selected: available paper slots were used by higher-ranked candidates."
+                )
                 continue
             if planned_risk + opp_risk > MAX_PAPER_PORTFOLIO_RISK:
                 opp["portfolio_blocked"] = True
@@ -3373,11 +3460,31 @@ class AutoTradeEngine:
                     f"Paper portfolio target would exceed ${MAX_PAPER_PORTFOLIO_RISK:,.0f} "
                     f"after adding estimated risk ${opp_risk:,.0f}."
                 )
+                opp["paper_auto_eligible"] = False
+                opp["paper_status"] = "PAPER_BLOCKED"
+                opp.setdefault("paper_reasons", []).append(opp["portfolio_block_reason"])
                 continue
             selected_paper.append(opp)
+            selected_paper_ids.add(_signal_id(opp))
             planned_risk += opp_risk
+
+        for opp in opportunities:
+            if _signal_id(opp) in selected_paper_ids:
+                continue
+            if len(manual_selected) >= REAL_MANUAL_SIGNAL_LIMIT:
+                break
+            if bool(opp.get("paper_auto_eligible", True)):
+                opp["paper_auto_eligible"] = False
+                opp["paper_status"] = "PAPER_BLOCKED"
+                opp.setdefault("paper_reasons", []).append(
+                    "Paper auto not selected: keeping this candidate for real-account manual review only."
+                )
+            elif not opp.get("paper_status"):
+                opp["paper_status"] = "PAPER_BLOCKED"
+            manual_selected.append(opp)
         selected = selected_paper + manual_selected
         selected_ids = {_signal_id(opp) for opp in selected}
+        opp_by_id = {_signal_id(opp): opp for opp in opportunities}
         for row in scan_summary["by_ticker"]:
             row_id = _signal_id({
                 "ticker": row.get("ticker", ""),
@@ -3386,6 +3493,11 @@ class AutoTradeEngine:
                 "long_strike": row.get("long_strike") or "",
                 "expiry": row.get("expiry", ""),
             })
+            if row_id in opp_by_id:
+                opp = opp_by_id[row_id]
+                row["paper_auto_eligible"] = bool(opp.get("paper_auto_eligible"))
+                row["paper_status"] = opp.get("paper_status") or ("PAPER_READY" if opp.get("paper_auto_eligible") else "PAPER_BLOCKED")
+                row["paper_reasons"] = opp.get("paper_reasons") or []
             if row.get("status") == "selected" and row_id not in selected_ids:
                 row["status"] = "candidate"
                 row["reason"] = "Candidate passed filters but was not selected because higher-ranked candidates used available slots or paper portfolio capacity."
@@ -3461,6 +3573,10 @@ class AutoTradeEngine:
                 continue
             if signal_only_active():
                 log(f"  📡 SIGNAL ONLY: {ticker} ${strike}P x{qty} — no paper order submitted")
+                continue
+            if not bool(opp.get("paper_auto_eligible", True)):
+                reason = "; ".join(opp.get("paper_reasons") or [opp.get("paper_status") or "paper auto blocked"])
+                log(f"  📡 PAPER BLOCKED: {ticker} — {reason}")
                 continue
             if strategy in MANUAL_ONLY_STRATEGIES or opp.get("signal_only_strategy"):
                 log(f"  📡 MANUAL STRATEGY: {strategy} {ticker} — signal written, no paper order submitted")
