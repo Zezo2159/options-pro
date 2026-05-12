@@ -563,11 +563,11 @@
       "long_strike": null,
       "expiry": "20260618",
       "first_seen": "2026-05-11T15:36:43+02:00",
-      "seen_count": 1,
+      "seen_count": 2,
       "copyable_seen_count": 1,
-      "last_seen": "2026-05-11T15:36:43+02:00",
-      "last_score": 75,
-      "last_copyable": true,
+      "last_seen": "2026-05-12T16:43:36+02:00",
+      "last_score": 52,
+      "last_copyable": false,
       "last_real_qty": 1
     },
     "XLF-WHEEL-49.0--20260618": {
@@ -578,10 +578,10 @@
       "long_strike": null,
       "expiry": "20260618",
       "first_seen": "2026-05-11T15:36:43+02:00",
-      "seen_count": 1,
+      "seen_count": 2,
       "copyable_seen_count": 0,
-      "last_seen": "2026-05-11T15:36:43+02:00",
-      "last_score": 53,
+      "last_seen": "2026-05-12T16:43:36+02:00",
+      "last_score": 28,
       "last_copyable": false,
       "last_real_qty": 3
     },
@@ -599,6 +599,66 @@
       "last_score": 45,
       "last_copyable": false,
       "last_real_qty": 5
+    },
+    "TLT-WHEEL-82.0--20260618": {
+      "id": "TLT-WHEEL-82.0--20260618",
+      "ticker": "TLT",
+      "strategy": "WHEEL",
+      "strike": 82.0,
+      "long_strike": null,
+      "expiry": "20260618",
+      "first_seen": "2026-05-12T16:43:36+02:00",
+      "seen_count": 1,
+      "copyable_seen_count": 1,
+      "last_seen": "2026-05-12T16:43:36+02:00",
+      "last_score": 91,
+      "last_copyable": true,
+      "last_real_qty": 2
+    },
+    "EEM-WHEEL-60.5--20260618": {
+      "id": "EEM-WHEEL-60.5--20260618",
+      "ticker": "EEM",
+      "strategy": "WHEEL",
+      "strike": 60.5,
+      "long_strike": null,
+      "expiry": "20260618",
+      "first_seen": "2026-05-12T16:43:36+02:00",
+      "seen_count": 1,
+      "copyable_seen_count": 0,
+      "last_seen": "2026-05-12T16:43:36+02:00",
+      "last_score": 47,
+      "last_copyable": false,
+      "last_real_qty": 1
+    },
+    "XLV-WHEEL-137.0--20260618": {
+      "id": "XLV-WHEEL-137.0--20260618",
+      "ticker": "XLV",
+      "strategy": "WHEEL",
+      "strike": 137.0,
+      "long_strike": null,
+      "expiry": "20260618",
+      "first_seen": "2026-05-12T16:43:36+02:00",
+      "seen_count": 1,
+      "copyable_seen_count": 0,
+      "last_seen": "2026-05-12T16:43:36+02:00",
+      "last_score": 45,
+      "last_copyable": false,
+      "last_real_qty": 1
+    },
+    "XLP-WHEEL-80.0--20260618": {
+      "id": "XLP-WHEEL-80.0--20260618",
+      "ticker": "XLP",
+      "strategy": "WHEEL",
+      "strike": 80.0,
+      "long_strike": null,
+      "expiry": "20260618",
+      "first_seen": "2026-05-12T16:43:36+02:00",
+      "seen_count": 1,
+      "copyable_seen_count": 0,
+      "last_seen": "2026-05-12T16:43:36+02:00",
+      "last_score": 34,
+      "last_copyable": false,
+      "last_real_qty": 2
     }
   },
   "events": [
@@ -1357,7 +1417,79 @@
       "score": 45,
       "copyable": false,
       "real_qty": 5
+    },
+    {
+      "generated": "2026-05-12T16:43:36+02:00",
+      "id": "TLT-WHEEL-82.0--20260618",
+      "ticker": "TLT",
+      "strategy": "WHEEL",
+      "strike": 82.0,
+      "long_strike": null,
+      "expiry": "20260618",
+      "score": 91,
+      "copyable": true,
+      "real_qty": 2
+    },
+    {
+      "generated": "2026-05-12T16:43:36+02:00",
+      "id": "XLI-WHEEL-162.0--20260618",
+      "ticker": "XLI",
+      "strategy": "WHEEL",
+      "strike": 162.0,
+      "long_strike": null,
+      "expiry": "20260618",
+      "score": 52,
+      "copyable": false,
+      "real_qty": 1
+    },
+    {
+      "generated": "2026-05-12T16:43:36+02:00",
+      "id": "EEM-WHEEL-60.5--20260618",
+      "ticker": "EEM",
+      "strategy": "WHEEL",
+      "strike": 60.5,
+      "long_strike": null,
+      "expiry": "20260618",
+      "score": 47,
+      "copyable": false,
+      "real_qty": 1
+    },
+    {
+      "generated": "2026-05-12T16:43:36+02:00",
+      "id": "XLV-WHEEL-137.0--20260618",
+      "ticker": "XLV",
+      "strategy": "WHEEL",
+      "strike": 137.0,
+      "long_strike": null,
+      "expiry": "20260618",
+      "score": 45,
+      "copyable": false,
+      "real_qty": 1
+    },
+    {
+      "generated": "2026-05-12T16:43:36+02:00",
+      "id": "XLP-WHEEL-80.0--20260618",
+      "ticker": "XLP",
+      "strategy": "WHEEL",
+      "strike": 80.0,
+      "long_strike": null,
+      "expiry": "20260618",
+      "score": 34,
+      "copyable": false,
+      "real_qty": 2
+    },
+    {
+      "generated": "2026-05-12T16:43:36+02:00",
+      "id": "XLF-WHEEL-49.0--20260618",
+      "ticker": "XLF",
+      "strategy": "WHEEL",
+      "strike": 49.0,
+      "long_strike": null,
+      "expiry": "20260618",
+      "score": 28,
+      "copyable": false,
+      "real_qty": 3
     }
   ],
-  "updated": "2026-05-12T16:31:11+02:00"
+  "updated": "2026-05-12T16:43:36+02:00"
 }

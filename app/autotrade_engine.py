@@ -835,9 +835,15 @@ def write_trade_signals(opportunities, mode="paper_auto", scan_summary=None):
                 )
                 signal["manual_only_reason"] = signal.get("manual_only_reason") or manual_reason
                 signal["warnings"].append(manual_reason)
-            else:
+            elif signal.get("paper_reasons"):
+                signal["warnings"].append("Paper auto blocked: " + " ".join(signal.get("paper_reasons") or []))
+            elif score < MIN_PAPER_AUTO_SCORE:
                 signal["warnings"].append(
                     f"Score {score:g} is below the {MIN_PAPER_AUTO_SCORE} minimum for paper auto-open; manual review only."
+                )
+            else:
+                signal["warnings"].append(
+                    "Paper auto blocked by the paper-account pipeline; real-account review remains separate."
                 )
         signal["id"] = _signal_id(signal)
         copy_state = _real_copyability(signal)
