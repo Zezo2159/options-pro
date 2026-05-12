@@ -923,3 +923,12 @@
 2026-05-12T19:30:40+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
 2026-05-12T19:45:47+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
 2026-05-12T19:46:00+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-05-12T20:00:23+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-05-12T20:00:23+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-05-12T20:00:29+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-05-12T20:15:35+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-05-12T20:40:20+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-05-12T20:55:25+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-05-12T21:10:31+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-05-12T21:25:37+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-05-12T21:40:43+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
