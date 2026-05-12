@@ -1,580 +1,109 @@
 {
-  "generated": "2026-05-08T20:32:46+02:00",
+  "generated": "2026-05-11T21:32:18+02:00",
   "mode": "paper_auto",
   "account": "DU4735568",
   "max_positions": 10,
-  "signals": [
-    {
-      "ticker": "XLF",
-      "strategy": "WHEEL",
-      "strike": 46.5,
-      "long_strike": null,
-      "call_strike": null,
-      "long_call_strike": null,
-      "expiry": "20260612",
-      "qty": 4,
-      "credit": 0.61,
-      "delta": 0.2,
-      "iv": 42.8,
-      "dte": 34,
-      "score": 89,
-      "estimated_risk": 18600.0,
-      "buffer_pct": 9.5,
-      "stock_price": 51.38,
-      "score_details": {
-        "delta": 20.0,
-        "iv": 20,
-        "buffer": 20.0,
-        "dte": 14.4,
-        "correlation": 15,
-        "open_correlations": [
-          {
-            "ticker": "EEM",
-            "corr": 0.55
-          },
-          {
-            "ticker": "XLV",
-            "corr": 0.75
-          },
-          {
-            "ticker": "XLE",
-            "corr": 0.75
-          },
-          {
-            "ticker": "XLP",
-            "corr": 0.5
-          },
-          {
-            "ticker": "IWM",
-            "corr": 0.7
-          },
-          {
-            "ticker": "SLV",
-            "corr": 0.35
-          },
-          {
-            "ticker": "TLT",
-            "corr": 0.2
-          }
-        ],
-        "raw": 89.3,
-        "buffer_pct": 9.5,
-        "premium": 0.81,
-        "final": 89
-      },
-      "strategy_stage": "cash_secured_put",
-      "manual_only_reason": null,
-      "warnings": [
-        "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
-        "Do not copy if portfolio risk, correlation, or news/event risk is elevated."
-      ],
-      "min_paper_auto_score": 35,
-      "min_real_copy_score": 60,
-      "paper_auto_eligible": true,
-      "id": "XLF-WHEEL-46.5--20260612",
-      "copyable": true,
-      "real_qty": 3,
-      "reasons": [],
-      "reason_labels": [],
-      "max_real_risk": 17500.0,
-      "risk_cap_label": "CSP / wheel collateral",
-      "risk_cap_pct": 7.0
-    },
-    {
-      "ticker": "XLI",
-      "strategy": "WHEEL",
-      "strike": 164.0,
-      "long_strike": null,
-      "call_strike": null,
-      "long_call_strike": null,
-      "expiry": "20260612",
-      "qty": 1,
-      "credit": 1.65,
-      "delta": 0.206,
-      "iv": 25.3,
-      "dte": 34,
-      "score": 76,
-      "estimated_risk": 16400.0,
-      "buffer_pct": 5.6,
-      "stock_price": 173.8,
-      "score_details": {
-        "delta": 17.6,
-        "iv": 14.0,
-        "buffer": 15.0,
-        "dte": 14.4,
-        "correlation": 15,
-        "open_correlations": [
-          {
-            "ticker": "EEM",
-            "corr": 0.55
-          },
-          {
-            "ticker": "XLV",
-            "corr": 0.75
-          },
-          {
-            "ticker": "XLE",
-            "corr": 0.75
-          },
-          {
-            "ticker": "XLP",
-            "corr": 0.5
-          },
-          {
-            "ticker": "IWM",
-            "corr": 0.7
-          },
-          {
-            "ticker": "SLV",
-            "corr": 0.35
-          },
-          {
-            "ticker": "TLT",
-            "corr": 0.2
-          }
-        ],
-        "raw": 75.9,
-        "buffer_pct": 5.6,
-        "premium": 1.65,
-        "final": 76
-      },
-      "strategy_stage": "cash_secured_put",
-      "manual_only_reason": null,
-      "warnings": [
-        "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
-        "Do not copy if portfolio risk, correlation, or news/event risk is elevated."
-      ],
-      "min_paper_auto_score": 35,
-      "min_real_copy_score": 60,
-      "paper_auto_eligible": true,
-      "id": "XLI-WHEEL-164.0--20260612",
-      "copyable": true,
-      "real_qty": 1,
-      "reasons": [],
-      "reason_labels": [],
-      "max_real_risk": 17500.0,
-      "risk_cap_label": "CSP / wheel collateral",
-      "risk_cap_pct": 7.0
-    },
-    {
-      "ticker": "SPY",
-      "strategy": "BPS",
-      "strike": 713.0,
-      "long_strike": 703.0,
-      "call_strike": null,
-      "long_call_strike": null,
-      "expiry": "20260612",
-      "qty": 2,
-      "credit": 1.58,
-      "delta": 0.243,
-      "iv": 17.7,
-      "dte": 34,
-      "score": 22,
-      "estimated_risk": 1683.85,
-      "buffer_pct": 3.3,
-      "stock_price": 737.67,
-      "score_details": {
-        "delta": 2.6,
-        "iv": 8.0,
-        "buffer": 7.5,
-        "dte": 14.4,
-        "correlation": -10,
-        "open_correlations": [
-          {
-            "ticker": "EEM",
-            "corr": 0.68
-          },
-          {
-            "ticker": "XLV",
-            "corr": 0.7
-          },
-          {
-            "ticker": "XLE",
-            "corr": 0.65
-          },
-          {
-            "ticker": "XLP",
-            "corr": 0.55
-          },
-          {
-            "ticker": "IWM",
-            "corr": 0.88
-          },
-          {
-            "ticker": "SLV",
-            "corr": 0.15
-          },
-          {
-            "ticker": "TLT",
-            "corr": 0.35
-          }
-        ],
-        "raw": 22.5,
-        "buffer_pct": 3.3,
-        "premium": 5.95,
-        "final": 22
-      },
-      "strategy_stage": null,
-      "manual_only_reason": null,
-      "warnings": [
-        "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
-        "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
-        "Score 22 is below the 35 minimum for paper auto-open; manual review only."
-      ],
-      "min_paper_auto_score": 35,
-      "min_real_copy_score": 60,
-      "paper_auto_eligible": false,
-      "id": "SPY-BPS-713.0-703.0-20260612",
-      "copyable": false,
-      "real_qty": 2,
-      "reasons": [
-        "score_below_real_min"
-      ],
-      "reason_labels": [
-        "Score 22 is below the 60 minimum for real-account copying."
-      ],
-      "max_real_risk": 2500.0,
-      "risk_cap_label": "defined-risk max-loss",
-      "risk_cap_pct": 1.0
-    },
-    {
-      "ticker": "SPY",
-      "strategy": "IC",
-      "strike": 713.0,
-      "long_strike": 703.0,
-      "call_strike": 770.0,
-      "long_call_strike": 780.0,
-      "expiry": "20260612",
-      "qty": 1,
-      "credit": 2.9,
-      "delta": 0.243,
-      "iv": 17.7,
-      "dte": 34,
-      "score": 20,
-      "estimated_risk": 709.93,
-      "buffer_pct": 3.3,
-      "stock_price": 737.67,
-      "score_details": {
-        "put_side": {
-          "delta": 2.6,
-          "iv": 8.0,
-          "buffer": 7.5,
-          "dte": 14.4,
-          "correlation": -10,
-          "open_correlations": [
-            {
-              "ticker": "EEM",
-              "corr": 0.68
-            },
-            {
-              "ticker": "XLV",
-              "corr": 0.7
-            },
-            {
-              "ticker": "XLE",
-              "corr": 0.65
-            },
-            {
-              "ticker": "XLP",
-              "corr": 0.55
-            },
-            {
-              "ticker": "IWM",
-              "corr": 0.88
-            },
-            {
-              "ticker": "SLV",
-              "corr": 0.15
-            },
-            {
-              "ticker": "TLT",
-              "corr": 0.35
-            }
-          ],
-          "raw": 22.5,
-          "buffer_pct": 3.3,
-          "premium": 5.95,
-          "final": 22
-        },
-        "call_side": {
-          "delta": 7.2,
-          "iv": 0,
-          "buffer": 7.5,
-          "dte": 14.4,
-          "correlation": -10,
-          "open_correlations": [
-            {
-              "ticker": "EEM",
-              "corr": 0.68
-            },
-            {
-              "ticker": "XLV",
-              "corr": 0.7
-            },
-            {
-              "ticker": "XLE",
-              "corr": 0.65
-            },
-            {
-              "ticker": "XLP",
-              "corr": 0.55
-            },
-            {
-              "ticker": "IWM",
-              "corr": 0.88
-            },
-            {
-              "ticker": "SLV",
-              "corr": 0.15
-            },
-            {
-              "ticker": "TLT",
-              "corr": 0.35
-            }
-          ],
-          "raw": 19.1,
-          "buffer_pct": 4.4,
-          "premium": 2.41,
-          "final": 19
-        },
-        "final": 20
-      },
-      "strategy_stage": "iron_condor",
-      "manual_only_reason": "Iron-condor signals are manual-review only until automated 4-leg execution and close management are enabled.",
-      "warnings": [
-        "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
-        "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
-        "Iron-condor signals are manual-review only until automated 4-leg execution and close management are enabled."
-      ],
-      "min_paper_auto_score": 35,
-      "min_real_copy_score": 60,
-      "paper_auto_eligible": false,
-      "id": "SPY-IC-713.0-703.0-20260612",
-      "copyable": false,
-      "real_qty": 3,
-      "reasons": [
-        "score_below_real_min"
-      ],
-      "reason_labels": [
-        "Score 20 is below the 60 minimum for real-account copying."
-      ],
-      "max_real_risk": 2500.0,
-      "risk_cap_label": "defined-risk max-loss",
-      "risk_cap_pct": 1.0
-    }
-  ],
+  "signals": [],
   "audit": {
     "file": "/Users/islam/options-pro/data/signal_audit.json",
-    "total": 4,
-    "copyable": 2
+    "total": 0,
+    "copyable": 0
   },
   "scan_summary": {
-    "generated": "2026-05-08T20:30:02+02:00",
+    "generated": "2026-05-11T21:32:18+02:00",
     "market_status": "open",
     "vix": null,
     "regime": "Normal",
-    "open_positions": 7,
+    "open_positions": 10,
     "pending_open_orders": 0,
-    "paper_risk_used": 127150.0,
+    "paper_risk_used": 164450.0,
     "paper_risk_cap": 225000.0,
-    "slots": 3,
-    "selected_count": 4,
+    "slots": 0,
+    "global_status": "blocked",
+    "global_reason": "Maximum paper positions reached (10/10).",
+    "selected_count": 0,
     "watchlist_count": 16,
     "by_ticker": [
       {
         "ticker": "SPY",
-        "status": "selected",
-        "reason": "Iron-condor candidate passed scanner filters; manual review only.",
-        "strategy": "IC",
-        "expiry": "20260612",
-        "strike": 713.0,
-        "long_strike": 703.0,
-        "call_strike": 770.0,
-        "long_call_strike": 780.0,
-        "delta": 0.243,
-        "iv": 17.7,
-        "score": 20,
-        "qty": 1,
-        "estimated_risk": 709.93,
-        "paper_auto_eligible": false,
-        "real_score_eligible": false
-      },
-      {
-        "ticker": "SPY",
-        "status": "selected",
-        "reason": "Candidate passed hard filters but score 22 is below 35 paper-auto minimum; manual review only.",
-        "expiry": "20260612",
-        "strike": 713.0,
-        "long_strike": 703.0,
-        "delta": 0.243,
-        "iv": 17.7,
-        "score": 22,
-        "qty": 2,
-        "estimated_risk": 1683.85,
-        "paper_auto_eligible": false,
-        "real_score_eligible": false
+        "status": "blocked",
+        "reason": "Maximum paper positions reached (10/10)."
       },
       {
         "ticker": "QQQ",
-        "status": "skipped",
-        "reason": "Quotes were available but no strike landed in the target delta band.",
-        "details": {
-          "examined": 10,
-          "missing_price": 0,
-          "contract_error": 0,
-          "quote_error": 0,
-          "missing_delta": 0,
-          "quote_rejected": 0,
-          "delta_out_of_range": 10,
-          "selected": null,
-          "reason": "Quotes were available but no strike landed in the target delta band."
-        },
-        "expiry": "20260612"
+        "status": "blocked",
+        "reason": "Maximum paper positions reached (10/10)."
       },
       {
         "ticker": "IWM",
-        "status": "skipped",
-        "reason": "DTE ladder gap < 14d: proposed 34, conflicts with [34].",
-        "expiry": "20260612"
+        "status": "blocked",
+        "reason": "Maximum paper positions reached (10/10)."
       },
       {
         "ticker": "GLD",
-        "status": "skipped",
-        "reason": "Quotes were available but no strike landed in the target delta band.",
-        "details": {
-          "examined": 10,
-          "missing_price": 1,
-          "contract_error": 0,
-          "quote_error": 0,
-          "missing_delta": 1,
-          "quote_rejected": 0,
-          "delta_out_of_range": 8,
-          "selected": null,
-          "reason": "Quotes were available but no strike landed in the target delta band."
-        },
-        "expiry": "20260612"
+        "status": "blocked",
+        "reason": "Maximum paper positions reached (10/10)."
       },
       {
         "ticker": "SMH",
-        "status": "skipped",
-        "reason": "Quotes were available but no strike landed in the target delta band.",
-        "details": {
-          "examined": 10,
-          "missing_price": 3,
-          "contract_error": 0,
-          "quote_error": 0,
-          "missing_delta": 0,
-          "quote_rejected": 0,
-          "delta_out_of_range": 7,
-          "selected": null,
-          "reason": "Quotes were available but no strike landed in the target delta band."
-        },
-        "expiry": "20260612"
+        "status": "blocked",
+        "reason": "Maximum paper positions reached (10/10)."
       },
       {
         "ticker": "DIA",
         "status": "blocked",
-        "reason": "Spread credit $0.57 is below 15% of $5 width.",
-        "expiry": "20260612",
-        "strike": 478.0,
-        "long_strike": 473.0
+        "reason": "Maximum paper positions reached (10/10)."
       },
       {
         "ticker": "XLK",
         "status": "blocked",
-        "reason": "Spread credit $0.53 is below 15% of $5 width.",
-        "expiry": "20260612",
-        "strike": 165.0,
-        "long_strike": 160.0
+        "reason": "Maximum paper positions reached (10/10)."
       },
       {
         "ticker": "TLT",
-        "status": "skipped",
-        "reason": "DTE ladder gap < 14d: proposed 34, conflicts with [34].",
-        "expiry": "20260612"
+        "status": "blocked",
+        "reason": "Maximum paper positions reached (10/10)."
       },
       {
         "ticker": "XLF",
-        "status": "selected",
-        "reason": "Candidate passed scanner filters.",
-        "expiry": "20260612",
-        "strike": 46.5,
-        "long_strike": null,
-        "delta": 0.2,
-        "iv": 42.8,
-        "score": 89,
-        "qty": 4,
-        "estimated_risk": 18600.0,
-        "paper_auto_eligible": true,
-        "real_score_eligible": true
+        "status": "blocked",
+        "reason": "Maximum paper positions reached (10/10)."
       },
       {
         "ticker": "XLE",
-        "status": "skipped",
-        "reason": "DTE ladder gap < 14d: proposed 34, conflicts with [34].",
-        "expiry": "20260612"
+        "status": "blocked",
+        "reason": "Maximum paper positions reached (10/10)."
       },
       {
         "ticker": "XLV",
-        "status": "skipped",
-        "reason": "DTE ladder gap < 14d: proposed 34, conflicts with [34].",
-        "expiry": "20260612"
+        "status": "blocked",
+        "reason": "Maximum paper positions reached (10/10)."
       },
       {
         "ticker": "XLI",
-        "status": "selected",
-        "reason": "Candidate passed scanner filters.",
-        "expiry": "20260612",
-        "strike": 164.0,
-        "long_strike": null,
-        "delta": 0.206,
-        "iv": 25.3,
-        "score": 76,
-        "qty": 1,
-        "estimated_risk": 16400.0,
-        "paper_auto_eligible": true,
-        "real_score_eligible": true
+        "status": "blocked",
+        "reason": "Maximum paper positions reached (10/10)."
       },
       {
         "ticker": "XLP",
-        "status": "skipped",
-        "reason": "DTE ladder gap < 14d: proposed 34, conflicts with [34].",
-        "expiry": "20260612"
+        "status": "blocked",
+        "reason": "Maximum paper positions reached (10/10)."
       },
       {
         "ticker": "SLV",
-        "status": "skipped",
-        "reason": "DTE ladder gap < 14d: proposed 34, conflicts with [34].",
-        "expiry": "20260612"
+        "status": "blocked",
+        "reason": "Maximum paper positions reached (10/10)."
       },
       {
         "ticker": "GDX",
-        "status": "skipped",
-        "reason": "Quotes were available but failed width/quality checks.",
-        "details": {
-          "examined": 10,
-          "missing_price": 0,
-          "contract_error": 0,
-          "quote_error": 0,
-          "missing_delta": 0,
-          "quote_rejected": 1,
-          "delta_out_of_range": 9,
-          "selected": null,
-          "reason": "Quotes were available but failed width/quality checks."
-        },
-        "expiry": "20260612"
+        "status": "blocked",
+        "reason": "Maximum paper positions reached (10/10)."
       },
       {
         "ticker": "EEM",
-        "status": "skipped",
-        "reason": "DTE ladder gap < 14d: proposed 34, conflicts with [34].",
-        "expiry": "20260612"
+        "status": "blocked",
+        "reason": "Maximum paper positions reached (10/10)."
       }
-    ],
-    "paper_selected_count": 3,
-    "manual_selected_count": 1,
-    "candidate_count": 4,
-    "blocked_count": 13,
-    "paper_risk_planned": 163833.85
+    ]
   }
 }

@@ -554,6 +554,51 @@
       "last_score": 20,
       "last_copyable": false,
       "last_real_qty": 3
+    },
+    "XLI-WHEEL-162.0--20260618": {
+      "id": "XLI-WHEEL-162.0--20260618",
+      "ticker": "XLI",
+      "strategy": "WHEEL",
+      "strike": 162.0,
+      "long_strike": null,
+      "expiry": "20260618",
+      "first_seen": "2026-05-11T15:36:43+02:00",
+      "seen_count": 1,
+      "copyable_seen_count": 1,
+      "last_seen": "2026-05-11T15:36:43+02:00",
+      "last_score": 75,
+      "last_copyable": true,
+      "last_real_qty": 1
+    },
+    "XLF-WHEEL-49.0--20260618": {
+      "id": "XLF-WHEEL-49.0--20260618",
+      "ticker": "XLF",
+      "strategy": "WHEEL",
+      "strike": 49.0,
+      "long_strike": null,
+      "expiry": "20260618",
+      "first_seen": "2026-05-11T15:36:43+02:00",
+      "seen_count": 1,
+      "copyable_seen_count": 0,
+      "last_seen": "2026-05-11T15:36:43+02:00",
+      "last_score": 53,
+      "last_copyable": false,
+      "last_real_qty": 3
+    },
+    "XLK-BPS-165.0-160.0-20260618": {
+      "id": "XLK-BPS-165.0-160.0-20260618",
+      "ticker": "XLK",
+      "strategy": "BPS",
+      "strike": 165.0,
+      "long_strike": 160.0,
+      "expiry": "20260618",
+      "first_seen": "2026-05-11T16:31:09+02:00",
+      "seen_count": 1,
+      "copyable_seen_count": 0,
+      "last_seen": "2026-05-11T16:31:09+02:00",
+      "last_score": 45,
+      "last_copyable": false,
+      "last_real_qty": 5
     }
   },
   "events": [
@@ -1276,7 +1321,43 @@
       "score": 20,
       "copyable": false,
       "real_qty": 3
+    },
+    {
+      "generated": "2026-05-11T15:36:43+02:00",
+      "id": "XLI-WHEEL-162.0--20260618",
+      "ticker": "XLI",
+      "strategy": "WHEEL",
+      "strike": 162.0,
+      "long_strike": null,
+      "expiry": "20260618",
+      "score": 75,
+      "copyable": true,
+      "real_qty": 1
+    },
+    {
+      "generated": "2026-05-11T15:36:43+02:00",
+      "id": "XLF-WHEEL-49.0--20260618",
+      "ticker": "XLF",
+      "strategy": "WHEEL",
+      "strike": 49.0,
+      "long_strike": null,
+      "expiry": "20260618",
+      "score": 53,
+      "copyable": false,
+      "real_qty": 3
+    },
+    {
+      "generated": "2026-05-11T16:31:09+02:00",
+      "id": "XLK-BPS-165.0-160.0-20260618",
+      "ticker": "XLK",
+      "strategy": "BPS",
+      "strike": 165.0,
+      "long_strike": 160.0,
+      "expiry": "20260618",
+      "score": 45,
+      "copyable": false,
+      "real_qty": 5
     }
   ],
-  "updated": "2026-05-08T20:32:46+02:00"
+  "updated": "2026-05-11T21:32:18+02:00"
 }
