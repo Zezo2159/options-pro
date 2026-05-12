@@ -797,6 +797,8 @@ def write_trade_signals(opportunities, mode="paper_auto", scan_summary=None):
             "mid": opp.get("mid"),
             "quote_time": opp.get("quote_time"),
             "quote_age_secs": opp.get("quote_age_secs"),
+            "quote_source": opp.get("quote_source", "IBKR option chain"),
+            "underlying_source": opp.get("underlying_source", "IBKR underlying or approved fallback"),
             "market_data_type": opp.get("market_data_type", "UNKNOWN"),
             "paper_status": opp.get("paper_status"),
             "paper_reasons": opp.get("paper_reasons") or [],
@@ -3022,6 +3024,8 @@ class AutoTradeEngine:
                         "mid": cc_mid,
                         "quote_time": cc_data.get("quote_time"),
                         "quote_age_secs": cc_data.get("quote_age_secs"),
+                        "quote_source": "IBKR option chain",
+                        "underlying_source": "IBKR underlying or Yahoo ETF fallback",
                         "market_data_type": cc_data.get("data_type", "UNKNOWN"),
                     }
                     cc_opp["estimated_risk"] = round(estimate_opportunity_risk(cc_opp), 2)
@@ -3048,6 +3052,8 @@ class AutoTradeEngine:
                         "mid": cc_mid,
                         "quote_time": cc_data.get("quote_time"),
                         "quote_age_secs": cc_data.get("quote_age_secs"),
+                        "quote_source": "IBKR option chain",
+                        "underlying_source": "IBKR underlying or Yahoo ETF fallback",
                         "market_data_type": cc_data.get("data_type", "UNKNOWN"),
                     })
                 else:
@@ -3317,6 +3323,8 @@ class AutoTradeEngine:
                                             "mid": round(ic_credit, 2),
                                             "quote_time": opt_data.get("quote_time") or call_opt.get("quote_time"),
                                             "quote_age_secs": max(float(opt_data.get("quote_age_secs") or 0), float(call_opt.get("quote_age_secs") or 0)),
+                                            "quote_source": "IBKR option chain",
+                                            "underlying_source": "IBKR underlying or Yahoo ETF fallback",
                                             "market_data_type": opt_data.get("data_type", "UNKNOWN"),
                                         }
                                         ic_opp["estimated_risk"] = round(estimate_opportunity_risk(ic_opp), 2)
@@ -3347,6 +3355,8 @@ class AutoTradeEngine:
                                             "mid": round(ic_credit, 2),
                                             "quote_time": opt_data.get("quote_time") or call_opt.get("quote_time"),
                                             "quote_age_secs": max(float(opt_data.get("quote_age_secs") or 0), float(call_opt.get("quote_age_secs") or 0)),
+                                            "quote_source": "IBKR option chain",
+                                            "underlying_source": "IBKR underlying or Yahoo ETF fallback",
                                             "market_data_type": opt_data.get("data_type", "UNKNOWN"),
                                         })
                                 else:
@@ -3410,6 +3420,8 @@ class AutoTradeEngine:
                 "mid": mid,
                 "quote_time": opt_data.get("quote_time"),
                 "quote_age_secs": opt_data.get("quote_age_secs"),
+                "quote_source": "IBKR option chain",
+                "underlying_source": "IBKR underlying or Yahoo ETF fallback",
                 "market_data_type": opt_data.get("data_type", "UNKNOWN"),
             }
             opp["estimated_risk"] = round(estimate_opportunity_risk(opp), 2)
@@ -3437,6 +3449,8 @@ class AutoTradeEngine:
                 "mid": mid,
                 "quote_time": opt_data.get("quote_time"),
                 "quote_age_secs": opt_data.get("quote_age_secs"),
+                "quote_source": "IBKR option chain",
+                "underlying_source": "IBKR underlying or Yahoo ETF fallback",
                 "market_data_type": opt_data.get("data_type", "UNKNOWN"),
             })
 

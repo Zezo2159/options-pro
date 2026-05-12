@@ -1,9 +1,107 @@
 {
-  "generated": "2026-05-12T16:43:36+02:00",
+  "generated": "2026-05-12T17:04:50+02:00",
   "mode": "paper_auto",
   "account": "DU4735568",
   "max_positions": 10,
   "signals": [
+    {
+      "ticker": "XLK",
+      "strategy": "BPS",
+      "strike": 162.5,
+      "long_strike": 157.5,
+      "call_strike": null,
+      "long_call_strike": null,
+      "expiry": "20260618",
+      "qty": 3,
+      "credit": 0.86,
+      "delta": 0.236,
+      "iv": 30.5,
+      "dte": 36,
+      "score": 45,
+      "estimated_risk": 1242.0,
+      "buffer_pct": 6.4,
+      "stock_price": 173.61,
+      "score_details": {
+        "delta": 5.6,
+        "iv": 20,
+        "buffer": 15.0,
+        "dte": 14.4,
+        "correlation": -10,
+        "open_correlations": [
+          {
+            "ticker": "EEM",
+            "corr": 0.62
+          },
+          {
+            "ticker": "XLV",
+            "corr": 0.62
+          },
+          {
+            "ticker": "XLE",
+            "corr": 0.62
+          },
+          {
+            "ticker": "XLP",
+            "corr": 0.45
+          },
+          {
+            "ticker": "IWM",
+            "corr": 0.82
+          },
+          {
+            "ticker": "XLF",
+            "corr": 0.62
+          },
+          {
+            "ticker": "XLI",
+            "corr": 0.62
+          },
+          {
+            "ticker": "SLV",
+            "corr": 0.2
+          },
+          {
+            "ticker": "TLT",
+            "corr": 0.4
+          }
+        ],
+        "raw": 45.0,
+        "buffer_pct": 6.4,
+        "premium": 2.64,
+        "final": 45
+      },
+      "strategy_stage": null,
+      "manual_only_reason": null,
+      "bid": 2.28,
+      "ask": 2.64,
+      "mid": 2.46,
+      "quote_time": "2026-05-12T17:02:34+02:00",
+      "quote_age_secs": 0.08,
+      "market_data_type": "LIVE",
+      "paper_status": "PAPER_READY",
+      "paper_reasons": [],
+      "paper_current_positions": 9,
+      "paper_auto_position_limit": 10,
+      "warnings": [
+        "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
+        "Do not copy if portfolio risk, correlation, or news/event risk is elevated."
+      ],
+      "min_paper_auto_score": 35,
+      "min_real_copy_score": 60,
+      "paper_auto_eligible": true,
+      "id": "XLK-BPS-162.5-157.5-20260618",
+      "copyable": false,
+      "real_qty": 5,
+      "reasons": [
+        "score_below_real_min"
+      ],
+      "reason_labels": [
+        "Score 45 is below the 60 minimum for real-account copying."
+      ],
+      "max_real_risk": 2358.27,
+      "risk_cap_label": "defined-risk max-loss",
+      "risk_cap_pct": 1.0
+    },
     {
       "ticker": "TLT",
       "strategy": "WHEEL",
@@ -13,16 +111,16 @@
       "long_call_strike": null,
       "expiry": "20260618",
       "qty": 3,
-      "credit": 0.27,
-      "delta": 0.161,
+      "credit": 0.26,
+      "delta": 0.165,
       "iv": 11.8,
       "dte": 36,
-      "score": 91,
+      "score": 93,
       "estimated_risk": 24600.0,
       "buffer_pct": 3.6,
-      "stock_price": 85.08,
+      "stock_price": 85.06,
       "score_details": {
-        "delta": 4.5,
+        "delta": 5.8,
         "iv": 0,
         "buffer": 7.5,
         "dte": 14.4,
@@ -65,18 +163,18 @@
             "corr": 1.0
           }
         ],
-        "raw": 91.3,
+        "raw": 92.7,
         "buffer_pct": 3.6,
         "premium": 0.28,
-        "final": 91
+        "final": 93
       },
       "strategy_stage": "cash_secured_put",
       "manual_only_reason": null,
-      "bid": 0.28,
-      "ask": 0.29,
-      "mid": 0.29,
-      "quote_time": "2026-05-12T16:41:34+02:00",
-      "quote_age_secs": 0.02,
+      "bid": 0.27,
+      "ask": 0.28,
+      "mid": 0.28,
+      "quote_time": "2026-05-12T17:02:48+02:00",
+      "quote_age_secs": 0.13,
       "market_data_type": "LIVE",
       "paper_status": "PAPER_BLOCKED",
       "paper_reasons": [
@@ -87,7 +185,7 @@
       "warnings": [
         "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
         "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
-        "Score 91 is below the 35 minimum for paper auto-open; manual review only."
+        "Paper auto blocked: Paper DTE ladder gap < 14d: proposed 36, conflicts with [30]."
       ],
       "min_paper_auto_score": 35,
       "min_real_copy_score": 60,
@@ -111,15 +209,15 @@
       "expiry": "20260618",
       "qty": 1,
       "credit": 1.17,
-      "delta": 0.196,
-      "iv": 25.0,
+      "delta": 0.202,
+      "iv": 26.8,
       "dte": 36,
       "score": 52,
       "estimated_risk": 16200.0,
-      "buffer_pct": 6.4,
-      "stock_price": 173.03,
+      "buffer_pct": 6.2,
+      "stock_price": 172.76,
       "score_details": {
-        "delta": 18.3,
+        "delta": 19.0,
         "iv": 14.0,
         "buffer": 15.0,
         "dte": 14.4,
@@ -162,9 +260,9 @@
             "corr": 0.2
           }
         ],
-        "raw": 51.7,
-        "buffer_pct": 6.4,
-        "premium": 1.72,
+        "raw": 52.4,
+        "buffer_pct": 6.2,
+        "premium": 1.43,
         "final": 52
       },
       "strategy_stage": "cash_secured_put",
@@ -172,8 +270,8 @@
       "bid": 1.18,
       "ask": 1.72,
       "mid": 1.45,
-      "quote_time": "2026-05-12T16:42:28+02:00",
-      "quote_age_secs": 0.16,
+      "quote_time": "2026-05-12T17:03:46+02:00",
+      "quote_age_secs": 0.05,
       "market_data_type": "LIVE",
       "paper_status": "PAPER_BLOCKED",
       "paper_reasons": [
@@ -184,7 +282,7 @@
       "warnings": [
         "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
         "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
-        "Score 52 is below the 35 minimum for paper auto-open; manual review only."
+        "Paper auto blocked: Paper DTE ladder gap < 14d: proposed 36, conflicts with [36]."
       ],
       "min_paper_auto_score": 35,
       "min_real_copy_score": 60,
@@ -211,17 +309,17 @@
       "long_call_strike": null,
       "expiry": "20260618",
       "qty": 3,
-      "credit": 0.53,
-      "delta": 0.205,
-      "iv": 32.0,
+      "credit": 0.66,
+      "delta": 0.195,
+      "iv": 29.8,
       "dte": 36,
-      "score": 47,
+      "score": 41,
       "estimated_risk": 18150.0,
-      "buffer_pct": 8.3,
-      "stock_price": 66.0,
+      "buffer_pct": 7.7,
+      "stock_price": 65.58,
       "score_details": {
         "delta": 18.0,
-        "iv": 20,
+        "iv": 14.0,
         "buffer": 20.0,
         "dte": 14.4,
         "correlation": -25,
@@ -263,18 +361,18 @@
             "corr": 0.35
           }
         ],
-        "raw": 47.4,
-        "buffer_pct": 8.3,
-        "premium": 0.73,
-        "final": 47
+        "raw": 41.4,
+        "buffer_pct": 7.7,
+        "premium": 0.75,
+        "final": 41
       },
       "strategy_stage": "cash_secured_put",
       "manual_only_reason": null,
-      "bid": 0.54,
-      "ask": 0.73,
-      "mid": 0.64,
-      "quote_time": "2026-05-12T16:43:34+02:00",
-      "quote_age_secs": 0.12,
+      "bid": 0.67,
+      "ask": 0.75,
+      "mid": 0.71,
+      "quote_time": "2026-05-12T17:04:47+02:00",
+      "quote_age_secs": 0.03,
       "market_data_type": "LIVE",
       "paper_status": "PAPER_BLOCKED",
       "paper_reasons": [
@@ -285,7 +383,7 @@
       "warnings": [
         "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
         "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
-        "Score 47 is below the 35 minimum for paper auto-open; manual review only."
+        "Paper auto blocked: Paper DTE ladder gap < 14d: proposed 36, conflicts with [30]."
       ],
       "min_paper_auto_score": 35,
       "min_real_copy_score": 60,
@@ -297,33 +395,134 @@
         "score_below_real_min"
       ],
       "reason_labels": [
-        "Score 47 is below the 60 minimum for real-account copying."
+        "Score 41 is below the 60 minimum for real-account copying."
       ],
       "max_real_risk": 11791.35,
       "risk_cap_label": "CSP / wheel collateral",
       "risk_cap_pct": 5.0
     },
     {
+      "ticker": "XLF",
+      "strategy": "WHEEL",
+      "strike": 49.0,
+      "long_strike": null,
+      "call_strike": null,
+      "long_call_strike": null,
+      "expiry": "20260618",
+      "qty": 4,
+      "credit": 0.43,
+      "delta": 0.228,
+      "iv": 20.2,
+      "dte": 36,
+      "score": 35,
+      "estimated_risk": 19600.0,
+      "buffer_pct": 4.2,
+      "stock_price": 51.13,
+      "score_details": {
+        "delta": 9.0,
+        "iv": 14.0,
+        "buffer": 7.5,
+        "dte": 14.4,
+        "correlation": -10,
+        "open_correlations": [
+          {
+            "ticker": "EEM",
+            "corr": 0.55
+          },
+          {
+            "ticker": "XLV",
+            "corr": 0.75
+          },
+          {
+            "ticker": "XLE",
+            "corr": 0.75
+          },
+          {
+            "ticker": "XLP",
+            "corr": 0.5
+          },
+          {
+            "ticker": "IWM",
+            "corr": 0.7
+          },
+          {
+            "ticker": "XLF",
+            "corr": 1.0
+          },
+          {
+            "ticker": "XLI",
+            "corr": 0.75
+          },
+          {
+            "ticker": "SLV",
+            "corr": 0.35
+          },
+          {
+            "ticker": "TLT",
+            "corr": 0.2
+          }
+        ],
+        "raw": 34.9,
+        "buffer_pct": 4.2,
+        "premium": 0.45,
+        "final": 35
+      },
+      "strategy_stage": "cash_secured_put",
+      "manual_only_reason": null,
+      "bid": 0.44,
+      "ask": 0.45,
+      "mid": 0.45,
+      "quote_time": "2026-05-12T17:02:57+02:00",
+      "quote_age_secs": 0.01,
+      "market_data_type": "LIVE",
+      "paper_status": "PAPER_BLOCKED",
+      "paper_reasons": [
+        "Paper DTE ladder gap < 14d: proposed 36, conflicts with [36]."
+      ],
+      "paper_current_positions": 9,
+      "paper_auto_position_limit": 10,
+      "warnings": [
+        "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
+        "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
+        "Paper auto blocked: Paper DTE ladder gap < 14d: proposed 36, conflicts with [36]."
+      ],
+      "min_paper_auto_score": 35,
+      "min_real_copy_score": 60,
+      "paper_auto_eligible": false,
+      "id": "XLF-WHEEL-49.0--20260618",
+      "copyable": false,
+      "real_qty": 3,
+      "reasons": [
+        "score_below_real_min"
+      ],
+      "reason_labels": [
+        "Score 35 is below the 60 minimum for real-account copying."
+      ],
+      "max_real_risk": 16507.89,
+      "risk_cap_label": "CSP / wheel collateral",
+      "risk_cap_pct": 7.0
+    },
+    {
       "ticker": "XLV",
       "strategy": "WHEEL",
-      "strike": 137.0,
+      "strike": 139.0,
       "long_strike": null,
       "call_strike": null,
       "long_call_strike": null,
       "expiry": "20260618",
       "qty": 2,
-      "credit": 0.46,
-      "delta": 0.193,
+      "credit": 0.94,
+      "delta": 0.211,
       "iv": 18.6,
       "dte": 36,
-      "score": 45,
-      "estimated_risk": 27400.0,
-      "buffer_pct": 5.1,
-      "stock_price": 144.39,
+      "score": 35,
+      "estimated_risk": 27800.0,
+      "buffer_pct": 4.1,
+      "stock_price": 144.97,
       "score_details": {
-        "delta": 17.1,
+        "delta": 15.6,
         "iv": 8.0,
-        "buffer": 15.0,
+        "buffer": 7.5,
         "dte": 14.4,
         "correlation": -10,
         "open_correlations": [
@@ -364,18 +563,18 @@
             "corr": 0.2
           }
         ],
-        "raw": 44.5,
-        "buffer_pct": 5.1,
-        "premium": 1.06,
-        "final": 45
+        "raw": 35.5,
+        "buffer_pct": 4.1,
+        "premium": 1.25,
+        "final": 35
       },
       "strategy_stage": "cash_secured_put",
       "manual_only_reason": null,
-      "bid": 0.47,
-      "ask": 1.06,
-      "mid": 0.77,
-      "quote_time": "2026-05-12T16:42:04+02:00",
-      "quote_age_secs": 0.08,
+      "bid": 0.95,
+      "ask": 1.25,
+      "mid": 1.1,
+      "quote_time": "2026-05-12T17:03:23+02:00",
+      "quote_age_secs": 0.15,
       "market_data_type": "LIVE",
       "paper_status": "PAPER_BLOCKED",
       "paper_reasons": [
@@ -386,19 +585,19 @@
       "warnings": [
         "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
         "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
-        "Score 45 is below the 35 minimum for paper auto-open; manual review only."
+        "Paper auto blocked: Paper DTE ladder gap < 14d: proposed 36, conflicts with [30]."
       ],
       "min_paper_auto_score": 35,
       "min_real_copy_score": 60,
       "paper_auto_eligible": false,
-      "id": "XLV-WHEEL-137.0--20260618",
+      "id": "XLV-WHEEL-139.0--20260618",
       "copyable": false,
       "real_qty": 1,
       "reasons": [
         "score_below_real_min"
       ],
       "reason_labels": [
-        "Score 45 is below the 60 minimum for real-account copying."
+        "Score 35 is below the 60 minimum for real-account copying."
       ],
       "max_real_risk": 16507.89,
       "risk_cap_label": "CSP / wheel collateral",
@@ -407,22 +606,22 @@
     {
       "ticker": "XLP",
       "strategy": "WHEEL",
-      "strike": 80.0,
+      "strike": 81.0,
       "long_strike": null,
       "call_strike": null,
       "long_call_strike": null,
       "expiry": "20260618",
       "qty": 3,
-      "credit": 0.46,
-      "delta": 0.186,
-      "iv": 18.5,
+      "credit": 0.58,
+      "delta": 0.221,
+      "iv": 18.2,
       "dte": 36,
-      "score": 34,
-      "estimated_risk": 24000.0,
-      "buffer_pct": 4.6,
-      "stock_price": 83.86,
+      "score": 31,
+      "estimated_risk": 24300.0,
+      "buffer_pct": 3.8,
+      "stock_price": 84.23,
       "score_details": {
-        "delta": 14.5,
+        "delta": 11.6,
         "iv": 8.0,
         "buffer": 7.5,
         "dte": 14.4,
@@ -465,17 +664,17 @@
             "corr": 0.1
           }
         ],
-        "raw": 34.3,
-        "buffer_pct": 4.6,
-        "premium": 0.56,
-        "final": 34
+        "raw": 31.5,
+        "buffer_pct": 3.8,
+        "premium": 0.66,
+        "final": 31
       },
       "strategy_stage": "cash_secured_put",
       "manual_only_reason": null,
-      "bid": 0.47,
-      "ask": 0.58,
-      "mid": 0.52,
-      "quote_time": "2026-05-12T16:42:35+02:00",
+      "bid": 0.59,
+      "ask": 0.71,
+      "mid": 0.65,
+      "quote_time": "2026-05-12T17:03:52+02:00",
       "quote_age_secs": 0.02,
       "market_data_type": "LIVE",
       "paper_status": "PAPER_BLOCKED",
@@ -487,120 +686,19 @@
       "warnings": [
         "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
         "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
-        "Score 34 is below the 35 minimum for paper auto-open; manual review only."
+        "Paper auto blocked: Paper DTE ladder gap < 14d: proposed 36, conflicts with [30]."
       ],
       "min_paper_auto_score": 35,
       "min_real_copy_score": 60,
       "paper_auto_eligible": false,
-      "id": "XLP-WHEEL-80.0--20260618",
+      "id": "XLP-WHEEL-81.0--20260618",
       "copyable": false,
       "real_qty": 2,
       "reasons": [
         "score_below_real_min"
       ],
       "reason_labels": [
-        "Score 34 is below the 60 minimum for real-account copying."
-      ],
-      "max_real_risk": 16507.89,
-      "risk_cap_label": "CSP / wheel collateral",
-      "risk_cap_pct": 7.0
-    },
-    {
-      "ticker": "XLF",
-      "strategy": "WHEEL",
-      "strike": 49.0,
-      "long_strike": null,
-      "call_strike": null,
-      "long_call_strike": null,
-      "expiry": "20260618",
-      "qty": 4,
-      "credit": 0.43,
-      "delta": 0.229,
-      "iv": 19.9,
-      "dte": 36,
-      "score": 28,
-      "estimated_risk": 19600.0,
-      "buffer_pct": 4.1,
-      "stock_price": 51.08,
-      "score_details": {
-        "delta": 8.2,
-        "iv": 8.0,
-        "buffer": 7.5,
-        "dte": 14.4,
-        "correlation": -10,
-        "open_correlations": [
-          {
-            "ticker": "EEM",
-            "corr": 0.55
-          },
-          {
-            "ticker": "XLV",
-            "corr": 0.75
-          },
-          {
-            "ticker": "XLE",
-            "corr": 0.75
-          },
-          {
-            "ticker": "XLP",
-            "corr": 0.5
-          },
-          {
-            "ticker": "IWM",
-            "corr": 0.7
-          },
-          {
-            "ticker": "XLF",
-            "corr": 1.0
-          },
-          {
-            "ticker": "XLI",
-            "corr": 0.75
-          },
-          {
-            "ticker": "SLV",
-            "corr": 0.35
-          },
-          {
-            "ticker": "TLT",
-            "corr": 0.2
-          }
-        ],
-        "raw": 28.1,
-        "buffer_pct": 4.1,
-        "premium": 0.5,
-        "final": 28
-      },
-      "strategy_stage": "cash_secured_put",
-      "manual_only_reason": null,
-      "bid": 0.44,
-      "ask": 0.47,
-      "mid": 0.45,
-      "quote_time": "2026-05-12T16:41:44+02:00",
-      "quote_age_secs": 0.04,
-      "market_data_type": "LIVE",
-      "paper_status": "PAPER_BLOCKED",
-      "paper_reasons": [
-        "Paper DTE ladder gap < 14d: proposed 36, conflicts with [36]."
-      ],
-      "paper_current_positions": 9,
-      "paper_auto_position_limit": 10,
-      "warnings": [
-        "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
-        "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
-        "Score 28 is below the 35 minimum for paper auto-open; manual review only."
-      ],
-      "min_paper_auto_score": 35,
-      "min_real_copy_score": 60,
-      "paper_auto_eligible": false,
-      "id": "XLF-WHEEL-49.0--20260618",
-      "copyable": false,
-      "real_qty": 3,
-      "reasons": [
-        "score_below_real_min"
-      ],
-      "reason_labels": [
-        "Score 28 is below the 60 minimum for real-account copying."
+        "Score 31 is below the 60 minimum for real-account copying."
       ],
       "max_real_risk": 16507.89,
       "risk_cap_label": "CSP / wheel collateral",
@@ -609,11 +707,11 @@
   ],
   "audit": {
     "file": "/Users/islam/options-pro/data/signal_audit.json",
-    "total": 6,
+    "total": 7,
     "copyable": 1
   },
   "scan_summary": {
-    "generated": "2026-05-12T16:40:31+02:00",
+    "generated": "2026-05-12T17:00:50+02:00",
     "market_status": "open",
     "vix": null,
     "regime": "Normal",
@@ -625,7 +723,7 @@
     "paper_risk_used": 162950.0,
     "paper_risk_cap": 225000.0,
     "slots": 1,
-    "selected_count": 6,
+    "selected_count": 7,
     "watchlist_count": 16,
     "by_ticker": [
       {
@@ -637,9 +735,9 @@
           "missing_price": 0,
           "contract_error": 0,
           "quote_error": 0,
-          "missing_delta": 1,
+          "missing_delta": 0,
           "quote_rejected": 0,
-          "delta_out_of_range": 9,
+          "delta_out_of_range": 10,
           "selected": null,
           "reason": "Quotes were available but no strike landed in the target delta band."
         },
@@ -664,11 +762,21 @@
       },
       {
         "ticker": "IWM",
-        "status": "blocked",
-        "reason": "Spread credit $0.75 is below 15% of $5 width.",
-        "expiry": "20260618",
-        "strike": 267.0,
-        "long_strike": 262.0
+        "status": "skipped",
+        "reason": "Quotes were available but no strike landed in the target delta band.",
+        "details": {
+          "examined": 10,
+          "missing_price": 2,
+          "contract_error": 2,
+          "quote_error": 0,
+          "missing_delta": 0,
+          "quote_rejected": 0,
+          "delta_out_of_range": 8,
+          "selected": null,
+          "reason": "Quotes were available but no strike landed in the target delta band.",
+          "last_error": "No security definition has been found for the request"
+        },
+        "expiry": "20260618"
       },
       {
         "ticker": "GLD",
@@ -726,11 +834,28 @@
       },
       {
         "ticker": "XLK",
-        "status": "blocked",
-        "reason": "Spread credit $0.42 is below 15% of $5 width.",
+        "status": "selected",
+        "reason": "Candidate passed paper filters but score 45 is below 60 real-account copy minimum.",
         "expiry": "20260618",
         "strike": 162.5,
-        "long_strike": 157.5
+        "long_strike": 157.5,
+        "delta": 0.236,
+        "iv": 30.5,
+        "score": 45,
+        "qty": 3,
+        "estimated_risk": 1242.0,
+        "paper_auto_eligible": true,
+        "paper_status": "PAPER_READY",
+        "paper_reasons": [],
+        "paper_current_positions": 9,
+        "paper_auto_position_limit": 10,
+        "real_score_eligible": false,
+        "bid": 2.28,
+        "ask": 2.64,
+        "mid": 2.46,
+        "quote_time": "2026-05-12T17:02:34+02:00",
+        "quote_age_secs": 0.08,
+        "market_data_type": "LIVE"
       },
       {
         "ticker": "TLT",
@@ -739,9 +864,9 @@
         "expiry": "20260618",
         "strike": 82.0,
         "long_strike": null,
-        "delta": 0.161,
+        "delta": 0.165,
         "iv": 11.8,
-        "score": 91,
+        "score": 93,
         "qty": 3,
         "estimated_risk": 24600.0,
         "paper_auto_eligible": false,
@@ -752,11 +877,11 @@
         "paper_current_positions": 9,
         "paper_auto_position_limit": 10,
         "real_score_eligible": true,
-        "bid": 0.28,
-        "ask": 0.29,
-        "mid": 0.29,
-        "quote_time": "2026-05-12T16:41:34+02:00",
-        "quote_age_secs": 0.02,
+        "bid": 0.27,
+        "ask": 0.28,
+        "mid": 0.28,
+        "quote_time": "2026-05-12T17:02:48+02:00",
+        "quote_age_secs": 0.13,
         "market_data_type": "LIVE"
       },
       {
@@ -766,9 +891,9 @@
         "expiry": "20260618",
         "strike": 49.0,
         "long_strike": null,
-        "delta": 0.229,
-        "iv": 19.9,
-        "score": 28,
+        "delta": 0.228,
+        "iv": 20.2,
+        "score": 35,
         "qty": 4,
         "estimated_risk": 19600.0,
         "paper_auto_eligible": false,
@@ -780,10 +905,10 @@
         "paper_auto_position_limit": 10,
         "real_score_eligible": false,
         "bid": 0.44,
-        "ask": 0.47,
+        "ask": 0.45,
         "mid": 0.45,
-        "quote_time": "2026-05-12T16:41:44+02:00",
-        "quote_age_secs": 0.04,
+        "quote_time": "2026-05-12T17:02:57+02:00",
+        "quote_age_secs": 0.01,
         "market_data_type": "LIVE"
       },
       {
@@ -809,13 +934,13 @@
         "status": "selected",
         "reason": "Candidate passed scanner filters; paper auto blocked: Paper DTE ladder gap < 14d: proposed 36, conflicts with [30].",
         "expiry": "20260618",
-        "strike": 137.0,
+        "strike": 139.0,
         "long_strike": null,
-        "delta": 0.193,
+        "delta": 0.211,
         "iv": 18.6,
-        "score": 45,
+        "score": 35,
         "qty": 2,
-        "estimated_risk": 27400.0,
+        "estimated_risk": 27800.0,
         "paper_auto_eligible": false,
         "paper_status": "PAPER_BLOCKED",
         "paper_reasons": [
@@ -824,11 +949,11 @@
         "paper_current_positions": 9,
         "paper_auto_position_limit": 10,
         "real_score_eligible": false,
-        "bid": 0.47,
-        "ask": 1.06,
-        "mid": 0.77,
-        "quote_time": "2026-05-12T16:42:04+02:00",
-        "quote_age_secs": 0.08,
+        "bid": 0.95,
+        "ask": 1.25,
+        "mid": 1.1,
+        "quote_time": "2026-05-12T17:03:23+02:00",
+        "quote_age_secs": 0.15,
         "market_data_type": "LIVE"
       },
       {
@@ -838,8 +963,8 @@
         "expiry": "20260618",
         "strike": 162.0,
         "long_strike": null,
-        "delta": 0.196,
-        "iv": 25.0,
+        "delta": 0.202,
+        "iv": 26.8,
         "score": 52,
         "qty": 1,
         "estimated_risk": 16200.0,
@@ -854,8 +979,8 @@
         "bid": 1.18,
         "ask": 1.72,
         "mid": 1.45,
-        "quote_time": "2026-05-12T16:42:28+02:00",
-        "quote_age_secs": 0.16,
+        "quote_time": "2026-05-12T17:03:46+02:00",
+        "quote_age_secs": 0.05,
         "market_data_type": "LIVE"
       },
       {
@@ -863,13 +988,13 @@
         "status": "selected",
         "reason": "Candidate passed scanner filters; paper auto blocked: Paper DTE ladder gap < 14d: proposed 36, conflicts with [30].",
         "expiry": "20260618",
-        "strike": 80.0,
+        "strike": 81.0,
         "long_strike": null,
-        "delta": 0.186,
-        "iv": 18.5,
-        "score": 34,
+        "delta": 0.221,
+        "iv": 18.2,
+        "score": 31,
         "qty": 3,
-        "estimated_risk": 24000.0,
+        "estimated_risk": 24300.0,
         "paper_auto_eligible": false,
         "paper_status": "PAPER_BLOCKED",
         "paper_reasons": [
@@ -878,10 +1003,10 @@
         "paper_current_positions": 9,
         "paper_auto_position_limit": 10,
         "real_score_eligible": false,
-        "bid": 0.47,
-        "ask": 0.58,
-        "mid": 0.52,
-        "quote_time": "2026-05-12T16:42:35+02:00",
+        "bid": 0.59,
+        "ask": 0.71,
+        "mid": 0.65,
+        "quote_time": "2026-05-12T17:03:52+02:00",
         "quote_age_secs": 0.02,
         "market_data_type": "LIVE"
       },
@@ -911,9 +1036,9 @@
           "missing_price": 5,
           "contract_error": 5,
           "quote_error": 0,
-          "missing_delta": 1,
+          "missing_delta": 0,
           "quote_rejected": 0,
-          "delta_out_of_range": 4,
+          "delta_out_of_range": 5,
           "selected": null,
           "reason": "Quotes were available but no strike landed in the target delta band.",
           "last_error": "No security definition has been found for the request"
@@ -927,9 +1052,9 @@
         "expiry": "20260618",
         "strike": 60.5,
         "long_strike": null,
-        "delta": 0.205,
-        "iv": 32.0,
-        "score": 47,
+        "delta": 0.195,
+        "iv": 29.8,
+        "score": 41,
         "qty": 3,
         "estimated_risk": 18150.0,
         "paper_auto_eligible": false,
@@ -940,18 +1065,18 @@
         "paper_current_positions": 9,
         "paper_auto_position_limit": 10,
         "real_score_eligible": false,
-        "bid": 0.54,
-        "ask": 0.73,
-        "mid": 0.64,
-        "quote_time": "2026-05-12T16:43:34+02:00",
-        "quote_age_secs": 0.12,
+        "bid": 0.67,
+        "ask": 0.75,
+        "mid": 0.71,
+        "quote_time": "2026-05-12T17:04:47+02:00",
+        "quote_age_secs": 0.03,
         "market_data_type": "LIVE"
       }
     ],
-    "paper_selected_count": 0,
+    "paper_selected_count": 1,
     "manual_selected_count": 6,
-    "candidate_count": 6,
-    "blocked_count": 10,
-    "paper_risk_planned": 162950.0
+    "candidate_count": 7,
+    "blocked_count": 9,
+    "paper_risk_planned": 164192.0
   }
 }
