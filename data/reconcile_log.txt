@@ -1035,3 +1035,6 @@
 2026-05-13T20:47:16+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
 2026-05-13T21:02:22+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
 2026-05-13T21:17:27+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-05-13T21:21:05+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-05-13T21:21:05+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
+2026-05-13T21:21:10+02:00,status=checked,ok=True,missing_in_ibkr=0,missing_in_journal=0,qty_mismatch=0,reason=
