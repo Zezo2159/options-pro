@@ -1,0 +1,17 @@
+{
+  "account": "U7706150",
+  "accountType": "live_expected",
+  "connected": true,
+  "endpoint": "127.0.0.1:7496",
+  "error": null,
+  "host": "127.0.0.1",
+  "lastHeartbeat": "2026-05-13T20:12:10+02:00",
+  "lastOrdersSync": "2026-05-13T20:12:08+02:00",
+  "lastPositionsSync": "2026-05-13T20:12:08+02:00",
+  "lastQuotesSync": "2026-05-13T20:12:10+02:00",
+  "managedAccounts": [],
+  "port": 7496,
+  "readOnly": true,
+  "role": "real_live",
+  "updated": "2026-05-13T20:12:10+02:00"
+}
