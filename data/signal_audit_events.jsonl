@@ -74,3 +74,17 @@
 {"generated":"2026-05-12T17:04:50+02:00","id":"XLF-WHEEL-49.0--20260618","ticker":"XLF","strategy":"WHEEL","strike":49.0,"long_strike":null,"expiry":"20260618","score":35,"copyable":false,"real_qty":3}
 {"generated":"2026-05-12T17:04:50+02:00","id":"XLV-WHEEL-139.0--20260618","ticker":"XLV","strategy":"WHEEL","strike":139.0,"long_strike":null,"expiry":"20260618","score":35,"copyable":false,"real_qty":1}
 {"generated":"2026-05-12T17:04:50+02:00","id":"XLP-WHEEL-81.0--20260618","ticker":"XLP","strategy":"WHEEL","strike":81.0,"long_strike":null,"expiry":"20260618","score":31,"copyable":false,"real_qty":2}
+{"generated":"2026-05-13T15:42:49+02:00","id":"EEM-WHEEL-60.5--20260618","ticker":"EEM","strategy":"WHEEL","strike":60.5,"long_strike":null,"expiry":"20260618","score":68,"copyable":true,"real_qty":1}
+{"generated":"2026-05-13T15:42:49+02:00","id":"TLT-WHEEL-82.0--20260618","ticker":"TLT","strategy":"WHEEL","strike":82.0,"long_strike":null,"expiry":"20260618","score":77,"copyable":true,"real_qty":2}
+{"generated":"2026-05-13T15:42:49+02:00","id":"IWM-BPS-268.0-263.0-20260618","ticker":"IWM","strategy":"BPS","strike":268.0,"long_strike":263.0,"expiry":"20260618","score":52,"copyable":false,"real_qty":5}
+{"generated":"2026-05-13T15:42:49+02:00","id":"XLI-WHEEL-163.0--20260618","ticker":"XLI","strategy":"WHEEL","strike":163.0,"long_strike":null,"expiry":"20260618","score":52,"copyable":false,"real_qty":1}
+{"generated":"2026-05-13T15:42:49+02:00","id":"IWM-IC-268.0-263.0-20260618","ticker":"IWM","strategy":"IC","strike":268.0,"long_strike":263.0,"expiry":"20260618","score":50,"copyable":false,"real_qty":6}
+{"generated":"2026-05-13T15:42:49+02:00","id":"XLF-WHEEL-48.0--20260618","ticker":"XLF","strategy":"WHEEL","strike":48.0,"long_strike":null,"expiry":"20260618","score":40,"copyable":false,"real_qty":3}
+{"generated":"2026-05-13T15:42:49+02:00","id":"XLV-WHEEL-139.0--20260618","ticker":"XLV","strategy":"WHEEL","strike":139.0,"long_strike":null,"expiry":"20260618","score":36,"copyable":false,"real_qty":1}
+{"generated":"2026-05-13T15:42:49+02:00","id":"XLP-WHEEL-81.0--20260618","ticker":"XLP","strategy":"WHEEL","strike":81.0,"long_strike":null,"expiry":"20260618","score":35,"copyable":false,"real_qty":2}
+{"generated":"2026-05-13T16:32:11+02:00","id":"EEM-WHEEL-61.0--20260618","ticker":"EEM","strategy":"WHEEL","strike":61.0,"long_strike":null,"expiry":"20260618","score":72,"copyable":true,"real_qty":1}
+{"generated":"2026-05-13T16:32:11+02:00","id":"TLT-WHEEL-82.0--20260618","ticker":"TLT","strategy":"WHEEL","strike":82.0,"long_strike":null,"expiry":"20260618","score":83,"copyable":true,"real_qty":2}
+{"generated":"2026-05-13T16:32:11+02:00","id":"XLI-WHEEL-163.0--20260618","ticker":"XLI","strategy":"WHEEL","strike":163.0,"long_strike":null,"expiry":"20260618","score":53,"copyable":false,"real_qty":1}
+{"generated":"2026-05-13T16:32:11+02:00","id":"XLF-WHEEL-49.0--20260618","ticker":"XLF","strategy":"WHEEL","strike":49.0,"long_strike":null,"expiry":"20260618","score":39,"copyable":false,"real_qty":3}
+{"generated":"2026-05-13T16:32:11+02:00","id":"XLV-WHEEL-139.0--20260618","ticker":"XLV","strategy":"WHEEL","strike":139.0,"long_strike":null,"expiry":"20260618","score":38,"copyable":false,"real_qty":1}
+{"generated":"2026-05-13T16:32:11+02:00","id":"XLP-WHEEL-81.0--20260618","ticker":"XLP","strategy":"WHEEL","strike":81.0,"long_strike":null,"expiry":"20260618","score":38,"copyable":false,"real_qty":2}
