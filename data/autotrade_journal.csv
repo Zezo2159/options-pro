@@ -83,3 +83,4 @@ timestamp,action,ticker,strategy,strike,expiry,qty,credit,delta,iv,dte,status,pn
 2026-05-13 16:47,CLOSE_PROFIT,SLV,CLOSE,65.0,20260612,4,0.68,0,0,0,Filled,272.3,50% profit ($272 >= $271) | CSP | OrderID 91 | Filled 2026-05-13T17:02:24+02:00
 2026-05-13 19:18,CLOSE_PROFIT,XLP,CLOSE,80.0,20260612,3,0.03999999910593033,0,0,0,Expired,109.45,50% profit ($109 >= $61) | CSP | OrderID 92 | Expired 2026-05-13T22:10:20+02:00 (market closed; canceling queued close order)
 2026-05-14 15:42,OPEN,XLE,WHEEL,55.0,20260618,4,0.66,0.23700505291897303,27.08%,34,Filled,0,Score 64 | Buffer 5.2% | OrderID 93 | SignalID XLE-WHEEL-55.0--20260618 | Filled 2026-05-14T15:42:16+02:00
+2026-05-15 21:03,CLOSE_LOSS,TLT,CLOSE,83.5,20260612,1,1.07,0,0,0,Filled,-71.39,2× stop ($-71 <= $-71) | CSP | OrderID 95 | Filled 2026-05-15T21:19:50+02:00
