@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-17T06:02:16+02:00",
+  "updated": "2026-05-17T23:43:41+02:00",
   "engine_running": true,
   "connected": true,
   "market_status": "closed",
@@ -158,7 +158,7 @@
   "ibkr_legs_short": 7,
   "ibkr_legs_long": 1,
   "reconciliation": {
-    "checked_at": "2026-05-17T06:02:16+02:00",
+    "checked_at": "2026-05-17T23:43:41+02:00",
     "ok": true,
     "missing_in_ibkr": [],
     "missing_in_journal": [],
