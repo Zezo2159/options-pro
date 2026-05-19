@@ -1,19 +1,17 @@
 {
   "account": "U7706150",
-  "accountType": "live",
+  "accountType": "live_expected",
   "connected": true,
   "endpoint": "127.0.0.1:7496",
   "error": null,
   "host": "127.0.0.1",
-  "lastHeartbeat": "2026-05-15T17:27:24+02:00",
+  "lastHeartbeat": "2026-05-18T18:45:14+02:00",
   "lastOrdersSync": "2026-05-15T17:27:24+02:00",
   "lastPositionsSync": "2026-05-15T17:27:24+02:00",
-  "lastQuotesSync": "2026-05-15T17:27:18+02:00",
-  "managedAccounts": [
-    "U7706150"
-  ],
+  "lastQuotesSync": "2026-05-18T18:45:14+02:00",
+  "managedAccounts": [],
   "port": 7496,
   "readOnly": true,
   "role": "real_live",
-  "updated": "2026-05-15T17:27:24+02:00"
+  "updated": "2026-05-18T18:45:14+02:00"
 }
