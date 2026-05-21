@@ -145810,3 +145810,62 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 [2026-05-21 19:37:36] Scan passes: 1
 [2026-05-21 19:37:36] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
+[2026-05-21 19:37:41]   ✅ GitHub backup on restart complete
+[2026-05-21 19:37:41] 🔌 Connecting to TWS...
+[2026-05-21 19:37:41] ✅ TWS connected — next order ID: 118
+[2026-05-21 19:37:43]   📊 7 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-05-21 19:37:43]      IBKR: XLV-137.0 = XLV $137.0 P x-2.0 avg=$0.65
+[2026-05-21 19:37:43]      IBKR: GDX-75.0 = GDX $75.0 P x-2.0 avg=$1.26
+[2026-05-21 19:37:43]      IBKR: XLF-49.0 = XLF $49.0 P x-4.0 avg=$0.42
+[2026-05-21 19:37:43]      IBKR: XLI-162.0 = XLI $162.0 P x-1.0 avg=$1.11
+[2026-05-21 19:37:43]      IBKR: XLE-56.0 = XLE $56.0 P x-4.0 avg=$0.53
+[2026-05-21 19:37:43]      IBKR: TLT-81.0 = TLT $81.0 P x-3.0 avg=$0.42
+[2026-05-21 19:37:43]      IBKR: EEM-61.0 = EEM $61.0 P x-3.0 avg=$0.53
+[2026-05-21 19:37:46]   ↺ Restored 1 pending close order(s) from journal
+[2026-05-21 19:37:46] ✅ Startup during market hours — next scheduled scan in 3133s
+[2026-05-21 19:37:46] 
+✅ Entering monitor mode (checking every 15 min)
+[2026-05-21 19:37:46]   📊 7 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-05-21 19:37:46]      IBKR: XLV-137.0 = XLV $137.0 P x-2.0 avg=$0.65
+[2026-05-21 19:37:46]      IBKR: GDX-75.0 = GDX $75.0 P x-2.0 avg=$1.26
+[2026-05-21 19:37:46]      IBKR: XLF-49.0 = XLF $49.0 P x-4.0 avg=$0.42
+[2026-05-21 19:37:46]      IBKR: XLI-162.0 = XLI $162.0 P x-1.0 avg=$1.11
+[2026-05-21 19:37:46]      IBKR: XLE-56.0 = XLE $56.0 P x-4.0 avg=$0.53
+[2026-05-21 19:37:46]      IBKR: TLT-81.0 = TLT $81.0 P x-3.0 avg=$0.42
+[2026-05-21 19:37:46]      IBKR: EEM-61.0 = EEM $61.0 P x-3.0 avg=$0.53
+[2026-05-21 19:37:49] 
+============================================================
+[2026-05-21 19:37:49] 📡 MONITORING 7 SHORT POSITION(S)
+[2026-05-21 19:37:49] ============================================================
+[2026-05-21 19:37:49]   XLV $137.0P: close order pending (13129s ago) — skipping
+[2026-05-21 19:37:49] 
+  GDX   $75.0P x2 [WHEEL]: entry=$251 now=$1.25 P/L=$1 DTE=35
+[2026-05-21 19:37:49]    >> HOLD (target=$126 stop=$-502)
+[2026-05-21 19:37:50] 
+  XLF   $49.0P x4 [WHEEL]: entry=$166 now=$0.26 P/L=$62 DTE=27
+[2026-05-21 19:37:50]    >> HOLD (target=$83 stop=$-333)
+[2026-05-21 19:37:50] 
+  XLI   $162.0P x1 [WHEEL]: entry=$111 now=$1.69 P/L=$-58 DTE=27
+[2026-05-21 19:37:50]    >> HOLD (target=$56 stop=$-222)
+[2026-05-21 19:37:50] 
+  XLE   $56.0P x4 [WHEEL]: entry=$210 now=$0.81 P/L=$-112 DTE=35
+[2026-05-21 19:37:50]    >> HOLD (target=$105 stop=$-421)
+[2026-05-21 19:37:51] 
+  TLT   $81.0P x3 [WHEEL]: entry=$125 now=$0.33 P/L=$26 DTE=35
+[2026-05-21 19:37:51]    >> HOLD (target=$63 stop=$-250)
+[2026-05-21 19:37:51] 
+  EEM   $61.0P x3 [WHEEL]: entry=$158 now=$0.64 P/L=$-35 DTE=27
+[2026-05-21 19:37:51]    >> HOLD (target=$79 stop=$-315)
+[2026-05-21 19:37:51] 
+  ⏳ Next check in 15 min...
+[2026-05-21 19:43:09] 
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+[2026-05-21 19:43:09] Options Pro Ultra v6 — Autotrade Engine
+[2026-05-21 19:43:09] Account: DU4735568 | Size: $250,000
+[2026-05-21 19:43:09] Max positions: 10 | Paper target use: $225,000 (90%)
+[2026-05-21 19:43:09] Paper sizing: CSP 8% / high-quality 12%, BPS 2.0%, IC 1.5%
+[2026-05-21 19:43:09] Delta: 0.15-0.25 | DTE: 21-45
+[2026-05-21 19:43:09] Close: 50% profit | Stop: 2.0× credit
+[2026-05-21 19:43:09] Scan passes: 1
+[2026-05-21 19:43:09] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+
