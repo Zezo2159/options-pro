@@ -246,3 +246,10 @@
 {"generated":"2026-05-21T16:32:55+02:00","id":"XLF-WHEEL-49.0--20260626","ticker":"XLF","strategy":"WHEEL","strike":49.0,"long_strike":null,"expiry":"20260626","score":53,"copyable":false,"real_qty":3}
 {"generated":"2026-05-21T16:32:55+02:00","id":"XLP-WHEEL-80.0--20260626","ticker":"XLP","strategy":"WHEEL","strike":80.0,"long_strike":null,"expiry":"20260626","score":48,"copyable":false,"real_qty":2}
 {"generated":"2026-05-21T16:32:55+02:00","id":"XLV-WHEEL-140.0--20260626","ticker":"XLV","strategy":"WHEEL","strike":140.0,"long_strike":null,"expiry":"20260626","score":40,"copyable":false,"real_qty":1}
+{"generated":"2026-05-21T20:32:57+02:00","id":"XLP-WHEEL-81.5--20260626","ticker":"XLP","strategy":"WHEEL","strike":81.5,"long_strike":null,"expiry":"20260626","score":64,"copyable":true,"real_qty":2}
+{"generated":"2026-05-21T20:32:57+02:00","id":"TLT-WHEEL-81.5--20260626","ticker":"TLT","strategy":"WHEEL","strike":81.5,"long_strike":null,"expiry":"20260626","score":91,"copyable":true,"real_qty":2}
+{"generated":"2026-05-21T20:32:57+02:00","id":"XLI-WHEEL-161.0--20260626","ticker":"XLI","strategy":"WHEEL","strike":161.0,"long_strike":null,"expiry":"20260626","score":53,"copyable":false,"real_qty":1}
+{"generated":"2026-05-21T20:32:57+02:00","id":"XLV-WHEEL-140.5--20260626","ticker":"XLV","strategy":"WHEEL","strike":140.5,"long_strike":null,"expiry":"20260626","score":47,"copyable":false,"real_qty":1}
+{"generated":"2026-05-21T20:32:57+02:00","id":"EEM-WHEEL-61.0--20260626","ticker":"EEM","strategy":"WHEEL","strike":61.0,"long_strike":null,"expiry":"20260626","score":46,"copyable":false,"real_qty":1}
+{"generated":"2026-05-21T20:32:57+02:00","id":"XLE-WHEEL-55.0--20260626","ticker":"XLE","strategy":"WHEEL","strike":55.0,"long_strike":null,"expiry":"20260626","score":43,"copyable":false,"real_qty":3}
+{"generated":"2026-05-21T20:32:57+02:00","id":"XLF-WHEEL-49.0--20260626","ticker":"XLF","strategy":"WHEEL","strike":49.0,"long_strike":null,"expiry":"20260626","score":40,"copyable":false,"real_qty":3}
