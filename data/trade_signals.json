@@ -1,120 +1,32 @@
 {
-  "generated": "2026-05-21T20:32:57+02:00",
+  "generated": "2026-05-22T20:32:54+02:00",
   "mode": "paper_auto",
   "account": "DU4735568",
   "max_positions": 10,
   "signals": [
     {
-      "ticker": "XLP",
-      "strategy": "WHEEL",
-      "strike": 81.5,
-      "long_strike": null,
-      "call_strike": null,
-      "long_call_strike": null,
-      "expiry": "20260626",
-      "qty": 3,
-      "credit": 0.66,
-      "delta": 0.203,
-      "iv": 17.5,
-      "dte": 35,
-      "score": 64,
-      "estimated_risk": 24450.0,
-      "buffer_pct": 3.2,
-      "stock_price": 84.16,
-      "score_details": {
-        "delta": 18.9,
-        "iv": 8.0,
-        "buffer": 7.5,
-        "dte": 15.0,
-        "correlation": 15,
-        "open_correlations": [
-          {
-            "ticker": "XLV",
-            "corr": 0.5
-          },
-          {
-            "ticker": "GDX",
-            "corr": 0.35
-          },
-          {
-            "ticker": "XLF",
-            "corr": 0.5
-          },
-          {
-            "ticker": "XLI",
-            "corr": 0.5
-          },
-          {
-            "ticker": "XLE",
-            "corr": 0.5
-          },
-          {
-            "ticker": "TLT",
-            "corr": 0.1
-          },
-          {
-            "ticker": "EEM",
-            "corr": 0.35
-          }
-        ],
-        "raw": 64.4,
-        "buffer_pct": 3.2,
-        "premium": 0.95,
-        "final": 64
-      },
-      "strategy_stage": "cash_secured_put",
-      "manual_only_reason": null,
-      "bid": 0.67,
-      "ask": 0.88,
-      "mid": 0.78,
-      "quote_time": "2026-05-21T20:32:17+02:00",
-      "quote_age_secs": 0.11,
-      "quote_source": "IBKR option chain",
-      "underlying_source": "IBKR underlying or Yahoo ETF fallback",
-      "market_data_type": "LIVE",
-      "paper_status": "PAPER_READY",
-      "paper_reasons": [],
-      "paper_current_positions": 7,
-      "paper_auto_position_limit": 10,
-      "warnings": [
-        "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
-        "Do not copy if portfolio risk, correlation, or news/event risk is elevated."
-      ],
-      "min_paper_auto_score": 35,
-      "min_real_copy_score": 60,
-      "paper_auto_eligible": true,
-      "id": "XLP-WHEEL-81.5--20260626",
-      "copyable": true,
-      "real_qty": 2,
-      "reasons": [],
-      "reason_labels": [],
-      "max_real_risk": 16507.89,
-      "risk_cap_label": "CSP / wheel collateral",
-      "risk_cap_pct": 7.0
-    },
-    {
       "ticker": "TLT",
       "strategy": "WHEEL",
-      "strike": 81.5,
+      "strike": 82.0,
       "long_strike": null,
       "call_strike": null,
       "long_call_strike": null,
       "expiry": "20260626",
       "qty": 3,
-      "credit": 0.34,
-      "delta": 0.204,
-      "iv": 12.1,
-      "dte": 35,
-      "score": 91,
-      "estimated_risk": 24450.0,
-      "buffer_pct": 3.2,
-      "stock_price": 84.16,
+      "credit": 0.31,
+      "delta": 0.2,
+      "iv": 11.5,
+      "dte": 34,
+      "score": 100,
+      "estimated_risk": 24600.0,
+      "buffer_pct": 3.0,
+      "stock_price": 84.53,
       "score_details": {
-        "delta": 18.4,
+        "delta": 19.9,
         "iv": 0,
-        "buffer": 7.5,
-        "dte": 15.0,
-        "correlation": 50,
+        "buffer": 0,
+        "dte": 14.4,
+        "correlation": 80,
         "open_correlations": [
           {
             "ticker": "XLV",
@@ -137,6 +49,18 @@
             "corr": 0.15
           },
           {
+            "ticker": "IWM",
+            "corr": 0.25
+          },
+          {
+            "ticker": "SLV",
+            "corr": 0.35
+          },
+          {
+            "ticker": "XLP",
+            "corr": 0.1
+          },
+          {
             "ticker": "TLT",
             "corr": 1.0
           },
@@ -145,36 +69,37 @@
             "corr": 0.35
           }
         ],
-        "raw": 90.9,
-        "buffer_pct": 3.2,
-        "premium": 0.42,
-        "final": 91
+        "raw": 114.3,
+        "buffer_pct": 3.0,
+        "premium": 0.33,
+        "final": 100
       },
       "strategy_stage": "cash_secured_put",
       "manual_only_reason": null,
-      "bid": 0.35,
-      "ask": 0.37,
-      "mid": 0.36,
-      "quote_time": "2026-05-21T20:31:25+02:00",
-      "quote_age_secs": 0.25,
+      "bid": 0.32,
+      "ask": 0.34,
+      "mid": 0.33,
+      "quote_time": "2026-05-22T20:31:24+02:00",
+      "quote_age_secs": 0.01,
       "quote_source": "IBKR option chain",
       "underlying_source": "IBKR underlying or Yahoo ETF fallback",
       "market_data_type": "LIVE",
       "paper_status": "PAPER_BLOCKED",
       "paper_reasons": [
-        "Paper DTE ladder gap < 14d: proposed 35, conflicts with [35]."
+        "Maximum paper positions reached (10/10).",
+        "Paper DTE ladder gap < 14d: proposed 34, conflicts with [34]."
       ],
-      "paper_current_positions": 7,
+      "paper_current_positions": 10,
       "paper_auto_position_limit": 10,
       "warnings": [
         "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
         "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
-        "Paper auto blocked: Paper DTE ladder gap < 14d: proposed 35, conflicts with [35]."
+        "Paper auto blocked: Maximum paper positions reached (10/10). Paper DTE ladder gap < 14d: proposed 34, conflicts with [34]."
       ],
       "min_paper_auto_score": 35,
       "min_real_copy_score": 60,
       "paper_auto_eligible": false,
-      "id": "TLT-WHEEL-81.5--20260626",
+      "id": "TLT-WHEEL-82.0--20260626",
       "copyable": true,
       "real_qty": 2,
       "reasons": [],
@@ -182,291 +107,6 @@
       "max_real_risk": 16507.89,
       "risk_cap_label": "CSP / wheel collateral",
       "risk_cap_pct": 7.0
-    },
-    {
-      "ticker": "XLI",
-      "strategy": "WHEEL",
-      "strike": 161.0,
-      "long_strike": null,
-      "call_strike": null,
-      "long_call_strike": null,
-      "expiry": "20260626",
-      "qty": 1,
-      "credit": 1.31,
-      "delta": 0.196,
-      "iv": 23.3,
-      "dte": 35,
-      "score": 53,
-      "estimated_risk": 16100.0,
-      "buffer_pct": 5.9,
-      "stock_price": 171.18,
-      "score_details": {
-        "delta": 18.5,
-        "iv": 14.0,
-        "buffer": 15.0,
-        "dte": 15.0,
-        "correlation": -10,
-        "open_correlations": [
-          {
-            "ticker": "XLV",
-            "corr": 0.75
-          },
-          {
-            "ticker": "GDX",
-            "corr": 0.35
-          },
-          {
-            "ticker": "XLF",
-            "corr": 0.75
-          },
-          {
-            "ticker": "XLI",
-            "corr": 1.0
-          },
-          {
-            "ticker": "XLE",
-            "corr": 0.75
-          },
-          {
-            "ticker": "TLT",
-            "corr": 0.2
-          },
-          {
-            "ticker": "EEM",
-            "corr": 0.55
-          }
-        ],
-        "raw": 52.5,
-        "buffer_pct": 5.9,
-        "premium": 1.63,
-        "final": 53
-      },
-      "strategy_stage": "cash_secured_put",
-      "manual_only_reason": null,
-      "bid": 1.32,
-      "ask": 1.76,
-      "mid": 1.54,
-      "quote_time": "2026-05-21T20:32:13+02:00",
-      "quote_age_secs": 0.15,
-      "quote_source": "IBKR option chain",
-      "underlying_source": "IBKR underlying or Yahoo ETF fallback",
-      "market_data_type": "LIVE",
-      "paper_status": "PAPER_BLOCKED",
-      "paper_reasons": [
-        "Paper DTE ladder gap < 14d: proposed 35, conflicts with [27]."
-      ],
-      "paper_current_positions": 7,
-      "paper_auto_position_limit": 10,
-      "warnings": [
-        "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
-        "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
-        "Paper auto blocked: Paper DTE ladder gap < 14d: proposed 35, conflicts with [27]."
-      ],
-      "min_paper_auto_score": 35,
-      "min_real_copy_score": 60,
-      "paper_auto_eligible": false,
-      "id": "XLI-WHEEL-161.0--20260626",
-      "copyable": false,
-      "real_qty": 1,
-      "reasons": [
-        "score_below_real_min"
-      ],
-      "reason_labels": [
-        "Score 53 is below the 60 minimum for real-account copying."
-      ],
-      "max_real_risk": 16507.89,
-      "risk_cap_label": "CSP / wheel collateral",
-      "risk_cap_pct": 7.0
-    },
-    {
-      "ticker": "XLV",
-      "strategy": "WHEEL",
-      "strike": 140.5,
-      "long_strike": null,
-      "call_strike": null,
-      "long_call_strike": null,
-      "expiry": "20260626",
-      "qty": 2,
-      "credit": 0.56,
-      "delta": 0.198,
-      "iv": 18.2,
-      "dte": 35,
-      "score": 47,
-      "estimated_risk": 28100.0,
-      "buffer_pct": 5.1,
-      "stock_price": 148.09,
-      "score_details": {
-        "delta": 19.4,
-        "iv": 8.0,
-        "buffer": 15.0,
-        "dte": 15.0,
-        "correlation": -10,
-        "open_correlations": [
-          {
-            "ticker": "XLV",
-            "corr": 1.0
-          },
-          {
-            "ticker": "GDX",
-            "corr": 0.35
-          },
-          {
-            "ticker": "XLF",
-            "corr": 0.75
-          },
-          {
-            "ticker": "XLI",
-            "corr": 0.75
-          },
-          {
-            "ticker": "XLE",
-            "corr": 0.75
-          },
-          {
-            "ticker": "TLT",
-            "corr": 0.2
-          },
-          {
-            "ticker": "EEM",
-            "corr": 0.55
-          }
-        ],
-        "raw": 47.4,
-        "buffer_pct": 5.1,
-        "premium": 1.19,
-        "final": 47
-      },
-      "strategy_stage": "cash_secured_put",
-      "manual_only_reason": null,
-      "bid": 0.57,
-      "ask": 1.19,
-      "mid": 0.88,
-      "quote_time": "2026-05-21T20:32:04+02:00",
-      "quote_age_secs": 0.03,
-      "quote_source": "IBKR option chain",
-      "underlying_source": "IBKR underlying or Yahoo ETF fallback",
-      "market_data_type": "LIVE",
-      "paper_status": "PAPER_BLOCKED",
-      "paper_reasons": [
-        "Paper DTE ladder gap < 14d: proposed 35, conflicts with [35]."
-      ],
-      "paper_current_positions": 7,
-      "paper_auto_position_limit": 10,
-      "warnings": [
-        "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
-        "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
-        "Paper auto blocked: Paper DTE ladder gap < 14d: proposed 35, conflicts with [35]."
-      ],
-      "min_paper_auto_score": 35,
-      "min_real_copy_score": 60,
-      "paper_auto_eligible": false,
-      "id": "XLV-WHEEL-140.5--20260626",
-      "copyable": false,
-      "real_qty": 1,
-      "reasons": [
-        "score_below_real_min"
-      ],
-      "reason_labels": [
-        "Score 47 is below the 60 minimum for real-account copying."
-      ],
-      "max_real_risk": 16507.89,
-      "risk_cap_label": "CSP / wheel collateral",
-      "risk_cap_pct": 7.0
-    },
-    {
-      "ticker": "EEM",
-      "strategy": "WHEEL",
-      "strike": 61.0,
-      "long_strike": null,
-      "call_strike": null,
-      "long_call_strike": null,
-      "expiry": "20260626",
-      "qty": 3,
-      "credit": 0.59,
-      "delta": 0.191,
-      "iv": 30.1,
-      "dte": 35,
-      "score": 46,
-      "estimated_risk": 18300.0,
-      "buffer_pct": 7.8,
-      "stock_price": 66.19,
-      "score_details": {
-        "delta": 16.4,
-        "iv": 20,
-        "buffer": 20.0,
-        "dte": 15.0,
-        "correlation": -25,
-        "open_correlations": [
-          {
-            "ticker": "XLV",
-            "corr": 0.55
-          },
-          {
-            "ticker": "GDX",
-            "corr": 0.35
-          },
-          {
-            "ticker": "XLF",
-            "corr": 0.55
-          },
-          {
-            "ticker": "XLI",
-            "corr": 0.55
-          },
-          {
-            "ticker": "XLE",
-            "corr": 0.55
-          },
-          {
-            "ticker": "TLT",
-            "corr": 0.35
-          },
-          {
-            "ticker": "EEM",
-            "corr": 1.0
-          }
-        ],
-        "raw": 46.4,
-        "buffer_pct": 7.8,
-        "premium": 1.25,
-        "final": 46
-      },
-      "strategy_stage": "cash_secured_put",
-      "manual_only_reason": null,
-      "bid": 0.6,
-      "ask": 1.25,
-      "mid": 0.93,
-      "quote_time": "2026-05-21T20:32:56+02:00",
-      "quote_age_secs": 0.1,
-      "quote_source": "IBKR option chain",
-      "underlying_source": "IBKR underlying or Yahoo ETF fallback",
-      "market_data_type": "LIVE",
-      "paper_status": "PAPER_BLOCKED",
-      "paper_reasons": [
-        "Paper DTE ladder gap < 14d: proposed 35, conflicts with [27]."
-      ],
-      "paper_current_positions": 7,
-      "paper_auto_position_limit": 10,
-      "warnings": [
-        "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
-        "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
-        "Paper auto blocked: Paper DTE ladder gap < 14d: proposed 35, conflicts with [27]."
-      ],
-      "min_paper_auto_score": 35,
-      "min_real_copy_score": 60,
-      "paper_auto_eligible": false,
-      "id": "EEM-WHEEL-61.0--20260626",
-      "copyable": false,
-      "real_qty": 1,
-      "reasons": [
-        "score_below_real_min"
-      ],
-      "reason_labels": [
-        "Score 46 is below the 60 minimum for real-account copying."
-      ],
-      "max_real_risk": 11791.35,
-      "risk_cap_label": "CSP / wheel collateral",
-      "risk_cap_pct": 5.0
     },
     {
       "ticker": "XLE",
@@ -477,19 +117,19 @@
       "long_call_strike": null,
       "expiry": "20260626",
       "qty": 4,
-      "credit": 0.55,
-      "delta": 0.228,
-      "iv": 27.8,
-      "dte": 35,
-      "score": 43,
+      "credit": 0.52,
+      "delta": 0.187,
+      "iv": 28.6,
+      "dte": 34,
+      "score": 53,
       "estimated_risk": 22000.0,
-      "buffer_pct": 6.6,
-      "stock_price": 58.89,
+      "buffer_pct": 7.2,
+      "stock_price": 59.25,
       "score_details": {
-        "delta": 8.7,
+        "delta": 14.9,
         "iv": 14.0,
-        "buffer": 15.0,
-        "dte": 15.0,
+        "buffer": 20.0,
+        "dte": 14.4,
         "correlation": -10,
         "open_correlations": [
           {
@@ -513,6 +153,18 @@
             "corr": 1.0
           },
           {
+            "ticker": "IWM",
+            "corr": 0.7
+          },
+          {
+            "ticker": "SLV",
+            "corr": 0.35
+          },
+          {
+            "ticker": "XLP",
+            "corr": 0.5
+          },
+          {
             "ticker": "TLT",
             "corr": 0.15
           },
@@ -521,31 +173,32 @@
             "corr": 0.55
           }
         ],
-        "raw": 42.7,
-        "buffer_pct": 6.6,
-        "premium": 0.74,
-        "final": 43
+        "raw": 53.3,
+        "buffer_pct": 7.2,
+        "premium": 0.6,
+        "final": 53
       },
       "strategy_stage": "cash_secured_put",
       "manual_only_reason": null,
-      "bid": 0.56,
-      "ask": 0.74,
-      "mid": 0.65,
-      "quote_time": "2026-05-21T20:31:48+02:00",
-      "quote_age_secs": 0.06,
+      "bid": 0.53,
+      "ask": 0.64,
+      "mid": 0.58,
+      "quote_time": "2026-05-22T20:31:49+02:00",
+      "quote_age_secs": 0.02,
       "quote_source": "IBKR option chain",
       "underlying_source": "IBKR underlying or Yahoo ETF fallback",
       "market_data_type": "LIVE",
       "paper_status": "PAPER_BLOCKED",
       "paper_reasons": [
-        "Paper DTE ladder gap < 14d: proposed 35, conflicts with [35]."
+        "Maximum paper positions reached (10/10).",
+        "Paper DTE ladder gap < 14d: proposed 34, conflicts with [34]."
       ],
-      "paper_current_positions": 7,
+      "paper_current_positions": 10,
       "paper_auto_position_limit": 10,
       "warnings": [
         "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
         "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
-        "Paper auto blocked: Paper DTE ladder gap < 14d: proposed 35, conflicts with [35]."
+        "Paper auto blocked: Maximum paper positions reached (10/10). Paper DTE ladder gap < 14d: proposed 34, conflicts with [34]."
       ],
       "min_paper_auto_score": 35,
       "min_real_copy_score": 60,
@@ -557,7 +210,331 @@
         "score_below_real_min"
       ],
       "reason_labels": [
-        "Score 43 is below the 60 minimum for real-account copying."
+        "Score 53 is below the 60 minimum for real-account copying."
+      ],
+      "max_real_risk": 16507.89,
+      "risk_cap_label": "CSP / wheel collateral",
+      "risk_cap_pct": 7.0
+    },
+    {
+      "ticker": "EEM",
+      "strategy": "WHEEL",
+      "strike": 61.0,
+      "long_strike": null,
+      "call_strike": null,
+      "long_call_strike": null,
+      "expiry": "20260626",
+      "qty": 3,
+      "credit": 0.74,
+      "delta": 0.198,
+      "iv": 31.4,
+      "dte": 34,
+      "score": 48,
+      "estimated_risk": 18300.0,
+      "buffer_pct": 7.9,
+      "stock_price": 66.2,
+      "score_details": {
+        "delta": 19.1,
+        "iv": 20,
+        "buffer": 20.0,
+        "dte": 14.4,
+        "correlation": -25,
+        "open_correlations": [
+          {
+            "ticker": "XLV",
+            "corr": 0.55
+          },
+          {
+            "ticker": "GDX",
+            "corr": 0.35
+          },
+          {
+            "ticker": "XLF",
+            "corr": 0.55
+          },
+          {
+            "ticker": "XLI",
+            "corr": 0.55
+          },
+          {
+            "ticker": "XLE",
+            "corr": 0.55
+          },
+          {
+            "ticker": "IWM",
+            "corr": 0.68
+          },
+          {
+            "ticker": "SLV",
+            "corr": 0.35
+          },
+          {
+            "ticker": "XLP",
+            "corr": 0.35
+          },
+          {
+            "ticker": "TLT",
+            "corr": 0.35
+          },
+          {
+            "ticker": "EEM",
+            "corr": 1.0
+          }
+        ],
+        "raw": 48.4,
+        "buffer_pct": 7.9,
+        "premium": 0.74,
+        "final": 48
+      },
+      "strategy_stage": "cash_secured_put",
+      "manual_only_reason": null,
+      "bid": 0.0,
+      "ask": 1.85,
+      "mid": 0.74,
+      "quote_time": "2026-05-22T20:32:53+02:00",
+      "quote_age_secs": 0,
+      "quote_source": "IBKR option chain",
+      "underlying_source": "IBKR underlying or Yahoo ETF fallback",
+      "market_data_type": "LIVE",
+      "paper_status": "PAPER_BLOCKED",
+      "paper_reasons": [
+        "Maximum paper positions reached (10/10).",
+        "Paper DTE ladder gap < 14d: proposed 34, conflicts with [26]."
+      ],
+      "paper_current_positions": 10,
+      "paper_auto_position_limit": 10,
+      "warnings": [
+        "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
+        "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
+        "Paper auto blocked: Maximum paper positions reached (10/10). Paper DTE ladder gap < 14d: proposed 34, conflicts with [26]."
+      ],
+      "min_paper_auto_score": 35,
+      "min_real_copy_score": 60,
+      "paper_auto_eligible": false,
+      "id": "EEM-WHEEL-61.0--20260626",
+      "copyable": false,
+      "real_qty": 1,
+      "reasons": [
+        "score_below_real_min"
+      ],
+      "reason_labels": [
+        "Score 48 is below the 60 minimum for real-account copying."
+      ],
+      "max_real_risk": 11791.35,
+      "risk_cap_label": "CSP / wheel collateral",
+      "risk_cap_pct": 5.0
+    },
+    {
+      "ticker": "XLP",
+      "strategy": "WHEEL",
+      "strike": 81.0,
+      "long_strike": null,
+      "call_strike": null,
+      "long_call_strike": null,
+      "expiry": "20260626",
+      "qty": 3,
+      "credit": 0.36,
+      "delta": 0.2,
+      "iv": 16.9,
+      "dte": 34,
+      "score": 40,
+      "estimated_risk": 24300.0,
+      "buffer_pct": 4.6,
+      "stock_price": 84.87,
+      "score_details": {
+        "delta": 20.0,
+        "iv": 8.0,
+        "buffer": 7.5,
+        "dte": 14.4,
+        "correlation": -10,
+        "open_correlations": [
+          {
+            "ticker": "XLV",
+            "corr": 0.5
+          },
+          {
+            "ticker": "GDX",
+            "corr": 0.35
+          },
+          {
+            "ticker": "XLF",
+            "corr": 0.5
+          },
+          {
+            "ticker": "XLI",
+            "corr": 0.5
+          },
+          {
+            "ticker": "XLE",
+            "corr": 0.5
+          },
+          {
+            "ticker": "IWM",
+            "corr": 0.55
+          },
+          {
+            "ticker": "SLV",
+            "corr": 0.35
+          },
+          {
+            "ticker": "XLP",
+            "corr": 1.0
+          },
+          {
+            "ticker": "TLT",
+            "corr": 0.1
+          },
+          {
+            "ticker": "EEM",
+            "corr": 0.35
+          }
+        ],
+        "raw": 39.9,
+        "buffer_pct": 4.6,
+        "premium": 0.53,
+        "final": 40
+      },
+      "strategy_stage": "cash_secured_put",
+      "manual_only_reason": null,
+      "bid": 0.37,
+      "ask": 0.72,
+      "mid": 0.54,
+      "quote_time": "2026-05-22T20:32:19+02:00",
+      "quote_age_secs": 0.09,
+      "quote_source": "IBKR option chain",
+      "underlying_source": "IBKR underlying or Yahoo ETF fallback",
+      "market_data_type": "LIVE",
+      "paper_status": "PAPER_BLOCKED",
+      "paper_reasons": [
+        "Maximum paper positions reached (10/10).",
+        "Paper DTE ladder gap < 14d: proposed 34, conflicts with [34]."
+      ],
+      "paper_current_positions": 10,
+      "paper_auto_position_limit": 10,
+      "warnings": [
+        "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
+        "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
+        "Paper auto blocked: Maximum paper positions reached (10/10). Paper DTE ladder gap < 14d: proposed 34, conflicts with [34]."
+      ],
+      "min_paper_auto_score": 35,
+      "min_real_copy_score": 60,
+      "paper_auto_eligible": false,
+      "id": "XLP-WHEEL-81.0--20260626",
+      "copyable": false,
+      "real_qty": 2,
+      "reasons": [
+        "score_below_real_min"
+      ],
+      "reason_labels": [
+        "Score 40 is below the 60 minimum for real-account copying."
+      ],
+      "max_real_risk": 16507.89,
+      "risk_cap_label": "CSP / wheel collateral",
+      "risk_cap_pct": 7.0
+    },
+    {
+      "ticker": "XLV",
+      "strategy": "WHEEL",
+      "strike": 143.0,
+      "long_strike": null,
+      "call_strike": null,
+      "long_call_strike": null,
+      "expiry": "20260626",
+      "qty": 2,
+      "credit": 0.54,
+      "delta": 0.202,
+      "iv": 18.9,
+      "dte": 34,
+      "score": 39,
+      "estimated_risk": 28600.0,
+      "buffer_pct": 4.6,
+      "stock_price": 149.95,
+      "score_details": {
+        "delta": 19.3,
+        "iv": 8.0,
+        "buffer": 7.5,
+        "dte": 14.4,
+        "correlation": -10,
+        "open_correlations": [
+          {
+            "ticker": "XLV",
+            "corr": 1.0
+          },
+          {
+            "ticker": "GDX",
+            "corr": 0.35
+          },
+          {
+            "ticker": "XLF",
+            "corr": 0.75
+          },
+          {
+            "ticker": "XLI",
+            "corr": 0.75
+          },
+          {
+            "ticker": "XLE",
+            "corr": 0.75
+          },
+          {
+            "ticker": "IWM",
+            "corr": 0.7
+          },
+          {
+            "ticker": "SLV",
+            "corr": 0.35
+          },
+          {
+            "ticker": "XLP",
+            "corr": 0.5
+          },
+          {
+            "ticker": "TLT",
+            "corr": 0.2
+          },
+          {
+            "ticker": "EEM",
+            "corr": 0.55
+          }
+        ],
+        "raw": 39.1,
+        "buffer_pct": 4.6,
+        "premium": 1.02,
+        "final": 39
+      },
+      "strategy_stage": "cash_secured_put",
+      "manual_only_reason": null,
+      "bid": 0.55,
+      "ask": 1.02,
+      "mid": 0.79,
+      "quote_time": "2026-05-22T20:32:01+02:00",
+      "quote_age_secs": 0.17,
+      "quote_source": "IBKR option chain",
+      "underlying_source": "IBKR underlying or Yahoo ETF fallback",
+      "market_data_type": "LIVE",
+      "paper_status": "PAPER_BLOCKED",
+      "paper_reasons": [
+        "Maximum paper positions reached (10/10).",
+        "Paper DTE ladder gap < 14d: proposed 34, conflicts with [34]."
+      ],
+      "paper_current_positions": 10,
+      "paper_auto_position_limit": 10,
+      "warnings": [
+        "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
+        "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
+        "Paper auto blocked: Maximum paper positions reached (10/10). Paper DTE ladder gap < 14d: proposed 34, conflicts with [34]."
+      ],
+      "min_paper_auto_score": 35,
+      "min_real_copy_score": 60,
+      "paper_auto_eligible": false,
+      "id": "XLV-WHEEL-143.0--20260626",
+      "copyable": false,
+      "real_qty": 1,
+      "reasons": [
+        "score_below_real_min"
+      ],
+      "reason_labels": [
+        "Score 39 is below the 60 minimum for real-account copying."
       ],
       "max_real_risk": 16507.89,
       "risk_cap_label": "CSP / wheel collateral",
@@ -566,25 +543,25 @@
     {
       "ticker": "XLF",
       "strategy": "WHEEL",
-      "strike": 49.0,
+      "strike": 49.5,
       "long_strike": null,
       "call_strike": null,
       "long_call_strike": null,
       "expiry": "20260626",
       "qty": 4,
-      "credit": 0.3,
-      "delta": 0.18,
-      "iv": 19.9,
-      "dte": 35,
-      "score": 40,
-      "estimated_risk": 19600.0,
-      "buffer_pct": 5.4,
-      "stock_price": 51.78,
+      "credit": 0.32,
+      "delta": 0.19,
+      "iv": 18.9,
+      "dte": 34,
+      "score": 36,
+      "estimated_risk": 19800.0,
+      "buffer_pct": 4.8,
+      "stock_price": 52.02,
       "score_details": {
-        "delta": 12.1,
+        "delta": 15.9,
         "iv": 8.0,
-        "buffer": 15.0,
-        "dte": 15.0,
+        "buffer": 7.5,
+        "dte": 14.4,
         "correlation": -10,
         "open_correlations": [
           {
@@ -608,6 +585,18 @@
             "corr": 0.75
           },
           {
+            "ticker": "IWM",
+            "corr": 0.7
+          },
+          {
+            "ticker": "SLV",
+            "corr": 0.35
+          },
+          {
+            "ticker": "XLP",
+            "corr": 0.5
+          },
+          {
             "ticker": "TLT",
             "corr": 0.2
           },
@@ -616,43 +605,152 @@
             "corr": 0.55
           }
         ],
-        "raw": 40.1,
-        "buffer_pct": 5.4,
-        "premium": 0.35,
-        "final": 40
+        "raw": 35.8,
+        "buffer_pct": 4.8,
+        "premium": 0.32,
+        "final": 36
       },
       "strategy_stage": "cash_secured_put",
       "manual_only_reason": null,
-      "bid": 0.31,
-      "ask": 0.35,
-      "mid": 0.33,
-      "quote_time": "2026-05-21T20:31:34+02:00",
-      "quote_age_secs": 0.23,
+      "bid": 0.0,
+      "ask": 0.0,
+      "mid": 0.32,
+      "quote_time": "2026-05-22T20:31:33+02:00",
+      "quote_age_secs": 0,
       "quote_source": "IBKR option chain",
       "underlying_source": "IBKR underlying or Yahoo ETF fallback",
-      "market_data_type": "LIVE",
+      "market_data_type": "UNKNOWN",
       "paper_status": "PAPER_BLOCKED",
       "paper_reasons": [
-        "Paper DTE ladder gap < 14d: proposed 35, conflicts with [27]."
+        "Maximum paper positions reached (10/10).",
+        "Paper DTE ladder gap < 14d: proposed 34, conflicts with [34]."
       ],
-      "paper_current_positions": 7,
+      "paper_current_positions": 10,
       "paper_auto_position_limit": 10,
       "warnings": [
         "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
         "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
-        "Paper auto blocked: Paper DTE ladder gap < 14d: proposed 35, conflicts with [27]."
+        "Paper auto blocked: Maximum paper positions reached (10/10). Paper DTE ladder gap < 14d: proposed 34, conflicts with [34]."
       ],
       "min_paper_auto_score": 35,
       "min_real_copy_score": 60,
       "paper_auto_eligible": false,
-      "id": "XLF-WHEEL-49.0--20260626",
+      "id": "XLF-WHEEL-49.5--20260626",
       "copyable": false,
       "real_qty": 3,
       "reasons": [
         "score_below_real_min"
       ],
       "reason_labels": [
-        "Score 40 is below the 60 minimum for real-account copying."
+        "Score 36 is below the 60 minimum for real-account copying."
+      ],
+      "max_real_risk": 16507.89,
+      "risk_cap_label": "CSP / wheel collateral",
+      "risk_cap_pct": 7.0
+    },
+    {
+      "ticker": "XLI",
+      "strategy": "WHEEL",
+      "strike": 164.0,
+      "long_strike": null,
+      "call_strike": null,
+      "long_call_strike": null,
+      "expiry": "20260626",
+      "qty": 1,
+      "credit": 1.48,
+      "delta": 0.247,
+      "iv": 23.3,
+      "dte": 34,
+      "score": 27,
+      "estimated_risk": 16400.0,
+      "buffer_pct": 4.9,
+      "stock_price": 172.49,
+      "score_details": {
+        "delta": 1.1,
+        "iv": 14.0,
+        "buffer": 7.5,
+        "dte": 14.4,
+        "correlation": -10,
+        "open_correlations": [
+          {
+            "ticker": "XLV",
+            "corr": 0.75
+          },
+          {
+            "ticker": "GDX",
+            "corr": 0.35
+          },
+          {
+            "ticker": "XLF",
+            "corr": 0.75
+          },
+          {
+            "ticker": "XLI",
+            "corr": 1.0
+          },
+          {
+            "ticker": "XLE",
+            "corr": 0.75
+          },
+          {
+            "ticker": "IWM",
+            "corr": 0.7
+          },
+          {
+            "ticker": "SLV",
+            "corr": 0.35
+          },
+          {
+            "ticker": "XLP",
+            "corr": 0.5
+          },
+          {
+            "ticker": "TLT",
+            "corr": 0.2
+          },
+          {
+            "ticker": "EEM",
+            "corr": 0.55
+          }
+        ],
+        "raw": 27.0,
+        "buffer_pct": 4.9,
+        "premium": 1.96,
+        "final": 27
+      },
+      "strategy_stage": "cash_secured_put",
+      "manual_only_reason": null,
+      "bid": 1.49,
+      "ask": 1.96,
+      "mid": 1.73,
+      "quote_time": "2026-05-22T20:32:11+02:00",
+      "quote_age_secs": 0.1,
+      "quote_source": "IBKR option chain",
+      "underlying_source": "IBKR underlying or Yahoo ETF fallback",
+      "market_data_type": "LIVE",
+      "paper_status": "PAPER_BLOCKED",
+      "paper_reasons": [
+        "Maximum paper positions reached (10/10).",
+        "Paper DTE ladder gap < 14d: proposed 34, conflicts with [26]."
+      ],
+      "paper_current_positions": 10,
+      "paper_auto_position_limit": 10,
+      "warnings": [
+        "Paper/delayed data signal. Verify live bid/ask in real account before copying.",
+        "Do not copy if portfolio risk, correlation, or news/event risk is elevated.",
+        "Paper auto blocked: Maximum paper positions reached (10/10). Paper DTE ladder gap < 14d: proposed 34, conflicts with [26]."
+      ],
+      "min_paper_auto_score": 35,
+      "min_real_copy_score": 60,
+      "paper_auto_eligible": false,
+      "id": "XLI-WHEEL-164.0--20260626",
+      "copyable": false,
+      "real_qty": 1,
+      "reasons": [
+        "score_below_real_min"
+      ],
+      "reason_labels": [
+        "Score 27 is below the 60 minimum for real-account copying."
       ],
       "max_real_risk": 16507.89,
       "risk_cap_label": "CSP / wheel collateral",
@@ -662,21 +760,21 @@
   "audit": {
     "file": "/Users/islam/options-pro/data/signal_audit.json",
     "total": 7,
-    "copyable": 2
+    "copyable": 1
   },
   "scan_summary": {
-    "generated": "2026-05-21T20:30:01+02:00",
+    "generated": "2026-05-22T20:30:01+02:00",
     "market_status": "open",
     "vix": null,
     "regime": "Normal",
-    "open_positions": 7,
-    "paper_current_positions": 7,
+    "open_positions": 10,
+    "paper_current_positions": 10,
     "paper_auto_position_limit": 10,
-    "paper_auto_position_limit_reached": false,
+    "paper_auto_position_limit_reached": true,
     "pending_open_orders": 0,
-    "paper_risk_used": 143200.0,
+    "paper_risk_used": 194150.0,
     "paper_risk_cap": 225000.0,
-    "slots": 3,
+    "slots": 0,
     "selected_count": 7,
     "watchlist_count": 16,
     "by_ticker": [
@@ -689,9 +787,9 @@
           "missing_price": 0,
           "contract_error": 0,
           "quote_error": 0,
-          "missing_delta": 0,
+          "missing_delta": 2,
           "quote_rejected": 0,
-          "delta_out_of_range": 10,
+          "delta_out_of_range": 8,
           "selected": null,
           "reason": "Quotes were available but no strike landed in the target delta band."
         },
@@ -717,10 +815,10 @@
       {
         "ticker": "IWM",
         "status": "blocked",
-        "reason": "Spread credit $0.30 is below 15% of $5 width.",
+        "reason": "Spread credit $0.73 is below 15% of $5 width.",
         "expiry": "20260626",
-        "strike": 268.0,
-        "long_strike": 263.0
+        "strike": 272.0,
+        "long_strike": 267.0
       },
       {
         "ticker": "GLD",
@@ -728,12 +826,12 @@
         "reason": "Quotes were available but no strike landed in the target delta band.",
         "details": {
           "examined": 10,
-          "missing_price": 1,
-          "contract_error": 1,
+          "missing_price": 4,
+          "contract_error": 4,
           "quote_error": 0,
           "missing_delta": 0,
           "quote_rejected": 0,
-          "delta_out_of_range": 9,
+          "delta_out_of_range": 6,
           "selected": null,
           "reason": "Quotes were available but no strike landed in the target delta band.",
           "last_error": "No security definition has been found for the request"
@@ -760,44 +858,45 @@
       {
         "ticker": "DIA",
         "status": "blocked",
-        "reason": "Spread credit $0.46 is below 15% of $5 width.",
+        "reason": "No usable quote for protective long $482.5P.",
         "expiry": "20260626",
-        "strike": 484.0,
-        "long_strike": 479.0
+        "strike": 487.5,
+        "long_strike": 482.5
       },
       {
         "ticker": "XLK",
         "status": "blocked",
-        "reason": "Spread credit $0.37 is below 15% of $5 width.",
+        "reason": "Spread credit $0.31 is below 15% of $5 width.",
         "expiry": "20260626",
-        "strike": 167.0,
-        "long_strike": 162.0
+        "strike": 169.0,
+        "long_strike": 164.0
       },
       {
         "ticker": "TLT",
         "status": "selected",
-        "reason": "Candidate passed scanner filters; paper auto blocked: Paper DTE ladder gap < 14d: proposed 35, conflicts with [35].",
+        "reason": "Candidate passed scanner filters; paper auto blocked: Maximum paper positions reached (10/10). Paper DTE ladder gap < 14d: proposed 34, conflicts with [34].",
         "expiry": "20260626",
-        "strike": 81.5,
+        "strike": 82.0,
         "long_strike": null,
-        "delta": 0.204,
-        "iv": 12.1,
-        "score": 91,
+        "delta": 0.2,
+        "iv": 11.5,
+        "score": 100,
         "qty": 3,
-        "estimated_risk": 24450.0,
+        "estimated_risk": 24600.0,
         "paper_auto_eligible": false,
         "paper_status": "PAPER_BLOCKED",
         "paper_reasons": [
-          "Paper DTE ladder gap < 14d: proposed 35, conflicts with [35]."
+          "Maximum paper positions reached (10/10).",
+          "Paper DTE ladder gap < 14d: proposed 34, conflicts with [34]."
         ],
-        "paper_current_positions": 7,
+        "paper_current_positions": 10,
         "paper_auto_position_limit": 10,
         "real_score_eligible": true,
-        "bid": 0.35,
-        "ask": 0.37,
-        "mid": 0.36,
-        "quote_time": "2026-05-21T20:31:25+02:00",
-        "quote_age_secs": 0.25,
+        "bid": 0.32,
+        "ask": 0.34,
+        "mid": 0.33,
+        "quote_time": "2026-05-22T20:31:24+02:00",
+        "quote_age_secs": 0.01,
         "quote_source": "IBKR option chain",
         "underlying_source": "IBKR underlying or Yahoo ETF fallback",
         "market_data_type": "LIVE"
@@ -805,57 +904,59 @@
       {
         "ticker": "XLF",
         "status": "selected",
-        "reason": "Candidate passed scanner filters; paper auto blocked: Paper DTE ladder gap < 14d: proposed 35, conflicts with [27].",
+        "reason": "Candidate passed scanner filters; paper auto blocked: Maximum paper positions reached (10/10). Paper DTE ladder gap < 14d: proposed 34, conflicts with [34].",
         "expiry": "20260626",
-        "strike": 49.0,
+        "strike": 49.5,
         "long_strike": null,
-        "delta": 0.18,
-        "iv": 19.9,
-        "score": 40,
+        "delta": 0.19,
+        "iv": 18.9,
+        "score": 36,
         "qty": 4,
-        "estimated_risk": 19600.0,
+        "estimated_risk": 19800.0,
         "paper_auto_eligible": false,
         "paper_status": "PAPER_BLOCKED",
         "paper_reasons": [
-          "Paper DTE ladder gap < 14d: proposed 35, conflicts with [27]."
+          "Maximum paper positions reached (10/10).",
+          "Paper DTE ladder gap < 14d: proposed 34, conflicts with [34]."
         ],
-        "paper_current_positions": 7,
+        "paper_current_positions": 10,
         "paper_auto_position_limit": 10,
         "real_score_eligible": false,
-        "bid": 0.31,
-        "ask": 0.35,
-        "mid": 0.33,
-        "quote_time": "2026-05-21T20:31:34+02:00",
-        "quote_age_secs": 0.23,
+        "bid": 0.0,
+        "ask": 0.0,
+        "mid": 0.32,
+        "quote_time": "2026-05-22T20:31:33+02:00",
+        "quote_age_secs": 0,
         "quote_source": "IBKR option chain",
         "underlying_source": "IBKR underlying or Yahoo ETF fallback",
-        "market_data_type": "LIVE"
+        "market_data_type": "UNKNOWN"
       },
       {
         "ticker": "XLE",
         "status": "selected",
-        "reason": "Candidate passed scanner filters; paper auto blocked: Paper DTE ladder gap < 14d: proposed 35, conflicts with [35].",
+        "reason": "Candidate passed scanner filters; paper auto blocked: Maximum paper positions reached (10/10). Paper DTE ladder gap < 14d: proposed 34, conflicts with [34].",
         "expiry": "20260626",
         "strike": 55.0,
         "long_strike": null,
-        "delta": 0.228,
-        "iv": 27.8,
-        "score": 43,
+        "delta": 0.187,
+        "iv": 28.6,
+        "score": 53,
         "qty": 4,
         "estimated_risk": 22000.0,
         "paper_auto_eligible": false,
         "paper_status": "PAPER_BLOCKED",
         "paper_reasons": [
-          "Paper DTE ladder gap < 14d: proposed 35, conflicts with [35]."
+          "Maximum paper positions reached (10/10).",
+          "Paper DTE ladder gap < 14d: proposed 34, conflicts with [34]."
         ],
-        "paper_current_positions": 7,
+        "paper_current_positions": 10,
         "paper_auto_position_limit": 10,
         "real_score_eligible": false,
-        "bid": 0.56,
-        "ask": 0.74,
-        "mid": 0.65,
-        "quote_time": "2026-05-21T20:31:48+02:00",
-        "quote_age_secs": 0.06,
+        "bid": 0.53,
+        "ask": 0.64,
+        "mid": 0.58,
+        "quote_time": "2026-05-22T20:31:49+02:00",
+        "quote_age_secs": 0.02,
         "quote_source": "IBKR option chain",
         "underlying_source": "IBKR underlying or Yahoo ETF fallback",
         "market_data_type": "LIVE"
@@ -863,28 +964,29 @@
       {
         "ticker": "XLV",
         "status": "selected",
-        "reason": "Candidate passed scanner filters; paper auto blocked: Paper DTE ladder gap < 14d: proposed 35, conflicts with [35].",
+        "reason": "Candidate passed scanner filters; paper auto blocked: Maximum paper positions reached (10/10). Paper DTE ladder gap < 14d: proposed 34, conflicts with [34].",
         "expiry": "20260626",
-        "strike": 140.5,
+        "strike": 143.0,
         "long_strike": null,
-        "delta": 0.198,
-        "iv": 18.2,
-        "score": 47,
+        "delta": 0.202,
+        "iv": 18.9,
+        "score": 39,
         "qty": 2,
-        "estimated_risk": 28100.0,
+        "estimated_risk": 28600.0,
         "paper_auto_eligible": false,
         "paper_status": "PAPER_BLOCKED",
         "paper_reasons": [
-          "Paper DTE ladder gap < 14d: proposed 35, conflicts with [35]."
+          "Maximum paper positions reached (10/10).",
+          "Paper DTE ladder gap < 14d: proposed 34, conflicts with [34]."
         ],
-        "paper_current_positions": 7,
+        "paper_current_positions": 10,
         "paper_auto_position_limit": 10,
         "real_score_eligible": false,
-        "bid": 0.57,
-        "ask": 1.19,
-        "mid": 0.88,
-        "quote_time": "2026-05-21T20:32:04+02:00",
-        "quote_age_secs": 0.03,
+        "bid": 0.55,
+        "ask": 1.02,
+        "mid": 0.79,
+        "quote_time": "2026-05-22T20:32:01+02:00",
+        "quote_age_secs": 0.17,
         "quote_source": "IBKR option chain",
         "underlying_source": "IBKR underlying or Yahoo ETF fallback",
         "market_data_type": "LIVE"
@@ -892,28 +994,29 @@
       {
         "ticker": "XLI",
         "status": "selected",
-        "reason": "Candidate passed scanner filters; paper auto blocked: Paper DTE ladder gap < 14d: proposed 35, conflicts with [27].",
+        "reason": "Candidate passed scanner filters; paper auto blocked: Maximum paper positions reached (10/10). Paper DTE ladder gap < 14d: proposed 34, conflicts with [26].",
         "expiry": "20260626",
-        "strike": 161.0,
+        "strike": 164.0,
         "long_strike": null,
-        "delta": 0.196,
+        "delta": 0.247,
         "iv": 23.3,
-        "score": 53,
+        "score": 27,
         "qty": 1,
-        "estimated_risk": 16100.0,
+        "estimated_risk": 16400.0,
         "paper_auto_eligible": false,
         "paper_status": "PAPER_BLOCKED",
         "paper_reasons": [
-          "Paper DTE ladder gap < 14d: proposed 35, conflicts with [27]."
+          "Maximum paper positions reached (10/10).",
+          "Paper DTE ladder gap < 14d: proposed 34, conflicts with [26]."
         ],
-        "paper_current_positions": 7,
+        "paper_current_positions": 10,
         "paper_auto_position_limit": 10,
         "real_score_eligible": false,
-        "bid": 1.32,
-        "ask": 1.76,
-        "mid": 1.54,
-        "quote_time": "2026-05-21T20:32:13+02:00",
-        "quote_age_secs": 0.15,
+        "bid": 1.49,
+        "ask": 1.96,
+        "mid": 1.73,
+        "quote_time": "2026-05-22T20:32:11+02:00",
+        "quote_age_secs": 0.1,
         "quote_source": "IBKR option chain",
         "underlying_source": "IBKR underlying or Yahoo ETF fallback",
         "market_data_type": "LIVE"
@@ -921,26 +1024,29 @@
       {
         "ticker": "XLP",
         "status": "selected",
-        "reason": "Candidate passed scanner filters.",
+        "reason": "Candidate passed scanner filters; paper auto blocked: Maximum paper positions reached (10/10). Paper DTE ladder gap < 14d: proposed 34, conflicts with [34].",
         "expiry": "20260626",
-        "strike": 81.5,
+        "strike": 81.0,
         "long_strike": null,
-        "delta": 0.203,
-        "iv": 17.5,
-        "score": 64,
+        "delta": 0.2,
+        "iv": 16.9,
+        "score": 40,
         "qty": 3,
-        "estimated_risk": 24450.0,
-        "paper_auto_eligible": true,
-        "paper_status": "PAPER_READY",
-        "paper_reasons": [],
-        "paper_current_positions": 7,
+        "estimated_risk": 24300.0,
+        "paper_auto_eligible": false,
+        "paper_status": "PAPER_BLOCKED",
+        "paper_reasons": [
+          "Maximum paper positions reached (10/10).",
+          "Paper DTE ladder gap < 14d: proposed 34, conflicts with [34]."
+        ],
+        "paper_current_positions": 10,
         "paper_auto_position_limit": 10,
-        "real_score_eligible": true,
-        "bid": 0.67,
-        "ask": 0.88,
-        "mid": 0.78,
-        "quote_time": "2026-05-21T20:32:17+02:00",
-        "quote_age_secs": 0.11,
+        "real_score_eligible": false,
+        "bid": 0.37,
+        "ask": 0.72,
+        "mid": 0.54,
+        "quote_time": "2026-05-22T20:32:19+02:00",
+        "quote_age_secs": 0.09,
         "quote_source": "IBKR option chain",
         "underlying_source": "IBKR underlying or Yahoo ETF fallback",
         "market_data_type": "LIVE"
@@ -951,12 +1057,12 @@
         "reason": "Quotes were available but no strike landed in the target delta band.",
         "details": {
           "examined": 10,
-          "missing_price": 1,
-          "contract_error": 1,
+          "missing_price": 2,
+          "contract_error": 2,
           "quote_error": 0,
-          "missing_delta": 1,
+          "missing_delta": 3,
           "quote_rejected": 0,
-          "delta_out_of_range": 8,
+          "delta_out_of_range": 5,
           "selected": null,
           "reason": "Quotes were available but no strike landed in the target delta band.",
           "last_error": "No security definition has been found for the request"
@@ -984,37 +1090,38 @@
       {
         "ticker": "EEM",
         "status": "selected",
-        "reason": "Candidate passed scanner filters; paper auto blocked: Paper DTE ladder gap < 14d: proposed 35, conflicts with [27].",
+        "reason": "Candidate passed scanner filters; paper auto blocked: Maximum paper positions reached (10/10). Paper DTE ladder gap < 14d: proposed 34, conflicts with [26].",
         "expiry": "20260626",
         "strike": 61.0,
         "long_strike": null,
-        "delta": 0.191,
-        "iv": 30.1,
-        "score": 46,
+        "delta": 0.198,
+        "iv": 31.4,
+        "score": 48,
         "qty": 3,
         "estimated_risk": 18300.0,
         "paper_auto_eligible": false,
         "paper_status": "PAPER_BLOCKED",
         "paper_reasons": [
-          "Paper DTE ladder gap < 14d: proposed 35, conflicts with [27]."
+          "Maximum paper positions reached (10/10).",
+          "Paper DTE ladder gap < 14d: proposed 34, conflicts with [26]."
         ],
-        "paper_current_positions": 7,
+        "paper_current_positions": 10,
         "paper_auto_position_limit": 10,
         "real_score_eligible": false,
-        "bid": 0.6,
-        "ask": 1.25,
-        "mid": 0.93,
-        "quote_time": "2026-05-21T20:32:56+02:00",
-        "quote_age_secs": 0.1,
+        "bid": 0.0,
+        "ask": 1.85,
+        "mid": 0.74,
+        "quote_time": "2026-05-22T20:32:53+02:00",
+        "quote_age_secs": 0,
         "quote_source": "IBKR option chain",
         "underlying_source": "IBKR underlying or Yahoo ETF fallback",
         "market_data_type": "LIVE"
       }
     ],
-    "paper_selected_count": 1,
-    "manual_selected_count": 6,
+    "paper_selected_count": 0,
+    "manual_selected_count": 7,
     "candidate_count": 7,
     "blocked_count": 9,
-    "paper_risk_planned": 167650.0
+    "paper_risk_planned": 194150.0
   }
 }
