@@ -307,10 +307,68 @@ FILLED_STATUSES = {"filled", "closed", "manualclose"}
 OPEN_LIKE_STATUSES = {"SUBMITTED", "PRESUBMITTED", "PENDINGSUBMIT", "PENDING", "WORKING"}
 TERMINAL_ORDER_STATUSES = {"FILLED", "CANCELLED", "APICANCELLED", "INACTIVE", "EXPIRED"}
 PENDING_CLOSE_MAX_AGE = 4 * 3600
+PENDING_CLOSE_REPRICE_SECONDS = 15 * 60
 PENDING_OPEN_MAX_AGE = 10 * 60
 OPEN_PENDING_STATUSES = {s.lower() for s in OPEN_LIKE_STATUSES}
 OPEN_TERMINAL_STATUSES = {"cancelled", "apicancelled", "inactive", "expired", "notfilled", "rejected"}
 OPEN_ACTIVE_STATUSES = FILLED_STATUSES | {"", "open", "reconciled"} | OPEN_PENDING_STATUSES
+
+def paper_capture_pct(entry_credit, current_debit):
+    try:
+        entry = float(entry_credit)
+        debit = float(current_debit)
+    except Exception:
+        return None
+    if entry <= 0 or debit < 0:
+        return None
+    return (entry - debit) / entry
+
+def paper_close_diagnostic(entry_credit, current_debit, price_valid=True, pending_meta=None, order_status=None, now=None, target_pct=PROFIT_TARGET_PCT):
+    now = now or datetime.now()
+    capture = paper_capture_pct(entry_credit, current_debit) if price_valid else None
+    should_close = capture is not None and capture >= float(target_pct or 0)
+    pending_meta = pending_meta or {}
+    state = "NONE"
+    reason = ""
+    next_retry_secs = None
+    age_secs = None
+    if pending_meta:
+        state = str(pending_meta.get("state") or "SUBMITTED").upper()
+        try:
+            age_secs = int((now - pending_meta.get("at", now)).total_seconds())
+        except Exception:
+            age_secs = None
+        status_upper = str(order_status or pending_meta.get("order_status") or "").upper()
+        if status_upper in TERMINAL_ORDER_STATUSES:
+            state = "FILLED" if status_upper == "FILLED" else "EXPIRED"
+            reason = f"Close order reached terminal status {status_upper}."
+        elif not price_valid:
+            reason = "Close pending, waiting for fresh quote."
+        elif age_secs is not None and age_secs >= PENDING_CLOSE_REPRICE_SECONDS:
+            state = "CANCEL_REPLACE_PENDING"
+            reason = "Pending close is past the reprice timeout; cancel/replace is due."
+            next_retry_secs = 0
+        else:
+            reason = "Close order is working; waiting for fill."
+            next_retry_secs = max(0, PENDING_CLOSE_REPRICE_SECONDS - (age_secs or 0))
+    elif should_close:
+        state = "READY_TO_CLOSE"
+        reason = "Profit target reached; close workflow should submit when quotes are valid."
+    elif not price_valid:
+        state = "NONE"
+        reason = "No fresh quote; close manager cannot evaluate target."
+    else:
+        state = "NONE"
+        reason = "Profit target not reached."
+    return {
+        "capture_pct": round(capture * 100, 1) if capture is not None else None,
+        "target_pct": round(float(target_pct or 0) * 100, 1),
+        "should_close": bool(should_close),
+        "paper_close_state": state,
+        "reason_not_filled": reason,
+        "next_retry_secs": next_retry_secs,
+        "pending_age_secs": age_secs,
+    }
 
 
 # ═══════════════════════════════════════════════
@@ -799,7 +857,13 @@ def write_trade_signals(opportunities, mode="paper_auto", scan_summary=None):
             "quote_age_secs": opp.get("quote_age_secs"),
             "quote_source": opp.get("quote_source", "IBKR option chain"),
             "underlying_source": opp.get("underlying_source", "IBKR underlying or approved fallback"),
+            "underlying_quote_time": opp.get("underlying_quote_time"),
+            "underlying_quote_age_secs": opp.get("underlying_quote_age_secs"),
+            "underlying_market_data_type": opp.get("underlying_market_data_type", "UNKNOWN"),
+            "underlying_request_error": opp.get("underlying_request_error", ""),
+            "is_real_eligible_data": bool(opp.get("is_real_eligible_underlying_data")) and str(opp.get("market_data_type", "")).upper() == "LIVE",
             "market_data_type": opp.get("market_data_type", "UNKNOWN"),
+            "option_market_data_type": opp.get("option_market_data_type", opp.get("market_data_type", "UNKNOWN")),
             "paper_status": opp.get("paper_status"),
             "paper_reasons": opp.get("paper_reasons") or [],
             "paper_current_positions": opp.get("paper_current_positions"),
@@ -1204,6 +1268,7 @@ class AutoTradeEngine:
         self._option_contract_cache = {}
         self._bad_option_contract_cache = {}
         self._yahoo_price_cache = {}
+        self._underlying_quote_meta = {}
         self._last_reconcile_alert = None
         self._processed_close_requests = self._load_processed_close_requests()
 
@@ -1547,6 +1612,10 @@ class AutoTradeEngine:
             "qty": int(qty),
             "action": action,
             "strategy": strategy,
+            "submitted_price": float(submitted_price),
+            "pnl": float(pnl),
+            "reason": reason,
+            "state": "SUBMITTED",
         }
         self._close_orders[order_id] = {
             "ticker": ticker,
@@ -1670,6 +1739,13 @@ class AutoTradeEngine:
             self.write_live_snapshot()
             return
 
+        if meta:
+            pending_key = meta.get("pending_key")
+            if pending_key in self._pending_closes:
+                self._pending_closes[pending_key]["state"] = "WORKING" if status_upper in OPEN_LIKE_STATUSES else status_upper or "SUBMITTED"
+                self._pending_closes[pending_key]["order_status"] = status_upper
+            return
+
         open_meta = self._open_orders.get(order_id)
         if not open_meta:
             return
@@ -1770,7 +1846,16 @@ class AutoTradeEngine:
 
         err = self.app.request_errors.pop(req_id, None)
         md = self.app.market_data.get(req_id, {})
-        return self._extract_underlying_price(md), err
+        quote_ts = float(md.get("quote_ts") or time.time())
+        data_type_code = md.get("data_type") or self.app.market_data_types.get(req_id)
+        data_type = market_data_type_label(data_type_code)
+        meta = {
+            "underlying_market_data_type": data_type,
+            "underlying_quote_time": datetime.fromtimestamp(quote_ts).astimezone().isoformat(timespec="seconds"),
+            "underlying_quote_age_secs": max(0, round(time.time() - quote_ts, 2)),
+            "underlying_request_error": err.get("message") if isinstance(err, dict) else "",
+        }
+        return self._extract_underlying_price(md), err, meta
 
     def get_yahoo_underlying_price(self, ticker):
         if not YAHOO_UNDERLYING_FALLBACK or ticker in self.INDEX_TICKERS:
@@ -1837,8 +1922,14 @@ class AutoTradeEngine:
                 self.app.reqMarketDataType(market_data_type)
             except Exception:
                 pass
-            price, err = self._request_underlying_price_once(contract, timeout=timeout)
+            price, err, meta = self._request_underlying_price_once(contract, timeout=timeout)
             if price:
+                data_type = meta.get("underlying_market_data_type") or market_data_type_label(market_data_type)
+                self._underlying_quote_meta[str(ticker).upper()] = {
+                    **meta,
+                    "underlying_source": f"IBKR {data_type} underlying quote",
+                    "is_real_eligible_underlying_data": data_type == "LIVE",
+                }
                 if market_data_type != 1:
                     log(f"  {ticker}: using IBKR {label} underlying price ${price:.2f}")
                 return price
@@ -1852,11 +1943,43 @@ class AutoTradeEngine:
         yahoo_price = self.get_yahoo_underlying_price(ticker)
         if yahoo_price:
             log(f"  {ticker}: using Yahoo ETF underlying fallback ${yahoo_price:.2f}; IBKR option quotes still required")
+            self._underlying_quote_meta[str(ticker).upper()] = {
+                "underlying_source": "YAHOO FALLBACK underlying quote",
+                "underlying_market_data_type": "FALLBACK",
+                "underlying_quote_time": "",
+                "underlying_quote_age_secs": None,
+                "underlying_request_error": (
+                    f"{last_error.get('code')}: {last_error.get('message')}"
+                    if isinstance(last_error, dict) else str(last_error or "")
+                ),
+                "is_real_eligible_underlying_data": False,
+            }
             return yahoo_price
 
         if last_error:
             log(f"  {ticker}: IBKR underlying unavailable ({last_error.get('code')}: {last_error.get('message')})")
+        self._underlying_quote_meta[str(ticker).upper()] = {
+            "underlying_source": "UNKNOWN",
+            "underlying_market_data_type": "UNKNOWN",
+            "underlying_quote_time": "",
+            "underlying_quote_age_secs": None,
+            "underlying_request_error": (
+                f"{last_error.get('code')}: {last_error.get('message')}"
+                if isinstance(last_error, dict) else str(last_error or "No underlying quote returned")
+            ),
+            "is_real_eligible_underlying_data": False,
+        }
         return None
+
+    def underlying_meta_for(self, ticker):
+        return dict(self._underlying_quote_meta.get(str(ticker or "").upper(), {
+            "underlying_source": "UNKNOWN",
+            "underlying_market_data_type": "UNKNOWN",
+            "underlying_quote_time": "",
+            "underlying_quote_age_secs": None,
+            "underlying_request_error": "",
+            "is_real_eligible_underlying_data": False,
+        }))
 
     def _option_contract_key(self, ticker, strike, expiry, right="P", exchange=None, trading_class=None):
         try:
@@ -2921,6 +3044,7 @@ class AutoTradeEngine:
 
             # Get stock price
             stock_price = self.get_stock_price(ticker)
+            underlying_meta = self.underlying_meta_for(ticker)
             if not stock_price or stock_price <= 0:
                 log(f"  {ticker}: no price data")
                 scan_summary["by_ticker"].append({
@@ -2928,6 +3052,7 @@ class AutoTradeEngine:
                     "status": "skipped",
                     "reason": "No underlying price from IBKR or fallback; check IBKR subscriptions/farm status and network.",
                     "early_skip": True,
+                    **underlying_meta,
                 })
                 continue
 
@@ -3024,9 +3149,10 @@ class AutoTradeEngine:
                         "mid": cc_mid,
                         "quote_time": cc_data.get("quote_time"),
                         "quote_age_secs": cc_data.get("quote_age_secs"),
-                        "quote_source": "IBKR option chain",
-                        "underlying_source": "IBKR underlying or Yahoo ETF fallback",
+                        "quote_source": f"IBKR {cc_data.get('data_type', 'UNKNOWN')} option chain",
+                        **underlying_meta,
                         "market_data_type": cc_data.get("data_type", "UNKNOWN"),
+                        "option_market_data_type": cc_data.get("data_type", "UNKNOWN"),
                     }
                     cc_opp["estimated_risk"] = round(estimate_opportunity_risk(cc_opp), 2)
                     opportunities.append(cc_opp)
@@ -3052,9 +3178,10 @@ class AutoTradeEngine:
                         "mid": cc_mid,
                         "quote_time": cc_data.get("quote_time"),
                         "quote_age_secs": cc_data.get("quote_age_secs"),
-                        "quote_source": "IBKR option chain",
-                        "underlying_source": "IBKR underlying or Yahoo ETF fallback",
+                        "quote_source": f"IBKR {cc_data.get('data_type', 'UNKNOWN')} option chain",
+                        **underlying_meta,
                         "market_data_type": cc_data.get("data_type", "UNKNOWN"),
+                        "option_market_data_type": cc_data.get("data_type", "UNKNOWN"),
                     })
                 else:
                     log(f"  {ticker}: no covered-call strike — {cc_diag.get('reason')}")
@@ -3323,9 +3450,10 @@ class AutoTradeEngine:
                                             "mid": round(ic_credit, 2),
                                             "quote_time": opt_data.get("quote_time") or call_opt.get("quote_time"),
                                             "quote_age_secs": max(float(opt_data.get("quote_age_secs") or 0), float(call_opt.get("quote_age_secs") or 0)),
-                                            "quote_source": "IBKR option chain",
-                                            "underlying_source": "IBKR underlying or Yahoo ETF fallback",
+                                            "quote_source": f"IBKR {opt_data.get('data_type', 'UNKNOWN')} option chain",
+                                            **underlying_meta,
                                             "market_data_type": opt_data.get("data_type", "UNKNOWN"),
+                                            "option_market_data_type": opt_data.get("data_type", "UNKNOWN"),
                                         }
                                         ic_opp["estimated_risk"] = round(estimate_opportunity_risk(ic_opp), 2)
                                         opportunities.append(ic_opp)
@@ -3355,9 +3483,10 @@ class AutoTradeEngine:
                                             "mid": round(ic_credit, 2),
                                             "quote_time": opt_data.get("quote_time") or call_opt.get("quote_time"),
                                             "quote_age_secs": max(float(opt_data.get("quote_age_secs") or 0), float(call_opt.get("quote_age_secs") or 0)),
-                                            "quote_source": "IBKR option chain",
-                                            "underlying_source": "IBKR underlying or Yahoo ETF fallback",
+                                            "quote_source": f"IBKR {opt_data.get('data_type', 'UNKNOWN')} option chain",
+                                            **underlying_meta,
                                             "market_data_type": opt_data.get("data_type", "UNKNOWN"),
+                                            "option_market_data_type": opt_data.get("data_type", "UNKNOWN"),
                                         })
                                 else:
                                     log(f"  {ticker}: skipped IC call wing — {reason}")
@@ -3420,9 +3549,10 @@ class AutoTradeEngine:
                 "mid": mid,
                 "quote_time": opt_data.get("quote_time"),
                 "quote_age_secs": opt_data.get("quote_age_secs"),
-                "quote_source": "IBKR option chain",
-                "underlying_source": "IBKR underlying or Yahoo ETF fallback",
+                "quote_source": f"IBKR {opt_data.get('data_type', 'UNKNOWN')} option chain",
+                **underlying_meta,
                 "market_data_type": opt_data.get("data_type", "UNKNOWN"),
+                "option_market_data_type": opt_data.get("data_type", "UNKNOWN"),
             }
             opp["estimated_risk"] = round(estimate_opportunity_risk(opp), 2)
             opportunities.append(opp)
@@ -3449,9 +3579,10 @@ class AutoTradeEngine:
                 "mid": mid,
                 "quote_time": opt_data.get("quote_time"),
                 "quote_age_secs": opt_data.get("quote_age_secs"),
-                "quote_source": "IBKR option chain",
-                "underlying_source": "IBKR underlying or Yahoo ETF fallback",
+                "quote_source": f"IBKR {opt_data.get('data_type', 'UNKNOWN')} option chain",
+                **underlying_meta,
                 "market_data_type": opt_data.get("data_type", "UNKNOWN"),
+                "option_market_data_type": opt_data.get("data_type", "UNKNOWN"),
             })
 
         # Sort by score descending after scanning the full watchlist.
@@ -3769,9 +3900,12 @@ class AutoTradeEngine:
                     self._pending_closes.pop(pending_key, None)
                     if order_id is not None:
                         self._close_orders.pop(order_id, None)
-                elif age < PENDING_CLOSE_MAX_AGE:
-                    log(f"  {ticker} ${strike}P: close order pending ({int(age)}s ago) — skipping")
+                elif age < PENDING_CLOSE_REPRICE_SECONDS:
+                    log(f"  {ticker} ${strike}P: close order pending ({int(age)}s ago) — skipping until reprice window")
                     continue
+                elif age < PENDING_CLOSE_MAX_AGE:
+                    log(f"  ⚠ {ticker} ${strike}P: pending close unfilled after {int(age)}s — cancel/replace will retry")
+                    self._expire_pending_close(pending_key, order_id, reason=f"reprice timeout {int(age)}s")
                 else:
                     log(f"  ⚠ {ticker} ${strike}P: pending close is stale after {int(age)}s — allowing retry")
                     self._expire_pending_close(pending_key, order_id, reason=f"age {int(age)}s")
@@ -3805,9 +3939,12 @@ class AutoTradeEngine:
             # Current price of short leg (optPrice key from patched get_option_data)
             opt_data = self.get_option_data(ticker, strike, str(expiry), "P")
             current_price = opt_data.get("optPrice", 0) or opt_data.get("price", 0)
+            quote_age_secs = float(opt_data.get("quote_age_secs") or 0)
 
             # For BPS: also fetch long leg price to compute net spread value
             net_close_debit = current_price  # default: just short leg cost
+            close_order_debit = current_price
+            long_data = None
             if strategy == "BPS":
                 width = SPREAD_WIDTHS.get(ticker, 5)
                 long_strike = strike - width
@@ -3822,6 +3959,18 @@ class AutoTradeEngine:
             if net_close_debit <= 0:
                 log(f"  {ticker} ${strike}P x{qty}: no current price — skipping")
                 continue
+            if quote_age_secs > 60 and auto_close_allowed:
+                log(f"  {ticker} ${strike}P x{qty}: quote age {quote_age_secs:.0f}s is stale — close manager waits for fresh quote")
+                continue
+
+            if strategy == "BPS" and long_data:
+                short_ask = float(opt_data.get("ask") or current_price or 0)
+                long_bid = float(long_data.get("bid") or 0)
+                close_order_debit = max(net_close_debit, max(0.01, short_ask - max(0, long_bid)))
+            else:
+                short_ask = float(opt_data.get("ask") or 0)
+                close_order_debit = max(net_close_debit, short_ask) if short_ask > 0 else net_close_debit
+            close_order_debit = math.ceil(max(0.01, close_order_debit) * 100) / 100
 
             # Cache NET debit (not just short leg) for live snapshot, but only
             # after confirming it is a real positive market value. A missing
@@ -3856,7 +4005,7 @@ class AutoTradeEngine:
             if action:
                 log(f"   >> {action}: {reason}")
                 if auto_close_allowed:
-                    self.close_position(ticker, strike, expiry, qty, net_close_debit,
+                    self.close_position(ticker, strike, expiry, qty, close_order_debit,
                                         action, reason, pnl, strategy=strategy)
                 else:
                     log("   >> AUTO CLOSE BLOCKED: market is closed; no order submitted")
@@ -4451,14 +4600,32 @@ class AutoTradeEngine:
                 pending_age = None
                 pending_remaining = None
                 pending_started_at = None
+                pending_order_status = None
+                pending_order_price = None
+                pending_reason = None
                 if pending_close:
                     try:
                         pending_at = pending_close.get("at", datetime.now())
                         pending_age = int((datetime.now() - pending_at).total_seconds())
                         pending_remaining = max(0, int(PENDING_CLOSE_MAX_AGE - pending_age))
                         pending_started_at = pending_at.astimezone().isoformat(timespec="seconds")
+                        pending_order_status = (
+                            (self.app.order_statuses.get(pending_close.get("order_id"), {}) or {}).get("status")
+                            or pending_close.get("order_status")
+                            or pending_close.get("state")
+                        )
+                        pending_order_price = pending_close.get("submitted_price")
+                        pending_reason = pending_close.get("reason")
                     except Exception:
                         pending_age = None
+                close_diag = paper_close_diagnostic(
+                    entry_credit,
+                    current_price,
+                    price_valid=has_live_price,
+                    pending_meta=pending_close,
+                    order_status=pending_order_status,
+                    target_pct=PROFIT_TARGET_PCT,
+                )
 
                 positions.append({
                     "ticker":        ticker,
@@ -4478,6 +4645,16 @@ class AutoTradeEngine:
                     "pending_close_remaining_secs": pending_remaining,
                     "pending_close_started_at": pending_started_at,
                     "pending_close_max_age_secs": PENDING_CLOSE_MAX_AGE if pending_close else None,
+                    "profit_target_pct": close_diag.get("target_pct"),
+                    "capture_pct": close_diag.get("capture_pct"),
+                    "should_auto_close": close_diag.get("should_close"),
+                    "paper_close_state": close_diag.get("paper_close_state"),
+                    "close_order_status": pending_order_status,
+                    "close_order_price": pending_order_price,
+                    "close_order_reason": pending_reason,
+                    "reason_not_filled": close_diag.get("reason_not_filled"),
+                    "next_close_retry_secs": close_diag.get("next_retry_secs"),
+                    "pending_close_reprice_secs": PENDING_CLOSE_REPRICE_SECONDS,
                 })
 
             regime = getattr(self, "_current_regime", None) or {}
@@ -4567,10 +4744,15 @@ class AutoTradeEngine:
                         "remaining_secs": max(0, int(PENDING_CLOSE_MAX_AGE - (datetime.now() - meta.get("at", datetime.now())).total_seconds())),
                         "started_at": meta.get("at", datetime.now()).astimezone().isoformat(timespec="seconds"),
                         "max_age_secs": PENDING_CLOSE_MAX_AGE,
+                        "reprice_secs": PENDING_CLOSE_REPRICE_SECONDS,
+                        "state": meta.get("state"),
+                        "submitted_price": meta.get("submitted_price"),
+                        "reason": meta.get("reason"),
                     }
                     for key, meta in self._pending_closes.items()
                 ],
                 "pending_close_max_age_secs": PENDING_CLOSE_MAX_AGE,
+                "pending_close_reprice_secs": PENDING_CLOSE_REPRICE_SECONDS,
             }
 
             with open(LIVE_POSITIONS_FILE, "w") as f:
