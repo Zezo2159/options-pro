@@ -230240,3 +230240,2607 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 [2026-06-02 14:30:07] Scan passes: 1
 [2026-06-02 14:30:07] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
+[2026-06-02 14:30:14]   ✅ GitHub backup on restart complete
+[2026-06-02 14:30:14] 🔌 Connecting to TWS...
+[2026-06-02 14:30:14] ✅ TWS connected — next order ID: 139
+[2026-06-02 14:30:16]   📊 6 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 14:30:16]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 14:30:16]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 14:30:16]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 14:30:16]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 14:30:16]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 14:30:16]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 14:30:19]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-06-02 14:30:20]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-490b0e19b0bsm68672645e9.6 - gsmtp')
+[2026-06-02 14:30:20] 🌙 Market closed — skipping initial scan, entering monitor mode
+[2026-06-02 14:30:20] 
+✅ Entering monitor mode (checking every 15 min)
+[2026-06-02 14:30:20]   📊 6 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 14:30:20]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 14:30:20]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 14:30:20]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 14:30:20]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 14:30:20]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 14:30:20]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 14:30:23] 
+============================================================
+[2026-06-02 14:30:23] 📡 MONITORING 6 SHORT POSITION(S)
+[2026-06-02 14:30:23] ============================================================
+[2026-06-02 14:30:35]   XLI $165.0P x1: no current price — skipping
+[2026-06-02 14:30:36] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.34 P/L=$-4 DTE=23
+[2026-06-02 14:30:36]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 14:30:47]   SLV $62.0P x4: no current price — skipping
+[2026-06-02 14:30:48] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.26 P/L=$-4 DTE=29
+[2026-06-02 14:30:48]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 14:30:49] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.38 P/L=$-213 DTE=23
+[2026-06-02 14:30:49]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 14:31:00]   EEM $63.5P x3: no current price — skipping
+[2026-06-02 14:31:00] 
+  🌙 Market closed — next check in 15 min...
+[2026-06-02 14:46:01]   📊 6 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 14:46:01]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 14:46:01]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 14:46:01]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 14:46:01]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 14:46:01]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 14:46:01]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 14:46:04] 
+============================================================
+[2026-06-02 14:46:04] 📡 MONITORING 6 SHORT POSITION(S)
+[2026-06-02 14:46:04] ============================================================
+[2026-06-02 14:46:15]   XLI $165.0P x1: no current price — skipping
+[2026-06-02 14:46:27]   XLF $49.5P x4: no current price — skipping
+[2026-06-02 14:46:38]   SLV $62.0P x4: no current price — skipping
+[2026-06-02 14:46:50]   TLT $83.0P x3: no current price — skipping
+[2026-06-02 14:47:02]   XLP $81.5P x3: no current price — skipping
+[2026-06-02 14:47:13]   EEM $63.5P x3: no current price — skipping
+[2026-06-02 14:47:13] 
+  🌙 Market closed — next check in 15 min...
+[2026-06-02 15:02:13]   📊 6 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 15:02:13]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 15:02:13]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 15:02:13]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 15:02:13]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 15:02:13]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 15:02:13]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 15:02:16] 
+============================================================
+[2026-06-02 15:02:16] 📡 MONITORING 6 SHORT POSITION(S)
+[2026-06-02 15:02:16] ============================================================
+[2026-06-02 15:02:28]   XLI $165.0P x1: no current price — skipping
+[2026-06-02 15:02:40]   XLF $49.5P x4: no current price — skipping
+[2026-06-02 15:02:51]   SLV $62.0P x4: no current price — skipping
+[2026-06-02 15:02:52] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.26 P/L=$-4 DTE=29
+[2026-06-02 15:02:52]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 15:03:03]   XLP $81.5P x3: no current price — skipping
+[2026-06-02 15:03:15]   EEM $63.5P x3: no current price — skipping
+[2026-06-02 15:03:15] 
+  🌅 Market opens soon (1304s) — polling in 60s...
+[2026-06-02 15:04:15]   📊 6 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 15:04:15]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 15:04:15]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 15:04:15]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 15:04:15]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 15:04:15]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 15:04:15]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 15:04:18] 
+============================================================
+[2026-06-02 15:04:18] 📡 MONITORING 6 SHORT POSITION(S)
+[2026-06-02 15:04:18] ============================================================
+[2026-06-02 15:04:19] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.62 P/L=$-31 DTE=29
+[2026-06-02 15:04:19]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 15:04:30]   XLF $49.5P x4: no current price — skipping
+[2026-06-02 15:04:42]   SLV $62.0P x4: no current price — skipping
+[2026-06-02 15:04:54]   TLT $83.0P x3: no current price — skipping
+[2026-06-02 15:05:05]   XLP $81.5P x3: no current price — skipping
+[2026-06-02 15:05:17]   EEM $63.5P x3: no current price — skipping
+[2026-06-02 15:05:17] 
+  🌅 Market opens soon (1182s) — polling in 60s...
+[2026-06-02 15:06:17]   📊 6 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 15:06:17]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 15:06:17]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 15:06:17]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 15:06:17]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 15:06:17]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 15:06:17]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 15:06:20] 
+============================================================
+[2026-06-02 15:06:20] 📡 MONITORING 6 SHORT POSITION(S)
+[2026-06-02 15:06:20] ============================================================
+[2026-06-02 15:06:32]   XLI $165.0P x1: no current price — skipping
+[2026-06-02 15:06:43]   XLF $49.5P x4: no current price — skipping
+[2026-06-02 15:06:55]   SLV $62.0P x4: no current price — skipping
+[2026-06-02 15:07:07]   TLT $83.0P x3: no current price — skipping
+[2026-06-02 15:07:18]   XLP $81.5P x3: no current price — skipping
+[2026-06-02 15:07:19] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$31 DTE=29
+[2026-06-02 15:07:19]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 15:07:19] 
+  🌅 Market opens soon (1060s) — polling in 60s...
+[2026-06-02 15:08:19]   📊 6 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 15:08:19]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 15:08:19]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 15:08:19]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 15:08:19]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 15:08:19]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 15:08:19]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 15:08:22] 
+============================================================
+[2026-06-02 15:08:22] 📡 MONITORING 6 SHORT POSITION(S)
+[2026-06-02 15:08:22] ============================================================
+[2026-06-02 15:08:34]   XLI $165.0P x1: no current price — skipping
+[2026-06-02 15:08:45]   XLF $49.5P x4: no current price — skipping
+[2026-06-02 15:08:46] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.51 P/L=$-48 DTE=37
+[2026-06-02 15:08:46]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 15:08:57]   TLT $83.0P x3: no current price — skipping
+[2026-06-02 15:09:09]   XLP $81.5P x3: no current price — skipping
+[2026-06-02 15:09:21]   EEM $63.5P x3: no current price — skipping
+[2026-06-02 15:09:21] 
+  🌅 Market opens soon (938s) — polling in 60s...
+[2026-06-02 15:10:21]   📊 6 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 15:10:21]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 15:10:21]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 15:10:21]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 15:10:21]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 15:10:21]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 15:10:21]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 15:10:24] 
+============================================================
+[2026-06-02 15:10:24] 📡 MONITORING 6 SHORT POSITION(S)
+[2026-06-02 15:10:24] ============================================================
+[2026-06-02 15:10:35]   XLI $165.0P x1: no current price — skipping
+[2026-06-02 15:10:47]   XLF $49.5P x4: no current price — skipping
+[2026-06-02 15:10:59]   SLV $62.0P x4: no current price — skipping
+[2026-06-02 15:11:10]   TLT $83.0P x3: no current price — skipping
+[2026-06-02 15:11:11] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.38 P/L=$-213 DTE=23
+[2026-06-02 15:11:11]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 15:11:22]   EEM $63.5P x3: no current price — skipping
+[2026-06-02 15:11:22] 
+  🌅 Market opens soon (817s) — polling in 60s...
+[2026-06-02 15:12:22]   📊 6 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 15:12:22]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 15:12:22]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 15:12:22]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 15:12:22]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 15:12:22]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 15:12:22]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 15:12:26] 
+============================================================
+[2026-06-02 15:12:26] 📡 MONITORING 6 SHORT POSITION(S)
+[2026-06-02 15:12:26] ============================================================
+[2026-06-02 15:12:37]   XLI $165.0P x1: no current price — skipping
+[2026-06-02 15:12:38] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.34 P/L=$-4 DTE=23
+[2026-06-02 15:12:38]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 15:12:49]   SLV $62.0P x4: no current price — skipping
+[2026-06-02 15:13:01]   TLT $83.0P x3: no current price — skipping
+[2026-06-02 15:13:13]   XLP $81.5P x3: no current price — skipping
+[2026-06-02 15:13:24]   EEM $63.5P x3: no current price — skipping
+[2026-06-02 15:13:24] 
+  🌅 Market opens soon (695s) — polling in 60s...
+[2026-06-02 15:14:24]   📊 6 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 15:14:24]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 15:14:24]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 15:14:24]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 15:14:24]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 15:14:24]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 15:14:24]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 15:14:27] 
+============================================================
+[2026-06-02 15:14:27] 📡 MONITORING 6 SHORT POSITION(S)
+[2026-06-02 15:14:27] ============================================================
+[2026-06-02 15:14:39]   XLI $165.0P x1: no current price — skipping
+[2026-06-02 15:14:51]   XLF $49.5P x4: no current price — skipping
+[2026-06-02 15:15:02]   SLV $62.0P x4: no current price — skipping
+[2026-06-02 15:15:14]   TLT $83.0P x3: no current price — skipping
+[2026-06-02 15:15:15] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.38 P/L=$-213 DTE=23
+[2026-06-02 15:15:15]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 15:15:26]   EEM $63.5P x3: no current price — skipping
+[2026-06-02 15:15:26] 
+  🌅 Market opens soon (573s) — polling in 60s...
+[2026-06-02 15:16:26]   📊 6 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 15:16:26]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 15:16:26]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 15:16:26]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 15:16:26]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 15:16:26]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 15:16:26]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 15:16:29] 
+============================================================
+[2026-06-02 15:16:29] 📡 MONITORING 6 SHORT POSITION(S)
+[2026-06-02 15:16:29] ============================================================
+[2026-06-02 15:16:41]   XLI $165.0P x1: no current price — skipping
+[2026-06-02 15:16:42] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.34 P/L=$-4 DTE=23
+[2026-06-02 15:16:42]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 15:16:53]   SLV $62.0P x4: no current price — skipping
+[2026-06-02 15:17:05]   TLT $83.0P x3: no current price — skipping
+[2026-06-02 15:17:17]   XLP $81.5P x3: no current price — skipping
+[2026-06-02 15:17:28]   EEM $63.5P x3: no current price — skipping
+[2026-06-02 15:17:28] 
+  🌅 Market opens soon (451s) — polling in 60s...
+[2026-06-02 15:18:29]   📊 6 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 15:18:29]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 15:18:29]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 15:18:29]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 15:18:29]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 15:18:29]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 15:18:29]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 15:18:32] 
+============================================================
+[2026-06-02 15:18:32] 📡 MONITORING 6 SHORT POSITION(S)
+[2026-06-02 15:18:32] ============================================================
+[2026-06-02 15:18:43]   XLI $165.0P x1: no current price — skipping
+[2026-06-02 15:18:55]   XLF $49.5P x4: no current price — skipping
+[2026-06-02 15:19:07]   SLV $62.0P x4: no current price — skipping
+[2026-06-02 15:19:18]   TLT $83.0P x3: no current price — skipping
+[2026-06-02 15:19:30]   XLP $81.5P x3: no current price — skipping
+[2026-06-02 15:19:31] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$31 DTE=29
+[2026-06-02 15:19:31]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 15:19:31] 
+  🌅 Market opens soon (328s) — polling in 60s...
+[2026-06-02 15:20:31]   📊 6 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 15:20:31]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 15:20:31]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 15:20:31]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 15:20:31]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 15:20:31]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 15:20:31]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 15:20:34] 
+============================================================
+[2026-06-02 15:20:34] 📡 MONITORING 6 SHORT POSITION(S)
+[2026-06-02 15:20:34] ============================================================
+[2026-06-02 15:20:46]   XLI $165.0P x1: no current price — skipping
+[2026-06-02 15:20:57]   XLF $49.5P x4: no current price — skipping
+[2026-06-02 15:21:09]   SLV $62.0P x4: no current price — skipping
+[2026-06-02 15:21:21]   TLT $83.0P x3: no current price — skipping
+[2026-06-02 15:21:32]   XLP $81.5P x3: no current price — skipping
+[2026-06-02 15:21:44]   EEM $63.5P x3: no current price — skipping
+[2026-06-02 15:21:44] 
+  🌅 Market opens soon (195s) — polling in 60s...
+[2026-06-02 15:22:44]   📊 6 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 15:22:44]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 15:22:44]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 15:22:44]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 15:22:44]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 15:22:44]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 15:22:44]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 15:22:47] 
+============================================================
+[2026-06-02 15:22:47] 📡 MONITORING 6 SHORT POSITION(S)
+[2026-06-02 15:22:47] ============================================================
+[2026-06-02 15:22:59]   XLI $165.0P x1: no current price — skipping
+[2026-06-02 15:23:11]   XLF $49.5P x4: no current price — skipping
+[2026-06-02 15:23:22]   SLV $62.0P x4: no current price — skipping
+[2026-06-02 15:23:34]   TLT $83.0P x3: no current price — skipping
+[2026-06-02 15:23:46]   XLP $81.5P x3: no current price — skipping
+[2026-06-02 15:23:58]   EEM $63.5P x3: no current price — skipping
+[2026-06-02 15:23:58] 
+  🌅 Market opens soon (61s) — polling in 60s...
+[2026-06-02 15:24:58]   📊 6 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 15:24:58]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 15:24:58]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 15:24:58]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 15:24:58]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 15:24:58]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 15:24:58]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 15:25:01] 
+============================================================
+[2026-06-02 15:25:01] 📡 MONITORING 6 SHORT POSITION(S)
+[2026-06-02 15:25:01] ============================================================
+[2026-06-02 15:25:02] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.62 P/L=$-31 DTE=29
+[2026-06-02 15:25:02]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 15:25:03] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.34 P/L=$-4 DTE=23
+[2026-06-02 15:25:03]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 15:25:04] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.51 P/L=$-48 DTE=37
+[2026-06-02 15:25:04]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 15:25:06] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.26 P/L=$-4 DTE=29
+[2026-06-02 15:25:06]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 15:25:07] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.38 P/L=$-213 DTE=23
+[2026-06-02 15:25:07]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 15:25:08] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$31 DTE=29
+[2026-06-02 15:25:08]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 15:25:08] 
+  🌙 Market closed — next check in 15 min...
+[2026-06-02 15:36:47] 🔔 Manual scan triggered (requested 2026-06-02T15:36:38+02:00)
+[2026-06-02 15:36:47] 
+============================================================
+[2026-06-02 15:36:47] 🌅 MORNING SCAN STARTED
+[2026-06-02 15:36:47] ============================================================
+[2026-06-02 15:36:47]   ⚠ TWS error 354: Requested market data is not subscribed. Check API status by selecting the Account menu then under Management choose Market Data Subscription Manager and/or availability of delayed data.Delayed market data is available.VIX CBOE Volatility Index/TOP/ALL
+[2026-06-02 15:36:47]   📊 VIX: n/a — Regime: Normal (Δ 0.15-0.25, risk × 1.0)
+[2026-06-02 15:36:47]   TWS error 300: Can't find EId with tickerId:1091
+[2026-06-02 15:36:47]   Open positions: 6/10
+[2026-06-02 15:36:47]   Paper capital in use: $129,500/$225,000 target
+[2026-06-02 15:36:47] 
+  Scanning SPY...
+[2026-06-02 15:36:47]   SPY: $757.38
+[2026-06-02 15:36:47]   SPY: conId=756733 (STK)
+[2026-06-02 15:36:48]   SPY: option chain SPY@SMART (37 expiries, 498 strikes)
+[2026-06-02 15:37:03]   SPY: no suitable strike found
+[2026-06-02 15:37:03] 
+  Scanning QQQ...
+[2026-06-02 15:37:03]   QQQ: $740.49
+[2026-06-02 15:37:03]   QQQ: conId=320227571 (STK)
+[2026-06-02 15:37:04]   QQQ: option chain QQQ@SMART (34 expiries, 533 strikes)
+[2026-06-02 15:37:16]   QQQ: no suitable strike found
+[2026-06-02 15:37:16] 
+  Scanning IWM...
+[2026-06-02 15:37:16]   IWM: $291.02
+[2026-06-02 15:37:16]   IWM: conId=9579970 (STK)
+[2026-06-02 15:37:17]   IWM: option chain IWM@SMART (33 expiries, 206 strikes)
+[2026-06-02 15:37:28]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 15:37:28]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 15:37:28]   IWM: skipped spread — no quote for protective long $272.5P
+[2026-06-02 15:37:28] 
+  Scanning GLD...
+[2026-06-02 15:37:28]   GLD: $413.63
+[2026-06-02 15:37:28]   GLD: conId=51529211 (STK)
+[2026-06-02 15:37:29]   GLD: option chain GLD@SMART (28 expiries, 358 strikes)
+[2026-06-02 15:37:43]   GLD: no suitable strike found
+[2026-06-02 15:37:43] 
+  Scanning SMH...
+[2026-06-02 15:37:43]   SMH: $620.00
+[2026-06-02 15:37:43]   SMH: conId=229725622 (STK)
+[2026-06-02 15:37:44]   SMH: option chain SMH@SMART (20 expiries, 232 strikes)
+[2026-06-02 15:37:48]   SMH $600.0P: missing delta/greeks — skipped
+[2026-06-02 15:37:50]   SMH $597.5P: missing delta/greeks — skipped
+[2026-06-02 15:37:57]   SMH: no suitable strike found
+[2026-06-02 15:37:57] 
+  Scanning DIA...
+[2026-06-02 15:37:57]   DIA: $512.57
+[2026-06-02 15:37:57]   DIA: conId=73128548 (STK)
+[2026-06-02 15:37:57]   DIA: option chain DIA@SMART (20 expiries, 235 strikes)
+[2026-06-02 15:38:14]   DIA: skipped spread — credit $0.44 is below 15% of $5 width
+[2026-06-02 15:38:14] 
+  Scanning XLK...
+[2026-06-02 15:38:14]   XLK: $196.36
+[2026-06-02 15:38:14]   XLK: conId=4215230 (STK)
+[2026-06-02 15:38:14]   XLK: option chain XLK@SMART (16 expiries, 172 strikes)
+[2026-06-02 15:38:25]   XLK $185.0P: quote too wide bid=$2.72 ask=$4.05 spread=43%
+[2026-06-02 15:38:28]   XLK long $179.0P: quote too wide bid=$1.59 ask=$2.77 spread=43%
+[2026-06-02 15:38:28] 
+  Scanning TLT...
+[2026-06-02 15:38:28]   TLT: $85.81
+[2026-06-02 15:38:28]   TLT: conId=15547841 (STK)
+[2026-06-02 15:38:28]   TLT: option chain TLT@SMART (28 expiries, 75 strikes)
+[2026-06-02 15:38:28]   TLT: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 15:38:42]   TLT: $83.5P @ $0.34 | Δ=0.217 IV=10.6% Buffer=2.7% DTE=37 | Score=47
+[2026-06-02 15:38:42] 
+  Scanning XLF...
+[2026-06-02 15:38:42]   XLF: $51.31
+[2026-06-02 15:38:42]   XLF: conId=4215220 (STK)
+[2026-06-02 15:38:43]   XLF: option chain XLF@SMART (22 expiries, 69 strikes)
+[2026-06-02 15:38:44]   XLF $50.0P: quote too wide bid=$0.11 ask=$1.53 spread=93%
+[2026-06-02 15:38:46]   XLF $49.0P: quote too wide bid=$0.05 ask=$1.04 spread=95%
+[2026-06-02 15:38:57]   XLF: $47.5P @ $0.54 | Δ=0.217 IV=33.5% Buffer=7.4% DTE=37 | Score=57
+[2026-06-02 15:38:57] 
+  Scanning XLE...
+[2026-06-02 15:38:57]   XLE: $57.63
+[2026-06-02 15:38:57]   XLE: conId=4215217 (STK)
+[2026-06-02 15:38:57]   XLE: option chain XLE@SMART (22 expiries, 88 strikes)
+[2026-06-02 15:39:11]   XLE: $52.5P @ $0.09 | Δ=0.205 IV=28.9% Buffer=8.9% DTE=37 | Score=81
+[2026-06-02 15:39:11] 
+  Scanning XLV...
+[2026-06-02 15:39:11]   XLV: $146.73
+[2026-06-02 15:39:12]   XLV: conId=4215205 (STK)
+[2026-06-02 15:39:12]   XLV: option chain XLV@SMART (13 expiries, 83 strikes)
+[2026-06-02 15:39:12]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 15:39:12]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 15:39:13]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 15:39:13]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 15:39:14]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 15:39:14]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 15:39:15]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 15:39:16]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 15:39:19]   XLV: $139.0P @ $0.54 | Δ=0.196 IV=17.9% Buffer=5.3% DTE=37 | Score=70
+[2026-06-02 15:39:19] 
+  Scanning XLI...
+[2026-06-02 15:39:19]   XLI: $172.90
+[2026-06-02 15:39:20]   XLI: conId=4215227 (STK)
+[2026-06-02 15:39:20]   XLI: option chain XLI@SMART (13 expiries, 132 strikes)
+[2026-06-02 15:39:20]   XLI: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 15:39:21]   XLI $169.0P: quote too wide bid=$2.13 ask=$4.95 spread=57%
+[2026-06-02 15:39:21]   XLI $168.0P: quote too wide bid=$1.79 ask=$4.70 spread=62%
+[2026-06-02 15:39:23]   XLI $167.5P: quote too wide bid=$1.63 ask=$4.45 spread=63%
+[2026-06-02 15:39:25]   XLI $167.0P: quote too wide bid=$1.47 ask=$4.40 spread=67%
+[2026-06-02 15:39:26]   XLI $166.0P: quote too wide bid=$1.17 ask=$4.10 spread=71%
+[2026-06-02 15:39:27]   XLI $165.0P: quote too wide bid=$0.93 ask=$3.95 spread=76%
+[2026-06-02 15:39:29]   XLI $164.0P: quote too wide bid=$0.75 ask=$3.75 spread=80%
+[2026-06-02 15:39:29]   XLI $163.0P: quote too wide bid=$0.49 ask=$3.60 spread=86%
+[2026-06-02 15:39:30]   XLI $162.5P: quote too wide bid=$0.40 ask=$3.50 spread=89%
+[2026-06-02 15:39:32]   XLI $162.0P: quote too wide bid=$0.30 ask=$3.40 spread=91%
+[2026-06-02 15:39:32]   XLI: no suitable strike found
+[2026-06-02 15:39:32] 
+  Scanning XLP...
+[2026-06-02 15:39:32]   XLP: $81.84
+[2026-06-02 15:39:33]   XLP: conId=4215210 (STK)
+[2026-06-02 15:39:33]   XLP: option chain XLP@SMART (13 expiries, 79 strikes)
+[2026-06-02 15:39:37]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 15:39:37]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 15:39:38]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 15:39:38]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 15:39:40]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 15:39:40]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 15:39:43]   XLP: $77.0P @ $0.39 | Δ=0.200 IV=21.4% Buffer=5.9% DTE=37 | Score=53
+[2026-06-02 15:39:43] 
+  Scanning SLV...
+[2026-06-02 15:39:43]   SLV: $68.70
+[2026-06-02 15:39:43]   SLV: conId=39039301 (STK)
+[2026-06-02 15:39:43]   SLV: option chain SLV@SMART (28 expiries, 210 strikes)
+[2026-06-02 15:39:43]   SLV: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 15:39:50]   SLV $64.5P: missing delta/greeks — skipped
+[2026-06-02 15:39:55]   SLV $62.5P: missing delta/greeks — skipped
+[2026-06-02 15:39:55]   SLV: $63.0P @ $1.42 | Δ=0.237 IV=43.6% Buffer=8.3% DTE=37 | Score=34
+[2026-06-02 15:39:55] 
+  Scanning GDX...
+[2026-06-02 15:39:56]   GDX: $87.95
+[2026-06-02 15:39:56]   GDX: conId=229726316 (STK)
+[2026-06-02 15:39:56]   GDX: option chain GDX@SMART (18 expiries, 152 strikes)
+[2026-06-02 15:39:58]   GDX $86.0P: quote too wide bid=$2.94 ask=$5.65 spread=65%
+[2026-06-02 15:39:59]   GDX $85.5P: quote too wide bid=$2.89 ask=$5.45 spread=47%
+[2026-06-02 15:40:00]   GDX $85.0P: quote too wide bid=$2.85 ask=$5.15 spread=45%
+[2026-06-02 15:40:01]   GDX $84.5P: quote too wide bid=$2.81 ask=$5.05 spread=64%
+[2026-06-02 15:40:01]   GDX $84.0P: quote too wide bid=$2.35 ask=$4.85 spread=52%
+[2026-06-02 15:40:02]   GDX $83.5P: quote too wide bid=$2.15 ask=$4.60 spread=53%
+[2026-06-02 15:40:04]   GDX $83.0P: quote too wide bid=$1.95 ask=$4.45 spread=56%
+[2026-06-02 15:40:06]   GDX $82.5P: quote too wide bid=$1.75 ask=$4.30 spread=59%
+[2026-06-02 15:40:07]   GDX $82.0P: quote too wide bid=$1.60 ask=$4.00 spread=60%
+[2026-06-02 15:40:08]   GDX $81.5P: quote too wide bid=$1.60 ask=$4.05 spread=60%
+[2026-06-02 15:40:08]   GDX: no suitable strike found
+[2026-06-02 15:40:08] 
+  Scanning EEM...
+[2026-06-02 15:40:08]   EEM: $70.30
+[2026-06-02 15:40:08]   EEM: conId=6604766 (STK)
+[2026-06-02 15:40:08]   EEM: option chain EEM@SMART (21 expiries, 97 strikes)
+[2026-06-02 15:40:08]   EEM: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 15:40:09]   EEM $68.5P: quote too wide bid=$1.36 ask=$3.65 spread=63%
+[2026-06-02 15:40:10]   EEM $68.0P: quote too wide bid=$1.31 ask=$2.54 spread=48%
+[2026-06-02 15:40:12]   EEM $67.5P: quote too wide bid=$1.04 ask=$1.90 spread=45%
+[2026-06-02 15:40:13]   EEM $67.0P: quote too wide bid=$1.10 ask=$2.12 spread=48%
+[2026-06-02 15:40:14]   EEM $66.5P: quote too wide bid=$0.57 ask=$3.35 spread=83%
+[2026-06-02 15:40:16]   EEM $66.0P: quote too wide bid=$0.66 ask=$2.17 spread=70%
+[2026-06-02 15:40:18]   EEM $65.5P: quote too wide bid=$0.60 ask=$1.74 spread=190%
+[2026-06-02 15:40:19]   EEM $65.0P: quote too wide bid=$0.66 ask=$1.64 spread=60%
+[2026-06-02 15:40:20]   EEM $64.5P: quote too wide bid=$0.38 ask=$1.39 spread=73%
+[2026-06-02 15:40:22]   EEM $64.0P: quote too wide bid=$0.43 ask=$2.98 spread=86%
+[2026-06-02 15:40:22]   EEM: no suitable strike found
+[2026-06-02 15:40:22]   📡 Signals written: 6 candidate(s) -> /Users/islam/options-pro/data/trade_signals.json
+[2026-06-02 15:40:22] 
+  📊 Found 6 opportunities, 4 slot(s) available
+[2026-06-02 15:40:22]   🧭 Gate summary: selected=6 candidates=6 blocked=10
+[2026-06-02 15:40:22]     SPY: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-06-02 15:40:22]     QQQ: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-06-02 15:40:22]     IWM: blocked — No usable quote for protective long $272.5P.
+[2026-06-02 15:40:22]     GLD: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-06-02 15:40:22]     SMH: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-06-02 15:40:22]     DIA: blocked — Spread credit $0.44 is below 15% of $5 width.
+[2026-06-02 15:40:22]     XLK: blocked — XLK long $179.0P: quote too wide bid=$1.59 ask=$2.77 spread=43%
+[2026-06-02 15:40:22]     TLT: selected — Candidate passed scanner filters; paper auto blocked: Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 15:40:22]     XLF: selected — Candidate passed paper filters but score 57 is below 60 real-account copy minimum.
+[2026-06-02 15:40:22]     XLE: selected — Candidate passed scanner filters.
+[2026-06-02 15:40:22]     XLV: selected — Candidate passed scanner filters.
+[2026-06-02 15:40:22]     XLI: skipped — Quotes were available but failed width/quality checks.
+[2026-06-02 15:40:22]     XLP: selected — Candidate passed paper filters but score 53 is below 60 real-account copy minimum.
+[2026-06-02 15:40:22]     SLV: selected — Candidate passed scanner filters; paper auto blocked: Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 15:40:22]     GDX: skipped — Quotes were available but failed width/quality checks.
+[2026-06-02 15:40:22]     EEM: skipped — Quotes were available but failed width/quality checks.
+[2026-06-02 15:40:22]     #81: XLE $52.5P @ $0.09 (WHEEL) DTE=37
+[2026-06-02 15:40:22]     #70: XLV $139.0P @ $0.54 (WHEEL) DTE=37
+[2026-06-02 15:40:22]     #57: XLF $47.5P @ $0.54 (WHEEL) DTE=37
+[2026-06-02 15:40:22]     #53: XLP $77.0P @ $0.39 (WHEEL) DTE=37
+[2026-06-02 15:40:22]     #47: TLT $83.5P @ $0.34 (WHEEL) DTE=37
+[2026-06-02 15:40:22]     #34: SLV $63.0P @ $1.42 (WHEEL) DTE=37
+[2026-06-02 15:40:22] 
+  🎯 EXECUTING: SELL 4x XLE $52.5P @ $0.09
+[2026-06-02 15:40:22]   📤 Placing order: SELL 4x XLE $52.5P @ $0.09 (ID: 139)
+[2026-06-02 15:40:22]   📝 Journal: OPEN XLE $52.5 x4
+[2026-06-02 15:40:23]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-490b367577asm9008595e9.10 - gsmtp')
+[2026-06-02 15:40:25] 
+  🎯 EXECUTING: SELL 2x XLV $139.0P @ $0.54
+[2026-06-02 15:40:25]   📤 Placing order: SELL 2x XLV $139.0P @ $0.54 (ID: 140)
+[2026-06-02 15:40:25]   📝 Journal: OPEN XLV $139.0 x2
+[2026-06-02 15:40:26]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-45ef358c07bsm34362758f8f.36 - gsmtp')
+[2026-06-02 15:40:28] 
+  🎯 EXECUTING: SELL 4x XLF $47.5P @ $0.54
+[2026-06-02 15:40:28]   📤 Placing order: SELL 4x XLF $47.5P @ $0.54 (ID: 141)
+[2026-06-02 15:40:28]   📝 Journal: OPEN XLF $47.5 x4
+[2026-06-02 15:40:29]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-490b0e20a24sm67083895e9.5 - gsmtp')
+[2026-06-02 15:40:31] 
+  🎯 EXECUTING: SELL 3x XLP $77.0P @ $0.39
+[2026-06-02 15:40:31]   📤 Placing order: SELL 3x XLP $77.0P @ $0.39 (ID: 142)
+[2026-06-02 15:40:31]   📝 Journal: OPEN XLP $77.0 x3
+[2026-06-02 15:40:32]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-45ef34bcc30sm33013374f8f.12 - gsmtp')
+[2026-06-02 15:40:34]   📡 PAPER BLOCKED: TLT — Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 15:40:34]   SLV: skipped paper auto-open — score 34 is below 35 minimum
+[2026-06-02 15:40:34] 
+━━━ Scheduled Scan 09:35 ET ━━━
+[2026-06-02 15:40:34] 
+━━━ Scan Pass 1/1 ━━━
+[2026-06-02 15:40:34] 
+============================================================
+[2026-06-02 15:40:34] 🌅 MORNING SCAN STARTED
+[2026-06-02 15:40:34] ============================================================
+[2026-06-02 15:40:34]   ⚠ TWS error 354: Requested market data is not subscribed. Check API status by selecting the Account menu then under Management choose Market Data Subscription Manager and/or availability of delayed data.Delayed market data is available.VIX CBOE Volatility Index/TOP/ALL
+[2026-06-02 15:40:34]   📊 VIX: n/a — Regime: Normal (Δ 0.15-0.25, risk × 1.0)
+[2026-06-02 15:40:34]   TWS error 300: Can't find EId with tickerId:1466
+[2026-06-02 15:40:34]   Open positions: 10/10
+[2026-06-02 15:40:34]   Pending opens counted as capacity: 4
+[2026-06-02 15:40:34]   Paper capital in use: $220,400/$225,000 target
+[2026-06-02 15:40:34]   ⚠ Maximum paper positions reached (10/10). Paper auto is blocked, real signal scan continues.
+[2026-06-02 15:40:34] 
+  Scanning SPY...
+[2026-06-02 15:40:34]   SPY: $756.94
+[2026-06-02 15:40:34]   SPY: conId=756733 (STK)
+[2026-06-02 15:40:35]   SPY: option chain SPY@SMART (37 expiries, 498 strikes)
+[2026-06-02 15:40:36]   SPY $741.0P: missing delta/greeks — skipped
+[2026-06-02 15:40:37]   📋 Exec: SLD 4.0x XLE @ $0.10 (OrderID 139)
+[2026-06-02 15:40:37]   ✅ Order 139 FILLED at $0.10
+[2026-06-02 15:40:37]   ✅ Order 139 FILLED at $0.10
+[2026-06-02 15:40:38]   📋 Exec: SLD 2.0x XLV @ $0.55 (OrderID 140)
+[2026-06-02 15:40:38]   ✅ Order 140 FILLED at $0.55
+[2026-06-02 15:40:38]   ✅ Order 140 FILLED at $0.55
+[2026-06-02 15:40:42]   SPY $737.0P: missing delta/greeks — skipped
+[2026-06-02 15:40:47]   SPY: no suitable strike found
+[2026-06-02 15:40:47] 
+  Scanning QQQ...
+[2026-06-02 15:40:47]   QQQ: $740.34
+[2026-06-02 15:40:47]   QQQ: conId=320227571 (STK)
+[2026-06-02 15:40:48]   QQQ: option chain QQQ@SMART (34 expiries, 533 strikes)
+[2026-06-02 15:40:51]   📋 Exec: SLD 3.0x XLP @ $0.40 (OrderID 142)
+[2026-06-02 15:40:51]   ✅ Order 142 FILLED at $0.40
+[2026-06-02 15:40:51]   ✅ Order 142 FILLED at $0.40
+[2026-06-02 15:40:56]   QQQ: no suitable strike found
+[2026-06-02 15:40:56] 
+  Scanning IWM...
+[2026-06-02 15:40:56]   IWM: $291.19
+[2026-06-02 15:40:56]   IWM: conId=9579970 (STK)
+[2026-06-02 15:40:56]   IWM: option chain IWM@SMART (33 expiries, 206 strikes)
+[2026-06-02 15:41:05]   IWM: no suitable strike found
+[2026-06-02 15:41:05] 
+  Scanning GLD...
+[2026-06-02 15:41:05]   GLD: $413.73
+[2026-06-02 15:41:05]   GLD: conId=51529211 (STK)
+[2026-06-02 15:41:05]   GLD: option chain GLD@SMART (28 expiries, 358 strikes)
+[2026-06-02 15:41:14]   GLD: no suitable strike found
+[2026-06-02 15:41:14] 
+  Scanning SMH...
+[2026-06-02 15:41:15]   SMH: $620.15
+[2026-06-02 15:41:15]   SMH: conId=229725622 (STK)
+[2026-06-02 15:41:15]   SMH: option chain SMH@SMART (20 expiries, 232 strikes)
+[2026-06-02 15:41:26]   SMH: no suitable strike found
+[2026-06-02 15:41:26] 
+  Scanning DIA...
+[2026-06-02 15:41:27]   DIA: $512.60
+[2026-06-02 15:41:27]   DIA: conId=73128548 (STK)
+[2026-06-02 15:41:27]   DIA: option chain DIA@SMART (20 expiries, 235 strikes)
+[2026-06-02 15:41:39]   DIA: skipped spread — credit $0.48 is below 15% of $5 width
+[2026-06-02 15:41:39] 
+  Scanning XLK...
+[2026-06-02 15:41:40]   XLK: $196.31
+[2026-06-02 15:41:40]   XLK: conId=4215230 (STK)
+[2026-06-02 15:41:40]   XLK: option chain XLK@SMART (16 expiries, 172 strikes)
+[2026-06-02 15:41:46]   XLK $187.5P: quote too wide bid=$3.35 ask=$4.75 spread=36%
+[2026-06-02 15:41:50]   XLK: no suitable strike found
+[2026-06-02 15:41:50] 
+  Scanning TLT...
+[2026-06-02 15:41:50]   TLT: $85.75
+[2026-06-02 15:41:50]   TLT: conId=15547841 (STK)
+[2026-06-02 15:41:50]   TLT: option chain TLT@SMART (28 expiries, 75 strikes)
+[2026-06-02 15:41:50]   TLT: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 15:42:00]   TLT: $83.5P @ $0.34 | Δ=0.221 IV=10.6% Buffer=2.6% DTE=37 | Score=100
+[2026-06-02 15:42:00]   XLF: paper auto blocked — At paper MAX_PER_TICKER (2). Existing DTEs: [23, 37].
+[2026-06-02 15:42:00] 
+  Scanning XLF...
+[2026-06-02 15:42:00]   XLF: $51.60
+[2026-06-02 15:42:00]   XLF: conId=4215220 (STK)
+[2026-06-02 15:42:00]   XLF: option chain XLF@SMART (22 expiries, 69 strikes)
+[2026-06-02 15:42:00]   XLF: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 15:42:02]   XLF $50.5P: missing delta/greeks — skipped
+[2026-06-02 15:42:04]   XLF $50.0P: missing delta/greeks — skipped
+[2026-06-02 15:42:06]   XLF $49.5P: missing delta/greeks — skipped
+[2026-06-02 15:42:06]   XLF $49.0P: missing delta/greeks — skipped
+[2026-06-02 15:42:15]   XLF: $48.5P @ $0.30 | Δ=0.165 IV=20.2% Buffer=6.0% DTE=37 | Score=14
+[2026-06-02 15:42:15] 
+  Scanning XLE...
+[2026-06-02 15:42:15]   XLE: $57.66
+[2026-06-02 15:42:15]   XLE: conId=4215217 (STK)
+[2026-06-02 15:42:16]   XLE: option chain XLE@SMART (22 expiries, 88 strikes)
+[2026-06-02 15:42:16]   XLE: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 15:42:18]   XLE $56.5P: missing delta/greeks — skipped
+[2026-06-02 15:42:25]   XLE: $53.5P @ $0.29 | Δ=0.199 IV=28.4% Buffer=7.2% DTE=37 | Score=58
+[2026-06-02 15:42:25] 
+  Scanning XLV...
+[2026-06-02 15:42:26]   XLV: $146.94
+[2026-06-02 15:42:26]   XLV: conId=4215205 (STK)
+[2026-06-02 15:42:26]   XLV: option chain XLV@SMART (13 expiries, 83 strikes)
+[2026-06-02 15:42:26]   XLV: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 15:42:30]   XLV: $140.0P @ $0.68 | Δ=0.216 IV=18.0% Buffer=4.7% DTE=37 | Score=33
+[2026-06-02 15:42:30] 
+  Scanning XLI...
+[2026-06-02 15:42:30]   XLI: $174.22
+[2026-06-02 15:42:30]   XLI: conId=4215227 (STK)
+[2026-06-02 15:42:30]   XLI: option chain XLI@SMART (13 expiries, 132 strikes)
+[2026-06-02 15:42:30]   XLI: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 15:42:31]   XLI $170.0P: quote too wide bid=$2.32 ask=$4.85 spread=52%
+[2026-06-02 15:42:33]   XLI $169.0P: quote too wide bid=$2.13 ask=$4.55 spread=53%
+[2026-06-02 15:42:34]   XLI $168.0P: quote too wide bid=$1.79 ask=$4.25 spread=58%
+[2026-06-02 15:42:34]   XLI $167.5P: quote too wide bid=$1.63 ask=$4.10 spread=60%
+[2026-06-02 15:42:35]   XLI $167.0P: quote too wide bid=$1.47 ask=$4.05 spread=64%
+[2026-06-02 15:42:37]   XLI $166.0P: quote too wide bid=$1.17 ask=$3.90 spread=70%
+[2026-06-02 15:42:38]   XLI $165.0P: quote too wide bid=$0.93 ask=$3.75 spread=75%
+[2026-06-02 15:42:38]   XLI $164.0P: quote too wide bid=$0.75 ask=$3.65 spread=79%
+[2026-06-02 15:42:39]   XLI $163.0P: quote too wide bid=$0.49 ask=$3.55 spread=85%
+[2026-06-02 15:42:40]   XLI $162.5P: quote too wide bid=$0.40 ask=$3.50 spread=89%
+[2026-06-02 15:42:40]   XLI: no suitable strike found
+[2026-06-02 15:42:40]   XLP: paper auto blocked — At paper MAX_PER_TICKER (2). Existing DTEs: [23, 37].
+[2026-06-02 15:42:40] 
+  Scanning XLP...
+[2026-06-02 15:42:40]   XLP: $82.19
+[2026-06-02 15:42:40]   XLP: conId=4215210 (STK)
+[2026-06-02 15:42:40]   XLP: option chain XLP@SMART (13 expiries, 79 strikes)
+[2026-06-02 15:42:40]   XLP: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 15:42:45]   XLP: $76.0P @ $0.03 | Δ=0.164 IV=20.2% Buffer=7.5% DTE=37 | Score=18
+[2026-06-02 15:42:45] 
+  Scanning SLV...
+[2026-06-02 15:42:45]   SLV: $68.90
+[2026-06-02 15:42:45]   SLV: conId=39039301 (STK)
+[2026-06-02 15:42:46]   SLV: option chain SLV@SMART (28 expiries, 210 strikes)
+[2026-06-02 15:42:46]   SLV: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 15:42:47]   SLV $67.0P: missing delta/greeks — skipped
+[2026-06-02 15:42:54]   SLV: $63.0P @ $1.42 | Δ=0.237 IV=43.6% Buffer=8.6% DTE=37 | Score=34
+[2026-06-02 15:42:54] 
+  Scanning GDX...
+[2026-06-02 15:42:55]   GDX: $87.97
+[2026-06-02 15:42:55]   GDX: conId=229726316 (STK)
+[2026-06-02 15:42:55]   GDX: option chain GDX@SMART (18 expiries, 152 strikes)
+[2026-06-02 15:42:55]   GDX $86.0P: quote too wide bid=$2.94 ask=$5.65 spread=48%
+[2026-06-02 15:42:55]   GDX $85.5P: quote too wide bid=$2.89 ask=$5.45 spread=47%
+[2026-06-02 15:42:56]   GDX $85.0P: quote too wide bid=$2.85 ask=$5.15 spread=45%
+[2026-06-02 15:42:56]   GDX $84.5P: quote too wide bid=$2.81 ask=$5.05 spread=44%
+[2026-06-02 15:42:57]   GDX $84.0P: quote too wide bid=$2.35 ask=$4.85 spread=52%
+[2026-06-02 15:42:57]   GDX $83.5P: quote too wide bid=$2.15 ask=$4.60 spread=53%
+[2026-06-02 15:42:57]   GDX $83.0P: quote too wide bid=$1.95 ask=$4.45 spread=128%
+[2026-06-02 15:42:58]   GDX $81.5P: quote too wide bid=$1.60 ask=$4.05 spread=60%
+[2026-06-02 15:42:58]   GDX: no suitable strike found
+[2026-06-02 15:42:58] 
+  Scanning EEM...
+[2026-06-02 15:42:59]   EEM: $70.31
+[2026-06-02 15:42:59]   EEM: conId=6604766 (STK)
+[2026-06-02 15:42:59]   EEM: option chain EEM@SMART (21 expiries, 97 strikes)
+[2026-06-02 15:42:59]   EEM: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 15:43:00]   EEM $68.5P: quote too wide bid=$1.36 ask=$3.65 spread=63%
+[2026-06-02 15:43:01]   EEM $66.5P: quote too wide bid=$0.57 ask=$3.35 spread=83%
+[2026-06-02 15:43:01]   EEM $66.0P: quote too wide bid=$0.66 ask=$2.17 spread=70%
+[2026-06-02 15:43:01]   EEM $65.5P: quote too wide bid=$0.60 ask=$1.74 spread=66%
+[2026-06-02 15:43:02]   EEM $64.5P: quote too wide bid=$0.38 ask=$1.39 spread=73%
+[2026-06-02 15:43:02]   EEM $64.0P: quote too wide bid=$0.43 ask=$2.98 spread=86%
+[2026-06-02 15:43:02]   EEM: $65.0P @ $0.98 | Δ=0.220 IV=34.8% Buffer=7.5% DTE=37 | Score=41
+[2026-06-02 15:43:02]   📡 Signals written: 7 candidate(s) -> /Users/islam/options-pro/data/trade_signals.json
+[2026-06-02 15:43:02] 
+  📊 Found 7 opportunities, 0 slot(s) available
+[2026-06-02 15:43:02]   🧭 Gate summary: selected=7 candidates=7 blocked=9
+[2026-06-02 15:43:02]     SPY: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-06-02 15:43:02]     QQQ: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-06-02 15:43:02]     IWM: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-06-02 15:43:02]     GLD: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-06-02 15:43:02]     SMH: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-06-02 15:43:02]     DIA: blocked — Spread credit $0.48 is below 15% of $5 width.
+[2026-06-02 15:43:02]     XLK: skipped — Quotes were available but failed width/quality checks.
+[2026-06-02 15:43:02]     TLT: selected — Candidate passed scanner filters; paper auto blocked: Maximum paper positions reached (10/10). Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 15:43:02]     XLF: selected — Candidate passed scanner filters; paper auto blocked: Maximum paper positions reached (10/10). At paper MAX_PER_TICKER (2). Existing DTEs: [23, 37]. Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 15:43:02]     XLE: selected — Candidate passed scanner filters; paper auto blocked: Maximum paper positions reached (10/10). Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 15:43:02]     XLV: selected — Candidate passed scanner filters; paper auto blocked: Maximum paper positions reached (10/10). Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 15:43:02]     XLI: skipped — Quotes were available but failed width/quality checks.
+[2026-06-02 15:43:02]     XLP: selected — Candidate passed scanner filters; paper auto blocked: Maximum paper positions reached (10/10). At paper MAX_PER_TICKER (2). Existing DTEs: [23, 37]. Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 15:43:02]     SLV: selected — Candidate passed scanner filters; paper auto blocked: Maximum paper positions reached (10/10). Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 15:43:02]     GDX: skipped — Quotes were available but failed width/quality checks.
+[2026-06-02 15:43:02]     EEM: selected — Candidate passed scanner filters; paper auto blocked: Maximum paper positions reached (10/10). Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 15:43:02]     #100: TLT $83.5P @ $0.34 (WHEEL) DTE=37
+[2026-06-02 15:43:02]     #58: XLE $53.5P @ $0.29 (WHEEL) DTE=37
+[2026-06-02 15:43:02]     #41: EEM $65.0P @ $0.98 (WHEEL) DTE=37
+[2026-06-02 15:43:02]     #34: SLV $63.0P @ $1.42 (WHEEL) DTE=37
+[2026-06-02 15:43:02]     #33: XLV $140.0P @ $0.68 (WHEEL) DTE=37
+[2026-06-02 15:43:02]     #18: XLP $76.0P @ $0.03 (WHEEL) DTE=37
+[2026-06-02 15:43:02]     #14: XLF $48.5P @ $0.30 (WHEEL) DTE=37
+[2026-06-02 15:43:02]   📡 PAPER BLOCKED: TLT — Maximum paper positions reached (10/10).; Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 15:43:02]   📡 PAPER BLOCKED: XLE — Maximum paper positions reached (10/10).; Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 15:43:02]   📡 PAPER BLOCKED: EEM — Maximum paper positions reached (10/10).; Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 15:43:02]   SLV: skipped paper auto-open — score 34 is below 35 minimum
+[2026-06-02 15:43:02]   XLV: skipped paper auto-open — score 33 is below 35 minimum
+[2026-06-02 15:43:02]   XLP: skipped paper auto-open — score 18 is below 35 minimum
+[2026-06-02 15:43:02]   XLF: skipped paper auto-open — score 14 is below 35 minimum
+[2026-06-02 15:43:07]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 15:43:07]      IBKR: XLE-52.5 = XLE $52.5 P x-4.0 avg=$0.10
+[2026-06-02 15:43:07]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 15:43:07]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 15:43:07]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 15:43:07]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 15:43:07]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 15:43:07]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 15:43:07]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 15:43:07]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 15:43:10] 
+============================================================
+[2026-06-02 15:43:10] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 15:43:10] ============================================================
+[2026-06-02 15:43:11] 
+  XLE   $52.5P x4 [WHEEL]: entry=$38 now=$0.81 P/L=$-286 DTE=37
+[2026-06-02 15:43:11]    >> CLOSE_LOSS: 2× stop ($-286 <= $-77)
+[2026-06-02 15:43:11]   📤 Close CSP: BUY 4x XLE $52.5P @ $0.82 (ID: 143)
+[2026-06-02 15:43:11]   📝 Journal: CLOSE_LOSS XLE $52.5 x4
+[2026-06-02 15:43:11]   📓 Close submitted: CLOSE_LOSS XLE $52.5P P/L=$-286
+[2026-06-02 15:43:11]   📋 Exec: BOT 4.0x XLE @ $0.81 (OrderID 143)
+[2026-06-02 15:43:11]   ✅ Order 143 FILLED at $0.81
+[2026-06-02 15:43:12]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-45ef35598e5sm30560498f8f.27 - gsmtp')
+[2026-06-02 15:43:12]   📧 Submission email sent: 📤 Close Submitted: XLE $52.5P [CSP]
+[2026-06-02 15:43:12]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4909c1035ebsm158999185e9.5 - gsmtp')
+[2026-06-02 15:43:12]   ✅ Order 143 FILLED at $0.81
+[2026-06-02 15:43:13] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.47 P/L=$-16 DTE=29
+[2026-06-02 15:43:13]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 15:43:14] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.31 P/L=$6 DTE=23
+[2026-06-02 15:43:14]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 15:43:14] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.43 P/L=$-10 DTE=37
+[2026-06-02 15:43:14]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 15:43:14] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.21 P/L=$71 DTE=37
+[2026-06-02 15:43:14]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 15:43:16] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.22 P/L=$8 DTE=29
+[2026-06-02 15:43:16]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 15:43:16] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.78 P/L=$-47 DTE=37
+[2026-06-02 15:43:16]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 15:43:17] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.29 P/L=$-187 DTE=23
+[2026-06-02 15:43:17]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 15:43:18] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$33 DTE=29
+[2026-06-02 15:43:18]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 15:43:18] 
+  ⏳ Next check in 7 min...
+[2026-06-02 15:50:30]   📊 8 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 15:50:30]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 15:50:30]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 15:50:30]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 15:50:30]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 15:50:30]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 15:50:30]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 15:50:30]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 15:50:30]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 15:50:33]   ⚠ Expired stale opening order 141 for XLF $47.5P
+[2026-06-02 15:50:33] 
+============================================================
+[2026-06-02 15:50:33] 📡 MONITORING 8 SHORT POSITION(S)
+[2026-06-02 15:50:33] ============================================================
+[2026-06-02 15:50:33] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$3.55 P/L=$-224 DTE=29
+[2026-06-02 15:50:33]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 15:50:34] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.31 P/L=$6 DTE=23
+[2026-06-02 15:50:34]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 15:50:34]   ❌ Order 141 CANCELLED
+[2026-06-02 15:50:34]   TWS error 202: Order Canceled - reason:
+[2026-06-02 15:50:34] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.43 P/L=$-10 DTE=37
+[2026-06-02 15:50:34]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 15:50:34] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.21 P/L=$71 DTE=37
+[2026-06-02 15:50:34]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 15:50:34] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.22 P/L=$7 DTE=29
+[2026-06-02 15:50:34]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 15:50:35] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$1.00 P/L=$-91 DTE=37
+[2026-06-02 15:50:35]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 15:50:35] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.29 P/L=$-187 DTE=23
+[2026-06-02 15:50:35]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 15:50:35] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$33 DTE=29
+[2026-06-02 15:50:35]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 15:50:35] 
+  ⏳ Next check in 15 min...
+[2026-06-02 16:05:35]   📊 8 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 16:05:35]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 16:05:35]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 16:05:35]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 16:05:35]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 16:05:35]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 16:05:35]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 16:05:35]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 16:05:35]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 16:05:38] 
+============================================================
+[2026-06-02 16:05:38] 📡 MONITORING 8 SHORT POSITION(S)
+[2026-06-02 16:05:38] ============================================================
+[2026-06-02 16:05:39] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$3.55 P/L=$-224 DTE=29
+[2026-06-02 16:05:39]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 16:05:39] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.36 P/L=$-14 DTE=23
+[2026-06-02 16:05:39]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 16:05:39] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.46 P/L=$-20 DTE=37
+[2026-06-02 16:05:39]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 16:05:40] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.23 P/L=$63 DTE=37
+[2026-06-02 16:05:40]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 16:05:40] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.21 P/L=$9 DTE=29
+[2026-06-02 16:05:40]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 16:05:40] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.86 P/L=$-63 DTE=37
+[2026-06-02 16:05:40]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 16:05:41] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.44 P/L=$-232 DTE=23
+[2026-06-02 16:05:41]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 16:05:41] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$33 DTE=29
+[2026-06-02 16:05:41]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 16:05:41] 
+  ⏳ Next check in 15 min...
+[2026-06-02 16:20:41]   📊 8 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 16:20:41]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 16:20:41]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 16:20:41]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 16:20:41]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 16:20:41]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 16:20:41]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 16:20:41]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 16:20:41]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 16:20:44] 
+============================================================
+[2026-06-02 16:20:44] 📡 MONITORING 8 SHORT POSITION(S)
+[2026-06-02 16:20:44] ============================================================
+[2026-06-02 16:20:45] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$3.50 P/L=$-219 DTE=29
+[2026-06-02 16:20:45]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 16:20:45] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.37 P/L=$-19 DTE=23
+[2026-06-02 16:20:45]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 16:20:45] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.40 P/L=$-2 DTE=37
+[2026-06-02 16:20:45]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 16:20:46] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.25 P/L=$53 DTE=37
+[2026-06-02 16:20:46]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 16:20:46] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.23 P/L=$5 DTE=29
+[2026-06-02 16:20:46]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 16:20:46] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.85 P/L=$-61 DTE=37
+[2026-06-02 16:20:46]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 16:20:47] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.44 P/L=$-232 DTE=23
+[2026-06-02 16:20:47]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 16:20:47] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$33 DTE=29
+[2026-06-02 16:20:47]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 16:20:47] 
+  ⏳ Next check in 9 min...
+[2026-06-02 16:30:01] 
+━━━ Scheduled Scan 10:30 ET ━━━
+[2026-06-02 16:30:01] 
+━━━ Scan Pass 1/1 ━━━
+[2026-06-02 16:30:01] 
+============================================================
+[2026-06-02 16:30:01] 🌅 MORNING SCAN STARTED
+[2026-06-02 16:30:01] ============================================================
+[2026-06-02 16:30:01]   ⚠ TWS error 354: Requested market data is not subscribed. Check API status by selecting the Account menu then under Management choose Market Data Subscription Manager and/or availability of delayed data.Delayed market data is available.VIX CBOE Volatility Index/TOP/ALL
+[2026-06-02 16:30:01]   📊 VIX: n/a — Regime: Normal (Δ 0.15-0.25, risk × 1.0)
+[2026-06-02 16:30:01]   Open positions: 8/10
+[2026-06-02 16:30:01]   TWS error 300: Can't find EId with tickerId:1709
+[2026-06-02 16:30:01]   Paper capital in use: $180,400/$225,000 target
+[2026-06-02 16:30:01] 
+  Scanning SPY...
+[2026-06-02 16:30:01]   SPY: $757.76
+[2026-06-02 16:30:01]   SPY: conId=756733 (STK)
+[2026-06-02 16:30:02]   SPY: option chain SPY@SMART (37 expiries, 498 strikes)
+[2026-06-02 16:30:15]   SPY $735.0P: missing delta/greeks — skipped
+[2026-06-02 16:30:15]   SPY: no suitable strike found
+[2026-06-02 16:30:15] 
+  Scanning QQQ...
+[2026-06-02 16:30:15]   QQQ: $742.68
+[2026-06-02 16:30:15]   QQQ: conId=320227571 (STK)
+[2026-06-02 16:30:16]   QQQ: option chain QQQ@SMART (34 expiries, 533 strikes)
+[2026-06-02 16:30:22]   QQQ $724.0P: missing delta/greeks — skipped
+[2026-06-02 16:30:26]   QQQ: no suitable strike found
+[2026-06-02 16:30:26] 
+  Scanning IWM...
+[2026-06-02 16:30:27]   IWM: $289.85
+[2026-06-02 16:30:27]   IWM: conId=9579970 (STK)
+[2026-06-02 16:30:27]   IWM: option chain IWM@SMART (33 expiries, 206 strikes)
+[2026-06-02 16:30:36]   IWM: no suitable strike found
+[2026-06-02 16:30:36] 
+  Scanning GLD...
+[2026-06-02 16:30:36]   GLD: $412.79
+[2026-06-02 16:30:36]   GLD: conId=51529211 (STK)
+[2026-06-02 16:30:36]   GLD: option chain GLD@SMART (28 expiries, 358 strikes)
+[2026-06-02 16:30:49]   GLD: no suitable strike found
+[2026-06-02 16:30:49] 
+  Scanning SMH...
+[2026-06-02 16:30:50]   SMH: $622.48
+[2026-06-02 16:30:50]   SMH: conId=229725622 (STK)
+[2026-06-02 16:30:50]   SMH: option chain SMH@SMART (20 expiries, 232 strikes)
+[2026-06-02 16:30:58]   SMH $597.5P: missing delta/greeks — skipped
+[2026-06-02 16:31:01]   SMH $592.5P: missing delta/greeks — skipped
+[2026-06-02 16:31:03]   SMH: no suitable strike found
+[2026-06-02 16:31:03] 
+  Scanning DIA...
+[2026-06-02 16:31:03]   DIA: $510.52
+[2026-06-02 16:31:03]   DIA: conId=73128548 (STK)
+[2026-06-02 16:31:04]   DIA: option chain DIA@SMART (20 expiries, 235 strikes)
+[2026-06-02 16:31:14]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 16:31:14]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 16:31:16]   DIA: skipped spread — credit $0.53 is below 15% of $5 width
+[2026-06-02 16:31:16] 
+  Scanning XLK...
+[2026-06-02 16:31:16]   XLK: $196.57
+[2026-06-02 16:31:16]   XLK: conId=4215230 (STK)
+[2026-06-02 16:31:16]   XLK: option chain XLK@SMART (16 expiries, 172 strikes)
+[2026-06-02 16:31:30]   XLK: no suitable strike found
+[2026-06-02 16:31:30] 
+  Scanning TLT...
+[2026-06-02 16:31:30]   TLT: $85.73
+[2026-06-02 16:31:30]   TLT: conId=15547841 (STK)
+[2026-06-02 16:31:30]   TLT: option chain TLT@SMART (28 expiries, 75 strikes)
+[2026-06-02 16:31:30]   TLT: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 16:31:38]   TLT $81.5P: missing delta/greeks — skipped
+[2026-06-02 16:31:41]   TLT: $83.5P @ $0.34 | Δ=0.225 IV=10.4% Buffer=2.6% DTE=37 | Score=74
+[2026-06-02 16:31:41] 
+  Scanning XLF...
+[2026-06-02 16:31:41]   XLF: $50.98
+[2026-06-02 16:31:41]   XLF: conId=4215220 (STK)
+[2026-06-02 16:31:41]   XLF: option chain XLF@SMART (22 expiries, 69 strikes)
+[2026-06-02 16:31:50]   XLF $46.5P: missing delta/greeks — skipped
+[2026-06-02 16:31:53]   XLF $45.0P: missing delta/greeks — skipped
+[2026-06-02 16:31:53]   XLF: $48.5P @ $0.33 | Δ=0.214 IV=20.4% Buffer=4.9% DTE=37 | Score=40
+[2026-06-02 16:31:53] 
+  Scanning XLE...
+[2026-06-02 16:31:54]   XLE: $57.65
+[2026-06-02 16:31:54]   XLE: conId=4215217 (STK)
+[2026-06-02 16:31:54]   XLE: option chain XLE@SMART (22 expiries, 88 strikes)
+[2026-06-02 16:32:01]   XLE $53.5P: missing delta/greeks — skipped
+[2026-06-02 16:32:03]   XLE $53.0P: missing delta/greeks — skipped
+[2026-06-02 16:32:06]   XLE: $52.5P @ $0.09 | Δ=0.206 IV=36.4% Buffer=8.9% DTE=37 | Score=86
+[2026-06-02 16:32:06] 
+  Scanning XLV...
+[2026-06-02 16:32:06]   XLV: $146.31
+[2026-06-02 16:32:06]   XLV: conId=4215205 (STK)
+[2026-06-02 16:32:06]   XLV: option chain XLV@SMART (13 expiries, 83 strikes)
+[2026-06-02 16:32:06]   XLV: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 16:32:08]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 16:32:08]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 16:32:09]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 16:32:09]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 16:32:11]   XLV $141.0P: quote too wide bid=$0.87 ask=$1.76 spread=51%
+[2026-06-02 16:32:11]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 16:32:11]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 16:32:15]   XLV: $138.0P @ $0.42 | Δ=0.192 IV=18.6% Buffer=5.7% DTE=37 | Score=44
+[2026-06-02 16:32:15] 
+  Scanning XLI...
+[2026-06-02 16:32:15]   XLI: $172.89
+[2026-06-02 16:32:15]   XLI: conId=4215227 (STK)
+[2026-06-02 16:32:15]   XLI: option chain XLI@SMART (13 expiries, 132 strikes)
+[2026-06-02 16:32:15]   XLI: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 16:32:17]   XLI $169.0P: quote too wide bid=$2.13 ask=$4.55 spread=53%
+[2026-06-02 16:32:17]   XLI $168.0P: quote too wide bid=$1.79 ask=$4.25 spread=58%
+[2026-06-02 16:32:19]   XLI $167.5P: quote too wide bid=$1.63 ask=$4.10 spread=60%
+[2026-06-02 16:32:21]   XLI $167.0P: quote too wide bid=$1.47 ask=$4.05 spread=64%
+[2026-06-02 16:32:22]   XLI $166.0P: quote too wide bid=$1.17 ask=$3.90 spread=70%
+[2026-06-02 16:32:23]   XLI $165.0P: quote too wide bid=$0.93 ask=$3.75 spread=75%
+[2026-06-02 16:32:24]   XLI $164.0P: quote too wide bid=$0.75 ask=$3.65 spread=79%
+[2026-06-02 16:32:25]   XLI $163.0P: quote too wide bid=$0.49 ask=$3.55 spread=180%
+[2026-06-02 16:32:26]   XLI $162.5P: quote too wide bid=$0.40 ask=$3.50 spread=89%
+[2026-06-02 16:32:27]   XLI $162.0P: quote too wide bid=$0.30 ask=$3.40 spread=91%
+[2026-06-02 16:32:27]   XLI: no suitable strike found
+[2026-06-02 16:32:27]   XLP: paper auto blocked — At paper MAX_PER_TICKER (2). Existing DTEs: [37, 23].
+[2026-06-02 16:32:27] 
+  Scanning XLP...
+[2026-06-02 16:32:28]   XLP: $81.68
+[2026-06-02 16:32:28]   XLP: conId=4215210 (STK)
+[2026-06-02 16:32:28]   XLP: option chain XLP@SMART (13 expiries, 79 strikes)
+[2026-06-02 16:32:28]   XLP: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 16:32:30]   XLP $80.0P: missing delta/greeks — skipped
+[2026-06-02 16:32:32]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 16:32:32]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 16:32:34]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 16:32:34]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 16:32:35]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 16:32:35]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 16:32:36]   XLP: $78.0P @ $0.39 | Δ=0.211 IV=18.4% Buffer=4.5% DTE=37 | Score=10
+[2026-06-02 16:32:36] 
+  Scanning SLV...
+[2026-06-02 16:32:37]   SLV: $68.32
+[2026-06-02 16:32:37]   SLV: conId=39039301 (STK)
+[2026-06-02 16:32:37]   SLV: option chain SLV@SMART (28 expiries, 210 strikes)
+[2026-06-02 16:32:37]   SLV: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 16:32:47]   SLV: $62.0P @ $1.24 | Δ=0.218 IV=43.7% Buffer=9.3% DTE=37 | Score=42
+[2026-06-02 16:32:47] 
+  Scanning GDX...
+[2026-06-02 16:32:47]   GDX: $86.36
+[2026-06-02 16:32:47]   GDX: conId=229726316 (STK)
+[2026-06-02 16:32:48]   GDX: option chain GDX@SMART (18 expiries, 152 strikes)
+[2026-06-02 16:32:49]   GDX $84.5P: quote too wide bid=$2.81 ask=$5.10 spread=45%
+[2026-06-02 16:32:50]   GDX $84.0P: quote too wide bid=$2.35 ask=$4.85 spread=52%
+[2026-06-02 16:32:51]   GDX $83.5P: quote too wide bid=$2.15 ask=$4.60 spread=53%
+[2026-06-02 16:32:52]   GDX $83.0P: quote too wide bid=$1.95 ask=$4.45 spread=56%
+[2026-06-02 16:32:53]   GDX $82.5P: quote too wide bid=$1.75 ask=$4.30 spread=59%
+[2026-06-02 16:32:55]   GDX $82.0P: quote too wide bid=$1.60 ask=$4.00 spread=60%
+[2026-06-02 16:32:55]   GDX $81.5P: quote too wide bid=$1.60 ask=$4.05 spread=60%
+[2026-06-02 16:32:57]   GDX $81.0P: quote too wide bid=$1.78 ask=$3.40 spread=48%
+[2026-06-02 16:32:58]   GDX $80.5P: quote too wide bid=$1.73 ask=$3.05 spread=43%
+[2026-06-02 16:32:58]   GDX $80.0P: quote too wide bid=$1.55 ask=$2.78 spread=44%
+[2026-06-02 16:32:58]   GDX: no suitable strike found
+[2026-06-02 16:32:58] 
+  Scanning EEM...
+[2026-06-02 16:32:59]   EEM: $70.53
+[2026-06-02 16:32:59]   EEM: conId=6604766 (STK)
+[2026-06-02 16:32:59]   EEM: option chain EEM@SMART (21 expiries, 97 strikes)
+[2026-06-02 16:32:59]   EEM: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 16:33:01]   EEM $69.0P: quote too wide bid=$1.55 ask=$3.75 spread=59%
+[2026-06-02 16:33:02]   EEM $68.5P: quote too wide bid=$1.36 ask=$3.65 spread=63%
+[2026-06-02 16:33:03]   EEM $68.0P: quote too wide bid=$1.31 ask=$2.54 spread=48%
+[2026-06-02 16:33:04]   EEM $67.5P: quote too wide bid=$1.04 ask=$1.90 spread=45%
+[2026-06-02 16:33:05]   EEM $67.0P: quote too wide bid=$1.10 ask=$2.11 spread=48%
+[2026-06-02 16:33:06]   EEM $66.5P: quote too wide bid=$0.57 ask=$3.35 spread=83%
+[2026-06-02 16:33:07]   EEM $66.0P: quote too wide bid=$0.66 ask=$2.17 spread=128%
+[2026-06-02 16:33:08]   EEM $65.5P: quote too wide bid=$0.60 ask=$1.74 spread=66%
+[2026-06-02 16:33:11]   EEM $64.5P: quote too wide bid=$0.38 ask=$1.39 spread=73%
+[2026-06-02 16:33:11]   EEM: no suitable strike found
+[2026-06-02 16:33:11]   📡 Signals written: 6 candidate(s) -> /Users/islam/options-pro/data/trade_signals.json
+[2026-06-02 16:33:11] 
+  📊 Found 6 opportunities, 2 slot(s) available
+[2026-06-02 16:33:11]   🧭 Gate summary: selected=6 candidates=6 blocked=10
+[2026-06-02 16:33:11]     SPY: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-06-02 16:33:11]     QQQ: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-06-02 16:33:11]     IWM: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-06-02 16:33:11]     GLD: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-06-02 16:33:11]     SMH: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-06-02 16:33:11]     DIA: blocked — Spread credit $0.53 is below 15% of $5 width.
+[2026-06-02 16:33:11]     XLK: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-06-02 16:33:11]     TLT: selected — Candidate passed scanner filters; paper auto blocked: Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 16:33:11]     XLF: selected — Candidate passed paper filters but score 40 is below 60 real-account copy minimum.
+[2026-06-02 16:33:11]     XLE: selected — Candidate passed scanner filters.
+[2026-06-02 16:33:11]     XLV: selected — Candidate passed scanner filters; paper auto blocked: Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 16:33:11]     XLI: skipped — Quotes were available but failed width/quality checks.
+[2026-06-02 16:33:11]     XLP: selected — Candidate passed scanner filters; paper auto blocked: At paper MAX_PER_TICKER (2). Existing DTEs: [37, 23]. Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 16:33:11]     SLV: selected — Candidate passed scanner filters; paper auto blocked: Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 16:33:11]     GDX: skipped — Quotes were available but failed width/quality checks.
+[2026-06-02 16:33:11]     EEM: skipped — Quotes were available but failed width/quality checks.
+[2026-06-02 16:33:11]     #86: XLE $52.5P @ $0.09 (WHEEL) DTE=37
+[2026-06-02 16:33:11]     #40: XLF $48.5P @ $0.33 (WHEEL) DTE=37
+[2026-06-02 16:33:11]     #74: TLT $83.5P @ $0.34 (WHEEL) DTE=37
+[2026-06-02 16:33:11]     #44: XLV $138.0P @ $0.42 (WHEEL) DTE=37
+[2026-06-02 16:33:11]     #42: SLV $62.0P @ $1.24 (WHEEL) DTE=37
+[2026-06-02 16:33:11]     #10: XLP $78.0P @ $0.39 (WHEEL) DTE=37
+[2026-06-02 16:33:11] 
+  🎯 EXECUTING: SELL 4x XLE $52.5P @ $0.09
+[2026-06-02 16:33:11]   📤 Placing order: SELL 4x XLE $52.5P @ $0.09 (ID: 144)
+[2026-06-02 16:33:11]   📝 Journal: OPEN XLE $52.5 x4
+[2026-06-02 16:33:11]   TWS error 2161: SELL 4 XLE JUL 10 '26 52.5 Put @ 0.09  In accordance with our regulatory obligations as a broker, we will initially cap (or limit) the price of your Limit Order to 0.15 or a more aggressive price still within your specified limit price.  If your order is not immediately executable, our systems may, depending on market conditions, cap your order to a limit price that is no more than the allowed amount away from the reference price at that time. If this happens, you will not receive a fill. This is a control designed to ensure that we comply with our regulatory obligations to avoid submitting disruptive orders to the marketplace. Please note that in some circumstances this may result in you receiving a less favorable fill or not receiving a fill.  In the future, please submit your order using a limit price that is closer to the current market price or submit an algorithmic Market Order (IBALGO).  If you would like to cancel your order, please use cancel order action.
+[2026-06-02 16:33:12]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-45ef34a090dsm33130726f8f.3 - gsmtp')
+[2026-06-02 16:33:14] 
+  🎯 EXECUTING: SELL 4x XLF $48.5P @ $0.33
+[2026-06-02 16:33:14]   📤 Placing order: SELL 4x XLF $48.5P @ $0.33 (ID: 145)
+[2026-06-02 16:33:14]   📝 Journal: OPEN XLF $48.5 x4
+[2026-06-02 16:33:15]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-490b0e19b0bsm75917975e9.6 - gsmtp')
+[2026-06-02 16:33:15]   📋 Exec: SLD 4.0x XLF @ $0.34 (OrderID 145)
+[2026-06-02 16:33:15]   ✅ Order 145 FILLED at $0.34
+[2026-06-02 16:33:15]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-06-02 16:33:16]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-45ef3563cb9sm34786743f8f.29 - gsmtp')
+[2026-06-02 16:33:16]   ✅ Order 145 FILLED at $0.34
+[2026-06-02 16:33:17]   📡 PAPER BLOCKED: TLT — Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 16:33:17]   📡 PAPER BLOCKED: XLV — Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 16:33:17]   📡 PAPER BLOCKED: SLV — Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 16:33:17]   XLP: skipped paper auto-open — score 10 is below 35 minimum
+[2026-06-02 16:33:22]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 16:33:22]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 16:33:22]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 16:33:22]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 16:33:22]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 16:33:22]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 16:33:22]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 16:33:22]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 16:33:22]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 16:33:22]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 16:33:25] 
+============================================================
+[2026-06-02 16:33:25] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 16:33:25] ============================================================
+[2026-06-02 16:33:25] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.35 P/L=$-6 DTE=37
+[2026-06-02 16:33:25]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 16:33:26] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.65 P/L=$-33 DTE=29
+[2026-06-02 16:33:26]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 16:33:26] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.38 P/L=$-22 DTE=23
+[2026-06-02 16:33:26]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 16:33:26] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.48 P/L=$-25 DTE=37
+[2026-06-02 16:33:26]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 16:33:27] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.30 P/L=$36 DTE=37
+[2026-06-02 16:33:27]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 16:33:27] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.23 P/L=$5 DTE=29
+[2026-06-02 16:33:27]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 16:33:28] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.86 P/L=$-64 DTE=37
+[2026-06-02 16:33:28]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 16:33:28] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.54 P/L=$-261 DTE=23
+[2026-06-02 16:33:28]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 16:33:28] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$31 DTE=29
+[2026-06-02 16:33:28]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 16:33:28] 
+  ⏳ Next check in 9 min...
+[2026-06-02 16:43:12]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 16:43:12]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 16:43:12]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 16:43:12]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 16:43:12]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 16:43:12]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 16:43:12]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 16:43:12]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 16:43:12]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 16:43:12]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 16:43:15]   ⚠ Expired stale opening order 144 for XLE $52.5P
+[2026-06-02 16:43:15] 
+============================================================
+[2026-06-02 16:43:15] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 16:43:15] ============================================================
+[2026-06-02 16:43:15]   ❌ Order 144 CANCELLED
+[2026-06-02 16:43:15]   TWS error 202: Order Canceled - reason:
+[2026-06-02 16:43:16] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.35 P/L=$-6 DTE=37
+[2026-06-02 16:43:16]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 16:43:16] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.65 P/L=$-33 DTE=29
+[2026-06-02 16:43:16]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 16:43:16] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.39 P/L=$-26 DTE=23
+[2026-06-02 16:43:16]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 16:43:16] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.40 P/L=$-2 DTE=37
+[2026-06-02 16:43:16]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 16:43:17] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.29 P/L=$38 DTE=37
+[2026-06-02 16:43:17]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 16:43:17] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.22 P/L=$8 DTE=29
+[2026-06-02 16:43:17]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 16:43:17] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.87 P/L=$-65 DTE=37
+[2026-06-02 16:43:17]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 16:43:18] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.54 P/L=$-261 DTE=23
+[2026-06-02 16:43:18]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 16:43:18] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$31 DTE=29
+[2026-06-02 16:43:18]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 16:43:18] 
+  ⏳ Next check in 15 min...
+[2026-06-02 16:58:18]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 16:58:18]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 16:58:18]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 16:58:18]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 16:58:18]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 16:58:18]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 16:58:18]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 16:58:18]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 16:58:18]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 16:58:18]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 16:58:21] 
+============================================================
+[2026-06-02 16:58:21] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 16:58:21] ============================================================
+[2026-06-02 16:58:21] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.35 P/L=$-6 DTE=37
+[2026-06-02 16:58:21]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 16:58:22] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$3.50 P/L=$-219 DTE=29
+[2026-06-02 16:58:22]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 16:58:22] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.39 P/L=$-26 DTE=23
+[2026-06-02 16:58:22]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 16:58:23] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.47 P/L=$-24 DTE=37
+[2026-06-02 16:58:23]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 16:58:23] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.24 P/L=$58 DTE=37
+[2026-06-02 16:58:23]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 16:58:23] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.22 P/L=$8 DTE=29
+[2026-06-02 16:58:23]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 16:58:24] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$1.04 P/L=$-99 DTE=37
+[2026-06-02 16:58:24]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 16:58:24] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.54 P/L=$-264 DTE=23
+[2026-06-02 16:58:24]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 16:58:24] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$31 DTE=29
+[2026-06-02 16:58:24]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 16:58:24] 
+  ⏳ Next check in 15 min...
+[2026-06-02 17:13:24]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 17:13:24]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 17:13:24]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 17:13:24]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 17:13:24]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 17:13:24]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 17:13:24]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 17:13:24]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 17:13:24]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 17:13:24]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 17:13:27] 
+============================================================
+[2026-06-02 17:13:27] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 17:13:27] ============================================================
+[2026-06-02 17:13:28] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.35 P/L=$-6 DTE=37
+[2026-06-02 17:13:28]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 17:13:28] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.41 P/L=$-9 DTE=29
+[2026-06-02 17:13:28]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 17:13:28] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.34 P/L=$-6 DTE=23
+[2026-06-02 17:13:28]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 17:13:28] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.47 P/L=$-23 DTE=37
+[2026-06-02 17:13:28]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 17:13:29] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.24 P/L=$58 DTE=37
+[2026-06-02 17:13:29]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 17:13:29] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.22 P/L=$8 DTE=29
+[2026-06-02 17:13:29]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 17:13:29] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$1.04 P/L=$-99 DTE=37
+[2026-06-02 17:13:29]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 17:13:30] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.54 P/L=$-264 DTE=23
+[2026-06-02 17:13:30]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 17:13:30] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$31 DTE=29
+[2026-06-02 17:13:30]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 17:13:30] 
+  ⏳ Next check in 15 min...
+[2026-06-02 17:28:30]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 17:28:30]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 17:28:30]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 17:28:30]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 17:28:30]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 17:28:30]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 17:28:30]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 17:28:30]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 17:28:30]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 17:28:30]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 17:28:33] 
+============================================================
+[2026-06-02 17:28:33] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 17:28:33] ============================================================
+[2026-06-02 17:28:34] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.35 P/L=$-6 DTE=37
+[2026-06-02 17:28:34]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 17:28:34] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.41 P/L=$-10 DTE=29
+[2026-06-02 17:28:34]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 17:28:34] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.32 P/L=$3 DTE=23
+[2026-06-02 17:28:34]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 17:28:35] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.47 P/L=$-23 DTE=37
+[2026-06-02 17:28:35]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 17:28:35] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.23 P/L=$62 DTE=37
+[2026-06-02 17:28:35]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 17:28:35] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.22 P/L=$8 DTE=29
+[2026-06-02 17:28:35]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 17:28:35] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.86 P/L=$-63 DTE=37
+[2026-06-02 17:28:35]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 17:28:36] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.54 P/L=$-263 DTE=23
+[2026-06-02 17:28:36]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 17:28:36] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.59 P/L=$30 DTE=29
+[2026-06-02 17:28:36]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 17:28:36] 
+  ⏳ Next check in 15 min...
+[2026-06-02 17:43:36]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 17:43:36]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 17:43:36]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 17:43:36]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 17:43:36]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 17:43:36]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 17:43:36]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 17:43:36]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 17:43:36]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 17:43:36]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 17:43:39] 
+============================================================
+[2026-06-02 17:43:39] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 17:43:39] ============================================================
+[2026-06-02 17:43:40] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.35 P/L=$-6 DTE=37
+[2026-06-02 17:43:40]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 17:43:40] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.45 P/L=$-14 DTE=29
+[2026-06-02 17:43:40]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 17:43:40] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.32 P/L=$0 DTE=23
+[2026-06-02 17:43:40]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 17:43:40] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.40 P/L=$-2 DTE=37
+[2026-06-02 17:43:40]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 17:43:41] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.21 P/L=$72 DTE=37
+[2026-06-02 17:43:41]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 17:43:41] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.22 P/L=$8 DTE=29
+[2026-06-02 17:43:41]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 17:43:41] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.86 P/L=$-62 DTE=37
+[2026-06-02 17:43:41]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 17:43:42] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.57 P/L=$-272 DTE=23
+[2026-06-02 17:43:42]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 17:43:42] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.59 P/L=$30 DTE=29
+[2026-06-02 17:43:42]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 17:43:42] 
+  ⏳ Next check in 15 min...
+[2026-06-02 17:51:16]   ⚠ TWS error 2103: data farm issue
+[2026-06-02 17:58:42]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 17:58:42]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 17:58:42]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 17:58:42]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 17:58:42]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 17:58:42]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 17:58:42]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 17:58:42]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 17:58:42]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 17:58:42]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 17:58:45] 
+============================================================
+[2026-06-02 17:58:45] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 17:58:45] ============================================================
+[2026-06-02 17:58:46] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.35 P/L=$-6 DTE=37
+[2026-06-02 17:58:46]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 17:58:46] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.39 P/L=$-7 DTE=29
+[2026-06-02 17:58:46]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 17:58:47] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.34 P/L=$-4 DTE=23
+[2026-06-02 17:58:47]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 17:58:47] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.57 P/L=$-53 DTE=37
+[2026-06-02 17:58:47]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 17:58:47] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.21 P/L=$72 DTE=37
+[2026-06-02 17:58:47]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 17:58:48] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.22 P/L=$8 DTE=29
+[2026-06-02 17:58:48]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 17:58:48] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.90 P/L=$-72 DTE=37
+[2026-06-02 17:58:48]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 17:58:48]   XLP $81.5P x3: no current price — skipping
+[2026-06-02 17:58:48] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$31 DTE=29
+[2026-06-02 17:58:48]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 17:58:48] 
+  ⏳ Next check in 15 min...
+[2026-06-02 18:13:48]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 18:13:48]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 18:13:48]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 18:13:48]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 18:13:48]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 18:13:48]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 18:13:48]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 18:13:48]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 18:13:48]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 18:13:48]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 18:13:51] 
+============================================================
+[2026-06-02 18:13:51] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 18:13:51] ============================================================
+[2026-06-02 18:13:52] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.35 P/L=$-6 DTE=37
+[2026-06-02 18:13:52]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 18:13:52] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.39 P/L=$-7 DTE=29
+[2026-06-02 18:13:52]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 18:13:52] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.34 P/L=$-6 DTE=23
+[2026-06-02 18:13:52]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 18:13:52] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.48 P/L=$-25 DTE=37
+[2026-06-02 18:13:52]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 18:13:53] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.21 P/L=$72 DTE=37
+[2026-06-02 18:13:53]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 18:13:53] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.21 P/L=$10 DTE=29
+[2026-06-02 18:13:53]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 18:13:53] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.90 P/L=$-72 DTE=37
+[2026-06-02 18:13:53]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 18:13:54] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.56 P/L=$-269 DTE=23
+[2026-06-02 18:13:54]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 18:13:54] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$1.19 P/L=$-151 DTE=29
+[2026-06-02 18:13:54]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 18:13:54] 
+  ⏳ Next check in 15 min...
+[2026-06-02 18:28:54]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 18:28:54]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 18:28:54]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 18:28:54]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 18:28:54]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 18:28:54]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 18:28:54]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 18:28:54]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 18:28:54]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 18:28:54]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 18:28:57] 
+============================================================
+[2026-06-02 18:28:57] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 18:28:57] ============================================================
+[2026-06-02 18:28:57] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.35 P/L=$-6 DTE=37
+[2026-06-02 18:28:57]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 18:28:58] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.39 P/L=$-7 DTE=29
+[2026-06-02 18:28:58]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 18:28:58] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.34 P/L=$-6 DTE=23
+[2026-06-02 18:28:58]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 18:28:58] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.48 P/L=$-25 DTE=37
+[2026-06-02 18:28:58]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 18:28:59] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.26 P/L=$50 DTE=37
+[2026-06-02 18:28:59]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 18:28:59] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.21 P/L=$9 DTE=29
+[2026-06-02 18:28:59]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 18:28:59] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.96 P/L=$-83 DTE=37
+[2026-06-02 18:28:59]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 18:29:00] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.56 P/L=$-269 DTE=23
+[2026-06-02 18:29:00]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 18:29:00] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$32 DTE=29
+[2026-06-02 18:29:00]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 18:29:00] 
+  ⏳ Next check in 15 min...
+[2026-06-02 18:44:00]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 18:44:00]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 18:44:00]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 18:44:00]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 18:44:00]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 18:44:00]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 18:44:00]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 18:44:00]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 18:44:00]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 18:44:00]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 18:44:03] 
+============================================================
+[2026-06-02 18:44:03] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 18:44:03] ============================================================
+[2026-06-02 18:44:03] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.35 P/L=$-6 DTE=37
+[2026-06-02 18:44:03]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 18:44:04] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.39 P/L=$-7 DTE=29
+[2026-06-02 18:44:04]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 18:44:04] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.34 P/L=$-6 DTE=23
+[2026-06-02 18:44:04]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 18:44:04] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.47 P/L=$-24 DTE=37
+[2026-06-02 18:44:04]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 18:44:05] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.31 P/L=$29 DTE=37
+[2026-06-02 18:44:05]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 18:44:05] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.22 P/L=$6 DTE=29
+[2026-06-02 18:44:05]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 18:44:05] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.90 P/L=$-71 DTE=37
+[2026-06-02 18:44:05]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 18:44:06] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.50 P/L=$-250 DTE=23
+[2026-06-02 18:44:06]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 18:44:06] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$31 DTE=29
+[2026-06-02 18:44:06]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 18:44:06]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-06-02 18:44:07]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4601f2ed944sm543143f8f.13 - gsmtp')
+[2026-06-02 18:44:07] 
+  ⏳ Next check in 15 min...
+[2026-06-02 18:59:07]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 18:59:07]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 18:59:07]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 18:59:07]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 18:59:07]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 18:59:07]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 18:59:07]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 18:59:07]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 18:59:07]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 18:59:07]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 18:59:10] 
+============================================================
+[2026-06-02 18:59:10] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 18:59:10] ============================================================
+[2026-06-02 18:59:10] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.33 P/L=$2 DTE=37
+[2026-06-02 18:59:10]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 18:59:11] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.39 P/L=$-7 DTE=29
+[2026-06-02 18:59:11]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 18:59:11] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.32 P/L=$4 DTE=23
+[2026-06-02 18:59:11]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 18:59:11] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.47 P/L=$-24 DTE=37
+[2026-06-02 18:59:11]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 18:59:12] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.31 P/L=$29 DTE=37
+[2026-06-02 18:59:12]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 18:59:12] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.24 P/L=$2 DTE=29
+[2026-06-02 18:59:12]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 18:59:12] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.96 P/L=$-83 DTE=37
+[2026-06-02 18:59:12]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 18:59:12] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.47 P/L=$-242 DTE=23
+[2026-06-02 18:59:12]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 18:59:13] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$1.06 P/L=$-112 DTE=29
+[2026-06-02 18:59:13]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 18:59:13] 
+  ⏳ Next check in 15 min...
+[2026-06-02 19:14:13]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 19:14:13]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 19:14:13]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 19:14:13]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 19:14:13]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 19:14:13]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 19:14:13]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 19:14:13]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 19:14:13]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 19:14:13]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 19:14:16] 
+============================================================
+[2026-06-02 19:14:16] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 19:14:16] ============================================================
+[2026-06-02 19:14:17] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.35 P/L=$-6 DTE=37
+[2026-06-02 19:14:17]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 19:14:17] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.40 P/L=$-9 DTE=29
+[2026-06-02 19:14:17]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 19:14:17] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.31 P/L=$7 DTE=23
+[2026-06-02 19:14:17]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 19:14:18] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.47 P/L=$-22 DTE=37
+[2026-06-02 19:14:18]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 19:14:18] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.21 P/L=$70 DTE=37
+[2026-06-02 19:14:18]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 19:14:18] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.23 P/L=$5 DTE=29
+[2026-06-02 19:14:18]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 19:14:19] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.68 P/L=$-27 DTE=37
+[2026-06-02 19:14:19]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 19:14:19] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.47 P/L=$-242 DTE=23
+[2026-06-02 19:14:19]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 19:14:19] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$32 DTE=29
+[2026-06-02 19:14:19]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 19:14:19] 
+  ⏳ Next check in 15 min...
+[2026-06-02 19:29:19]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 19:29:19]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 19:29:19]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 19:29:19]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 19:29:19]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 19:29:19]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 19:29:19]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 19:29:19]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 19:29:19]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 19:29:19]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 19:29:22] 
+============================================================
+[2026-06-02 19:29:22] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 19:29:22] ============================================================
+[2026-06-02 19:29:23] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.35 P/L=$-6 DTE=37
+[2026-06-02 19:29:23]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 19:29:23] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.39 P/L=$-8 DTE=29
+[2026-06-02 19:29:23]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 19:29:24] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.31 P/L=$7 DTE=23
+[2026-06-02 19:29:24]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 19:29:24] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.46 P/L=$-19 DTE=37
+[2026-06-02 19:29:24]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 19:29:24] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.33 P/L=$22 DTE=37
+[2026-06-02 19:29:24]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 19:29:25] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.23 P/L=$4 DTE=29
+[2026-06-02 19:29:25]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 19:29:25] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.97 P/L=$-85 DTE=37
+[2026-06-02 19:29:25]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 19:29:26] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.43 P/L=$-228 DTE=23
+[2026-06-02 19:29:26]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 19:29:26] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$32 DTE=29
+[2026-06-02 19:29:26]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 19:29:26] 
+  ⏳ Next check in 15 min...
+[2026-06-02 19:44:26]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 19:44:26]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 19:44:26]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 19:44:26]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 19:44:26]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 19:44:26]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 19:44:26]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 19:44:26]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 19:44:26]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 19:44:26]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 19:44:29] 
+============================================================
+[2026-06-02 19:44:29] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 19:44:29] ============================================================
+[2026-06-02 19:44:29] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.35 P/L=$-6 DTE=37
+[2026-06-02 19:44:29]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 19:44:30] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$2.99 P/L=$-168 DTE=29
+[2026-06-02 19:44:30]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 19:44:30] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.31 P/L=$6 DTE=23
+[2026-06-02 19:44:30]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 19:44:30] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.40 P/L=$-2 DTE=37
+[2026-06-02 19:44:30]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 19:44:31] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.33 P/L=$23 DTE=37
+[2026-06-02 19:44:31]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 19:44:31] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.23 P/L=$4 DTE=29
+[2026-06-02 19:44:31]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 19:44:32] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.68 P/L=$-27 DTE=37
+[2026-06-02 19:44:32]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 19:44:32] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.43 P/L=$-229 DTE=23
+[2026-06-02 19:44:32]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 19:44:32] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$31 DTE=29
+[2026-06-02 19:44:32]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 19:44:32] 
+  ⏳ Next check in 15 min...
+[2026-06-02 19:59:32]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 19:59:32]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 19:59:32]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 19:59:32]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 19:59:32]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 19:59:32]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 19:59:32]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 19:59:32]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 19:59:32]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 19:59:32]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 19:59:35] 
+============================================================
+[2026-06-02 19:59:35] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 19:59:35] ============================================================
+[2026-06-02 19:59:36] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.32 P/L=$6 DTE=37
+[2026-06-02 19:59:36]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 19:59:36] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.41 P/L=$-10 DTE=29
+[2026-06-02 19:59:36]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 19:59:36] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.31 P/L=$6 DTE=23
+[2026-06-02 19:59:36]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 19:59:37] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.45 P/L=$-17 DTE=37
+[2026-06-02 19:59:37]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 19:59:37] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.33 P/L=$23 DTE=37
+[2026-06-02 19:59:37]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 19:59:37] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.23 P/L=$5 DTE=29
+[2026-06-02 19:59:37]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 19:59:38] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.96 P/L=$-83 DTE=37
+[2026-06-02 19:59:38]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 19:59:38] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.37 P/L=$-212 DTE=23
+[2026-06-02 19:59:38]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 19:59:39] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$31 DTE=29
+[2026-06-02 19:59:39]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 19:59:39] 
+  ⏳ Next check in 15 min...
+[2026-06-02 20:14:39]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 20:14:39]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 20:14:39]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 20:14:39]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 20:14:39]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 20:14:39]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 20:14:39]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 20:14:39]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 20:14:39]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 20:14:39]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 20:14:42] 
+============================================================
+[2026-06-02 20:14:42] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 20:14:42] ============================================================
+[2026-06-02 20:14:42] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.32 P/L=$6 DTE=37
+[2026-06-02 20:14:42]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 20:14:42] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.41 P/L=$-10 DTE=29
+[2026-06-02 20:14:42]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 20:14:43] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.31 P/L=$6 DTE=23
+[2026-06-02 20:14:43]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 20:14:43] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.45 P/L=$-17 DTE=37
+[2026-06-02 20:14:43]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 20:14:43] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.38 P/L=$3 DTE=37
+[2026-06-02 20:14:43]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 20:14:44] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.22 P/L=$7 DTE=29
+[2026-06-02 20:14:44]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 20:14:44] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.68 P/L=$-27 DTE=37
+[2026-06-02 20:14:44]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 20:14:44] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.38 P/L=$-214 DTE=23
+[2026-06-02 20:14:44]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 20:14:45] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$33 DTE=29
+[2026-06-02 20:14:45]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 20:14:45] 
+  ⏳ Next check in 15 min...
+[2026-06-02 20:29:45]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 20:29:45]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 20:29:45]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 20:29:45]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 20:29:45]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 20:29:45]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 20:29:45]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 20:29:45]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 20:29:45]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 20:29:45]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 20:29:48] 
+============================================================
+[2026-06-02 20:29:48] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 20:29:48] ============================================================
+[2026-06-02 20:29:48] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.32 P/L=$6 DTE=37
+[2026-06-02 20:29:48]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 20:29:48] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.41 P/L=$-10 DTE=29
+[2026-06-02 20:29:48]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 20:29:49] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.29 P/L=$14 DTE=23
+[2026-06-02 20:29:49]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 20:29:49] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.45 P/L=$-17 DTE=37
+[2026-06-02 20:29:49]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 20:29:50] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.37 P/L=$5 DTE=37
+[2026-06-02 20:29:50]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 20:29:50] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.23 P/L=$6 DTE=29
+[2026-06-02 20:29:50]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 20:29:51] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$1.08 P/L=$-107 DTE=37
+[2026-06-02 20:29:51]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 20:29:51] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.38 P/L=$-214 DTE=23
+[2026-06-02 20:29:51]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 20:29:51] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$32 DTE=29
+[2026-06-02 20:29:51]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 20:29:51] 
+  ⏳ Next check in 0 min...
+[2026-06-02 20:30:01] 
+━━━ Scheduled Scan 14:30 ET ━━━
+[2026-06-02 20:30:01] 
+━━━ Scan Pass 1/1 ━━━
+[2026-06-02 20:30:01] 
+============================================================
+[2026-06-02 20:30:01] 🌅 MORNING SCAN STARTED
+[2026-06-02 20:30:01] ============================================================
+[2026-06-02 20:30:02]   ⚠ TWS error 354: Requested market data is not subscribed. Check API status by selecting the Account menu then under Management choose Market Data Subscription Manager and/or availability of delayed data.Delayed market data is available.VIX CBOE Volatility Index/TOP/ALL
+[2026-06-02 20:30:02]   📊 VIX: n/a — Regime: Normal (Δ 0.15-0.25, risk × 1.0)
+[2026-06-02 20:30:02]   TWS error 300: Can't find EId with tickerId:2095
+[2026-06-02 20:30:02]   Open positions: 9/10
+[2026-06-02 20:30:02]   Paper capital in use: $199,800/$225,000 target
+[2026-06-02 20:30:02] 
+  Scanning SPY...
+[2026-06-02 20:30:02]   SPY: $758.94
+[2026-06-02 20:30:02]   SPY: conId=756733 (STK)
+[2026-06-02 20:30:02]   SPY: option chain SPY@SMART (37 expiries, 498 strikes)
+[2026-06-02 20:30:12]   SPY $737.0P: missing delta/greeks — skipped
+[2026-06-02 20:30:14]   SPY $736.0P: missing delta/greeks — skipped
+[2026-06-02 20:30:14]   SPY: no suitable strike found
+[2026-06-02 20:30:14] 
+  Scanning QQQ...
+[2026-06-02 20:30:14]   QQQ: $744.49
+[2026-06-02 20:30:14]   QQQ: conId=320227571 (STK)
+[2026-06-02 20:30:15]   QQQ: option chain QQQ@SMART (34 expiries, 533 strikes)
+[2026-06-02 20:30:27]   QQQ: no suitable strike found
+[2026-06-02 20:30:27] 
+  Scanning IWM...
+[2026-06-02 20:30:28]   IWM: $291.24
+[2026-06-02 20:30:28]   IWM: conId=9579970 (STK)
+[2026-06-02 20:30:28]   IWM: option chain IWM@SMART (33 expiries, 206 strikes)
+[2026-06-02 20:30:40]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 20:30:40]   IWM: skipped spread — no quote for protective long $272.5P
+[2026-06-02 20:30:40]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 20:30:40] 
+  Scanning GLD...
+[2026-06-02 20:30:40]   GLD: $411.99
+[2026-06-02 20:30:40]   GLD: conId=51529211 (STK)
+[2026-06-02 20:30:41]   GLD: option chain GLD@SMART (28 expiries, 358 strikes)
+[2026-06-02 20:30:52]   GLD: no suitable strike found
+[2026-06-02 20:30:52] 
+  Scanning SMH...
+[2026-06-02 20:30:53]   SMH: $627.68
+[2026-06-02 20:30:53]   SMH: conId=229725622 (STK)
+[2026-06-02 20:30:53]   SMH: option chain SMH@SMART (20 expiries, 232 strikes)
+[2026-06-02 20:30:57]   SMH $605.0P: missing delta/greeks — skipped
+[2026-06-02 20:31:00]   SMH $597.5P: missing delta/greeks — skipped
+[2026-06-02 20:31:04]   SMH: no suitable strike found
+[2026-06-02 20:31:04] 
+  Scanning DIA...
+[2026-06-02 20:31:04]   DIA: $513.71
+[2026-06-02 20:31:05]   DIA: conId=73128548 (STK)
+[2026-06-02 20:31:05]   DIA: option chain DIA@SMART (20 expiries, 235 strikes)
+[2026-06-02 20:31:15]   DIA: skipped spread — credit $0.51 is below 15% of $5 width
+[2026-06-02 20:31:15] 
+  Scanning XLK...
+[2026-06-02 20:31:16]   XLK: $197.30
+[2026-06-02 20:31:16]   XLK: conId=4215230 (STK)
+[2026-06-02 20:31:16]   XLK: option chain XLK@SMART (16 expiries, 172 strikes)
+[2026-06-02 20:31:28]   XLK $186.0P: missing delta/greeks — skipped
+[2026-06-02 20:31:28]   XLK: no suitable strike found
+[2026-06-02 20:31:28] 
+  Scanning TLT...
+[2026-06-02 20:31:29]   TLT: $85.62
+[2026-06-02 20:31:29]   TLT: conId=15547841 (STK)
+[2026-06-02 20:31:29]   TLT: option chain TLT@SMART (28 expiries, 75 strikes)
+[2026-06-02 20:31:29]   TLT: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 20:31:41]   TLT: $83.0P @ $0.26 | Δ=0.176 IV=10.7% Buffer=3.1% DTE=37 | Score=97
+[2026-06-02 20:31:41]   XLF: paper auto blocked — At paper MAX_PER_TICKER (2). Existing DTEs: [37, 23].
+[2026-06-02 20:31:41] 
+  Scanning XLF...
+[2026-06-02 20:31:42]   XLF: $51.61
+[2026-06-02 20:31:42]   XLF: conId=4215220 (STK)
+[2026-06-02 20:31:42]   XLF: option chain XLF@SMART (22 expiries, 69 strikes)
+[2026-06-02 20:31:42]   XLF: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 20:31:43]   XLF $50.5P: missing delta/greeks — skipped
+[2026-06-02 20:31:52]   XLF: $49.0P @ $0.32 | Δ=0.194 IV=19.5% Buffer=5.1% DTE=37 | Score=19
+[2026-06-02 20:31:52] 
+  Scanning XLE...
+[2026-06-02 20:31:52]   XLE: $58.05
+[2026-06-02 20:31:52]   XLE: conId=4215217 (STK)
+[2026-06-02 20:31:52]   XLE: option chain XLE@SMART (22 expiries, 88 strikes)
+[2026-06-02 20:31:56]   XLE $55.5P: missing delta/greeks — skipped
+[2026-06-02 20:32:03]   XLE: $52.5P @ $0.18 | Δ=0.195 IV=37.6% Buffer=9.6% DTE=37 | Score=87
+[2026-06-02 20:32:03] 
+  Scanning XLV...
+[2026-06-02 20:32:03]   XLV: $146.47
+[2026-06-02 20:32:04]   XLV: conId=4215205 (STK)
+[2026-06-02 20:32:04]   XLV: option chain XLV@SMART (13 expiries, 83 strikes)
+[2026-06-02 20:32:04]   XLV: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 20:32:04]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 20:32:04]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 20:32:06]   XLV $143.0P: missing delta/greeks — skipped
+[2026-06-02 20:32:06]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 20:32:06]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 20:32:06]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 20:32:06]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 20:32:08]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 20:32:08]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 20:32:11]   XLV $138.0P: quote too wide bid=$0.23 ask=$1.02 spread=77%
+[2026-06-02 20:32:11]   XLV: $139.0P @ $0.67 | Δ=0.203 IV=19.8% Buffer=5.1% DTE=37 | Score=46
+[2026-06-02 20:32:11] 
+  Scanning XLI...
+[2026-06-02 20:32:12]   XLI: $173.86
+[2026-06-02 20:32:12]   XLI: conId=4215227 (STK)
+[2026-06-02 20:32:12]   XLI: option chain XLI@SMART (13 expiries, 132 strikes)
+[2026-06-02 20:32:12]   XLI: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 20:32:14]   XLI $170.0P: quote too wide bid=$2.38 ask=$4.05 spread=41%
+[2026-06-02 20:32:16]   XLI $168.0P: quote too wide bid=$2.19 ask=$3.40 spread=36%
+[2026-06-02 20:32:16]   XLI $167.5P: quote too wide bid=$1.63 ask=$3.20 spread=49%
+[2026-06-02 20:32:18]   XLI $167.0P: quote too wide bid=$1.47 ask=$3.95 spread=63%
+[2026-06-02 20:32:19]   XLI $166.0P: quote too wide bid=$1.79 ask=$3.80 spread=53%
+[2026-06-02 20:32:21]   XLI $165.0P: quote too wide bid=$0.93 ask=$2.53 spread=63%
+[2026-06-02 20:32:22]   XLI $164.0P: quote too wide bid=$0.75 ask=$3.60 spread=79%
+[2026-06-02 20:32:24]   XLI $163.0P: missing delta/greeks — skipped
+[2026-06-02 20:32:24]   XLI $162.5P: quote too wide bid=$0.81 ask=$3.45 spread=77%
+[2026-06-02 20:32:24]   XLI: no suitable strike found
+[2026-06-02 20:32:24]   XLP: paper auto blocked — At paper MAX_PER_TICKER (2). Existing DTEs: [37, 23].
+[2026-06-02 20:32:24] 
+  Scanning XLP...
+[2026-06-02 20:32:25]   XLP: $81.90
+[2026-06-02 20:32:25]   XLP: conId=4215210 (STK)
+[2026-06-02 20:32:25]   XLP: option chain XLP@SMART (13 expiries, 79 strikes)
+[2026-06-02 20:32:25]   XLP: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 20:32:29]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 20:32:29]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 20:32:31]   XLP $78.0P: missing delta/greeks — skipped
+[2026-06-02 20:32:31]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 20:32:31]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 20:32:31]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 20:32:32]   ⚠ TWS error 200: No security definition has been found for the request
+[2026-06-02 20:32:34]   XLP: $77.0P @ $0.45 | Δ=0.166 IV=20.6% Buffer=6.0% DTE=37 | Score=14
+[2026-06-02 20:32:34] 
+  Scanning SLV...
+[2026-06-02 20:32:34]   SLV: $68.00
+[2026-06-02 20:32:34]   SLV: conId=39039301 (STK)
+[2026-06-02 20:32:34]   SLV: option chain SLV@SMART (28 expiries, 210 strikes)
+[2026-06-02 20:32:34]   SLV: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 20:32:43]   SLV: $62.0P @ $1.31 | Δ=0.228 IV=43.8% Buffer=8.8% DTE=37 | Score=38
+[2026-06-02 20:32:43] 
+  Scanning GDX...
+[2026-06-02 20:32:44]   GDX: $87.54
+[2026-06-02 20:32:44]   GDX: conId=229726316 (STK)
+[2026-06-02 20:32:44]   GDX: option chain GDX@SMART (18 expiries, 152 strikes)
+[2026-06-02 20:32:47]   GDX $85.0P: quote too wide bid=$2.85 ask=$5.15 spread=45%
+[2026-06-02 20:32:48]   GDX $84.5P: quote too wide bid=$2.82 ask=$4.45 spread=37%
+[2026-06-02 20:32:49]   GDX $84.0P: quote too wide bid=$2.59 ask=$4.20 spread=38%
+[2026-06-02 20:32:50]   GDX $83.5P: quote too wide bid=$2.98 ask=$4.60 spread=35%
+[2026-06-02 20:32:52]   GDX $83.0P: quote too wide bid=$2.83 ask=$4.45 spread=36%
+[2026-06-02 20:32:52]   GDX $82.5P: quote too wide bid=$1.75 ask=$4.30 spread=59%
+[2026-06-02 20:32:56]   GDX $81.5P: quote too wide bid=$2.29 ask=$3.55 spread=35%
+[2026-06-02 20:32:57]   GDX $81.0P: quote too wide bid=$2.15 ask=$3.35 spread=36%
+[2026-06-02 20:32:57]   GDX: no suitable strike found
+[2026-06-02 20:32:57] 
+  Scanning EEM...
+[2026-06-02 20:32:58]   EEM: $70.59
+[2026-06-02 20:32:58]   EEM: conId=6604766 (STK)
+[2026-06-02 20:32:58]   EEM: option chain EEM@SMART (21 expiries, 97 strikes)
+[2026-06-02 20:32:58]   EEM: paper auto blocked — Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 20:32:59]   EEM $69.0P: quote too wide bid=$1.70 ask=$2.72 spread=37%
+[2026-06-02 20:33:00]   EEM $68.0P: quote too wide bid=$1.37 ask=$2.54 spread=46%
+[2026-06-02 20:33:02]   EEM $67.5P: missing delta/greeks — skipped
+[2026-06-02 20:33:07]   EEM $66.0P: missing delta/greeks — skipped
+[2026-06-02 20:33:11]   EEM $64.5P: quote too wide bid=$0.38 ask=$1.15 spread=67%
+[2026-06-02 20:33:11]   EEM: $65.5P @ $0.74 | Δ=0.228 IV=33.2% Buffer=7.2% DTE=37 | Score=38
+[2026-06-02 20:33:11]   📡 Signals written: 7 candidate(s) -> /Users/islam/options-pro/data/trade_signals.json
+[2026-06-02 20:33:11] 
+  📊 Found 7 opportunities, 1 slot(s) available
+[2026-06-02 20:33:11]   🧭 Gate summary: selected=7 candidates=7 blocked=9
+[2026-06-02 20:33:11]     SPY: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-06-02 20:33:11]     QQQ: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-06-02 20:33:11]     IWM: blocked — No usable quote for protective long $272.5P.
+[2026-06-02 20:33:11]     GLD: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-06-02 20:33:11]     SMH: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-06-02 20:33:11]     DIA: blocked — Spread credit $0.51 is below 15% of $5 width.
+[2026-06-02 20:33:11]     XLK: skipped — Quotes were available but no strike landed in the target delta band.
+[2026-06-02 20:33:11]     TLT: selected — Candidate passed scanner filters; paper auto blocked: Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 20:33:11]     XLF: selected — Candidate passed scanner filters; paper auto blocked: At paper MAX_PER_TICKER (2). Existing DTEs: [37, 23]. Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 20:33:11]     XLE: selected — Candidate passed scanner filters.
+[2026-06-02 20:33:11]     XLV: selected — Candidate passed scanner filters; paper auto blocked: Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 20:33:11]     XLI: skipped — Quotes were available but failed width/quality checks.
+[2026-06-02 20:33:11]     XLP: selected — Candidate passed scanner filters; paper auto blocked: At paper MAX_PER_TICKER (2). Existing DTEs: [37, 23]. Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 20:33:11]     SLV: selected — Candidate passed scanner filters; paper auto blocked: Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 20:33:11]     GDX: skipped — Quotes were available but failed width/quality checks.
+[2026-06-02 20:33:11]     EEM: selected — Candidate passed scanner filters; paper auto blocked: Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 20:33:11]     #87: XLE $52.5P @ $0.18 (WHEEL) DTE=37
+[2026-06-02 20:33:11]     #97: TLT $83.0P @ $0.26 (WHEEL) DTE=37
+[2026-06-02 20:33:11]     #46: XLV $139.0P @ $0.67 (WHEEL) DTE=37
+[2026-06-02 20:33:11]     #38: SLV $62.0P @ $1.31 (WHEEL) DTE=37
+[2026-06-02 20:33:11]     #38: EEM $65.5P @ $0.74 (WHEEL) DTE=37
+[2026-06-02 20:33:11]     #19: XLF $49.0P @ $0.32 (WHEEL) DTE=37
+[2026-06-02 20:33:11]     #14: XLP $77.0P @ $0.45 (WHEEL) DTE=37
+[2026-06-02 20:33:11] 
+  🎯 EXECUTING: SELL 4x XLE $52.5P @ $0.18
+[2026-06-02 20:33:11]   📤 Placing order: SELL 4x XLE $52.5P @ $0.18 (ID: 146)
+[2026-06-02 20:33:11]   📝 Journal: OPEN XLE $52.5 x4
+[2026-06-02 20:33:11]   📋 Exec: SLD 4.0x XLE @ $0.19 (OrderID 146)
+[2026-06-02 20:33:11]   ✅ Order 146 FILLED at $0.19
+[2026-06-02 20:33:11]   ✅ Order 146 FILLED at $0.19
+[2026-06-02 20:33:12]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-490b0e37851sm88376875e9.13 - gsmtp')
+[2026-06-02 20:33:14]   📡 PAPER BLOCKED: TLT — Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 20:33:14]   📡 PAPER BLOCKED: XLV — Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 20:33:14]   📡 PAPER BLOCKED: SLV — Paper DTE ladder gap < 14d: proposed 37, conflicts with [37].
+[2026-06-02 20:33:14]   📡 PAPER BLOCKED: EEM — Paper DTE ladder gap < 14d: proposed 37, conflicts with [29].
+[2026-06-02 20:33:14]   XLF: skipped paper auto-open — score 19 is below 35 minimum
+[2026-06-02 20:33:14]   XLP: skipped paper auto-open — score 14 is below 35 minimum
+[2026-06-02 20:33:19]   📊 10 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 20:33:19]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 20:33:19]      IBKR: XLE-52.5 = XLE $52.5 P x-4.0 avg=$0.19
+[2026-06-02 20:33:19]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 20:33:19]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 20:33:19]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 20:33:19]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 20:33:19]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 20:33:19]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 20:33:19]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 20:33:19]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 20:33:22] 
+============================================================
+[2026-06-02 20:33:22] 📡 MONITORING 10 SHORT POSITION(S)
+[2026-06-02 20:33:22] ============================================================
+[2026-06-02 20:33:23] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.35 P/L=$-6 DTE=37
+[2026-06-02 20:33:23]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 20:33:23] 
+  XLE   $52.5P x4 [WHEEL]: entry=$74 now=$0.42 P/L=$-93 DTE=37
+[2026-06-02 20:33:23]    >> HOLD (target=$37 stop=$-149)
+[2026-06-02 20:33:23] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.45 P/L=$-14 DTE=29
+[2026-06-02 20:33:23]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 20:33:24] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.29 P/L=$14 DTE=23
+[2026-06-02 20:33:24]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 20:33:24] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.45 P/L=$-18 DTE=37
+[2026-06-02 20:33:24]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 20:33:24] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.36 P/L=$10 DTE=37
+[2026-06-02 20:33:24]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 20:33:24] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.23 P/L=$5 DTE=29
+[2026-06-02 20:33:24]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 20:33:25] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.89 P/L=$-70 DTE=37
+[2026-06-02 20:33:25]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 20:33:25] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.50 P/L=$-250 DTE=23
+[2026-06-02 20:33:25]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 20:33:25] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$31 DTE=29
+[2026-06-02 20:33:25]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 20:33:25] 
+  ⏳ Next check in 15 min...
+[2026-06-02 20:48:25]   📊 10 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 20:48:25]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 20:48:25]      IBKR: XLE-52.5 = XLE $52.5 P x-4.0 avg=$0.19
+[2026-06-02 20:48:25]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 20:48:25]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 20:48:25]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 20:48:25]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 20:48:25]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 20:48:25]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 20:48:25]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 20:48:25]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 20:48:29] 
+============================================================
+[2026-06-02 20:48:29] 📡 MONITORING 10 SHORT POSITION(S)
+[2026-06-02 20:48:29] ============================================================
+[2026-06-02 20:48:29] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.35 P/L=$-6 DTE=37
+[2026-06-02 20:48:29]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 20:48:29] 
+  XLE   $52.5P x4 [WHEEL]: entry=$74 now=$0.80 P/L=$-246 DTE=37
+[2026-06-02 20:48:29]    >> CLOSE_LOSS: 2× stop ($-246 <= $-149)
+[2026-06-02 20:48:29]   📤 Close CSP: BUY 4x XLE $52.5P @ $0.81 (ID: 147)
+[2026-06-02 20:48:29]   📝 Journal: CLOSE_LOSS XLE $52.5 x4
+[2026-06-02 20:48:29]   📓 Close submitted: CLOSE_LOSS XLE $52.5P P/L=$-246
+[2026-06-02 20:48:29]   📋 Exec: BOT 4.0x XLE @ $0.80 (OrderID 147)
+[2026-06-02 20:48:29]   ✅ Order 147 FILLED at $0.80
+[2026-06-02 20:48:30]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-490b585f0b2sm1830385e9.18 - gsmtp')
+[2026-06-02 20:48:30]   📧 Submission email sent: 📤 Close Submitted: XLE $52.5P [CSP]
+[2026-06-02 20:48:30]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-490b575ac09sm1857955e9.1 - gsmtp')
+[2026-06-02 20:48:30]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-06-02 20:48:31]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-490b575a9b7sm1815635e9.16 - gsmtp')
+[2026-06-02 20:48:31]   ✅ Order 147 FILLED at $0.80
+[2026-06-02 20:48:31] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.41 P/L=$-9 DTE=29
+[2026-06-02 20:48:31]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 20:48:31] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.28 P/L=$17 DTE=23
+[2026-06-02 20:48:31]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 20:48:32] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.56 P/L=$-50 DTE=37
+[2026-06-02 20:48:32]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 20:48:32] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.36 P/L=$9 DTE=37
+[2026-06-02 20:48:32]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 20:48:32] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.22 P/L=$7 DTE=29
+[2026-06-02 20:48:32]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 20:48:33] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.89 P/L=$-68 DTE=37
+[2026-06-02 20:48:33]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 20:48:33] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.39 P/L=$-217 DTE=23
+[2026-06-02 20:48:33]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 20:48:33] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$32 DTE=29
+[2026-06-02 20:48:33]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 20:48:33] 
+  ⏳ Next check in 15 min...
+[2026-06-02 21:03:33]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 21:03:33]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 21:03:33]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 21:03:33]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 21:03:33]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 21:03:33]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 21:03:33]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 21:03:33]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 21:03:33]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 21:03:33]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 21:03:37] 
+============================================================
+[2026-06-02 21:03:37] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 21:03:37] ============================================================
+[2026-06-02 21:03:37] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.35 P/L=$-6 DTE=37
+[2026-06-02 21:03:37]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 21:03:37] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.41 P/L=$-9 DTE=29
+[2026-06-02 21:03:37]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 21:03:38] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.29 P/L=$14 DTE=23
+[2026-06-02 21:03:38]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 21:03:38] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.45 P/L=$-16 DTE=37
+[2026-06-02 21:03:38]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 21:03:38] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.39 P/L=$-2 DTE=37
+[2026-06-02 21:03:38]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 21:03:39] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.23 P/L=$6 DTE=29
+[2026-06-02 21:03:39]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 21:03:39] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.88 P/L=$-67 DTE=37
+[2026-06-02 21:03:39]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 21:03:39] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.35 P/L=$-206 DTE=23
+[2026-06-02 21:03:39]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 21:03:40] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.59 P/L=$29 DTE=29
+[2026-06-02 21:03:40]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 21:03:40] 
+  ⏳ Next check in 15 min...
+[2026-06-02 21:18:40]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 21:18:40]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 21:18:40]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 21:18:40]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 21:18:40]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 21:18:40]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 21:18:40]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 21:18:40]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 21:18:40]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 21:18:40]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 21:18:43] 
+============================================================
+[2026-06-02 21:18:43] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 21:18:43] ============================================================
+[2026-06-02 21:18:43] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.35 P/L=$-6 DTE=37
+[2026-06-02 21:18:43]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 21:18:44] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.45 P/L=$-13 DTE=29
+[2026-06-02 21:18:44]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 21:18:44] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.29 P/L=$15 DTE=23
+[2026-06-02 21:18:44]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 21:18:44] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.56 P/L=$-50 DTE=37
+[2026-06-02 21:18:44]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 21:18:44] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.36 P/L=$11 DTE=37
+[2026-06-02 21:18:44]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 21:18:45] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.22 P/L=$7 DTE=29
+[2026-06-02 21:18:45]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 21:18:45] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.88 P/L=$-67 DTE=37
+[2026-06-02 21:18:45]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 21:18:45] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.35 P/L=$-206 DTE=23
+[2026-06-02 21:18:45]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 21:18:46] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$1.04 P/L=$-106 DTE=29
+[2026-06-02 21:18:46]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 21:18:46] 
+  ⏳ Next check in 15 min...
+[2026-06-02 21:33:46]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 21:33:46]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 21:33:46]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 21:33:46]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 21:33:46]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 21:33:46]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 21:33:46]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 21:33:46]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 21:33:46]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 21:33:46]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 21:33:49] 
+============================================================
+[2026-06-02 21:33:49] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 21:33:49] ============================================================
+[2026-06-02 21:33:49] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.35 P/L=$-6 DTE=37
+[2026-06-02 21:33:49]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 21:33:50] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$2.99 P/L=$-168 DTE=29
+[2026-06-02 21:33:50]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 21:33:50] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.28 P/L=$18 DTE=23
+[2026-06-02 21:33:50]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 21:33:51] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.40 P/L=$-2 DTE=37
+[2026-06-02 21:33:51]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 21:33:51] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.38 P/L=$2 DTE=37
+[2026-06-02 21:33:51]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 21:33:51] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.22 P/L=$6 DTE=29
+[2026-06-02 21:33:51]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 21:33:51] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.97 P/L=$-85 DTE=37
+[2026-06-02 21:33:51]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 21:33:52] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.35 P/L=$-207 DTE=23
+[2026-06-02 21:33:52]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 21:33:52] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$31 DTE=29
+[2026-06-02 21:33:52]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 21:33:52] 
+  ⏳ Next check in 15 min...
+[2026-06-02 21:48:52]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 21:48:52]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 21:48:52]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 21:48:52]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 21:48:52]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 21:48:52]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 21:48:52]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 21:48:52]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 21:48:52]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 21:48:52]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 21:48:55] 
+============================================================
+[2026-06-02 21:48:55] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 21:48:55] ============================================================
+[2026-06-02 21:48:56] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.35 P/L=$-6 DTE=37
+[2026-06-02 21:48:56]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 21:48:56] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.42 P/L=$-11 DTE=29
+[2026-06-02 21:48:56]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 21:48:56] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.29 P/L=$14 DTE=23
+[2026-06-02 21:48:56]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 21:48:56] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.45 P/L=$-17 DTE=37
+[2026-06-02 21:48:56]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 21:48:57] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.38 P/L=$2 DTE=37
+[2026-06-02 21:48:57]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 21:48:57] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.22 P/L=$8 DTE=29
+[2026-06-02 21:48:57]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 21:48:57] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.68 P/L=$-27 DTE=37
+[2026-06-02 21:48:57]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 21:48:57] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.37 P/L=$-210 DTE=23
+[2026-06-02 21:48:57]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 21:48:58] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$32 DTE=29
+[2026-06-02 21:48:58]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 21:48:58] 
+  ⏳ Next check in 15 min...
+[2026-06-02 22:03:45]   ⚠ TWS error 2103: data farm issue
+[2026-06-02 22:03:58]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 22:03:58]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 22:03:58]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 22:03:58]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 22:03:58]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 22:03:58]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 22:03:58]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 22:03:58]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 22:03:58]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 22:03:58]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 22:04:01] 
+============================================================
+[2026-06-02 22:04:01] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 22:04:01] ============================================================
+[2026-06-02 22:04:02] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.28 P/L=$23 DTE=37
+[2026-06-02 22:04:02]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 22:04:03] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.41 P/L=$-10 DTE=29
+[2026-06-02 22:04:03]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 22:04:04] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.27 P/L=$21 DTE=23
+[2026-06-02 22:04:04]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 22:04:06] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.44 P/L=$-14 DTE=37
+[2026-06-02 22:04:06]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 22:04:10] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.37 P/L=$7 DTE=37
+[2026-06-02 22:04:10]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 22:04:10] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.22 P/L=$8 DTE=29
+[2026-06-02 22:04:10]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 22:04:12] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.86 P/L=$-63 DTE=37
+[2026-06-02 22:04:12]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 22:04:20] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.37 P/L=$-210 DTE=23
+[2026-06-02 22:04:20]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 22:04:20] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$32 DTE=29
+[2026-06-02 22:04:20]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 22:04:20] 
+  ⏳ Next check in 15 min...
+[2026-06-02 22:19:20]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 22:19:20]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 22:19:20]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 22:19:20]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 22:19:20]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 22:19:20]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 22:19:20]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 22:19:20]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 22:19:20]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 22:19:20]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 22:19:23] 
+============================================================
+[2026-06-02 22:19:23] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 22:19:23] ============================================================
+[2026-06-02 22:19:23] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.35 P/L=$-6 DTE=37
+[2026-06-02 22:19:23]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 22:19:24] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.62 P/L=$-31 DTE=29
+[2026-06-02 22:19:24]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 22:19:24] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.34 P/L=$-4 DTE=23
+[2026-06-02 22:19:24]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 22:19:24] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.50 P/L=$-31 DTE=37
+[2026-06-02 22:19:24]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 22:19:25] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.51 P/L=$-48 DTE=37
+[2026-06-02 22:19:25]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 22:19:25] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.26 P/L=$-4 DTE=29
+[2026-06-02 22:19:25]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 22:19:26] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.71 P/L=$-34 DTE=37
+[2026-06-02 22:19:26]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 22:19:26] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.38 P/L=$-213 DTE=23
+[2026-06-02 22:19:26]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 22:19:26] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.86 P/L=$-52 DTE=29
+[2026-06-02 22:19:26]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 22:19:26] 
+  🌙 Market closed — next check in 15 min...
+[2026-06-02 22:34:26]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 22:34:26]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 22:34:26]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 22:34:26]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 22:34:26]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 22:34:26]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 22:34:26]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 22:34:26]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 22:34:26]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 22:34:26]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 22:34:29] 
+============================================================
+[2026-06-02 22:34:29] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 22:34:29] ============================================================
+[2026-06-02 22:34:30] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.35 P/L=$-6 DTE=37
+[2026-06-02 22:34:30]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 22:34:30] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.40 P/L=$-9 DTE=29
+[2026-06-02 22:34:30]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 22:34:30] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.34 P/L=$-4 DTE=23
+[2026-06-02 22:34:30]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 22:34:31] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.40 P/L=$-2 DTE=37
+[2026-06-02 22:34:31]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 22:34:31] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.51 P/L=$-48 DTE=37
+[2026-06-02 22:34:31]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 22:34:31] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.26 P/L=$-4 DTE=29
+[2026-06-02 22:34:31]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 22:34:31] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.71 P/L=$-34 DTE=37
+[2026-06-02 22:34:31]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 22:34:32] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.38 P/L=$-213 DTE=23
+[2026-06-02 22:34:32]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 22:34:32] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$31 DTE=29
+[2026-06-02 22:34:32]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 22:34:32] 
+  🌙 Market closed — next check in 15 min...
+[2026-06-02 22:49:32]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 22:49:32]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 22:49:32]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 22:49:32]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 22:49:32]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 22:49:32]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 22:49:32]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 22:49:32]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 22:49:32]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 22:49:32]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 22:49:35] 
+============================================================
+[2026-06-02 22:49:35] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 22:49:35] ============================================================
+[2026-06-02 22:49:36] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.32 P/L=$5 DTE=37
+[2026-06-02 22:49:36]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 22:49:36] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.62 P/L=$-31 DTE=29
+[2026-06-02 22:49:36]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 22:49:36] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.34 P/L=$-4 DTE=23
+[2026-06-02 22:49:36]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 22:49:36] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.50 P/L=$-31 DTE=37
+[2026-06-02 22:49:36]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 22:49:37] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.51 P/L=$-48 DTE=37
+[2026-06-02 22:49:37]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 22:49:37] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.26 P/L=$-4 DTE=29
+[2026-06-02 22:49:37]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 22:49:37] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.71 P/L=$-34 DTE=37
+[2026-06-02 22:49:37]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 22:49:38] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.39 P/L=$-217 DTE=23
+[2026-06-02 22:49:38]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 22:49:38] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$31 DTE=29
+[2026-06-02 22:49:38]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 22:49:38]   ⚠ Reconciliation drift detected between IBKR and journal
+[2026-06-02 22:49:39]   ⚠ Email failed: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4601f2dcde3sm2175259f8f.1 - gsmtp')
+[2026-06-02 22:49:39] 
+  🌙 Market closed — next check in 15 min...
+[2026-06-02 23:04:39]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 23:04:39]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 23:04:39]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 23:04:39]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 23:04:39]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 23:04:39]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 23:04:39]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 23:04:39]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 23:04:39]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 23:04:39]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 23:04:42] 
+============================================================
+[2026-06-02 23:04:42] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 23:04:42] ============================================================
+[2026-06-02 23:04:42] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.32 P/L=$5 DTE=37
+[2026-06-02 23:04:42]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 23:04:43] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.62 P/L=$-31 DTE=29
+[2026-06-02 23:04:43]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 23:04:43] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.34 P/L=$-4 DTE=23
+[2026-06-02 23:04:43]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 23:04:43] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.50 P/L=$-31 DTE=37
+[2026-06-02 23:04:43]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 23:04:43] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.51 P/L=$-48 DTE=37
+[2026-06-02 23:04:43]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 23:04:44] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.26 P/L=$-4 DTE=29
+[2026-06-02 23:04:44]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 23:04:44] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.71 P/L=$-34 DTE=37
+[2026-06-02 23:04:44]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 23:04:44] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.38 P/L=$-213 DTE=23
+[2026-06-02 23:04:44]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 23:04:45] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.80 P/L=$-34 DTE=29
+[2026-06-02 23:04:45]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 23:04:45] 
+  🌙 Market closed — next check in 15 min...
+[2026-06-02 23:19:45]   📊 9 option position(s), 0 stock/ETF position(s) loaded from IBKR
+[2026-06-02 23:19:45]      IBKR: XLF-48.5 = XLF $48.5 P x-4.0 avg=$0.34
+[2026-06-02 23:19:45]      IBKR: XLI-165.0 = XLI $165.0 P x-1.0 avg=$1.31
+[2026-06-02 23:19:45]      IBKR: XLF-49.5 = XLF $49.5 P x-4.0 avg=$0.33
+[2026-06-02 23:19:45]      IBKR: XLP-77.0 = XLP $77.0 P x-3.0 avg=$0.39
+[2026-06-02 23:19:45]      IBKR: SLV-62.0 = SLV $62.0 P x-4.0 avg=$1.39
+[2026-06-02 23:19:45]      IBKR: TLT-83.0 = TLT $83.0 P x-3.0 avg=$0.25
+[2026-06-02 23:19:45]      IBKR: XLV-139.0 = XLV $139.0 P x-2.0 avg=$0.55
+[2026-06-02 23:19:45]      IBKR: XLP-81.5 = XLP $81.5 P x-3.0 avg=$0.67
+[2026-06-02 23:19:45]      IBKR: EEM-63.5 = EEM $63.5 P x-3.0 avg=$0.69
+[2026-06-02 23:19:48] 
+============================================================
+[2026-06-02 23:19:48] 📡 MONITORING 9 SHORT POSITION(S)
+[2026-06-02 23:19:48] ============================================================
+[2026-06-02 23:19:48] 
+  XLF   $48.5P x4 [WHEEL]: entry=$134 now=$0.32 P/L=$5 DTE=37
+[2026-06-02 23:19:48]    >> HOLD (target=$67 stop=$-269)
+[2026-06-02 23:19:49] 
+  XLI   $165.0P x1 [WHEEL]: entry=$131 now=$1.62 P/L=$-31 DTE=29
+[2026-06-02 23:19:49]    >> HOLD (target=$66 stop=$-262)
+[2026-06-02 23:19:49] 
+  XLF   $49.5P x4 [WHEEL]: entry=$130 now=$0.34 P/L=$-4 DTE=23
+[2026-06-02 23:19:49]    >> HOLD (target=$65 stop=$-261)
+[2026-06-02 23:19:50] 
+  XLP   $77.0P x3 [WHEEL]: entry=$118 now=$0.50 P/L=$-31 DTE=37
+[2026-06-02 23:19:50]    >> HOLD (target=$59 stop=$-236)
+[2026-06-02 23:19:50] 
+  SLV   $62.0P x4 [WHEEL]: entry=$554 now=$1.51 P/L=$-48 DTE=37
+[2026-06-02 23:19:50]    >> HOLD (target=$277 stop=$-1109)
+[2026-06-02 23:19:50] 
+  TLT   $83.0P x3 [WHEEL]: entry=$74 now=$0.26 P/L=$-4 DTE=29
+[2026-06-02 23:19:50]    >> HOLD (target=$37 stop=$-147)
+[2026-06-02 23:19:50] 
+  XLV   $139.0P x2 [WHEEL]: entry=$109 now=$0.71 P/L=$-34 DTE=37
+[2026-06-02 23:19:50]    >> HOLD (target=$55 stop=$-218)
+[2026-06-02 23:19:51] 
+  XLP   $81.5P x3 [WHEEL]: entry=$200 now=$1.38 P/L=$-213 DTE=23
+[2026-06-02 23:19:51]    >> HOLD (target=$100 stop=$-399)
+[2026-06-02 23:19:51] 
+  EEM   $63.5P x3 [WHEEL]: entry=$206 now=$0.58 P/L=$31 DTE=29
+[2026-06-02 23:19:51]    >> HOLD (target=$103 stop=$-411)
+[2026-06-02 23:19:51] 
+  🌙 Market closed — next check in 15 min...
+[2026-06-02 23:32:52] 
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+[2026-06-02 23:32:52] Options Pro Ultra v6 — Autotrade Engine
+[2026-06-02 23:32:52] Account: DU4735568 | Size: $250,000
+[2026-06-02 23:32:52] Max positions: 10 | Paper target use: $225,000 (90%)
+[2026-06-02 23:32:52] Paper sizing: CSP 8% / high-quality 12%, BPS 2.0%, IC 1.5%
+[2026-06-02 23:32:52] Delta: 0.15-0.25 | DTE: 21-45
+[2026-06-02 23:32:52] Close: 50% profit | Stop: 2.0× credit
+[2026-06-02 23:32:52] Scan passes: 1
+[2026-06-02 23:32:52] 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+
